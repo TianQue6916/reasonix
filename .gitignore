@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Git submodules (ai-vibe-writing-skills is a clone)
+skills/ai-vibe-writing-skills/.git/
+
+# Node modules (if any)
+node_modules/

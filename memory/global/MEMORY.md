@@ -1,0 +1,16 @@
+- [advanced-math](advanced-math.md) — 高等数学学习对话与问题解答
+- [aigc-detection-battle-log](aigc-detection-battle-log.md) — 10轮AIGC降率实战经验总结：策略对比与关键教训
+- [csapp-deep](csapp-deep.md) — CSAPP深入学习：缓存矩阵、对角块优化等
+- [csapp-structure](csapp-structure.md) — CSAPP全书目录结构解析
+- [discrete-math](discrete-math.md) — 离散数学深入学习：Chernoff Bound等推导
+- [future-planning](future-planning.md) — 方舟计划完整总结、API配置、学习体系规划
+- [installed-ppt-skills](installed-ppt-skills.md) — 三个由外部仓库转换安装的 Reasonix 演示文稿技能
+- [installed-skills-round2](installed-skills-round2.md) — 第二批安装的4个Reasonix技能：计划管理+开发方法论+幻灯片+浏览器自动化
+- [installed-skills-round3](installed-skills-round3.md) — 第三批安装：Anthropic 官方技能 + Vercel 官方技能 + 三个技能合集索引
+- [matt-pocock-skills-auto](matt-pocock-skills-auto.md) — Matt Pocock 技能集 — 自动触发规则 + 已安装技能索引
+- [mit6042j-review](mit6042j-review.md) — MIT6.042J离散数学课程前瞻性总结回顾
+- [offline-wiki-autosearch](offline-wiki-autosearch.md) — 离线维基百科（英文，51.9GB ZIM）— 自动搜索流程与代码
+- [pdf2zh-toolbox](pdf2zh-toolbox.md) — PDFMathTranslate 便携工具箱在 D:\Toolbox\PDFMathTranslate\
+- [ppt-word-gen](ppt-word-gen.md) — 全自动PPT/Word文档生成工作流
+- [recommended-ocr-tools](recommended-ocr-tools.md) — 用户上次推荐的OCR工具记录
+- [skill-routing-rules](skill-routing-rules.md) — 强制技能路由规则 — 16个场景的 Skill 自动触发映射
