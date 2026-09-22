@@ -1,0 +1,71 @@
+---
+name: dsh-gate
+description: DeepSeek Harness 决策钩子——难问题/需 pro 推理时自动调用 DSH headless 处理，整合其结果。用户说"用 DSH""走 harness""难问题交给 DSH"或任务需要深度推理/长文档/正式证明时触发。铁律：凡是 Pro 必走 dsh-gate；大型思考写入任务调主力机 Windows 分工。
+version: 1.2.0
+---
+
+# dsh-gate — DSH 自动路由钩子
+
+## 触发条件
+以下情况**必须**走 dsh-gate（本机调用 `dsh-gate`，主力机 SSH 调用 `dsh-gate.ps1`）：
+
+1. **显式要求 pro**：用户说"用 pro""deepseek-v4-pro""加强模型"时 → `--pro`
+2. **难任务自动判定**（dsh-gate 内置关键词）：证明/推导/优化/审计/长文档逐句翻译/代码审查/架构设计/max thinking/数学课程内容
+3. **深度推理类**：需要多步推理、形式化证明、全面审计的场景
+4. **大型思考写入**（长文档/批量/大规模转录）→ 优先派主力机（双机分工铁律）
+
+## 用法
+
+### 本机（Linux 天阙）
+```bash
+dsh-gate "任务"                     # 自动判定难度（难→pro+max，简单→flash）
+dsh-gate --pro "需要 pro 的任务"     # 强制 pro + max
+dsh-gate --model deepseek-v4-pro --effort max "任务"
+dsh-gate --mode code "任务"          # 创造模式（Code Mode：run_code 程序驱动工具）
+dsh-gate --self-optimize            # 自我优化：分析会话数据，增删难度判定关键词
+dsh-gate --evolve                   # 深度演进审计：通读记忆/wiki/技能/会话，出优化计划
+dsh-gate --evolve --apply --plan <file>   # 应用演进计划（关键词+插件+自定义插件草稿）
+```
+
+### 主力机（Windows 天阙九泉）— 大型写入/长文档/批量任务优先
+```bash
+ssh tqjq "powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate.ps1 -Pro '任务'"
+```
+
+### 双机分工
+- 日常/快任务：本机
+- 大型写入/长文档/Windows 专属：主力机
+- 两个独立大任务：两机并行（⚠️ 同一台机不可并发调 dsh-gate）
+
+## 已注入的上下文（DSH 自动获得）
+- 用户记忆库 `~/.reasonix/memory`（含 global/ + project/）
+- 用户技能库 `~/.reasonix/skills`
+- 用户画像 `memory/global/user-persona-cognitive-system-architect.md`
+- 认知方式要点：构建主义、验证驱动、先证后信；双语规范；第一性原理教学
+
+## 模型铁律（与 Reasonix 全局一致）
+- 简单任务 → `deepseek-v4-flash` + high（省钱）
+- 难任务/需 pro → `deepseek-v4-pro` + max
+- **凡是 Pro 必走 dsh**，Reasonix 内置不用 pro
+- 结果落盘：本机 `/tmp/dsh-gate/`、主力机 `%TEMP%\dsh-gate\`，同时回显 stdout
+
+## 极简锚定（2026-08-16 已启用）
+headless 已打锚定 patch：首轮仅 Minimal 工具对（bash + str_replace_editor）+ minimal persona，首次持久晋升信号后开放全量。已验证首轮 tools=2。详见技能 `dsh-mode`。
+
+## API key（双机独立）
+- 本机：`~/.dsh/.env`（chmod 600，sk-4e6b...）优先，回退 `~/.reasonix/.env`
+- 主力机：Windows 用户级环境变量 `DEEPSEEK_API_KEY`（sk-a46e...）
+- 明文不入记忆/仓库
+
+## 整合要求
+Reasonix 收到 dsh-gate 输出后：**只做整合**（格式整理、补充、衔接），不重复推理、不重新翻译、不覆盖 DSH 结论。DSH 输出含用户上下文时保持原样引用。
+
+## ⚠️ 并发禁令
+dsh-gate 临时改写 `~/.dsh/settings.yaml`（trap 恢复）。**同一台机不可并发调用**（互相覆盖 → 会话 disposed，2026-08-16 实测）。需要并行时用双机各跑一个。
+
+## 验证
+```bash
+dsh-gate "1+1等于几？"        # → flash（看 stderr 的"模型=deepseek-v4-flash"）
+dsh-gate "证明质数无穷多"      # → pro（stderr 显示"判定为难任务→ pro + max"）
+```
+会话日志确认：`~/.dsh/sessions/*/session.jsonl.zstd` 中 `deepseek-v4-pro` 出现次数 > 0。

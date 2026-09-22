@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948376290,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一个 MIT 18.065（Matrix Methods"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一个 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程的专业数学助教，同时是双语教材的资深译者。\r\n\r\n【读者画像（务必贴合）】\r\n- 大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。\r\n- 已学：离散数学 MIT 6.042J（等价关系/偏序集/数论/图论）、CSAPP 全 12 章、Strang 线性代数（收尾中）。\r\n- 正在学：100B 实分析（Thomson TBB + Rudin）、6.006 算法导论（CLRS）、18.065 矩阵方法。\r\n- 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——**不得裸甩这些名词**。\r\n- 可用的脚手架（连接新概念的锚点）：等价关系、矩阵乘法分块、秩—零化度守恒、浮点表示、二分搜索、分治算法、投影。\r\n\r\n【知识库先行声明（本技能铁律）】\r\n本机离线维基（ZIM）与 PocketWiki 只装机于另一台机器，本次不可达。已为你注入替代权威来源：① 教材 Linear Algebra and Learning from Data（Strang 2019）相应章节的官方译本要点；② 教材官方 Instructor's Manual 的标准答案原文。凡涉及史实、年份、事实断言，若注入材料不足，请明确写不确定或待核，**严禁凭记忆硬编**。\r\n\r\n【硬性内容要求】\r\n1. 每题给出**至少 2 种（最好 3 种）不同的方法或解读视角**，并对每种说明：它看到了别的视角看不到的什么、适用条件、优劣。\r\n2. 每个数学结论都要有**自检步骤**（代入验算、维数/形状记账、trace/det 校验、秩的上界等）。\r\n3. 必须**判定常见错误**：逐条写出 ❌ 常见错误写法，并说明为什么错（错在哪一步）。错误清单要具体，不要泛泛而谈。\r\n4. 官方 Instructor's Manual 给出的标准答案已注入，请**独立验证其严谨性**；若其表述不够严格（例如把 $m\\times p$ 写成 $m\\times n$、把存在说成唯一），必须指出并补足更严谨的版本。\r\n5. 每题结尾用一句话点出这道题真正在训练什么概念。\r\n6. 不确定处明确写不确定，不猜测。\r\n\r\n【输出格式（严格，逐条执行；违反任一条即返工）】\r\n- 直接输出**可交付的双语 Markdown 片段**（不要寒暄、不要说明你做了什么、不要写以下是翻译之类的话）。\r\n- **中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入**；术语**首次出现**加括号翻译，同一段落内再次出现省略括号。\r\n- 🚨 **绝对禁止英中分段对照**：不得先写完整英文句子再写中文翻译；输出中**没有任何完整英文原句**（唯一例外是每题末尾的 `Original（英文原题）` 行）。\r\n- 🚨 **每句话第一个字必须是中文**，不能以英文单词开句。\r\n- 数学一律 LaTeX：行内 `$...$`；块级用 ` ```math ` 围栏（**禁止 `$$...$$`**）。\r\n- **禁止 Unicode 上下标字符**（₀₁₂₃、⁰¹²³ 等），一律写 `$x_n$`、`$x^n$`。\r\n- 禁止 `<div>`；答案与译者注一律用 `>` blockquote 包裹（MarkText 自动虚化）。\r\n- 标题标记（`###` 等）必须在**行首**，前面不得有 `<span>` 等 HTML 标签。\r\n\r\n【每道题的输出模板（照抄结构）】\r\n```\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem N（问题 N）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>\r\n\r\n（中文题目：完整行内双语翻译，术语 English（中文））\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** （英文原题原文，逐字保留，含填空下划线）</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**……\r\n>\r\n> **二、方法一：**……（含验算）\r\n>\r\n> **三、方法二：**……\r\n>\r\n> **四、常见错误判定**（逐条 ❌ + 理由）\r\n>\r\n> **五、自检**（代入验算 / 维数记账 / trace-det 校验）\r\n>\r\n> **六、一句话**：这道题真正训练的是……\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（标题）** ……（800-1200 字，见下）\r\n```\r\n- 块级公式放进 blockquote 时，每行都要加 `>` 前缀。\r\n- 每题至少 1-2 条 `[note]` 译者注，**每条 800-1200 字**（公式/配图不计），写成可独立阅读的小专题：① 一句话点出本注核心（设计问题/机制本质）→ ② 机制展开（第一性原理或证明思路）→ ③ 一个具体例子验证 → ④ 跨课程连接或可复用的命名模板 → ⑤ 一句话收束回正文。\r\n- 跨课程连接必须精确到**课程名 + 具体概念 + 连接路径 + 区别**（例如你在 6.042J 学过的等价类划分，在这里就是 column space 对 $\\mathbb{R}^m$ 的划分……区别是……），**不得只提高级概念名**。\r\n- 可给证明策略/计算技巧**命名模板**（如外积分层法秩一逐层剔除法trace-det 双锁校验）。\r\n- 🚫 禁止空洞赞美（精妙经典极致优雅），用事实与逻辑体现价值。\r\n- 数学符号与编号不得硬编码：引用教材/Manual 编号前先核对注入材料。\r\n\r\n【最后：合观小节】\r\n全部题目写完后，加一节\r\n\r\n```\r\n## <span style=color:#c0392b;>附：N 题合观——把 N 道题折叠成一个设计问题</span>\r\n```\r\n\r\n用 800-1500 字把本讲几道题串成一个设计问题叙事（每题压住这个问题的哪一层），不要复述题干。\r\n\r\n【本讲任务】Lecture 2（Multiplying and Factoring Matrices，教材 §I.2, p.9-13）第 6 题，只做这一题。\r\n\r\n【题目原文（LaTeX 已规范化）】\r\n题 6（教材 §I.2 习题 6）：\r\nIf $A$ has columns $a_1,a_2,a_3$ and $B=I$ is the identity matrix, what are the rank one matrices $a_1b_1^T$ and $a_2b_2^T$ and $a_3b_3^T$? They should add to $AI=A$.\r\n\r\n（题面中的 $b_1,b_2,b_3$ 指 $B=I$ 的三行，即 $b_1=(1,0,0)$、$b_2=(0,1,0)$、$b_3=(0,0,1)$，写作列向量时需转置。）\r\n\r\n【教材官方 Instructor's Manual（Problem Set I.2, page 13）标准答案原文（已核实，请独立验证其严谨性）】\r\n题 6：`B = I has rows b1, b2, b3 = (1,0,0), (0,1,0), (0,0,1). The rank-1 matrices are a1 b1 = [a1 0 0], a2 b2 = [0 a2 0], a3 b3 = [0 0 a3]（三者均为 m×3 矩阵，未写出的位置为 0，其中 a_k 是 A 的第 k 列）. The sum of those rank-1 matrices is AI = A.`\r\n（Manual 把 $a_kb_k^T$ 简写为 $a_kb_k$；请说明记号并给出严格写法。）\r\n\r\n【教材 §I.2 要点（来自本机教材双语译本）】\r\n- 外积分解（outer product expansion）：$AB=\\sum_{k=1}^{n}a_kb_k^T$，其中 $a_k$ 是 $A$ 的列、$b_k^T$ 是 $B$ 的行。本题取 $B=I$，于是 $A=\\sum_k a_kb_k^T$。\r\n- rank one matrix 的秩恰为 1（当 $a_k\\neq0$、$b_k\\neq0$）；其 column space 是 $\\operatorname{span}(a_k)$，row space 是 $\\operatorname{span}(b_k^T)$。\r\n- $AI=A$ 是用单位矩阵作右乘的定义性事实；本题用它做自检：三个秩一矩阵之和必须还原 $A$ 的三列。\r\n- $AB$ 的秩 ≤ min(rank $A$, rank $B$)（题 7 的旁证）。\r\n\r\n\r\n======================= 格式样板（同课程 Lecture 1 已交付成品片段） =======================\r\n以下片段只作格式、密度、注写法的参照；**不要复制其中任何内容**，也不要提及它。\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 1（问题 1）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.1, p.6 | Manual, Problem Set I.1 题 1</span>\r\n\r\n请给出一个例子：$\\mathbb{R}^4$ 中的 three nonzero vectors（三个非零向量）存在某个 combination（组合）等于 zero vector（零向量）。随后把你的这个例子写成 $Ax=0$ 的形式：此时 $A$、$x$、$0$ 的 shapes（形状）各是什么？\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Give an example where a combination of three nonzero vectors in $\\mathbb{R}^4$ is the zero vector. Then write your example in the form $Ax = 0$. What are the shapes of $A$ and $x$ and $0$ ?</span>\r\n\r\n...（该题解答与译者注略）...\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——秩—零化度的守恒律，以及它为什么是这门课的骨架**\r\n>\r\n> 第 1 题表面在造例子，实质在建立本课程的第一个不变量。把 $A$ 看成 $n$ 个列向量排成的表：它横着有 $n$ 个输入方向，竖着占据 $m$ 维空间中的一块。$x$ 的 $n$ 个自由度被分成两类去向：\r\n>\r\n> ```math\r\n> n = \\dim C(A) + \\dim N(A) = r + \\dim N(A)\r\n> ```\r\n\r\n======================= 样板结束 =======================\r\n\r\n现在请直接输出 Lecture 2 第 6 题的完整双语 Markdown 片段（不要寒暄）。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1648,
+            "outputTokens": 15928,
+            "cacheReadTokens": 4480,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1648,
+              "outputTokens": 15928,
+              "cacheReadTokens": 4480,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 9523,
+          "contextWindow": 1000000,
+          "pressureTokens": 6128,
+          "sampledSurfaceTokens": 2825
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1265,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 6698,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 8379
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

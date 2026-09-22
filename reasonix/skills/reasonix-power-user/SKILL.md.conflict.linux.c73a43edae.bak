@@ -1,0 +1,44 @@
+---
+name: reasonix-power-user
+description: Reasonix 高级用法 — code/chat/run 命令, Skill/MCP/记忆/系统提示管理
+---
+
+# Reasonix高级用户
+
+核心命令: reasonix code/chat/run/commit
+Skill系统: /skill list/new/show/<name>, ~/.reasonix/skills/<name>/SKILL.md
+MCP集成: reasonix mcp list/search/install/browse/inspect
+会话管理: --continue/--new/--resume, reasonix sessions
+记忆系统: ~/.reasonix/memory/global/, MEMORY.md, /memory list
+系统提示: --system-append, --system-append-file, REASONIX.md
+Dashboard: --dashboard-port, --open-dashboard
+
+## DSH 钩子（DeepSeek Harness 集成）
+
+远程控制主力机时，若任务需深度推理/难问题，**优先通过主力机的 dsh-gate 走 DSH headless**：
+
+- 主力机：`ssh tqjq "powershell -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate.ps1 -Pro '任务'"`
+- 本机：`dsh-gate "任务"` / `dsh-gate --pro "任务"`
+- 主力机 dsh 用独立 API key（用户级环境变量），本机用 `~/.dsh/.env`（sk-4e6b...）
+- 完整档案：`~/.reasonix/memory/global/dsh-gate-dual-machine-setup.md`
+- 自我演进：`dsh-gate --evolve` / `--apply --plan <file>`
+
+## 运营规则（2026-08-16 合并自 元规则-Reasonix运营规则.md）
+
+### 黄金法则
+**只改名不改内容** — 文件正文、描述、playbook 主体、数据内容全部不变。配套更新索引（MEMORY.md）中的链接和显示名。
+
+### 记忆文件命名
+`category-subject-key-description.md`（全小写 kebab-case）；前缀：anti-aigc-* / meta-* / plan-* / skill-* / study-* / tool-*。
+
+### 会话文件命名
+- 有实质内容：`code-主题英文kebab-YYYYMMDDHHmm.扩展名`
+- 仅 session.opened：`brief-YYYYMMDDHHmm.events.jsonl`
+- mind-* / subagent-sub-* 保留原名
+
+### 技能文件命名
+- 文件名 = frontmatter `name:` 字段，两者一致
+- 避免纯缩写；目录型技能名字清楚的不改
+
+### 禁止操作
+不修改正文内容（只改名时）；不合并不同主题文件；不删除无内容会话。

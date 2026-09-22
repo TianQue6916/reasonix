@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948928762,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 `Manual` 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>`。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、$\\det$ 与 $\\operatorname{trace}$ 校验数字不符等。请**独立重算每一处计算**，包括题面给出的矩阵是否与官方答案自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错，有没有把对的说成错的、把错的说成对的。\r\n③ 🔴 译者注**规格**：本技能规定**每条注 800–1200 字**（公式/配图/引文不计）。本次草稿的注普遍超长（部分 2000–8000 字），请处理为合规形态：优先**按主题拆分为多条注**（子标题写作 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`），每条 800–1200 字；太短或碎片化的可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——压缩对象只能是重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板），跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」，不得裸甩名词。\r\n④ 🟡 术语一致性：同一术语本段内单一译法（outer product 一律外积、rank one matrix 一律秩一矩阵、permutation matrix 一律置换矩阵、projection matrix 一律投影矩阵）。\r\n⑤ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑥ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；`Original（英文原题）` 是否与题面逐字对应。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——第四课的课程头（含来源行、讲次标题、引言与术语口径节）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 数学一律 LaTeX；不确定处写 `⚠ 待核：<存疑点>`。\r\n- 禁止只输出意见清单而不给修订全文。\r\n\r\n======================= 待审部分开始（第四课的课程头（含来源行、讲次标题、引言与术语口径节）） =======================\r\n\r\n# <span style=color:#c0392b;>18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning（数据分析、信号处理与机器学习中的矩阵方法）</span>\r\n\r\n> <span style=color:#7f8c8d;>MIT OpenCourseWare · Spring 2018 · Gilbert Strang · 第四课（Lecture 4）配套 Problem Set I.6</span>\r\n>\r\n> <span style=color:#7f8c8d;>原文来源：MIT OCW 18.065 S18 *Problem Sets Related to Lectures and Readings*（Problems for Lecture 4，教材 §I.6, p.41）· 教材出处：Linear Algebra and Learning from Data（Strang 2019）§I.6 · 答案核验：教材官方 Instructor's Manual（Problem Set I.6, page 41）</span>\r\n\r\n## <span style=color:#c0392b;>第四课 · Problems for Lecture 4（第 4 讲讲题）</span>\r\n\r\n本讲标题是 <span style=color:#00838f;>Eigenvalues and Eigenvectors（特征值与特征向量）</span>。把它读成一个设计问题会更清楚：**一个矩阵里有哪些方向，被它作用之后只是被拉伸，方向不变？**\r\n\r\n答案是三个层次。第一层是哪些方向不变、拉伸多少：$Ax=\\lambda x$ 把矩阵的作用简化为一个标量因子，于是 $A$ 与 $A^{-1}$ 的差别只剩 $\\lambda$ 与 $1/\\lambda$（题 2）。第二层是哪些量只由特征值决定：$\\lambda_1+\\lambda_2=\\operatorname{tr}(A)$、$\\lambda_1\\lambda_2=\\det A$ 给出两个可以独立验算的锚点，而 $\\det(A-\\lambda I)=\\det(A^T-\\lambda I)$ 说明 $A$ 与 $A^T$ 共享特征值、却一般不共享特征向量（题 11）。第三层是把整台机器拆开装回：只要能找到 $n$ 个线性无关的特征向量，就能写 $A=X\\Lambda X^{-1}$，从此 $A^3=X\\Lambda^3X^{-1}$、$A^{-1}=X\\Lambda^{-1}X^{-1}$——矩阵的幂与逆全部变成对角矩阵上的标量运算（题 15）。\r\n\r\n三层合起来是本课程反复使用的一条纪律：**遇到矩阵运算，先问它作用在特征向量上会怎样。**这也是后面 SVD、马尔可夫链、差分方程（$A^k$）的共同起点。\r\n\r\n### <span style=color:#00838f;>术语口径（本讲五个词，后文严格按此使用）</span>\r\n\r\n- eigenvalue / eigenvector（特征值 / 特征向量）：满足 $Ax=\\lambda x$ 的 $\\lambda$ 与非零向量 $x$。特征向量张成 eigenspace（特征空间）；**特征向量不能是零向量**，这是定义的一部分。\r\n- characteristic polynomial（特征多项式）：$\\det(A-\\lambda I)$，它的根就是特征值；题 2 里它是 $\\lambda^2-\\lambda-2=(\\lambda-2)(\\lambda+1)$。\r\n- trace–determinant check（迹—行列式校验）：$\\lambda_1+\\cdots+\\lambda_n=\\operatorname{trace}(A)$，$\\lambda_1\\lambda_2\\cdots\\lambda_n=\\det A$。它是**校验**工具，不是求解工具——两个数都能独立算出来，所以能抓出算错的特征值。\r\n- diagonalization（对角化）：$A=X\\Lambda X^{-1}$，其中 $X$ 的列是特征向量、$\\Lambda=\\operatorname{diag}(\\lambda_1,\\dots,\\lambda_n)$。它要求这 $n$ 个特征向量 linearly independent（线性无关）；否则矩阵不可对角化（如 $\\begin{bmatrix}\\lambda&1\\\\0&\\lambda\\end{bmatrix}$）。\r\n- spectral mapping（谱映射）：$A^k=X\\Lambda^kX^{-1}$，$A^{-1}=X\\Lambda^{-1}X^{-1}$（后者要求所有 $\\lambda_i\\neq0$）。矩阵运算作用在 $\\Lambda$ 上，$X$ 原地不动——这是本讲最重要的操作原则。\r\n\r\n🚨 必须挡住的三处混淆：① 把特征值相同当成矩阵相同（教材题 13 的结论正相反：还要特征向量一致才推出 $A=B$）；② 把$A$ 与 $A^T$ 特征值相同顺手推广成特征向量也相同（题 11 就是要打掉这个想法）；③ 在 $A=X\\Lambda X^{-1}$ 里把 $\\Lambda$ 的次序与 $X$ 的列次序配错——第 $k$ 列特征向量必须配第 $k$ 个特征值，这是幂运算与差分方程里最常见的错位。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1760,
+            "outputTokens": 5730,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1760,
+              "outputTokens": 5730,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 7176,
+          "contextWindow": 1000000,
+          "pressureTokens": 5600,
+          "sampledSurfaceTokens": 2647
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1087,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4529,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6032
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

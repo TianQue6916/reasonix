@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789864392729,
+      "cwd": "C:\\Users\\27063\\AppData\\Local\\reasonix\\worktrees\\5837d8e9c978de32\\f5df9c031a\\global-workspace",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 17,
+        "val": "1+1等于几？只回答数字"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "1+1等于几？只回答数字"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 17,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 17,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 17,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 535,
+            "outputTokens": 2,
+            "cacheReadTokens": 7936,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 535,
+              "outputTokens": 2,
+              "cacheReadTokens": 7936,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 17,
+        "val": {
+          "surfaceTokens": 1580,
+          "contextWindow": 1000000,
+          "pressureTokens": 8471,
+          "sampledSurfaceTokens": 1571
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 17,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 11,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 15,
+              "heuristicTokens": 9,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 7257,
+            "messageTokens": 436
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 17,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 16
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 17,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 17,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

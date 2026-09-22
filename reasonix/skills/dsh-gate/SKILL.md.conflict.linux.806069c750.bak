@@ -1,0 +1,68 @@
+---
+name: dsh-gate
+description: DeepSeek Harness 决策钩子——难问题/需 pro 推理时一律转发主力机 dsh（dsh-remote），整合其结果。用户说"用 DSH""走 harness""难问题交给 DSH"或任务需要深度推理/长文档/正式证明时触发。铁律：凡是 Pro 必走 dsh；本机不跑 dsh。
+version: 2.0.0
+---
+
+# dsh-gate — DSH 自动路由钩子（2026-09-04 重写）
+
+> **当前规范**：本机（小电脑）**不跑 dsh**（性能不足，用户 2026-09-04 拍板）——调用 dsh 一律走 `dsh-remote`（本机 `~/.local/bin/dsh-remote`，SSH 转发主力机执行）。
+
+## 触发条件
+
+以下情况**必须**走 dsh（`dsh-remote` 转发主力机）：
+
+1. **显式要求 pro**：用户说"用 pro""deepseek-v4-pro""加强模型"时 → `-pro`
+2. **难任务自动判定**：证明/推导/优化/审计/长文档逐句翻译/代码审查/架构设计/max thinking/数学课程内容
+3. **深度推理类**：需要多步推理、形式化证明、全面审计的场景
+4. **学术任务铁律**（2026-09-04 拍板）：学术相关/要求调 dsh 的**一律** `dsh-remote -pro`（pro + effort=max），任务描述显式写「发挥你最高能力 / max thinking / 详尽输出」
+
+## 用法
+
+### 本机（Linux 天阙）→ 转发主力机
+```bash
+dsh-remote "任务"                     # 自动判定难度（难→pro+max，简单→flash）
+dsh-remote -pro "需要 pro 的任务"     # 强制 pro + max
+dsh-remote -m deepseek-v4-pro "任务" -e max   # 自定义模型 + effort=max
+dsh-remote --async "任务"             # 后台化（schtasks 脱离会话）→ 返回 id
+dsh-remote --status                   # 查所有后台任务进度
+dsh-remote --no-notify "任务"         # 静默（不弹本机横幅）
+```
+
+### 主力机（Windows 天阙九泉）直接调用（可选）
+```bash
+ssh tqjq "powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate-conc.ps1 -Pro '任务' -Async"
+```
+
+### 分工铁律
+- **本机永不跑 dsh**（性能不足）——所有 dsh 调用转发主力机
+- 主力机 dsh 可并发（conc 用独立 settings 副本，无同机锁冲突）
+- 4 agent（双机 Reasonix ×2 + 双机 dsh ×2）完成 → 本机横幅通知（dsh 侧已内置）
+
+## 已注入的上下文（DSH 自动获得）
+- 用户记忆库 `~/.reasonix/memory`（含 global/ + project/）
+- 用户技能库 `~/.reasonix/skills`
+- 用户画像 `memory/global/user-persona-cognitive-system-architect.md`
+- 认知方式要点：构建主义、验证驱动、先证后信；双语规范；第一性原理教学
+
+## 模型铁律（与 Reasonix 全局一致）
+- 简单任务 → `deepseek-v4-flash` + high（省钱）
+- 难任务/需 pro → `deepseek-v4-pro` + max
+- **凡是 Pro 必走 dsh**，Reasonix 内置不用 pro
+- 结果落盘：主力机 `%TEMP%\dsh-gate\<时间戳>-<model>.txt`，dsh-remote 同步时回显 stdout
+
+## 并发（2026-09-04 新架构）
+- conc 版用**独立 settings 副本**（`settings-<TaskId>.yaml` + patch），无同机覆盖锁——主力机可并发多个 dsh 任务
+- 旧 dsh-gate（改写 `~/.dsh/settings.yaml` + trap 恢复）**已废弃**，同机锁限制不存在了
+
+## 验证
+```bash
+dsh-remote "1+1等于几？"        # → flash（主力机执行，秒回）
+dsh-remote -pro "证明质数无穷多" # → pro + max（主力机执行）
+dsh-remote --async -pro "长任务" && dsh-remote --status   # 后台 + 查进度
+```
+主力机会话日志：`~/.dsh/sessions/*/session.jsonl.zstd` 中 `deepseek-v4-pro` 出现次数 > 0。
+
+## 完整档案
+- 操作铁律/67 模型清单/PS/SSH 教训：记忆 `工具-dsh并发调度与命令铁律-20260904.md`
+- 主力机机制细节：`dsh-mode` 技能（注意其头部「本机实跑时期档案」标注）

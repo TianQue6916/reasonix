@@ -1,0 +1,241 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789864659800,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 45,
+        "val": "你是 MIT 18.065（Strang）课程材"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 45,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Strang）课程材料的数学终审专家，任务是对下面这份Lecture 1 / Problem Set I.1 四题双语详解做**正确性终审**。读者是大二上学期、智能科学与技术专业的构建主义学习者（要求逻辑链完整可复现、反感空洞赞美与甩名词）。\r\n\r\n【背景材料（已核实，可直接引用）】\r\n- 题目原文：MIT OCW 18.065 Spring 2018 Problem Sets，第 3 页 Problems for Lecture 1 (from textbook Section I.1)，含第 1、4、9、18 题。\r\n- 教材官方 Instructor's Manual（Problem Set I.1）给出的标准答案：\r\n  - 题 1：$u+v-(u+v)=0$；A is 4 by 3, x is 3 by 1, 0 is 4 by 1。\r\n  - 题 4：$x=(1,1,-2)$、$y=(3,-3,0)$ 都满足 $Ax=0$ 且独立；不存在第三个独立解，理由是若有，则 $x,y,z$ 的组合会使得每个 $w$ 都满足 $Aw=0$，而这是假的。\r\n  - 题 9：若 $C(A)=\\mathbb{R}^3$，则 $m=3$，$n\\ge 3$，$r=3$。\r\n  - 题 18：$\\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}=\\begin{bmatrix}C\\\\C\\end{bmatrix}\\begin{bmatrix}0&R\\end{bmatrix}$。\r\n\r\n【终审要求】逐条核查下面这份译稿，重点：\r\n1. 🔴 数学硬伤：结论错误、推导跳步或有洞、维数/形状记错、验算写错、把零空间维数与秩混淆、把 $C(A)\\perp N(A)$ 当成普遍成立（它只对对称矩阵成立）、$m\\ge3$ 与 $m=3$ 的口径、$\\dim N(M)=2n-r$ 等数值。\r\n2. 🔴 判定是否准确：文中标注的常见错误 ❌是否真的错，有没有把对的说成错的、或把错的说成对的。\r\n3. 🟡 遗漏：这四题是否还有重要方法/视角/严格性说明没写到（例如：第 1 题系数全为 1与存在非零组合的强度差异、第 4 题零空间解的无穷性、第 9 题仅由维数只能得 $m\\ge3$，用集合相等才能收紧为 $m=3$、第 18 题的秩不变性与零空间维数）。\r\n4. 🟡 译者注的事实准确性：跨课程连接的表述是否成立（100B 实分析的 im/ker、6.042J 自由变量计数、CSAPP 结构体偏移类比、CLRS min-plus 矩阵乘法等），有无夸大或错配。\r\n5. 🟢 表述精度：中文表述是否有歧义、是否有翻译腔或空话。\r\n\r\n【输出格式（严格遵守，先结论后推理）】\r\n第一部分**修订清单**（最重要，必须放最前）：以表格或列表逐条给出\r\n`位置（题号/小节） | 现文原句（截取） | 问题类型（🔴/🟡/🟢） | 判定（正确/错误/不严谨） | 应改为`\r\n第二部分**补充建议**：值得增补的方法、视角、例子（每条不超过 200 字，给出可直接插入的文字）。\r\n第三部分（可选，放在最后）**推理说明**：为什么这么判。\r\n\r\n注意：不要重写全文，只给修订清单 + 补充建议；凡是无法确定的地方明确写不确定，不要猜测。用中文回答，数学用 LaTeX。\r\n\r\n======================= 待审译稿开始 =======================\r\n\r\n# <span style=color:#c0392b;>18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning（数据分析、信号处理与机器学习中的矩阵方法）</span>\r\n\r\n> <span style=color:#7f8c8d;>MIT OpenCourseWare · Spring 2018 · Gilbert Strang · 第一课（Lecture 1）配套 Problem Set I.1</span>\r\n>\r\n> <span style=color:#7f8c8d;>原文来源：`clipboard-20260920-082904.234261-000002.pdf`（18.065 S18 Problem Sets）· 教材出处：Linear Algebra and Learning from Data, §I.1, p.6 · 答案核验：教材官方 Instructor's Manual（Problem Set I.1）</span>\r\n\r\n## <span style=color:#c0392b;>第一课 · Problems for Lecture 1（第 1 讲讲题）</span>\r\n\r\n本讲标题是 <span style=color:#00838f;>The Column Space of A Contains All Vectors Ax（$A$ 的列空间包含所有向量 $Ax$）</span>。把它读成一个设计问题会更清楚：**当 $x$ 跑遍所有可能的系数时，$Ax$ 能生成哪些向量？**\r\n\r\n答案的第一层是$A$ 的 columns（列）的 linear combination（线性组合），第二层是所有组合构成一个 subspace（子空间），称为 column space（列空间）$C(A)$，第三层是$Ax=0$ 的解构成另一个子空间，称为 nullspace（零空间）$N(A)$，而第四层把两者用 rank（秩）这个数字锁在一起。\r\n\r\n本节的四道题正好各压住一层：第 1 题问组合为零这件事本身，第 4 题把零空间的维数逼出来，第 9 题反过来读列空间，第 18 题检验 $A=CR$ 这个 rank factorization（秩分解）在分块运算下如何变化。\r\n\r\n---\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 1（问题 1）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.1, p.6 | Manual, Problem Set I.1 题 1</span>\r\n\r\n请给出一个例子：$\\mathbb{R}^4$ 中的 three nonzero vectors（三个非零向量）存在某个 combination（组合）等于 zero vector（零向量）。随后把你的这个例子写成 $Ax=0$ 的形式：此时 $A$、$x$、$0$ 的 shapes（形状）各是什么？\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Give an example where a combination of three nonzero vectors in $\\mathbb{R}^4$ is the zero vector. Then write your example in the form $Ax = 0$. What are the shapes of $A$ and $x$ and $0$ ?</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、先给结论**\r\n>\r\n> 取 $\\mathbb{R}^4$ 中两个不成比例的向量 $u=(1,1,1,1)$ 与 $v=(1,2,3,4)$，令第三个向量 $w=-(u+v)=(-2,-3,-4,-5)$。三个向量全非零，且\r\n>\r\n> ```math\r\n> u+v+w=0\r\n> ```\r\n>\r\n> 把它写成 $Ax=0$：以三个向量为列构造 $A$，组合系数放进 $x$，\r\n>\r\n> ```math\r\n> A=\\begin{bmatrix}1&1&-2\\\\1&2&-3\\\\1&3&-4\\\\1&4&-5\\end{bmatrix},\\qquad\r\n> x=\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix},\\qquad\r\n> Ax=\\begin{bmatrix}0\\\\0\\\\0\\\\0\\end{bmatrix}\r\n> ```\r\n>\r\n> 因此 $A$ 是 $4\\times 3$，$x$ 是 $3\\times 1$，右端的 $0$ 是 $4\\times 1$。\r\n>\r\n> **二、方法一：从求和为零直接构造（组合系数可以是任意非零数）**\r\n>\r\n> 题目只要求某个组合等于零，所以系数不必是 $1$。任取两个不成比例的向量 $u,v$，再取 $w$ 使三者成比例关系即可。若想让三个系数都好看，也可以取 $2u+3v-1\\cdot w_0=0$，此时 $w_0=2u+3v$，系数向量是 $x=(2,3,-1)$。教材官方 Manual 用的正是最省事的版本：三个向量取 $u$、$v$、$u+v$，于是 $u+v-(u+v)=0$，系数是 $(1,1,-1)$。\r\n>\r\n> 这一层说明：**组合为零是一个关于系数存在性的陈述**，它不关心系数是否相等、是否为正。\r\n>\r\n> **三、方法二：从形状反推（为什么形状是被唯一确定的）**\r\n>\r\n> 不用算数，只看谁有多少个分量：\r\n>\r\n> - $A$ 的**行数** = 向量所在空间的维数 = $4$（因为向量在 $\\mathbb{R}^4$ 中），$A$ 的**列数** = 被组合的向量个数 = $3$。所以 $A$ 是 $4\\times3$。\r\n> - $Ax$ 要逐个使用 $A$ 的列，所以 $x$ 的分量个数 = $A$ 的列数 = $3$，即 $x$ 是 $3\\times1$。\r\n> - $Ax$ 的每个分量是 $A$ 的一行与 $x$ 的点积，所以 $Ax$ 有 $4$ 个分量；等式 $Ax=0$ 的右端 $0$ 必须与 $Ax$ 同形状，即 $4\\times1$。\r\n>\r\n> 一般规律：$A$ 为 $m\\times n$ 时，$x$ 必为 $n\\times1$，$Ax$ 与 $0$ 必为 $m\\times1$。这条形状链在整门课里反复使用，也是判断自己写错没有的第一道自检。\r\n>\r\n> **四、方法三：零空间视角（这题真正在训练的概念）**\r\n>\r\n> $Ax=0$ 有非零解 $x\\ne0$，等价于下列说法（它们是同一件事的四种语言）：\r\n>\r\n> 1. $x\\in N(A)$ 且 $x\\ne0$，即 nullspace（零空间）里有非零向量；\r\n> 2. $A$ 的 columns（列）linear dependent（线性相关）；\r\n> 3. $A$ 中存在某一列是其他列的组合（此处 $w=-u-v$）；\r\n> 4. $\\operatorname{rank}(A)=r<n=3$，即 $A$ 不是列满秩。\r\n>\r\n> 反过来，如果题目换一组向量——比如 $(1,0,0,0),(0,1,0,0),(0,0,1,0)$——那么组合为零只有全零系数一种可能，这三个向量 linear independent（线性无关），此时 $N(A)=\\{0\\}$。所以存在非平凡组合为零是**性质**，不是 $\\mathbb{R}^4$ 中任意三个向量的必然。真正的必然只有一条：$\\mathbb{R}^4$ 中**任意 5 个**向量必定线性相关（因为 4 维空间装不下 5 个独立向量）。\r\n>\r\n> **五、常见错误**\r\n>\r\n> - 用零向量凑数。题目要求三个向量都 nonzero，$0$ 不参与。\r\n> - 把 $A$ 写成 $3\\times4$。列数对应向量个数，行数对应分量个数，写反了整条形状链就崩了。\r\n> - 以为三个非零向量之和为零要求其中有平行向量。本题的 $u=(1,1,1,1)$、$v=(1,2,3,4)$、$w=(-2,-3,-4,-5)$ 两两都不成比例，仍然相关——相关比成比例弱得多。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——秩—零化度的守恒律，以及它为什么是这门课的骨架**\r\n>\r\n> 第 1 题表面在造例子，实质在建立本课程的第一个不变量。把 $A$ 看成 $n$ 个列向量排成的表：它横着有 $n$ 个输入方向，竖着占据 $m$ 维空间中的一块。$x$ 的 $n$ 个自由度被分成两类去向：\r\n>\r\n> ```math\r\n> n = \\dim C(A) + \\dim N(A) = r + \\dim N(A)\r\n> ```\r\n>\r\n> 这就是 rank–nullity theorem（秩—零化度定理）。把它读成守恒律更直观：**输入端的 $n$ 个自由度没有任何丢失**——能到达输出空间的那部分构成列空间（维数 $r$），被压扁到零的那部分构成零空间（维数 $n-r$）。第 1 题给的是一个具体的压扁证据：$A$ 的 3 个列向量只张成一个 2 维或更低的子空间（本例题中 $C(A)$ 由 $u,v$ 张成，$r=2$），于是必然有 $3-2=1$ 维的零空间，$x=(1,1,1)$ 就是它的一个方向。\r\n>\r\n> 与你已学内容的连接：你在 6.042J 中处理线性丢番图方程与同余方程组时，反复在做自由变量计数——$n$ 个未知数、$r$ 个独立约束，剩下 $n-r$ 个自由变量。这里 $n-r$ 就是 $\\dim N(A)$，自由变量就是零空间的参数。你在 Strang 的前一本书里用 elimination（消元）数 pivot（主元），得到的也是同一个 $r$：主元个数 = 秩，自由列个数 = 零空间维数。同一件事，三种形式。\r\n>\r\n> ⚠️ 学习建议：以后遇到任何这个方程解有多少个的问题，第一反应应当是算 $r$ 与 $n-r$，而不是去解方程。解是集合，维数才是结构。\r\n>\r\n> <span style=color:#7f8c8d;>（本题与 Lecture 1「Combination of columns」、Lecture 2「Rank one matrices」构成一条线：组合 → 相关 → 秩。）</span>\r\n\r\n---\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 4（问题 4）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.1, p.6 | Manual, Problem Set I.1 题 4</span>\r\n\r\n设 $A$ 是元素全为 $1$ 的 $3\\times3$ 矩阵 `ones(3, 3)`。请找出两个 independent vectors（线性无关向量）$x$ 与 $y$，使 $Ax=0$ 且 $Ay=0$；并把其中第一个方程 $Ax=0$（带上具体数字）写成 $A$ 的 columns（列）的一个 combination（组合）。为什么我不再要求第三个 independent vector（线性无关向量）$z$ 使 $Az=0$？\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Suppose $A$ is the 3 by 3 matrix `ones(3, 3)` of all ones. Find two independent vectors $x$ and $y$ that solve $Ax = 0$ and $Ay = 0$. Write that first equation $Ax = 0$ (with numbers) as a combination of the columns of $A$. Why don't I ask for a third independent vector with $Az = 0$ ?</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 取 $x=(1,1,-2)$ 与 $y=(3,-3,0)$，两者都满足 $Ax=0$。注意\r\n>\r\n> ```math\r\n> \\operatorname{rank}(A)=1,\\qquad \\dim N(A)=3-1=2\r\n> ```\r\n>\r\n> 零空间是二维平面，最多只装得下 2 个线性无关的向量，所以**不存在**第三个与 $x,y$ 独立的解 $z$。\r\n>\r\n> **二、方法一：把 $Ax=0$ 写成一列的组合（题目要求的那一步）**\r\n>\r\n> $A$ 的三列完全相同，都是 $c=(1,1,1)^{T}$。于是对任意 $x=(x_1,x_2,x_3)^{T}$，\r\n>\r\n> ```math\r\n> Ax = x_1\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}+x_2\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}+x_3\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}=(x_1+x_2+x_3)\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}\r\n> ```\r\n>\r\n> 三个列向量叠在同一条直线上，所以 $Ax=0$ 等价于**系数之和为零**。以 $x=(1,1,-2)$ 代入：\r\n>\r\n> ```math\r\n> 1\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}+1\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}-2\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}=\\begin{bmatrix}1+1-2\\\\1+1-2\\\\1+1-2\\end{bmatrix}=\\begin{bmatrix}0\\\\0\\\\0\\end{bmatrix}\r\n> ```\r\n>\r\n> 这就是$3$ 个列向量的组合为零的具体样子。$y=(3,-3,0)$ 同理：$3-3+0=0$。\r\n>\r\n> **三、方法二：方程视角（三个方程其实是一个）**\r\n>\r\n> 直接算 $Ax$：$A$ 的每一行都是 $(1,1,1)$，所以 $Ax=0$ 的三个方程逐字相同，\r\n>\r\n> ```math\r\n> x_1+x_2+x_3=0,\\qquad x_1+x_2+x_3=0,\\qquad x_1+x_2+x_3=0\r\n> ```\r\n>\r\n> 真正独立的约束只有 1 个，它在 $\\mathbb{R}^3$ 中切出一个过原点的 plane（平面）。平面的维数是 $3-1=2$，取两个方向 $(1,-1,0)$ 与 $(1,0,-1)$ 即可张成。任何第三个解都是这两个方向的组合，因此不独立。\r\n>\r\n> **四、方法三：维数记账（最省力的判据）**\r\n>\r\n> $A$ 的三列全等于 $c\\ne0$，列空间就是把 $c$ 拉伸成的那条 line（直线），故 $\\dim C(A)=r=1$。由秩—零化度定理：\r\n>\r\n> ```math\r\n> \\dim N(A)=n-r=3-1=2\r\n> ```\r\n>\r\n> 二维空间里最多 $2$ 个线性无关向量。要求第三个独立解，等于要求 $\\dim N(A)\\ge3$，即 $r\\le0$，即 $A=0$——与 `ones(3,3)` 矛盾。\r\n>\r\n> **五、方法四：反证法（教材 Manual 的论证，最解释性的一种）**\r\n>\r\n> 假设确实存在第三个与 $x,y$ 独立的解 $z$。三个线性无关向量构成 $\\mathbb{R}^3$ 的一组 basis（基），于是任意向量 $w$ 都能写成 $w=c_1x+c_2y+c_3z$。两边左乘 $A$：\r\n>\r\n> ```math\r\n> Aw=c_1\\underbrace{Ax}_{0}+c_2\\underbrace{Ay}_{0}+c_3\\underbrace{Az}_{0}=0\r\n> ```\r\n>\r\n> 这说明**每一个** $w$ 都满足 $Aw=0$，即所有向量都在零空间里，于是 $A$ 必须是零矩阵——矛盾。所以第三个独立解不存在。\r\n>\r\n> 这条论证的价值不在结论，而在它示范了一种通用手法：**线性无关的 $n$ 个向量构成整个 $\\mathbb{R}^n$** 这句话本身就是一台放大器，把关于几个特殊向量的信息放大成关于全部向量的信息。以后判断零空间是否等于全空间、判断投影是否为零、判断特征向量是否完备，用的都是同一台放大器。\r\n>\r\n> **六、方法五：秩一/外积视角（通向下一讲的桥）**\r\n>\r\n> 记 $\\mathbf{1}=(1,1,1)^{T}$，则 $A=\\mathbf{1}\\mathbf{1}^{T}$ 是一个 outer product（外积），也就是 rank one matrix（秩一矩阵）。秩一矩阵的零空间恰好是**与 $\\mathbf{1}$ 正交的那个平面**：$Ax=\\mathbf{1}(\\mathbf{1}^{T}x)=0\\iff \\mathbf{1}^{T}x=0\\iff x\\perp\\mathbf{1}$。这条视角把系数和为零翻译成与全 1 向量正交，直接连到 Lecture 2 的 $ab^{T}$ 与 Lecture 3 的 orthogonality（正交性）。\r\n>\r\n> 顺带得到 $A=CR$ 的秩分解：$C=\\begin{bmatrix}1\\\\1\\\\1\\end{bmatrix}$（$3\\times1$），$R=\\begin{bmatrix}1&1&1\\end{bmatrix}$（$1\\times3$），$r=1$。\r\n>\r\n> **七、常见错误**\r\n>\r\n> - ❌ 因为存在两个线性无关的解，所以 $A$ 的秩是 2。 —— **错**。$2$ 是 nullity（零化度）$\\dim N(A)$，不是 rank。秩是 $r=n-\\dim N(A)=3-2=1$。把解空间的维数与矩阵的秩混起来，是本课程最常见的错误之一：$r$ 数的是**列空间**的维数，$n-r$ 数的是**零空间**的维数。\r\n> - ❌ 零空间的解只有 $x$ 和 $y$ 这两个。 —— 错。零空间是二维平面，含无穷多个向量（所有 $c_1x+c_2y$）；$x,y$ 只是一组基。\r\n> - ❌ 第三个解存在，只是写起来麻烦。 —— 错。这由维数硬性禁止，不是表达问题。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——零空间是平面这件事为什么值得画一张图**\r\n>\r\n> 把第 4 题的三列画成 $\\mathbb{R}^3$ 中的三个箭头，你会发现它们**完全重合**在同一条直线上（都指向 $(1,1,1)$ 方向）。这条直线就是列空间 $C(A)$，维数 1。与此同时，$Ax=0$ 的解是一个**垂直于这条直线**的平面——这两个子空间在 $\\mathbb{R}^3$ 中互相垂直，且维数互补：\r\n>\r\n> ```math\r\n> \\dim C(A)+\\dim N(A)=1+2=3=n\r\n> ```\r\n>\r\n> ⚠️ 这里必须挡住一个几乎所有初学者都会踩的过度推广：**$C(A)\\perp N(A)$ 并不是对任意矩阵都成立。** 普遍成立的是这两条正交对：\r\n>\r\n> ```math\r\n> C(A)\\perp N(A^{T}),\\qquad C(A^{T})\\perp N(A)\r\n> ```\r\n>\r\n> 也就是说，普遍成立的是列空间与 left nullspace（左零空间）正交、row space（行空间）与零空间正交这两条。\r\n>\r\n> 本题之所以能直接说 $C(A)\\perp N(A)$，是因为 $A=\\mathbf{1}\\mathbf{1}^{T}$ 是 symmetric（对称）矩阵，此时列空间与行空间重合，两条正交对才叠成同一条。对一般的非对称矩阵，$N(A)$ 与 $C(A)$ 之间没有任何正交关系（连维数都住在不同的空间里：$N(A)\\subseteq\\mathbb{R}^n$，$C(A)\\subseteq\\mathbb{R}^m$）。这正是下一阶段四个基本子空间（four fundamental subspaces）要建立的完整图像，也是 Strang 把 $\\mathbb{R}^n$ 与 $\\mathbb{R}^m$ 分成两两正交的两组的原因。\r\n>\r\n> 这里有一个值得刻意训练的思维动作：**把代数条件翻译成几何对象**。$x_1+x_2+x_3=0$是代数式，过原点且法向量为 $(1,1,1)$ 的平面是几何对象。前者让你能算，后者让你能看见。构建主义学习的关键就在这里——只有当你能在两个表示之间自由往返时，知识才真正挂进了你的偏序图。\r\n>\r\n> 跨课程连接（精确路径）：这门课的零空间 ↔ 你在 100B 实分析里反复遇到的方程的解集是否是一个 subspace（子空间）的判定（解集对加法与数乘封闭）；↔ 概率论（Bertsekas, 6.431）中条件期望是 $\\mathbb{R}^n$ 到某个子空间的投影，那里投影的补空间正是 $e=b-A\\hat x$ 所在的零空间方向；↔ 数值线性代数里 $A^TA$ 可逆的判据 $N(A)=\\{0\\}$——第 4 题这种 $N(A)\\ne\\{0\\}$ 的矩阵正是最小二乘问题中法方程奇异的根源（要在 Lecture 9 与 §II.2 正面处理）。\r\n>\r\n> ⚠️ 卡点预警：不少人的直觉会认为零空间里的向量越多，矩阵就越大越重。正好相反：零空间越大，说明 $A$ 扔掉的输入方向越多，$r$ 越小，$A$ 的信息越扁。$r+\\dim N(A)=n$ 这条等式里，两者是零和的。\r\n\r\n---\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 9（问题 9）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.1, p.6 | Manual, Problem Set I.1 题 9</span>\r\n\r\n设一个 $m\\times n$ 矩阵的 column space（列空间）恰好是整个 $\\mathbb{R}^3$。关于 $m$ 你能断言什么？关于 $n$ 你能断言什么？关于 rank（秩）$r$ 你能断言什么？\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> ```math\r\n> m=3,\\qquad n\\ge 3,\\qquad r=3\r\n> ```\r\n>\r\n> 逐条理由如下。\r\n>\r\n> **二、$m=3$：这里是等号，不是 $m\\ge3$**\r\n>\r\n> 列空间按定义是 $\\mathbb{R}^m$ 的一个 subspace（子空间）——它的每个向量都有 $m$ 个分量。若 $C(A)$ 作为集合等于 $\\mathbb{R}^3$，则两个集合的元素必须长得一样：\r\n>\r\n> ```math\r\n> C(A)=\\mathbb{R}^3 \\Longrightarrow \\mathbb{R}^3=C(A)\\subseteq \\mathbb{R}^m \\Longrightarrow \\mathbb{R}^3=\\mathbb{R}^m \\Longrightarrow m=3\r\n> ```\r\n>\r\n> 换个更直白的说法：$C(A)$ 中的向量要同时属于 $\\mathbb{R}^m$ 和 $\\mathbb{R}^3$，分量个数必须一致。$m>3$ 时，像 $(0,0,0,1)$ 这样的向量在 $\\mathbb{R}^4$ 中但不在 $\\mathbb{R}^3$ 中，所以 $C(A)$ 绝不可能是完整的 $\\mathbb{R}^3$；$m<3$ 时 $\\mathbb{R}^m$ 都装不下三维子空间。**下界 $m\\ge3$ 是必要不充分条件，$m\\ge3$这种写法是错的。**\r\n>\r\n> **三、$n\\ge3$：这里只能给不等式**\r\n>\r\n> 列空间是所有组合 $x_1a_1+\\cdots+x_na_n$ 的集合，即由 $n$ 个列向量 span（张成）出来的。要张出一个 $3$ 维空间，至少需要 $3$ 个向量，所以 $n\\ge3$。$n=3$ 完全可能（此时 $A$ 是方阵且可逆的典型情形），$n=5$ 也可以（多余的两列必须落在前三个列张成的空间里）。\r\n>\r\n> 更强一点的表述：$A$ 中存在 $3$ 个线性无关的列，其余列是它们的组合——这正是 $A=CR$ 中 $C$ 取 $3$ 列的意思。\r\n>\r\n> **四、$r=3$：秩就是列空间的维数**\r\n>\r\n> 秩的定义就是 $\\dim C(A)$。既然 $C(A)=\\mathbb{R}^3$，$\\dim C(A)=3$，于是 $r=3$。这也叫 full column rank（列满秩，即 $r=n$ 的特殊情形之一，此处只在 $n=3$ 时才叫满）。\r\n>\r\n> **五、方法二：换个等价说法（每个 $b$ 都有解）**\r\n>\r\n> 教材 §I.1 的核心定理是：$b\\in C(A)$ 当且仅当 $Ax=b$ 有解。所以列空间是整个 $\\mathbb{R}^3$读成方程语言就是：\r\n>\r\n> 对每一个 $b\\in\\mathbb{R}^3$，方程 $Ax=b$ 都有解\r\n>\r\n> 这条命题同时锁住了三个量：解要有意义，$b$ 必须是 3 维的（$m=3$）；要有足够多的列来覆盖所有 $b$（$n\\ge3$）；且 $A$ 必须有足够的独立列（$r=3$）。\r\n>\r\n> **六、方法三：左零空间视角**\r\n>\r\n> 由正交补关系 $C(A)^\\perp=N(A^{T})$，$C(A)=\\mathbb{R}^m$ 等价于 $N(A^{T})=\\{0\\}$。本题中 $C(A)=\\mathbb{R}^3$ 且 $m=3$，于是 $N(A^{T})=\\{0\\}$：$A^{T}$ 没有非零的零空间向量，即 $A$ 的**行**是线性无关的（$m=r=3$）。这是列满秩 $\\iff A^{T}A$ 可逆 $\\iff$ 最小二乘法方程有唯一解链条的起点。\r\n>\r\n> **七、方法四：与最小二乘的接口（前瞻）**\r\n>\r\n> 因为 $C(A)=\\mathbb{R}^3$，任何 $b$ 都精确可解，投影误差 $e=b-A\\hat x$ 恒为零——这正是 Lecture 9（Four Ways to Solve Least Squares Problems）里投影到整个空间的退化情形。反过来说：**只有当你把 $A$ 的列削弱到无法张满 $\\mathbb{R}^3$ 时，最小二乘才真正开始工作**（投影不再是自身，$e\\ne0$）。\r\n>\r\n> **八、常见错误**\r\n>\r\n> - ❌ 因为列空间张成 $\\mathbb{R}^3$，所以 $m\\ge3$。 —— 错，应为 $m=3$。$m$ 由向量住在哪个空间唯一确定，与张成多少无关。\r\n> - ❌ 因为张成 $\\mathbb{R}^3$，所以 $n=3$。 —— 错，$n\\ge3$，列可以多余。\r\n> - ❌ 秩等于 $m$。 —— 错，秩等于列空间的维数（$=3$），与 $m$ 只有$r\\le\\min(m,n)$这一层约束。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——$m$ 为什么必须等于 3：一次关于子空间住在哪里的训练**\r\n>\r\n> 这道题最容易错的地方不是计算，而是一个语言陷阱：**列空间 = $\\mathbb{R}^3$这句话里，$=$比的不是维数，而是集合本身。** 维数相等只是必要条件（$3$ 维子空间也可能长在 $\\mathbb{R}^5$ 里，比如 $x_4=x_5=0$ 的那些向量），集合相等才是充分条件。\r\n>\r\n> 把这件事抽象成一个可复用的判据：\r\n>\r\n> ```math\r\n> S\\subseteq \\mathbb{R}^m,\\quad S=\\mathbb{R}^k \\Longrightarrow m=k\r\n> ```\r\n>\r\n> 因为它同时要求元素的形状相同与维数相同。这在工程上有一个非常具体的对应：**数据的形状（shape）错一位，后面全部崩掉**。你以后处理任何矩阵计算，第一步永远是打印形状；本题就是形状推理的纯数学版本。\r\n>\r\n> 跨课程连接（精确路径）：这里的子空间住在哪个空间↔ 你在 CSAPP 里看到的指针类型决定解引用后读多少字节——两者都是对象的身份由它所属的容器决定。$\\mathbb{R}^3$ 中的向量与 $\\mathbb{R}^4$ 中的向量即使前三个分量相同，也不是同一个对象，就像 `int*` 与 `long*` 指向同一地址但语义不同。\r\n>\r\n> 再连一条到方舟的后续课程：概率论（Bertsekas）里你会遇到随机变量 $X$ 的可测空间，那里同样强调对象必须住在被指定的空间里；信息论（Cover）里信道容量是输入分布集合上的极值问题，而那个集合的维数由输入的**个数**决定，不由输出的个数决定——正是本题 $n$ 与 $m$ 分工的同一逻辑。\r\n>\r\n> 与第 1、4 题合观：第 1 题问什么时候组合能为零（零空间是否非平凡），第 4 题问零空间有多大（维数），第 9 题问列空间能覆盖多少（维数），三题共用同一把尺子——维数。所谓秩是线性代数最重要的数字，指的就是这把尺子。\r\n\r\n---\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 18（问题 18）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.1, p.6 | Manual, Problem Set I.1 题 18</span>\r\n\r\n若 $A=CR$，则矩阵 $\\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}$ 的 $CR$ factors（$CR$ 因子）是什么？\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> ```math\r\n> \\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}\r\n> =\\begin{bmatrix}C\\\\C\\end{bmatrix}\\begin{bmatrix}0&R\\end{bmatrix}\r\n> ```\r\n>\r\n> 也就是说，新的两个因子是 $C_{\\text{new}}=\\begin{bmatrix}C\\\\C\\end{bmatrix}$（$2m\\times r$）与 $R_{\\text{new}}=\\begin{bmatrix}0&R\\end{bmatrix}$（$r\\times 2n$）。\r\n>\r\n> **二、方法一：分块乘法逐块验算（最直接的证明）**\r\n>\r\n> 把分块当大元素做乘法。$\\begin{bmatrix}C\\\\C\\end{bmatrix}$ 是$2$ 行块 $\\times$ $1$ 列块，$\\begin{bmatrix}0&R\\end{bmatrix}$ 是$1$ 行块 $\\times$ $2$ 列块，乘积自然是 $2\\times2$ 的块：\r\n>\r\n> ```math\r\n> \\begin{bmatrix}C\\\\C\\end{bmatrix}\\begin{bmatrix}0&R\\end{bmatrix}\r\n> =\\begin{bmatrix}C\\cdot 0 & C\\cdot R\\\\ C\\cdot 0 & C\\cdot R\\end{bmatrix}\r\n> =\\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}\r\n> ```\r\n>\r\n> 每一步都只用到 $A=CR$ 与 $C\\cdot 0=0$。形状也对得上：$(2m\\times r)(r\\times2n)=(2m\\times2n)$，与 $\\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}$ 一致。\r\n>\r\n> **三、方法二：用秩分解的含义读出来（不列算式）**\r\n>\r\n> $A=CR$ 的含义是两条：① $C$ 的 $r$ 列正是 $A$ 的 column space（列空间）的一组 basis（基），$C$ 的列**直接取自** $A$（basic columns）；② $R$ 记录A 的每一列如何由 $C$ 的列组合而成，$R$ 就是 $A$ 的行简化阶梯形去掉零行。\r\n>\r\n> 现在看新矩阵 $M=\\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}$。它的第 $j$ 列是把 $A$ 的第 $j$ 列**上下复制两份**：$\\begin{bmatrix}a_j\\\\a_j\\end{bmatrix}$，而左半的 $n$ 列全为零。\r\n>\r\n> - 挑基：$M$ 的独立列当然还是来自 $A$ 的独立列，但每个现在变成 $\\begin{bmatrix}c\\\\c\\end{bmatrix}$，所以 $C_{\\text{new}}=\\begin{bmatrix}C\\\\C\\end{bmatrix}$。\r\n> - 记录系数：$M$ 的前 $n$ 列（全零块）用 $C_{\\text{new}}$ 表示要系数 $0$；后 $n$ 列与原 $A$ 的表示系数一模一样，即 $R$。所以 $R_{\\text{new}}=\\begin{bmatrix}0&R\\end{bmatrix}$。\r\n>\r\n> **四、方法三：从四个基本子空间看这次复制到底做了什么**\r\n>\r\n> 这次操作把输入、输出各复印一份，于是：\r\n>\r\n> - **秩不变**：$\\operatorname{rank}(M)=r$。列空间变成对角复制 $\\left\\{\\begin{bmatrix}u\\\\u\\end{bmatrix}:u\\in C(A)\\right\\}$，维数仍是 $r$。\r\n> - **零空间变大但可算清**：设 $x=\\begin{bmatrix}x_{\\text{top}}\\\\x_{\\text{bot}}\\end{bmatrix}\\in\\mathbb{R}^{2n}$，则\r\n>\r\n> ```math\r\n> Mx=\\begin{bmatrix}A x_{\\text{bot}}\\\\ A x_{\\text{bot}}\\end{bmatrix}=0\r\n> \\iff x_{\\text{bot}}\\in N(A),\\quad x_{\\text{top}}\\ \\text{is free}\r\n> ```\r\n>\r\n> 所以 $\\dim N(M)=n+(n-r)=2n-r$，正好等于 $2n-r$（秩—零化度定理给的结果）。上半部分完全自由，因为左半块是零矩阵——**零列块不提供任何约束，全部变成自由变量**。\r\n> - **基本列的位置**：$M$ 的基本列只在右半块出现；左半块每个列都是 $\\begin{bmatrix}0\\\\0\\end{bmatrix}$，属于被排除的列（系数全零）。\r\n>\r\n> **五、方法四：把它当模板——同类分块题的不变量**\r\n>\r\n> 一旦看懂复制列 ⇒ 复制 $C$；零块 ⇒ $R$ 里对应位置置零，同类题全部可秒答：\r\n>\r\n> ```math\r\n> \\begin{bmatrix}A\\\\A\\end{bmatrix}=\\begin{bmatrix}C\\\\C\\end{bmatrix}R,\\qquad\r\n> \\begin{bmatrix}A&A\\end{bmatrix}=C\\begin{bmatrix}R&R\\end{bmatrix},\\qquad\r\n> \\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}=\\begin{bmatrix}C\\\\C\\end{bmatrix}\\begin{bmatrix}0&R\\end{bmatrix}\r\n> ```\r\n>\r\n> 唯一要小心的是结构性不能压缩的情形：$\\begin{bmatrix}0&A\\\\A&0\\end{bmatrix}$ 就不能写成 $\\begin{bmatrix}C\\\\C\\end{bmatrix}(\\cdot)$ 的形式，因为上下两块必须相同；它需要 $\\begin{bmatrix}0&C\\\\C&0\\end{bmatrix}$ 与 $\\begin{bmatrix}0&R\\\\R&0\\end{bmatrix}$ 这样的块状因子——**分块位置决定因子结构**，这是方法二那条含义读法给出的判断，不必试算。\r\n>\r\n> **六、常见错误**\r\n>\r\n> - ❌ 把答案写成 $\\begin{bmatrix}C\\\\C\\end{bmatrix}\\begin{bmatrix}R\\\\R\\end{bmatrix}$ 或 $C\\begin{bmatrix}0&R\\end{bmatrix}$。前者形状是 $(2m\\times r)(2r\\times n)$，乘不起来；后者的 $C$ 是 $m\\times r$，与 $2m$ 行的新矩阵不匹配。\r\n> - ❌ 把 $R_{\\text{new}}$ 写成 $\\begin{bmatrix}R&0\\end{bmatrix}$。位置必须与原矩阵的**列块顺序**一致：原矩阵左半全零，所以 $R$ 因子左半也为零。\r\n> - ❌ 以为复制会让秩翻倍。秩由独立列的**数量**决定，复制的列彼此相关，秩不变。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——为什么 Strang 反复出这种看起来没用的分块题**\r\n>\r\n> 第 18 题单看不出任何应用价值，它训练的是**分块矩阵（block matrix）的读法**。这门课后面几乎每一章都在用同一套动作：\r\n>\r\n> 1. 把 $A=CR$ 中的 $A$ 换成某个由 $A$ 拼出来的大矩阵；\r\n> 2. 判断新矩阵的秩是否有变化、列空间变成什么形状；\r\n> 3. 由此得到关于原问题的结论。\r\n>\r\n> 具体例子（都在方舟的后续清单上）：Lecture 14 用 $M=A-uv^{T}$ 的低秩修改得到 Sherman–Morrison 公式；Lecture 18 的 KKT 矩阵 $\\begin{bmatrix}S&C\\\\C^{T}&0\\end{bmatrix}$ 用分块论证得出$n$ 个正特征值、$n$ 个负特征值；Lecture 33/34 的神经网络与距离矩阵也全靠分块读法。**分块矩阵不是记号游戏，它是把大问题拆成已知小块这项工程能力的线性代数形态。**\r\n>\r\n> 跨课程连接（精确路径）：这里的零块 ⇒ 自由变量、复制块 ⇒ 秩不变↔ 你在 CSAPP 里学到的结构体字段的偏移量决定内存布局：分块矩阵的块位置就是偏移，块之间的乘法规矩就是对齐要求。$\\begin{bmatrix}0&A\\\\0&A\\end{bmatrix}$ 之所以不能沿用 $\\begin{bmatrix}C\\\\C\\end{bmatrix}$ 那套 $R$ 结构，与一个 `struct` 里两个字段类型不同就不能整体 memcpy 是同一类约束——**形状（shape）先于运算**。\r\n>\r\n> ⚠️ 一个真实收益：这个复制列 ⇒ 秩不变的观察，等价于把一个方程写两遍不会增加信息。你在解线性方程组、做最小二乘、算协方差矩阵时会反复看到重复行/重复列，本题给出的正是快速识别并剔除它们的方法——重复的行不会提高秩，只会让 $N(A^{T})$ 变大。\r\n\r\n---\r\n\r\n## <span style=color:#c0392b;>附：四题合观——把四道题折叠成一个设计问题</span>\r\n\r\n| 题 | 表面在问 | 实际训练的结构 |\r\n|---|---|---|\r\n| 1 | 造一个组合为零的例子 | $N(A)\\ne\\{0\\}$ ⟺ 列线性相关 ⟺ $r<n$ |\r\n| 4 | 找两个独立解、说明为何没有第三个 | $\\dim N(A)=n-r$（秩—零化度） |\r\n| 9 | 列空间 $=\\mathbb{R}^3$ 推出 $m,n,r$ | $\\dim C(A)=r$；子空间所属空间决定 $m$ |\r\n| 18 | 写分块矩阵的 $CR$ 因子 | 秩分解在分块运算下的不变量 |\r\n\r\n四题共用一个骨架，就是本讲的四句话：\r\n\r\n```math\r\n\\dim C(A)=r,\\qquad \\dim N(A)=n-r,\\qquad r\\le\\min(m,n),\\qquad C(A)=\\{Ax\\}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——本讲的设计问题再问一次**\r\n>\r\n> 本讲标题The Column Space of A Contains All Vectors $Ax$其实是一句提示：**不要盯着 $A$ 看，盯住 $Ax$ 能跑到哪里。** 这个视角的威力在后面才会完全展开——当你把 $Ax$ 看成$x$ 经过 $A$ 变换后的所有可能输出，你就已经准备好理解：\r\n>\r\n> - 特征向量就是那些特殊的 $x$，它使 $Ax$ 与 $x$ 落在同一条直线上；\r\n> - 最小二乘就是当 $b\\notin C(A)$ 时，在 $C(A)$ 里取离 $b$ 最近的那个 $Ax$；\r\n> - 神经网络里每一层都是一次 $Wx$，而能表示的函数由列空间的大小决定。\r\n>\r\n> 方舟视角下的连接点（可逐条自查）：本讲的列空间/零空间 ↔ 100B 实分析中线性映射的像与核（$\\mathrm{im}$ 与 $\\ker$，那里的维数公式与 $r+(n-r)=n$ 是同一条定理在两个范畴里的样子，只是那里通常用无限的维数语言表述）；↔ 6.042J 中解线性同余方程组时的自由变量计数；↔ CLRS 中矩阵乘法在图算法（如 Floyd–Warshall 的 min-plus 版本）里的作用——**那里秩的概念被 min 与 + 替换，但用少量独立单元生成全部的思想完全一致**。\r\n\r\n---\r\n\r\n> <span style=color:#7f8c8d;>**来源与核验记录**：题目原文取自 MIT OCW 18.065 Spring 2018 Problem Sets（`Problem Sets Related to Lectures and Readings` 第 3 页）；四题的标准答案经教材官方 Instructor's Manual（*Linear Algebra and Learning from Data*, Problem Set I.1）逐条核对；多方法/多解读部分为本译稿自行推演，并已用全部验算步骤（形状核对、维数记账、分块乘法、反证法）完成自检。</span>\r\n\r\n======================= 待审译稿结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 45,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 45,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 45,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 45,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 25989,
+            "outputTokens": 49187,
+            "cacheReadTokens": 279936,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 6,
+            "buckets": {
+              "uncachedInputTokens": 345,
+              "outputTokens": 15940,
+              "cacheReadTokens": 61696,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 45,
+        "val": {
+          "surfaceTokens": 45985,
+          "contextWindow": 1000000,
+          "pressureTokens": 62041,
+          "sampledSurfaceTokens": 38146
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 45,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4985,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 20079,
+              "system": false
+            },
+            {
+              "seq": 20,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 163,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 4816,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 1792,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 2647,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 1261,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 225,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 244,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 218,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 7839,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 7257,
+            "messageTokens": 44841
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 45,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 42,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 44
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 45,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 45,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 45,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

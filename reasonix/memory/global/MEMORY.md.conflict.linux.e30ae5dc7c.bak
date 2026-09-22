@@ -1,0 +1,75 @@
+- [工具-工具箱文件夹路径](工具-工具箱文件夹路径.md) — (malformed, check frontmatter)
+- [工具-离线维基51GB-ZIM](工具-离线维基51GB-ZIM.md) — (malformed, check frontmatter)
+- [工具-推荐OCR工具](工具-推荐OCR工具.md) — (malformed, check frontmatter)
+- [工具-迅雷Base64下载](工具-迅雷Base64下载.md) — (malformed, check frontmatter)
+- [工具-桌面工具箱快捷方式](工具-桌面工具箱快捷方式.md) — (malformed, check frontmatter)
+- [工具-Codex桌面版安装](工具-Codex桌面版安装.md) — (malformed, check frontmatter)
+- [工具-PDF翻译Codex工具箱](工具-PDF翻译Codex工具箱.md) — (malformed, check frontmatter)
+- [工具-PPT-Word自动生成](工具-PPT-Word自动生成.md) — (malformed, check frontmatter)
+- [计划-方舟计划总结](计划-方舟计划总结.md) — (malformed, check frontmatter)
+- [技能安装-第二批4个技能](技能安装-第二批4个技能.md) — (malformed, check frontmatter)
+- [技能安装-第三批AnthropicVercel](技能安装-第三批AnthropicVercel.md) — (malformed, check frontmatter)
+- [技能安装-演示文稿技能](技能安装-演示文稿技能.md) — (malformed, check frontmatter)
+- [技能安装-MattPocock自动触发](技能安装-MattPocock自动触发.md) — (malformed, check frontmatter)
+- [降AIGC-10轮实战日志](降AIGC-10轮实战日志.md) — (malformed, check frontmatter)
+- [降AIGC-确定性规则替换铁律](降AIGC-确定性规则替换铁律.md) — (malformed, check frontmatter)
+- [降AIGC-ACS理工科-ALH文科](降AIGC-ACS理工科-ALH文科.md) — (malformed, check frontmatter)
+- [学习-高等数学问答](学习-高等数学问答.md) — (malformed, check frontmatter)
+- [学习-离散数学](学习-离散数学.md) — (malformed, check frontmatter)
+- [学习-CSAPP缓存优化](学习-CSAPP缓存优化.md) — (malformed, check frontmatter)
+- [学习-CSAPP目录结构](学习-CSAPP目录结构.md) — (malformed, check frontmatter)
+- [学习-MIT-6042J回顾](学习-MIT-6042J回顾.md) — (malformed, check frontmatter)
+- [元规则-技能路由16条](元规则-技能路由16条.md) — (malformed, check frontmatter)
+- [元规则-自动记忆规则](元规则-自动记忆规则.md) — (malformed, check frontmatter)
+- [元规则-Reasonix核心身份](元规则-Reasonix核心身份.md) — (malformed, check frontmatter)
+- [academic research skills](academic-research-skills.md) — [global/reference] ARS 技能包（Claude Code）安装与核心功能备忘
+- [csapp summary methodology](csapp-summary-methodology.md) — [global/feedback] CSAPP方舟复述方法论——设计问题驱动+跨课程连接+事实核查的课程总结标准
+
+- [reasonix core identity](reasonix-core-identity.md) — [global/user] Reasonix Code 核心身份与运营规则——只改名字不改内容/标准化命名体系/会话分类规则
+
+- [skill routing rules](skill-routing-rules.md) — [global/project] 强制技能路由规则 — 16个场景的 Skill 自动触发映射
+
+- [auto remember critical milestones](auto-remember-critical-milestones.md) — [global/feedback] 完成重要操作后自动 remember 保存结果，不等用户提醒
+
+- [csapp structure](csapp-structure.md) — [global/project] CSAPP全书目录结构解析
+
+- [csapp deep](csapp-deep.md) — [global/project] CSAPP深入学习：缓存矩阵、对角块优化等
+
+- [mit6042j review](mit6042j-review.md) — [global/project] MIT6.042J离散数学课程前瞻性总结回顾
+
+- [discrete math](discrete-math.md) — [global/project] 离散数学深入学习：Chernoff Bound等推导
+
+- [advanced math](advanced-math.md) — [global/project] 高等数学学习对话与问题解答
+
+- [codex installed](codex-installed.md) — [global/reference] OpenAI Codex Desktop App v26.609.4994.0 安装与配置记录
+
+- [pdf2zh toolbox](pdf2zh-toolbox.md) — [global/reference] 工具箱 D:\Toolbox\ 内含 PDFMathTranslate + Codex Desktop App 安装包及快捷方式
+
+- [ppt word gen](ppt-word-gen.md) — [global/project] 全自动PPT/Word文档生成工作流
+
+- [toolbox folder shortcut](toolbox-folder-shortcut.md) — [global/reference] D:\Toolbox\ 快捷方式：内有工具箱.lnk
+
+- [recommended ocr tools](recommended-ocr-tools.md) — [global/reference] 用户上次推荐的OCR工具记录
+
+- [toolbox desktop shortcut](toolbox-desktop-shortcut.md) — [global/reference] 桌面有工具箱.lnk → D:\Toolbox
+
+
+- [thunder download method](thunder-download-method.md) — [global/reference] 迅雷调用方法：thunder://协议Base64转换+Powershell推送
+
+- [matt pocock skills auto](matt-pocock-skills-auto.md) — [global/project] Matt Pocock 技能集 — 自动触发规则 + 已安装技能索引
+
+- [installed ppt skills](installed-ppt-skills.md) — [global/reference] 三个由外部仓库转换安装的 Reasonix 演示文稿技能
+
+- [installed skills round3](installed-skills-round3.md) — [global/reference] 第三批安装：Anthropic 官方技能 + Vercel 官方技能 + 三个技能合集索引
+
+- [installed skills round2](installed-skills-round2.md) — [global/reference] 第二批安装的4个Reasonix技能：计划管理+开发方法论+幻灯片+浏览器自动化
+
+- [future planning](future-planning.md) — [global/user] 方舟计划完整总结、API配置、学习体系规划
+
+- [aigc detection battle log](aigc-detection-battle-log.md) — [global/project] 10轮AIGC降率实战经验总结：策略对比与关键教训
+
+- [acs alh skills created](acs-alh-skills-created.md) — [global/reference] ACS(理工科)+ALH(文科)降AIGC技能已创建，基于25篇知网论文真实数据分析
+
+- [aigc deterministic only](aigc-deterministic-only.md) — [global/feedback] 核心发现：AI改写AI文本=叠加AI指纹，唯一有效的是非LLM硬编码规则替换
+
+- [offline wiki autosearch](offline-wiki-autosearch.md) — [global/project] 离线维基百科（英文，48.4GB ZIM 已迁至 D:\知识库\）— 自动搜索流程与代码

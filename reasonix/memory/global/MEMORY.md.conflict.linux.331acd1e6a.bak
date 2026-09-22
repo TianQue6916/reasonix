@@ -1,0 +1,51 @@
+# 记忆索引 MEMORY.md（2026-08-16 重建，26 份）
+
+> 2026-08-16 记忆优化：59 → 26（-56%），原文全部在 `~/.reasonix/memory-archive-20260816/`（信息零丢失）。
+
+## 元规则（3）
+- [元规则-01-Reasonix核心身份](元规则-01-Reasonix核心身份.md) — 核心身份/只改名不改内容/命名体系 + 任务前画像校验逻辑
+- [元规则-02-自动记忆规则](元规则-02-自动记忆规则.md) — 重要操作后自动 remember 的触发场景与格式
+- [元规则-03-技能路由](元规则-03-技能路由.md) — 22 技能强制路由映射（2026-08-16 v2）
+
+## dsh 与双机（2）
+- [dsh-gate-双机路由铁律](dsh-gate-双机路由铁律.md) — Pro 必走 dsh + 大型任务调主力机分工
+- [dsh-gate-双机配置档案](dsh-gate-双机配置档案.md) — DSH 安装/演进/锚定/创造模式/并发禁令档案
+
+## 用户画像与规范（2）
+- [user-persona-cognitive-system-architect](user-persona-cognitive-system-architect.md) — 用户完整画像 v4.0（含学业水平教学适配）
+- [输出规范](输出规范.md) — 默认输出目录 + MarkText 讨论模式
+
+## 方法与工具（5）
+- [reasonix-32-parallel-limit-and-translation-division](reasonix-32-parallel-limit-and-translation-division.md) — 32 并行上限 + 翻译分工（模型铁律）
+- [csapp-summary-methodology](csapp-summary-methodology.md) — CSAPP 方舟复述方法论
+- [bilingual-ocw-translator-版本与铁律索引](bilingual-ocw-translator-版本与铁律索引.md) — bilingual 技能版本/铁律/教训索引
+- [降AIGC-核心结论](降AIGC-核心结论.md) — 降 AIGC 核心结论与数据
+- [技能-安装与归档历史](技能-安装与归档历史.md) — 技能安装/归档溯源
+
+## 工具与系统（6）
+- [工具-离线维基百科](工具-离线维基百科.md) — 离线维基 ZIM 权威路径 C:\wiki-data + 搜索代码
+- [工具-网络与远程](工具-网络与远程.md) — Tailscale/SSH/dev-sidecar
+- [工具-Windows工具箱与Codex](工具-Windows工具箱与Codex.md) — D:\Toolbox/Codex/OCR/PPT
+- [工具-B站与影视下载](工具-B站与影视下载.md) — B 站/影视下载 + 迅雷清理
+- [工具-迅雷Base64下载](工具-迅雷Base64下载.md) — thunder:// 协议转换
+- [系统-Linux配置档案](系统-Linux配置档案.md) — NTFS 挂载/desktop 坑/launcher 修复
+
+## 学习（3）
+- [学习-离散数学](学习-离散数学.md) — 蒸馏：Chernoff/图论/赌徒破产
+- [学习-高等数学问答](学习-高等数学问答.md) — 蒸馏：格林/高斯/斯托克斯统一架构
+- [学习-CSAPP](学习-CSAPP.md) — 蒸馏：缓存优化 + 目录结构
+
+## 计划与其他（6）
+- [计划-方舟计划](计划-方舟计划.md) — 方舟计划蒸馏版（书目/周循环/财务/档案）
+- [windows-main-machine-full](windows-main-machine-full.md) — 主力机完整远控信息（唯一凭据源）
+- [chongchong-piano-downloader-linux](chongchong-piano-downloader-linux.md) — 虫虫钢琴下载器
+- [tianque-vscode-semester-setup](tianque-vscode-semester-setup.md) — VS Code 学期化配置
+- [meta-20260816-optimization](meta-20260816-optimization.md) — 2026-08-16 全系统优化总览（技能/记忆/dsh/思维链）
+- [plan-20260816-second-tianque](plan-20260816-second-tianque.md) — 第二个天阙-大二上六个月学习战略（dsh pro 极简模式端到端测试产出）
+
+## 归档说明
+- 原文全量备份：`~/.reasonix/memory-backup-20260816/`（59 份）与 `~/.reasonix/memory-backup-20260816-consolidate/`
+- 合并/蒸馏原始件：`~/.reasonix/memory-archive-20260816/`
+- 旧 project key 残留：`~/.reasonix/memory-archive-20260816/legacy-eecdfd/`
+
+- [reasonix 多并发 长任务后台化规范](reasonix-多并发-长任务后台化规范.md) — [global/feedback] 多并发规范：长任务后台化+写工作区外+会话长度控制；两个阻塞错误（omitted reasoning / 工作区写锁）根因与解法（2026-08-16 用户拍板治本）

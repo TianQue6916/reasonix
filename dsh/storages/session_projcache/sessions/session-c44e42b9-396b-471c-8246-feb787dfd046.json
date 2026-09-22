@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789958353338,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 MIT 18.065（Strang）双语详"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Strang）双语详解稿的**译者注编辑**。下面给出第三课（Lecture 3：Orthonormal Columns in $Q$ Give $Q^TQ=I$，教材 §I.5）的**三份待处理注块**（同一课的不同题），以及该讲 **MIT OCW 官方字幕素材**（英文原句 EN + 官方中文字幕 ZH，时间轴对齐）。\r\n\r\n【任务】为每一份注块**补入 1–2 处 🎥 字幕引文**（把教授的课堂原话引进来，增加教学现场感），并让该注块读得通：\r\n- 引文格式（严格照抄）：\r\n  `🎥 *Strang 在 18.065 第 3 讲（…）中……*：“English original text”（翻译：中文翻译）`\r\n  —— 英文原句**逐字照抄素材中的 EN 行**（不得改写、不得凭记忆编造）；中文翻译可沿用官方 ZH 或自己重译得更通顺；**每条引文必须附中文翻译**。\r\n- 引文要与该注的**主题**真正相关；找不到合适的就把该处略过（宁可少引，不可硬凑）。\r\n- 引文之后补一句中文阐释，说明这句课堂话语点明了注里的哪一步（1–2 句即可）。\r\n- 🚫 不得删除或改写原有内容；只做插入引文 + 少量衔接句。\r\n\r\n🚨 【最硬的约束：数学标记逐字保留】原文所有 `$...$`、` ```math ` 围栏、反斜杠命令（`\\mathbb`、`\\lambda`、`\\|x\\|`、`\\operatorname` 等）必须**一字不改地原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `\\mathbb{R}^2` 写成 `R^2`。违反即整份作废。\r\n\r\n【其它格式】注块每行以 `> ` 前缀（空行写 `>`）；颜色 span 带双引号；每条注以 `> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——……**` 开头；每句话第一个字必须是中文。\r\n\r\n【输出协议】按下面的编号输出三份修订后的注块，标记原样保留：\r\n```\r\n<<<FIX 1>>>\r\n（第一份注块修订全文）\r\n<<<END FIX 1>>>\r\n<<<FIX 2>>>\r\n（第二份注块修订全文）\r\n<<<END FIX 2>>>\r\n<<<FIX 3>>>\r\n（第三份注块修订全文）\r\n<<<END FIX 3>>>\r\n```\r\n不要输出说明、清单或寒暄。\r\n\r\n======================= 官方字幕素材（MIT 18.065，EN + 官方 ZH） =======================\r\n\r\n# lec3 字幕教学片段（MIT 18.065 官方字幕，英文原文 + 官方中文翻译，按时间轴对齐）\r\n\r\n## 关键词「overflow」（命中 2 处，本文件取前 6 处）\r\n\r\n- [00:06:20,600 --> 00:06:24,060] **EN**: because no overflow can happen with orthogonal matrices.\r\n  **ZH**（官方中文字幕）: 因为正交矩阵不会发生溢出。\r\n\r\n- [00:08:26,660 --> 00:08:31,800] **EN**: So that means that you never underflow or overflow when you're multiplying by Q.\r\n  **ZH**（官方中文字幕）: 因此这意味着当乘以Q时，你永远不会发生下溢（underflow） 或上溢（overflow）。\r\n\r\n## 关键词「underflow」（命中 1 处，本文件取前 6 处）\r\n\r\n## 关键词「polarization」（命中 0 处，本文件取前 6 处）\r\n\r\n## 关键词「inner product」（命中 0 处，本文件取前 6 处）\r\n\r\n## 关键词「length」（命中 15 处，本文件取前 6 处）\r\n\r\n- [00:01:20,300 --> 00:01:28,620] **EN**: Because Q, oh, yeah. The normal part tells me that the length of each vector, that's the length squared Q transpose Q,\r\n  **ZH**（官方中文字幕）: 因为Q，哦，是的。正规部分告诉我每个向量的长度，即长度平方 Q^T Q，\r\n\r\n- [00:01:29,320 --> 00:01:31,120] **EN**: the length squared is 1.\r\n  **ZH**（官方中文字幕）: 长度的平方为1。\r\n\r\n- [00:04:32,180 --> 00:04:33,420] **EN**: Those are both length 1.\r\n  **ZH**（官方中文字幕）: 这两者的长度均为1。\r\n\r\n- [00:05:47,060 --> 00:05:49,640] **EN**: It doesn't change length.\r\n  **ZH**（官方中文字幕）: 长度不变。\r\n\r\n- [00:05:50,500 --> 00:06:00,240] **EN**: The length of any vector is the same after you rotate it. The length of any vector is the same after you multiply by Q. Can I just do that?\r\n  **ZH**（官方中文字幕）: 任何向量在旋转后长度保持不变。任何向量在乘以 Q 后长度保持不变。我可以直接这样操作吗？\r\n\r\n- [00:06:06,620 --> 00:06:08,120] **EN**: look at the length of Qx.\r\n  **ZH**（官方中文字幕）: 观察 Qx 的长度。\r\n\r\n## 关键词「q transpose」（命中 11 处，本文件取前 6 处）\r\n\r\n- [00:00:45,440 --> 00:00:54,920] **EN**: simple fact that you just keep remembering. Every time you see Q transpose Q, you've got the identity matrix. Let's just see why. So Q transpose\r\n  **ZH**（官方中文字幕）: 简单事实就是你需要不断记住的。每当你看到 Q transpose Q，你就得到了单位矩阵。我们来仔细看看原因。所以 Q transpose\r\n\r\n- [00:01:31,840 --> 00:01:39,760] **EN**: So that gives me the 1 in the identity matrix all along the diagonal. And then Q transpose times a different Q\r\n  **ZH**（官方中文字幕）: 这样就得到了单位矩阵中对角线上全为 1 的结果。而 Q 转置乘以另一个不同的 Q\r\n\r\n- [00:02:00,900 --> 00:02:03,140] **EN**: Q Q transpose, is that the identity?\r\n  **ZH**（官方中文字幕）: Question: Q 的转置, 是单位矩阵吗？\r\n\r\n- [00:02:07,820 --> 00:02:11,100] **EN**: Q Q transpose equal the identity? Question.\r\n  **ZH**（官方中文字幕）: Q 的转置等于单位矩阵？问题。\r\n\r\n- [00:02:39,920 --> 00:02:42,900] **EN**: But for square matrices, a left inverse, Q transpose,\r\n  **ZH**（官方中文字幕）: 但对于方阵，左逆矩阵 Q<sup>T</sup>（转置），\r\n\r\n- [00:06:39,180 --> 00:06:42,240] **EN**: What we have to go on is Q transpose Q equal i.\r\n  **ZH**（官方中文字幕）: 我们已知的是 Q 转置 Q 等于 i。\r\n\r\n## 关键词「unit vector」（命中 5 处，本文件取前 6 处）\r\n\r\n- [00:04:17,100 --> 00:04:17,980] **EN**: So that's a unit vector.\r\n  **ZH**（官方中文字幕）: 所以那是一个单位向量 (unit vector)。\r\n\r\n- [00:10:14,960 --> 00:10:19,420] **EN**: unit vector in two dimensions. This has got that form.\r\n  **ZH**（官方中文字幕）: 单位向量 (unit vector) 在二维空间中。其形式如上所述。\r\n\r\n- [00:15:21,480 --> 00:15:23,660] **EN**: So he started with a unit vector.\r\n  **ZH**（官方中文字幕）: 于是，他从一个 unit vector (单位向量) 开始。\r\n\r\n- [00:15:25,980 --> 00:15:30,200] **EN**: a unit vector u transpose u equal 1.\r\n  **ZH**（官方中文字幕）: 单位向量 u转置u等于1\r\n\r\n- [00:22:10,460 --> 00:22:12,990] **EN**: I need unit vectors there.\r\n  **ZH**（官方中文字幕）: 我需要那里的单位向量 (unit vectors)。\r\n\r\n## 关键词「never」（命中 2 处，本文件取前 6 处）\r\n\r\n- [00:14:11,240 --> 00:14:13,780] **EN**: it never occurred to me before, but I believe it,\r\n  **ZH**（官方中文字幕）: 我从未意识到这一点 在此之前，但我相信确实如此\r\n\r\n## 关键词「square root」（命中 4 处，本文件取前 6 处）\r\n\r\n- [00:22:08,960 --> 00:22:09,600] **EN**: square root of 2.\r\n  **ZH**（官方中文字幕）: 2 的平方根 (square root of 2)\r\n\r\n- [00:22:15,300 --> 00:22:22,660] **EN**: And here, those lengths are 1 squared, 1 squared, 4. Square root of 4 is 2. So I better divide by the 2 there.\r\n  **ZH**（官方中文字幕）: 在这里，这些长度是1的平方、1的平方和4。 4的平方根是2，所以我最好在那个位置除以2。\r\n\r\n- [00:41:20,160 --> 00:41:21,300] **EN**: divide by square root of 8.\r\n  **ZH**（官方中文字幕）: 除以8的平方根\r\n\r\n- [00:41:32,980 --> 00:41:41,300] **EN**: These guys are square roots of 8. So are these. But these guys are square roots of 4. And these guys are square roots of 2. Thank you. Absolutely\r\n  **ZH**（官方中文字幕）: 这些是8的平方根(square roots)。这些也是。但这些是4的平方根(square roots)。而这些是2的平方根(square roots)。谢谢。完全正确。\r\n\r\n## 关键词「dot product」（命中 5 处，本文件取前 6 处）\r\n\r\n- [00:23:33,700 --> 00:23:35,220] **EN**: dot products with themselves\r\n  **ZH**（官方中文字幕）: 自身与自身的点积 (dot product)\r\n\r\n- [00:23:38,380 --> 00:23:48,980] **EN**: The dot products from these columns and these columns obviously have the minus. And the dot products in here are 0 from that and 0 from that. Yeah.\r\n  **ZH**（官方中文字幕）: 这些列与这些列的点积显然包含负号。而这里的点积，来自这项是0，来自那项也是0。是的。\r\n\r\n- [00:44:53,280 --> 00:45:03,040] **EN**: Do you see that that's orthogonal to that? Well, y is 1 plus i plus i squared plus i cubed equals 0. That's the dot product.\r\n  **ZH**（官方中文字幕）: 你看到那个与这个正交了吗？嗯，y = 1 + i + i² + i³ = 0。这就是点积 (dot product)。\r\n\r\n- [00:45:36,380 --> 00:45:40,020] **EN**: this isn't the correct dot product to test orthogonal.\r\n  **ZH**（官方中文字幕）: 这不是用于检验正交的正确点积。\r\n\r\n- [00:46:41,900 --> 00:46:42,700] **EN**: Take their dot product.\r\n  **ZH**（官方中文字幕）: 计算它们的点积 (dot product)。\r\n======================= 待处理注块 =======================\r\n\r\n<<<原文注块 1（第 2 条注）>>>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其二）单位化的价格：数值抵消与实现取舍**\r\n>\r\n> 红利不免费。每换一根新轴，都要算一次平方根、一次除法与一次数乘，代价换来的是此后所有内积公式自动除以 $1$。可以把它命名为**单位化预付模板**：先把尺度成本一次付清（除以 $\\|u\\|$），此后每一步公式都退化为无分母形式。\r\n>\r\n> 这个模板在别处也出现过，只是省的东西不同。在 6.006 里，动态数组倍增的摊还分析（amortization）说：扩容那一次很贵，摊到之后每次 $O(1)$ 的插入上就不贵了；先做一次预处理、之后每次查询只花 $O(1)$（前缀和是最小例子）也是同一类取舍。在 CSAPP 第 5 章讲循环优化时，编译器把循环不变量的地址计算提到循环外、存进寄存器只算一次（code motion），省的是访存与指令。它们与单位化省的不是同一样东西——这里省掉的是公式里的除法——但判断模板相同：先问哪一步成本可以只付一次，再问后续每一步是否因此变便宜。\r\n>\r\n> 有一点要分清楚：这不是摊还。摊还要求「贵的操作足够稀少」，所以能把一次昂贵摊到许多次廉价上；单位化是每根轴都付一次、付完即刻生效，成本按轴数是每根一份，并没有被摊薄。问「一次性付出」时必须追问是哪一种：一次付清后永久受益（单位化），还是把稀疏的贵操作平均掉（倍增）。\r\n>\r\n> 数值上还有一条与 CSAPP 第 2 章浮点表示直接相关的警告。本题的减法 $w = v - u(u^Tv)$ 是两个几乎相等的向量相减：当 $v$ 接近 $\\pm u$ 时 $\\|w\\|$ 极小，结果的相对误差被放大，这就是 catastrophic cancellation（灾难性抵消）。机制值得说准：在 IEEE 754 下两个相近同号浮点数相减本身是精确的，误差不是减法新产生的，而是两个操作数各自的绝对误差被结果的微小尺度除了一次。举个具体尺度：取夹角 $\\delta = 10^{-6}$，则 $\\|w\\| \\approx \\delta$，而 $u(u^Tv)$ 的分量在 $1$ 的量级，放大倍数约 $10^6$；双精度的机器精度约 $2\\times10^{-16}$，于是 $w$ 的相对误差可达 $10^{-10}$。\r\n>\r\n> 教科书上的 classical Gram-Schmidt（经典格拉姆—施密特）正是用这个减法逐列进行的，因此实际实现改用 modified Gram-Schmidt（修正格拉姆—施密特），或直接对 $A$ 做 Householder reflection（豪斯霍尔德反射）得到 $QR$ 分解。三者的差别在误差的作用方式：经典版本先把一批系数一次算完再相减，前面系数里的误差会污染后面的系数；修正版本每减掉一个投影就用更新后的向量重算下一个内积，误差不会一路传递；Householder 版本每一步乘一个正交矩阵，而正交变换保持长度不变，误差不被放大。后两者更稳的代价是运算量略增，且 Householder 不显式存 $Q$、改用反射向量保存，属于用结构换稳定性。这条线索在后续讲 condition number（条件数）与 $QR$ 分解时还会回来。\r\n>\r\n> 收束回正文：本题的干净一行，是用「每根轴都要单位化」换来的。公式的简洁与算法的稳定是两笔账：做题时先要干净，实现时先要稳。\r\n<<<原文注块 1 结束>>>\r\n\r\n<<<原文注块 2（第 6 条注）>>>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其三）never overflow 的严格版本：条件数为什么恰好是 $1$**\r\n>\r\n> 这条注处理题面最后一句最容易被当成修辞的话：用 $Q$ 做的计算不会上溢。这个说法能不能变成可证明、可量化的命题？能，但要把它改写成两个可量化的陈述——一个是范数上界，一个是条件数。条件数这一半在本条，上界那一半在（其四）。\r\n>\r\n> 机制展开，从定义开始。条件数不是误差放大倍数这种描述性说法，而是算子范数的乘积：$\\kappa_2(Q)=\\|Q\\|_2\\|Q^{-1}\\|_2$。正交矩阵满足 $Q^TQ=I$，于是对任意 $x$，\r\n>\r\n> ```math\r\n> \\|Qx\\|_2^2=(Qx)^T(Qx)=x^TQ^TQx=x^Tx=\\|x\\|_2^2 ,\r\n> ```\r\n>\r\n> 取平方根得 $\\|Qx\\|_2=\\|x\\|_2$。这条等式对一切 $x$ 成立，按算子范数的定义 $\\|Q\\|_2=\\max_{\\|x\\|_2=1}\\|Qx\\|_2$ 就等于说 $\\|Q\\|_2=1$；又 $Q^{-1}=Q^T$ 也是正交矩阵，同理 $\\|Q^{-1}\\|_2=1$，代回定义得 $\\kappa_2(Q)=1\\cdot1=1$。用 singular value（奇异值）重说一遍：$Q^TQ$ 的特征值全为 $1$，所以 $Q$ 的全部奇异值 $\\sigma_i=1$，$\\sigma_{\\max}=\\sigma_{\\min}=1$，条件数同样是 $1$。整条推导只用了一次 $Q^TQ=I$，与主证明用的是同一个事实——这不是巧合：保内积与条件数为 $1$，在实方阵上是同一件事的两种说法。\r\n>\r\n> 为什么条件数 $1$ 已经是最好的结果？几何图像是正交矩阵把单位球面 $\\{\\|x\\|_2=1\\}$ 映到自身，最长像与最短像的长度都等于 $1$，比值才是 $1$。设输入被扰动成 $\\hat x=x+\\delta$，输出相对误差的一阶估计是\r\n>\r\n> ```math\r\n> \\frac{\\|Q\\hat x-Qx\\|_2}{\\|Qx\\|_2}\\le\\kappa_2(Q)\\,\\frac{\\|\\hat x-x\\|_2}{\\|x\\|_2}=\\frac{\\|\\hat x-x\\|_2}{\\|x\\|_2} ,\r\n> ```\r\n>\r\n> 即放大因子恰好是 $1$，连一阶放大都没有。而任何可逆矩阵的条件数下界是 $1$：由算子范数的次可乘性，$\\|A\\|_2\\|A^{-1}\\|_2\\ge\\|AA^{-1}\\|_2=1$。所以正交矩阵达到的是理论下界。下界这一半还能用反例钉住：取 $A=\\begin{pmatrix}1&100\\\\0&1\\end{pmatrix}$，特征值全是 $1$、行列式也是 $1$，条件数却约为 $10^4$。可见大小全压在奇异值的比值 $\\sigma_{\\max}/\\sigma_{\\min}$ 上，而不在行列式或特征值上。\r\n>\r\n> 把上面四步压成一条可照着填的模板：验证 $Q^TQ=I$，再对 $x$ 逐项展开 $\\|Qx\\|_2^2$ 得保范性，然后用 $Q^{-1}=Q^T$ 与算子范数定义读出两个范数都是 $1$，相乘得 $\\kappa_2(Q)=1$，最后补一句「任何可逆矩阵的 $\\kappa_2\\ge1$」封住最优性。拿 $n=2$ 的 Hadamard 矩阵 $Q=\\tfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ 填一遍：$Q^TQ=I$ 成立，取 $x=(3,4)^T$ 得 $\\|x\\|_2=5$、$Qx=\\tfrac{1}{\\sqrt2}(7,-1)^T$、$\\|Qx\\|_2=\\sqrt{50/2}=5$，长度一位不差；它的特征值是 $\\pm1$，两个奇异值都等于 $1$，所以 $\\kappa_2(Q)=1$。它的复特征值还可以是纯虚数（旋转 $\\theta=\\pi/2$ 时特征值为 $i$），条件数仍是 $1$——这提醒我们 $\\kappa_2$ 只跟 $Q^TQ$ 的特征值（奇异值）有关，与特征值本身无关。\r\n>\r\n> 需要提醒的是：条件数为 $1$ 只说明相对误差不被放大，它还不是不会上溢。要把题面那句话补完整，还需要分量上界与浮点表示范围这两件事，见下一条注。\r\n> 🎥 *Strang 在 18.065 第 3 讲（Orthonormal Columns in $Q$ Give $Q^TQ=I$，对应 §I.5）用一句话概括了这件事*：It doesn't change length.（翻译：它不改变长度。）*这句课堂评论正是本题的全部内容：正交变换把长度整体冻住，于是任何由长度拼出来的量也一起被冻住。*\r\n>\r\n> 反过来追问得更强一些：如果只知道空间里所有向量的长度，能不能重建内积？在实内积空间里答案是能，靠的就是极化恒等式；在复内积空间里则不能照搬，因为复内积对第二个变量是共轭线性的，$\\|u+v\\|^2$ 展开后交叉项变成 $u^T\\bar v+\\bar u^Tv=2\\operatorname{Re}(u^T\\bar v)$，两式相减只留下实部。要复原完整的复内积（连虚部一起），得再补一个式子，把 $iu$ 顶进去：\r\n> ```math\r\n> u^T\\bar v=\\tfrac14\\Big(\\|u+v\\|^2-\\|u-v\\|^2\\Big)+\\tfrac{i}{4}\\Big(\\|u+iv\\|^2-\\|u-iv\\|^2\\Big).\r\n> ```\r\n> 这条修正正是本讲后面「正交矩阵的实特征向量凑不满 $n$ 个」的前奏：实数域上好用的工具，搬到复数域往往要补齐一个虚部方向。\r\n>\r\n> 用 $n=2$ 的一次验算把上面的推导钉住。取 $u=(3,4)^T$、$v=(1,0)^T$，则 $u^Tv=3$，$\\|u+v\\|^2=\\lVert(4,4)\\rVert^2=32$、$\\|u-v\\|^2=\\lVert(2,4)\\rVert^2=20$，于是 $\\tfrac14(32-20)=3$，与直接算出的 $u^Tv$ 一致。这说明长度字典不是类比，而是可以逐位核对的等式。\r\n>\r\n> 再补两处精确的连接，锁住「$\\kappa_2=1$ 在哪些地方被当作工具使用」。其一与 **18.06 第 17 讲（Orthogonal Matrices and Gram-Schmidt）**相连：那里把 $A$ 分解成 $A=QR$，$Q$ 正交、$R$ 上三角；本条的结论说明 $Q$ 在条件数意义下「不贡献放大」，$A$ 的全部病态都堆在 $R$ 上。区别在于：18.06 关心用 $Q$ 写投影矩阵 $QQ^T$ 有多干净，本条关心用 $Q$ 做浮点计算时误差放大多少倍，同一个 $Q^TQ=I$ 在两个问题里一个是代数化简、一个是数值稳定。其二与 **CSAPP 第 2 章（Representing and Interpreting Information，浮点表示）**相连：那里把浮点数范围写成 $1.8\\times10^{308}$ 量级的上界与 $2.2\\times10^{-308}$ 量级的下界，把越界命名为 overflow（上溢）；本条要补的正是「$\\|Qx\\|_2=\\|x\\|_2$ 如何把分量压在上界之内」，路径是分量满足 $\\lvert (Qx)_i\\rvert\\le\\|Qx\\|_2$，而 $\\|Qx\\|_2=\\|x\\|_2$ 由输入给定，区别在于 CSAPP 讲单个浮点数何时越界，本条讲一次矩阵乘法里所有中间分量何时越界。\r\n<<<原文注块 2 结束>>>\r\n\r\n<<<原文注块 3（第 9 条注）>>>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其二）封闭世界：与 6.042J 的双射视角对接**\r\n>\r\n> 本注把上一注的三个条件推到「一整个封闭世界」，并与你在 6.042J 学过的置换对接。\r\n>\r\n> 第一个收益是：正交性不依赖你**怎么**重排。$n!$ 个置换矩阵各自正交，而且任意两个的乘积仍是置换矩阵——复合两个双射还是双射，乘积矩阵的每一列仍是某个标准基向量，并且互不重复；同理每个置换矩阵的逆也在集合里（$P^{-1}=P^T$，而 $P^T$ 也是置换矩阵）。最小样本还是 $n=2$：两个置换矩阵 $\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}$ 与 $\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ 相乘，结果仍在这两个之中。把封闭性的三条逐一兑现，可以看到它们分别对应置换运算的三条性质：单位矩阵对应恒等置换，逆矩阵对应 $\\sigma^{-1}$，乘积对应先后复合两个置换。于是这批矩阵对乘法封闭、包含单位矩阵、每个元素都有逆，这就是「保内积的可逆变换构成一个封闭世界」的最干净实例。封闭性还能直接复用：$P^2,P^3,\\dots$ 全是置换矩阵，所以 $\\|P^kx\\|=\\|x\\|$ 对一切整数 $k$ 成立，重复搬运多少次都不会累积长度误差。还要注意这个封闭世界不等于「所有正交矩阵」：旋转与反射也保内积，但它们的元素一般不是 $0/1$，乘积也不会停在置换矩阵里；置换矩阵是这个大家庭里唯一「只搬位置、不混合坐标」的一支。\r\n>\r\n> 连接锚点在 6.042J：那门课把「$n$ 个元素的重排」定义为一个双射 $\\sigma:\\{1,\\dots,n\\}\\to\\{1,\\dots,n\\}$，关心的是计数（共 $n!$ 个）与结构（拆成不相交循环的乘积），例如 $n=3$ 时六个置换分成三个偶置换与三个奇置换。18.065 把同一个 $\\sigma$ 写成矩阵，关心的是这张表作用在 $\\mathbb{R}^n$ 上是否保长度保夹角、它的转置为什么正好是逆、它的奇异值为什么全是 $1$。两门课在「单射导致位置不重叠」这一点上接上：6.042J 的双射性，在这里就是 $P^TP=I$ 证明里最关键的那一行。区别在于结论的类型：前者给你组合结构（循环分解、计数、奇偶性），后者给你数值与几何性质（条件数为 $1$，误差不被放大）；同一个对象在两门课里被问的问题不同，答案自然也不同。\r\n>\r\n> 可复用的命名模板：**双射—不重叠—单位长度三条件**。以后见到任何「由基向量重排生成的矩阵」（置换矩阵、某些稀疏编码矩阵、特殊图的邻接矩阵），按这三条逐项核对，就能在不动笔算乘法的情况下判定正交性。算法一侧还有同一套对象的另一种表示：6.006 里把置换存成长度 $n$ 的数组、沿循环跟踪下标做原地重排，占用 $O(n)$ 空间而不是 $n^2$；把它升格成矩阵，为的是让它能直接与任意矩阵相乘，从而在不损失长度和夹角的前提下搬运数据。\r\n> 还有一个规模上的分工值得记一笔。$n!$ 增长极快：$n=10$ 时已有 $3\\,628\\,800$ 个置换矩阵，$n=20$ 时超过 $2.4\\times10^{18}$ 个，所以逐个枚举置换矩阵不是可行算法。可行的是把这个集合当作一个封闭结构来用——任取两个置换矩阵相乘仍在集合内，每个元素都有逆（就是它的转置），因此可以在不枚举的前提下对它做代数运算。CSAPP 里有一处同构的做法：位反转置换（bit-reversal permutation）用位运算直接算出下标映射，而不是先建出一张 $n!$ 大小的表再查表；两处都把枚举一个巨大集合换成了用生成规则作用一次。\r\n<<<原文注块 3 结束>>>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7444,
+            "outputTokens": 6329,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7444,
+              "outputTokens": 6329,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 9000,
+          "contextWindow": 1000000,
+          "pressureTokens": 10260,
+          "sampledSurfaceTokens": 4717
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3157,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4283,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7856
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

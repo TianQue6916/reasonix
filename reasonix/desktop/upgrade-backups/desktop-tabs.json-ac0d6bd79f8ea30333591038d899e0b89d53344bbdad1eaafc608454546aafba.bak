@@ -1,0 +1,17 @@
+{
+  "tabs": [
+    {
+      "id": "tab_d54d9941d4b8eaca1481fb4963f2ea99",
+      "scope": "project",
+      "workspaceRoot": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\文件翻译2",
+      "workspaceId": "project-3444fb1c942a58114c9979c7",
+      "topicId": "topic_20260906-113552_1217c8f7a578c19c",
+      "model": "commandcode-goat/deepseek/deepseek-v4.1-flash",
+      "tokenMode": "full",
+      "agentPreset": "standard",
+      "qualityFloor": "standard",
+      "toolApprovalMode": "danger-full-access"
+    }
+  ],
+  "activeTab": "tab_d54d9941d4b8eaca1481fb4963f2ea99"
+}

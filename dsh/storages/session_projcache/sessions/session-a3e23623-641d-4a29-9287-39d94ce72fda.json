@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790061028918,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 Manual 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy-zz | Manual, Problem Set I.x 题 N</span>`。\r\n6. 🚨 所有 `$...$`、```math 围栏与全部反斜杠命令必须原样保留：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、行列式与迹校验数字不符等。请**独立重算每一处计算**，并核对题面矩阵与结论是否自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错（有没有把对的说成错的）。\r\n③ 🔴 译者注**规格**：每条注 **800–1200 汉字**（公式/配图/引文不计）。超长的请**按主题拆分为多条**（子标题写作 `**Note（译者注）——（其一）……**`、`（其二）……`），每条落在区间内；过短可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——只能压缩重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板）。\r\n④ 🔴 **数学编号不得硬编码**：稿中若引用教材公式编号（如(9) 式、(12)、(13)）、章节号、页码，必须与下面给出的校对基准一致；无法确认的编号改成不带编号的表述（如教材 §I.8 中由 $A^TA$ 求 $v$ 的构造），不得保留可疑编号。\r\n⑤ 🟡 术语一致性：同一术语全段单一译法（singular value 一律奇异值、rank-one 一律秩一、positive definite 一律正定）。\r\n⑥ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑦ 🟡 **`Original（英文原题）` 必须与校对基准中给出的 OCW 英文原题逐字一致**（可修正明显的 OCR/转写差异，但不得改写句式、不得替换为自己重写的英文句子）。\r\n⑧ 🟡 **🎥 引文**：每条 🎥 引文必须（a）能在校对基准的字幕摘录（或你确知出自该讲字幕的内容）中找到依据；（b）**附中文翻译**。凡无依据或没收中文翻译的，删去该引文或补上翻译；无法确认的依据标 `⚠ 待核：<存疑点>`。\r\n⑨ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；标题层级无跳级。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课最后一题（含该课的末尾合观节）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 禁止只输出意见清单而不给修订全文。禁止输出给主代理的说明待核项汇总之类的话术（`⚠ 待核：…` 就地标注即可）。\r\n\r\n【终审校对基准（主代理提供，权威）】\r\n### OCW 英文原题（逐字）\r\n15 Compute the three upper left determinants of S to establish positive deﬁniteness.\r\nVerify that their ratios give the second and third pivots.\r\nPivots = ratios of determinants   S = [[2, 2, 0], [2, 5, 3], [0, 3, 8]].\r\n\r\n### 教材官方 Manual 标准答案（Problem Set I.7, page 52 题 15，逐字）\r\n15 Corner determinants |S1| = 2, |S2| = 6, |S3| = 30. The pivots are 2/1, 6/2, 30/6.\r\n\r\n### 教材 §I.7 相关口径\r\n- 顺序主子式 $D_k$ 与主元关系：$D_k=d_1d_2\\cdots d_k$，故 $d_k=D_k/D_{k-1}$（比值即主元）\r\n- 三个主元分别为 2, 3, 5；$\\det S=30=2\\cdot3\\cdot5$\r\n- 「主元判据」与「顺序主子式判据」与「$LDL^T$ 中 $D>0$」三者等价\r\n\r\n### 合观节要求\r\n本课末尾合观节标题为 `## <span style=color:#c0392b;>附：三题合观——把三道题折叠成一个设计问题</span>`，800-1500 字，把三道题串成一个设计问题叙事（题 3 压两阶判据与 $LDL^T$、题 14 压rank 决定谱的形状、题 15 压主元 = 行列式之比），不复述题干。\r\n\r\n### 本讲官方字幕摘录（供 🎥 引文核对）\r\n# lec5 字幕教学片段（MIT 18.065 官方字幕，英文原句 + 官方中文字幕对齐）\r\n- [00:01:03,760 --> 00:01:07,140] **EN**: Each one gives a test for positive definite matrices.\r\n  **ZH**: 每一个都提供了正定矩阵的检验方法。\r\n- [00:03:11,220 --> 00:03:12,900] **EN**: Positive definite matrices.\r\n  **ZH**: Positive definite matrices (正定矩阵)。\r\n- [00:03:23,640 --> 00:03:26,780] **EN**: positive definite matrices, they have positive eigenvalues.\r\n  **ZH**: positive definite matrices (正定矩阵) 具有 positive eigenvalues (正特征值)。\r\n- [00:00:54,980 --> 00:00:55,760] **EN**: energy,\r\n  **ZH**: energy (能量),\r\n- [00:04:13,400 --> 00:04:21,279] **EN**: OK. So you could compute its eigenvalues since it's 2 by 2. It's energy. I'll come back to that because that's the most important one.\r\n  **ZH**: 好的。既然它是2x2矩阵，你可以计算它的特征值（eigenvalues）。这是 能量（energy）。我会回到这一点，因为这是最重要的问题。\r\n- [00:09:42,460 --> 00:09:43,380] **EN**: Let me do the energy.\r\n  **ZH**: 让我来负责能量部分。\r\n- [00:00:58,840 --> 00:01:00,240] **EN**: determinants, pivots,\r\n  **ZH**: determinants (行列式), pivots (主元),\r\n- [00:04:52,100 --> 00:04:53,800] **EN**: positive determinants. Positive pivots.\r\n  **ZH**: 正行列式。 正主元。\r\n- [00:07:22,680 --> 00:07:25,080] **EN**: And have you noticed the connection to pivots?\r\n  **ZH**: 并且 你是否注意到了与 pivot (枢轴) 之间的联系？\r\n- [00:04:59,100 --> 00:05:07,900] **EN**: Which is the easy test to see that it fails? Negative determinant. Determinant. The determinant is 15 minus 16,\r\n  **ZH**: 哪个简单测试可以看出它不成立？负行列式。行列式。行列式为15减16，\r\n- [00:05:11,940 --> 00:05:15,040] **EN**: that's what's so how is the determinant connected to the eigenvalues?\r\n  **ZH**: 这就是问题所在：那么 行列式（determinant）与特征值（eigenvalues）是如何联系起来的？\r\n\r\n======================= 待审部分开始（该课最后一题（含该课的末尾合观节）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 15（问题 15）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.7, p.46-55 | Manual, Problem Set I.7 题 15 | 教材原文材料片段 p5_pivot、p5_ata</span>\r\n\r\n计算矩阵 $S$ 的三个 upper left determinants（左上角行列式，即 leading principal minors 前导主子式），用它们确立 $S$ 的 positive definiteness（正定性）；并验证这三个行列式的比值恰好给出第二个与第三个 pivots（主元）。Pivots（主元）就是 ratios of determinants（行列式的比值）：\r\n\r\n```math\r\nS=\\begin{bmatrix}2&2&0\\\\ 2&5&3\\\\ 0&3&8\\end{bmatrix}\r\n```\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Compute the three upper left determinants of $S$ to establish positive definiteness. Verify that their ratios give the second and third pivots. Pivots = ratios of determinants.\r\n```math\r\nS=\\begin{bmatrix}2&2&0\\\\ 2&5&3\\\\ 0&3&8\\end{bmatrix}\r\n```</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 三个前导主子式（leading principal minors）依次是 $D_1=2$、$D_2=6$、$D_3=30$，三者全为正；又因为 $S=S^T$ 是对称矩阵（symmetric matrix），所以 $S$ 是 positive definite（正定）。\r\n>\r\n> 对应的三个 pivots（主元）依次是\r\n>\r\n> ```math\r\n> d_1=\\frac{D_1}{D_0}=\\frac{2}{1}=2,\\qquad d_2=\\frac{D_2}{D_1}=\\frac{6}{2}=3,\\qquad d_3=\\frac{D_3}{D_2}=\\frac{30}{6}=5\r\n> ```\r\n>\r\n> 这里约定 $D_0=1$（空矩阵的行列式），这是比值链的起点，缺了它第一步无法写成分式。Manual 给出的 $2/1,\\ 6/2,\\ 30/6$ 就是这个链条的三个节点，我把未化简的比值补成化简值 $d=(2,3,5)$，并逐条验证它们确实等于消元留下的对角元。\r\n>\r\n> **二、方法一：消元直推 + 行变换保行列式（最省工具的通道）**\r\n>\r\n> 这条通道看到的是「主元是消元过程的副产品，而行列式在消元下不动」，所以两者必然挂钩；适用条件是消元全程不需要换行（本题满足），优劣是计算最省但只给数值、不解释结构。\r\n>\r\n> 对 $S$ 做 Gauss elimination（高斯消元），每一步都只做 $R_i\\leftarrow R_i-l_{ij}R_j$（$j<i$）：\r\n>\r\n> ```math\r\n> \\begin{aligned}\r\n> S=\\begin{bmatrix}2&2&0\\\\2&5&3\\\\0&3&8\\end{bmatrix}\r\n> &\\xrightarrow{\\ R_2\\leftarrow R_2-1\\cdot R_1\\ }\r\n> \\begin{bmatrix}2&2&0\\\\0&3&3\\\\0&3&8\\end{bmatrix}\\\\[4pt]\r\n> &\\xrightarrow{\\ R_3\\leftarrow R_3-1\\cdot R_2\\ }\r\n> \\begin{bmatrix}2&2&0\\\\0&3&3\\\\0&0&5\\end{bmatrix}=U\r\n> \\end{aligned}\r\n> ```\r\n>\r\n> 乘数（multipliers）是 $l_{21}=2/2=1$、$l_{31}=0/2=0$、$l_{32}=3/3=1$；对角元就是三个主元 $d_1=2$、$d_2=3$、$d_3=8-3=5$。\r\n>\r\n> 现在把行列式接上去。这类行变换不改变行列式；更关键的是「前导」二字带来的局部性——生成第 $i$ 行的操作只用到编号更小的行，所以生成前 $k$ 行只用前 $k$ 行。把同一串操作限制在左上 $k\\times k$ 子块上做，就把 $S_k$ 化成了上三角块 $U_k$，于是\r\n>\r\n> ```math\r\n> D_k=\\det S_k=\\det U_k=d_1d_2\\cdots d_k\r\n> ```\r\n>\r\n> 取 $k=1,2,3$ 立刻得到 $2$、$2\\cdot3=6$、$2\\cdot3\\cdot5=30$，比值 $d_k=D_k/D_{k-1}$ 成立。这条推导只用了两个已有结论：行变换 $R_i\\leftarrow R_i-lR_j$（$j<i$）不改行列式，以及上三角矩阵的行列式等于对角元之积。\r\n>\r\n> **三、方法二：$LDL^T$ 的分块乘法（结构视角）**\r\n>\r\n> 这条通道看到的是「对称性把上三角因子 $U$ 免费换成 $L^T$」，因此前导子块的分解只用到更小的同类分解；适用条件是所有主元非零，优劣是能一次说明存在性、唯一性与比值公式，但需要先承认分解本身。\r\n>\r\n> 把主元抽成对角矩阵 $D$，消元结果写成\r\n>\r\n> ```math\r\n> L=\\begin{bmatrix}1&0&0\\\\1&1&0\\\\0&1&1\\end{bmatrix},\\qquad\r\n> D=\\begin{bmatrix}2&0&0\\\\0&3&0\\\\0&0&5\\end{bmatrix},\\qquad\r\n> U=\\begin{bmatrix}2&2&0\\\\0&3&3\\\\0&0&5\\end{bmatrix}=DL^T\r\n> ```\r\n>\r\n> 乘回去验算：$LDL^T$ 的第一行是 $2\\begin{bmatrix}1&1&0\\end{bmatrix}=\\begin{bmatrix}2&2&0\\end{bmatrix}$；第二行是 $2\\begin{bmatrix}1&1&0\\end{bmatrix}+3\\begin{bmatrix}0&1&1\\end{bmatrix}=\\begin{bmatrix}2&5&3\\end{bmatrix}$；第三行是 $3\\begin{bmatrix}0&1&1\\end{bmatrix}+5\\begin{bmatrix}0&0&1\\end{bmatrix}=\\begin{bmatrix}0&3&8\\end{bmatrix}$，与 $S$ 逐元素一致。\r\n>\r\n> 现在证明比值公式。对 $i,j\\le k$，由分块乘法（block multiplication）\r\n>\r\n> ```math\r\n> (LDL^T)_{ij}=\\sum_{p=1}^{n}L_{ip}\\,d_p\\,L_{jp}\r\n> ```\r\n>\r\n> 而 $L$ 是下三角，$L_{ip}=0$ 对一切 $p>i$ 成立；当 $i\\le k$ 时 $p>i$ 蕴含 $p>k$，所以整个求和对 $p\\le k$ 自动截断，得\r\n>\r\n> ```math\r\n> S_k=L_kD_kL_k^T\r\n> ```\r\n>\r\n> 其中 $L_k$、$D_k$ 分别是 $L$、$D$ 的左上 $k\\times k$ 子块。两边取行列式：$L_k$ 是单位下三角（对角元全为 1），故 $\\det L_k=1$，$\\det L_k^T=1$，于是\r\n>\r\n> ```math\r\n> D_k=\\det S_k=\\det L_k\\cdot\\det D_k\\cdot\\det L_k^T=d_1d_2\\cdots d_k\r\n> ```\r\n>\r\n> 这就是 Manual 的比值公式的完整来源。它顺带说明了一个容易忽略的事实：前导子块的分解不需要知道更大的块，所以「先判定左上角、再往右下走」在代数上是合法的。\r\n>\r\n> **四、方法三：Schur 补与分块行列式（分治视角）**\r\n>\r\n> 这条通道看到的是「第 $k$ 个主元等于一个 $1\\times1$ 的消元公式」，把第 $k$ 步从整条链里孤立出来；适用条件是 $S_{k-1}$ 可逆，优劣是最容易手算单个主元、并且直接暴露主元为负或为零时的几何含义（这一步的「剩余曲率」非正）。\r\n>\r\n> 分块行列式恒等式给出\r\n>\r\n> ```math\r\n> \\det\\begin{bmatrix}S_{k-1}&b\\\\ b^T&s_{kk}\\end{bmatrix}\r\n> =\\det S_{k-1}\\cdot\\bigl(s_{kk}-b^TS_{k-1}^{-1}b\\bigr)\r\n> ```\r\n>\r\n> 括号里那项就是第 $k$ 个主元。以 $k=3$ 为例，$S_2=\\begin{bmatrix}2&2\\\\2&5\\end{bmatrix}$，$S_2^{-1}=\\frac16\\begin{bmatrix}5&-2\\\\-2&2\\end{bmatrix}$，$b=\\begin{bmatrix}0\\\\3\\end{bmatrix}$，于是\r\n>\r\n> ```math\r\n> S_2^{-1}b=\\frac16\\begin{bmatrix}-6\\\\6\\end{bmatrix}=\\begin{bmatrix}-1\\\\1\\end{bmatrix},\r\n> \\qquad b^TS_2^{-1}b=\\begin{bmatrix}0&3\\end{bmatrix}\\begin{bmatrix}-1\\\\1\\end{bmatrix}=3\r\n> ```\r\n>\r\n> 所以 $d_3=8-3=5=\\dfrac{30}{6}=\\dfrac{D_3}{D_2}$，与方法一、方法二的 $d_3$ 完全一致。这条通道只用到 $2\\times2$ 求逆与一次二次型求值，是最适合做题时独立复核最后一步的办法。\r\n>\r\n> **五、两个判据的等价性：为什么「前导行列式全正」与「主元全正」是同一句话**\r\n>\r\n> 设 $S$ 是 $n\\times n$ 实对称矩阵，$S_k$ 表示它的左上 $k\\times k$ 子块，$D_k=\\det S_k$，$D_0=1$。下列三条互相等价：\r\n>\r\n> 定义（1）：对一切 $c\\neq0$ 有 energy（能量）$c^TSc>0$，即 $S$ positive definite（正定）。\r\n>\r\n> 判据（2）：所有主元 $d_k>0$。\r\n>\r\n> 判据（3）：所有前导主子式 $D_k>0$。\r\n>\r\n> 链条 (1)$\\Rightarrow$(3)：若 $S$ 正定，取 $z\\in\\mathbb{R}^k$ 非零，把 $c=(z,0,\\dots,0)$ 代入，得 $z^TS_kz>0$，故每个 $S_k$ 也正定。若 $S_kz=0$ 而 $z\\neq0$，则 $z^TS_kz=0$ 与正定矛盾，所以 $S_k$ 可逆、$D_k\\neq0$；又 $S_k$ 对称，若 $S_kz=\\mu z$（$z\\neq0$），则 $\\mu\\lVert z\\rVert^2=z^TS_kz>0$，故 $S_k$ 的全体特征值（eigenvalues）为正，$D_k$ 作为特征值之积为正。\r\n>\r\n> 链条 (3)$\\Rightarrow$(2)：由第五节的分块推导，$S$ 的前导子块满足 $S_k=L_kD_kL_k^T$，故 $D_k=d_1\\cdots d_k$。对 $k=1$ 得 $d_1=D_1>0$；归纳地，$d_k=D_k/D_{k-1}>0$。\r\n>\r\n> 链条 (2)$\\Rightarrow$(1)：主元全正时 $S=LDL^T$，$D=\\operatorname{diag}(d_1,\\dots,d_n)$ 的对角元全正，于是对任意 $c$\r\n>\r\n> ```math\r\n> c^TSc=c^TLDL^Tc=(L^Tc)^TD(L^Tc)=\\sum_{k=1}^{n}d_k\\bigl((L^Tc)_k\\bigr)^2\\ \\ge 0\r\n> ```\r\n>\r\n> 每项非负且系数为正；又 $\\det L=1$ 说明 $L$ 可逆，$c\\neq0$ 时 $L^Tc\\neq0$，至少有一个分量非零，故和严格为正。\r\n>\r\n> 反向的严格性也要钉住：若某个 $d_k\\le0$，取 $c=(L^T)^{-1}e_k\\neq0$，能量恰为 $d_k\\le0$，正定性立即失败。所以 (2) 不只是充分条件，而是充分必要条件。\r\n>\r\n> 这里必须点明两个前提，缺一不可。第一是**对称性**：判据链条全程使用 $S=LDL^T$ 与「对称矩阵特征值实且可由能量定号」这两件事；对非对称矩阵，$c^TAc=c^T\\frac{A+A^T}{2}c$ 只看到对称部分，例如 $A=\\begin{bmatrix}1&3\\\\-1&1\\end{bmatrix}$ 的两个前导主子式为 $1$ 与 $4$，全为正，但 $\\frac{A+A^T}{2}=\\begin{bmatrix}1&1\\\\1&1\\end{bmatrix}$ 在 $c=(1,-1)$ 上能量为 $0$，$A$ 并不正定。第二是**前导性**：判据 (3) 要求子块是同一条嵌套链 $S_1\\subset S_2\\subset\\cdots\\subset S_n$，取任意 $k\\times k$ 子式（例如 $\\det\\begin{bmatrix}2&0\\\\0&8\\end{bmatrix}=16$）不构成判据。\r\n>\r\n> **六、对 Manual 标准答案的独立核验与补足**\r\n>\r\n> Manual 原文是：`Corner determinants |S1| = 2, |S2| = 6, |S3| = 30. The pivots are 2/1, 6/2, 30/6.`\r\n>\r\n> 逐项核验结论：三个数字与比值全部正确，我的三种独立算法都复现出 $2,6,30$ 与 $2/1,6/2,30/6$，所以 Manual 的数值可以放心使用。但作为标准答案，它有五处信息不全，需要补足：\r\n>\r\n> 一是没有化简。$6/2=3$、$30/6=5$，三个主元是 $2,3,5$；只留分数形式会让读者把主元误认为「行列式的分数」，也会在后续配方法中看不出平方和系数从哪里来。\r\n>\r\n> 二是没有给出比值的方向与起点。公式是 $d_k=D_k/D_{k-1}$ 且 $D_0=1$，不是 $D_{k-1}/D_k$；反向会得到 $1/2,1/3,1/5$，而第一次消元后第二行第二列裸露在外的数就是 $3$，一步就能否掉反向。\r\n>\r\n> 三是没有写出适用条件。比值链要求 $S$ 对称、且所有前导子块可逆（否则某个 $D_{k-1}=0$ 使分式无定义，此时需要换行或改用行列式判据）。本题 $D_1,D_2,D_3$ 全非零，条件自动满足。\r\n>\r\n> 四是没有说明「三个行列式为正为什么就确立了正定性」。Manual 只给结论，缺的正是第五节的等价性链条；没有它，(3)$\\Rightarrow$(1) 这一步是断的。\r\n>\r\n> 五是记号有歧义。$|S_1|$ 中的 $S_1$ 没有被定义成「$S$ 的左上 $1\\times1$ 子块」，读者可能误读为 $S$ 的第一列、某个子矩阵或某个元素。补足版本应当写成：令 $S_k$ 为 $S$ 的左上 $k\\times k$ 子块，$D_k=\\det S_k$、$D_0=1$，则 $D_1=2,\\ D_2=6,\\ D_3=30$，$d_k=D_k/D_{k-1}$ 给出 $d=(2,3,5)$，全为正且 $S=S^T$，故 $S$ 正定；并以 $d_1d_2d_3=30=\\det S$ 作为一致性校验。\r\n>\r\n> **七、常见错误判定**\r\n>\r\n> ❌ 写成「三个左上角行列式是 $2,6,30$，所以三个主元是 $2,6,30$」。错在把 $D_k$ 直接当成 $d_k$：主元是相邻前导行列式的比值，$d_2=6/2=3\\neq6$，这一步混淆会让整个消元与行列式的对应关系报废。\r\n>\r\n> ❌ 写成「$d_2=D_1/D_2=2/6=1/3$」。错在比值方向反了；代入验算：消元一步后矩阵第二行第二列是 $3$，而 $1/3$ 与它不符，反向写法当场被否。\r\n>\r\n> ❌ 写成「三个主元是 $2,6,30$，所以 $\\operatorname{trace}S=2+6+30$」。错在把主元当特征值用：主元的乘积才等于行列式，$2\\cdot3\\cdot5=30=\\det S$ 成立，而主元之和一般没有含义，本题 $2+3+5=10\\neq15=\\operatorname{trace}S$。\r\n>\r\n> ❌ 把「左上角行列式」取成任意子式，例如用 $\\det\\begin{bmatrix}2&0\\\\0&8\\end{bmatrix}=16$ 或 $\\det\\begin{bmatrix}5&3\\\\3&8\\end{bmatrix}=31$ 当第二个判据。错在漏掉「前导」：必须取左上角第 $1$ 到 $k$ 行、第 $1$ 到 $k$ 列，且三个行列式必须来自同一条嵌套链，任取子式既非充分也非必要。\r\n>\r\n> ❌ 写成「第三行是 $[0,3,8]$，减去 $[0,3,3]$ 得 $5$，所以 $d_3=5$，而 $D_3=30$ 是另一个数，两者无关」。错在把「数值上的相等」与「结构上的相等」剥开：$5=30/6$ 正是这条题的核验点，看成巧合就丢掉了全部信息。\r\n>\r\n> ❌ 用「$\\det S=30>0$ 所以 $S$ 正定」结案。错在只看最后一个行列式：$\\operatorname{diag}(-1,-1)$ 的行列式为 $1>0$，却显然不正定；必须三个前导主子式同时为正，缺一不可。\r\n>\r\n> ❌ 用「$S$ 的元素全是非负数，所以正定」结案。错在元素符号与二次型符号没有蕴含关系：$\\begin{bmatrix}1&3\\\\3&1\\end{bmatrix}$ 元素全正，但 $D_2=1-9=-8<0$，能量在 $c=(1,-1)$ 处为 $-4<0$。\r\n>\r\n> ❌ 写成「主元是 $2,3,5$，所以特征值是 $2,3,5$」。错在两者是不同的量：本题的特征值是 $10$ 与 $\\dfrac{5\\pm\\sqrt{13}}{2}\\approx4.3028,\\ 0.6972$；把 $\\lambda=5$ 代入特征多项式得 $\\lambda^3-15\\lambda^2+53\\lambda-30\\big|_{\\lambda=5}=-15\\neq0$，直接否掉。只有「正负号的个数」被冻结，数值可以完全不同。\r\n>\r\n> ❌ 写能量配方式时把系数写成对角元或特征值：$2c_1^2+5c_2^2+8c_3^2+4c_1c_2+6c_2c_3=2(c_1+c_2)^2+5(c_2+c_3)^2+8c_3^2$。错在系数的来源：正确的是\r\n>\r\n> ```math\r\n> c^TSc=2(c_1+c_2)^2+3(c_2+c_3)^2+5c_3^2\r\n> ```\r\n>\r\n> 系数恰是三个主元 $2,3,5$，把它展开逐项核对即可发现用 $5,8$ 会在交叉项与平方项上同时出错。\r\n>\r\n> ❌ 认为 $A=L\\sqrt{D}$ 与 $A=\\sqrt{D}L^T$ 都能充当 $S=A^TA$ 中的因子。错在三角方向：正确的 Cholesky factor（乔列斯基因子）是上三角的\r\n>\r\n> ```math\r\n> A=\\sqrt{D}\\,L^T=\\begin{bmatrix}\\sqrt2&\\sqrt2&0\\\\0&\\sqrt3&\\sqrt3\\\\0&0&\\sqrt5\\end{bmatrix},\\qquad A^TA=S\r\n> ```\r\n>\r\n> 若改用 $A=L\\sqrt{D}$，则 $(A^TA)_{12}=\\sqrt6\\neq2$，立刻与原矩阵不符。另外 $A$ 并不唯一：任何满足 $Q^TQ=I$ 的 $Q$ 都给出 $(QA)^T(QA)=A^TA$，所以「找出一种 $A$」就够，不必找唯一解。\r\n>\r\n> ❌ 在半正定（semidefinite）情形照抄本判据，写成「前导主子式非负即半正定」。错在充分性丢失：$\\operatorname{diag}(0,-1)$ 的前导主子式是 $0$ 与 $0$，全都非负，却在 $c=(0,1)$ 上能量为 $-1$；半正定需要「全部主子式非负」，或改写成「主元非负且零主元的个数等于零空间的维数」。\r\n>\r\n> **八、自检**\r\n>\r\n> 代入验算：$LDL^T$ 逐行乘回得到 $\\begin{bmatrix}2&2&0\\\\2&5&3\\\\0&3&8\\end{bmatrix}$；$A^TA$ 与 $S$ 逐元素一致；能量等式取 $c=(1,-1,1)$，右边 $2\\cdot0^2+3\\cdot0^2+5\\cdot1^2=5$，左边按原始展开 $2+5+8-4-6=5$，两边相等。\r\n>\r\n> 维数与形状记账：$D_k$ 是标量，$S_k$ 是 $k\\times k$，$L_k$ 是 $k\\times k$ 单位下三角，$D_k$（对角矩阵）与 $D_k$（行列式）在本解中已用「对角矩阵」与「行列式」的措辞区分，比值 $d_k=D_k/D_{k-1}$ 是标量比标量；$A=\\sqrt{D}L^T$ 是 $3\\times3$ 上三角，$\\sqrt{D}$ 与 $L^T$ 同为上三角故乘积仍上三角。\r\n>\r\n> trace-det 双锁：$\\operatorname{trace}S=2+5+8=15$，三个 $2\\times2$ 主子式之和为 $6+16+31=53$，$\\det S=30$，于是特征多项式为\r\n>\r\n> ```math\r\n> \\det(\\lambda I-S)=\\lambda^3-15\\lambda^2+53\\lambda-30=(\\lambda-10)\\Bigl(\\lambda^2-5\\lambda+3\\Bigr)\r\n> ```\r\n>\r\n> 三个根 $10,\\ \\dfrac{5+\\sqrt{13}}{2},\\ \\dfrac{5-\\sqrt{13}}{2}$ 之和为 $15$ 等于 trace，之积为 $30$ 等于 $\\det$，且三根全为正，与「前导主子式全正」给出的正定结论互相印证。\r\n>\r\n> 主元乘积校验（sigma 乘积校验）：$d_1d_2d_3=2\\cdot3\\cdot5=30=D_3=\\det S$，与 $D_3$ 的独立展开 $2(40-9)-2(16)=62-32=30$ 一致。\r\n>\r\n> 秩的上界：$\\det S=30\\neq0$ 说明 $\\operatorname{rank}S=3$，三个主元全非零说明消元全程不需要行交换，$L$ 的乘数 $1,0,1$ 全部有定义。\r\n>\r\n> 能量正负判定：取几组试探向量，$c=(1,-1,0)$ 给 $3>0$，$c=(0,1,-1)$ 给 $5>0$，$c=(1,0,-1)$ 给 $2+5=7>0$；再取 $c=(1,-2,3)$ 给 $2(1-2)^2+3(-2+3)^2+5\\cdot9=2+3+45=50>0$。所有试探值严格为正，与正定一致；注意试探只能证伪不能证明，证明仍靠第五节。\r\n>\r\n> **九、一句话**：这道题真正训练的是把「二次型在所有方向上的符号」这个全局性质折成有限个标量，并让行列式这条数值通道与消元这条算法通道在同一条比值链上对齐。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——「比值即主元」的三条证明通道与一个失效边界**\r\n>\r\n> 本注要交代的核心是一句话：$d_k=D_k/D_{k-1}$ 不是数值巧合，而是「消元不改变前导行列式」这条不变量的直接变形；而这条不变量只在对称加上前导子块全部可逆时成立，一旦某个前导子块奇异，比值链当场断裂。\r\n>\r\n> 🎥 *Strang 在课上[提出判据后停顿提问]*：And have you noticed the connection to pivots?（翻译：你是否注意到了与主元之间的联系？）\r\n>\r\n> 先看为什么会有联系。Gauss 消元用的操作只有一种形状，$R_i\\leftarrow R_i-l_{ij}R_j$，其中 $j<i$，也就是「用上面的行改下面的行」。这类操作的行列式乘子是 $1$，所以不改行列式。真正让它与「前导」挂钩的是局部性：改写第 $i$ 行时只用编号更小的行，因此改写前 $k$ 行只用前 $k$ 行，前 $k$ 行也只被前 $k$ 行改写。于是把整串操作原样限制在左上 $k\\times k$ 子块上执行，得到的正是上三角块 $U_k$，且 $\\det S_k=\\det U_k=d_1d_2\\cdots d_k$。这条通道只调用两个已经用过的结论——行变换保行列式、上三角矩阵行列式等于对角元之积——所以它是最小工具集证明。\r\n>\r\n> 🎥 *Strang 在课上[板书两个判据的名字]*：positive determinants. Positive pivots.（翻译：正的行列式。正的主元。）\r\n>\r\n> 第二条通道走结构。对称矩阵可以写成 $S=LDL^T$，$L$ 是单位下三角、$D$ 是主元对角矩阵。对 $i,j\\le k$ 展开分块乘法，$(LDL^T)_{ij}=\\sum_p L_{ip}d_pL_{jp}$；因为 $L$ 下三角，$p>i$ 的项全为零，而 $i\\le k$ 蕴含 $p>i\\Rightarrow p>k$，所以求和自动截断在前 $k$ 项，得 $S_k=L_kD_kL_k^T$。取行列式，$L_k$ 与 $L_k^T$ 的行列式都是 $1$，剩下的就是 $D_k=d_1\\cdots d_k$。这条通道顺带解释了一件容易被忽略的事：前导子块的分解不需要知道更大的块，所以判定可以从左上角一路向右下推进，这是所有「顺序判据」的合法性来源。\r\n>\r\n> 第三条通道走分治。把 $S_k$ 分成 $\\begin{bmatrix}S_{k-1}&b\\\\ b^T&s_{kk}\\end{bmatrix}$，分块行列式恒等式给出 $\\det S_k=\\det S_{k-1}\\cdot(s_{kk}-b^TS_{k-1}^{-1}b)$，括号里的 $s_{kk}-b^TS_{k-1}^{-1}b$ 恰好就是第 $k$ 步消元公式，于是 $d_k=D_k/D_{k-1}$ 与逐列消元完全同步。它的实用价值是：想单独复核第三个主元，只需对 $2\\times2$ 求逆再算一次二次型。\r\n>\r\n> 用本题把三条通道各走一遍。$D_0=1$，$D_1=2$，$D_2=2\\cdot5-2\\cdot2=6$，$D_3=2(5\\cdot8-3\\cdot3)-2(2\\cdot8-3\\cdot0)=62-32=30$。比值给出 $2,3,5$。通道一：消元两步后对角是 $2,3,8-3=5$。通道二：$L_kD_kL_k^T$ 乘回得 $S$。通道三：$S_2^{-1}=\\frac16\\begin{bmatrix}5&-2\\\\-2&2\\end{bmatrix}$，$b^TS_2^{-1}b=\\begin{bmatrix}0&3\\end{bmatrix}\\begin{bmatrix}-1\\\\1\\end{bmatrix}=3$，$d_3=8-3=5$。三条通道对齐，比值链才算可信；把它们合起来命名为「比值链三通道校验法」，并把 $d_1d_2\\cdots d_n=\\det S$ 单列出来，叫 sigma 乘积校验。\r\n>\r\n> 🎥 *Strang 在课上[总述五个判据的关系]*：Each one gives a test for positive definite matrices.（翻译：每一个都给出正定矩阵的一个判据。）\r\n>\r\n> 跨课程连接要落到具体的链条上。在 6.042J 里做过结构归纳：证明「对所有 $k$ 成立」时，假设 $k-1$ 成立再推 $k$。通道二的证明正是这个形状，归纳变量是块的规模，从 $S_{k-1}=L_{k-1}D_{k-1}L_{k-1}^T$ 推到 $S_k=L_kD_kL_k^T$；区别在于 6.042J 归纳的是命题真值，这里归纳的是矩阵的块结构，黏合两半的工具是分块乘法而不是逻辑推理。在 CSAPP 第 2 章学过 IEEE 754 浮点表示：三条通道在实数域上等价，在有限精度下并不等价——通道一直接做减法 $8-3$，条件数小；而在病态矩阵上 $D_k/D_{k-1}$ 是两个接近零的数相除，相对误差被放大，这正是教材说「行列式判据适合小矩阵」的数值原因，也是后面必须引入条件数来度量「判据通过」与「算得准」之间差距的原因。\r\n>\r\n> 最后把失效边界钉死。若某个 $D_{k-1}=0$，比值没有定义，但这不意味着矩阵一定不正定，只意味着必须在第 $k$ 步换行或改用别的判据；若某个 $d_k=0$，则 $S$ 奇异，能量在 $(L^T)^{-1}e_k$ 上恰为 $0$，正定性失败而半正定仍可能成立；若 $d_k<0$，能量在该向量上为负，连半正定都不成立。三种情形对应三种不同的几何：正定、平底、马鞍。所以比值链不是在回答「正不正」这一个问题，它在每一步都在回答「目前为止的剩余曲率是什么符号」，这正是它比最后那个行列式 $\\det S$ 信息量更大的地方。\r\n>\r\n> 回到正文：Manual 写下 $2/1,6/2,30/6$ 之所以正确，是因为它们就是同一条比值链上的三个节点；而它们能否「确立正定性」，取决于三件事同时成立——$S$ 对称、三个 $D_k$ 全正、且它们来自同一条嵌套链。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——主元不是特征值：正定性的几套坐标与它们各自的价格**\r\n>\r\n> 本注的核心是一句话：正定性只有一个定义——能量恒正——但可以用好几套坐标去描述它；换坐标改变的是数值与计算代价，被冻结的只有正负号的个数。\r\n>\r\n> 🎥 *Strang 在课上[先算特征值再转向能量]*：OK. So you could compute its eigenvalues since it's 2 by 2. It's energy. I'll come back to that because that's the most important one.（翻译：好的，因为它是 $2\\times2$ 的，你可以直接算特征值。这是能量。我会回到这一点，因为它是最重要的一个。）\r\n>\r\n> 先把本题的几套坐标全部算出来对照。特征值坐标：由 trace $=15$、$2\\times2$ 主子式之和 $=6+16+31=53$、$\\det=30$，特征多项式是 $\\lambda^3-15\\lambda^2+53\\lambda-30$，分解为 $(\\lambda-10)(\\lambda^2-5\\lambda+3)$，三根是 $10$、$\\frac{5+\\sqrt{13}}{2}\\approx4.3028$、$\\frac{5-\\sqrt{13}}{2}\\approx0.6972$。主元坐标：$2,3,5$。对角元坐标：$2,5,8$。三组数互不相同，但特征值全正、主元全正，两者对正定的判定一致。这不是巧合。\r\n>\r\n> 一致性的机制是合同变换（congruence）与惯性（inertia）。从 $S$ 到 $D=\\operatorname{diag}(d_1,\\dots,d_n)$ 走的是 $D=L^{-1}S(L^{-1})^T$，从 $S$ 到 $\\Lambda$ 走的是 $\\Lambda=Q^TSQ$，$Q$ 的列是特征向量且 $Q^TQ=I$。两条路径都是「用可逆矩阵夹住 $S$ 做双向挤压」，而挤压不改变正、负、零特征值的个数；主元之所以能充当「特征值符号的替身」，正是因为 $D$ 与 $S$ 合同。数值可以完全不同，因为挤压可以任意拉伸坐标轴：$10$ 被压成 $2$，$0.6972$ 被拉成 $5$ 都合法，只要符号个数保持 $3,0,0$。\r\n>\r\n> 🎥 *Strang 在课上[转入能量判据]*：Let me do the energy.（翻译：让我来做能量这一部分。）\r\n>\r\n> 再把能量坐标写出来，它是四套坐标里唯一不需要解方程的一套。对本题做配方法（completing the square）：\r\n>\r\n> ```math\r\n> c^TSc=2c_1^2+5c_2^2+8c_3^2+4c_1c_2+6c_2c_3=2(c_1+c_2)^2+3(c_2+c_3)^2+5c_3^2\r\n> ```\r\n>\r\n> 平方和前面的系数 $2,3,5$ 恰是三个主元，不是对角元 $2,5,8$，也不是特征值。手算验证一次：取 $c=(1,-1,1)$，右边为 $0+0+5=5$，左边按原始展开为 $2+5+8-4-6=5$，相等。配方法的本质是「不旋转坐标轴，只沿坐标轴依次消掉交叉项」：先用 $c_1$ 把含 $c_1c_2$ 的项配掉，再用 $c_2$ 配掉含 $c_2c_3$ 的项，剩下的系数自动就是消元产生的主元。这就是为什么「主元判据」与「能量判据」不是两条独立的路，而是同一件事的两种写法；相比之下，特征值坐标走的是旋转路线，把二次型变成纯平方和 $\\sum\\lambda_i(Q^Tc)_i^2$，代价是要解 $n$ 次多项式方程，且在数值上特征值对扰动通常比主元敏感。\r\n>\r\n> 跨课程连接要精确到概念与路径。在 6.042J 学过偏序集：一个关系要成为偏序，需要自反、传递、反对称。在 $n\\times n$ 对称矩阵集合上定义 $A\\succeq B$ 当且仅当 $A-B$ 半正定，三条性质全部可以只用能量验证——自反是 $A-A=0$ 的能量恒为零；传递是能量的可加性，$c^T(A-C)c=c^T(A-B)c+c^T(B-C)c$，两个非负之和仍非负；反对称需要一步，若 $A-B$ 与 $B-A$ 都半正定，则对一切 $c$ 有 $c^T(A-B)c=0$，配合对称性推出 $A=B$。区别在于这个偏序不是全序：$\\operatorname{diag}(1,0)$ 与 $\\operatorname{diag}(0,1)$ 互不 $A\\succeq B$，任意两个矩阵一般不可比较，这正是正定矩阵在优化里受欢迎的原因——它让比较大小时常可判定。同样在 6.042J 学过的等价关系也能接上：把 $A\\sim B$ 定义为存在可逆 $P$ 使 $B=P^TAP$，自反取 $P=I$，对称取 $P^{-1}$，传递取两个 $P$ 相乘，于是这是一个等价关系；惯性定律说惯性三元组是它的完全不变量，$\\mathbb{S}^3$ 被分成三元组之和为 $3$ 的若干类。与模 $n$ 同余的类比是「用一个不变量给类贴标签」，区别是同余类的搬运是平移（加 $kn$），合同类的搬运是双向挤压（$P^TAP$），挤压可以任意改变特征值的具体数值，只冻结符号个数。\r\n>\r\n> 计算方面再补两条路径。Cholesky 路线取 $A=\\sqrt{D}L^T$，能量写成 $\\lVert Ac\\rVert^2=2(c_1+c_2)^2+3(c_2+c_3)^2+5(c_3)^2$，与配方法结果逐项一致；它的代价是两个：一是 $A$ 不唯一（左乘任意正交矩阵仍给出同一个 $S=A^TA$），二是要开平方 $\\sqrt{d_k}$，当某个主元很小时相对误差被放大，接到 CSAPP 第 2 章的浮点误差与条件数讨论；收益是只需存一个三角因子，前代与回代互为转置，从 CSAPP 第 6 章缓存的角度看，一个三角因子占的缓存行约为两个的一半。优化路线把符号判定接到最小值问题：$f(c)=\\frac12c^TSc-b^Tc$ 在 $S$ 正定时严格凸，因为对 $\\theta\\in(0,1)$ 展开\r\n>\r\n> ```math\r\n> f(\\theta x+(1-\\theta)y)-\\bigl(\\theta f(x)+(1-\\theta)f(y)\\bigr)=-\\tfrac12\\theta(1-\\theta)(x-y)^TS(x-y)<0\r\n> ```\r\n>\r\n> 右端为负正是严格凸的定义，而它成立的唯一依据就是 $x-y\\neq0$ 时能量为正；这与 100B 实分析里用不等式定义的凸性接的是同一件事，区别是实分析版本只要求不等式对任意两点成立，不引入矩阵，而这里把「开口向上」这一几何事实编码成矩阵的符号。把它命名成「trace-det-惯性三重锁」：主元乘积等于 det、前导行列式链全正、特征值全正且和等于 trace，三把锁同时打开才敢下正定的结论。\r\n>\r\n> 回到正文：本题的三个前导行列式之所以能「确立正定性」，不在于它们算出了特征值，而在于它们是能量恒正这条定义在主元坐标系下的一次有限、可手算的投影；换到特征值坐标去得到同一个结论要解三次方程。这就是行列式检验在小矩阵上胜出的全部理由，也是它在大矩阵上让位给消元与 Cholesky 的全部理由。\r\n\r\n---\r\n\r\n---\r\n\r\n## <span style=color:#c0392b;>附：Positive Definite and Semidefinite Matrices（正定矩阵与半正定矩阵）三题合观——把三层判据折叠成一个设计问题</span>\r\n\r\n本讲的三道题在回答同一个设计问题：**二次型 $c^TSc$ 的符号是整个空间上的全局性质，能不能把它压缩成有限几个可以手算的标量，压缩的代价又是什么。**\r\n\r\n第一层是判据层，由本题承担。它把全局正性压成 $n$ 个标量 $D_1,\\dots,D_n$，并同时给出这些标量的比值恰是消元产生的主元。这一层的贡献是可手算：几次二阶与三阶行列式就能代替对所有 $c$ 的检验。代价被写进了前提里——这些标量必须来自同一条嵌套链，必须全部为正而不是部分为正，而且矩阵必须对称；丢掉任何一条，结论立刻失效。\r\n\r\n第二层是分解层，由 $S=LDL^T=A^TA$ 承担。它把「正」这个形容词翻译成可执行的算法：能量写成平方和，正定性等价于每个主元的平方根都是实数。这一层看到的是第一层看不到的东西，即正性的结构性来源，以及它在数值上的价格：开平方与除法会在主元很小时放大相对误差，于是「判据通过」和「算得准」分裂成两件事。第一层只回答是或否，第二层开始回答好不好。\r\n\r\n第三层是边界层，由半正定与最小值问题承担。把严格不等号放松成非严格之后，第一层的判据必须改写：前导主子式非负不再是充分条件，反例是 $\\operatorname{diag}(0,-1)$，必须换成全部主子式非负，或者换成「主元非负且零主元的个数恰等于零空间的维数」。这一层同时把符号判定接到优化上：Hessian 正定对应严格局部极小，主元全正是 Newton 法每次迭代的前置检查。它看到的是前两层都看不到的边界行为——秩亏、零空间、平底碗，以及大量不可比较的矩阵对。\r\n\r\n三层的咬合方式是同一条链的三次改写。$D_k=d_1d_2\\cdots d_k$ 把行列式层接到主元层；$d_k$ 的平方根把主元层接到 Cholesky 因子层，于是判据变成算法；主元的符号加上秩的条件再把因子层接到半正定层，于是算法被推到边界。任何一层单独拿出来都能给出一个答案，但只有三层对齐时，答案才同时具备可手算、可执行、可外推到退化情形这三个属性。\r\n\r\n合起来训练的纪律是：遇到一个关于二次型全局性质的断言，先问它在哪一套坐标里被表达——行列式、主元、特征值、能量还是因子——再问这套坐标丢掉了什么信息、前提是什么、在退化时如何补条件。本题里主元与特征值的数值可以差出一倍以上而符号个数必然一致，正是这条纪律的最小样本；半正定的情形则提醒，任何判据的边界都比它的内部更需要写清前提。\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 13045,
+            "outputTokens": 20302,
+            "cacheReadTokens": 3072,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 13045,
+              "outputTokens": 20302,
+              "cacheReadTokens": 3072,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 17220,
+          "contextWindow": 1000000,
+          "pressureTokens": 16117,
+          "sampledSurfaceTokens": 6964
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5404,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 10256,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 16076
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

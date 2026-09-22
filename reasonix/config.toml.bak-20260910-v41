@@ -1,0 +1,360 @@
+config_version = 9
+credentials_store = "auto"
+default_model = "commandcode-goat/deepseek/deepseek-v4.1-flash"
+language = "zh"
+
+[agent]
+  compact_ratio = 0.7
+  max_parallel_writers = 32
+  max_subagent_concurrency = 32
+  temperature = 0.0
+  vision_model = "commandcode-goat/deepseek/deepseek-v4.1-flash"
+
+[billing]
+  display_currency = "CNY"
+
+[bot]
+  debounce_ms = 1500
+  enabled = false
+  ignore_self_messages = true
+  max_steps = 25
+  queue_cap = 20
+  queue_drop = "summarize"
+  queue_mode = "steer"
+  tool_approval_mode = "ask"
+  [bot.allowlist]
+    allow_all = true
+    dingtalk_admins = []
+    dingtalk_approvers = []
+    dingtalk_groups = []
+    dingtalk_users = []
+    enabled = true
+    feishu_admins = []
+    feishu_approvers = []
+    feishu_groups = []
+    feishu_users = []
+    qq_admins = []
+    qq_approvers = []
+    qq_groups = []
+    qq_users = []
+    weixin_admins = []
+    weixin_approvers = []
+    weixin_groups = []
+    weixin_users = ["o9cq802gbUa4ccZXIxmu2hVNkvYc@im.wechat"]
+  [bot.control]
+    addr = "127.0.0.1:37913"
+    enabled = false
+    token_env = "REASONIX_BOT_CONTROL_TOKEN"
+  [bot.dingtalk]
+    bot_name = ""
+    client_id = ""
+    client_id_env = ""
+    client_secret = ""
+    enabled = false
+    require_mention = true
+    secret_env = ""
+  [bot.feishu]
+    app_id = ""
+    app_secret_env = "FEISHU_BOT_APP_SECRET"
+    domain = "feishu"
+    enabled = false
+    mode = "webhook"
+    require_mention = true
+    verification_token = ""
+    webhook_port = 8080
+  [bot.pairing]
+    enabled = true
+    max_pending_per_platform = 3
+    request_ttl_minutes = 60
+  [bot.qq]
+    app_id = ""
+    app_secret_env = "QQ_BOT_APP_SECRET"
+    enabled = false
+    sandbox = false
+  [bot.self_user_ids]
+    dingtalk = []
+    feishu = []
+    qq = []
+    weixin = []
+  [bot.weixin]
+    account_id = "default"
+    api_base = "https://ilinkai.weixin.qq.com"
+    enabled = false
+    token_env = "WEIXIN_BOT_TOKEN"
+
+[desktop]
+  check_updates = true
+  close_behavior = "background"
+  currency = "CNY"
+  default_tool_approval_mode = "yolo"
+  display_mode = "standard"
+  expand_thinking = true
+  external_opener = "file-explorer"
+  language = "zh"
+  layout_style = "workbench"
+  metrics = true
+  provider_access = ["commandcode-goat"]
+  reasoning_display_mode = "expanded"
+  status_bar_items = ["model", "workspace", "git_branch", "cache", "cache_avg", "session_tokens", "turn_tokens", "turn_cost", "session_turns", "context", "compact", "cost", "balance", "turn_output_tokens", "turn_tps", "turn_cache_tokens"]
+  status_bar_style = "text"
+  status_bar_style_initialized = true
+  telemetry = true
+  terminal_theme = "auto"
+  theme = "auto"
+  theme_style = "slate"
+
+[environment]
+  enabled = true
+  offline = false
+
+[lsp]
+  enabled = true
+
+[network]
+  proxy_mode = "auto"
+  [network.proxy]
+    type = "socks5"
+
+[notifications]
+  approval_request = true
+  ask_request = true
+  enabled = false
+  turn_done = true
+
+[permissions]
+  mode = "allow"
+
+[[plugins]]
+  name = "exa"
+  type = "http"
+  url = "https://mcp.exa.ai/mcp"
+
+[[plugins]]
+  name = "xmp4"
+  type = "http"
+  url = "https://mcp.example4.ai/mcp"
+
+[[plugins]]
+  name = "search-mcp"
+  type = "http"
+  url = "https://search-mcp.parallel.ai/mcp"
+
+[[plugins]]
+  name = "search"
+  type = "http"
+  url = "https://nothumansearch.ai/mcp"
+
+[[plugins]]
+  args = ["adeu"]
+  command = "uvx"
+  name = "adeu"
+
+[[plugins]]
+  name = "Hint-Services-obsidian-github-mcp"
+  type = "http"
+  url = "https://server.smithery.ai/@Hint-Services/obsidian-github-mcp/mcp"
+
+[[plugins]]
+  name = "stompy"
+  type = "http"
+  url = "https://mcp.stompy.ai"
+
+[[plugins]]
+  name = "smithery-ai-github"
+  type = "http"
+  url = "https://server.smithery.ai/@smithery-ai/github/mcp"
+
+[[plugins]]
+  name = "renCosta2025-context7fork"
+  type = "http"
+  url = "https://server.smithery.ai/@renCosta2025/context7fork/mcp"
+
+[[plugins]]
+  name = "postgres"
+  type = "http"
+  url = "https://waystation.ai/postgres/mcp"
+
+[[plugins]]
+  name = "smithery-notion"
+  type = "http"
+  url = "https://server.smithery.ai/@smithery/notion/mcp"
+
+[[plugins]]
+  name = "skills-search"
+  type = "http"
+  url = "https://skills-sh.run.mcp.com.ai/mcp"
+
+[[plugins]]
+  args = ["-y", "@modelcontextprotocol/server-filesystem", "C:\\Users\\27063", "C:\\Users\\27063\\Desktop\\工具箱\\.reasonix\\文件处理文件夹"]
+  command = "npx"
+  name = "filesystem"
+
+[[plugins]]
+  args = ["-y", "@modelcontextprotocol/server-memory"]
+  command = "npx"
+  name = "memory"
+
+[[plugins]]
+  args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+  command = "npx"
+  name = "sequential-thinking"
+
+[[providers]]
+  api_key_env = "DEEPSEEK_API_KEY"
+  balance_url = "https://api.deepseek.com/user/balance"
+  base_url = "https://api.deepseek.com"
+  billing_currency = "CNY"
+  context_window = 1000000
+  default = "deepseek-v4-flash"
+  default_effort = "high"
+  kind = "openai"
+  models = ["deepseek-v4-flash", "deepseek-v4-flash-vision-exp"]
+  name = "deepseek-flash"
+  supported_efforts = ["disabled", "low", "high", "max"]
+  thinking = "enabled"
+  vision_models = ["deepseek-v4-flash-vision-exp"]
+  web_search = false
+  [providers.price]
+    cache_hit = 0.1
+    currency = "¥"
+    input = 3
+    output = 9
+  [providers.prices]
+    [providers.prices.deepseek-v4-flash-vision-exp]
+      cache_hit = 0.1
+      currency = "¥"
+      input = 3
+      output = 9
+
+[[providers]]
+  api_key_env = "DEEPSEEK_API_KEY"
+  balance_url = "https://api.deepseek.com/user/balance"
+  base_url = "https://api.deepseek.com"
+  billing_currency = "CNY"
+  context_window = 1000000
+  default_effort = "high"
+  kind = "openai"
+  model = "deepseek-v4-pro"
+  name = "deepseek-pro"
+  supported_efforts = ["disabled", "high", "max"]
+  thinking = "enabled"
+  web_search = false
+  [providers.price]
+    cache_hit = 0.3
+    currency = "¥"
+    input = 9
+    output = 27
+
+[[providers]]
+  api_key_env = "DEEPSEEK_API_KEY"
+  balance_url = "https://api.deepseek.com/user/balance"
+  base_url = "https://api.deepseek.com"
+  billing_currency = "CNY"
+  context_window = 1000000
+  default = "deepseek-v4-flash"
+  kind = "openai"
+  models = ["deepseek-v4-flash", "deepseek-v4-pro", "deepseek-v4-flash-vision-exp"]
+  name = "deepseek"
+  thinking = "enabled"
+  vision_models = ["deepseek-v4-flash-vision-exp"]
+  web_search = false
+  [providers.model_overrides]
+    [providers.model_overrides.deepseek-v4-flash]
+      default_effort = "high"
+      supported_efforts = ["disabled", "low", "high", "max"]
+    [providers.model_overrides.deepseek-v4-flash-vision-exp]
+      default_effort = "high"
+      supported_efforts = ["disabled", "low", "high", "max"]
+    [providers.model_overrides.deepseek-v4-pro]
+      default_effort = "high"
+      supported_efforts = ["disabled", "high", "max"]
+  [providers.price]
+    cache_hit = 0.02
+    currency = "¥"
+    input = 1
+    output = 2
+  [providers.prices]
+    [providers.prices.deepseek-v4-flash]
+      cache_hit = 0.1
+      currency = "¥"
+      input = 3
+      output = 9
+    [providers.prices.deepseek-v4-flash-vision-exp]
+      cache_hit = 0.1
+      currency = "¥"
+      input = 3
+      output = 9
+    [providers.prices.deepseek-v4-pro]
+      cache_hit = 0.3
+      currency = "¥"
+      input = 9
+      output = 27
+
+[[providers]]
+  api_key_env = "COMMANDCODE_API_KEY"
+  base_url = "https://api.commandcode.ai/provider/v1"
+  billing_currency = "CNY"
+  chat_url = "https://api.commandcode.ai/provider/v1/chat/completions"
+  context_window = 1000000
+  default = "deepseek/deepseek-v4-flash"
+  kind = "openai"
+  models = ["deepseek/deepseek-v4-flash", "deepseek/deepseek-v4-flash-fast", "deepseek/deepseek-v4-pro", "moonshotai/Kimi-K2.7-Code", "MiniMaxAI/MiniMax-M2.5", "MiniMaxAI/MiniMax-M2.7", "MiniMaxAI/MiniMax-M3", "Qwen/Qwen3.6-Max-Preview", "Qwen/Qwen3.6-Plus", "Qwen/Qwen3.7-Flash", "Qwen/Qwen3.7-Max", "Qwen/Qwen3.7-Plus", "Qwen/Qwen3.8-27B", "Qwen/Qwen3.8-Flash", "Qwen/Qwen3.8-Max", "Qwen/Qwen3.8-Max-0902", "claude-fable-5", "claude-fable-5-1", "claude-haiku-4-5-20251001", "claude-opus-4-7", "claude-opus-4-8", "claude-opus-5", "claude-sonnet-4-6", "claude-sonnet-5", "deepseek/deepseek-v4-flash-vision-exp", "google/gemini-3.1-flash-lite", "google/gemini-3.5-flash", "google/gemini-3.5-flash-lite", "google/gemini-3.6-flash", "google/gemini-3.7-flash", "google/gemini-3.8-flash", "gpt-5.3-codex", "gpt-5.4", "gpt-5.4-mini", "gpt-5.5", "gpt-5.6-luna", "gpt-5.6-sol", "gpt-5.6-terra", "meituan/LongCat-2.0:free", "meta/muse-spark-1.1", "meta/muse-spark-1.2", "meta/muse-spark-1.2-contributor", "meta/muse-spark-1.3", "meta/muse-spark-1.3-contributor", "moonshotai/Kimi-K2.5", "moonshotai/Kimi-K2.6", "moonshotai/Kimi-K2.7-Code-Highspeed", "moonshotai/Kimi-K3", "nvidia/nemotron-3-ultra-550b-a55b", "poolside/laguna-s-2.1-free", "sakana/fugu-ultra", "stepfun/Step-3.5-Flash", "stepfun/Step-3.7-Flash", "tencent/hy3-paid", "tencent/hy4-preview", "thinkingmachines/inkling", "thinkingmachines/inkling-small", "xai/grok-4.5", "xai/grok-4.6", "xiaomi/mimo-v2.5", "xiaomi/mimo-v2.5-pro", "z-ai/glm-5.3-flash", "zai-org/GLM-5", "zai-org/GLM-5.1", "zai-org/GLM-5.2", "zai-org/GLM-5.2-Fast", "zai-org/GLM-5.3", "deepseek/deepseek-v4.1-flash", "inclusionai/ling-3.0-flash-sante:free"]
+  name = "commandcode-goat"
+  request_url = "https://api.commandcode.ai/provider/v1/chat/completions"
+  thinking = "enabled"
+  vision_models = ["deepseek/deepseek-v4-flash-vision-exp"]
+  [providers.model_overrides]
+    [providers.model_overrides."deepseek/deepseek-v4-flash"]
+      default_effort = "high"
+      supported_efforts = ["disabled", "low", "high", "max"]
+      vision = false
+    [providers.model_overrides."deepseek/deepseek-v4-pro"]
+      default_effort = "high"
+      supported_efforts = ["disabled", "high", "max"]
+    [providers.model_overrides."deepseek/deepseek-v4.1-flash"]
+      vision = true
+  [providers.price]
+    cache_hit = 0
+    currency = "¥"
+    input = 3
+    output = 9
+
+[remote]
+
+  [[remote.hosts]]
+    host = "github.com"
+    name = "github.com"
+    use_ssh_config = true
+
+  [[remote.hosts]]
+    host = "tianque"
+    name = "tianque"
+    use_ssh_config = true
+
+  [[remote.hosts]]
+    host = "tianque-lan"
+    name = "tianque-lan"
+    use_ssh_config = true
+
+[sandbox]
+  bash = "off"
+  network = true
+
+[secrets]
+
+[skills]
+
+[statusline]
+
+[tools]
+  bash_timeout_seconds = 120
+  enabled = []
+  mcp_call_timeout_seconds = 300
+  mcp_startup_timeout_seconds = 30
+  [tools.background_jobs]
+    stalled_warning_seconds = 900
+  [tools.shell]
+
+[ui]
+  show_turn_usage = true
+  theme = "auto"

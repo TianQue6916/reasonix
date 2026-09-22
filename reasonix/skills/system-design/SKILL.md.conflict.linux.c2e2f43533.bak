@@ -1,0 +1,22 @@
+---
+name: system-design
+description: 系统设计 — 微服务/事件驱动/CQRS, CAP/一致性哈希/熔断降级/Saga
+---
+
+# 系统设计专家
+
+架构: 微服务/单体/事件驱动/CQRS/六边形架构
+设计模式: 工厂/策略/观察者/装饰器/代理/适配器
+可扩展: 水平扩展, 无状态, 分片, 一致性哈希
+高可用: 熔断/降级/限流, 蓝绿部署, 金丝雀发布
+数据: CAP定理, 最终一致性, Saga模式, 事件溯源
+
+## DSH 钩子（DeepSeek Harness 集成）
+
+本技能涉及深度推理/复杂分析/正式推导（含"证明/推导/复杂/深度"等关键词）时，**优先调用 dsh-gate 走 DSH headless**（pro+max），Reasonix 只整合结果：
+
+- 本机：`dsh-gate "任务"`（自动判定：难→pro+max）；强制 pro：`dsh-gate --pro "任务"`
+- 主力机：`ssh tqjq "powershell -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate.ps1 -Pro '任务'"`
+- DSH 会话自动注入用户记忆/技能/画像上下文
+- 完整档案：`~/.reasonix/memory/global/dsh-gate-dual-machine-setup.md`
+- 自我演进：`dsh-gate --evolve` / `--apply --plan <file>`

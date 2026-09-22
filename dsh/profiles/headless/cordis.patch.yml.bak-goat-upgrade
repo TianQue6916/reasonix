@@ -1,0 +1,17 @@
+# dsh headless 锚定极简模式（2026-08-16 同步本机 Linux 配置）
+# 首轮锚定：Minimal 工具对（Windows: pwsh + str_replace_editor）+ Minimal persona
+# 首次持久晋升信号（tool/call 或 assistant/message）后开放全量工具目录
+# 来源：xiaobright/dsh-anchored-standard（tool-bootstrap.mjs）
+
+- id: system-prompt
+  config:
+    persona: You are a helpful software engineer assistant.
+
+- insert:
+    - id: tool-bootstrap
+      name: C:/Users/27063/.dsh/.agent-presets/anchored-standard/tool-bootstrap.mjs
+      config:
+        bootstrapTools: [pwsh, str_replace_editor]
+        promoteOn: either
+        suppressedContextSources: [skill-catalog, agent-instructions]
+        compactionTools: [read, write, edit, glob, grep, todo_write, ask_user_question]

@@ -1,0 +1,36 @@
+$ErrorActionPreference = 'SilentlyContinue'
+$log = 'C:\Users\27063\AppData\Roaming\reasonix\bot_leader.log'
+$stamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+$reasonixJs = 'C:\Users\27063\AppData\Roaming\npm\node_modules\reasonix\bin\reasonix.js'
+$nodeExe = 'C:\Program Files\nodejs\node.exe'
+$workdir = 'C:\Users\27063\AppData\Roaming\reasonix\global-workspace'
+# 独立 bot home：与桌面版(读 AppData\Roaming\reasonix)隔离，避免双 gateway
+$botHome = 'C:\Users\27063\AppData\Roaming\reasonix-bot'
+
+# 1) Linux 主节点是否可达（局域网 + Tailscale 任一即可）
+$linuxAlive = $false
+foreach ($ip in @('192.168.1.13','100.79.96.82')) {
+  if (Test-Connection -ComputerName $ip -Count 1 -Quiet -ErrorAction SilentlyContinue) { $linuxAlive = $true; break }
+}
+
+# 2) 本地是否已有 reasonix bot gateway 进程
+$me = Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*reasonix.js*' -and $_.CommandLine -like '*bot*start*' }
+
+if ($linuxAlive) {
+  # Linux 醒着 -> 让路：停掉本地 gateway，避免双响应
+  if ($me) {
+    $me | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+    Add-Content $log "$stamp linux-alive -> stopped local gateway"
+  } else {
+    Add-Content $log "$stamp linux-alive -> no local gateway (standby)"
+  }
+} else {
+  # Linux 失联 -> 接管：确保本地 gateway 运行
+  if (-not $me) {
+    $env:REASONIX_HOME = $botHome
+    Start-Process -WindowStyle Hidden -FilePath $nodeExe -ArgumentList "`"$reasonixJs`"",'bot','start','--channels','weixin','--dir',"`"$workdir`"" -RedirectStandardOutput 'C:\Users\27063\AppData\Roaming\reasonix\bot-win.log' -RedirectStandardError 'C:\Users\27063\AppData\Roaming\reasonix\bot-win-err.log'
+    Add-Content $log "$stamp linux-down -> started local gateway"
+  } else {
+    Add-Content $log "$stamp linux-down -> local gateway already running"
+  }
+}

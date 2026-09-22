@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948920748,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 24,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 24,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 `Manual` 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>`。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、$\\det$ 与 $\\operatorname{trace}$ 校验数字不符等。请**独立重算每一处计算**，包括题面给出的矩阵是否与官方答案自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错，有没有把对的说成错的、把错的说成对的。\r\n③ 🔴 译者注**规格**：本技能规定**每条注 800–1200 字**（公式/配图/引文不计）。本次草稿的注普遍超长（部分 2000–8000 字），请处理为合规形态：优先**按主题拆分为多条注**（子标题写作 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`），每条 800–1200 字；太短或碎片化的可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——压缩对象只能是重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板），跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」，不得裸甩名词。\r\n④ 🟡 术语一致性：同一术语本段内单一译法（outer product 一律外积、rank one matrix 一律秩一矩阵、permutation matrix 一律置换矩阵、projection matrix 一律投影矩阵）。\r\n⑤ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑥ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；`Original（英文原题）` 是否与题面逐字对应。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课的一道题（含题干、解答、译者注、设计意图）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 数学一律 LaTeX；不确定处写 `⚠ 待核：<存疑点>`。\r\n- 禁止只输出意见清单而不给修订全文。\r\n\r\n======================= 待审部分开始（该课的一道题（含题干、解答、译者注、设计意图）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 4（问题 4）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.5, p.31–35 | Manual, Problem Set I.5 题 4</span>\r\n\r\n每个 orthogonal matrix（正交矩阵）都有的关键性质是：对每个向量 $x$ 成立 $\\|Qx\\|^2=\\|x\\|^2$。请进一步证明：对每一对向量 $x$ 与 $y$ 成立 $(Qx)^T(Qy)=x^Ty$。于是 lengths（长度）与 angles（角度）都不被 $Q$ 改变。用 $Q$ 做的 computations（计算）永远不会 overflow（上溢）！\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Key property of every orthogonal matrix: $\\|Qx\\|^2 = \\|x\\|^2$ for every vector $x$. More than this, show that $(Qx)^T(Qy) = x^Ty$ for every vector $x$ and $y$. So lengths and angles are not changed by $Q$. Computations with $Q$ never overflow !</span>\r\n\r\n---\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 设 $Q$ 是实的 $n\\times n$ orthogonal matrix（正交矩阵），即满足 $Q^TQ=I$。则对任意 $x,y\\in\\mathbb R^n$ 有恒等式\r\n>\r\n> ```math\r\n> (Qx)^T(Qy)=x^TQ^TQy=x^TIy=x^Ty .\r\n> ```\r\n>\r\n> 这条恒等式蕴含三件事：长度不变（取 $y=x$ 得 $\\|Qx\\|^2=\\|x\\|^2$）、内积不变（即上式本身）、夹角不变（对非零 $x,y$ 有 $\\cos\\theta$ 不变）。题面里more than this指的就是：内积不变严格强于长度不变，后者只是前者的特例。至于never overflow，严格表述是：$Q$ 的 spectral condition number（谱条件数）$\\kappa_2(Q)=1$，即 $\\|Q\\|_2=\\|Q^{-1}\\|_2=1$，$Q$ 永不放缩也不放大任何向量的欧氏长度，也不放大相对误差。第四点要在第五节里与精确算术下的恒等式区分开，Manual 的表述把两者合并了，这一点后面会点明。\r\n>\r\n> **二、方法一：代数展开法（代数视角，Manual 的做法）**\r\n>\r\n> 只用一个工具：矩阵乘积的转置法则 $(AB)^T=B^TA^T$，加上结合律。\r\n>\r\n> ```math\r\n> (Qx)^T(Qy)=x^TQ^TQy=x^T(Q^TQ)y=x^TIy=x^Ty .\r\n> ```\r\n>\r\n> 它看到别的视角看不到的：这是零代价的证明，四行内闭合，且逐字暴露了假设的精确位置——唯一用到 $Q$ 的性质的地方是 $Q^TQ=I$，此外只用了转置法则与结合律。因此它能顺带回答一个反问题：若某个 $n\\times n$ 实矩阵 $A$ 对一切 $x,y$ 满足 $(Ax)^T(Ay)=x^Ty$，则 $x^TA^TAy=x^Ty$ 对一切 $x,y$ 成立，于是 $A^TA=I$，即 $A$ 必为正交矩阵。这说明保持内积不是正交矩阵的一个附带好处，而是它的等价刻画（equivalence characterization，等价刻画）。\r\n>\r\n> 适用条件：$Q$ 为实矩阵、方阵，且 $Q^TQ=I$。若 $Q$ 是复矩阵，需把 $Q^T$ 换成 conjugate transpose（共轭转置）$Q^*$，此时 $Q^*Q=I$，结论变为 $(Qx)^*(Qy)=x^*y$，对应 unitary matrix（酉矩阵）。若 $Q$ 只是列正交的矩形矩阵，则 $Q^TQ=I_p$ 仍成立，对 $x,y\\in\\mathbb R^p$ 的结论照样成立，但 $QQ^T\\ne I_m$，不能反推方阵结论。\r\n>\r\n> 优劣：优在最短、最不易出错、可逆推；劣在它只告诉你成立，不告诉你为什么必须成立，也不解释长度与内积谁更基本。\r\n>\r\n> **三、方法二：列向量展开法（结构视角）**\r\n>\r\n> 把 $Q$ 按列写成 $Q=\\begin{bmatrix}q_1&\\cdots&q_n\\end{bmatrix}$。$Q^TQ=I$ 逐元素读出来就是 columns（列）标准正交：\r\n>\r\n> ```math\r\n> q_i^Tq_j=\\delta_{ij}=\\begin{cases}1,&i=j\\\\0,&i\\ne j\\end{cases}\r\n> ```\r\n>\r\n> 而 $Qx=x_1q_1+\\cdots+x_nq_n$，$Qy=y_1q_1+\\cdots+y_nq_n$ 是同一组基下的线性组合。于是\r\n>\r\n> ```math\r\n> (Qx)^T(Qy)=\\Big(\\sum_i x_iq_i\\Big)^T\\Big(\\sum_j y_jq_j\\Big)=\\sum_i\\sum_j x_iy_j\\,q_i^Tq_j=\\sum_i x_iy_i=x^Ty .\r\n> ```\r\n>\r\n> 它看到别的视角看不到的：$Qx$ 只是同一支向量换了坐标，$q_1,\\dots,q_n$ 是一组 orthonormal basis（标准正交基），所以 $(Qx)^T(Qy)$ 是在新坐标下算内积，而标准正交基下内积公式与 canonical basis（标准基）下完全同形。中间那只双层求和，就是 CSAPP 里矩阵乘法三重循环的内层，也是把抽象恒等式落到可编程算法的那一层。等价地说，Gram matrix（格拉姆矩阵）$Q^TQ$ 恰是单位矩阵，即夹角余弦矩阵= $I$。\r\n>\r\n> 适用条件：$Q$ 的列必须是单位长度且两两正交；$m\\times n$ 而 $m>n$ 时上面的求和公式仍然成立，但 $Qx$ 与 $Qy$ 落在 $\\mathbb R^m$ 的一个 $n$ 维子空间里，换坐标的说法要降级为等距嵌入再换坐标。\r\n>\r\n> 优劣：优在把内积不变翻译成一句可检验的话——列标准正交——并且解释了为什么 $(Qx)^T(Qy)$ 不依赖 $m$；劣在计算量更大，且当 $n$ 很大时双层求和的写法容易在纸面上掩盖这只用了一次 $Q^TQ=I$这个事实。\r\n>\r\n> **四、方法三：极化恒等式法（度量视角，从长度推出内积）**\r\n>\r\n> 题面把长度不变排在前面，内积不变排在后面，暗示后者更强。方法三证明：在实向量空间里，长度信息已经唯一决定内积信息，所以更强其实是等价。核心是 polarization identity（极化恒等式）：对实内积，\r\n>\r\n> ```math\r\n> \\|u+v\\|^2=\\|u\\|^2+2u^Tv+\\|v\\|^2,\\qquad \\|u-v\\|^2=\\|u\\|^2-2u^Tv+\\|v\\|^2 ,\r\n> ```\r\n>\r\n> 两式相减，两个平方项与 $\\|u\\|^2,\\|v\\|^2$ 全部抵消，只剩下 cross term（交叉项）：\r\n>\r\n> ```math\r\n> u^Tv=\\tfrac14\\Big(\\|u+v\\|^2-\\|u-v\\|^2\\Big).\r\n> ```\r\n>\r\n> 注意交叉项相减不抵消，正是这个不抵消让内积可以被长度反解出来。现在假设只已知 $\\|Qz\\|=\\|z\\|$ 对一切 $z$ 成立。取 $Q$ 是线性的（这一条由题设矩阵给出），令 $u=Qx,\\ v=Qy$，则\r\n>\r\n> ```math\r\n> (Qx)^T(Qy)=\\tfrac14\\Big(\\|Q(x+y)\\|^2-\\|Q(x-y)\\|^2\\Big)\r\n> =\\tfrac14\\Big(\\|x+y\\|^2-\\|x-y\\|^2\\Big)=x^Ty .\r\n> ```\r\n>\r\n> 它看到别的视角看不到的：证明中只用了长度不变和线性，完全没有用到 $Q^TQ=I$ 的矩阵形式，因此它同时解释了题面more than this为何成立，也解释了为什么二维几何里说旋转保持夹角时不必额外假设。它还把结论的适用范围说明白：一旦改用 $L^1$ 或 $L^\\infty$ 范数，极化恒等式失效，长度保持就不再蕴含内积保持，这条路径立刻断裂。\r\n>\r\n> 适用条件：实内积空间；$Q$ 必须线性。更一般的写法是 $u^Tv=\\tfrac14(\\|u+v\\|^2-\\|u-v\\|^2)$ 及其带系数版本 $\\alpha\\beta\\,u^Tv=\\tfrac14\\big(\\|\\alpha u+\\beta v\\|^2-\\|\\alpha u-\\beta v\\|^2\\big)$，后者在需要避开 $u+v$ 溢出或下溢时更实用。\r\n>\r\n> 优劣：优在揭示概念层级（长度是内积的影子、内积由长度唯一反解），且给出可迁移的证明策略；劣在路径更长，且若不点名线性与实内积，容易被误读成任何保范映射都保内积这种过强断言。\r\n>\r\n> **五、常见错误判定**\r\n>\r\n> - ❌ 写成 $(Qx)^T(Qy)=Q^Tx^TxQy$，理由：转置法则方向反了。$(Qx)^T=x^TQ^T$，$x$ 是列向量，$x^T$ 才可转置；$Q^Tx^T$ 的维度根本对不上，$Q^T$ 是 $n\\times n$ 而 $x^T$ 是 $1\\times n$，无法相乘。错在把对括号内整体取转置误当成对每个因子取转置但顺序不变。\r\n> - ❌ 写成 $(Qx)^T(Qy)=x^TQ^TQy=x^TQ^{-1}Qy$ 后就收尾，理由：这一步本身不错（$Q^T=Q^{-1}$ 对方阵正交矩阵成立），但把中间量多绕一道，且引入了一个本题不需要的假设——本题只需要 $Q^TQ=I$，不需要 $Q$ 可逆或 $Q^T=Q^{-1}$。多用的假设会让读者误以为矩形列正交矩阵也失效，其实不失效。\r\n> - ❌ 直接从 $\\|Qx\\|^2=\\|x\\|^2$ 推出 $(Qx)^T(Qy)=x^Ty$ 却不加说明，理由：这一步是本题的关键跳跃，必须给出极化恒等式或平行四边形法则作为依据。在 $\\mathbb R^2$ 的具体几何里它靠直觉成立，但在一般维数、一般范数下不成立；写作时不标注依据，等于把结论当公理用。\r\n> - ❌ 把 $\\|Qx\\|=\\|x\\|$ 与 $\\kappa_2(Q)=1$ 当成同一件事的两个说法，理由：前者是精确算术下的恒等式（对每个具体向量成立），后者是对算子范数与逆算子范数的陈述，$\\kappa_2(Q)=1$ 需要先用 $Q^TQ=I$ 论证 $\\sigma_{\\max}(Q)=\\sigma_{\\min}(Q)=1$。两者结论一致但证明义务不同，考试里直接互推会扣分。\r\n> - ❌ 反过来说只要 $Q$ 的列是单位向量，就有 $Q^TQ=I$，理由：漏了列之间的正交性。取 $Q=\\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}$，两列都是单位向量，但 $Q^TQ=\\begin{bmatrix}1&1\\\\1&1\\end{bmatrix}\\ne I$，此时 $(Qx)^T(Qy)\\ne x^Ty$（取 $x=y=(1,0)^T$ 得 $\\|Qx\\|^2=1=\\|x\\|^2$ 侥幸成立，但取 $x=(1,-1)^T$ 得 $\\|Qx\\|^2=0\\ne2$，立刻失败）。错在把单位长度当成了标准正交。\r\n> - ❌ 用 $\\theta$ 表述时忘记排除零向量，理由：$x=0$ 时 $\\cos\\theta$ 无定义，$\\theta$ 本身无定义。正确的表述是对一切非零 $x,y$ 成立，Manual 与题面都省略了这个前提，属于表述不严谨（见第九节）。\r\n> - ❌ 把实数情形的 $Q^TQ=I$ 直接照搬到复矩阵上，理由：复情形需要 $Q^*Q=I$，且内积变成 Hermitian（埃尔米特）形式 $\\sum_i \\bar x_iy_i$，$(Qx)^*(Qy)=x^*y$ 中的共轭位置与实情形不同；照搬会得到 $\\|Qx\\|^2=(Qx)^T(Qx)$ 等于 $\\sum_i(Qx)_i^2$ 这种既非实数也非范数的量。\r\n>\r\n> **六、自检（代入验算 / 维数记账 / trace-det 校验）**\r\n>\r\n> 代入验算：取 $Q=\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}$（逆时针 $90^\\circ$ rotation（旋转）），$x=\\begin{bmatrix}3\\\\4\\end{bmatrix}$，$y=\\begin{bmatrix}1\\\\0\\end{bmatrix}$。则 $Qx=\\begin{bmatrix}-4\\\\3\\end{bmatrix}$，$Qy=\\begin{bmatrix}0\\\\1\\end{bmatrix}$。$\\|x\\|^2=9+16=25$，$\\|Qx\\|^2=16+9=25$；$x^Ty=3$，$(Qx)^T(Qy)=0+3=3$；两对夹角 $\\cos\\theta=3/5$ 与 $\\cos\\theta'=3/5$ 一致。再取 $x=\\begin{bmatrix}3\\\\4\\end{bmatrix}$，$y=\\begin{bmatrix}-4\\\\3\\end{bmatrix}$（与 $x$ 正交），则 $Qx=\\begin{bmatrix}-4\\\\3\\end{bmatrix}$，$Qy=\\begin{bmatrix}-3\\\\-4\\end{bmatrix}$，$(Qx)^T(Qy)=12-12=0$，正交性被保住。正交对这一类例子最能暴露错误：任何会破坏内积的写法在 $x^Ty=0$ 时都会暴露出 $\\ne0$ 的残差。\r\n>\r\n> 维数记账：$x,y\\in\\mathbb R^n$ 时 $Qx,Qy\\in\\mathbb R^n$，$(Qx)^T(Qy)$ 是 $1\\times n$ 乘 $n\\times 1$，得 $1\\times1$ 标量；右端 $x^Ty$ 同样是 $1\\times1$ 标量。中间量 $Q^TQ$ 是 $n\\times n$，$x^T(Q^TQ)y$ 的乘法次序必须是 $(x^T)\\,(Q^TQ)\\,(y)$，先算 $Q^TQ$ 或先算 $Qy$ 都可以（结合律），但绝不能把 $x^T$ 与 $Q^TQ$ 的次序颠倒成 $Q^TQx^T$。若 $Q$ 是 $m\\times n$（$m\\ge n$，列标准正交），则 $Q^TQ=I_n$ 而非 $I_m$，$x,y\\in\\mathbb R^n$，两端仍是标量，$QQ^T=I$这一步在任何维度记账里都必须标出仅当 $m=n$。\r\n>\r\n> trace-det 校验：正交矩阵有两个一秒钟就能查的必要条件。其一，$1=\\det I=\\det(Q^TQ)=(\\det Q)^2$，故 $\\det Q=\\pm1$；上面那个 $90^\\circ$ 旋转的 $\\det Q=0\\cdot0-(-1)\\cdot1=1$，符合。其二，$n=\\mathrm{trace}(I)=\\mathrm{trace}(Q^TQ)=\\sum_{i,j}q_{ij}^2=\\|Q\\|_F^2$，即 Frobenius norm（弗罗贝尼乌斯范数）平方等于 $n$，逐列读就是每列长度为 $1$、总长平方为 $n$，与列标准正交一致；对旋转矩阵 $\\|\\cdot\\|_F^2=0+1+1+0=2=n$，通过。这两个校验只能证伪不能证实，但反例（非正交矩阵）几乎都会在 $\\det$ 或 $\\|\\cdot\\|_F^2$ 上先露馅。\r\n>\r\n> 矩阵层面校验：$(PQ)^T(PQ)=Q^TP^TPQ=Q^TQ=I$，故正交矩阵之积仍正交，保持内积的性质对乘积成立；$Q^{-1}=Q^T$ 保持内积同样成立（把 $x\\mapsto Q^Tx$ 代回上式即得）。这解释了为什么反复施加 $Q$不会累积放大：每乘一次，长度精确不变，误差的放大因子（精确算术下）恒为 $1$。\r\n>\r\n> **七、Manual 标准答案的严谨性核查**\r\n>\r\n> Manual 原文的代数链 $x^TQ^TQy=x^Ty$ 完全正确，Angles are preserved与same $\\theta$的结论也正确，没有把 $m\\times p$ 写成 $m\\times n$ 这类维度错误。但有三处不够严格，需补足：\r\n>\r\n> 第一，more than this的层次没被点破。Manual 只写 $\\|Qx\\|^2=\\|x\\|^2$ 是 the key property，然后证明内积不变，未说明两者在实内积空间里其实等价（由极化恒等式）。补足版：长度不变 $\\Rightarrow$ 内积不变（极化恒等式，需线性）；内积不变 $\\Rightarrow$ 长度不变（取 $y=x$）；两者等价，但题面的叙述顺序容易让人误以为内积不变是额外的、独立的性质。\r\n>\r\n> 第二，angles are preserved隐含了非零前提。$\\cos\\theta=x^Ty/(\\|x\\|\\|y\\|)$ 只在 $x,y\\ne0$ 时有定义。same $\\theta$的严格版本是：对一切非零 $x,y$，$(Qx)^T(Qy)/(\\|Qx\\|\\|Qy\\|)=x^Ty/(\\|x\\|\\|y\\|)$，故 $\\theta$ 相同（取主值 $\\theta\\in[0,\\pi]$ 时唯一）。Manual 未写这个前提。\r\n>\r\n> 第三，题面末句 Computations with $Q$ never overflow ! 在 Manual 中未被处理，而它本身也是不严格的。$\\|Qx\\|=\\|x\\|$是精确算术下的等式，浮点算术下只成立到舍入误差量级；never overflow的严格版本是：若 $x$ 的每个分量的浮点表示不溢出，则 $Qx$ 的每个分量满足 $|(Qx)_i|\\le\\|Qx\\|_2=\\|x\\|_2\\le\\sqrt n\\,\\|x\\|_\\infty$，故中间结果不会超过输入最大分量乘以 $\\sqrt n$；而条件数 $\\kappa_2(Q)=1$ 意味着相对误差不被放大。反过来，never overflow在字面上并不成立：若输入本身已接近浮点上限，任何一次乘法都可能溢出，$Q$ 只能保证不把向量放大（放大系数恰为 $1$），而不能保证绝对不溢出。这是我对题面口语化表述的修正，不是 Manual 的错。\r\n>\r\n> **八、一句话**\r\n>\r\n> 这道题真正训练的是：把正交矩阵从$Q^TQ=I$ 这个代数条件重新认成实内积空间的等距同构，并掌握任何对内积的陈述都要能翻译成对长度、对列向量、对条件数三种语言的互译这一习惯。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——极化恒等式：为什么长度里已经藏着角度**\r\n>\r\n> 这条注只讲一个设计问题：为什么题面敢把$\\|Qx\\|^2=\\|x\\|^2$称为 key property，然后加一句more than this就跳到内积？答案是——在实内积空间里，长度函数已经唯一确定了内积，而完成这次反解的工具就是极化恒等式。这个反解之所以可能，靠的是内积的两条结构性质：对称性 $u^Tv=v^Tu$，以及双线性（对每个变量分别线性）。\r\n>\r\n> 机制展开。先把 $\\|u+v\\|^2$ 与 $\\|u-v\\|^2$ 都按双线性摊开：\r\n>\r\n> ```math\r\n> \\|u+v\\|^2=u^Tu+u^Tv+v^Tu+v^Tv=\\|u\\|^2+2u^Tv+\\|v\\|^2\r\n> ```\r\n>\r\n> ```math\r\n> \\|u-v\\|^2=u^Tu-u^Tv-v^Tu+v^Tv=\\|u\\|^2-2u^Tv+\\|v\\|^2\r\n> ```\r\n>\r\n> 两式相减时，$\\|u\\|^2$ 与 $\\|v\\|^2$ 抵消，关键在于两个交叉项 $u^Tv$ 与 $v^Tu$ 在第一个式子里相加、在第二个式子里相减，于是它们没有抵消，反而被放大成 $4u^Tv$：\r\n>\r\n> ```math\r\n> u^Tv=\\tfrac14\\Big(\\|u+v\\|^2-\\|u-v\\|^2\\Big).\r\n> ```\r\n>\r\n> 更一般地带系数版本是 $\\alpha\\beta\\,u^Tv=\\tfrac14\\big(\\|\\alpha u+\\beta v\\|^2-\\|\\alpha u-\\beta v\\|^2\\big)$，用它可以控制参与运算的两个向量量级，避免在 $\\|u+v\\|$ 上溢出。请注意信息计数的直觉为什么一开始看起来不成立：$n$ 维实对称双线性形式由对称矩阵 $S$ 给出，需要 $\\tfrac{n(n+1)}2$ 个独立参数，而长度函数只给出每个向量一个数，看起来是 $n$ 条信息，远少于 $\\tfrac{n(n+1)}2$。化解之处在于：我们并非从长度表里做插值，而是用已知的函数形式 $\\|z\\|^2=z^TSz$ 加上 $S$ 的对称性，把每一个 $s_{ij}\\ (i\\ne j)$ 从一对特定向量（$e_i+e_j$ 与 $e_i-e_j$）上取值反解出来。信息不在多少条数上，而在取哪些向量上——这正是下一段要展示的可复用模板。\r\n>\r\n> 一个具体例子验证。取 $\\mathbb R^2$ 的标准内积，$u=(3,4)^T$，$v=(1,0)^T$。$u+v=(4,4)^T$，$u-v=(2,4)^T$，于是 $\\tfrac14(32-20)=3$，与 $u^Tv=3$ 一致。再把 $Q=\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}$ 作用上去：$Qu=(-4,3)^T$，$Qv=(0,1)^T$，$(Qu)+(Qv)=(-4,4)^T$，$(Qu)-(Qv)=(-4,2)^T$，$\\tfrac14(32-20)=3$，两端都是 $3$。这个两步验算同时说明了两件事：极化恒等式本身是对的；正交矩阵在和与差上作用后仍保持长度结构，所以极化恒等式给出的内积也保持一致——这就是题面more than this的完整机理。\r\n>\r\n> 跨课程连接要精确。你在 6.042J 学过的等价关系与等价类划分，在这里有一个平行物：把 $\\mathbb R^n$ 按到原点的长度划分成等价类，这些类是所有以原点为中心的球面，长度保持映射 $x\\mapsto Qx$ 一定是这些球面的置换（permutation of spheres）。区别在于：6.042J 的等价类只关心是否同类这一层，没有任何度量结构；而极化恒等式说明内积自动与这个划分相容——同一球面上的两个点，其和与差的长度差被 $\\tfrac14$ 缩放后恰好给出内积。你在 CSAPP 学过的浮点表示给出第二个连接点：$\\|u+v\\|$ 与 $\\|u-v\\|$ 这两种和差在大数相减时会发生 cancellation（相消），所以工程实现里若要反解内积，宁可直接算 $u^Tv$ 而不走极化恒等式；极化恒等式的价值在理论侧（证明与等价刻画），不在计算侧。你在 6.006 学过的二分查找提供第三个视角：极化恒等式是一种用少量测试点确定一个双线性形式的策略，和用 $n$ 个基向量确定一个线性映射同类，只是这次测试点是 $e_i\\pm e_j$ 而不是 $e_i$。\r\n>\r\n> 命名模板：内积—长度双字典法。写任何涉及内积不变的证明时，先在内积语言写出目标式，再选字典切换到长度语言（极化恒等式）或列语言（$Q^TQ=I$ 逐元素），三种语言之间只允许通过两条字典条目互译：$(Qx)^T(Qy)=x^TQ^TQy$ 与 $u^Tv=\\tfrac14(\\|u+v\\|^2-\\|u-v\\|^2)$。\r\n>\r\n> 回到正文：题面那句话之所以能用more than this轻描淡写地跨过去，靠的正是这条注的等式；而它同时提醒我们，这个跨越只在实内积空间成立，一旦换范数，跨过去的桥就断了。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——never overflow的严格版本：条件数为什么恰好是 $1$**\r\n>\r\n> 这条注处理题面最后一句最容易被当成修辞的话。它要回答的机制问题是：为什么用正交矩阵做计算不会溢出，这个说法能不能变成一个可证明、可量化的命题？答案是能，但需要把不溢出改写成两个可量化的陈述，一个是范数上界，一个是条件数。\r\n>\r\n> 机制展开，从第一性原理。条件数的定义不是误差放大倍数这种描述性说法，而是算子范数的比值：$\\kappa_2(Q)=\\|Q\\|_2\\|Q^{-1}\\|_2$。正交矩阵满足 $Q^TQ=I$，于是对任意 $x$，\r\n>\r\n> ```math\r\n> \\|Qx\\|_2^2=(Qx)^T(Qx)=x^TQ^TQx=x^Tx=\\|x\\|_2^2\r\n> ```\r\n>\r\n> 取平方根得 $\\|Qx\\|_2=\\|x\\|_2$。这条等式对一切 $x$ 成立，等于说算子范数 $\\|Q\\|_2=1$；又 $Q^{-1}=Q^T$ 也是正交矩阵，故 $\\|Q^{-1}\\|_2=1$。代入定义：$\\kappa_2(Q)=1\\cdot1=1$。同样的事实用 singular value（奇异值）重说一遍：$Q^TQ$ 的特征值全为 $1$，故全部奇异值 $\\sigma_i=1$，即 $\\sigma_{\\max}=\\sigma_{\\min}=1$，条件数 $1$。注意这条推导只用了一次 $Q^TQ=I$，与第 4 题主证明用的是同一个事实——这不是巧合：保内积与条件数为 $1$ 是同一件事的两种说法。\r\n>\r\n> 为什么条件数 $1$ 就是最好？设 $x$ 有相对扰动 $\\delta$（例如来自浮点存储的舍入），计算 $Q\\hat x$ 时，输出的相对误差满足一阶估计\r\n>\r\n> ```math\r\n> \\frac{\\|Q\\hat x-Qx\\|_2}{\\|Qx\\|_2}\\le\\kappa_2(Q)\\,\\frac{\\|\\hat x-x\\|_2}{\\|x\\|_2}=\\frac{\\|\\hat x-x\\|_2}{\\|x\\|_2} .\r\n> ```\r\n>\r\n> 也就是说误差不但不被放大，连一阶放大因子都没有；任何矩阵的条件下界是 $1$（因为 $\\|A\\|\\|A^{-1}\\|\\ge\\|AA^{-1}\\|=1$），所以正交矩阵达到了理论下界。至于不溢出，可取的严格版本是分量上界：由 $\\|Qx\\|_2=\\|x\\|_2$ 与 $\\|v\\|_\\infty\\le\\|v\\|_2\\le\\sqrt n\\|v\\|_\\infty$ 得\r\n>\r\n> ```math\r\n> \\|Qx\\|_\\infty\\le\\|Qx\\|_2=\\|x\\|_2\\le\\sqrt n\\,\\|x\\|_\\infty ,\r\n> ```\r\n>\r\n> 即 $Q$ 至多把最大分量放大 $\\sqrt n$ 倍，绝不像某些病态矩阵那样把某个分量放大 $10^{10}$ 倍。这就是用 $Q$ 计算不会溢出能站得住的部分。不能站得住的部分是字面意义的永不溢出：浮点数的表示范围是有限的（CSAPP 第 2 章），若 $x$ 的分量已接近最大有限值，任何非零乘法都会溢出；正交性只能保证不放大，不能保证有上限就不会触及上限。此外 $Q^TQ=I$ 是精确算术下的恒等式，浮点下 Gram-Schmidt 之类的算法产生的 $\\hat Q$ 只满足 $\\|\\hat Q^T\\hat Q-I\\|=O(n\\varepsilon_{\\text{machine}})$，是 nearly orthogonal（近似正交）而非精确正交。\r\n>\r\n> 具体例子验证。取\r\n>\r\n> ```math\r\n> A=\\begin{bmatrix}1&1\\\\1&1+10^{-6}\\end{bmatrix},\r\n> ```\r\n>\r\n> 两列几乎平行，夹角约 $10^{-6}$ 弧度量级，$A$ 的条件数约 $2\\times10^6$；而取\r\n>\r\n> ```math\r\n> Q=\\begin{bmatrix}1/\\sqrt2&-1/\\sqrt2\\\\1/\\sqrt2&1/\\sqrt2\\end{bmatrix},\r\n> ```\r\n>\r\n> 其 $\\det Q=1$，$\\|Q\\|_F^2=2$，$\\kappa_2(Q)=1$。若输入有 $10^{-16}$ 量级的相对扰动（双精度机器精度量级），用 $A$ 求解时输出相对误差可达 $2\\times10^{-10}$，用 $Q$ 时仍是 $10^{-16}$ 量级，两者差六个数量级。这就是 QR 分解（QR factorization）$A=QR$ 在数值上稳健的根源：正交因子 $Q$ 不引入误差放大，所有病态都被隔离到三角因子 $R$ 与后端回代里，而 Gram-Schmidt 的正交化过程本身就是在一步步把向量拉回到 $Q$ 的世界。\r\n>\r\n> 跨课程连接要落到具体路径。CSAPP 第 2 章的 IEEE 754 给出 $\\varepsilon_{\\text{machine}}$ 这一扰动尺度的物理常数，第 5 章讲循环优化时区分算法本身的误差增长与实现常数，这两件事在条件数这里合流：$\\kappa(A)$ 属于问题（problem）的属性，与算法无关；而用正交变换实现消元属于算法（algorithm）的选择。你在 6.006 学过的分治与递归分析给出另一个连接：以 $Q$ 为基本步骤的迭代算法，其误差递推是 $e_{k+1}\\le\\kappa(Q)e_k=e_k$，即误差不增长，这属于稳定递推，与二分查找每步把区间长度减半是同类结构——都是每一步引入的变换有界、可控。区别在于二分查找压缩的是解空间的大小，正交变换保持的是向量长度与夹角，压缩的方式不同，但每步不放大的变换序列可以安全地长链使用这一条是共享的。你在 100B 实分析里学的范数等价性在此处也必须点名：$\\|\\cdot\\|_2$ 与 $\\|\\cdot\\|_\\infty$ 等价，等价常数是 $\\sqrt n$，这个 $\\sqrt n$ 正好就是上面最多放大 $\\sqrt n$ 倍的那一项——它不是技巧，是范数等价的常数。\r\n>\r\n> 命名模板：保范—条件数双锁校验。遇到任何声称数值稳健的矩阵，先锁长度（验证 $\\|Qx\\|=\\|x\\|$ 或等价地 $\\sigma_{\\max}=\\sigma_{\\min}=1$），再锁条件数（验证 $\\kappa_2=1$ 或给出放大上界）；两把锁都合上，才能说不放大误差。只有一把锁的时候，最容易把精确算术的恒等式误说成浮点下的保证。\r\n>\r\n> 回到正文：题面用一个感叹号收尾，值得保留但值得改写——Computations with $Q$ never overflow应当读成$Q$ 的每一步都把相对误差的放大因子锁在 $1$，且把最大分量放大不超过 $\\sqrt n$ 倍，这才是 LR 分解、QR 分解、特征值算法里反复使用正交变换的真正理由。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 24,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 24,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 24,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 24,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 39002,
+            "outputTokens": 65589,
+            "cacheReadTokens": 39424,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 30656,
+              "outputTokens": 11928,
+              "cacheReadTokens": 35456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 24,
+        "val": {
+          "surfaceTokens": 45713,
+          "contextWindow": 1000000,
+          "pressureTokens": 66112,
+          "sampledSurfaceTokens": 40447
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 24,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3791,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 34940,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 22,
+              "heuristicTokens": 5266,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 44569
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 24,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 21,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 23
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 24,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 24,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 24,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

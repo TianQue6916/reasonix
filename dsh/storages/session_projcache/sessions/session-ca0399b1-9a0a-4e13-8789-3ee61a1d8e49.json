@@ -1,0 +1,381 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948918975,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 110,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 110,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 `Manual` 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>`。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、$\\det$ 与 $\\operatorname{trace}$ 校验数字不符等。请**独立重算每一处计算**，包括题面给出的矩阵是否与官方答案自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错，有没有把对的说成错的、把错的说成对的。\r\n③ 🔴 译者注**规格**：本技能规定**每条注 800–1200 字**（公式/配图/引文不计）。本次草稿的注普遍超长（部分 2000–8000 字），请处理为合规形态：优先**按主题拆分为多条注**（子标题写作 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`），每条 800–1200 字；太短或碎片化的可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——压缩对象只能是重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板），跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」，不得裸甩名词。\r\n④ 🟡 术语一致性：同一术语本段内单一译法（outer product 一律外积、rank one matrix 一律秩一矩阵、permutation matrix 一律置换矩阵、projection matrix 一律投影矩阵）。\r\n⑤ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑥ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；`Original（英文原题）` 是否与题面逐字对应。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——第二课的课程头（含来源行、讲次标题、引言与术语口径节）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 数学一律 LaTeX；不确定处写 `⚠ 待核：<存疑点>`。\r\n- 禁止只输出意见清单而不给修订全文。\r\n\r\n======================= 待审部分开始（第二课的课程头（含来源行、讲次标题、引言与术语口径节）） =======================\r\n\r\n# <span style=color:#c0392b;>18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning（数据分析、信号处理与机器学习中的矩阵方法）</span>\r\n\r\n> <span style=color:#7f8c8d;>MIT OpenCourseWare · Spring 2018 · Gilbert Strang · 第二课（Lecture 2）配套 Problem Set I.2</span>\r\n>\r\n> <span style=color:#7f8c8d;>原文来源：MIT OCW 18.065 S18 *Problem Sets Related to Lectures and Readings*（Problems for Lecture 2，教材 §I.2, p.13）· 教材出处：Linear Algebra and Learning from Data（Strang 2019）§I.2 · 答案核验：教材官方 Instructor's Manual（Problem Set I.2, page 13）</span>\r\n\r\n## <span style=color:#c0392b;>第二课 · Problems for Lecture 2（第 2 讲讲题）</span>\r\n\r\n本讲标题是 <span style=color:#00838f;>Multiplying and Factoring Matrices（矩阵乘法与矩阵分解）</span>。把它读成一个设计问题会更清楚：**两个矩阵相乘时，能不能把它拆成最小零件再拼回去？**\r\n\r\n答案分三层。第一层是零件的形状：$a$ 乘 $b^T$ 之所以合法，只因为内维（inner dimension）都是 $1$；乘积落在 $\\mathbb{R}^{m\\times p}$ 里，它的第 $(i,j)$ 格由两个标量相乘得到。第二层是零件的身份：这种由一列乘一行生成的矩阵叫做 rank one matrix（秩一矩阵），它的全部列落在同一条直线上、全部行落在同一条直线上，$mp$ 个数字其实只由 $m+p$ 个数字生成。第三层是拼装规则：任何矩阵乘法都能写成若干个这样的零件之和，$AB=a_1b_1^T+\\cdots+a_nb_n^T$；当 $B=I$ 时它就退化成 $A$ 自身的三块外积之和。\r\n\r\n本节的题 2 压住前两层（问 $ab^T$ 的形状、格子值、以及 $aa^T$ 能说什么），题 6 压住第三层（用 $B=I$ 把 $A$ 拆成三个秩一零件并验证它们加回 $A$）。\r\n\r\n### <span style=color:#00838f;>术语口径（本讲五个词，后文严格按此使用）</span>\r\n\r\n- $ab^T$（$a\\in\\mathbb{R}^{m\\times1}$、$b\\in\\mathbb{R}^{p\\times1}$）：outer product（外积），也叫 column times row（列乘行）。它是 $m\\times p$ 矩阵，$(i,j)$ 元为 $a_ib_j$——**外积是矩阵，内积是数**，这是本讲最容易混的一处。\r\n- $\\operatorname{rank}(ab^T)=1$（$a,b$ 均非零时）：rank one matrix（秩一矩阵）。所有列都是 $a$ 的倍数（倍数是 $b_j$），所有行都是 $b^T$ 的倍数（倍数是 $a_i$）。\r\n- shape bookkeeping（形状记账）：$(m\\times n)(n\\times p)=m\\times p$——**内维相消、外维留存**。它不依赖任何几何直觉，是判断自己写错没有的第一道自检。\r\n- symmetric matrix（对称矩阵）：$S^T=S$。$aa^T$ 是最容易徒手写全的秩一对称矩阵，它的迹 $\\operatorname{tr}(aa^T)=\\lVert a\\rVert^2$，唯一非零特征值也是 $\\lVert a\\rVert^2$。\r\n- outer product expansion（外积分解）：$AB=\\sum_{k=1}^{n}a_kb_k^T$，其中 $a_k$ 是 $A$ 的列、$b_k^T$ 是 $B$ 的行。它是 $A=CR$ 与 SVD（奇异值分解）的共同入口。\r\n\r\n🚨 必须挡住的两处混淆：① 把外积 $ab^T$（$m\\times p$ 矩阵）写成内积 $a^Tb$（$1\\times1$ 标量）——两者连形状类别都不同，且当 $m\\neq p$ 时后者根本没有定义；② 把$ab^T$ 对称当成 $b=a$ 的充要条件——真正等价于 $b=\\lambda a$（$a\\neq0$ 时），$b=a$ 只是 $\\lambda=1$ 的特例。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 110,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 110,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 110,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 110,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 110,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 32208,
+            "outputTokens": 18208,
+            "cacheReadTokens": 270592,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 17,
+            "buckets": {
+              "uncachedInputTokens": 15868,
+              "outputTokens": 6277,
+              "cacheReadTokens": 29440,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 110,
+        "val": {
+          "surfaceTokens": 34604,
+          "contextWindow": 1000000,
+          "pressureTokens": 45308,
+          "sampledSurfaceTokens": 29446
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 110,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1023,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4553,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 85,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 462,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 32,
+              "heuristicTokens": 91,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 300,
+              "system": false
+            },
+            {
+              "seq": 37,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 42,
+              "heuristicTokens": 229,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 308,
+              "system": false
+            },
+            {
+              "seq": 47,
+              "heuristicTokens": 318,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 1513,
+              "system": false
+            },
+            {
+              "seq": 52,
+              "heuristicTokens": 536,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 142,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 178,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 320,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 55,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 158,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 114,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 1517,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 550,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 78,
+              "heuristicTokens": 80,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 632,
+              "system": false
+            },
+            {
+              "seq": 83,
+              "heuristicTokens": 835,
+              "system": false
+            },
+            {
+              "seq": 85,
+              "heuristicTokens": 264,
+              "system": false
+            },
+            {
+              "seq": 88,
+              "heuristicTokens": 352,
+              "system": false
+            },
+            {
+              "seq": 90,
+              "heuristicTokens": 466,
+              "system": false
+            },
+            {
+              "seq": 93,
+              "heuristicTokens": 129,
+              "system": false
+            },
+            {
+              "seq": 95,
+              "heuristicTokens": 37,
+              "system": false
+            },
+            {
+              "seq": 98,
+              "heuristicTokens": 111,
+              "system": false
+            },
+            {
+              "seq": 100,
+              "heuristicTokens": 2867,
+              "system": false
+            },
+            {
+              "seq": 103,
+              "heuristicTokens": 2296,
+              "system": false
+            },
+            {
+              "seq": 105,
+              "heuristicTokens": 7053,
+              "system": false
+            },
+            {
+              "seq": 108,
+              "heuristicTokens": 5158,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 33460
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 110,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 110,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 107,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 109
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 110,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 110,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 110,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 110,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 110,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 110,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

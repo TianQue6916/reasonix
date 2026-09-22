@@ -1,0 +1,17 @@
+# Memory
+
+- [用户完整画像：认知系统架构师的身份、学习方法、思维模式、行为特征、终局驱动逻辑](user-persona-cognitive-system-architect.md) — [global/user] 用户完整画像：认知系统架构师（更新版，含DeepSeek对话分析）
+
+- [双语翻译默认输出目录](bilingual-translator-output-path.md) — [global/user] bilingual-translator 技能的默认输出路径为 /home/tianque/桌面/课程文件/
+
+- [双语翻译铁律：禁止英中分段对照](bilingual-translator-no-en-zh-blocks.md) — [global/feedback] bilingual-translator 的核心禁令：禁止英中分段对照，必须是中文主体+英文术语行内嵌入
+
+- [复杂思考可用 v4pro](v4pro-for-complex-reasoning.md) — [global/user] 复杂推理场景可使用 v4pro 等更强模型
+
+- [默认输出目录](default-output-directory.md) — [global/user] 各类文件生成的默认输出路径为 /home/tianque/桌面/输出文件/
+
+- [用户学业水平与教学适配指南](academic-level-and-teaching-style.md) — [global/feedback] 用户各学科当前水平、教材、学习阶段和最佳教学方式（大一暑假执行期更新）
+
+- [Windows 主力机「天阙九泉」完整远控信息](windows-main-machine-full.md) — [global/reference] Windows主力机完整远程控制信息（SSH + RustDesk + IPv6），全局可用
+
+- [讨论回复：md 文件 + MarkText 打开（格式遵循双语规范）](discussion-reply-in-marktext-md.md) — [global/user] 讨论问题（尤其数学符号）时：在 /home/tianque/桌面/输出文件/ 写自由命名 md 文件并用 marktext 打开，格式遵循双语技能规范

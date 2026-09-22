@@ -1,0 +1,6 @@
+2026/09/21-20:39:34.847 7fc4 Reusing MANIFEST C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/MANIFEST-000001
+2026/09/21-20:39:34.851 7fc4 Recovering log #4
+2026/09/21-20:39:34.851 7fc4 Reusing old log C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/000004.log 
+2026/09/21-20:48:18.202 394c Level-0 table #8: started
+2026/09/21-20:48:18.207 394c Level-0 table #8: 14042 bytes OK
+2026/09/21-20:48:18.210 394c Delete type=0 #4

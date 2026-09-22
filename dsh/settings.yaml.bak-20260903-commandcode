@@ -1,0 +1,47 @@
+agent-default-model:
+  model: deepseek-v4-flash
+  reasoningEffort: high
+
+# ── Command Code GOAT 路由 (2026-09-03) ──────────────
+llm-pi-ai:
+  providers:
+    commandcode-goat:
+      displayName: Command Code GOAT
+      apiKeyEnv: COMMANDCODE_API_KEY
+      api: openai-completions
+      baseURL: https://api.commandcode.ai/provider/v1
+      compat:
+        thinkingFormat: deepseek
+        supportsDeveloperRole: false
+        maxTokensField: max_tokens
+      models:
+        - id: deepseek/deepseek-v4-flash
+          name: GOAT DeepSeek V4 Flash
+          contextWindow: 1000000
+          reasoningEfforts:
+            off:
+            low: low
+            high: high
+            max: max
+        - id: deepseek/deepseek-v4-flash-fast
+          name: GOAT DeepSeek V4 Flash Fast
+          contextWindow: 1000000
+          reasoningEfforts:
+            off:
+            low: low
+            high: high
+            max: max
+        - id: deepseek/deepseek-v4-pro
+          name: GOAT DeepSeek V4 Pro
+          contextWindow: 1000000
+          reasoningEfforts:
+            off:
+            low: low
+            high: high
+            max: max
+        - id: moonshotai/Kimi-K2.7-Code
+          name: GOAT Kimi K2.7 Code
+          contextWindow: 262000
+          reasoningEfforts:
+            off:
+            high: high

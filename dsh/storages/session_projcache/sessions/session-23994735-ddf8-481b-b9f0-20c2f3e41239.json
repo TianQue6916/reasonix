@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790061028873,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 21,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 21,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 Manual 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy-zz | Manual, Problem Set I.x 题 N</span>`。\r\n6. 🚨 所有 `$...$`、```math 围栏与全部反斜杠命令必须原样保留：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、行列式与迹校验数字不符等。请**独立重算每一处计算**，并核对题面矩阵与结论是否自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错（有没有把对的说成错的）。\r\n③ 🔴 译者注**规格**：每条注 **800–1200 汉字**（公式/配图/引文不计）。超长的请**按主题拆分为多条**（子标题写作 `**Note（译者注）——（其一）……**`、`（其二）……`），每条落在区间内；过短可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——只能压缩重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板）。\r\n④ 🔴 **数学编号不得硬编码**：稿中若引用教材公式编号（如(9) 式、(12)、(13)）、章节号、页码，必须与下面给出的校对基准一致；无法确认的编号改成不带编号的表述（如教材 §I.8 中由 $A^TA$ 求 $v$ 的构造），不得保留可疑编号。\r\n⑤ 🟡 术语一致性：同一术语全段单一译法（singular value 一律奇异值、rank-one 一律秩一、positive definite 一律正定）。\r\n⑥ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑦ 🟡 **`Original（英文原题）` 必须与校对基准中给出的 OCW 英文原题逐字一致**（可修正明显的 OCR/转写差异，但不得改写句式、不得替换为自己重写的英文句子）。\r\n⑧ 🟡 **🎥 引文**：每条 🎥 引文必须（a）能在校对基准的字幕摘录（或你确知出自该讲字幕的内容）中找到依据；（b）**附中文翻译**。凡无依据或没收中文翻译的，删去该引文或补上翻译；无法确认的依据标 `⚠ 待核：<存疑点>`。\r\n⑨ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；标题层级无跳级。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课的一道题（含题干、解答、译者注）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 禁止只输出意见清单而不给修订全文。禁止输出给主代理的说明待核项汇总之类的话术（`⚠ 待核：…` 就地标注即可）。\r\n\r\n【终审校对基准（主代理提供，权威）】\r\n### OCW 英文原题（逐字）\r\n14 Find the 3 by 3 matrix S and its pivots, rank, eigenvalues, and determinant:\r\n[x1 x2 x3] S [x1; x2; x3] = 4(x1 − x2 + 2x3)².\r\n\r\n### 教材官方 Manual 标准答案（Problem Set I.7, page 52 题 14，逐字）\r\n14 S = [[4, −4, 8], [−4, 4, −8], [8, −8, 16]] has only one pivot = 4, rank S = 1, eigenvalues are 24, 0, 0, det S = 0.\r\n\r\n### 教材 §I.7 相关口径\r\n- 能量恒等式：$c^TSc=\\|Ac\\|^2$ 当 $S=A^TA$；这里是 $S=4vv^T$（$v=(1,-1,2)^T$）的 rank-one 情形\r\n- rank-one 半正定的谱：唯一非零特征值 $=\\operatorname{trace}(S)=4\\|v\\|^2=24$\r\n- $S=A^TA$ 正定当且仅当 $A$ 列无关；这里 rank 1 < 3，故只半正定\r\n\r\n### 本讲官方字幕摘录（供 🎥 引文核对）\r\n# lec5 字幕教学片段（MIT 18.065 官方字幕，英文原句 + 官方中文字幕对齐）\r\n- [00:01:03,760 --> 00:01:07,140] **EN**: Each one gives a test for positive definite matrices.\r\n  **ZH**: 每一个都提供了正定矩阵的检验方法。\r\n- [00:03:11,220 --> 00:03:12,900] **EN**: Positive definite matrices.\r\n  **ZH**: Positive definite matrices (正定矩阵)。\r\n- [00:03:23,640 --> 00:03:26,780] **EN**: positive definite matrices, they have positive eigenvalues.\r\n  **ZH**: positive definite matrices (正定矩阵) 具有 positive eigenvalues (正特征值)。\r\n- [00:00:54,980 --> 00:00:55,760] **EN**: energy,\r\n  **ZH**: energy (能量),\r\n- [00:04:13,400 --> 00:04:21,279] **EN**: OK. So you could compute its eigenvalues since it's 2 by 2. It's energy. I'll come back to that because that's the most important one.\r\n  **ZH**: 好的。既然它是2x2矩阵，你可以计算它的特征值（eigenvalues）。这是 能量（energy）。我会回到这一点，因为这是最重要的问题。\r\n- [00:09:42,460 --> 00:09:43,380] **EN**: Let me do the energy.\r\n  **ZH**: 让我来负责能量部分。\r\n- [00:00:58,840 --> 00:01:00,240] **EN**: determinants, pivots,\r\n  **ZH**: determinants (行列式), pivots (主元),\r\n- [00:04:52,100 --> 00:04:53,800] **EN**: positive determinants. Positive pivots.\r\n  **ZH**: 正行列式。 正主元。\r\n- [00:07:22,680 --> 00:07:25,080] **EN**: And have you noticed the connection to pivots?\r\n  **ZH**: 并且 你是否注意到了与 pivot (枢轴) 之间的联系？\r\n- [00:04:59,100 --> 00:05:07,900] **EN**: Which is the easy test to see that it fails? Negative determinant. Determinant. The determinant is 15 minus 16,\r\n  **ZH**: 哪个简单测试可以看出它不成立？负行列式。行列式。行列式为15减16，\r\n- [00:05:11,940 --> 00:05:15,040] **EN**: that's what's so how is the determinant connected to the eigenvalues?\r\n  **ZH**: 这就是问题所在：那么 行列式（determinant）与特征值（eigenvalues）是如何联系起来的？\r\n\r\n======================= 待审部分开始（该课的一道题（含题干、解答、译者注）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 14（问题 14）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.7, p.46-55 | Manual, Problem Set I.I.7 题 14</span>\r\n\r\n请找出这个 $3\\times 3$ 矩阵 $S$，并写出它的 pivots（主元）、rank（秩）、eigenvalues（特征值）与 determinant（行列式）：\r\n\r\n```math\r\n\\begin{bmatrix}x_1&x_2&x_3\\end{bmatrix}\r\nS\\begin{bmatrix}x_1\\\\ x_2\\\\ x_3\\end{bmatrix}=4(x_1-x_2+2x_3)^2\r\n```\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Find the $3\\times 3$ matrix $S$ and its pivots, rank, eigenvalues, and determinant:\r\n```math\r\n\\begin{bmatrix}x_1&x_2&x_3\\end{bmatrix}\r\nS\\begin{bmatrix}x_1\\\\ x_2\\\\ x_3\\end{bmatrix}=4(x_1-x_2+2x_3)^2\r\n```\r\n</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 先把答案一次给全，后面再逐条补推导与校验。\r\n>\r\n> ```math\r\n> S=\\begin{bmatrix}4&-4&8\\\\-4&4&-8\\\\8&-8&16\\end{bmatrix}\r\n> ```\r\n>\r\n> pivots（主元）：$4,\\,0,\\,0$。rank（秩）：$1$。eigenvalues（特征值）：$24,\\,0,\\,0$。determinant（行列式）：$0$。\r\n>\r\n> 有一件事必须在开头就钉死：这个 $S$ 是 positive semidefinite（半正定）而**不是** positive definite（正定）的，所以它**不满足**教材 §I.7 的 energy test（能量检验）$c^TSc>0$（对每个非零 $c$）——它只满足较弱的 $c^TSc\\ge 0$。Manual 给的四项数据全部正确，但它只说了 `only one pivot = 4`，既没有交代另外两个主元为何是 $0$，也没有给出 rank 到特征值的推导链。下面第 6 节把这条链补齐。\r\n>\r\n> **二、方法一：outer product（外积）识别法 + rank—nullity（秩—零化度）守恒**\r\n>\r\n> 这个方法看到的是「矩阵的秩来自几个方向」这一结构信息：它一次就给出 rank 与全部特征值，不需要展开任何行列式。\r\n>\r\n> 令 $v=(1,-1,2)^T$，则括号里的线性式就是内积 $v^Tx=x_1-x_2+2x_3$。题面等式右边等于 $4(v^Tx)^2=4x^Tvv^Tx$，对每个 $x$ 都成立，故\r\n>\r\n> ```math\r\n> S=4vv^T=4\\begin{bmatrix}1\\\\-1\\\\2\\end{bmatrix}\\begin{bmatrix}1&-1&2\\end{bmatrix}\r\n> =4\\begin{bmatrix}1&-1&2\\\\-1&1&-2\\\\2&-2&4\\end{bmatrix}\r\n> =\\begin{bmatrix}4&-4&8\\\\-4&4&-8\\\\8&-8&16\\end{bmatrix}\r\n> ```\r\n>\r\n> 逐元素写出这一步：$S_{ij}=4v_iv_j$，例如 $S_{13}=4\\cdot1\\cdot2=8$，$S_{22}=4\\cdot(-1)(-1)=4$，$S_{33}=4\\cdot2\\cdot2=16$。对称性 $S_{ij}=S_{ji}$ 是乘法交换律的直接后果，不是巧合。\r\n>\r\n> 接下来是特征值。第一件事：$v$ 本身是 eigenvector（特征向量），因为\r\n>\r\n> ```math\r\n> Sv=4v(v^Tv)=4\\|v\\|^2v=4\\cdot 6\\cdot v=24v,\\qquad \\|v\\|^2=1^2+(-1)^2+2^2=6\r\n> ```\r\n>\r\n> 第二件事：任何与 $v$ orthogonal（正交）的 $w$ 都满足 $Sw=4v(v^Tw)=0$。这样的 $w$ 构成 $v^\\perp$，维数是 $3-1=2$。于是 $0$ 是一个特征值，其 eigenspace（特征空间）维数至少为 $2$。\r\n>\r\n> 第三件事：它不可能超过 $2$。若 $0$ 的特征空间维数是 $3$，则 $S=0$，与 $S\\neq 0$ 矛盾；特征空间维数之和等于 $3$，所以 $0$ 的重数恰为 $2$，配上前面那条 $24$，谱就是 $\\{24,0,0\\}$。这一句正是 rank—nullity 守恒在用的地方：$\\operatorname{rank}S=\\dim(\\text{column space})=1$，$\\dim N(S)=3-1=2$。\r\n>\r\n> rank 为什么是 $1$：$S$ 的每一列都是 $4v$ 的倍数（第 $j$ 列 $=4v_jv$），所以 column space（列空间）$=\\operatorname{span}\\{v\\}$，维数为 $1$（$v\\neq 0$）。由此 det $S=0$、两个主元为 $0$，全部自动落地：行列式是特征值之积 $24\\cdot0\\cdot0=0$。\r\n>\r\n> 适用条件：只要求能把二次型写成「一个线性式的平方」。劣势：如果题目给的是 $x_1^2+3x_1x_2+\\cdots$ 这种已经展开、看不出平方来源的形式，得先 reverse engineering（反向工程）配方，不一定一步到位。\r\n>\r\n> **三、方法二：energy（能量）恒等式法（教材 §I.7 的根定义视角）**\r\n>\r\n> 这个方法看到的是「矩阵只是能量的记账本」：不碰特征方程，直接用能量的正负与大小反推谱。\r\n>\r\n> 由题面，对每个 $x$ 有 $x^TSx=4(v^Tx)^2\\ge 0$，且等号成立当且仅当 $v^Tx=0$。这句话同时给出三件事：$S$ symmetric（对称）；$S$ 是 semidefinite（半正定）而非 definite（正定），因为零空间 $v^\\perp$ 非平凡，$x$ 取 $v^\\perp$ 中任一非零向量就击穿了严格正性；以及「哪些方向完全不耗能」的答案就是 $v^\\perp$。\r\n>\r\n> 非零特征值用能量恒等式定：单位特征向量 $\\hat v=v/\\|v\\|$ 上的能量是\r\n>\r\n> ```math\r\n> \\hat v^TS\\hat v=4(v^T\\hat v)^2=4\\left(\\frac{\\|v\\|^2}{\\|v\\|}\\right)^2=4\\|v\\|^2=24\r\n> ```\r\n>\r\n> 而对称矩阵在单位向量上的能量恰好是该方向上的 Rayleigh quotient（瑞利商），在特征方向上就等于对应特征值，故非零特征值为 $24$。\r\n>\r\n> trace（迹）给出第二条独立路径：$\\operatorname{tr}(S)=\\sum_i S_{ii}=4+4+16=24$，而迹又等于特征值之和 $24+0+0=24$。两条路径数字对上，这才叫交叉验证，而不是把同一个数算两遍。\r\n>\r\n> 适用条件：能量定义与 Rayleigh 商只对 symmetric（对称）矩阵直接生效；本题 $S$ 恰是对称的。劣势：这一路子不直接告诉你 pivots 是多少，主元仍要靠消元另算。\r\n>\r\n> **四、方法三：Gaussian elimination（高斯消元）直接读 pivots**\r\n>\r\n> 这个方法看到的是「消元过程中保留下来的主元个数」。因为 $S$ 的秩是 $1$，消元会在第二步就崩掉，所以必须老老实实做完两步：\r\n>\r\n> ```math\r\n> \\begin{bmatrix}4&-4&8\\\\-4&4&-8\\\\8&-8&16\\end{bmatrix}\r\n> \\xrightarrow{R_2+R_1,\\ R_3-2R_1}\r\n> \\begin{bmatrix}4&-4&8\\\\0&0&0\\\\0&0&0\\end{bmatrix}\r\n> ```\r\n>\r\n> 第一主元是 $d_1=4$；第二、三行已经是零行，对应 $d_2=d_3=0$。所以 pivots 是 $4,0,0$。**这个「$4$」不是特征值**：主元之积 $4\\cdot0\\cdot0=0$ 才等于 det $S$，主元之和 $4$ 也不等于 trace $24$（主元之和等于 trace 只对 tridiagonal（三对角）这类特殊结构成立，对一般矩阵不成立）。主元告诉你的是「在第 $k$ 步还剩多少独立的信息」，本题第一步之后就一条信息都不剩了。\r\n>\r\n> 另一种等价读法：$S=LDL^T$ 中 $D=\\operatorname{diag}(4,0,0)$；也可以直接把 $S$ 写成 $A^TA$，取 $1\\times3$ 的\r\n>\r\n> ```math\r\n> A=\\begin{bmatrix}2&-2&4\\end{bmatrix},\\qquad A^TA=\\begin{bmatrix}4&-4&8\\\\-4&4&-8\\\\8&-8&16\\end{bmatrix}=S\r\n> ```\r\n>\r\n> $A$ 只有一行且非零，故 $\\operatorname{rank}A=1$，而 $\\operatorname{rank}(A^TA)=\\operatorname{rank}A$，再次确认 rank $=1$。这条路径也顺带说明 $S$ 落在教材 §I.7 五种检验中的 $S=A^TA$ 一支上，并且落在「奇异」的那一侧：$A$ 的行向量互相 dependent（线性相关），所以 $S$ 只是 semidefinite（半正定）。\r\n>\r\n> **五、常见错误判定**\r\n>\r\n> ❌ 错误 1：把 $S$ 写成 $\\begin{bmatrix}4&0&0\\\\0&-4&0\\\\0&0&8\\end{bmatrix}$ 或任何对角矩阵。\r\n> 错在哪一步：把括号内的系数向量 $(1,-1,2)$ 直接当成对角元。二次型是 $(v^Tx)^2$，是**交叉项**的平方，展开必然产生 $x_1x_2$、$x_2x_3$ 等非对角项；对角矩阵对应的能量是 $4x_1^2-4x_2^2+8x_3^2$，取 $x=(0,1,0)$ 就得 $-4<0$，与题面恒等式 $4(x_1-x_2+2x_3)^2\\ge0$ 矛盾。\r\n>\r\n> ❌ 错误 2：漏掉因子 4，写成 $S=vv^T=\\begin{bmatrix}1&-1&2\\\\-1&1&-2\\\\2&-2&4\\end{bmatrix}$。\r\n> 错在哪一步：把题面的标量 $4$ 丢在了式子外面。检验方式：代入 $x=(1,0,0)$，$x^TSx=S_{11}$，题面要求等于 $4(1)^2=4$，而 $vv^T$ 只给 $1$。\r\n>\r\n> ❌ 错误 3：只在外积里写一次 4，例如把第一行乘 4 而其余行不动，导致 $S$ 不再对称。\r\n> 错在哪一步：$4vv^T$ 中 $4$ 是整体标量，$S_{ij}=4v_iv_j$ 必须同时作用于全部九个元素。判据是 $S_{ij}=S_{ji}$，只要不对称立刻说明分配错了。\r\n>\r\n> ❌ 错误 4：断言特征值是 $4,4,4$，或 $4,0,0$。\r\n> 错在哪一步：前者把外积里的标量 $4$ 当成了谱；后者把「pivot $=4$」误当成特征值。检验：$\\operatorname{tr}(S)=24$，而 $4+4+4=12$、$4+0+0=4$，两者都不等于 $24$，一票否决。\r\n>\r\n> ❌ 错误 5：断言非零特征值是 $4\\|v\\|^2=4\\cdot6=24$ 的同时又写 rank $=3$，或写 $\\dim N(S)=1$。\r\n> 错在哪一步：把「有一个非零特征值」与「矩阵可逆」混为一谈。可逆要求 $n$ 个非零特征值；本题非零特征值只有 $1$ 个，所以 rank $=1$、零空间维数 $=2$，det $=0$。检验：rank + nullity $=1+2=3=n$。\r\n>\r\n> ❌ 错误 6：因为 det $S=0$ 就宣称「$S$ 不是半正定的」。\r\n> 错在哪一步：混淆了 positive definite（正定）与 positive semidefinite（半正定）的判据。det $=0$ 只排除 strictly positive definite（严格正定），与 semidefinite 兼容。本题 $x^TSx=4(v^Tx)^2\\ge0$ 恒成立，semidefinite 是确定结论。\r\n>\r\n> ❌ 错误 7：用 $3\\times3$ 的「三个顺序主子式全正」判据判定正定，发现 $\\det S=0$ 后声称「判据失效，无法判断」。\r\n> 错在哪一步：判据本身没有失效，是**被用错了对象**——「三个顺序主子式全正」等价于 positive definite，本题 $\\det S=0$ 恰好说明它**不是**正定，判据给出了正确结论。要判 semidefinite 需另换判据（全部主子式 $\\ge0$，或能量恒等式），本题最省事的判据就是能量式 $4(v^Tx)^2\\ge0$。\r\n>\r\n> ❌ 错误 8：认为「只有 1 个 pivot 非零」与「trace $=24$」矛盾。\r\n> 错在哪一步：把 pivots 与 eigenvalues 当成同一组不变量。相似变换下不变的是特征值（与迹、行列式），而消元的主元只在 symmetric 情形下与特征值同号（Sylvester 惯性律层面的信息），数值上并不相等。本题 pivots 为 $4,0,0$，eigenvalues 为 $24,0,0$：符号模式一致，数值不同，两者都自洽。\r\n>\r\n> **六、自检**\r\n>\r\n> 代入验算 1（恒等式逐点核对）：取 $x=(1,1,0)^T$。左边\r\n>\r\n> ```math\r\n> x^TSx=\\begin{bmatrix}1&1&0\\end{bmatrix}\\begin{bmatrix}4&-4&8\\\\-4&4&-8\\\\8&-8&16\\end{bmatrix}\\begin{bmatrix}1\\\\1\\\\0\\end{bmatrix}\r\n> =\\begin{bmatrix}1&1&0\\end{bmatrix}\\begin{bmatrix}0\\\\0\\\\0\\end{bmatrix}=0\r\n> ```\r\n>\r\n> 右边 $4(1-1+0)^2=0$，一致。\r\n>\r\n> 代入验算 2（换一个非零能量的点）：取 $x=(1,0,1)^T$。左边\r\n>\r\n> ```math\r\n> x^TSx=\\begin{bmatrix}1&0&1\\end{bmatrix}\\begin{bmatrix}12\\\\-12\\\\24\\end{bmatrix}=12+24=36\r\n> ```\r\n>\r\n> 右边 $4(1-0+2)^2=4\\cdot9=36$，一致。这一步同时确认了非对角元 $S_{13}=8$ 的位置与倍数都没写错（若 $S_{13}$ 写成 $4$，左边只有 $12+16=28\\neq36$）。\r\n>\r\n> 特征向量直验：$Sv=(4,-4,8)^T=24\\cdot(1,-1,2)^T=24v$，与「非零特征值为 $24$」互证。\r\n>\r\n> 零特征向量直验：取 $w_1=(1,1,0)^T$、$w_2=(2,0,-1)^T$，两者都与 $v$ 正交（$1-1+0=0$，$2+0-2=0$），且 $Sw_1=0$、$Sw_2=0$。零空间维数 $2$，与 rank $=1$ 的秩—零化度账目闭合。\r\n>\r\n> 维数与形状记账：三次型 $\\to$ $S$ 必为 $3\\times3$；外积 $(3\\times1)(1\\times3)\\to3\\times3$，形状吻合。rank 上界：$\\operatorname{rank}(uv^T)\\le1$，本题非零故 $=1$。det 校验：det $=$ 特征值之积 $=24\\cdot0\\cdot0=0$。trace 校验：$4+4+16=24=24+0+0$。能量符号判定：$x^TSx=4(v^Tx)^2\\ge0$，semidefinite，且非 definite（$x=v^\\perp\\setminus\\{0\\}$ 处能量为 $0$）。幂等性副产品：$(S/24)^2=S/24$ 且 $(S/24)v=v$，说明 $S/24$ 是沿 $v$ 方向的投影矩阵，这与「rank $=1$ 的对称半正定矩阵都是某个方向的投影乘正标量」这一模型完全一致。\r\n>\r\n> **七、一句话**：这道题真正训练的是「秩决定零特征值的个数、trace 决定剩下那个非零特征值」这条把二次型的代数结构与谱结构一次性连接起来的记账链。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（从一次平方到一个投影：秩一矩阵为什么只留一个非零特征值）**\r\n>\r\n> 本注要回答一个具体的设计问题：为什么 $S=4vv^T$ 这种「一个线性式的平方」生成的矩阵，谱永远是「一个非零 + 其余全零」，而不是像一般对称矩阵那样三个特征值各不相同？\r\n>\r\n> 从第一性原理拆，答案不在特征方程里，而在**信息条数**里。一个 $n\\times n$ 矩阵要携带 $n$ 个独立方向的信息，就必须有 $n$ 个线性无关的列方向；而 $S=4vv^T$ 的每一列都是同一个向量 $4v_jv$ 的倍数，九个数字 $S_{ij}=4v_iv_j$ 全部由三个数字 $v_1,v_2,v_3$ 加一个标量 $4$ 生成。压缩后的自由度是 $4$（三个分量加一个倍数，去掉整体符号与整体缩放的重复计数后更少），展开成九个数只是重复记账。信息条数 $=1$，谱里就只允许出现一个非零值——这是 rank—nullity 守恒 $\\operatorname{rank}+\\dim N=3$ 在同一件事上的两种说法。零特征值不是「算出来恰好是零」的巧合，而是「这个矩阵根本没有第二个方向可以提供能量」的必然。\r\n>\r\n> 有一个代数上更干净的视角，叫 spectral theorem（谱定理）的谱分解：对称矩阵总可以写成 $S=\\lambda_1\\hat v_1\\hat v_1^T+\\lambda_2\\hat v_2\\hat v_2^T+\\lambda_3\\hat v_3\\hat v_3^T$，其中 $\\hat v_i$ 是互相正交的单位特征向量。（谱定理本身在 18.065 的进度里尚未展开证明，这里只把它当作用来核对结构的一致框架。）本题 $S$ 的分解只留一项：$S=24\\,\\hat v\\hat v^T$。于是 $S/24=\\hat v\\hat v^T$ 就是教材 §I.4 意义上的 projection matrix（投影矩阵）：它对称、幂等、把任意 $x$ 投到 $\\operatorname{span}\\{v\\}$ 上。这一点给出一个可复用的命名模板——**「秩一复原模板」**：看到 $S=c\\,vv^T$，立刻写下 $S/c=\\hat v\\hat v^T$ 是投影，于是 $\\operatorname{rank}=1$、$\\dim N=2$、非零特征值 $=\\operatorname{tr}S=c\\|v\\|^2$ 三项全部到手，不需要解任何方程。\r\n>\r\n> 具体验一遍。取 $v=(1,-1,2)^T$，$\\|v\\|^2=6$，$c=4$，非零特征值应为 $24$。对任意 $x=(1,0,1)^T$，投影给出 $\\hat v\\hat v^T x=\\frac{v(v^Tx)}{6}=\\frac{6}{6}v=v$，而 $Sx=24v$，两边一致。再取与 $v$ 正交的 $w=(1,1,0)^T$，投影给 $\\hat v\\hat v^Tw=0$，对应 $Sw=0$。投影把空间劈成两块：沿 $v$ 的一块被完整保留并乘以 $24$，正交补 $v^\\perp$ 那一块被整个压成零。这也顺带解释了教材 §I.7 的能量检验为什么在本题只能得到 $\\ge0$：能量 $4(v^Tx)^2$ 只测量 $x$ 在 $v$ 方向上的分量，$x$ 在 $v^\\perp$ 里怎么走，能量完全看不见。\r\n>\r\n> 跨课程连接要精确到机制，而不只是同名。你在 6.042J 学过 equivalence relation（等价关系）与 partition（划分）：$x\\sim y\\iff x-y\\in v^\\perp$ 是一个等价关系，它把 $\\mathbb{R}^3$ 精确划分成无数条平行于 $v$ 的直线，而 $\\hat v\\hat v^T$ 恰好就是从每条直线中挑出「与 $v$ 共线的那一点」的规范代表元选择器；区别在于，6.042J 的商集只关心「哪些元素被归为同一类」，而这里的投影矩阵还要回答「同一类里的信息如何被压缩到一个标量倍数」——这是一次带尺度信息的划分，商结构上多了一层线性权重，也正是「能量」这个量纲出现的地方。你在 CSAPP 第 2 章学过的浮点表示则可以解释一个数值隐患：外积形式 $4v_iv_j$ 与特征值形式 $24\\hat v_i\\hat v_j$ 在实数上恒等，但在浮点下路径不同——前者先做乘法再做加法，后者引入 $\\|v\\|^2=6$ 的除法与舍入，当 $v$ 的分量尺度差异很大时，两条路径的舍入误差不同，这是「同一个矩阵、不同算法给出不同数值结果」的最小例子。\r\n>\r\n> 最后把它接回本讲的全局：正定与半正定的差别，在秩一矩阵上被压缩成最干净的一句话——$S=c\\,vv^T$ 半正定，当且仅当 $c>0$；它是正定的，当且仅当不存在非零向量与 $v$ 正交，而在 $n\\ge2$ 时这种向量必然存在。本题 $n=3$、$c=4>0$，于是「半正定、非正定、rank $1$、谱 $\\{24,0,0\\}$」是同一件事的四种说法。\r\n>\r\n> 🎥 *Strang 在课上把 $2\\times2$ 例子推回能量与特征值的关系时*：OK. So you could compute its eigenvalues since it's 2 by 2. It's energy. I'll come back to that because that's the most important one.（翻译：好的。既然它是 $2\\times2$ 矩阵，你可以计算它的特征值。这是能量。我会回到这一点，因为这是最重要的问题。）\r\n>\r\n> 🎥 *Strang 在课上追问行列式与特征值的联动时*：that's what's so how is the determinant connected to the eigenvalues?（翻译：这就是问题所在：那么行列式与特征值是如何联系起来的？）本题给出的正是这个连接的一个极端情形：det $S=24\\cdot0\\cdot0=0$，行列式为零不是因为某个特征值「不小心」取到零，而是因为秩只有 $1$、被压缩掉的两个方向贡献了零特征值。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（主元、秩、特征值：三把尺子为何量出不同的数却互相锁死）**\r\n>\r\n> 本注要处理一个刚学正定检验时最容易混淆的设计问题：同一个矩阵，pivots 算出 $4,0,0$，eigenvalues 算出 $24,0,0$，rank 算出 $1$，det 算出 $0$——这四个数字凭什么可以同时是对的？它们各自量的是矩阵的哪一面？\r\n>\r\n> 先建立三条**互不相同的锁**。第一把锁是「数个数」：rank 数的是 column space（列空间）的维数，也就是「这个矩阵能把空间里多少个独立方向送到非零处」；这正是你在 Strang 线性代数里反复使用的秩—零化度守恒 $\\operatorname{rank}+\\dim N(S)=n$。第二把锁是「数总量」：trace 是特征值之和，这是对称矩阵谱分解的必然结果——把 $S=Q\\Lambda Q^T$ 与 $\\operatorname{tr}(S)=\\operatorname{tr}(Q\\Lambda Q^T)=\\operatorname{tr}(\\Lambda Q^TQ)=\\operatorname{tr}\\Lambda$ 走一遍即可，这里只用了迹的循环性质与 $Q^TQ=I$。第三把锁是「数个数乘总量」：det 是特征值之积。三条锁分别对应「几个」、「加起来多少」、「乘起来多少」，它们不可能同时被一组错误数字满足——这就是为什么自检必须同时做 rank、trace、det 三项，而不是只做一项。（命名模板：**三锁校验**——rank 锁个数、trace 锁总量、det 锁乘积。三项里任意一项对不上，错误一定在，不用再猜。）\r\n>\r\n> 那为什么 pivots 的**数值**既不是 trace 也不是特征值？因为主元是消元过程的产物，它记录的是「在给定消元顺序下，每个位置还能提取出多少新信息」。对一般对称矩阵，主元的符号与特征值的符号一致（这是惯性律层面的结论），但数值上两者只在极特殊结构下相等，例如 tridiagonal（三对角）对称矩阵，那里主元与特征值以另一种方式互相确定。本题 $S$ 完全稠密，主元之和 $4$ 与 trace $24$ 毫无关系；真正必须成立的是主元之积 $4\\cdot0\\cdot0=0$ 等于 det $S$，这一条在本题成立，也应当作为校验点。因此正确的读法是：**pivots 管符号模式与可逆性，eigenvalues 管量级与正定性**，两组数字分工不同，谁也不是谁的抄写。\r\n>\r\n> 具体验一遍这条分工。对 $S=\\begin{bmatrix}4&-4&8\\\\-4&4&-8\\\\8&-8&16\\end{bmatrix}$，消元得 $D=\\operatorname{diag}(4,0,0)$：主元里出现两个零，立刻宣告「不可逆、det $=0$、非正定」；特征值算出 $\\{24,0,0\\}$，立刻宣告「半正定、trace $=24$、能量最大放大倍数为 $24$」。若把 $S$ 改成 $4vv^T+\\epsilon I$（$\\epsilon>0$ 小量），主元变成 $4+\\epsilon,\\epsilon,\\epsilon$ 三个全正、特征值变成 $24+\\epsilon,\\epsilon,\\epsilon$ 三个全正，两把尺子同步翻面，这就是正定与半正定的分界线：$\\epsilon$ 从 $0^+$ 侧趋近时，三个主元与三个特征值都趋向「一正两零」，符号模式在极限处仍然一致。\r\n>\r\n> 跨课程连接要落到机制上。你在 6.006 学过二分搜索与分治：主元序列 $d_1,d_2,\\dots,d_n$ 的作用类似于分治算法中每一步递归后的**剩余问题规模**——第一步消元从 $3$ 个未知量里提取出 $1$ 维独立信息，第二步发现剩余规模已经是 $0$，于是递归立即终止；主元为 $0$ 不是「除不动」，而是「剩余子问题真空」。区别在于，分治的复杂度由递归深度与每层工作量决定，而这里我们关心的是**每一步剩余的自由度**，它决定了零空间的维数。再往 100B 实分析方向接一句：$c^TSc$ 是连续函数（多项式），它在单位球面（紧集）上的最小值就是最小特征值，本题最小值为 $0$，且在某条直线上取到，这条直线正是零空间方向——「半正定」在分析语言里就是「能量泛函在单位球面上的下确界为 $0$ 且可达到」。这与你在 CSAPP 第 2 章见过的「IEEE 754 中不存在负零能量」之类的边界情形无关，但与浮点有关的一点是：当 $\\epsilon$ 小到接近机器精度时，消元中 $d_2=(ac-b^2)/a$ 会出现两个几乎相等的数相减，主元的符号可能在浮点下被误判，教材 §I.9 讨论条件数时正是从这类现象入手。\r\n>\r\n> 最后回到本讲的检验清单：教材 §I.7 列出五个检验——energy、pivots、determinants、eigenvalues、$S=A^TA$——它们各自独立地给出完整答案。本题是一次很好的压力测试：energy 给 semidefinite（$4(v^Tx)^2\\ge0$），pivots 给「一正两零」，determinants 给 det $=0$、非正定，eigenvalues 给 $\\{24,0,0\\}$，$S=A^TA$ 给 $\\operatorname{rank}A=1$。五条路全部指向同一个结论，而数值各不相同。能把「数值不同但结论相同」这件事讲清楚，才算真正把这五个检验装进了同一套账本。\r\n>\r\n> 🎥 *Strang 在课上列举检验清单时*：determinants, pivots,（翻译：行列式、主元、）以及 Each one gives a test for positive definite matrices.（翻译：每一个都提供了正定矩阵的检验方法。）本题恰好显示这条清单在 semidefinite（半正定）边界上的行为：判据并未失效，只是答案从「正定」变成了「半正定」。\r\n>\r\n> 🎥 *Strang 在课上演示哪个判据最快暴露失败时*：Which is the easy test to see that it fails? Negative determinant. Determinant. The determinant is 15 minus 16,（翻译：哪个简单测试可以看出它不成立？负行列式。行列式。行列式为 $15$ 减 $16$，）本题的 det 不是负的而是 $0$：负 det 宣告 indefinite（不定），零 det 宣告 semidefinite（半正定），两者都不是 positive definite，但后续结论走向完全不同的分支，这个区别在套用判据时必须先分清。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 21,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 21,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 21,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 21,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 10191,
+            "outputTokens": 68684,
+            "cacheReadTokens": 68736,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 157,
+              "outputTokens": 16000,
+              "cacheReadTokens": 65664,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 21,
+        "val": {
+          "surfaceTokens": 47244,
+          "contextWindow": 1000000,
+          "pressureTokens": 65821,
+          "sampledSurfaceTokens": 39612
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 21,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4320,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 33711,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 7632,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 46100
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 21,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 18,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 20
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 21,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 21,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 21,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

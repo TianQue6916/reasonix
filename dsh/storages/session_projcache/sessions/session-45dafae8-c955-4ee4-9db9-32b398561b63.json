@@ -1,0 +1,176 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789868315494,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 14,
+        "val": "不要调用任何工具。写一份超"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 14,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "不要调用任何工具。写一份超长技术长文，主题『线性代数与机器学习中的矩阵分解全景』。要求：分 10 个小节，每节不少于 3000 个汉字，总计不少于 30000 个汉字。严禁写『以下略』『其余同理』这类省略，严禁提前收尾总结，一直写到满足总字数为止。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 14,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 14,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 14,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 14,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 14,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 0,
+            "outputTokens": 0,
+            "cacheReadTokens": 0,
+            "cacheWriteTokens": 0
+          },
+          "last": null
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 14,
+        "val": {
+          "surfaceTokens": 1599,
+          "contextWindow": 1000000
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 14,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 455
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 14,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 14,
+        "val": {
+          "openTurnStartSeq": 4,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "start",
+            "seq": 6
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 14,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 14,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0,
+          "pendingTurnStart": 1789868315528
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 14,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 14,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 14,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 14,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

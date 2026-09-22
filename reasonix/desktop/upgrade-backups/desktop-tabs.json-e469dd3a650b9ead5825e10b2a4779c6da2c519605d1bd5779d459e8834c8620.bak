@@ -1,0 +1,18 @@
+{
+  "tabs": [
+    {
+      "id": "tab_3494c5ad528a81962ac5c2cc428cc474",
+      "scope": "global",
+      "workspaceRoot": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\global-workspace",
+      "topicId": "topic_20260919-235150_622a4294a5ac20a1",
+      "sessionPath": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\projects\\c--users-27063-appdata-roaming-reasonix-global-workspace\\sessions\\20260919-235150.490471300-commandcode-goat-deepseek-deepseek-v4.1-flash.jsonl",
+      "model": "commandcode-goat/deepseek/deepseek-v4.1-flash",
+      "tokenMode": "full",
+      "agentPreset": "standard",
+      "qualityFloor": "standard",
+      "mode": "yolo",
+      "toolApprovalMode": "yolo"
+    }
+  ],
+  "activeTab": "tab_3494c5ad528a81962ac5c2cc428cc474"
+}

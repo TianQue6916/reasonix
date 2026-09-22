@@ -1,0 +1,88 @@
+- [工具-离线维基51GB-ZIM](工具-离线维基51GB-ZIM.md) — 离线维基百科（英文，51.9GB ZIM）— 自动搜索流程与代码
+- [工具-推荐OCR工具](工具-推荐OCR工具.md) — 用户上次推荐的OCR工具记录
+- [工具-迅雷Base64下载](工具-迅雷Base64下载.md) — 迅雷调用方法：thunder://协议Base64转换+Powershell推送
+- [工具 桌面工具箱快捷方式](工具-桌面工具箱快捷方式.md) — [global/reference] 桌面有工具箱.lnk → D:\Toolbox
+- [工具-Codex桌面版安装](工具-Codex桌面版安装.md) — OpenAI Codex Desktop App v26.609.4994.0 安装与配置记录
+- [工具-PDF翻译Codex工具箱](工具-PDF翻译Codex工具箱.md) — 工具箱 D:\Toolbox\ 内含 PDFMathTranslate + Codex Desktop App 安装包及快捷方式
+- [工具-PPT-Word自动生成](工具-PPT-Word自动生成.md) — 全自动PPT/Word文档生成工作流
+- [计划 方舟计划总结](计划-方舟计划总结.md) — [global/user] 方舟计划完整总结、API配置、学习体系规划
+- [技能安装 第二批4个技能](技能安装-第二批4个技能.md) — [global/reference] 第二批安装的4个Reasonix技能：计划管理+开发方法论+幻灯片+浏览器自动化
+- [技能安装-第三批AnthropicVercel](技能安装-第三批AnthropicVercel.md) — 第三批安装：Anthropic 官方技能 + Vercel 官方技能 + 三个技能合集索引
+- [技能安装 演示文稿技能](技能安装-演示文稿技能.md) — [global/reference] 三个由外部仓库转换安装的 Reasonix 演示文稿技能
+- [技能安装-MattPocock自动触发](技能安装-MattPocock自动触发.md) — Matt Pocock 技能集 — 自动触发规则 + 已安装技能索引
+- [降AIGC-10轮实战日志](降AIGC-10轮实战日志.md) — 10轮AIGC降率实战经验总结：策略对比与关键教训
+- [降AIGC-确定性规则替换铁律](降AIGC-确定性规则替换铁律.md) — 核心发现：AI改写AI文本=叠加AI指纹，唯一有效的是非LLM硬编码规则替换
+- [降AIGC-ACS理工科-ALH文科](降AIGC-ACS理工科-ALH文科.md) — ACS(理工科)+ALH(文科)降AIGC技能已创建，基于25篇知网论文真实数据分析
+- [学习 高等数学问答](学习-高等数学问答.md) — [global/project] 高等数学学习对话与问题解答
+- [学习 离散数学](学习-离散数学.md) — [global/project] 离散数学深入学习：Chernoff Bound等推导
+- [学习-CSAPP缓存优化](学习-CSAPP缓存优化.md) — CSAPP深入学习：缓存矩阵、对角块优化等
+- [学习-CSAPP目录结构](学习-CSAPP目录结构.md) — CSAPP全书目录结构解析
+- [学习-MIT-6042J回顾](学习-MIT-6042J回顾.md) — MIT6.042J离散数学课程前瞻性总结回顾
+- [元规则 技能路由16条](元规则-技能路由16条.md) — [global/project] 强制技能路由规则 — 16个场景的 Skill 自动触发映射
+- [元规则 自动记忆规则](元规则-自动记忆规则.md) — [global/feedback] 完成重要操作后自动 remember 保存结果，不等用户提醒
+- [元规则-Reasonix核心身份](元规则-Reasonix核心身份.md) — Reasonix Code 核心身份与运营规则——只改名字不改内容/标准化命名体系/会话分类规则
+- [academic research skills](academic-research-skills.md) — [global/reference] ARS 技能包（Claude Code）安装与核心功能备忘
+- [csapp summary methodology](csapp-summary-methodology.md) — [global/feedback] CSAPP方舟复述方法论——设计问题驱动+跨课程连接+事实核查的课程总结标准
+- [toolbox-path-index](toolbox-path-index.md) — D:\Toolbox 全套工具路径 + CLI 工具速查
+
+- [user persona cognitive system architect](user-persona-cognitive-system-architect.md) — [global/user] 用户完整画像 v3.0：2304 会话全量量化版（认知指纹/轨迹/行为/风险）
+
+- [bilingual translator 实战铁律5条](bilingual-translator-实战铁律5条.md) — [global/feedback] bilingual-translator 实战补充5条铁律：英文不开句、无箭头对照、术语仅首次加括号、不合并句子、LaTeX内不翻译
+
+- [strang translation lessons](strang-translation-lessons.md) — [global/feedback] Strang 翻译教训：子agent常见陷阱4条 + 亲自逐句翻译优于子agent
+
+- [元规则 reasonix核心身份](元规则-reasonix核心身份.md) — [global/user] Reasonix Code 核心身份与运营规则——只改名字不改内容/标准化命名体系/会话分类规则
+
+- [学习 csapp目录结构](学习-csapp目录结构.md) — [global/project] CSAPP全书目录结构解析
+
+- [学习 csapp缓存优化](学习-csapp缓存优化.md) — [global/project] CSAPP深入学习：缓存矩阵、对角块优化等
+
+- [学习 mit 6042j回顾](学习-mit-6042j回顾.md) — [global/project] MIT6.042J离散数学课程前瞻性总结回顾
+
+- [工具 codex桌面版安装](工具-codex桌面版安装.md) — [global/reference] OpenAI Codex Desktop App v26.609.4994.0 安装与配置记录
+
+- [工具 pdf翻译codex工具箱](工具-pdf翻译codex工具箱.md) — [global/reference] 工具箱 D:\Toolbox\ 内含 PDFMathTranslate + Codex Desktop App 安装包及快捷方式
+
+- [工具 ppt word自动生成](工具-ppt-word自动生成.md) — [global/project] 全自动PPT/Word文档生成工作流
+
+- [toolbox folder shortcut](toolbox-folder-shortcut.md) — [global/reference] D:\Toolbox\ 快捷方式：内有工具箱.lnk
+
+- [工具 推荐ocr工具](工具-推荐ocr工具.md) — [global/reference] 用户上次推荐的OCR工具记录
+
+- [工具 离线维基51gb zim](工具-离线维基51gb-zim.md) — [global/project] 离线维基百科（英文，51.9GB ZIM）— 自动搜索流程与代码
+
+- [工具 迅雷base64下载](工具-迅雷base64下载.md) — [global/reference] 迅雷调用方法：thunder://协议Base64转换+Powershell推送
+
+- [技能安装 mattpocock自动触发](技能安装-mattpocock自动触发.md) — [global/project] Matt Pocock 技能集 — 自动触发规则 + 已安装技能索引
+
+- [技能安装 第三批anthropicvercel](技能安装-第三批anthropicvercel.md) — [global/reference] 第三批安装：Anthropic 官方技能 + Vercel 官方技能 + 三个技能合集索引
+
+- [降aigc 10轮实战日志](降aigc-10轮实战日志.md) — [global/project] 10轮AIGC降率实战经验总结：策略对比与关键教训
+
+- [降aigc acs理工科 alh文科](降aigc-acs理工科-alh文科.md) — [global/reference] ACS(理工科)+ALH(文科)降AIGC技能已创建，基于25篇知网论文真实数据分析
+
+- [降aigc 确定性规则替换铁律](降aigc-确定性规则替换铁律.md) — [global/feedback] 核心发现：AI改写AI文本=叠加AI指纹，唯一有效的是非LLM硬编码规则替换
+
+- [DeepSeek V4 Flash 正式版（0731 同名升级）](deepseek-v4-flash-ga-0731.md) — [global/reference] DeepSeek V4 Flash 正式版 0731 上线：同名原地升级，模型 id 不变，Reasonix 零改动自动生效
+
+- [dev sidecar ca installed](dev-sidecar-ca-installed.md) — [global/reference] dev-sidecar 证书两步安装法：系统信任库 + setting.json 状态标记，含 pkill 自伤与 sudo 无终端教训
+
+- [任务前调用用户画像验证逻辑](use-user-persona-before-tasks.md) — [global/feedback] 用户要求：任何实质性任务（翻译/教学/方案）前先调用用户画像验证输出逻辑
+
+- [Reasonix Linux launcher 布局迁移修复](reasonix-launcher-layout-migrate-fix.md) — [global/reference] Reasonix Linux 侧边栏启动失败修复：launcher 迁移 bug 根因（缺 reasonix-cli）+ 两步修复法 + 用户级 .desktop 覆盖
+
+- [ssh passwordless and tool skills 20260804](ssh-passwordless-and-tool-skills-20260804.md) — [global/reference] 主力机免密SSH已配置(tqjq/天阙九泉)+12个skill shadow修复+3个工具skill(知识库/Lean/离线维基)
+
+- [Linux NTFS 自动挂载 /media/OS 配置](linux-ntfs-automount-media-os.md) — [global/reference] NTFS C 盘已配置开机自动挂载到 /media/OS（fstab + systemd 验证通过），含 sudo -S 管道陷阱教训
+
+- [tailscale tianque jiuquan mesh](tailscale-tianque-jiuquan-mesh.md) — [global/reference] Tailscale 双机组网档案：Linux=100.79.96.82 / Windows=100.84.67.49，SSH 命令、开机自启、Windows 安装登录坑（MSI/schtasks 提权/CLI 无输出）
+
+- [Reasonix 32 并行上限与翻译分工设计](reasonix-32-parallel-limit-and-translation-division.md) — [global/feedback] Reasonix 单批最多 32 并行；模型铁律：翻译/审计/交叉引用/格式审计一律 flashauto，只有写注与超强审计用 pro；全资源搜索（双盘区/主力机/网络/离线维基）
+
+- [bilingual-ocw-translator 重构完成（v2.0）](bilingual-ocw-translator-refactored-v2.md) — [global/project] bilingual-ocw-translator 已重构为 11 章单文件（v2.0）：铁律前置/双审计/全资源搜索；双机同步以 Linux 版为准，win 旧 8b 必须被覆盖
+
+- [strang part002 translation complete](strang-part002-translation-complete.md) — [global/project] Strang LaLFD part002（p51-100）双语翻译完成：文件位置、覆盖范围、流程资产、OCR 工具链、成本经验
+
+- [bilingual ocw translator v21 backup iron rule](bilingual-ocw-translator-v21-backup-iron-rule.md) — [global/project] bilingual-ocw-translator v2.1：新增铁律 19 每一步备份（5 个必做备份点，快照保留 ≥3 份）
+
+- [desktop exec gio parsing pitfall](desktop-exec-gio-parsing-pitfall.md) — [global/reference] .desktop 三坑：Exec 禁 \" 转义（GIO 解析失败）、需 gio set metadata::trusted true、检查类脚本用 echo;read 停窗；验证=validate+gio launch
