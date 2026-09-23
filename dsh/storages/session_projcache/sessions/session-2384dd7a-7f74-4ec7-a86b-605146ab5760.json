@@ -9,14 +9,31 @@
       "inheritedEventCount": 0
     },
     "rows": {
+      "armor": {
+        "ver": 3,
+        "seq": 2354,
+        "val": {
+          "running": false,
+          "verdict": "pass",
+          "words": [],
+          "safe": [
+            "报告",
+            "隔离",
+            "隔离"
+          ],
+          "risk": [],
+          "domain": null,
+          "domainHits": 0
+        }
+      },
       "title": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": "reasonix更新完之后好像出了问"
       },
       "titleInput": {
         "ver": 3,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "first": {
             "seq": 8,
@@ -28,17 +45,17 @@
       },
       "llmRetry": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": {}
       },
       "sandboxMode": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": "danger-full-access"
       },
       "goal": {
         "ver": 6,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "current": null,
           "seenGoalIds": [],
@@ -47,7 +64,7 @@
       },
       "tokenUsage": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "totals": {
             "uncachedInputTokens": 1705989,
@@ -69,7 +86,7 @@
       },
       "contextPressure": {
         "ver": 4,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "surfaceTokens": 214361,
           "contextWindow": 1000000,
@@ -79,7 +96,7 @@
       },
       "contextBreakdown": {
         "ver": 4,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "nodes": [
             {
@@ -1007,7 +1024,7 @@
       },
       "turnBoundary": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "openTurnStartSeq": null,
           "lastStepStartSeq": 2350,
@@ -1020,7 +1037,7 @@
       },
       "sessionStats": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "turns": 13,
           "steps": 421,
@@ -1037,7 +1054,7 @@
       },
       "turnOutline": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "turns": [
             {
@@ -1124,19 +1141,19 @@
       },
       "agentPreset": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": "anchored-standard"
       },
       "subagentCatalog": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "inheritedEventCount": 0
         }
       },
       "subagentTiming": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "descriptorSeen": false,
           "settledMs": 0
@@ -1144,22 +1161,22 @@
       },
       "subagent": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {}
       },
       "permissions": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "preset": "danger-full-access",
           "sandbox": "danger-full-access",
           "approval": "never",
-          "seeded": false
+          "seeded": true
         }
       },
       "modelSelection": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "lastUsed": {
             "provider": "commandcode-goat",
@@ -1171,7 +1188,7 @@
       },
       "sessionListMetadata": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "blank": false,
           "lastPromptAt": 1789993833799
@@ -1179,17 +1196,17 @@
       },
       "imageLimits": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": null
       },
       "todos": {
         "ver": 2,
-        "seq": 2353,
+        "seq": 2354,
         "val": null
       },
       "plan": {
         "ver": 3,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "active": false,
           "wanted": null,
@@ -1199,12 +1216,12 @@
       },
       "subagentModelSelectionPolicy": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": null
       },
       "inbox": {
         "ver": 1,
-        "seq": 2353,
+        "seq": 2354,
         "val": {
           "next-turn": [],
           "next-step": []

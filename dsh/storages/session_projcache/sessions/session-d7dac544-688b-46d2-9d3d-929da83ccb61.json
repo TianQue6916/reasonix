@@ -1,0 +1,301 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790130656627,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 74,
+        "val": "你是学术译者注的**扩写专家**"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 74,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**扩写专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注各自扩写到 **800-1200 个汉字**（`$...$` 公式、```math 围栏、引用不计入）。\r\n\r\n【扩写方法（照此补足）】\r\n− 补**机制解释**：先回答这一段/这个定理在解决什么设计问题，再从第一性原理展开为什么必须这样做\r\n− 补**一个具体例子或验算**：代入具体数值、小矩阵（如 $2\\times2$）、或两步手算，让结论可复算\r\n− 补**一条跨课程连接**：精确到「课程名 + 概念 + 连接路径 + 区别」，可用锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− 必要时给一个**命名模板**（如谱夹逼法能量检验法零空间吸收法）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 原有 `$...$`、```math 围栏、反斜杠命令**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda、把 `$A$` 写成 A\r\n2. 🚫 不得删除原有数学内容、公式、例子、跨课程连接——你只做加法\r\n3. 禁止 Unicode 上下标；禁止 `$$`\r\n4. 保留 `> ` blockquote 前缀（每条注整体是一个引用块，续行也要带 `> `）\r\n5. `@@LOC@@` 行必须逐字原样保留\r\n\r\n【输出格式（🚨 结构化，逐字照此）】\r\n@@NOTE@@\r\n@@LOC@@<逐字原样保留>\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（类型）：**</span> 注的正文……（续行以 `> ` 开头）\r\n@@END@@\r\n\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待扩写的注 ===========================\r\n@@NOTE@@\r\n@@LOC@@译者注（跨课程连接：拉格朗日乘子为何制造鞍点）： Stran\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接：拉格朗日乘子为何制造鞍点）：**</span> Strang 这句话是双关：拉格朗日乘子法既**解决**很多鞍点问题，也**制造**它们。机制在于乘子的角色不对称：原问题「在 $Ac=b$ 上最小化」可以写成对 $c$ 求极小、同时对 $\\lambda$ 求极大的问题，因为对违反约束的 $c$，让 $\\lambda$ 取大就能把 $L$ 顶到任意大，只有落到约束面上才压得下来。一个函数若在一部分变量上求极小、在另一部分变量上求极大，它的驻点必然是鞍点；鞍点不是算法的故障，而是约束优化内生的几何形态。本页的推导把「带约束的最小化」变成一个线性方程组，而这个方程组的矩阵天然不定。链条很干净：最小化 $\\frac12c^TSc$ 受约束 $Ac=b$，构造 $L(c,\\lambda)=\\frac12c^TSc+\\lambda^T(Ac-b)$，令 $\\partial L/\\partial c=0$ 与 $\\partial L/\\partial\\lambda=0$，得到 $H=\\begin{bmatrix}S&A^T\\\\A&0\\end{bmatrix}$ 上的分块系统；$H$ 对称，但右下角的零块注定它不定。\r\n@@END@@\r\n\r\n@@NOTE@@\r\n@@LOC@@译者注（交错定理：夹逼与维数预算）： 这条定理常被称为 Ca\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（交错定理：夹逼与维数预算）：**</span> 这条定理常被称为 Cauchy interlacing theorem（柯西交错定理）：删掉对称矩阵的一行一列，剩下的 $(n-1)\\times(n-1)$ 矩阵的特征值不会「另起炉灶」，而是被原矩阵的特征值一对一对地夹住。理解它的钥匙是第 174 页的 Courant-Fischer 刻画，但要看清一个集合包含关系：$\\dim V=i$ 而 $c\\perp e_n$，这就等于在 $\\{e_n\\}^{\\perp}$ 这个 $n-1$ 维空间中找 $i$ 维子空间。于是 $\\alpha_i=\\max_{\\dim V=i,\\,V\\perp e_n}\\min_{c\\in V}R(c)$ 里的「$V$ 还要垂直于 $e_n$」是一条额外约束，候选对象比 $\\lambda_i=\\max_{\\dim V=i}\\min_{c\\in V}R(c)$ 少，所以 $\\alpha_i\\le\\lambda_i$。反方向看：$\\lambda_{i+1}$ 允许在 $i+1$ 维空间里自由选取，比 $\\alpha_i$ 的一族「被钉在正交补里」的 $i$ 维空间更宽松；维数预算保证任何 $i+1$ 维子空间必与 $\\{e_n\\}^{\\perp}$ 有至少 $1$ 维的交（$(i+1)+(n-1)\\ge n$），在这个交里取一个向量就能把比值压到 $\\alpha_i$ 附近，于是 $\\alpha_i\\ge\\lambda_{i+1}$。两边合起来就是 $\\lambda_i\\ge\\alpha_i\\ge\\lambda_{i+1}$，交错由此得名。注意「删去行列」与「限制在正交补内」是同一件事：删掉最后一行一列后，二次型 $c^TSc$ 中凡出现 $c_n$ 的项全部消失，剩下的恰好是子矩阵的二次型，而 $c$ 自然满足 $c_n=0$，也就是 $c\\perp e_n$。这条定理是压缩感知与低秩建模的技术底座：它告诉你删掉一帧、丢掉一个传感器、少测一个坐标，谱只会「小幅挪动」，不会跳变，所以低秩结构在缺数据时依然可辨认。跨课程连接：概率论与数理统计里的「极值统计」处理的是随机样本的最大最小，而这里的 $\\max\\min$ 是几何对象（子空间族）上的极值，两者的共同点是都靠夹逼定界，区别在于后者的可行性由维数整数决定，与随机性无关。常见误用要避免：交错定理只对**对称**矩阵（或 Hermitian 矩阵）成立，一般方阵没有实特征值可交错；写成「所有矩阵」就错了。另外 $\\alpha_i$ 是删去后子矩阵的特征值，不是原矩阵任意 $n-1$ 个特征值，别把两个列表混着比。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 74,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 74,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 74,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 74,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 74,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 3749,
+            "outputTokens": 25270,
+            "cacheReadTokens": 216448,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 12,
+            "buckets": {
+              "uncachedInputTokens": 177,
+              "outputTokens": 2619,
+              "cacheReadTokens": 28032,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 74,
+        "val": {
+          "surfaceTokens": 16209,
+          "contextWindow": 1000000,
+          "pressureTokens": 28209,
+          "sampledSurfaceTokens": 15089
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 74,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 721,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2615,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 89,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 1450,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 774,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 1627,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 1248,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 1099,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 38,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 602,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 427,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 853,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 1489,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 66,
+              "system": false
+            },
+            {
+              "seq": 67,
+              "heuristicTokens": 246,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 72,
+              "heuristicTokens": 1120,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 15065
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 74,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 74,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 71,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 73
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 74,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 74,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 74,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 74,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 74,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 74,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

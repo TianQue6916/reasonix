@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129501379,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_175 = 书页 172\r\npage_176 = 书页 173\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:175@@（书页 172）\r\n−-- OCR 原文 −--\r\n172\r\nLow Rank and Compressed Sensing\r\nThe Largest Eigenvalue of S + T\r\nThe largest eigenvalue Of a symmetric matrix S is the maximum value Of TS / T\r\nThis statement applies also to T (still symmetric). Right aw aY we know about the largest\r\neigenvalue of S +\r\n(s + T) xmax(s) + (T)\r\ncT(S + ）\r\n05 ）\r\nThat maximum iS reached at an\r\nTh e le side is th e maximum value of\r\neigenvector of S + ：\r\ncTSc\r\nvT(S + ） 鬱 T 鬱\r\nÄS+T =\r\n= xs + XT ·\r\n< max\r\n+ max\r\nThe eigenvector 鬱 Of S + maximizes th at first ratio. But it probably doesn't maximlze\r\nthe last two. Therefore ,Ås + ÄT can only increase beyond ÄS+T.\r\nThi S shows th at a maximum principle iS convenient. SO iS a mirllmum pnnciple\r\nfor the sm 訂 g “ v · There we expect /\\min (S + ） /\\min (S) + /\\min@） ·\r\nThe s ame reasomng will prove it—the separate minimum principles for S and will bnng\r\nus lower than /\\min (S + ） · Or we c an app ly th e maximum pnnciple t0 —S and 一\r\nThe difficulties come for the in-between eigenvalues t0 /\\n\r\nTheir elgenvectors\r\nTS / T The derivatives of 咒 ） are all\r\nare saddle points of the function R@)\r\nzero at the eigenvectors q2 tO q 一 1 · But the matrix Of second deriv ativ e s Of 娓 is indefi nite\r\n(plus and minus eigenvalues) at these saddle points · That makes the eigenvalues h ard to\r\ne stimate and hard to calculate.\r\n刀 OW give a e 0 觐 the saddle 0 ． One reason is their possible app e aran C e ln\r\nthe algonthms of deep learning. We need some expenence with them ， in the basic problem\r\nOf eigenvalues · S addle points also appear when there are constraints · If possible we want\r\ntO connect them tO 襯 0 殍 10 or tO m 讠 a 可 maxima ·\r\nThose ideas lead to the best possible bound for each eigenvalue of S + ：\r\nWeyl upper bounds .X ·\r\n艹 “ 1 （ s + T) Xi(S)+Äj(T).\r\n（ 16 ）\r\nSaddle P0ints 什 om Lagrange Multipliers\r\nComp ared tO saddle points, computing a maximum or minimum Of F(C) is rel atively e asYe\r\nWhen we h ave an approximate solution ， we know th at 尸 （ ） is not below th e mimmum\r\nof 尹 and not above the maximum ： d ” 0 But we don ， t know whether (@) is\r\nab 0 or below a saddle point value. Similarly, th e matrix H(c) of second derivatives 0f\r\nF is positive definite ()r semldefinite) at a minimum and negative definite at a maximum•\r\nTh e second derivative matrix H at a saddle point is symmetric but indefinite,\r\nH has both positive and neg atlve eigenvalues-—this make s saddle points more difficult•\r\nThe co 丐 ugate gradient method is not usually available to find s addle points of T 丌 苏\r\n\r\n−-- 现有译文（含译者注） −--\r\n@@PAGE:175@@\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Largest Eigenvalue of \\(S+T\\)（\\(S+T\\) 的最大特征值）\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中 `TS / T`、`cTSc`、`vT(S +)` 等均按上下文重建为二次型 $\\dfrac{x^T S x}{x^T x}$（即瑞利商）；`(s + T) xmax(s) + (T)`、`cT(S +)` 重建为 $\\lambda_{\\max}(S+T)\\le\\lambda_{\\max}(S)+\\lambda_{\\max}(T)$；`ÄS+T` 重建为 $\\lambda_{S+T}$，`Åmin`、`/\\min` 重建为 $\\lambda_{\\min}$，`/\\n` 重建为 $\\lambda_n$，`咒）` 重建为 $R(c)$，`襯 0 殍 10`、`m 讠 a 可 maxima` 依上下文重建为 minimum、maximum。公式一律按数学语境重建。\r\n\r\n对称矩阵 $S$ 的最大特征值，就是比值 $\\dfrac{x^T S x}{x^T x}$ 的最大值。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 这段的关键动作只有一句话：把「矩阵的特征值」翻译成「一个函数在单位球上的最大或最小值」，即 $\\lambda_{\\max}(S)=\\max_{x\\ne 0}x^TSx/x^Tx$。翻译之后，不等式退化成初等的「和的最大值不超过最大值之和」，完全不需要谱定理这台机器。\r\n\r\n> 我把它命名为**瑞利商分离法**，三步可复用：(i) 把待估的量写成某个约束集上的极值（这里是单位球上的二次型）；(ii) 把和号或系数拆开，用 $\\max(f+g)\\le\\max f+\\max g$ 分离；(iii) 检查等号能否取到，若不能，就说明它为何是严格不等式。第三步常被跳过，但本书明确点出了：使 $x^T(S+T)x/x^Tx$ 最大的那个特征向量，一般不会同时是 $S$ 与 $T$ 的最大特征向量，所以等号是例外而非常态。最小值方向对偶：$\\min(f+g)\\ge\\min f+\\min g$，即 $\\lambda_{\\min}(S+T)\\ge\\lambda_{\\min}(S)+\\lambda_{\\min}(T)$；也可以直接对 $-S,-T$ 再用一次最大值原理，那是同一模板的取负版本。\r\n\r\n> Weyl 上界 (16) 是这个模板的指标化推广：$\\lambda_{i+j-1}(S+T)\\le\\lambda_i(S)+\\lambda_j(T)$。它与 6.042J 的偏序语言很合拍：把每个矩阵的特征值按降序排成一条全序链，交错型不等式给出的是两条链对第三条链的夹逼——$\\lambda_k(S+T)$ 被 $S$ 的第 $i$ 个与 $T$ 的第 $j$ 个夹住，指标满足 $i+j-1=k$，本质是「用两个已排序序列控制第三个序列」的组合约束。在凸优化里，$\\lambda_{\\max}$ 是矩阵空间上的凸函数，而 $\\lambda_{\\max}(S+T)\\le\\lambda_{\\max}(S)+\\lambda_{\\max}(T)$ 正是凸函数次可加性的实例，与范数三角不等式同族。\r\n\r\n> 验算一次。取 $S=\\begin{bmatrix}2&0\\\\0&0\\end{bmatrix}$（特征值 $2,0$），$T=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$（特征值 $1,-1$）。则 $S+T=\\begin{bmatrix}2&1\\\\1&0\\end{bmatrix}$，特征方程 $\\lambda^2-2\\lambda-1=0$，特征值 $1\\pm\\sqrt{2}$。于是 $\\lambda_{\\max}=1+\\sqrt{2}\\approx 2.414\\le 2+1=3$ 成立；$\\lambda_{\\min}=1-\\sqrt{2}\\approx-0.414\\ge 0+(-1)=-1$ 成立；再取 $i=1,j=2$ 用 (16)：$\\lambda_2(S+T)=1-\\sqrt{2}\\le\\lambda_1(S)+\\lambda_2(T)=2-1=1$ 也成立。三个界都正确但都松，说明它们是保命用的，不是精确用的。\r\n\r\n> 最后是难点。中间特征值 $\\lambda_2$ 到 $\\lambda_{n-1}$ 对应瑞利商的鞍点：梯度为零，二阶矩阵 $H$ 却不定。这解释了一个设计现象：用共轭梯度解 $Hc=b$ 的前提是 $H$ 定号，鞍点处该前提直接失效，迭代会停在既非极大也非极小的点上。把上面第 (iii) 步的直觉迁移过来就更清楚：极值有单调可验证性（算出 $F(c)$ 就知道它不低于最小值），鞍点没有——你无法只凭函数值判断自己站在鞍点的哪一侧，这正是深度学习里「逃出鞍点」困难的代数根源。\r\n\r\n\r\n这一论断同样适用于 $T$（它依然是对称矩阵）。由此我们立刻就知道 $S+T$ 的最大特征值满足\r\n\r\n```math\r\n\\lambda_{\\max}(S+T)\\le\\lambda_{\\max}(S)+\\lambda_{\\max}(T).\r\n```\r\n\r\n这个最大值在 $S+T$ 的某一个特征向量 $x$ 处达到：\r\n\r\n```math\r\n\\lambda_{S+T}=\\max_{x\\neq 0}\\frac{x^T(S+T)x}{x^T x}\r\n=\\max_{x\\neq 0}\\left(\\frac{x^T S x}{x^T x}+\\frac{x^T T x}{x^T x}\\right)\r\n\\;\\le\\;\\max_{x\\neq 0}\\frac{x^T S x}{x^T x}+\\max_{x\\neq 0}\\frac{x^T T x}{x^T x}\r\n=\\lambda_S+\\lambda_T .\r\n```\r\n\r\n左边是 $\\dfrac{x^T(S+T)x}{x^T x}$ 的最大值，右边则是两个分开的比值之和。$S+T$ 的那个使第一个比值取最大的特征向量 $x$，未必同时使最后两个比值取最大。因此 $\\lambda_S+\\lambda_T$ 只会增大到超过 $\\lambda_{S+T}$。\r\n\r\n这说明 maximum principle（最大值原理）用起来很方便，而对最小的那个特征值而言，minimum principle（最小值原理）同样方便。在那里我们预期 $\\lambda_{\\min}(S+T)\\ge\\lambda_{\\min}(S)+\\lambda_{\\min}(T)$。\r\n\r\n同样的推理可以证明它——把 $S$ 与 $T$ 各自的最小值原理分开使用，会把我们带到比 $\\lambda_{\\min}(S+T)$ 更低的地方。或者，我们可以把最大值原理应用于 $-S$ 与 $-T$。\r\n\r\n真正的困难出现在中间那些特征值 $\\lambda_2$ 到 $\\lambda_{n-1}$ 上。它们的特征向量是函数 $R(c)=\\dfrac{c^T S c}{c^T c}$ 的鞍点（saddle point），而 $R(c)$ 的导数在特征向量 $q_2$ 到 $q_{n-1}$ 处全都为零。但 $R$ 的二阶导数矩阵在这些鞍点处是不定的（indefinite，特征值有正有负）。这使得这些特征值既难以估计，也难以计算。\r\n\r\n下面给出关于鞍点的一点直观感受。原因之一是它们可能出现在深度学习的算法中。我们需要对它们积累一些经验，而这要从特征值这个基本问题入手。当存在约束时，鞍点也会出现。如果可能的话，我们希望把它们与某种极小或极大联系起来。\r\n\r\n这些想法导向 $S+T$ 每个特征值的最佳可能上界：\r\n\r\n<span style=color:#c0392b;>**[theorem] Weyl upper bounds（Weyl 上界）**</span>\r\n\r\n```math\r\n\\lambda_{i+j-1}(S+T)\\le\\lambda_i(S)+\\lambda_j(T). \\tag{16}\r\n```\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Saddle Points from Lagrange Multipliers（来自拉格朗日乘子的鞍点）\r\n\r\n与鞍点相比，计算 $F(c)$ 的最大值或最小值要相对容易。当我们有一个近似解时，我们知道 $F(c)$ 不低于最小值、也不高于最大值。但我们并不知道 $F(c)$ 是高于还是低于某个鞍点值。类似地，$F$ 的二阶导数矩阵 $H(c)$ 在最小值处是正定（或半正定）的，在最大值处是负定的。\r\n\r\n而在鞍点处，二阶导数矩阵 $H$ 虽然对称，却是不定的，它同时具有正特征值和负特征值——这正是鞍点更难以处理的原因。共轭梯度法（conjugate gradient method）通常无法用来求 $F$ 的鞍点。\r\n\r\n@@PAGE:176@@（书页 173）\r\n−-- OCR 原文 −--\r\n田 2 lnterlacing Eigenvalues an d Low Rank SignaIs\r\n173\r\nLagrange is responsible for a lot of saddle point problems. We start by mnimizing\r\na positive definite energy Sc, but there are m constraints = b on the solution ·\r\nThose constraints are multiplied by new unknowns 入 1 ， 。\r\n· ， /\\rn (the Lagrange multipli er s)\r\nand theY are built into th e Lagran g i an function ：\r\n1\r\nLagrangian L(), X) =\r\n2\r\nThe m + equations DL/Dc = 0 and OL/OX = 0 produce an indefinite block matn ：\r\n0L/0æ\r\n/ 0 入\r\nSc 十 AT 入\r\nS AT\r\nand H\r\n一 b\r\n入\r\n0\r\n（ 17 ）\r\nb\r\nA small ex ample would be H 一\r\nwith neg ative determrnant 一 1 ： its eigenvalues\r\n1 0\r\nhave oppo s ite signs. The ProbIem Set confirms that this KKT matrix ” in equation （ 17 ）\r\nis 忉 d 乜 The solution （ X) is a saddle point 0f Lagrange's function L\r\nS addle Points from Rayleigh Quotients\r\nThe manmum and minimum of the Rayleigh quotient ） = are 入 1 and 入\r\nqlsqn\r\nql Sq1\r\nql Ä1q1 = 入 1 Minimum\r\nMaximum\r\nql ql\r\nqn 入 q = 入 讹\r\nOur question is ab out the s addle points—the other points where 酣 deriv auve s 0f the\r\nquotient R(c) are zero · We w ill c onfirm that those saddle p oints occur at the 0 ther\r\neigenvectors q2 t0 q 一 1 Of S. Our goal is tO see 入 2 t0 入 一 1 as maxima 0f minima ·\r\nThat max-min in sight is the key tO interlacing ·\r\nNotice that the vectors and 2 and cc @ 关 0 ） all produce the same quotient ：\r\n4 cTSc cTSc\r\n(2c)Ts （ 2\r\n（ 2 T （ 2\r\nSO We Only need tO consider unit vectors w ith = 1. Th at C an become a constraint ：\r\ncTSc\r\nis th e same aS max subj ect tO = 1\r\n08 ）\r\nmax\r\nThe constraint T = 1 can be handled by one Lagrange multiplier ！\r\n（ 19 ）\r\nLagrangian L(c,Ä) = 一 入 一 1 ） ·\r\nThe max-min-saddle points will have OL/Oæ = 0 an d OL/O/\\ = 0 ()s in Section 1.9) ：\r\nOL\r\nOL\r\n= 2Sc 一 '2Ä = 0 and\r\n0c\r\nSays that the unit vector is an eigenvector with Sc = 入\r\n（ 20 ）\r\n\r\n−-- 现有译文（含译者注） −--\r\n@@PAGE:176@@\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中 `入 1 ， 。 · ， /\\rn` 重建为 $\\lambda_1,\\dots,\\lambda_m$，`æ`、`DL/Dc`、`0L/0æ` 中的 `æ` 重建为 $c$，`0 入`、`OL/OX` 重建为 $\\partial L/\\partial\\lambda$，`忉 d 乜` 重建为 indefinite（不定），`酣 deriv auve s` 重建为 the derivatives，`08 ）`、`（ 19 ）`、`（ 20 ）` 分别为公式编号 (18)、(19)、(20)。公式一律按数学语境重建。\r\n\r\n拉格朗日对大量鞍点问题负有责任。我们从最小化一个正定的能量 $\\frac{1}{2}c^T S c$ 出发，但解上带有 $m$ 个约束 $A c=b$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> Strang 这句话是双关：拉格朗日乘子法既**解决**很多鞍点问题，也**制造**它们。机制在于乘子的角色不对称：原问题「在 $Ac=b$ 上最小化」可以写成对 $c$ 求极小、同时对 $\\lambda$ 求极大的问题，因为对违反约束的 $c$，让 $\\lambda$ 取大就能把 $L$ 顶到任意大，只有落到约束面上才压得下来。一个函数若在一部分变量上求极小、在另一部分变量上求极大，它的驻点必然是鞍点；鞍点不是算法的故障，而是约束优化内生的几何形态。第 173 页的推导把「带约束的最小化」变成一个线性方程组，而这个方程组的矩阵天然不定。链条很干净：最小化 $\\frac12c^TSc$ 受约束 $Ac=b$，构造 $L(c,\\lambda)=\\frac12c^TSc+\\lambda^T(Ac-b)$，令 $\\partial L/\\partial c=0$ 与 $\\partial L/\\partial\\lambda=0$，得到 $H=\\begin{bmatrix}S&A^T\\\\A&0\\end{bmatrix}$ 上的分块系统；$H$ 对称，但右下角的零块注定它不定。判定不定性的标准做法是 Schur 补加惯性不变，值得命名：**分块消元与惯性不变法（Schur 补定号则整体不定）**。当 $S$ 正定、$A$ 行满秩时，$H=\\begin{bmatrix}I&0\\\\AS^{-1}&I\\end{bmatrix}\\begin{bmatrix}S&0\\\\0&-AS^{-1}A^T\\end{bmatrix}\\begin{bmatrix}I&S^{-1}A^T\\\\0&I\\end{bmatrix}$，左右两个因子是单位三角矩阵，这个变换不改变惯性（Sylvester 的惯性定律，19 世纪经典结论）。中间的对角分块里 $S$ 贡献 $n$ 个正特征值，$-AS^{-1}A^T$ 因 $A$ 行满秩而负定，贡献 $m$ 个负特征值；所以 $H$ 的特征值有正有负。几何含义是：沿某些方向走 $L$ 上升，沿另一些方向走 $L$ 下降，解 $(c,\\lambda)$ 正是 $L$ 的鞍点。最小验算就是文本里的 $H=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$：$\\det H=-1$，特征值 $\\pm1$，一正一负。稍大一点的例子：$S=I_2$，$A=\\begin{bmatrix}1&1\\end{bmatrix}$，$H=\\begin{bmatrix}1&0&1\\\\0&1&1\\\\1&1&0\\end{bmatrix}$，$\\det H=1\\cdot(1\\cdot0-1\\cdot1)+1\\cdot(0\\cdot1-1\\cdot1)=-2\\ne0$；Schur 补 $-AS^{-1}A^T=-2$ 是 $1\\times1$ 负定块，于是 $H$ 有 $2$ 个正特征值、$1$ 个负特征值，与「$n$ 正 $m$ 负」吻合。这个例子还能整体验算：取 $b=2$，解得 $c=(1,1)^T$、$\\lambda=-1$，于是 $H(c;\\lambda)=(0,0,2)^T$，正好是 $(0,0,b)^T$，说明解同时满足两个方程；而它在 $c$ 方向是极小、在 $\\lambda$ 方向是极大，鞍点身份一目了然。这也顺带解释了为什么不带选主元的 LU 在 $H$ 上会直接崩掉：$H$ 的右下角整块为零，对角元出现零主元，消元必须借助 $1\\times1$ 或 $2\\times2$ 的主元块才能继续，这正是历史上传闻中「对称不定系统比正定系统难解」的技术根源。\r\n再从复杂度看这条链：直接解 $H$ 是 $(n+m)\\times(n+m)$ 规模、代价约 $(n+m)^3$ 的三次运算，而分块消元把它降成 $n$ 规模的 $S$ 与 $m$ 规模的 $AS^{-1}A^T$ 两块，当约束数 $m$ 远小于变量数 $n$ 时省下的量级很大。这正是 6.006 里「利用问题结构换取更低复杂度」的常规套路；区别在于 6.006 只关心运算次数的渐进上界，而这里还必须同时关心数值稳定性——对称不定系统的消元要选主元，否则复杂度降下来了，精度却可能全丢。跨课程连接：你在 Boyd 里学的 KKT 条件是同一件事的优化语言——原问题与对偶问题的最优解一起构成 $L$ 的鞍点，$L(c^*,\\lambda)\\le L(c^*,\\lambda^*)\\le L(c,\\lambda^*)$；这里说的则是这个鞍点在矩阵层面的指纹，即惯性为 $(n,m)$。区别在关注点：Boyd 关心「解是否满足最优性条件」，Strang 关心「这个方程组怎么解、为什么比正定系统难解」——共轭梯度要求正定，对 $H$ 直接用会失败。第二条连接在 Strang 自己的 18.065：消掉 $\\lambda$ 后剩下的 $AS^{-1}A^T$ 是 Gram 型矩阵，和最小二乘里把超定方程化成正规方程 $A^TAx=A^Tb$ 是同一个动作——消掉一组变量，换到规模更小、保持对称的系统上。区别有两点：最小二乘的 $A^TA$ 必然半正定、问题总有解，而这里的 $AS^{-1}A^T$ 只是消元途中的负定中间产物；两者都会把条件数平方，$\\kappa(A^TA)=\\kappa(A)^2$，这正是实践中宁可用 QR 或分块消元、也不硬解正规方程的理由。实践中的做法是分块消元（把 $\\lambda$ 消掉，得到 $AS^{-1}A^T$ 上的系统）或使用允许 $1\\times1$、$2\\times2$ 主元的对称不定分解。\r\n\r\n\r\n这些约束乘以新的未知量 $\\lambda_1,\\dots,\\lambda_m$（the Lagrange multipliers，拉格朗日乘子），并被构造成拉格朗日函数：\r\n\r\n```math\r\n\\text{Lagrangian } L(c,\\lambda)=\\tfrac{1}{2}c^T S c+\\lambda^T(Ac-b).\r\n```\r\n\r\n$m+n$ 个方程 $\\partial L/\\partial c=0$ 与 $\\partial L/\\partial\\lambda=0$ 产生一个不定的分块矩阵：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial c}=Sc+A^T\\lambda=0,\r\n\\qquad\r\n\\frac{\\partial L}{\\partial \\lambda}=Ac-b=0,\r\n```\r\n\r\n```math\r\n\\begin{bmatrix} S & A^T \\\\ A & 0 \\end{bmatrix}\r\n\\begin{bmatrix} c \\\\ \\lambda \\end{bmatrix}\r\n=\r\n\\begin{bmatrix} 0 \\\\ b \\end{bmatrix},\r\n\\qquad H=\r\n\\begin{bmatrix} S & A^T \\\\ A & 0 \\end{bmatrix}. \\tag{17}\r\n```\r\n\r\n一个很小的例子是 $H=\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}$，其行列式为 $-1$：它的两个特征值符号相反。习题集将证实方程（17）中这个「KKT matrix」（KKT 矩阵）是不定的。该解 $(c,\\lambda)$ 是拉格朗日函数 $L$ 的一个鞍点。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Saddle Points from Rayleigh Quotients（来自瑞利商的鞍点）\r\n\r\n瑞利商 $R(c)=\\dfrac{c^T S c}{c^T c}$ 的最大值与最小值分别是 $\\lambda_1$ 与 $\\lambda_n$：\r\n\r\n```math\r\n\\frac{q_1^T S q_1}{q_1^T q_1}=\\lambda_1\\ \\text{(Maximum)},\r\n\\qquad\r\n\\frac{q_n^T S q_n}{q_n^T q_n}=\\lambda_n\\ \\text{(Minimum)}.\r\n```\r\n\r\n我们的问题关乎鞍点——即商 $R(c)$ 的其余那些导数为零的点。我们将确认，这些鞍点出现在 $S$ 的其余特征向量 $q_2$ 到 $q_{n-1}$ 处。我们的目标是把 $\\lambda_2$ 到 $\\lambda_{n-1}$ 看成某种极大中的极小。这一 max-min（极大-极小）视角正是交错性质的关键。\r\n\r\n请注意，向量 $c$ 与 $2c$（以及任何 $c\\neq 0$ 的倍数）都产生同一个商：\r\n\r\n```math\r\n\\frac{c^T S c}{c^T c}=\\frac{(2c)^T S (2c)}{(2c)^T (2c)}.\r\n```\r\n\r\n所以我们只需考虑长度满足 $c^T c=1$ 的单位向量。这可以写成一个约束：\r\n\r\n```math\r\n\\max_{c\\neq 0}\\frac{c^T S c}{c^T c}\r\n\\quad\\text{与}\\quad\r\n\\max\\ c^T S c \\ \\text{subject to}\\ c^T c=1 \\tag{18}\r\n```\r\n\r\n是同一个问题。\r\n\r\n约束 $c^T c=1$ 可以用一个拉格朗日乘子来处理：\r\n\r\n```math\r\n\\text{Lagrangian } L(c,\\lambda)=c^T S c-\\lambda(c^T c-1). \\tag{19}\r\n```\r\n\r\n极大、极小与鞍点都将满足 $\\partial L/\\partial c=0$ 与 $\\partial L/\\partial\\lambda=0$（与 §I.9 一样）：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial c}=2Sc-2\\lambda c=0,\r\n\\qquad\\text{and}\\qquad\r\n\\frac{\\partial L}{\\partial \\lambda}=c^T c-1=0. \\tag{20}\r\n```\r\n\r\n第一个方程说明：这个单位向量是特征向量，且满足 $Sc=\\lambda c$。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6999,
+            "outputTokens": 9230,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6999,
+              "outputTokens": 9230,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 12275,
+          "contextWindow": 1000000,
+          "pressureTokens": 10455,
+          "sampledSurfaceTokens": 5183
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3623,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 7092,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11131
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

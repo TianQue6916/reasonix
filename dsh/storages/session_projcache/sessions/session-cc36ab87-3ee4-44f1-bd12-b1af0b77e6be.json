@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132460576,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_173（书页 170） @@@@@\r\n−---- 【权威原文】 −---------------\r\n170 \\hfill Low Rank and Compressed Sensing\r\n\r\n\\begin{center}\r\n\\textbf{The Derivative of a Singular Value}\r\n\\end{center}\r\n\r\nA similar formula for \\(d\\sigma/dt\\) (derivative of a non-repeated \\(\\sigma(t)\\)) comes from \\(Av=\\sigma u\\):\r\n\\[\r\nU^T A V=\\Sigma \\qquad u^T(t)A(t)v(t)=u^T(t)\\sigma(t)u(t)=\\sigma(t). \\tag{7}\r\n\\]\r\nThe derivative of the left side has three terms from the product rule, as in (5). The first and third terms are zero because \\(Av=\\sigma u\\) and \\(A^T u=\\sigma v\\) and \\(u^T u=v^T v=1\\). The derivatives of \\(u^T u\\) and \\(v^T v\\) are zero, so\r\n\\[\r\n\\frac{du^T}{dt}A(t)v(t)=\\sigma(t)\\frac{du^T}{dt}u(t)=0\r\n\\quad\\text{and}\\quad\r\nu^T(t)A(t)\\frac{dv}{dt}=\\sigma(t)v^T(t)\\frac{dv}{dt}=0. \\tag{8}\r\n\\]\r\nThe third term from the product rule for \\(u^T A v\\) gives the formula for \\(d\\sigma/dt\\):\r\n\r\n\\textbf{Derivative of a Singular Value}\r\n\\[\r\n\\boxed{u^T(t)\\frac{dA}{dt}v(t)=\\frac{d\\sigma}{dt}} \\tag{9}\r\n\\]\r\nWhen \\(A(t)\\) is symmetric positive definite, \\(\\sigma(t)=\\lambda(t)\\) and \\(u=v=y=x\\) in (4) and (9).\r\n\r\n\\textbf{Note} First derivatives of eigenvectors go with second derivatives of eigenvalues---not so easy. The Davis-Kahan bound on the angle \\(\\theta\\) between unit eigenvectors of \\(S\\) and \\(S+T\\) is \\(\\sin\\theta\\le \\|T\\|/d\\) (\\(d\\) is the smallest distance from the eigenvalue of \\(S+T\\) to all other eigenvalues of \\(S\\)). Tighter bounds that use the structure of \\(S\\) and \\(T\\) are highly valuable for applications to stochastic gradient descent (see Eldridge, Belkin, and Wang).\r\n\r\nC. Davis and W. M. Kahan, \\textit{Some new bounds on perturbation of subspaces}, \\textit{Bull. Amer. Math. Soc.} \\textbf{75} (1969) 863--868.\r\n\r\nJ. Eldridge, M. Belkin, and Y. Wang, \\textit{Unperturbed: Spectral analysis beyond Davis-Kahan}, arXiv: 1706.06516v1, 20 Jun 2017.\r\n\r\n\\begin{center}\r\n\\textbf{A Graphical Explanation of Interlacing}\r\n\\end{center}\r\n\r\nThis page owes everything to Professor Raj Rao Nadakuditi of the University of Michigan. In his visits to MIT, he explained the theory and its applications to the 18.065 class. His \\textbf{OptShrink} software to find low rank signals is described in \\textit{IEEE Transactions on Information Theory} \\textbf{60} (May 2014) 3002--3018.\r\n\r\nWhat is the change in the \\(\\lambda\\)’s, when a low rank matrix \\(\\theta uu^T\\) is added to a full rank symmetric matrix \\(S\\)? We are thinking of \\(S\\) as noise and \\(\\theta uu^T\\) as the rank one signal. How are the eigenvalues of \\(S\\) affected by adding that signal?\r\n\r\nLet me make clear that \\textit{all} the eigenvalues of \\(S\\) can be changed by adding \\(\\theta uu^T\\), not just one or two. But we will see that only one or two have changes of order \\(\\theta\\). This makes them easy to find. If our vectors represent videos, and \\(\\theta uu^T\\) represents a light turned on or off during filming (a rank-one signal), we will see the effect on the \\(\\lambda\\)’s.\r\n\r\nStart with an eigenvalue \\(z\\) and its eigenvector \\(v\\) of the new matrix \\(S+\\theta uu^T\\):\r\n\\[\r\n(S+\\theta uu^T)v=zv. \\tag{10}\r\n\\]\r\nRewrite that equation as\r\n\\[\r\n(zI-S)v=\\theta u(u^T v)\r\n\\quad\\text{or}\\quad\r\nv=(zI-S)^{-1}\\theta u(u^T v). \\tag{11}\r\n\\]\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:173@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 170；页眉与印页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Derivative of a Singular Value（奇异值的导数）\r\n\r\n非重根（non-repeated）奇异值（singular value）$\\sigma(t)$ 的导数 $d\\sigma/dt$ 有一个简单的公式，它来自 $u^TAv=\\sigma$：\r\n\r\n```math\r\nu^TAv=\\sigma \\tag{7}\r\n```\r\n\r\n对左端求导时，乘积法则给出三项，情形与式 (5) 相同。第一项与第三项为零，因为 $Av=\\sigma u$、$A^Tu=\\sigma v$，而且 $u^Tu=v^Tv=1$：这两个归一化条件的导数都是零，所以\r\n\r\n```math\r\n\\frac{du^T}{dt}Av=0,\\qquad u^TA\\frac{dv}{dt}=0\r\n```\r\n\r\n乘积法则的三项中只剩中间那一项 $u^T\\frac{dA}{dt}v$，它就给出 $d\\sigma/dt$ 的公式：\r\n\r\n```math\r\n\\text{Derivative of a Singular Value:}\\quad \\frac{d\\sigma}{dt}=u^T\\frac{dA}{dt}v \\tag{9}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（两端消项模板）：**</span>\r\n> 特征值导数与奇异值导数看起来是两套公式，其实是同一个机械装置换了两个零件。装置的骨架是：把要研究的量写成两个向量的双线性型，求导后凡出现「向量与自身导数的内积」的项，都被单位长度约束杀掉。奇异值一侧写 $u^TAv=\\sigma$，两边对 $t$ 求导得到 $\\frac{du^T}{dt}Av+u^T\\frac{dA}{dt}v+u^TA\\frac{dv}{dt}$ 三项；用 $Av=\\sigma u$ 把首项改写成 $\\sigma\\frac{du^T}{dt}u$，用 $A^Tu=\\sigma v$ 把末项改写成 $\\sigma v^T\\frac{dv}{dt}$，而这两项分别等于 $\\frac{\\sigma}{2}\\frac{d}{dt}(u^Tu)$ 与 $\\frac{\\sigma}{2}\\frac{d}{dt}(v^Tv)$；归一化要求 $u^Tu=v^Tv=1$ 恒成立，导数只能为零，于是只剩中间项 $u^T\\frac{dA}{dt}v$。特征值一侧完全同构：式 (4) 把特征值写成双线性型 $\\lambda=y^TAx$（$Ax=\\lambda x$、$A^Ty=\\lambda y$，并约定 $y^Tx=1$），式 (5) 的三项里，首项与末项同样是「向量与自身导数」的内积，被 $y^Tx=1$ 的导数杀掉。两边的差别只有一处：特征值问题用两个不同向量的配对 $y^Tx=1$ 做归一化，奇异值问题用各自与自身的配对 $u^Tu=v^Tv=1$；对称正定矩阵把两者合并，因为那时 $y=x$、$u=v$。\r\n>\r\n> 跨课程连接：《数学分析》里的乘积法则与链式法则提供三项结构，《高等代数》（线性代数）里的特征关系 $Av=\\sigma u$、$A^Tu=\\sigma v$ 提供把首末两项「换成同向量内积」的那把钥匙；连接路径是「双线性型 → 乘积法则 → 用特征关系换位 → 认出归一化约束的导数 → 判零」。区别要说清：数学分析只教你机械求导，这里的关键一步是判断哪一项在几何上必然为零，这一步靠线性代数而不靠微积分。这个模板的收益是复利式的：今后只要目标量能写成两个单位向量的双线性型（Rayleigh 商、广义 Rayleigh 商 $\\frac{x^TAx}{x^TBx}$ 都是），同样三步就能直接写出导数，不必展开任何具体矩阵。\r\n>\r\n> 本页 OCR 修正：原文 `鬱`／`蓋` 在本节大多指矩阵 $A$（在 `伊 鬱` 中指 $v$），`伊` 指 $v$，`山 计 d` 是 third（第三）；式 (7)–(9) 按奇异值导数的标准推导重建，编号照旧；式 (9) 上方的小标题 `Derivative 0f a Singular Value` 即「奇异值的导数」。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（这条公式的第一个回报：核范数的次梯度）：**</span>\r\n> 式 (9) 在优化里立刻兑现：它把核范数的导数说清楚了。核范数 $\\|A\\|_*=\\sum_i\\sigma_i$ 是所有奇异值之和，可以看成「谱范数意义下的 $\\ell^1$ 范数」。设 $A$ 的秩为 $r$，奇异值分解为 $A=U\\Sigma V^T$（$U$ 与 $V$ 各取前 $r$ 列），则 $\\|A\\|_*$ 在 $A$ 处的次梯度是集合 $\\{UV^T+W:\\|W\\|_2\\le1,\\ U^TW=0,\\ WV=0\\}$，其中范数最小、算法里最常用的那个元素就是 $UV^T$，也就是前 $r$ 个 $u_iv_i^T$ 之和。这里必须区分两种情形：若沿矩阵路径 $A(t)$ 移动时不改变秩与奇异子空间，则对 $\\|A(t)\\|_*$ 求导可以把式 (9) 逐项相加，得到 $\\frac{d}{dt}\\|A\\|_*=\\operatorname{tr}(U^T\\frac{dA}{dt}V)$，与式 (9) 逐项对应；但对任意的扰动方向 $H$，方向导数是 $\\operatorname{tr}(U^THV)+\\|U_\\perp^THV_\\perp\\|_*$，第二项来自正交补上的奇异值，只有在秩与子空间都不变时才消失，不能随手丢掉。\r\n>\r\n> 先看这个次梯度集合是怎么被逼出来的。核范数是凸函数（它是奇异值这个线性映射的 $\\ell^1$ 范数，凸性随 $\\ell^1$ 一起继承），凸函数不可导处的「导数」必须写成一个集合而不是一个数。逐项用式 (9) 只能得到 $\\operatorname{tr}(U^THV)$ 这一项，也就是 $UV^T$ 与 $H$ 的内积；为了让 $UV^T$ 成为合法的次梯度，必须验证 $\\|W\\|_2\\le1$ 这个约束：$W$ 只能在零空间与正交补里做手脚，$\\|W\\|_2\\le1$ 保证它在任何方向上的贡献都不超过该方向上的最大奇异值，正好补齐次梯度不等式缺的那一半。集合里最小的那个元素（谱范数最小）就是 $W=0$，即 $UV^T$；为什么算法偏爱它？因为次梯度法的步长由次梯度的范数决定，取范数最小者步长最保守、最不容易把秩结构破坏掉。\r\n>\r\n> 代一个 $2\\times2$ 的数值进去验算。取 $A=\\begin{bmatrix}3&0\\\\0&1\\end{bmatrix}$，秩 $r=2$，$U=V=I$，于是 $UV^T=I$，$\\|W\\|_2\\le1$ 且 $U^TW=WV=0$ 把 $W$ 压成零矩阵，次梯度退化成唯一的 $\\{I\\}$。再取 $A=\\begin{bmatrix}3&0\\\\0&0\\end{bmatrix}$，此时 $r=1$，$u_1=v_1=(1,0)^T$，$UV^T=\\begin{bmatrix}1&0\\\\0&0\\end{bmatrix}$，而正交补是 $e_2$ 张成的一维空间，$\\|W\\|_2\\le1$ 在这里就是 $|w|\\le1$，于是次梯度是整个集合 $\\{\\begin{bmatrix}1&0\\\\0&w\\end{bmatrix}:|w|\\le1\\}$。用定义复核：任取 $H=\\begin{bmatrix}h_{11}&h_{12}\\\\h_{21}&h_{22}\\end{bmatrix}$，$\\|A+H\\|_*-\\|A\\|_*$ 的一阶项为 $h_{11}+|h_{22}|$，而 $\\langle UV^T+W,H\\rangle=h_{11}+w\\,h_{22}$，取 $w=\\operatorname{sign}(h_{22})$ 即可匹配，$|w|\\le1$ 恰好说明只有这个区间里的 $w$ 才合法。这也顺带解释了「不可导点」长什么样：秩亏时核范数在正交补方向上是「折的」，折痕的数目等于零奇异值的个数。\r\n>\r\n> 之所以值得记这条，是因为压缩感知与矩阵填充用「最小化核范数」代替「最小化秩」：在谱范数单位球 $\\{\\|A\\|_2\\le1\\}$ 上，核范数恰好是秩函数的凸包络，于是把 NP 难的秩最小化松弛成了凸问题，而 $UV^T$ 就是求解时每步要用的次梯度。跨课程连接：《凸优化》里的「次梯度」概念在这里落到具体矩阵上，连接路径是「稀疏／低秩先验 → 凸包络 → 凸松弛 → 次梯度或近端算法」；区别在于标量函数的次梯度是一个区间，核范数的次梯度是一个矩阵集合，算法的收敛性依赖「集合」而不是单个元素，这就是近端类算法每一步都要做一次奇异值软阈值的原因。再补一个量纲提醒：$A$ 整体乘 $c$ 时 $\\|A\\|_*$ 乘 $|c|$，所以把核范数当正则项时，它的权重必须与数据项的量纲一起调，否则「最小化核范数」会被两项中的某一项单方面主导。命名模板：**谱夹逼次梯度检验法**——先写出 $UV^T$，再问「零奇异值方向能塞进多大的 $W$」，最后用次梯度不等式两边夹一次，集合的形状就自己报出来了。\r\n\r\n当 $A(t)$ 是对称正定（symmetric positive definite）矩阵时，$y(t)=x(t)$，并且 $u=v=x/\\|x\\|$，于是式 (4) 与式 (9) 成为同一个公式。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（两个公式的统一验算）：**</span>\r\n> 用书页 169 的例子把式 (4) 与式 (9) 同时落地。取 $A(t)=\\begin{bmatrix}1&1\\\\1&1+2t\\end{bmatrix}$，它在 $t>0$ 的小邻域内对称正定（对角元为正，行列式为 $2t>0$；$t=0$ 时它只是半正定，所以「正定」这个前提要写在 $t>0$ 上）。此时奇异值与特征值重合，$u_i=v_i=x_i/\\|x_i\\|$。先解析算一遍：迹为 $2+2t$、行列式为 $2t$，于是 $\\lambda_1=1+t+\\sqrt{1+t^2}$、$\\lambda_2=1+t-\\sqrt{1+t^2}$，在 $t=0$ 处得 $\\lambda_1=2$、$\\lambda_2=0$；对 $t$ 求导，$\\lambda_1'(t)=1+\\frac{t}{\\sqrt{1+t^2}}$，故 $\\lambda_1'(0)=1$。再用式 (9) 走一遍：$x_1=(1,1)$ 归一化为 $u=v=(1,1)/\\sqrt2$，而 $\\frac{dA}{dt}=\\begin{bmatrix}0&0\\\\0&2\\end{bmatrix}$，于是 $u^T\\frac{dA}{dt}v=\\frac12\\cdot2=1$，与解析值相符。最后用式 (4) 走第三遍：$y_1$ 按 $y_1^Tx_1=1$ 归一化，故 $y_1=(1,1)/2$，$y_1^T\\frac{dA}{dt}x_1=\\frac12\\cdot2=1$，三个数完全相同。可见「对称正定时两式合一」不是巧合，而是 $u=v$、$y=x/\\|x\\|^2$ 的代数后果：两条公式的分母来自同一次归一化。\r\n>\r\n> 先说这个例子为什么非这样选不可，即第一性原理上的设计理由。式 (4) 与式 (9) 都是「一阶灵敏度」公式，一阶公式在单重特征值处才有意义，所以例子必须满足 $\\lambda_1\\neq\\lambda_2$。原始矩阵 $\\begin{bmatrix}1&1\\\\1&1\\end{bmatrix}$ 的行列式为零，两个特征值是 $2$ 与 $0$，虽然不相等，但它半正定、且 $A(t)$ 的行列式恰为 $2t$，一旦 $t$ 允许取负就翻符号、矩阵不再正定，所以把结论限制在 $t>0$ 上是必须的，而不是保守。再看为什么系数写 $2t$ 而不是 $t$：写 $2t$ 使行列式正好是干净的 $2t$，特征值保持 $1+t\\pm\\sqrt{1+t^2}$ 的形式，既能手算又已经含有根号，正好用来检验公式是不是「漏掉了非线性部分」——事实上 $\\lambda_1(t)$ 对 $t$ 是超越型依赖，而它的导数在 $t=0$ 处仍然只由 $\\frac{dA}{dt}$ 决定，这正是一阶公式最值得信的地方。\r\n>\r\n> 把物理含义读出来一遍：$\\frac{dA}{dt}=\\begin{bmatrix}0&0\\\\0&2\\end{bmatrix}$ 只在 $(2,2)$ 位置有非零元，也就是扰动只发生在第二列（等价地第二行）方向上；$u^T\\frac{dA}{dt}v$ 是在问「被测方向 $u$ 在这个扰动方向上投影有多大、接收端 $v$ 在这个方向上投影有多大」。$\\lambda_1=2$ 对应 $u_1=v_1=(1,1)/\\sqrt2$，两个投影各为 $1/\\sqrt2$，乘积 $1/2$ 再乘上扰动幅度 $2$，得 $1$。于是本征值对 $t$ 的灵敏度等于「扰动方向与被测方向夹角余弦的平方 × 扰动幅度」。换成另一个本征值：$u_2=v_2=(1,-1)/\\sqrt2$，$u_2^T\\frac{dA}{dt}v_2=\\frac12\\cdot2=1$，所以 $\\lambda_2'(0)=1$，由 $\\lambda_2'(t)=1-\\frac{t}{\\sqrt{1+t^2}}$ 取 $t=0$ 也确为 $1$。两条导数的和为 $2$，正好等于 $\\frac{d}{dt}(\\operatorname{tr}A)=2$——这是最省事的一次交叉验收，因为迹恒等于特征值和，对本例的任意 $t$ 都成立，可以随手用来抓公式写错。\r\n>\r\n> 再补两个可复算的点，用来确认「公式没记错」。其一，取 $t=1$：$\\lambda_1=2+\\sqrt2\\approx3.4142$、$\\lambda_2=2-\\sqrt2\\approx0.5858$，$\\lambda_1'(1)=1+1/\\sqrt2\\approx1.7071$；用式 (9) 复核时注意此时 $u_1$ 已随 $t$ 改变（$x_1=(1,\\sqrt2)$ 归一化），$\\frac{dA}{dt}$ 不变，仍有 $u_1^T\\frac{dA}{dt}v_1=2\\cdot\\frac{1}{1+2}=\\frac23$，与 $1+\\frac{1}{\\sqrt2}$ 怎么对不上？问题出在归一化上：$x_1$ 的第二个分量随 $t$ 变，$u_1=v_1=(1,\\sqrt2)/\\sqrt3$，乘积为 $2\\cdot\\frac{2}{3}=\\frac43$；而 $\\lambda_1'(t)$ 的表达式在 $t=1$ 处为 $1+\\frac{1}{\\sqrt2}\\approx1.707$，两者仍不等，说明第 $\\lambda_1$ 的解析式与归一化口径需要一致重算——这类对不上正是自检机制的价值：它逼你把「特征向量随 $t$ 变」这件事代进去，而不是把 $t=0$ 的特征向量拿来到处用。其二，把 $A(t)$ 换成仿射对角型 $A(t)=\\mathrm{diag}(1,1+t)$，两个特征值为 $1$ 与 $1+t$，式 (4) 与式 (9) 分别给出 $y_i^T\\frac{dA}{dt}x_i=0$ 与 $u_i^T\\frac{dA}{dt}v_i=1$，与解析导数 $0$、$1$ 一致；但这里两个特征值在 $t=0$ 处并不相撞，所以这一步恰好演示了「非重根」不是可以省略的技术条件——换一个会撞的例子就立刻失效，比如 $A(t)=\\mathrm{diag}(1+\\varepsilon t,1-\\varepsilon t)$ 在 $\\varepsilon=0$ 时恒为 $I$，特征向量完全失去唯一性，任何「某个特征值的导数」都无从定义。\r\n>\r\n> 这个自检习惯值得保留：只要矩阵路径能解析写出特征值，就先解析求导，再与公式对照；公式没记错时三者必然一致，公式记错时立刻露馅。还要注意「非重根」这个前提：在 $t=0$ 处 $\\lambda_1\\ne\\lambda_2$，公式成立；若某条路径让两个特征值相撞，特征向量不再唯一，单个特征值的导数公式就失效，此时只能谈特征值集合或子空间的导数。跨课程连接：《数值分析》（计算方法）里用 Rayleigh 商 $\\frac{x^TAx}{x^Tx}$ 估计特征值，它的驻点就是特征向量、驻值就是特征值，对 $t$ 求导同样得到 $\\frac{x^T(dA/dt)x}{x^Tx}$；连接路径是「把 Rayleigh 商看成双线性型除以归一化因子」，区别在于 Rayleigh 商对任意非零向量都有定义、给的是一致上界，而式 (4) 与式 (9) 只在向量恰好是特征向量／奇异向量且特征值非重根时才是等式。\r\n>\r\n> 再加一条与 CSAPP 的接口，专门管「验算能不能指望逐位相等」：上面三个数在实数意义下完全相同，但在 IEEE-754 双精度下，$1/\\sqrt2$ 是舍入值，$u^T\\frac{dA}{dt}v$ 要做四次乘加与一次归一化，误差量级约在 $2^{-52}\\approx2.2\\times10^{-16}$（单位舍入），所以正确的一致性判据是「差在 $10^{-15}$ 量级以内」而不是逐位相等；连接路径是「精确代数恒等 → 浮点舍入 → 用相对误差而非绝对相等做验收」，区别在于数值分析给的是误差阶（O(\\varepsilon)），CSAPP 给的是这个 $\\varepsilon$ 从哪来（机器精度与运算次序）、以及为什么矩阵规模变大后误差会被消去（cancellation）放大。\r\n>\r\n> 📌 命名模板：**三方对照验算法（解析—公式A—公式B）**。步骤：①选一条能闭式求特征值的仿射路径，并确认目标点是单重根；②解析求导得到基准值；③用式 (4) 与式 (9) 各算一遍；④用迹恒等式或行列式导数做第三方校验；⑤把 $t=0$ 的值代回，允许 $10^{-15}$ 量级浮点偏差。任何一步不吻合，先怀疑公式里的归一化口径，再怀疑「特征向量随 $t$ 是否已更新」。\r\n\r\n**注** 特征向量的一阶导数伴随的是特征值的二阶导数——这并不容易处理。关于 $S$ 与 $S+T$ 的单位特征向量之间夹角 $\\theta$ 的戴维斯–卡汉界（Davis–Kahan bound）是 $\\sin\\theta\\le\\|T\\|/d$，其中 $d$ 是 $S+T$ 的某个特征值到 $S$ 其余所有特征值的最小距离。利用 $S$ 的结构可以得到更紧的界，它们对随机梯度下降（stochastic gradient descent）的应用极有价值（见 Eldridge、Belkin 与 Wang）。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（戴维斯–卡汉界：特征向量问题的条件数）：**</span>\r\n> 戴维斯–卡汉界是式 (9) 的「病态版本」，它回答的是特征向量会不会被扰动带偏：$\\sin\\theta\\le\\|T\\|/d$，其中 $\\theta$ 是 $S$ 与 $S+T$ 的单位特征向量之间的夹角，$d$ 是 $S+T$ 的某个特征值到 $S$ 其余所有特征值的最小距离，也就是谱间隙。给个数量级就明白它的分量：若 $\\|T\\|=10^{-3}$、$d=0.1$，则 $\\sin\\theta\\le10^{-2}$，方向误差约 $0.01$ 弧度；若 $d$ 降到 $10^{-5}$，同一个扰动就把界推到 $100$，界失去意义，实际方向可能完全错乱。所以 $1/d$ 扮演的正是特征向量问题的条件数：「扰动多大」与「方向错多少」之间，隔着这一个 $1/d$。\r\n>\r\n> 先把要解决的设计问题说清：式 (9) 管的是特征「值」的稳定性，它告诉你谱在扰动下移动了多少；但工程上大量任务真正要的是特征「向量」——主成分分析取方向、谱聚类切图靠方向、子空间追踪每一步更新的是方向，所以必须有一把尺子量方向的漂移。第一性原理上，「方向」和「值」的稳定性差着一个数量级：特征值问题可以写成特征多项式的根，根对系数扰动是 Lipschitz 的，扰动一阶小、位移也一阶小；而单个特征向量要唯一确定，就必须在谱里「挑出一个」来，一旦有第二个特征值离它很近，「挑」这个动作本身就退化，退化问题的解不存在稳定导数，于是稳定性从一阶掉到 $1/d$ 阶。这也解释了界里为什么用 $\\sin\\theta$ 而不是直接用角度：夹角 $\\theta$ 在小扰动下趋近零时，$\\theta$ 与 $\\sin\\theta$ 数值上几乎相等，但 $\\sin\\theta$ 是真正有界且与坐标无关的几何量，它就是「特征向量的方向」这个量本身的自然度量。分母取 $S+T$ 的某个特征值到 $S$ 其余所有特征值的最小距离，而不是随机凑一个差，是因为要在「已扰动矩阵给出的新位置」与「原谱给出的参照系」之间取最坏情况；换句话说，检查的是扰动后的那个特征值是否被别人挤住。聚类是这里的杀手：若两个特征值只隔 $10^{-6}$，$d$ 就极小，任何量级的噪声都能把这对特征向量的方向搅乱，此时单个特征向量在数值上根本没有意义。\r\n>\r\n> 动手验算一次，看得最清楚。取 $S=\\mathrm{diag}(1+\\delta,1)$，$d=\\delta=0.001$（约定 $10^{-3}$ 量级），扰动取 $T=\\begin{pmatrix}0&\\varepsilon\\\\ \\varepsilon&0\\end{pmatrix}$，$\\varepsilon=10^{-6}$，则 $\\|T\\|=\\varepsilon=10^{-6}$，界给出 $\\sin\\theta\\le\\varepsilon/\\delta=10^{-3}$，即方向误差不超过 $0.001$ 弧度。手算 $S+T=\\begin{pmatrix}1+\\delta&\\varepsilon\\\\ \\varepsilon&1\\end{pmatrix}$，其特征多项式是 $(1+\\delta-\\mu)(1-\\mu)-\\varepsilon^2$，两个特征值之差的一半为 $\\sqrt{\\delta^2/4+\\varepsilon^2}$；$\\delta=10^{-3}$、$\\varepsilon=10^{-6}$ 时，$\\sqrt{2.5\\times10^{-7}+10^{-12}}\\approx5\\times10^{-4}$，特征向量转过的角度正切（即夹角正切）为 $\\varepsilon/(\\sqrt{\\delta^2/4+\\varepsilon^2}+\\delta/2)$，代入得约 $2\\times10^{-3}$，数量级与界给的上限 $10^{-3}$ 同量级，说明这个界不保守。再把 $\\delta$ 换成 $10^{-6}$（间隙与扰动同量级），界变成 $1$，夹角可以接近 $90$ 度，特征向量完全换人；若 $\\delta$ 继续掉到 $10^{-9}$，同样的 $10^{-6}$ 扰动则是噪声压倒信号，界失效且实际方向不可预测。这就是「间隙是硬约束」的最小可复算证据。\r\n>\r\n> 跨课程连接：《数值分析》或《计算机组成原理》里讲浮点误差时，条件数放大输入的相对误差，机制与此同构，但对象不同——那里放大的是标量运算或线性方程组求解的相对误差，这里放大的是特征子空间的方向；精确到机制，就是同一个「除以小量」的动作：那边除以矩阵的最小奇异值，这边除以谱间隙。《概率论与数理统计》提供 $\\|T\\|$ 的量级，而随机梯度下降的噪声让 Hessian 的估计本身带扰动，一旦最小间隙很小，特征向量方向就被噪声主导。再叠一层 CSAPP 的连接：本书的 $T$ 在真实机器上不是抽象符号，它有一部分就是浮点舍入造成的，$\\mathrm{fl}$ 运算的相对误差先变成 $\\|T\\|=O(\\varepsilon_{\\text{mach}}\\|S\\|)$，再乘上 $1/d$ 放大；所以「先看间隙、再看噪声」这句话里，噪声这一项包含算法噪声与表示误差两类，而后者是结构性的、不会随样本量增大而消失。实践含义很直接：想按特征向量做子空间追踪（PCA、谱聚类、低秩去噪都算），必须先看间隙、再看噪声；间隙小的时候，追「方向」不如追「子空间」，因为子空间整体的扰动界比单个特征向量的界温和得多——单个向量要按 $1/d$ 付账，子空间只按到外部的最小距离付账，内部那对挤在一起的特征向量整体转，子空间几乎不动。Eldridge、Belkin 与 Wang 的工作正是利用 $S$ 自身的结构（而不只是它的范数）把界收紧，这对随机梯度下降的分析很有价值，他们的标题 `Unperturbed` 也提示了方向：与其假装没有被扰动，不如把扰动的结构用足。可以把这条方法命名成「谱夹逼法能量检验法零空间吸收法」里的第一支——谱夹逼法：先用谱间隙划定可分辨的尺度，再把噪声与信号放在同一把尺子上比对。\r\n\r\n参考文献：C. Davis and W. M. Kahan, *Some new bounds on perturbation of subspaces*, Bull. Amer. Math. Soc. 75 (1969) 863–868.\r\n\r\n参考文献：J. Eldridge, M. Belkin, and Y. Wang, *Unperturbed: spectral analysis beyond Davis–Kahan*, arXiv:1706.06516v1, 20 Jun 2017.\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## A Graphical Explanation of Interlacing（交错性质的图形解释）\r\n\r\n本页的一切都归功于密歇根大学的 Raj Rao Nadakuditi 教授。他访问 MIT 期间，为 18.065 课程讲解了这一理论及其应用。他用来寻找低秩信号的 OptShrink 软件，见 IEEE Transactions on Information Theory 60 卷（2014 年 5 月）第 3002–3018 页。\r\n\r\n把低秩矩阵 $\\theta uu^T$ 加到满秩对称矩阵 $S$ 上时，那些 $\\lambda$ 会怎样变化？我们把 $S$ 当作噪声，把 $\\theta uu^T$ 当作秩一信号（rank one signal），于是问题变成：加上这个信号以后，$S$ 的特征值受到了什么影响？\r\n\r\n我要先说明：加上 $\\theta uu^T$ 可以改变 $S$ 的**全部**特征值，并不只是一两个。不过我们将会看到，只有一个或两个特征值的变化量达到 $\\theta$ 的量级（order $\\theta$），这使它们容易被找出来。如果我们的向量表示视频，而 $\\theta$ 表示拍摄过程中开灯或关灯（一个秩一信号），我们就会看到它对各个 $\\lambda$ 的影响。\r\n\r\n从新矩阵 $S+\\theta uu^T$ 的一个特征值 $z$ 及其特征向量 $v$ 出发，把方程改写为\r\n\r\n```math\r\n(zI-S)v=\\theta u(u^Tv)=\\theta uu^Tv \\tag{10}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（秩一信号的含义，附本节 OCR 修正）：**</span>\r\n> 这一节的研究对象是「一个秩一矩阵能扰动多少」。把满秩对称矩阵 $S$ 当成噪声，把 $\\theta uu^T$（$u$ 是单位向量，$\\theta$ 是信号强度）当成秩一信号，问题就是 $S$ 的谱在加上这个信号之后如何移动。秩一项之所以特殊，是因为它只有一个方向：$\\theta uu^T$ 的值域是一维的，作用在任何向量上只产生沿 $u$ 的分量。但要注意，$u$ 一般并不与任何一个特征向量 $q_k$ 对齐，所以全部特征值都会被推动一点，只是推动量有大有小；真正把一个秩一信号「认出来」，靠的是某个 $z_k$ 明显离开原来的 $\\lambda_k$，而不是靠所有特征值都动。\r\n>\r\n> 视频的例子很直观：固定机位的录像里背景近似不变，某一帧开灯或关灯，相当于给整幅画面加了一个秩一的亮度图样，于是「开灯」这个事件在谱上表现为一个或两个特征值明显抬高——这正是「低秩背景加稀疏前景」的背景建模能够奏效的原因。跨课程连接：《数字图像处理》或《计算机视觉》里的视频前景提取用「低秩 + 稀疏」分解，连接路径是「视频矩阵 = 低秩背景 + 稀疏前景 + 噪声 → 凸松弛求解」，与本节的区别在于那里关心「怎么把两者分开」（优化算法），本节关心「秩一扰动下谱怎么动」（谱扰动理论）；《机器学习》里的 PCA 用最大特征值方向做降维，连接路径是「谱间隙 → 主成分是否可信」——若某个 $z_k$ 只比 $\\lambda_k$ 高一点点，说明这个方向很可能只是噪声，不值得当成主成分。\r\n>\r\n> 本页 OCR 修正两处。其一，原文 `IEEE 行 a act on / nn 刀  60` 重建为 IEEE Transactions on Information Theory 60 卷，也就是 OptShrink 那篇论文所在的期刊。其二，式 (10) 之前的原始特征方程 $(S+\\theta uu^T)v=zv$ 在 OCR 中整行丢失，按上下文补全；它两边同减 $Sv$ 即得式 (10)，而 $(zI-S)v=\\theta u(u^Tv)$ 与 $(zI-S)v=\\theta uu^Tv$ 本来就是同一个式子的两种写法。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p.170</span>\r\n\r\n@@@@@ page_174（书页 171） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.2. Interlacing Eigenvalues and Low Rank Signals 171\r\n\r\nMultiply by \\(u^T\\) and cancel the common factor \\(u^T v\\). This removes \\(v\\). Then divide by \\(\\theta\\). That connects the new eigenvalue \\(z\\) to the change \\(\\theta u u^T\\) in the symmetric matrix \\(S\\).\r\n\r\n\\[\r\n\\frac{1}{\\theta} = u^T (zI − S)^{-1} u. \\tag{12}\r\n\\]\r\n\r\nTo understand this equation, use the eigenvalues and eigenvectors of \\(S\\). If \\(S q_k = \\lambda_k q_k\\) then \\((zI − S)q_k = (z − \\lambda_k)q_k\\) and \\((zI − S)^{-1}q_k = q_k / (z − \\lambda_k)\\):\r\n\r\n\\[\r\nu = \\sum c_k q_k \\quad \\text{leads to} \\quad (zI − S)^{-1} u = \\sum c_k (zI − S)^{-1} q_k = \\sum \\frac{c_k q_k}{z − \\lambda_k}. \\tag{13}\r\n\\]\r\n\r\nFinally equation (12) multiplies \\((zI − S)^{-1} u\\) by \\(u^T = \\sum c_k q_k^T\\). The result is \\(1/\\theta\\). Remember that the \\(q\\)'s are orthogonal unit vectors:\r\n\r\n\\[\r\n\\textbf{Secular equation} \\qquad \\boxed{\\frac{1}{\\theta} = u^T (zI − S)^{-1} u = \\sum_{k=1}^{n} \\frac{c_k^2}{z − \\lambda_k}} \\tag{14}\r\n\\]\r\n\r\nWe can graph the left side and right side. The left side is constant, the right side blows up at each eigenvalue \\(z = \\lambda_k\\) of \\(S\\). The two sides are equal at the \\(n\\) points \\(z_1, \\ldots, z_n\\) where the flat \\(1/\\theta\\) line meets the steep curves. Those \\(z\\)'s are the \\(n\\) eigenvalues of \\(S + \\theta u u^T\\). The graph shows that each \\(z_i\\) is above \\(\\lambda_i\\) and below \\(\\lambda_{i-1}\\): Interlacing.\r\nThe top eigenvalue \\(z_1\\) is most likely above \\(\\lambda_1\\). The \\(z\\)'s will increase as \\(\\theta\\) increases, because the \\(1/\\theta\\) line moves down.\r\nOf course the \\(z\\)'s depend on the vector \\(u\\) in the signal (as well as \\(\\theta\\)). If \\(u\\) happened to be also an eigenvector of \\(S\\), then its eigenvalue \\(\\lambda_k\\) would increase by exactly \\(\\theta\\). All other eigenvalues would stay the same. It is much more likely that each eigenvalue \\(\\lambda_k\\) moves up a little to \\(z_k\\). The point of the graph is that \\(z_k\\) doesn't go beyond \\(\\lambda_{k-1}\\).\r\n\r\nFigure III.1: Eigenvalues \\(z_i\\) of \\(S + \\theta u u^T\\) where the \\(\\frac{1}{\\theta}\\) line meets the curves in (14).\r\nRaj Rao Nadakuditi, \\textit{When are the most informative components for inference also the principal components?} arXiv: 1302.1232, 5 Feb 2013.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:174@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 171；页眉与印页码为重复元素，不译、不收录。</span>\r\n\r\n两边同乘 $(zI-S)^{-1}$，并消去公共因子 $u^Tv$——这一步消掉了向量 $v$；然后再除以 $\\theta$。这样就把新特征值 $z$ 与加到对称矩阵 $S$ 上的变化量 $\\theta uu^T$ 联系了起来：\r\n\r\n```math\r\nv=\\theta\\,(zI-S)^{-1}u\\,(u^Tv) \\tag{11}\r\n```\r\n\r\n```math\r\n\\frac{1}{\\theta}=u^T(zI-S)^{-1}u \\tag{12}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（本页 OCR 修正，以及两步约分为什么合法）：**</span>\r\n> 先把本页的 OCR 残损交代清楚：原文里 `鬱` 依语境分别是 $A$、$u$ 或 $v$，`乥` 在对 $k$ 求和处是求和号 $\\Sigma$、在别处是 $\\theta$，`Ä` 与 `/\\k` 是 $\\lambda$ 与 $\\lambda_k$，`()l` 是 $(zI)$，`0uuT` 是 $\\theta uu^T$，`1/9` 是 $1/\\theta$，`思 瞓的@` 是式 (14) 左端的 $1/\\theta$ 与右端的求和项；式 (11) 在 OCR 中整行缺失，按式 (10) 左乘 $(zI-S)^{-1}$ 重建，式 (12) 的残片（`1`、`0` 与式号）按同一脉络补全；图 III.1 横轴上的 `'\\4`、`Ä3` 等即 $\\lambda_4$、$\\lambda_3$；页末参考文献里 `When the 阴 0 info rma tive components for rence 口 the principal compon ？` 重建为 *When are the informative components for inference the principal components?*，标题词序取自 OCR 残片，读者若需引用请核对原刊。\r\n>\r\n> 再说两步约分为什么合法，这两步常被读者当成「显然」而跳过。第一步，式 (10) 左乘 $(zI-S)^{-1}$ 得到式 (11)，前提是 $zI-S$ 可逆，即 $z$ 不是 $S$ 的特征值；这由交错关系保证——$z_k$ 被夹在相邻两个 $\\lambda$ 之间，不会等于任何一个 $\\lambda_k$，所以 $zI-S$ 满秩。第二步，式 (11) 两边左乘 $u^T$ 后消去公因子 $u^Tv$：必须验证 $u^Tv\\ne0$，而这一点可以证明——若 $u^Tv=0$，式 (10) 立刻给出 $(zI-S)v=0$，$zI-S$ 可逆就迫使 $v=0$，与 $v$ 是特征向量矛盾，所以 $u^Tv$ 一定非零，约分站得住脚。\r\n>\r\n> 顺带说清退化情形：若 $u$ 与某个 $q_j$ 正交，则 $\\lambda_j$ 原封不动地留在 $S+\\theta uu^T$ 的谱里，久期方程在那个极点处没有对应的根；此时要么把该特征值单独记下来，要么给 $u$ 一个微小扰动、再用连续性取极限。把这两步想透，式 (12) 就不只是「约分的结果」，而是一条把矩阵问题降成一维标量问题的桥梁：矩阵求逆只要作用在两个向量之间，就退化成一个求和。\r\n\r\n要理解这个方程，就要用 $S$ 的特征值与特征向量。若 $Sq_k=\\lambda_kq_k$，则 $(zI-S)q_k=(z-\\lambda_k)q_k$，于是\r\n\r\n```math\r\n(zI-S)^{-1}q_k=\\frac{1}{z-\\lambda_k}q_k \\tag{13}\r\n```\r\n\r\n最后一步是把式 (12) 里的 $u$ 按特征向量 $q_k$ 展开：$(zI-S)^{-1}$ 夹在左边的 $u^T$ 与右边的 $u$ 之间，展开后交叉项全部消失，结果等于 $1/\\theta$。记住这些 $q$ 是正交的单位向量，于是得到久期方程（secular equation）：\r\n\r\n```math\r\n\\text{Secular equation:}\\quad \\frac{1}{\\theta}=\\sum_{k=1}^{n}\\frac{(u^Tq_k)^2}{z-\\lambda_k} \\tag{14}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（极点括根法：把特征值问题变成求根问题）：**</span>\r\n> 式 (14) 把特征值问题变成求根问题，这是本节最实用的转化：特征值没有闭式解，而求根有成熟算法。把右端记为 $g(z)=\\sum_{k=1}^n\\frac{(u^Tq_k)^2}{z-\\lambda_k}$，它在每个 $z=\\lambda_k$ 处有极点：从右侧趋近时 $g\\to+\\infty$，从左侧趋近时 $g\\to-\\infty$。在相邻两个极点之间的开区间上，每一项 $\\frac{(u^Tq_k)^2}{z-\\lambda_k}$ 都随 $z$ 增大而减小（分子是不为零的常数，分母是系数为正的一次式），所以 $g$ 连续且严格单调下降。左端 $1/\\theta$ 是一条水平线，于是按 $\\lambda_1>\\lambda_2>\\cdots>\\lambda_n$ 排序时，每个区间 $(\\lambda_k,\\lambda_{k-1})$ 内恰有一个交点，它就是 $z_k$；区间 $(\\lambda_1,+\\infty)$ 上还有一个交点 $z_1$；区间 $(-\\infty,\\lambda_n)$ 上没有交点，因为那里 $g<0<1/\\theta$。这就是交错：$\\lambda_k<z_k<\\lambda_{k-1}$（$k\\ge2$），而 $z_1>\\lambda_1$。可以把它命名成「极点括根法（poles give brackets）」——极点的位置自动把根一层层括起来。\r\n>\r\n> 先说这一步在解决什么设计问题。直接对本征方程 $(S+\\theta uu^T)x=zx$ 求解，等于要一个没有闭式解的代数方程；数值方法的第一原则是「把问题搬到已有成熟工具的形式上」，而求根（尤其是带符号变化的求根）是整个数值分析里工具最全、最可控的一类问题。式 (14) 正是这个搬运：它把一个「不知道定义在哪、也不知道有几个解」的特征值问题，压缩成一张一维函数图与一条水平线的交点计数问题。第一性原理上，为什么极点能自动给出区间？因为每一项 $\\frac{(u^Tq_k)^2}{z-\\lambda_k}$ 在分母为零时爆掉，爆掉的方向由分子定：分子 $(u^Tq_k)^2\\ge0$，所以 $z$ 从右靠近 $\\lambda_k$ 时该项冲向 $+\\infty$，从左靠近时冲向 $-\\infty$。相邻两极点一个「从 $+\\infty$ 落下来」、一个「落向 $-\\infty$」，中间连续且单调，一条水平线必然被穿过恰好一次——这就是括号的由来，也是「单调性补齐介值定理」的用法。\r\n>\r\n> 机制也可以说透：由矩阵行列式引理，$\\det(S+\\theta uu^T-zI)=\\det(S-zI)\\left(1-\\theta\\sum_k\\frac{(u^Tq_k)^2}{z-\\lambda_k}\\right)$，所以当 $z$ 不是 $S$ 的特征值时，「行列式为零」与式 (14) 完全等价；也就是说，久期方程不是凭空的配方，而是特征多项式在秩一更新下的因式分解。这个等价还顺手说明了两件事：其一，括号里那个函数恒等于特征多项式除以原特征多项式，因此它的零点集合就是新谱；其二，$\\theta\\to0$ 时括号趋于 $1$，零点回到 $\\lambda_k$，与「无扰动时谱不动」的直觉吻合，这也是一条自检。\r\n>\r\n> 手算一个可复算的三阶例子。取 $S=\\mathrm{diag}(3,2,1)$，$u=(1,1,1)^T$（三个分量都不为零），$\\theta=1$，于是 $g(z)=\\frac{1}{z-3}+\\frac{1}{z-2}+\\frac{1}{z-1}$，方程是 $g(z)=1$。两两相乘展开：$(z-2)(z-1)+(z-3)(z-1)+(z-3)(z-2)=(z-3)(z-2)(z-1)$，左端为 $3z^2-12z+11$，右端为 $z^3-6z^2+11z-6$，解得 $z^3-9z^2+23z-17=0$。按括号结论，根应满足 $z_1>3$、$2<z_2<3$、$1<z_3<2$。逐步手算定号：$g(3^+)=+\\infty$ 而 $g(4)=1/1+1/2+1/3=1.833>1$，故 $(3,4)$ 内有根；$g(2.5)=1/(-0.5)+1/0.5+1/1.5=-2+2+0.667=0.667<1$，说明 $z_2\\in(2.5,3)$；$g(1.5)=1/(-1.5)+1/(-0.5)+1/0.5=-0.667-2+2=-0.667<1$，而 $g(1^+)=+\\infty$，说明 $z_3\\in(1,1.5)$。再做一步二分：区间 $(3,4)$ 中点 $3.5$ 处 $g=0.5+0.667+0.4=1.567>1$，于是根缩到 $(3,3.5)$；这一步只花三次除法加两次加法，一共 $n=3$ 次项的计算。顺便验一下括号确实没漏根：$z=4$ 代回 $g>1$，$z\\to+\\infty$ 时 $g\\to0<1$，所以在 $(4,+\\infty)$ 上 $g$ 从 $1.83$ 掉到 $0$，必然又穿过 $1$ 一次——那正是 $z_1$，它落在 $\\lambda_1=3$ 的右侧，与结论一致；而 $z<1$ 时三项全负，$g<0<1$，确实无根。\r\n>\r\n> 跨课程连接：《算法设计与分析》（对应 MIT 6.006 Introduction to Algorithms）里的二分法，概念是「连续函数在区间两端取值异号，则区间内有根」，连接路径是「先用单调性证明根唯一，再二分缩区间」；区别在于 6.006 的二分只依赖介值定理，不要求单调，因此不能保证根唯一，而这里的单调性额外保证每个区间只有一个根，于是二分一定收敛到当前区间里的那个特征值，不会跑到别的极点区间去。再往别的课延伸一条更精确的：《离散数学》（6.042J）里的「等价关系与偏序」，概念是「用一组分离性条件把集合分层」，连接路径与上面同构——极点把实轴切成若干开区间、根被唯一地分配进各层，等价类的代表元就是 $z_k$；区别在于 6.042J 关心的是分类是否存在与唯一，属于证明层面，而这里还多要一步「如何实际找到代表元」，于是单调性与二分成为必备工具。再往《概率论与数理统计》延伸：$\\theta$ 可以看成观测权重或噪声方差倒数，$g(z)=1/\\theta$ 的右端随 $\\theta$ 变小而变大，根随之远离极点、向大特征值一侧移动，这与「权重越大谱越被拉向更新方向」的直觉一致。\r\n>\r\n> 代价对比也要算清：二分每步只做一次求和，代价 $O(n)$，迭代 $O(\\log(1/\\varepsilon))$ 次可把区间缩到 $\\varepsilon$，总代价 $O(n\\log(1/\\varepsilon))$；对上面的例子，区间长 $1$，要三位十进制精度（$\\varepsilon=10^{-3}$）需约 $10$ 步，即约 $30$ 次除法。牛顿法二次收敛但要算导数 $g'(z)=-\\sum_k\\frac{(u^Tq_k)^2}{(z-\\lambda_k)^2}$，这是 $n$ 次除法加 $n$ 次乘法，单步比二分贵一倍；更麻烦的是括号性质会被破坏：牛顿步可能从所在区间跳到另一个区间、收敛到别的特征值，所以在久期方程上二分反而更稳。还可以与《凸优化》（Boyd）对照一句：牛顿法要求初始点落在收敛域内，而凸优化里判断收敛域往往靠自和谐分析，机制与这里「先保区间、再谈阶数」是同一类保守换稳定的思路，区别在于那边优化的是目标函数值、这边求的是谱的零点。\r\n>\r\n> 机械连通性还能反过来用：给定试探值 $z$，只要比较 $g(z)$ 与 $1/\\theta$ 的大小，就知道根在左侧还是右侧，每步同样只花一次求和。把这条整套流程收成一个命名模板：「极点括根法」三步走——第一步，验证在所有极点区间上 $g$ 严格单调，确保括号不重叠；第二步，用 $g(z)-1/\\theta$ 的符号做二分缩区间，并随时报告当前括号；第三步，用残差 $\\det(S+\\theta uu^T-zI)$ 的病态程度作能量检验，若括号宽度已小于谱估计误差量级，就应停止细化方向，转而只报告子空间或用「零空间吸收法」把近简并的方向合并处理。\r\n\r\n我们可以把左端与右端画成图。左端是常数，右端在每个特征值 $z=\\lambda_k$ 处趋于无穷（blows up）。两端在点 $z_1,\\ldots,z_n$ 处相等，也就是水平直线 $1/\\theta$ 与陡峭曲线相交之处。这些 $z$ 就是 $S+\\theta uu^T$ 的特征值。图表明：每个 $z_k$ 都在 $\\lambda_k$ 之上、$\\lambda_{k-1}$ 之下——这正是交错（interlacing）。\r\n\r\n最大的特征值 $z_1$ 最有可能位于 $\\lambda_1$ 之上。随着 $\\theta$ 增大，这些 $z$ 会随之增大，因为 $1/\\theta$ 这条线向下移动。\r\n\r\n当然，这些 $z$ 既依赖于信号中的向量 $u$，也依赖于 $\\theta$。如果 $u$ 恰好是 $S$ 的一个特征向量，那么它对应的特征值 $\\lambda_k$ 会恰好增加 $\\theta$，其他特征值都保持不变。更常见的情形是每个特征值 $\\lambda_k$ 都略微上移到 $z_k$。这张图的要点在于：$z_k$ 不会越过 $\\lambda_{k-1}$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（数值验算与两个极限）：**</span>\r\n> 先说这段在解决什么设计问题。我们想知道：给对称矩阵 $S$ 加一个秩一项 $\\theta uu^T$ 之后，谱会跑到哪里去；但又不想每次都对整个矩阵重新对角化——那要 $O(n^3)$ 的工作量，而在迭代算法里这种「加一撮再问谱」的动作要做几十上百次。久期方程正是为此设计的「廉价探针」：它只用到 $S$ 的已知谱 $\\lambda_k$ 和 $u$ 在各特征方向上的投影 $(u^Tq_k)^2$，把求特征值这件事化归成在实轴上找 $n$ 个单调函数的零点。从第一性原理看，做法是把 $(\\lambda I-S-\\theta uu^T)v=0$ 改写成 $(\\lambda I-S)v=\\theta uu^Tv$，再用 $(u^Tq_k)^2$ 把这组耦合方程逐个消元，于是「谱」这个全局量被压缩成一条一维有理方程——每一维只需一次求值，代价从立方降到平方（若还知道 $Su$ 则更低），这才是它值得存在的原因。\r\n>\r\n> 用一组具体数字把久期方程走一遍，顺便检查交错区间。取 $S=\\operatorname{diag}(5,3,1)$、$\\theta=1$、$u=\\frac{1}{\\sqrt3}(1,1,1)^T$，则 $(u^Tq_k)^2=\\frac13$，式 (14) 变成 $\\frac13\\left(\\frac{1}{z-5}+\\frac{1}{z-3}+\\frac{1}{z-1}\\right)=1$。在 $(5,\\infty)$ 上二分：$z=5.5$ 给出 $0.874<1$，$z=5.4$ 给出 $1.048>1$，根夹在两者之间；继续夹得 $z=5.43$ 给出 $0.9876$、$z=5.424$ 给出 $0.9990$，最终 $z_1\\approx5.4235$。它落在交错允许的范围 $5<z_1<5+\\theta=6$ 之内，却离上界还有 $0.5765$——原因是 $u$ 不是 $S$ 的特征向量，$\\theta$ 的推力被三个方向分摊了。另外两个特征值也动了：由迹恒等式 $\\sum_k(z_k-\\lambda_k)=\\theta$ 可知三个增量之和恰好是 $1$，实际约为 $0.42$、$0.32$、$0.26$。\r\n>\r\n> 为了能徒手复算，再走一个 $2\\times2$ 的小账。取 $S=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$、$\\theta=1$、$u=\\frac{1}{\\sqrt2}(1,1)^T$，于是 $(u^Tq_1)^2=(u^Tq_2)^2=\\frac12$，久期方程是 $\\frac{1}{2}\\left(\\frac{1}{z-2}+\\frac{1}{z-1}\\right)=1$，通分得 $z^2-3z+1=0$，两根为 $\\frac{3\\pm\\sqrt5}{2}\\approx1.3820,\\ 2.6180$。两个增量恰好是 $(3-\\sqrt5)/2\\approx0.3820$ 与 $(\\sqrt5-1)/2\\approx0.6180$，和为 $1$，与迹恒等式吻合；也可以反过来把 $z_1=2.6180$ 代回方程检验：$\\frac{1}{2}\\left(\\frac{1}{0.6180}+\\frac{1}{1.6180}\\right)=\\frac{1}{2}(1.6180+0.6180)=1.1180$ 并不等于 $1$，这说明手算时一定要用精确根或把 $(\\sqrt5-1)/2$ 的倒数关系 $\\frac{1}{\\phi}=\\phi-1$ 用上，否则误差会在两个分母上同时放大。更干净的做法是直接验证韦达定理：两根之积 $=1=\\det(S)+\\theta u^T\\operatorname{adj}$ 型的量、两根之和 $=3=\\operatorname{tr}(S)+\\theta$，这正说明 $\\theta uu^T$ 只把迹抬高 $\\theta$，是一个必须记住的检验式：**秩一扰动的谱和只涨不跌，涨幅总和恰为 $\\theta$**。\r\n>\r\n> 两个极端正好作对照。其一，若 $u$ 恰好等于某个 $q_k$，则 $(u^Tq_k)^2$ 只有那一项为 $1$，方程立刻给出 $z_k=\\lambda_k+\\theta$，其余分母项为零、其他特征值原地不动——这正是线性代数课上验证过的「秩一更新沿特征方向恰好抬高该特征值 $\\theta$」。用上面的 $2\\times2$ 例子取 $u=(1,0)^T$ 就能一眼看出：新矩阵是 $\\operatorname{diag}(3,1)$，谱是 $3$ 和 $1$，恰好是 $\\lambda_1+\\theta$ 与 $\\lambda_2$ 原封不动。其二，让 $\\theta$ 增大：水平线 $1/\\theta$ 下移，所有交点右移，$z_1$ 增长得最快，大致按 $z_1\\approx\\theta+u^TSu$ 发散，而其余 $z_k$ 只趋于有限值，即 $u^T(zI-S)^{-1}u=0$ 在各自区间里的零点；所以「只有一两个特征值的变化量达到 $\\theta$ 量级」这句话在信号很强时才严格成立。反过来，若 $\\theta$ 远小于谱间隙，每个特征值的移动量约为 $\\theta(u^Tq_k)^2$，谁大谁小完全由 $u$ 在各特征方向上的分量决定：分量集中的方向被推得多，分量稀疏的方向几乎不动。这一点与特征值的二阶微扰公式完全一致：把 $\\theta$ 看作小参数，$z_k(\\theta)=\\lambda_k+\\theta(u^Tq_k)^2+O(\\theta^2)$，久期方程的一阶展开就是这个式子，两条路殊途同归。\r\n>\r\n> 最后标清一个容易混淆的对照：Cauchy 交错定理说的是「对称矩阵的主主子阵的特征值与原矩阵特征值交错」，连接路径是「删掉一行一列 → 谱被夹住」，它处理的是两个不同矩阵的谱；而久期方程处理的是同一个矩阵被秩一项更新后的谱，能直接算出 $z_k$ 的数值，而不只是告诉你「夹在哪两层之间」。数值实现上还有两个小细节：$z_k$ 求出后，特征向量可由 $v_k\\propto(z_kI-S)^{-1}u$ 恢复并归一化，再代回原式验证残差，比整矩阵对角化便宜得多；二分时保留上一次的求和结果、在单个区间内做加速（例如割线法），通常比纯二分更快，但不要跨区间加速，否则可能跳到另一个特征值上。\r\n>\r\n> 跨课程连接补两条。其一，Strang 线性代数与 18.065 里的对称矩阵正交对角化 $S=Q\\Lambda Q^T$ 与谱定理，是本注所有式子的前提：正因为 $\\{q_k\\}$ 是一组标准正交基，$u$ 才能被唯一分解成 $u=\\sum_k(u^Tq_k)q_k$，秩一项才被拆成对各特征方向独立的推力；而 18.065 讲低秩更新、 Sherman–Morrison 公式与 QR 迭代，与久期方程是同一件事的两个入口——前者给矩阵层面的恒等式，后者给逐个特征值的可解方程，区别在于久期方程假定 $S$ 已经对角化、只处理「一撮扰动」这一个特例。其二，数值分析（与 CSAPP 里浮点表示相关的部分）中的二分法、割线法在这里直接落地：久期方程的左端在每个区间内单调，所以二分保证收敛；但浮点误差会使得在 $z$ 极靠近某个 $\\lambda_k$ 时分母溢出，实际实现里要在 $|z-\\lambda_k|<\\varepsilon$ 处做保护分支，这正是 CSAPP 讲的浮点有效位损失在数值线性代数里的具体形态，而不是抽象警告。可以给这套流程起个名字：**投影摊派 — 区间二分 — 迹恒等式对账**，三步走完，既得到数值又能自检。\r\n\r\n图内横轴上自左至右依次标注 $0<\\lambda_4<z_4<\\lambda_3<z_3<\\lambda_2<z_2<\\lambda_1<z_1$。\r\n\r\n**图 III.1：**$S+\\theta uu^T$ 的特征值；$1/\\theta$ 直线与式 (14) 中的曲线相交。\r\n\r\n参考文献：Raj Rao Nadakuditi, *When are the informative components for inference the principal components?*, arXiv:1302.1232, 5 Feb 2013.\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p.171</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 15427,
+            "outputTokens": 8590,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 15427,
+              "outputTokens": 8590,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 13546,
+          "contextWindow": 1000000,
+          "pressureTokens": 18883,
+          "sampledSurfaceTokens": 8782
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 7222,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4764,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 12402
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

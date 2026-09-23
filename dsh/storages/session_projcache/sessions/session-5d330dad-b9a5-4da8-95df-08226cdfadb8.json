@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128344657,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**审计员兼修复者**（审计 + 修复一体）。服务对象是大二学生（智能科学与技术专业）。本次审计 part004（书页 147-197）中的 2 页译文。\r\n\r\n【审计清单（逐项执行；发现问题**当场改好**，不要只列意见）】\r\n1. 🔴 漏译：对照 OCR 原文逐句核对，有无句子 / 公式 / 例子 / 习题被跳过，或被压缩成一句（禁止把 3-5 句压成 1 句）\r\n2. 🔴 英中分段对照（先完整英文段再中文段）——必须改为中文主体 + 术语行内嵌入（`English term（中文翻译）`），禁止出现完整英文原句\r\n3. 🔴 公式重建正确性：OCR 乱码处的数学重建是否符合数学语境——下标 / 指标（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$、逆 $-1$、范数、权重 $s_k$ 与 $s_k^2$、系数位置必须逐个核对\r\n4. 🔴 编号一致：定理 / 公式 tag / 图号 / 节号 / 题号必须与原文一致（不硬编码）\r\n5. 🟡 段落与标签：**正文段落不得带 `[note]` 标签**；同一段内多个句子必须连续排列（不得一句一空行）；`[section]` / `[theorem]` / `[proof]` / `[definition]` / `[example]` / `[problem]` 使用位置是否正确\r\n6. 🟡 LaTeX 规范：LaTeX 环境内**不得出现中文**（含 `\\text{{}}`）；不得有 `$$`；不得有 Unicode 上下标；行内 `$...$`、块级 ```math 围栏\r\n7. 🟡 术语一致性（对照下方术语表）；关键术语首次出现必须带中文括号\r\n8. 🟡 习题页（Problem Set / Problem）：题干必须**保留英文原文**（不得译成中文），页首灰色说明行与 `[problem]` 标签齐全\r\n9. 🟢 每句首字必须是中文（不得以英文单词开句）\r\n10. 🟢 span 引号完整：必须写成 `<span style=color:#2471a3;>`\r\n11. 🟢 页内交叉引用（如见 §III.2、Problem II.2.11 on page 135）是否译出并正确\r\n\r\n【本书页映射（供交叉引用核对，已由印页码锚定）】\r\npage_199 = 书页 196\r\npage_200 = 书页 197\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始（照抄此写法），页与页之间用 `@@BREAK@@` 分隔\r\n− 不要任何前言、审计说明、总结、思考过程；不要给正文句加标签\r\n− 修订时保持中文主体 + 术语行内双语；OCR 修正说明用绿色 note\r\n− 若某页完全无问题，也要原样输出该页全文（不得省略）\r\n\r\n【术语表】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n− linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n− column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n− subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n− basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n− inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n− eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n− trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n− symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n− pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n− energy（能量）/ energy test（能量检验）\r\n− Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n− covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n− least squares（最小二乘）/ projection（投影）\r\n− factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n− singular value（奇异值）/ singular vector（奇异向量）\r\n− Singular Value Decomposition, SVD（奇异值分解）\r\n− singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n− left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n− stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n− Eckart-Young theorem（Eckart-Young 定理）\r\n− low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n− spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n− norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n− Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n− generalized SVD（广义奇异值分解）\r\n− Principal Component Analysis, PCA（主成分分析）\r\n− linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n− variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n− convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n− gradient descent（梯度下降）/ loss function（损失函数）\r\n− polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n− finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n− Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n− interlacing of eigenvalues（特征值交错性质）\r\n− condition number（条件数）\r\n− interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n− rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n− singular values in descending order（降序排列的奇异值）\r\n− vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n− LTI: Linear Time Invariance（线性时不变）\r\n− Fourier（傅里叶）/ signal processing（信号处理）\r\n− trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n− maximization problem（最大化问题）/ minimum point（最小值点）\r\n− strictly convex function（严格凸函数）\r\n− loss（损失）/ error（误差）\r\n− unsupervised learning（无监督学习）\r\n− data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n− measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n− Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n− tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n− rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n− nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n− data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n− group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n− weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n− best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n− Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n− elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n− pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n− minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n− Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n− Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n− conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n− Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n− symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n− randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n− interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n− least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n− pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n− row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n− independent columns（独立列）/ independent rows（独立行）\r\n− QR factorization（QR 分解）/ full rank（满秩）\r\n− minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n− orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n− singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n− column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n− interpolative decomposition, ID（插值分解）\r\n− well-conditioned（良态）/ safely independent（安全独立）\r\n− column exchanges（列交换）/ pivoted QR（主元 QR）\r\n− CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n− matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n− E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n===================== 待审计材料：OCR 原文 + 现有译文 =====================\r\n########## page_199（书页 196）##########\r\n−-- OCR 原文 −--\r\n196\r\nLow Rank and Compressed Sensing\r\nThe basic theorem above is not the 角 ll story. The system will have noise. SO we are\r\nrecovermg a vector th at solves Aæ = b + z ， where z can be stochastic and unknown.\r\nThe sparse problem is nearby, bu t it doesn ， t perfectly match the noisy data. We want\r\nstable recovery ： Solve (1) with noisy data and obtain an c* th at is near the sparse * *\r\n（ 孓 S nonzeros) that would have come 0 m noiseless data.\r\nThi s conclusion is tru e when has the restricted isometry property ” wi th < 軛 一 1 。\r\n（ 1 一 腭 日 腭 孓 （ 1 + if is S-Sparse.\r\n(R 1 P)\r\nFortun ately, th e matrix c an have columns chosen randomly on the unit sphere—\r\nor chosen randomly fro m th e normal distribution N(), l/m)—or with independent\r\nrandom entnes equal to 士 1 / 而 一 or in 0 ther random ways. The RIP requirement is\r\nalmost surely satisfied if m > C S log(n/S).\r\nThis finally connects the number of measurements m wi th th e sparsity S. And the\r\nnoisy data leads us to replac e basis pursuit (where exactly equals b) wi th LASSO\r\nLASSO with noise Minimize |@日 1 subject t0 日 一 b 日 2\r\n（ 3 ）\r\nThis exposition of compressed sensing has followed the article by Candös and WaIqn ：\r\nIEEE & g 尹 ce g Magazine 21 (March 2008 ） · That article re fers t0 th e e arly wo 永\r\nof ， 0 ， and Donoho—which achieved a highly valuable goal. lnstead 0f acqtllr-\r\ning massive accounts Of data an d then compres sing it all ()s a C amera does), only m\r\nO(S lo g n/S) is acquired and used. A 0 刀 e came becomes po with 刀 0 ，\r\nas ch B araniuk h as shown, Perhaps the medical application s are the most valuable—\r\nwe will s tart and end with those.\r\nThe start was an unexpected ob s ervation by Can&s in 2004 · Th e Logan-Shepp test\r\nimage ()n abstract model of the human head) was c orrup te d by noise. lt looked as if\r\nMagnetic Resonance lmaging (MRI) h ad been stopped t00 soon. TO improve the image\r\nCan&s tried an idea u sing 1 · To his surpnse, the p 0 0 & e became e\r\n(even though the data was incomplete) · lt was almost an online equivalent of Roentgen 's\r\ndi scovery of X-ray s in 1895 一 an accident that gave birth to an industry.\r\nlncredibly, in th e w eek of writing these words ， an essay by David Donoho appeared\r\nin the 0 nlin e Notices of the American Math Society (Janu ary 2018 ） · lt describes how\r\ncompressed sensing h as accelerated MRI. Scan Umes are reduced 什 0 m 8 minutes t0 70\r\nseconds ， with high qu ality images · Dynamic heart imaging becomes feasible even for\r\nchildren · Michael Lustig was a pioneer in this M RI success ， and a host of mathematicians\r\ncontributed to the theory and the algorithms · The FDA has approved a change that will\r\nc ome gradually in the Um te d States, as thousands of scanners are upgraded ·\r\nThe PUQ0se of Donoho ， s essay was to show that funding and collaboration and theorY\r\nand experiment (and a little luck) have produced something wonderful.\r\n−-- 现有译文 −--\r\n<!-- page 199 −->\r\n> <span style=color:#7f8c8d;>本页为书页 196，属 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）（续）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`角 ll` 实为 whole；`Aæ = b + z` 实为 $Ax = b + z$；`c*` / `孓 S` 指含 $S$ 个非零元的稀疏向量 $x^*$；`N(), l/m)` 实为正态分布 $N(0, 1/m)$；`士 1 / 而` 实为 $\\pm 1/\\sqrt{m}$；`丨@丨 1`、`|@| 0` 实为 $\\ell_1$、$\\ell_0$ 范数；`Candös`、`WaIqn`、`Can&s` 指 Candès 与 Wakin；`IEEE & g 尹 ce g Magazine 21` 实为 *IEEE Signal Processing Magazine* 21；`0 刀 e came ... po` 实为 one-pixel camera ... possible；`ch B araniuk` 指 Richard Baraniuk；`1 ·` 指 $\\ell_1$；`什 0 m`、`Um te d` 分别为 from、United；`PUQ0se` 为 purpose。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n上面这个基本定理并不是故事的全部。\r\n系统总会带有噪声，于是我们实际恢复的是一个满足 $Ax = b + z$ 的向量，其中 $z$ 可以是随机的、未知的。\r\n稀疏问题与它相邻，但并不完全吻合含噪数据。\r\n我们想要的是 stable recovery（稳定恢复）：用含噪数据求解 (1)，得到一个 $x^*$，它接近于从无噪数据本应得到的那个稀疏（$S$ 个非零元）的 $x^*$。\r\n当 $A$ 具有 restricted isometry property（受限等距性质，RIP）且 $\\delta_S < 0.1$ 时，这一结论成立：\r\n\r\n```math\r\n(1-\\delta_S)\\|x\\|^2 \\le \\|Ax\\|^2 \\le (1+\\delta_S)\\|x\\|^2 \\quad \\text{(RIP)}\r\n```\r\n\r\n其中 $x$ 是 $S$-sparse（$S$ 稀疏）的。\r\n\r\n幸运的是，这个矩阵 $A$ 的列可以随机地取自单位球面——或者随机取自正态分布 $N(0, 1/m)$——也可以取独立的随机元素 $\\pm 1/\\sqrt{m}$——或者用其他随机方式生成。\r\n只要 $m > C\\,S\\log(n/S)$，RIP 要求几乎必然得到满足。\r\n这就终于把测量数 $m$ 与稀疏度 $S$ 联系起来了。\r\n含噪数据还促使我们把 basis pursuit（基追踪，其中 $Ax$ 恰好等于 $b$）替换为 LASSO：\r\n\r\n```math\r\n\\text{LASSO with noise} \\qquad \\text{Minimize } \\|x\\|_1 \\ \\text{ subject to } \\ \\|Ax − b\\|_2 \\le \\varepsilon \\tag{3}\r\n```\r\n\r\n关于压缩感知的这一段阐述，沿用了 Candès 与 Wakin 的文章：*IEEE Signal Processing Magazine* 21（2008 年 3 月）。\r\n那篇文章提到了 Candès、Romberg、Tao 与 Donoho 的早期工作——这些工作实现了一个极具价值的目标。\r\n与其先采集海量数据再把它全部压缩（就像照相机所做的那样），我们只采集并使用 $m = O(S\\log(n/S))$ 个测量值。\r\n正如 Richard Baraniuk 所展示的，一台 one-pixel camera（单像素相机）也因此成为可能。\r\n也许医学应用是最有价值的——我们将以它们开始，也以它们结束。\r\n\r\n这一起点来自 Candès 在 2004 年的一个意外观察。\r\nLogan-Shepp 测试图像（人类头部的一个抽象模型）被噪声破坏，看起来就像 Magnetic Resonance Imaging（磁共振成像，MRI）过早停止了一样。\r\n为了改善图像，Candès 尝试了一个使用 $\\ell_1$ 的想法。\r\n令他惊讶的是，图像变得清晰了（尽管数据并不完整）。\r\n这几乎就是 Roentgen 于 1895 年发现 X 射线的在线等价物——一个意外催生了一个产业。\r\n\r\n难以置信的是，就在写这些文字的同一周，David Donoho 的一篇文章出现在 American Math Society 的在线 *Notices* 上（2018 年 1 月）。\r\n它描述了压缩感知如何加速了 MRI：扫描时间从 8 分钟缩短到 70 秒，而且图像质量很高。\r\n动态心脏成像即使对儿童也变得可行。\r\nMichael Lustig 是这一 MRI 成功中的先行者，一大批数学家为理论与算法作出了贡献。\r\nFDA 已批准一项变革，随着成千上万台扫描仪升级，它将在美国逐步推开。\r\nDonoho 这篇文章的目的，是要表明经费、合作、理论与实验（再加上一点点运气）共同产生了某种美妙的东西。\r\n\r\n########## page_200（书页 197）##########\r\n−-- OCR 原文 −--\r\ncompressed Sensing and Matrix Completion\r\n197\r\nMatrix C0mpletion in the Nuclear Norm\r\nThe rank 0f a matrl x is like the number of nonzeros in a vector. ln some way the rank\r\nnteasures sparsity. For 10w rank, th e matnx 习 of singular values is literally sparse\r\n(r nonzeros) · Just as the number of nonzeros is a 0-norm ” for vectors, the rank is a\r\n0-norm for matrices. But 日 训 0 and 日 蓋 《 》 0 a re not true vecto r a nd matrix norms ，\r\n日 2 鬱 日 0 and rank(A) = rank(2A). Multiplying by 2 doesn' t change the\r\nbecau se |@ | 0\r\ncount of nonzeros or th e rank—but it always doubles any true norm.\r\nNevertheless we Often want sparsity for vec tors and 1 OW rank for matnces. The matrix\r\ncompletion problem starts with missmg entnes in a matrix 0 · We want tO complete 0\r\nto 儿 keepi ng the rank as 10W as possible. We are introducing a minimum 0f unexplained\r\ndata. This problem Of missing data is widespread in all are as Of observational science.\r\nSome assumption about the completed is needed to fill in the blanks, and 襯 忉 k\r\nis a natural choice. LOOk at these examples ：\r\n0\r\nAII can be c ompleted with rank 1 · 0 allows any multipl e of （ 1 ， 2 ） in the second row.\r\now s anY numbers b an d c with bc = 4 · Co allow s only 6 in its last en try.\r\n山 vectors ， we relaxe d the sparsity norm 训 《 0 to the 1 norm 日 训 丨 1 · With matnces,\r\nwe now relax the rank norm | | 丨 《 0 t0 the nuclear norm 《 lN. Thi s nucle norm is\r\nthe 1 no 皿 of the diagonal of 乥 · We a re minimizing the sum 0f the singular values 。\r\nNuclear norm 目 蓋 日 N = 1 + 02 + · 。 · +\r\n（ 4 ）\r\n№ w we have a convex norm, but not strictly convex ： 目 BI + B2 丨 = 日 BI 丨 氐 + 日 B2 丨\r\nis possible the tnangle inequality · ln fact the ex ample matrix Bo c ould be completed\r\nc between 一 2 and 2 · The nuclear no 皿 日 日 N stays at 5\r\nsymmetrically by any b\r\n(singular values\r\neigenvalues and 目 B 《 氐 = trace for thi s positive semidefinite B).\r\nRank 0ne matrices are roughly analogous t0 sharp points in the diamond 日 1\r\n1 ·\r\nA famou s example for matnx completion was the e competition. Th e ratings\r\n0f m films by viewers went intO 0 · But the customers didn ， t see 1 movies · Many\r\nratings were mssing. Those h ad t0 be predicted by a recommender systeme The\r\nnuclear no 皿 gave a good solution 山 at needed t0 be adjusted for lhu m an psychology—\r\n№ 酯 x was not a competltion in pure mathematics ·\r\nAnother application is computing the covariance matrix 什 0 m a 10t Of sampled d ata ·\r\nF1nding all covariances 2 can be expensive (typical case ： the covanances of all stocks\r\n0ver 365 days). We m ay compute some and estimate the rest by matnx completion.\r\nA scientific example ： AII the covanances in measuring the ocean surface at 104 positions.\r\nHere iS the convex relaxation ” Of rank mmirmzation tO nuclear norm mmmzation ：\r\nt 呶 completion Minimize subj = 0 in the known entries ·\r\n−-- 现有译文 −--\r\n<!-- page 200 −->\r\n> <span style=color:#7f8c8d;>本页为书页 197，属 §III.5 的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Matrix Completion in the Nuclear Norm（核范数下的矩阵补全）\r\n\r\n矩阵的秩就像向量中非零元的个数。\r\n在某种意义上，秩度量的是稀疏性。\r\n对于低秩情形，由奇异值构成的矩阵 $\\Sigma$ 确实是稀疏的（有 $r$ 个非零元）。\r\n正如非零元个数是向量的“$0$-范数”，秩就是矩阵的“$0$-范数”。\r\n但 $\\|x\\|_0$ 与 $\\|A\\|_0$ 并不是真正的向量范数与矩阵范数，因为 $\\|2x\\|_0 = \\|x\\|_0$ 而 $\\operatorname{rank}(A) = \\operatorname{rank}(2A)$。\r\n乘以 2 并不改变非零元的个数或秩——但它总会把任何真正的范数加倍。\r\n\r\n尽管如此，我们常常希望向量稀疏、矩阵低秩。\r\n矩阵补全问题从一个含有缺失元素的矩阵 $A_0$ 开始。\r\n我们希望把 $A_0$ 补全为 $A$，并让秩尽可能低。\r\n我们是在引入最少量的无法解释的数据。\r\n这种数据缺失的问题在观测科学的各个领域都广泛存在。\r\n为了填补空白，需要对补全后的 $A$ 作某种假设，而低秩是一个自然的选择。\r\n看看下面这些例子：\r\n\r\n```math\r\nA_{11} = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}, \\qquad\r\nA_{12} = \\begin{bmatrix} 1 & 2 \\\\ 2 & ? \\end{bmatrix}, \\qquad\r\nA_{13} = \\begin{bmatrix} 1 & 2 & ? \\\\ 2 & 4 & 8 \\\\ ? & 8 & 6 \\end{bmatrix}\r\n```\r\n\r\n这三个例子都能以秩 1 补全。\r\n$A_{12}$ 允许第二行取 $(1, 2)$ 的任意倍数，即 $b$ 与 $c$ 可取任意满足 $bc = 4$ 的数。\r\n$A_{13}$ 的最后一个元素只允许取 6。\r\n\r\n对于向量，我们把稀疏性范数 $\\|x\\|_0$ 放松为 $\\ell_1$ 范数 $\\|x\\|_1$。\r\n对于矩阵，我们现在把秩范数 $\\|A\\|_0$ 放松为 nuclear norm（核范数）$\\|A\\|_N$。\r\n这个核范数就是 $\\Sigma$ 的对角线的 $\\ell_1$ 范数，也就是说，我们在最小化奇异值之和。\r\n\r\n```math\r\n\\text{Nuclear norm } \\|A\\|_N = \\sigma_1 + \\sigma_2 + \\cdots + \\sigma_r \\tag{4}\r\n```\r\n\r\n现在我们有了一个凸范数，但它不是严格凸的：$\\|B_1 + B_2\\|_N = \\|B_1\\|_N + \\|B_2\\|_N$ 在三角不等式取等号时是可能的。\r\n事实上，例子中的矩阵 $B_0$ 可以由介于 $-2$ 与 $2$ 之间的任意 $b$ 对称地补全，而核范数 $\\|B\\|_N$ 始终等于 5（其奇异值等于特征值，且对这个半正定的 $B$ 有 $\\|B\\|_N = \\operatorname{trace}(B)$）。\r\n\r\n秩一矩阵大致类比于 $\\ell_1$ 球（菱形）$\\|x\\|_1 = 1$ 上的尖点。\r\n\r\n矩阵补全的一个著名例子是 Netflix Prize 竞赛。\r\n观众对 $m$ 部电影的评分进入矩阵 $A_0$，但顾客并没有看过全部电影，许多评分是缺失的。\r\n这些缺失值必须由推荐系统（recommender system）来预测。\r\n核范数给出了一个好的解，但它还需要针对人的心理作调整——Netflix 并不是一场纯粹数学的竞赛。\r\n\r\n另一个应用是从大量采样数据出发计算协方差矩阵。\r\n求出全部协方差可能代价高昂（典型情形：365 天里所有股票之间的协方差）。\r\n我们可以只计算其中一部分，再用矩阵补全估计其余的。\r\n一个科学上的例子：在 10 000 个位置上测量海面时涉及的全部协方差。\r\n\r\n下面是把秩最小化凸松弛为核范数最小化的形式：\r\n\r\n```math\r\n\\text{Matrix completion} \\qquad \\text{Minimize } \\|A\\|_N \\ \\text{ subject to } \\ A_{ij} = (A_0)_{ij} \\ \\text{ in the known entries} \\tag{5}\r\n```"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7446,
+            "outputTokens": 4034,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7446,
+              "outputTokens": 4034,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8474,
+          "contextWindow": 1000000,
+          "pressureTokens": 10262,
+          "sampledSurfaceTokens": 5785
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4225,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2689,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7330
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

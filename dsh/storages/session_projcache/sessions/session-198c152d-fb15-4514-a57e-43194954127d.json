@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790149378522,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_249]\nIV.7. Clustering by Spectral Methods and $k$-means\n247\n\nNote that an edge inside $P$ is counted twice, as $w_{ij}$ and $w_{ji}$. The unweighted size would just count the nodes, and lead to ratio cut. Here we divide weight across the cut by the weighted sizes of $P$ and $Q$, to normalize the key quantity $Ncut$:\n\nNormalized cut weight    $Ncut(P, Q) = \\frac{links(P)}{size(P)} + \\frac{links(Q)}{size(Q)}$.    (4)\n\nShi and Malik found that minimizing $Ncut(P, Q)$ gives a good partitioning of the graph. That application was to segmentation of images. They uncovered the connection to the Laplacian $L$.\n\nThe definition of $Ncut$ extends from two clusters $P$ and $Q$ to $k$ clusters $P_1, \\ldots, P_k$:\n\nNormalized $K$-cut    $Ncut(P_1, \\ldots, P_k) = \\sum_{i=1}^K \\frac{links(P_i)}{size(P_i)}$    (5)\n\nWe are coming close to $k$-means clustering. Start with $k = 2$ clusters ($P$ and $Q$).\n\nIV. $k$-means    Represent the nodes in the graph as vectors $a_1, \\ldots, a_n$. The clusters $P$ and $Q$ have centers $c_P$ and $c_Q$. We minimize the total squared distance from nodes to those centroids.\n\n2-means clustering\n$c_P, c_Q$ = centroids    Minimize $E = \\sum_{i \\text{ in } P} \\|a_i - c_P\\|^2 + \\sum_{i \\text{ in } Q} \\|a_i - c_Q\\|^2$    (6)\n\nThe centroid is the average $c_P = (\\sum a_i)/|P|$ of the vectors in cluster $P$.\n\nThe vector $a_i$ may or may not represent the physical location of node $i$. So the clustering objective $E$ is not restricted to Euclidean distance. The more general kernel $k$-means algorithm works entirely with a kernel matrix $K$ that assigns inner products $K_{ij} = a_i^{\\mathrm{T}} a_j$. Distances and means are computed from a weighted $K$.\nThe distance measure $E$ will also be weighted, to improve the clusters $P$ and $Q$.\n\nThe Normalized Laplacian Matrix\n\nThe first step to $L$ is $A^{\\mathrm{T}}A$. This $A$ is the $m$ by $n$ incidence matrix of the graph. Off the diagonal, the $i, j$ entry of $A^{\\mathrm{T}}A$ is $-1$ if an edge connects nodes $i$ and $j$. The diagonal entries make all row sums zero. Then $(A^{\\mathrm{T}}A)_{ii}$ = number of edges into node $i$ = degree of node $i$. With all weights equal to one, $A^{\\mathrm{T}}A$ = degree matrix $-$ adjacency matrix.\nThe edge weights in $C$ can be conductances or spring constants or edge lengths. They appear on and off the diagonal of $A^{\\mathrm{T}}CA = D - W$ = node weight matrix $-$ edge weight matrix. Off the diagonal, the entries of $-W$ are minus the weights $w_{ij}$. The diagonal entries $d_i$ still make all row sums zero: $D = \\mathrm{diag}(\\mathrm{sum}(W))$.\n\n### [原文 page_250]\n248 \\hfill Special Matrices\n\nThe all-ones vector $\\mathbf{1} = \\text{ones}(n, 1)$ is in the nullspace of $A^{\\text{T}}CA$, because $A\\mathbf{1} = \\mathbf{0}$. Each row of $A$ has $1$ and $-1$. Equivalently, $D\\mathbf{1}$ cancels $W\\mathbf{1}$ (all row sums are zero). The next eigenvector is like the lowest vibration mode of a drum, with $\\lambda_2 > 0$.\n\nFor the \\textit{normalized weighted Laplacian}, multiply $A^{\\text{T}}CA$ on the left and right by $D^{-1/2}$, preserving symmetry. Row $i$ and column $j$ are divided by $\\sqrt{d_i}$ and $\\sqrt{d_j}$, so the $i, j$ entry of $A^{\\text{T}}CA$ is divided by $\\sqrt{d_i d_j}$. Then $L$ has $d_i/d_i = 1$—along its main diagonal.\n\n\\[\n\\boxed{\n\\begin{array}{ll}\n\\text{Normalized Laplacian } L & L = D^{-1/2} A^{\\text{T}}CA D^{-1/2} = I - N \\quad n_{ij} = \\frac{w_{ij}}{\\sqrt{d_i d_j}} \\\\\n\\text{Normalized weights } n_{ij} &\n\\end{array}\n}\n\\tag{7}\n\\]\n\nA triangle graph has $n = 3$ nodes and $m = 3$ edge weights $c_1, c_2, c_3 = w_{12}, w_{13}, w_{23}$:\n\n\\[\n\\begin{bmatrix}\nw_{12} + w_{13} & -w_{12} & -w_{13} \\\\\n-w_{21} & w_{21} + w_{23} & -w_{23} \\\\\n-w_{31} & -w_{32} & w_{31} + w_{32}\n\\end{bmatrix}\n\\quad\nL =\n\\begin{bmatrix}\n1 & -n_{12} & -n_{13} \\\\\n-n_{21} & 1 & -n_{23} \\\\\n-n_{31} & -n_{32} & 1\n\\end{bmatrix}\n\\tag{8}\n\\]\n\\[\nA^{\\text{T}}CA = D - W \\qquad \\qquad L = D^{-1/2} A^{\\text{T}}CA D^{-1/2}\n\\]\n\nThe normalized Laplacian $L = I - N$ is like a \\textit{correlation matrix} in statistics, with unit diagonal. Three of its properties are crucial for clustering:\n\n1. $L$ is symmetric positive semidefinite: orthogonal eigenvectors, eigenvalues $\\lambda \\ge 0$.\n\n2. The eigenvector for $\\lambda = 0$ is $\\mathbf{u} = (\\sqrt{d_1}, \\ldots, \\sqrt{d_n})$. Then $L\\mathbf{u} = D^{-1/2} A^{\\text{T}}CA \\mathbf{1} = \\mathbf{0}$.\n\n3. The second eigenvector $v$ of $L$ minimizes the \\textbf{Rayleigh quotient} on a subspace:\n\n\\[\n\\boxed{\n\\begin{array}{l}\n\\lambda_2 = \\text{smallest nonzero eigenvalue of } L \\\\\n\\text{Minimize subject to } x^{\\text{T}}\\mathbf{u} = 0\n\\end{array}\n\\quad\n\\min \\frac{x^{\\text{T}}Lx}{x^{\\text{T}}x} = \\frac{v^{\\text{T}}Lv}{v^{\\text{T}}v} = \\lambda_2 \\text{ at } x = v\n}\n\\tag{9}\n\\]\n\nThe quotient $x^{\\text{T}}Lx/x^{\\text{T}}x$ gives an upper bound for $\\lambda_2$, for any vector $x$ orthogonal to the first eigenvector $D^{1/2}\\mathbf{1}$. A good lower bound on $\\lambda_2$ is more difficult to find.\n\n\\textbf{Normalized versus Unnormalized}\n\nThe algorithms of clustering could use the unnormalized matrix $A^{\\text{T}}CA$. But $L$ usually gives better results. The connection between them is $Lv = D^{-1/2} A^{\\text{T}}CA D^{-1/2} v = \\lambda v$. With $z = D^{-1/2}v$ this has the simple and important form $A^{\\text{T}}CA z = \\lambda D z$:\n\n\\[\n\\boxed{\n\\text{Normalized Fiedler vector } z \\qquad A^{\\text{T}}CA z = \\lambda D z \\quad \\text{with} \\quad \\mathbf{1}^{\\text{T}}Dz = 0.\n}\n\\tag{10}\n\\]\n\nFor this ``generalized'' eigenvalue problem, the eigenvector for $\\lambda = 0$ is still the all-ones vector $\\mathbf{1} = (1, \\ldots, 1)$. The next eigenvector $z$ is $D$-orthogonal to $\\mathbf{1}$, which means $\\mathbf{1}^{\\text{T}}Dz = $\n\n【当前译文】\n@@PAGE:249@@\n<!-- page 249 -->\n> <span style=color:#7f8c8d;>本页为书页 247，续 §IV.7 Clustering by Spectral Methods and k-means 正文（方法 III 收尾、方法 IV 与归一化拉普拉斯矩阵）；页眉 “IV.7. Clustering by Spectral Methods and k-means” 与印页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声：`clustenng`→clustering、`minimzing`→minimizing、`lcmeans`→k-means、`nuninuze`→minimize、`algo 山 m`→algorithm、`matnx`→matrix、`什 om`→from、`01`→$v_1$、`Kt 丿`→$K_{ij}$、`‰ 与`→$v_i \\cdot v_j$、`S hl`→Shi、`(E ） 刀 P`→簇 $P$ 中各向量的平均、`ma t 血`→matrix。公式 (4)(5)(6) 依上下文与谱聚类、k 均值的标准定义重建；`Iinks(Pt)` 依原文保留为 $\\text{links}(P_t)$。`th e m by “ incidence m atri x` 中的 `“` 即 $n$：关联矩阵是 $m \\times n$（$m$ 条边、$n$ 个节点，见 bookmap 与书页 239），原稿误作 $n\\times m$，已改正。$A$ 的列数即节点数、行数即边数，故 $A^{T}A$ 为 $n\\times n$。</span>\n注意，位于 $P$ 内部的一条边被计了两次，即分别计为 $w_{ij}$ 与 $w_{ji}$。\n若不加权，则只需数节点个数，那会导出比例割（ratio cut）。\n而这里我们用 $P$ 与 $Q$ 的加权规模（weighted size）来分摊割所越过的权重，从而把关键量 $c$ 归一化（normalize）：\n```math\n\\text{Normalized cut weight } \\text{Ncut}(P,Q)\n= \\frac{\\text{links}(P)}{\\text{size}(P)} + \\frac{\\text{links}(Q)}{\\text{size}(Q)} .\n\\tag{4}\n```\nShi 与 Malik 发现，极小化 $\\text{Ncut}(P,Q)$ 能给出图的一个良好划分。\n他们的应用是图像分割。\n他们由此揭示了它与拉普拉斯矩阵（Laplacian）$L$ 之间的联系。\n$c$ 的定义由两个簇 $P$ 与 $Q$ 推广到 $k$ 个簇 $P_1,\\dots,P_k$：\n```math\n\\text{Normalized K-cut } \\text{Ncut}(P_1,\\dots,P_k)\n= \\sum_{t=1}^{k}\\frac{\\text{links}(P_t)}{\\text{size}(P_t)}\n\\tag{5}\n```\n我们正在接近 k 均值聚类。\n先从 $k=2$ 个簇（即 $P$ 与 $Q$）开始。\n**IV. k-means** 把图中的节点表示成向量 $a_1,\\dots,a_n$。\n簇 $P$ 与 $Q$ 各有中心 $c_P$ 与 $c_Q$。\n我们极小化从各节点到这两个质心的总平方距离：\n```math\n\\text{2-means clustering}\\quad c_P, c_Q = \\text{centroids}\\qquad \\text{Minimize } E=\\sum_{i \\text{ in } P}\\lVert a_i - c_P\\rVert^2 + \\sum_{i \\text{ in } Q}\\lVert a_i - c_Q\\rVert^2 \\tag{6}\n```\n质心就是簇 $P$ 中各向量的 average（平均）$c_P = (\\sum a_i)/|P|$。\n向量 $a_i$ 未必表示节点 $i$ 的物理位置，所以聚类的目标函数 $E$ 并不局限于欧几里得距离（Euclidean distance）。\n更一般的核 k 均值算法（kernel k-means algorithm）完全只用一个核矩阵（kernel matrix）$K$ 来运作，其元素给出内积 $K_{ij} = a_i^{\\mathrm{T}}a_j$。\n距离与均值都由加权后的 $K$ 计算得到。\n距离度量 $E$ 同样会被加权，以改进簇 $P$ 与 $Q$。\n<span style=color:#2471a3;>**[section]**</span>\nThe Normalized Laplacian Matrix（归一化拉普拉斯矩阵）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.7, p.247</span>\n走向 $L$ 的第一步是 $A^{\\mathrm{T}}A$。这个 $A$ 是该图的 $m\\times n$ incidence matrix（关联矩阵）。\n在非对角位置上，当一条边连接节点 $i$ 与节点 $j$ 时，$A^{T}A$ 的第 $i,j$ 个元素为 $-1$。\n对角元则使每一行的和为零。\n于是 $(A^{T}A)_{ii}$ 就是汇集到节点 $i$ 的边数，即节点 $i$ 的度（degree）。\n当所有权重都等于 $1$ 时，$A^{T}A=\\text{degree matrix}-\\text{adjacency matrix}$（度矩阵减邻接矩阵）。\n$C$ 中的 edge weights（边权重）可以是 conductance（电导）、弹簧常数或边长。它们出现在 $A^{\\mathrm{T}}CA = D - W$ 的对角线上与非对角线上，其中 $D - W$ 就是 node weight matrix（节点权重矩阵）减 edge weight matrix（边权重矩阵）。\n在对角线之外，$-W$ 的元素就是各权重 $w_{ij}$ 取负号；而对角元 $d_i$ 仍使所有行的和为零：$D = \\mathrm{diag}(\\mathrm{sum}(W))$。\n\n@@PAGE:250@@\n<!-- page 250 -->\n> <span style=color:#7f8c8d;>本页为书页 248，续 §IV.7（归一化拉普拉斯矩阵的三条性质、归一化与非归一化的对比）；页眉 “Special Matrices” 与印页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声：`云 1 = 0`→$A\\mathbf{1}=\\mathbf{0}$、`l 0`／`vibratl 0 n`→vibration、`dru m`→drum、`muluply`→multiply、`symmeü•y`→symmetry、`耐 皿 gle`→triangle、`忉`→$w_{ij}$、`鬱`→第二个特征向量（OCR 残损，暂记作 $v$，以区别于第 2 条中 $\\lambda=0$ 的特征向量 $u$）、`山 z`→with $z$、`0 hogonal`→orthogonal、`go 山 ms`→goals、`re sults`→results、`cor 五 O ma t 冂`→correlation matrix。`The next eigenvector is 1 e the lowest vibration mode of a drum` 中的 `1 e` 无法辨读，此处按「第二个特征向量与 $\\mathbf{1}$ 正交、是鼓面最低振动模态的类比」重建，未强加公式。`Lv = D 一 1/2 … 山 z = …` 一句缺少把 $L$ 的特征方程接到 $A^{T}CAz=\\lambda Dz$ 的那一步，译文补出「若 $Lv=\\lambda v$ 且 $z=D^{-1/2}v$」，以补上原稿的逻辑缺口；第 3 条与 (9) 式中试验向量的记号在原文中为 $c$（见 `The quoüent cTLc/cTc`），与特征向量 $v$ 区分。公式 (8)(9)(10) 中 $L$ 的矩阵元素依上下文重建。</span>\n全 $1$ 向量 $\\mathbf{1}=(1,\\dots,1)$ 位于 $A^{T}CA$ 的零空间（nullspace）中，因为 $A\\mathbf{1}=\\mathbf{0}$。\n$A$ 的每一行都含一个 $1$ 与一个 $-1$。\n等价地说，$D\\mathbf{1}$ 与 $W\\mathbf{1}$ 相互抵消（所有行的和都为零）。\n下一个特征向量与 $\\mathbf{1}$ 正交，它就像鼓面最低的那个振动模态，对应的特征值 $\\lambda_2>0$。\n对于归一化的加权拉普拉斯矩阵（normalized weighted Laplacian），我们在 $A^{T}CA$ 的左右两边分别乘上 $D^{-1/2}$，从而保持对称性。\n第 $i$ 行与第 $j$ 列分别除以 $\\sqrt{d_i}$ 与 $\\sqrt{d_j}$，于是 $w_{ij}$ 被除以 $\\sqrt{d_i\\,d_j}$。\n这样一来，$L$ 的对角线上就出现了 $1$。\n```math\n\\text{Normalized Laplacian } L\\qquad L = D^{-1/2}A^{\\mathrm{T}}CA\\,D^{-1/2} = I - N \\qquad \\text{Normalized weights } n_{ij} = \\frac{w_{ij}}{\\sqrt{d_id_j}} \\tag{7}\n```\n其中 $N$ 由归一化后的权重 $n_{ij} = w_{ij}/\\sqrt{d_id_j}$ 构成。\n一个三角形图有 $n=3$ 个节点与 $m=3$ 条带权重的边（$c_1,c_2,c_3$，即 $w_{12},w_{13},w_{23}$）：\n```math\nA^{T}CA = D - W =\n\\begin{bmatrix}\nw_{12}+w_{13} & -w_{12} & -w_{13}\\\\\n-w_{21} & w_{21}+w_{23} & -w_{23}\\\\\n-w_{31} & -w_{32} & w_{31}+w_{32}\n\\end{bmatrix}\n\\qquad\nL = D^{-1/2}A^{T}CA\\,D^{-1/2} =\n\\begin{bmatrix}\n1 & -\\dfrac{w_{12}}{\\sqrt{d_1d_2}} & -\\dfrac{w_{13}}{\\sqrt{d_1d_3}}\\\\[2mm]\n-\\dfrac{w_{21}}{\\sqrt{d_2d_1}} & 1 & -\\dfrac{w_{23}}{\\sqrt{d_2d_3}}\\\\[2mm]\n-\\dfrac{w_{31}}{\\sqrt{d_3d_1}} & -\\dfrac{w_{32}}{\\sqrt{d_3d_2}} & 1\n\\end{bmatrix}\n```\n```math\nA^{\\mathrm{T}}CA = D - W \\qquad L = D^{-1/2}A^{\\mathrm{T}}CA\\,D^{-1/2} \\tag{8}\n```\n归一化拉普拉斯矩阵 $L=D^{-1/2}A^{T}CA\\,D^{-1/2}$ 很像统计学中的相关矩阵（correlation matrix），它的对角线上的元素全是 $1$。\n它的三条性质对聚类至关重要：\n**1.** $L$ 是对称半正定的（symmetric positive semidefinite）：特征向量正交，特征值 $\\lambda\\ge 0$。\n**2.** 对应 $\\lambda=0$ 的特征向量是 $u = (\\sqrt{d_1}, \\dots, \\sqrt{d_n})$。\n于是 $Lu = D^{-1/2}A^{\\mathrm{T}}CA\\mathbf{1} = \\mathbf{0}$。\n**3.** $L$ 的第二个特征向量 $v$ 在某个子空间上极小化瑞利商（Rayleigh quotient）：\n```math\n\\lambda_2 = \\text{smallest nonzero eigenvalue of } L\\qquad \\text{Minimize subject to } x^{\\mathrm{T}}u = 0\\qquad \\min \\frac{x^{\\mathrm{T}}Lx}{x^{\\mathrm{T}}x} = \\frac{v^{\\mathrm{T}}Lv}{v^{\\mathrm{T}}v} = \\lambda_2 \\text{ at } x = v\n\\tag{9}\n```\n对任何与第一个特征向量 $D^{1/2}\\mathbf{1}$ 正交的向量 $x$，商 $x^{\\mathrm{T}}Lx/x^{\\mathrm{T}}x$ 都给出 $\\lambda_2$ 的一个上界。\n而 $\\lambda_2$ 的一个好的下界则更难找到。\n> <span style=color:#1e8449;>**[note] 译者注：** 为什么“第二小”的特征向量能给出最小割——瑞利商、子空间上的极小化与松弛的代价\n> <span style=color:#1e8449;>这一页收敛到谱聚类的核心命题，两个问题必须先答清楚：**为什么用第二小而不是最小？为什么“第二小特征向量”会和“割”扯上关系？**</span>\n> <span style=color:#1e8449;>先看第一个，机制纯粹是瑞利商与正交约束。对对称矩阵，任意向量 $x$ 的瑞利商 $x^{T}Lx/x^{T}x$ 都落在 $[\\lambda_{\\min},\\lambda_{\\max}]$ 之间；原因是 $L$ 有正交特征向量基，把 $x=\\sum_i a_i q_i$ 代进去，分子是 $\\sum_i\\lambda_i a_i^{2}$、分母是 $\\sum_i a_i^{2}$，所以瑞利商就是**特征值以 $a_i^{2}$ 为权重的加权平均**。这是一个非常朴素的观察，却解释了一切：要让加权平均最小，就把全部重量压到最小的 $\\lambda$ 上，得到 $\\lambda_1=0$ 与其特征向量——本页告诉我们那是 $u=D^{1/2}\\mathbf{1}$，分量全正、没有符号变化，对应“所有节点在同一个簇里”，那是一个平凡的、没有信息量的解。于是我们必须**排除它**：要求候选向量与第一特征向量正交（在归一化写法里是 $u^{T}D^{1/2}\\mathbf{1}=0$，在非归一化的广义问题里就是本页 $(10)$ 的 $\\mathbf{1}^{T}Dz=0$）。正交意味着 $a_1=0$，重量不能放在 $\\lambda_1$ 上，只能放到 $\\lambda_2$ 上——这就是“第二小”的来源。你在 PCA 里做过完全相同的事，只是方向相反：那里按方差从大到小挑方向；这里从最小往上挑，跳过那个平凡的零方向。这两端合起来就是极小极大原理（Courant–Fischer）：**第 $k$ 个特征值 = 在“与前 $k-1$ 个特征向量正交”的子空间上极小化瑞利商。**</span>\n> <span style=color:#1e8449;>再看第二个问题，需要把瑞利商翻译成“割”的大小。对拉普拉斯类矩阵有一个关键恒等式：$x^{T}Lx=\\sum_{\\text{边 }ij}w_{ij}(x_i-x_j)^{2}$（本页前面 $A^{T}A=D-W$ 的写法直接蕴含它）。它说明能量只惩罚“同一条边两端取值差异大”。现在做一步想象：如果 $x$ 是一个**分类指示向量**，属于簇 $P$ 的节点取 $+1$、属于簇 $Q$ 的取 $-1$，那么 $(x_i-x_j)^{2}$ 只有在边跨越两个簇时才是 $4$，其余为 $0$。于是 $x^{T}Lx=4\\times(\\text{跨越割的权重之和})$——**割的大小被写成了一个二次型**。这就把“在离散的所有划分中找最小割”（一个组合优化问题，候选数量随 $n$ 指数增长）变成了“在一个二次型上求最小值”。可惜约束“$x_i$ 只能取 $\\pm1$”仍然是离散的，问题依旧难；谱聚类的做法是**松弛**：允许 $x$ 取任意实数，只保留“与常向量正交”这一条（它对应“两边都不能是空的”），求出的最小值就是 $\\lambda_2$，最优解就是 Fiedler 向量。最后把 Fiedler 向量的正负号当作 $\\pm1$ 舍入回一个真正的划分。</span>\n> <span style=color:#1e8449;>把这条思路和你在 Boyd 里学到的东西接起来：这是“松弛 + 舍入”的标准范式——离散问题难解，就放宽可行域到连续（凸）集合，解一个可解的问题，再把解搬回离散域。关键区别是：Boyd 前五章的凸松弛往往给出**界**（比如对偶给出的下界），而谱松弛给出的是一个**启发式近似**，不保证最优。本页非常诚实地指出了这个不对称：任何与第一特征向量正交的向量都给 $\\lambda_2$ 一个**上界**（因为它是一个可行的试验向量，瑞利商不会小于最小值），而 $\\lambda_2$ 的好**下界**要难得多。换句话说，“$\\lambda_2$ 小 ⟹ 存在一个小割”和“存在小割 ⟹ $\\lambda_2$ 小”这两个方向的难度完全不对等；确实有定理能把 $\\lambda_2$ 与最优归一化割的大小在常数因子范围内互相控制，但那需要额外得多的分析工作，不是这一节能顺手给出的。</span>\n> <span style=color:#1e8449;>最后一点关于归一化：本页的 $L=D^{-1/2}A^{T}CAD^{-1/2}=I-N$ 是对称的，对角线上全是 $1$，因此它像统计学里的相关矩阵（你把每个变量除以自己的标准差，就是为了让不同尺度的变量可比）。归一化的作用很实际：度数差别巨大的图里，不归一化会让“割掉一个度数很小的节点”看起来很便宜，于是算法倾向于把孤立的小群体切出去；除以 $\\sqrt{d_i d_j}$ 相当于按度数把每个节点的话筒音量调平。这也是为什么会得到广义特征值问题 $A^{T}CAz=\\lambda Dz$（本页 (10)）——它只是把归一化版本换回非归一化的坐标来写。</span>\n> <span style=color:#1e8449;>顺带说一句它在今天的位置，但要有分寸。谱方法的价值在于：它只需要“谁和谁相似”这张关系表（图），不需要坐标，就能把整体结构最粗的一层（哪些点成团）压成少数几个特征向量——这与当下把关系结构表示成低维向量的动机是一致的，所以图上的谱工具在表示学习和图神经网络里反复出现（本页提到的模块度矩阵，Newman 的 PNAS 103 (2006) 8577–8582 那篇文章就是这条线上的工作）。但必须诚实：谱聚类回答的是“给定相似度之后如何分组”，它**不解释相似度从哪里来**，也不等于任何意义上的“理解”；它是一个把图结构翻译成几何结构、从而可计算的桥梁。把它当成“通往智能的充分条件”，是过度解读。</span>\n> <span style=color:#1e8449;>可迁移结论：**遇到离散的组合选择问题，先试着三问：(1) 目标能不能写成二次型？(2) 约束能不能写成“与某个向量正交”？(3) 松弛后能不能舍入回离散解？** 谱聚类是这三问全答“能”的样本；而本页最后那句“下界更难找”提醒你，松弛几乎总会留下一个无法免费弥补的缺口——知道缺口在哪，比记住算法更重要。</span>\n<span style=color:#2471a3;>**[section]**</span>\nNormalized versus Unnormalized（归一化与非归一化）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.7, p.248</span>\n聚类算法本可以使用非归一化的矩阵 $A^{T}CA$。\n但 $L$ 通常给出更好的结果。\n两者之间的联系是 $Lv = D^{-1/2}A^{\\mathrm{T}}CAD^{-1/2}v = \\lambda v$：若 $z = D^{-1/2}v$，它就化成简单而重要的形式而重要的形式 $A^{T}CAz=\\lambda Dz$：\n```math\n\\text{Normalized Fiedler vector } z:\\quad A^{T}CAz=\\lambda Dz\\ \\text{ with } \\mathbf{1}^{T}Dz=0\n\\tag{10}\n```\n对这个 “generalized（广义的）” 特征值问题而言，$\\lambda=0$ 对应的特征向量仍然是全 $1$ 向量 $\\mathbf{1}=(1,\\dots,1))$。\n下一个特征向量 $z$ 与 $\\mathbf{1}$ 正交（在 $D$ 内积的意义下），这正意味着 $\\mathbf{1}^{\\mathrm{T}}Dz = 0$。\n\n现在输出修订后的译文全文（从 `@@PAGE:249@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7131,
+            "outputTokens": 7944,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7131,
+              "outputTokens": 7944,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11861,
+          "contextWindow": 1000000,
+          "pressureTokens": 10971,
+          "sampledSurfaceTokens": 5699
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4139,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 6162,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10717
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

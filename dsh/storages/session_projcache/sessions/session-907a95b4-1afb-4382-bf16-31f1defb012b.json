@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132490969,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_185（书页 182） @@@@@\r\n−---- 【权威原文】 −---------------\r\n**182** \\hfill **Low Rank and Compressed Sensing**\r\n\r\n**ADI and the Zolotarev Problem**\r\n\r\nIn a short paragraph we can point to two ideas that lead to fast decay for the singular values of $X$. The first is an ADI iteration to solve Sylvester's equation $AX − XB = C$. The *Alternating Direction Implicit* algorithm gives a computationally efficient solution. The second idea connects the eigenvalues of $A$ and $B$ (they are required not to overlap) to a problem in *rational approximation*.\r\n\r\nThat Zolotarev problem looks for a ratio $r(x) = p(x)/q(x)$ of polynomials that is small at the eigenvalues of $A$ and large at the eigenvalues of $B$. Approximating by rational functions $r(x)$ can be exponentially better than polynomials—a famous example is Newman's approximation of the absolute value $|x|$. The exponential accuracy of $r(x)$ becomes connected to the exponential decay of singular values of $X$.\r\n\r\n**ADI solves $AX − XB = C$** \\hspace{2cm} \\begin{array}{|l} X_{j+1/2}(B − p_jI) = C − (A − p_jI) X_j \\\\ (A − q_jI)X_{j+1} = C − X_{j+1/2}(B − q_jI) \\end{array}\r\n\r\n**Matrices $X_{j+1/2}$ and $X_{j+1}$**\r\n\r\nThe good rational function $r(x) = p(x)/q(x)$ has roots $p_j$ in the numerator and $q_j$ in the denominator. It was Zolotarev in 1877 (!) who found the best $p$'s and $q$'s in a model problem. With $A$ and $B$ in the Sylvester test, the bound on $\\sigma_{1+kr}(X)$ is the Z-number times $\\sigma_1(X)$—which means exponential decay of singular values.\r\n\r\nTownsend and Fortunato developed this idea into a superfast Poisson solver on a square. When $X$ is the usual 5-point finite difference approximation to $\\partial^2u/\\partial x^2 + \\partial^2u/\\partial y^2$, fast solvers are already known. Their goal was a spectral method with optimal complexity.\r\n\r\n1. B. Beckermann, The condition number of real Vandermonde, Krylov, and positive definite Hankel matrices, *Numerische Mathematik* 85 (2000) 553-577.\r\n2. B. Beckermann and A. Townsend, On the singular values of matrices with displacement structure, *SIAM J. Matrix Analysis*, arXiv: 1609.09494v1, 29 Sep 2016.\r\n3. P. Benner, R.-C. Li, and N. , On the ADI method for Sylvester equations, *J. Comput. Appl. Math.* 233 (2009) 1035-1045.\r\n4. D. Fortunato and A. Townsend, Fast Poisson solvers for spectral methods, arXiv: 1710.11259v1, 30 Oct 2017.\r\n5. D. Ruiz-Antolin and A. Townsend, A nonuniform fast Fourier transform based on low rank approximation, arXiv: 1701.04492, *SIAM J. Sci. Comp.* 40-1 (2018).\r\n6. A. Townsend and H. Wilber, On the singular values of matrices with high displacement rank, arXiv:17120.5864, *Linear Alg. Appl.* 548 (2018) 19-41.\r\n7. A. Townsend, www.math.cornell.edu/~ajt/presentations/LowRankMatrices.pdf\r\n8. M. Udell and A. Townsend, Nice latent variable models have log-rank, arXiv: 1705.07474v1, *SIAM J. Math. of Data Science*, to appear.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:185@@\r\n> <span style=color:#7f8c8d;>第 182 页 · 书眉：低秩与压缩感知（Low Rank and Compressed Sensing）· 本节：§III.3 快速衰减的奇异值</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## ADI 与 Zolotarev 问题（ADI and the Zolotarev Problem）\r\n\r\n用短短一段话，就能指出两个让 $X$ 的奇异值快速衰减的想法。第一个是求解 Sylvester 方程 $AX − XB = C$ 的 ADI 迭代（ADI iteration），交替方向隐式算法（Alternating Direction Implicit algorithm）给出了计算上高效的解法。第二个想法把 $A$ 与 $B$ 的特征值（前提是两组特征值不重叠）与有理逼近（rational approximation）中的一个问题联系起来。所谓 Zolotarev 问题（Zolotarev problem），就是要找一个多项式之比 $r(c) = p(c)/q(c)$，使 $r(c)$ 在 $A$ 的特征值处很小、在 $B$ 的特征值处很大。用有理函数 $r(c)$ 来逼近，效果可以比用多项式逼近好得多——好到指数级；纽曼（Newman）对绝对值函数 $|x|$ 的逼近就是一个著名的例子。$r(c)$ 的指数级精度，就这样与 $X$ 的奇异值的指数衰减联系了起来。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 正文把 ADI 迭代与「$A$、$B$ 的特征值不得重叠」绑在一起，这个限制不是顺手一提，而是方程可解性的充要条件。从最基础的假设出发：$AX − XB = C$ 里未知的 $X$ 有 $n^{2}$ 个分量，所以它本质上是一个 $n^{2}$ 元的线性方程组。把 $X$ 按列拉直成 $\\operatorname{vec}(X)$，用恒等式 $\\operatorname{vec}(AXB) = (B^{T}\\otimes A)\\operatorname{vec}(X)$，原方程等价于 $\\left(I\\otimes A − B^{T}\\otimes I\\right)\\operatorname{vec}(X) = \\operatorname{vec}(C)$。这里的 $\\otimes$ 不需要任何新代数，它只是分块矩阵的记账法：$I\\otimes A$ 把 $n$ 个 $A$ 摞在对角线上，$B^{T}\\otimes I$ 把 $I$ 的每个块乘以 $B^{T}$ 的对应元素。关键在于这个 $n^{2}\\times n^{2}$ 矩阵的谱可以白拿：$I\\otimes A$ 的特征值是 $\\lambda_i(A)$（每个重复 $n$ 次），$B^{T}\\otimes I$ 的特征值是 $\\mu_j(B)$，两块可以同时对角化，所以差的特征值就是 $\\lambda_i(A) − \\mu_j(B)$。于是「特征值不重叠」等价于这个矩阵没有零特征值，等价于它可逆，等价于对任意 $C$ 存在唯一解——这就是正文那句话的全部内容。比「能不能解」更有用的问题是「解得准不准」，答案同样写在这组谱差里：敏感度由谱差绝对值的最大值与最小值之比 $\\kappa$ 控制。验算一次：取 $A = \\operatorname{diag}(2,3)$、$B = \\operatorname{diag}(0,5)$，谱差为 $2,-3,3,-2$，$\\kappa = 3/2 = 1.5$，非常好；把 $B$ 换成 $\\operatorname{diag}(0,\\,3-\\varepsilon)$，谱差里立刻冒出一个 $\\varepsilon$，$\\kappa \\approx 3/\\varepsilon$，取 $\\varepsilon = 10^{-6}$ 得 $\\kappa \\approx 3\\times 10^{6}$。回到课程「计算机系统基础」（CSAPP）第 2 章的浮点结论：双精度（double）约有 16 位十进制有效数字，$\\kappa = 10^{6}$ 时只剩 10 位可信，$\\kappa = 10^{16}$ 时答案全是舍入噪声。所以「特征值接近」不是小事，它直接吃掉精度。这还顺带解释了 ADI 存在的理由：对拉直后的 $n^{2}$ 元方程组直接做 LU 是 $O(n^{6})$ 的，而 ADI 每一步只解两个 $n\\times n$ 的移位方程组。移位参数的作用，就是决定「用哪些 $\\lambda_i − \\mu_j$ 去做除法」，从而决定误差被放大还是被压缩——这正是本页下半部分 Zolotarev 有理函数的用武之地。可复用的模板：**向量化—谱差检验法**。遇到 $AX \\pm XB = C$、$AXB = C$ 这类矩阵方程，第一步一律拉直成向量方程，第二步把算子谱写成已知谱的和与差，第三步用「有没有零特征值、谱分离比多大」回答可解性与条件数。课程 18.065 里的 Lyapunov 方程 $AX + XA^{T} = C$ 走的是同一套推理：谱变成 $\\lambda_i + \\lambda_j$，可解条件相应变成「任意两个特征值之和不为零」。\r\n>\r\n> 补一句最容易踩空的地方。上面的「不重叠」有两层含义，必须分清：如果某个 $\\lambda_i − \\mu_j$ 恰为零，矩阵奇异，此时不是「解不出来」，而是「要么无解、要么有无穷多解」——有解的充要条件是 $\\operatorname{vec}(C)$ 与那个零特征值对应的左特征向量正交，这就是课程 **Strang 线性代数**里「$Ax=b$ 有解当且仅当 $b$ 垂直于 $A^{T}$ 的零空间」那条判据在矩阵方程上的原样翻版。此处的连接路径是：**把 $n^{2}\\times n^{2}$ 的算子当成一个普通的方阵，直接套用四个基本子空间的正交分解**；区别在于，普通线性代数课里零空间是抽象的，而这里零空间有明确的物理身份——它由「$A$ 的特征向量」与「$B^{T}$ 的特征向量」做张量积构成，所以病态是可以定位到具体的那一对 $(\\lambda_i,\\mu_j)$ 上去的。再看「接近但不相等」这一层：此时矩阵可逆，但条件数 $\\kappa$ 随谱分离度倒数增长，于是求解精度按 $\\kappa$ 打折。可以把两条合成一句工程判据先算谱再选算法：先估计 $\\min_{i,j}|\\lambda_i − \\mu_j|$ 与 $\\max_{i,j}|\\lambda_i − \\mu_j|$ 的比值，若它接近 $1$，直接移位求解既快又准；若它小到 $10^{-6}$ 量级，就必须改用 ADI 并认真挑选移位参数，否则浮点误差会淹没答案。这正是课程 **凸优化（Boyd）** 里「先看条件数再决定用不用预条件」的同一种工程直觉；区别是凸优化里的预条件是为了加快收敛，而这里的移位参数同时承担两个职责——既改变条件数、又构造出可快速求解的移位方程组，一个旋钮管两件事，这也是 ADI 难调的原因。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 用 ADI 求解 $AX − XB = C$（ADI Solves $AX − XB = C$）\r\n\r\n其中的矩阵是 $X_{j+1/2}$ 与 $X_{j+1}$。\r\n\r\n那个好的有理函数 $r(c) = p(c)/q(c)$，分子里的零点是它的根（roots），分母里的零点是它的极点（poles）。正是 Zolotarev 在 1877 年（！）于一个模型问题中找到了最优的那对 $p$ 与 $q$。把 $A$、$B$ 放进 Sylvester 检验（Sylvester test），$\\sigma_{j+1}(X)$ 的界就是那个「Z-number（Z-数）」乘以 $\\sigma_j(X)$——这正是奇异值的指数衰减。汤森（Townsend）与福图纳托（Fortunato）把这一想法发展成了正方形区域上的超快泊松求解器（superfast Poisson solver）。当 $X$ 取通常的五点有限差分近似（5-point finite difference approximation）、用来逼近 $\\partial^{2}u/\\partial x^{2} + \\partial^{2}u/\\partial y^{2}$ 时，快速求解器（fast solvers）早已为人所知；他们的目标是一个复杂度最优的谱方法（spectral method）。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与 Z-number 的含义）：**</span> 本页 OCR 噪声较多，先交代复原依据：`由 at` 复为 that，`t0`／`0f`／`0n`／`rati 0`／`Z010tarev` 分别复为 to／of／on／ratio／Zolotarev，`一 XB = C` 复为 $AX − XB = C$，`repurred` 复为 required，`ra 五 0 a / a 0 觐` 复为 rational approximation，`阝` 复为 $|x|$，`灭` 依上下文复为 $X$，`‰` 复为 poles。有两处不能照字形硬搬。第一处是脚注 1 的出处：`e s e Ma e 85 (2000) 553-577` 说的是 Beckermann 那篇论文，正确刊名与卷页是 Numer. Math.（Numerische Mathematik）第 85 卷（2000）553–577，而不是 Electron. Trans. Numer. Anal.（ETNA）；同一行的 `10v ，` 也不是人名 Löw，而是篇名里的 Krylov——原题名是「实 Vandermonde、Krylov 与正定 Hankel 矩阵的条件数」。第二处是 `the bound on 01 + （ ） is the Z-number times 01 (X)`：只有把它读成 $\\sigma_{j+1}(X) \\le Z\\cdot\\sigma_j(X)$，紧接着的 `which means exponential decay of singular values` 才站得住——相邻下标之间的乘法递推，才配得上「指数衰减」四个字，其中的 $Z$ 就是 Zolotarev 数（Z-number）。另外，正文里「其中的矩阵是 $X_{j+1/2}$ 与 $X_{j+1}$」是承接显示公式的残句，ADI 的两个半步迭代式在 OCR 中整块丢失，译文照原样保留这一行，读者可对照脚注 3 的 Benner–Li–Truhar 一文补上。再说一条与课程「数学分析」直接相连的线索：正文提到纽曼（Newman）对 $|x|$ 的逼近，比较的是有理逼近与多项式逼近。在「数学分析」的一致逼近部分，$|x|$ 在 $[-1,1]$ 上只有利普希茨（Lipschitz）光滑度，用多项式逼近，误差只能按 $1/n$ 的速度下降；换成有理函数，纽曼在 1964 年证明误差可以按 $e^{-\\pi\\sqrt{n}}$ 的速度下降。连接路径是让分母的极点去吸收 $|x|$ 在原点处的折点，区别在于多项式没有极点可用——这正是 Zolotarev 问题在数值线性代数里被反复引用的原因。\r\n\r\n> <span style=color:#7f8c8d;>1. B. Beckermann, *The condition number of real Vandermonde, Krylov, and positive definite Hankel matrices*, Numer. Math. 85 (2000) 553–577.\r\n> 2. B. Beckermann and A. Townsend, *On the singular values of matrices with displacement structure*, SIAM J. Matrix Anal. Appl., arXiv:1609.09494v1, 29 Sep 2016.\r\n> 3. P. Benner, R.-C. Li, and N. Truhar, *On the ADI method for Sylvester equations*, J. Comput. Appl. Math. 233 (2009) 1035–1045.\r\n> 4. D. Fortunato and A. Townsend, *Fast Poisson solvers for spectral methods*, arXiv:1710.11259v1, 30 Oct 2017.\r\n> 5. D. Ruiz-Antolín and A. Townsend, *A nonuniform fast Fourier transform based on low rank approximation*, arXiv:1701.04492, SIAM J. Sci. Comput. 40:1 (2018).\r\n> 6. A. Townsend and H. Wilber, *On the singular values of matrices with high displacement rank*, arXiv:1712.05864, Linear Alg. Appl. 548 (2018) 19–41.\r\n> 7. A. Townsend, www.math.cornell.edu/~townsend/presentations/LowRankMatrices.pdf\r\n> 8. M. Udell and A. Townsend, *Nice latent variable models have log-rank*, arXiv:1705.07474v1, SIAM J. Math. Data Sci., to appear.</span>\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.3, p.182</span>\r\n\r\n@@@@@ page_186（书页 183） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.3. Rapidly Decaying Singular Values\r\n\r\n**183**\r\n\r\n**Problem Set III.3**\r\n\r\n1 Verify that a **Krylov matrix** \\(K = [b \\ Ab \\ \\dots \\ A^{n-1}b]\\) satisfies a Sylvester equation \\(AK − KB = C\\) with \\(B\\) as in equation (6). Find the matrix \\(C\\).\r\n\r\n2 Show that the evil **Hilbert matrix** \\(H\\) passes the Sylvester test \\(AH − HB = C\\)\r\n\\[\r\nH_{ij} = \\frac{1}{i+j-1} \\quad A = \\frac{1}{2}\\text{diag}(1, 3, \\dots, 2n-1) \\quad B = −A \\quad C = \\textbf{ones}(n)\r\n\\]\r\n\r\n3 A **Toeplitz matrix** \\(T\\) has constant diagonals (IV.5). Compute \\(AT − TA^T = C\\):\r\n\\[\r\nT = \\begin{bmatrix} t_0 & t_{-1} & \\cdot & \\cdot \\\\ t_1 & t_0 & t_{-1} & \\cdot \\\\ \\cdot & t_1 & t_0 & \\cdot \\\\ \\cdot & \\cdot & \\cdot & \\cdot \\end{bmatrix} \\quad A = \\begin{bmatrix} 0 & 0 & 0 & \\cdot \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ \\cdot & 0 & 1 & \\cdot \\end{bmatrix} \\quad B = A^T\r\n\\]\r\n\r\n4 A **Hankel matrix** \\(H\\) has constant *antidiagonals*, like the Hilbert matrix. Then \\(H_{ij}\\) depends only on \\(i+j\\). When \\(H\\) is symmetric positive definite, Beckermann and Townsend show that \\(H = \\overline{K}^T K\\) for a Krylov matrix \\(K\\) (as in Problem 1 above). Then \\(\\sigma_j(H) = |\\sigma_j(K)|^2\\) (*why?*) and the singular values of \\(H\\) decay quickly.\r\n\r\n5 A **Pick matrix** has entries \\(P_{jk} = (s_j + s_k)/(x_j + x_k)\\) where \\(x = (x_1, \\dots, x_n) > 0\\) and \\(s = (s_1, \\dots, s_n)\\) can be complex. Show that \\(AP − P(-A) = s1^T + 1s^T\\) where \\(1^T = [1 \\ 1 \\ \\dots \\ 1]\\) and \\(A = \\text{diag}(x_1, \\dots, x_n)\\). \\(A\\) has positive eigenvalues, \\(B = −A\\) has negative eigenvalues, and the Sylvester test is passed.\r\n\r\n6 If an invertible matrix \\(X\\) satisfies the Sylvester equation \\(AX − XB = C\\), find a Sylvester equation for \\(X^{-1}\\).\r\n\r\n7 If \\(A = Q\\Lambda\\overline{Q}^T\\) has complex orthogonal eigenvectors \\(q_1, \\dots, q_n\\) in the columns of \\(Q\\), verify that \\(\\overline{A}^T A = A\\overline{A}^T\\) : then \\(A\\) is *normal*. The eigenvalues can be complex.\r\n\r\n8 If \\(S^T = S\\) and \\(Z^T = −Z\\) and \\(SZ = ZS\\), verify that \\(A = S + Z\\) is normal. Since \\(S\\) has real eigenvalues and \\(Z\\) has imaginary eigenvalues, \\(A = S + Z\\) probably has complex eigenvalues.\r\n\r\n9 Show that equation (3) for \\(Uc\\) follows from equation (2) for \\(A\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:186@@\r\n> <span style=color:#7f8c8d;>第 183 页 · 书眉：快速衰减的奇异值（Rapidly Decaying Singular Values）· 本节：Problem Set III.3（习题 1–9，题干保留英文原文）</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Problem Set III.3（习题集 III.3）——§III.3 快速衰减的奇异值（Rapidly Decaying Singular Values）\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 1.** Show that a Krylov matrix $K = [\\,b\\ \\ Ab\\ \\ \\cdots\\ \\ A^{n-1}b\\,]$ satisfies a Sylvester equation $AK − KB = C$, with $B$ as in equation (6). Find the matrix $C$.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与逐列验算）：**</span> OCR 把 Krylov 矩阵写成 `K = [b Ab 一 风 一 lb ]`，按标准定义复原为 $K = [\\,b\\ Ab\\ \\cdots\\ A^{n-1}b\\,]$，共 $n$ 列。答案是秩 $1$ 矩阵。把 $AK$ 与 $KB$ 逐列摆开，结果立刻现形：$AK$ 的列是 $Ab,\\,A^{2}b,\\dots,A^{n}b$；式 (6) 里的 $B$ 是移位矩阵，作用是把每一列右移一格、最后一列清零，所以 $KB$ 的列是 $Ab,\\,A^{2}b,\\dots,A^{n-1}b,\\,0$。两者只有最后一列不同，于是 $C = (A^{n}b)\\,e_n^{T}$：最后一列是 $A^{n}b$，其余元素全为 $0$，秩为 $1$，远小于 $n$——这就叫 Krylov 矩阵通过了 Sylvester 检验。为什么值得做？低秩的 $C$ 正是位移结构的标志：$K$ 与「沿位移方向推一格」之后的自己只差一个秩 1 矩阵，而位移秩小意味着奇异值衰减快，这正是把 Krylov 矩阵与习题 4 的 Hankel 矩阵串起来的那根线。作为对照：若把 $B$ 换成伴随矩阵（把特征多项式的系数放进最后一列），同样的逐列相减会因 Cayley–Hamilton 定理得到 $C = 0$，秩更低，「检验通过」的结论不变。可复用的动作是**逐列相减，找出被移位打乱的那一列**。整个计算只用矩阵乘向量，不需要任何 SVD；与课程「数据结构」用稀疏结构省存储的思路同源，这里省下的不是内存，而是「证明奇异值衰减」所需的计算量——那边用结构代替全体元素，这边用结构代替实测 SVD，代价是必须先把位移方程猜对。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 2.** Show that the evil Hilbert matrix $H$ passes the Sylvester test $AH − HB = C$ with $A = −\\operatorname{diag}(1, 3, \\ldots, 2n-1)$, $B = −A$, $C = −2\\,\\text{ones}$.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与因子核对）：**</span> OCR 把这一题的三件数据压成了一行 `= 一 diag （ 1 ， 3 ， · ， 2 一 1 ） B = 一 C = ones ）`，按逐项验算复原为 $A = −\\operatorname{diag}(1,3,\\dots,2n-1)$、$B = −A$、$C = −2\\,\\text{ones}$。这里必须提醒一处容易抄错的因子：把 $H_{jk} = 1/(j+k-1)$ 代入，逐项相减得 $(AH − HB)_{jk} = −(2j-1)/(j+k-1) − (2k-1)/(j+k-1) = −2(j+k-1)/(j+k-1) = −2$。右端确实是常数矩阵，但那个常数是 $-2$ 而不是 $-1$；OCR 只剩 `ones`，因子 $2$ 由这条验算补回，改掉它等式就不再成立。为什么希尔伯特矩阵要这样「过一遍筛子」？因为 $A$ 与 $B = −A$ 的特征值是 $\\pm 1,\\pm 3,\\dots,\\pm(2n-1)$：一组全负、一组全正，被 $0$ 干净地隔开，Sylvester 检验的两条要求（谱不重叠、右端低秩）同时满足，于是立刻得到 $H$ 的奇异值按谱分离比指数衰减。别看 $H$ 的条件数在 $n = 12$ 时已经到 $10^{16}$ 量级、直接求解毫无意义，它的位移秩却只有 $1$——「数值上很坏」与「结构上很好」可以长在同一个矩阵身上，这正是低秩路线存在的理由。顺带说明「evil」的含义：随着 $n$ 增大，元素 $1/(j+k-1)$ 彼此越挤越近，相邻元素的差会低于双精度能够分辨的间隔，矩阵在浮点意义下逐渐退化成低秩的影子。可复用的动作：把对角矩阵参与的两个乘积写成逐项减法（每一项只乘一个数），再看右端能否约成与 $j$、$k$ 都无关的常数。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 3.** A Toeplitz matrix has constant diagonals (§IV.5). Compute $A − A^{T} = C$:\r\n\r\n```math\r\nA = \\begin{bmatrix}\r\na_0 & a_1 & a_2 \\\\\r\na_{-1} & a_0 & a_1 \\\\\r\na_{-2} & a_{-1} & a_0\r\n\\end{bmatrix},\r\n\\qquad\r\nA − A^{T} = \\begin{bmatrix}\r\n0 & a_1 − a_{-1} & a_2 − a_{-2} \\\\\r\na_{-1} − a_1 & 0 & a_1 − a_{-1} \\\\\r\na_{-2} − a_2 & a_{-1} − a_1 & 0\r\n\\end{bmatrix}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与反对称性）：**</span> OCR 只留下 `to 一 1 / 0 0 0 / 1 0 0 0 / 0 1 0 0` 这类错位碎片，显示矩阵已无法逐字复原，因此按常数对角线的定义重建，并把「算得对」的责任放在公式上：Toeplitz 矩阵满足 $a_{jk} = a_{k-j}$，于是 $(A − A^{T})_{jk} = a_{k-j} − a_{j-k}$；三阶时对角线上第 $1$、$2$ 条的元素分别是 $a_1 − a_{-1}$ 与 $a_2 − a_{-2}$。请注意这里与原译文的区别：只有反对称的 Toeplitz 矩阵（$a_{-k} = −a_k$）才让这两个位置正好等于 $a_1$、$a_2$，一般的 Toeplitz 矩阵必须写成反对角线元素之差。这个结果有两个立刻可用的性质：一是 $C^{T} = −C$，$C$ 反对称，特征值全为纯虚数、对角线全零；二是三阶时只要 $a_1 \\ne a_{-1}$ 或 $a_2 \\ne a_{-2}$，就有 $\\operatorname{rank}(C) = 2$，仍是「小秩」。取 $X = I$、$B = A^{T}$，则 $AX − XB = A − A^{T}$ 恰好就是本题的 $C$，于是 Toeplitz 矩阵也被纳入了同一套语言：矩阵与它转置之差别，就是它相对于配对 $(A, A^{T})$ 的位移。最后提醒一处边界情形：$A$ 与 $A^{T}$ 的特征值完全相同，谱不重叠这个条件在这里失效，$X = I$ 之所以可行，只是因为右端正好落在值域里——这正是「检验」二字的边界。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 4.** A Hankel matrix $H$ has constant antidiagonals, like the Hilbert matrix. Then $H_{jk}$ depends only on $j+k$. When $H$ is symmetric positive definite, Beckermann and Townsend show that $H = K^{T}K$ for a Krylov matrix $K$ (as in Problem 1 above). Then $\\sigma_j(H) = \\bigl(\\sigma_j(K)\\bigr)^{2}$ (why?), and the singular values of $H$ decay quickly.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与跨课程连接）：**</span> OCR 把这一题压得只剩骨架，先复原：`Hi` 复为 $H_{jk}$，`t +` 复为 $j+k$，`H = K K` 依对称正定的假设复为 $H = K^{T}K$，`(H) = 《 丐 （ 月 2` 依 $H = K^{T}K$ 复为 $\\sigma_j(H) = \\bigl(\\sigma_j(K)\\bigr)^{2}$（`丐` 是 $\\sigma$、`月` 是 $K$ 的误识）。习题 4 藏着一个可以复用的判据。要证明一个矩阵奇异值衰减快，直接算 SVD 的代价是 $O(n^{3})$，而且算完也看不出「为什么快」；本书的做法是找一对 $A$、$B$ 和一个**低秩的** $C$，使 $AH − HB = C$ 成立。这里的 $H$ 是 Hankel 矩阵（常数反对角线），$C$ 是常数矩阵（习题 2 里是 $-2\\,\\text{ones}$），秩为 $1$。低秩的 $C$ 本身并不说明 $H$ 低秩——它说明 $H$ 有位移结构：$H$ 与它的位移版本只差一点点。课程 18.065 讲低秩近似时，秩描述的是「信息量」；这里秩被用来描述「结构复杂度」，同一个工具换了一个用法。汉克尔（Hankel）矩阵与克里洛夫（Krylov）矩阵的关系是这条链上最漂亮的一环：对称正定的 Hankel 矩阵可以写成 $H = K^{T}K$，其中 $K$ 是习题 1 里的 Krylov 矩阵 $[\\,b\\ Ab\\ \\cdots\\ A^{n-1}b\\,]$。于是奇异值被平方：$\\sigma_j(H) = \\sigma_j(K^{T}K) = \\sigma_j(K)^{2}$。若 $\\sigma_j(K)$ 按 $\\rho^{j}$ 衰减，$\\sigma_j(H)$ 就按 $\\rho^{2j}$ 衰减，指数衰减的指数直接翻倍。这也解释了为什么 Hilbert 矩阵虽然「坏」，却是低秩近似的理想对象：它的奇异值掉得极快，真正有效的秩很小。代价藏在同一个平方里，这正是与课程「计算机系统基础」（CSAPP）那条线的连接点：条件数同样被平方，$\\kappa_2(H) = \\kappa_2(K)^{2}$。CSAPP 第 2 章讲过浮点：双精度（double）的相对精度约为 $2^{-53} \\approx 1.1\\times 10^{-16}$，一次条件数为 $\\kappa_2$ 的线性求解最多保留约 $16 − \\log_{10}\\kappa_2$ 位十进制有效数字。希尔伯特（Hilbert）矩阵在 $n = 12$ 时 $\\kappa_2$ 已在 $10^{16}$ 量级，$n = 20$ 时远超它——此时元素 $1/(j+k-1)$ 之间的差别在双精度里已经分辨不出，任何直接求解得到的解都毫无意义。所以「用结构证明奇异值快衰减」在工程上不是锦上添花，而是绕过浮点天花板的出路：我们不去解 $Hx = b$，只用「前面的奇异值很大、后面的可以丢」这一事实。可复用的模板：**低秩残差证书法**。(1) 猜一个低秩的 $C$，验证 $AH − HB = C$；(2) 用 $A$、$B$ 的谱分离度给出 $\\sigma_j(H)$ 的衰减界；(3) 用衰减界决定截断秩，而不是用 $O(n^{3})$ 的 SVD 去实测。证书是结构性的，因此可以在只知道矩阵生成规则、不知道具体元素的情况下先用起来——这正是后面处理五点差分、Toeplitz、Hankel 这些矩阵时的标准动作。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 5.** A Pick matrix has entries $P_{jk} = (x_j + x_k)/(y_j + y_k)$ with $A = \\operatorname{diag}(y_1,\\dots,y_n)$, where the $x_j$ and $y_j$ can be complex. Show that $AP − P(-A) = s\\,\\mathbf{1}^{T} + \\mathbf{1}\\,s^{T}$, where $\\mathbf{1}^{T} = [\\,1\\ \\ 1\\ \\ \\cdots\\ \\ 1\\,]$ and $s = \\operatorname{diag}(x_1,\\dots,x_n)$. Here $A$ has positive eigenvalues, $B = −A$ has negative eigenvalues, and the Sylvester test is passed.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与秩的核算）：**</span> OCR 只剩 `舄 = （ 力 + ） / （ 与 + (k)` 与 `s1T + 1sT` 这样的碎片，按 Pick 矩阵的通行写法复原为 $P_{jk} = (x_j + x_k)/(y_j + y_k)$，并补回本题隐含的 $A = \\operatorname{diag}(y_1,\\dots,y_n)$：$A$ 若取别的对角矩阵，下面的恒等式就不成立，所以这不是可选项，而是被恒等式唯一确定的。验算只需一行：$(AP − P(-A))_{jk} = y_j P_{jk} + P_{jk}\\,y_k = (y_j + y_k)\\cdot\\frac{x_j + x_k}{y_j + y_k} = x_j + x_k$，写成矩阵就是 $s\\mathbf{1}^{T} + \\mathbf{1}s^{T}$——因为 $(s\\mathbf{1}^{T})_{jk} = x_j$、$(\\mathbf{1}s^{T})_{jk} = x_k$，两个秩 1 矩阵一加，右端秩最多为 $2$，与 $n$ 无关。要点在于：$A$ 与 $B = −A$ 的作用只是给 $P$ 的第 $j$ 行、第 $k$ 列各乘一个数，乘完再相减，分母 $y_j + y_k$ 被整块约掉。于是「$A$ 取正特征值、$B = −A$ 取负特征值」这一对自动满足 Sylvester 检验的两条要求：两组谱被 $0$ 分开，右端低秩。这种「先对角缩放、再看差」的结构在 Cauchy 型矩阵（分母形如 $y_j + y_k$）里反复出现，是位移结构家族的一员；OCR 提示 $x_j$、$y_j$ 允许取复数，而上面的逐项计算是纯代数的，复数情形一字不改地成立。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 6.** If an invertible matrix $X$ satisfies the Sylvester equation $AX − XB = C$, find a Sylvester equation for $X^{-1}$.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与求逆后的秩）：**</span> OCR 的 `mafrix` 复为 matrix，`一 1` 依语境复为 $X^{-1}$。本题只用一次「左右同时乘」，结论却很有价值：记 $Y = X^{-1}$，把 $AX − XB = C$ 左乘 $X^{-1}$、右乘 $X^{-1}$，左边成为 $YA − BY$，右边成为 $YCY$，整理得 $YA − BY = YCY$，等价地 $BY − YA = −YCY$。要如实说明一点：这里的右端不再是与 $Y$ 无关的常数矩阵，所以它不是通常意义下「右端给定」的 Sylvester 方程，而是右端含未知量 $Y$ 的同型方程——把它写成位移形式才是本意。价值在于秩：$\\operatorname{rank}(YCY) = \\operatorname{rank}(C)$，因为左乘、右乘可逆矩阵都不改变秩。也就是说，$X^{-1}$ 与它的位移版本之差仍然是低秩的，位移结构可以被求逆继承，位移秩不会因为求逆而变大。这在数值上有直接后果：Hilbert 型、Hankel 型矩阵求逆之后仍然适合用低秩方法处理，不必重新去实测 SVD。可复用的动作：方程里出现 $X^{-1}$ 时，一律先左乘 $X^{-1}$、再右乘 $X^{-1}$，把所有 $X$ 换成 $Y$，最后清点右端的秩——秩不变，结论就保住了。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 7.** $A = Q\\Lambda Q^{-1}$ has complex eigenvalues $\\lambda_1,\\dots,\\lambda_n$ on the diagonal of $\\Lambda$, with eigenvectors $q_1,\\dots,q_n$ in the columns of $Q$. Show that $A = Q\\Lambda Q^{T}$ is normal when $Q^{T}Q = I$. The eigenvalues can be complex.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与正规性）：**</span> OCR 把这一题揉成一团：`= QAQ` 依题号语境复为 $A = Q\\Lambda Q^{-1}$，`0 。 。 ， qn in the c olumn s 0f Q` 复为「特征值 $\\lambda_1,\\dots,\\lambda_n$ 在 $\\Lambda$ 的对角线上、特征向量 $q_1,\\dots,q_n$ 在 $Q$ 的各列」，`v that = ： “ is 刀 orm` 复为「证明 $Q^{T}Q = I$ 时 $A$ 是正规的」。这里必须先纠正原译文的一处概念错位：特征值放在对角矩阵 $\\Lambda$ 里，$Q$ 的各列才是特征向量，不能把两者都说成「在 $Q$ 的列中」。数学内容是：若 $Q$ 正交（$Q^{T}Q = I$），则 $A = Q\\Lambda Q^{-1} = Q\\Lambda Q^{T}$；当 $\\Lambda$ 取复特征值时，正规性要用共轭转置检验，$A^{H} = \\bar{A}^{T} = Q\\Lambda^{H}Q^{T}$，于是 $A^{H}A = Q\\Lambda^{H}\\Lambda Q^{T}$、$AA^{H} = Q\\Lambda\\Lambda^{H}Q^{T}$；对角矩阵之间乘法可交换，$\\Lambda^{H}\\Lambda = \\Lambda\\Lambda^{H}$，故 $A^{H}A = AA^{H}$，$A$ 正规。如果 $\\Lambda$ 恰好是实对角矩阵，共轭转置退回普通转置，$Q\\Lambda Q^{T}$ 就是对称矩阵，这是正规矩阵里最熟悉的一个特例。关键区别在于：实对称矩阵要求特征值全实，正规矩阵不要求——只要特征向量能取成一组正交基，特征值就有资格跑到复平面上。这一题也是习题 8 的铺垫。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 8.** If $S^{T} = S$ and $Z^{T} = −Z$ and $SZ = ZS$, verify that $N = S + Z$ is normal. Since $S$ has real eigenvalues and $Z$ has imaginary eigenvalues, $N = S + Z$ probably has complex eigenvalues.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与笛卡尔分解）：**</span> OCR 只剩 `ZT 一 —Z` 与 `= S + Z`，复为 $Z^{T} = −Z$、$N = S + Z$，其中 $S$ 对称、$Z$ 反对称，且两者可交换。证明只有三行：$N^{T} = S^{T} + Z^{T} = S − Z$；于是 $NN^{T} = (S+Z)(S-Z) = S^{2} − SZ + ZS − Z^{2} = S^{2} − Z^{2}$（用 $SZ = ZS$ 把中间两项消掉），同理 $N^{T}N = (S-Z)(S+Z) = S^{2} − Z^{2}$，两者相等，$N$ 正规。可交换这个条件不是装饰：少了它，$NN^{T} − N^{T}N = 2(ZS − SZ)$，一般不为零，$N$ 也就不正规。为什么特征值会跑到复数上？$S$ 对称，特征值全实；$Z$ 反对称，特征值全是纯虚数；两者可交换时可以同时对角化，于是 $N$ 的特征值逐个写成「实数加纯虚数」的形式，一般落在复平面上，而且 $N$ 能被一组正交特征向量对角化——这正是正规矩阵的谱定理。工程上这叫笛卡尔分解：任何方阵都能拆成对称部分 $\\frac{N + N^{T}}{2}$ 与反对称部分 $\\frac{N − N^{T}}{2}$，可交换时这两块互不打扰，实部与虚部各管一半。可复用的动作：验证正规性时不要展开矩阵乘法，先看 $N^{T}$，再比较 $NN^{T}$ 与 $N^{T}N$ 的对称写法。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 9.** Show that equation (3) for $U_c$ follows from equation (2) for $U$.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 与推理动作）：**</span> 题干中的 `Uc 110w s 丘 0 m` 复为 $U_c$ follows from。本题引用的式 (2) 与式 (3) 都在上一页（书页 181），本页 OCR 不含这两式，所以译者注不臆测它们的具体内容，只把「这类题怎么想」说清楚。所谓「对 $U_c$ 的式 (3) 由对 $U$ 的式 (2) 推出」，标准做法是三步。第一步数维度：确认 $U$ 与压缩后的 $U_c$ 各有几个自由度，弄清下标 $c$ 是压缩指标（通常是 column，即从 $U$ 的列中挑出的那一部分）。第二步机械替换：把式 (2) 中每个符号按同一规则换成带下标 $c$ 的版本——矩阵换成子矩阵、投影换成对相应子空间的投影、内积换成对应的分量和——替换后等号左边必须与式 (3) 逐项对齐。第三步才是真正的证明负担：检查替换过程中用到的性质（正交性、幂等性、列空间的包含关系）在压缩之后是否依然成立，因为压缩通常会改变零空间，却往往保留列空间，而式 (2) 的推导恰恰只依赖列空间一侧。可复用的动作：把「由式 (2) 推出式 (3)」翻译成「替换符号 + 验证性质是否存活」两件事，先机械对齐，再逐条检查。做这道题时请把书页 181 摊在旁边逐项对照，本页只保留题干原文。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.3, p.183</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 11082,
+            "outputTokens": 12549,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 11082,
+              "outputTokens": 12549,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 14942,
+          "contextWindow": 1000000,
+          "pressureTokens": 14538,
+          "sampledSurfaceTokens": 7295
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5735,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 7647,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 13798
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

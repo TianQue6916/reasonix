@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147718005,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_207]\nIV.1. Fourier Transforms : Discrete and Continuous\n\n**205**\n\n**Orthogonality**\n\nIn all four transforms, the coefficients have nice formulas. That is because the basis functions are orthogonal. Orthogonality is the key to all the famous transforms (often the basis contains the eigenfunctions of a symmetric operator). This allows us to find each number $c_k$ separately. For vectors, we just take the (complex !) dot product $(b_k, f)$ between $f$ and each of the orthogonal basis vectors $b_k$. Here is that key step :\n\n$$ (b_k, f) = (b_k, c_0b_0 + c_1b_1 + \\cdots + c_{N-1}b_{N-1}) = c_k(b_k, b_k). \\text{ Then } \\boxed{c_k = \\frac{(b_k, f)}{(b_k, b_k)}}. \\tag{1} $$\n\nAll inner products $(b_k, b_j)$ are zero in equation (1), except $(b_k, b_k)$. Those denominators $(b_k, b_k) = ||b_k||^2 = \\pi \\text{ or } 2\\pi \\text{ or } N$ are a pleasure to compute for Fourier basis functions :\n\nReal series : $\\int (\\cos nx)^2 dx = \\pi$ and $\\int (\\sin nx)^2 dx = \\pi$ and $\\int (1)^2 dx = 2\\pi$\nComplex series : $\\int e^{ikx}e^{-ikx} dx = \\int 1\\,dx = 2\\pi$\nDiscrete series : $\\overline{b}_k^{\\text{T}} b_k = 1 \\cdot 1 + e^{2\\pi ik/N} \\cdot e^{-2\\pi ik/N} + e^{4\\pi ik/N} \\cdot e^{-4\\pi ik/N} + \\cdots = N$\n\nIf we normalize basis vectors to $||b_k|| = 1$ then Fourier matrices are orthogonal.\n\nThe Fourier integral case is the subtle one and we stop after writing down equation (2). Its infinite integrals come from Fourier series when the period $2\\pi$ increases to $2\\pi T$ with $T \\to \\infty$ :\n\n$$ \\widehat{f}(k) = \\int_{x=-\\infty}^{\\infty} f(x)e^{-ikx} dx \\text{ and } f(x) = \\frac{1}{2\\pi} \\int_{k=-\\infty}^{\\infty} \\widehat{f}(k)e^{ikx} dk. \\tag{2} $$\n\n**Fourier Matrix $F$ and DFT Matrix $\\Omega$**\n\nThe matrices $F_N$ and $\\Omega_N$ are $N$ by $N$. They are both symmetric (but complex). They have the same columns, but the order of columns is different. $F_N$ contains powers of $w = e^{2\\pi i/N}$ and $\\Omega_N$ contains powers of the complex conjugate $\\overline{w} = \\omega = e^{-2\\pi i/N}$.\nRoman $w$ and Greek $\\omega$. In fact the two matrices are complex conjugates : $\\overline{F_N} = \\Omega_N$.\nHere are $F_4$ and $\\Omega_4$, containing powers of $w = e^{2\\pi i/4} = i$ and $\\omega = e^{-2\\pi i/4} = -i$.\nWe count rows and columns starting at zero, so $F$ and $\\Omega$ have rows $0, 1, 2, 3$ :\n\n$$\n\\begin{array}{cc}\n\\text{Fourier} & \\text{DFT} \\\\\n\\text{matrix } F_4 = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & i & i^2 & i^3 \\\\ 1 & i^2 & i^4 & i^6 \\\\ 1 & i^3 & i^6 & i^9 \\end{bmatrix} & \\text{matrix } \\Omega_4 = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & -i & (-i)^2 & (-i)^3 \\\\ 1 & (-i)^2 & (-i)^4 & (-i)^6 \\\\ 1 & (-i)^3 & (-i)^6 & (-i)^9 \\end{bmatrix}\n\\end{array} \\tag{3}\n$$\n\n$\\Omega$ times $f$ produces the discrete Fourier coefficients $c$\n$F$ times $c$ brings back the vector $4f = Nf$ because $F\\Omega = NI$\n\n### [原文 page_208]\n206 \\hfill Special Matrices\n\nIf you multiply \\(F_N\\) times \\(\\Omega_N\\), you discover a fundamental identity for discrete Fourier transforms. \\textit{It reveals the inverse transform}:\n\n\\[\n\\boxed{F_N \\Omega_N = NI \\quad \\text{and therefore} \\quad F_N^{-1} = \\frac{1}{N} \\Omega_N = \\frac{1}{N} \\overline{F}_N} \\tag{4}\n\\]\n\nTo see this, look closely at the \\(N\\) numbers \\(1, w, \\ldots, w^{N-1}\\) in the second column of \\(F\\). Those numbers all have magnitude 1. They are equally spaced around the unit circle in the complex plane (Figure IV.1). They are the \\(N\\) solutions to the \\(N\\)th degree equation \\(z^N = 1\\).\n\nTheir complex conjugates \\(1, \\overline{w}, \\ldots, \\overline{w}^{N-1}\\) are the same \\(N\\) numbers. These powers of \\(\\overline{w}\\) go around the unit circle in the opposite direction. Figure IV.1 shows 8 powers of \\(w = e^{2\\pi i/8}\\) and \\(\\overline{w} = e^{-2\\pi i/8}\\). Their angles are \\(45^\\circ\\) and \\(-45^\\circ\\).\n\n\\[\nN = 8\n\\]\n\\[\nw = e^{2\\pi i/8} = e^{i(\\pi/4)}\n\\]\n\\[\n\\overline{w} = e^{-2\\pi i/8} = e^{-i(\\pi/4)}\n\\]\n\\[\nw^8 = 1 \\text{ and } \\overline{w}^8 = 1\n\\]\n\nFigure IV.1: The powers of \\(w\\) are also the powers of \\(\\overline{w}\\). They are the \\(N\\) solutions to \\(z^N = 1\\).\n\nTo prove that \\(F_N \\Omega_N = NI\\), here is the property we need. The \\(N\\) points add to zero!\n\n\\[\n\\text{For every } N \\text{ the sum } S = 1 + w + w^2 + \\cdots + w^{N-1} \\text{ is zero.} \\tag{5}\n\\]\n\nThe proof is to multiply \\(S\\) by \\(w\\). This produces \\(w + \\cdots + w^N\\). That is the same as \\(S\\), because \\(w^N\\) at the end is the same as 1 (at the start). Then \\(Sw = S\\). So \\(S\\) must be zero.\n\nYou see right away that the eight numbers around the circle in Figure IV.1 add to zero, because opposite pairs already add to zero. For odd \\(N\\) that pairing doesn't work.\n\nThis fact \\(S = 0\\) tells us that every off-diagonal entry in \\(F_N \\Omega_N\\) is zero. The diagonal entries (sum of 1's) are certainly \\(N\\). So \\(F_N \\Omega_N = NI\\). If we divide \\(F\\) and \\(\\Omega\\) by \\(\\sqrt{N}\\), then the two matrices are inverses and also complex conjugates: they are \\textit{unitary}.\n\n\\[\n\\text{\\textbf{Unitary matrices}} \\quad \\left( \\frac{1}{\\sqrt{N}} F_N \\right) \\left( \\frac{1}{\\sqrt{N}} \\Omega_N \\right) = \\left( \\frac{1}{\\sqrt{N}} F_N \\right) \\left( \\frac{1}{\\sqrt{N}} \\overline{F}_N \\right) = I. \\tag{6}\n\\]\n\nUnitary matrices are the complex version of orthogonal matrices. Instead of \\(Q^T = Q^{-1}\\) we have \\(\\overline{Q}^T = Q^{-1}\\). It is appropriate to take complex conjugates when you transpose a complex matrix (and most linear algebra codes do that automatically). In the same way, the complex version of a real symmetric matrix is a \\textbf{Hermitian matrix} with \\(\\overline{S}^T = S\\).\n\n【当前译文】\n@@PAGE:207@@\n<!-- page 207 -->\n> <span style=color:#7f8c8d;>本页为书页 205，属 §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）；页眉与页码为重复元素，不译。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### Orthogonality（正交性）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.205</span>\n对四种变换（four transforms）而言，系数都有漂亮的公式，这是因为基函数（basis functions）是正交的（orthogonal）。正交性正是所有著名变换的关键所在（基中往往含有某个对称算子的特征函数（eigenfunctions）），正因如此，我们可以把每一个数分别求出来。对于向量，我们只需在 $f$ 与每一个正交基向量 $b_k$ 之间取（复数！）点积 $(b_k, f)$。下面是那个关键步骤：\n```math\nf = \\sum_k c_k b_k \\ \\Longrightarrow \\ (b_k, f) = c_k (b_k, b_k).\n\\tag{1}\n```\n于是\n```math\nc_k = \\frac{(b_k, f)}{(b_k, b_k)}.\n```\n在式（1）中，除 $(b_k, b_k)$ 之外，所有内积 $(b_k, b_j)$ 都为零。那些分母等于 $\\pi$、$2\\pi$ 或 $N$——对傅里叶基函数来说，这些分母算起来是件愉快的事：\n```math\n\\int_0^{2\\pi} (\\cos nx)^2\\,dx = \\pi \\quad \\text{and} \\quad \\int_0^{2\\pi} (\\sin nx)^2\\,dx = \\pi \\quad \\text{and} \\quad \\int_0^{2\\pi} (1)^2\\,dx = 2\\pi .\n```\n实级数（Real series）：\n```math\n\\int_0^{2\\pi} \\cos mx \\cos nx\\,dx = 0 \\quad \\text{and} \\quad \\int_0^{2\\pi} \\sin mx \\sin nx\\,dx = 0 \\quad (m \\neq n).\n```\n复级数（Complex series）：\n```math\n\\int_0^{2\\pi} e^{imx} e^{-inx}\\,dx = 0 \\quad (m \\neq n), \\qquad\nc_k = \\frac{1}{2\\pi}\\int_0^{2\\pi} f(x)\\, e^{-ikx}\\,dx .\n```\n离散级数（Discrete series），其中 $w = e^{2\\pi i/N}$：\n```math\n\\bar b_k^{T}b_k = 1\\cdot 1 + e^{2\\pi ik/N}\\cdot e^{-2\\pi ik/N} + e^{4\\pi ik/N}\\cdot e^{-4\\pi ik/N} + \\cdots = N,\nb_k = \\bigl(1, w^{k}, w^{2k}, \\ldots, w^{(N-1)k}\\bigr), \\qquad\nf = \\sum_k c_k b_k .\n```\n若把基向量归一化（normalize）到 $\\|b_k\\| = 1$，那么傅里叶矩阵就是正交的。\n傅里叶积分（Fourier integral）这一情形最为微妙，我们写出式（2）之后便就此打住。它的无穷积分来自傅里叶级数：当周期 $2\\pi$ 增大到 $2\\pi T$、且 $T \\to \\infty$ 时，\n```math\n\\hat f(k) = \\int_{-\\infty}^{\\infty} f(x)\\,e^{-ikx}\\,dx \\quad \\text{and} \\quad f(x) = \\frac{1}{2\\pi}\\int_{-\\infty}^{\\infty} \\hat f(k)\\,e^{ikx}\\,dk . \\tag{2}\n```\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多，按数学语境重建如下：`阳 four transforms` 为 `For four transforms`（不是 Our），`bo 山` 为 both，`慟`／`仞`／`而`／`忉` 为 $w = e^{2\\pi i/N}$ 及其共轭 $\\bar w = e^{-2\\pi i/N}$，`丌`／`冠` 为 $\\pi$，`诀`／`讠` 为虚数单位 $i$，`什 om`／`彳 om`／`丘 om` 为 from，`0 hogon` 为 orthogon（orthogonal），`孓` 为 $\\le$，`尹` 为 $\\bar F$，`厶` 为 $I$。本页式（1）在 OCR 中残缺，仅存等式右端，已按同段说明（取内积后其余内积为零）还原为 $(b_k, f) = c_k(b_k, b_k)$；`Discrete series ： bk bk` 一行系基向量定义式被吞，已按数学语境补为 $b_k = (1, w^{k}, \\ldots, w^{(N-1)k})$。（原书此处 OCR 残缺）本页 OCR 把复级数与离散级数的正交性公式打散混排（`complex senes ： 1 ． 1 + e2 丌 诀 / 。 e 一 2 丌 / + …`），此处按数学语境归位——$1+w+\\cdots+w^{N-1}=0$（$w=e^{2\\pi i/N}$，分母为 $N$）属离散级数，$\\int_0^{2\\pi}e^{imx}e^{-inx}dx=0$ 与带 $\\frac{1}{2\\pi}$ 的系数公式属复级数；原书这两行的确切写法请回原书确认。\n<span style=color:#2471a3;>**[section]**</span>\n### Fourier Matrix $F$ and DFT Matrix $\\Omega$（傅里叶矩阵 $F$ 与 DFT 矩阵 $\\Omega$）\n矩阵 $F_N$ 与 $\\Omega_N$ 是 $N \\times N$ 的矩阵，它们都是对称的（但是复的，complex）。它们拥有相同的列，只是列的顺序不同。$F_N$ 含 $w = e^{2\\pi i/N}$ 的各次幂，而 $\\Omega_N$ 含其复共轭 $\\bar w = w^{-1} = e^{-2\\pi i/N}$ 的各次幂——罗马字母与希腊字母之别。事实上，这两个矩阵互为复共轭：$\\bar F_N = \\Omega_N$。下面是 $F_4$ 与 $\\Omega_4$，它们含 $w = e^{2\\pi i/4} = i$ 与 $\\bar w = e^{-2\\pi i/4} = -i$ 的各次幂。行与列的编号都从零开始，所以 $F$ 与 $\\Omega$ 的行是 $0, 1, 2, 3$：\n```math\nF_4 = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & i & i^2 & i^3 \\\\ 1 & i^2 & i^4 & i^6 \\\\ 1 & i^3 & i^6 & i^9 \\end{bmatrix},\n\\qquad\n\\Omega_4 = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & -i & (-i)^2 & (-i)^3 \\\\ 1 & (-i)^2 & (-i)^4 & (-i)^6 \\\\ 1 & (-i)^3 & (-i)^6 & (-i)^9 \\end{bmatrix} \\tag{3}\n```\n$\\Omega$ 乘以 $f$ 得到离散傅里叶系数（discrete Fourier coefficients）$c$ 的 $N$ 倍；$F$ 乘以 $c$ 则把向量 $f$ 带回来，这正是 $F\\Omega = NI$ 的内容。\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> `0 times f produces the discrete Fourier coefficients c` 与 `times c brings back the vector 4f = Nf bec ause FO = NI` 两句在 OCR 中符号残缺。依书页 207 的 $c=\\frac1N \\Omega_Nf$（命令 `fft` 乘 $\\Omega$ 再除以 $N$）与书页 208 的 $f = \\text{ifft}(c) = Fc$，此处译为「$\\Omega$ 乘 $f$ 得 $Nc$、$F$ 乘 $c$ 得回 $f$」，其依据即 $F\\Omega = NI$。（原书此处 OCR 残缺）原句是否正是这一对关系（而非 $F$ 做分析、$\\Omega$ 做合成），请回原书确认。\n\n@@PAGE:208@@\n<!-- page 208 -->\n> <span style=color:#7f8c8d;>本页为书页 206，是 §IV.1 的续页；页眉“Special Matrices”与页码为重复元素，不译。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### $F_N \\Omega_N = NI$（傅里叶矩阵与 DFT 矩阵的乘积）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.206</span>\n若把 $F_N$ 乘以 $\\Omega_N$，就会发现离散傅里叶变换的一个基本恒等式，它同时揭示了逆变换（inverse transform）：\n```math\nF_N \\Omega_N = N I \\quad \\text{and therefore} \\quad F_N^{-1} = \\frac{1}{N} \\Omega_N = \\frac{1}{N} \\bar F_N \\tag{4}\n```\n要想看清楚这一点，请仔细看 $F$ 的第二列中的 $N$ 个数 $1, w, w^2, \\ldots, w^{N-1}$。这些数的模长全都等于 $1$；它们在复平面上均匀地分布在单位圆上（图 IV.1，Figure IV.1）。它们是 $N$ 次方程 $z^N = 1$ 的解。它们的复共轭 $1, \\omega, \\omega^2, \\ldots, \\omega^{N-1}$ 还是同一批数，只是 $\\omega$ 的这些幂沿相反方向绕单位圆转（Roman $w$ 与 Greek $\\omega$）。图 IV.1 画出了 $w = e^{2\\pi i/8}$ 与 $\\omega = e^{-2\\pi i/8}$ 的 $8$ 个幂次，它们的辐角是 $45^\\circ$ 与 $-45^\\circ$：\n```math\nN = 8,\\qquad w = e^{2\\pi i/8} = e^{i(\\pi/4)},\\qquad \\omega = e^{-2\\pi i/8} = e^{-i(\\pi/4)} .\n```\n```math\nw^8 = 1 \\quad \\text{and} \\quad \\omega^8 = 1 .\n```\n> <span style=color:#7f8c8d;>图 IV.1：$w$ 的各次幂也就是 $\\omega$ 的各次幂。它们是 $z^N = 1$ 的 $N$ 个解。</span>\n为证明 $F \\Omega = NI$，我们需要下面这条性质：这些点之和为零！\n```math\n\\text{For every } N \\text{ the sum } \\quad S = 1 + w + w^2 + \\cdots + w^{N-1} \\ \\text{ is zero.} \\tag{5}\n```\n证明的办法是把 $S$ 乘以 $w$，这样就得到 $w + w^2 + \\cdots + w^N$。这与 $S$ 是同一个式子，因为末尾的 $w^N$ 与开头的 $1$ 是同一个数。于是 $Sw = S$，所以 $S$ 必定为零。你一眼就能看出，图 IV.1 中单位圆上的八个点之和为零，因为相对的两点（opposite pairs）之和已经为零；当 $N$ 为奇数时，这种配对的办法行不通。这个事实 $S = 0$ 告诉我们：$F \\Omega$ 的每一个非对角元（off-diagonal entry）都是零，而对角元（$1$ 之和）当然等于 $N$。所以 $F_N \\Omega_N = NI$。\n> <span style=color:#1e8449;>**[note] 正交性为什么是全部公式的来源：从几何级数求和到 $F\\Omega=NI$**</span>\n> <span style=color:#1e8449;>本页要证的是一件很具体的事：$F_N\\Omega_N=NI$，因此 $F_N^{-1}=\\frac1N\\Omega_N$。但真正值得带走的是它背后的机制——正交性。$F$ 的第 $k$ 列是 $b_k$，其第 $j$ 个分量是 $w^{jk}$（$w=e^{2\\pi i/N}$）。两列取复内积（一个转置后取复共轭再点乘）时，第 $j$ 项是 $w^{-ij}w^{jk}=w^{j(k-i)}$，求和就变成几何级数 $1+r+r^2+\\cdots+r^{N-1}$，其中 $r=w^{k-i}$。若 $k=i$，则 $r=1$，求和得 $N$（这就是对角元）；若 $k\\ne i$，则 $r$ 是不等于 $1$ 的 $N$ 次单位根，于是 $r^{N}=1$，把和式乘以 $r$ 后首尾重合，得 $rS=S$，故 $S=0$。本页式（5）那个「把 $S$ 乘以 $w$」的两行证明，写的就是这件事。</span>\n> <span style=color:#1e8449;>区分「和为零」和「模长为零」很重要。本页的 $S=0$ 说的是这些复数相加等于零，而每个 $w^{j}$ 的模长都等于 $1$：它们均匀分布在单位圆上，互相抵消。本页图 IV.1 的说明给了一个一眼可见的验证——当 $N$ 为偶数时，直径两端的两点（相差 $N/2$ 个位置，即相差一个因子 $w^{N/2}=-1$）作为一对相加已经为零，整个和自然是零；而当 $N$ 为奇数时这种配对不存在，但结论依然成立。</span>\n> <span style=color:#1e8449;>正交性为什么是「全部公式的来源」，说清楚这一点比记住 $F\\Omega=NI$ 更有用。任何向量 $f$ 都可以写成 $f=\\sum_k c_kb_k$，要把系数 $c_k$ 单独解出来，通常意味着要解一个 $N$ 元线性方程组——很费事。但如果基向量两两正交，取内积时其余项全部消失，只剩下 $c_k(b_k,b_k)$，于是 $c_k=(b_k,f)/(b_k,b_k)$，每个系数各算各的、互不干扰。这正是书页 205（page_207）开头那段 Orthogonality（正交性）讲的意思：因为基函数正交，各系数才能被分别求出。你在 Strang 教材里已经熟悉的正交投影与最小二乘就是这么做的：把向量投到一组正交基上，投影系数就是内积比上长度平方；傅里叶变换只是把这套动作搬到了一个特殊的正交基（复指数）上，连逆矩阵都不必求——逆变换就是共轭转置除以 $N$。用 6.042J 里的话说，这相当于把「彼此有牵连」的等价类拆成互不相交的块、每块各自处理，$F\\Omega=NI$ 就是这个「无耦合」性质的矩阵写法：乘积非对角元为零，说明不同频率之间没有任何串扰。</span>\n> <span style=color:#1e8449;>顺带澄清本页之后那句矩阵恒等式。书页 207（page_209）讲 $\\Omega=FP$，其中 $P$ 是把 $F$ 的列按 $1$ 与 $N-1$、$2$ 与 $N-2$ 对调的一个置换，且 $P^2=I$。结合 $F\\Omega=NI$ 就得到 $F^4=N^2I$，于是 $F$ 的全部特征值只能落在 $\\{\\sqrt N,\\,-\\sqrt N,\\,i\\sqrt N,\\,-i\\sqrt N\\}$ 这四个数里——一个 $N\\times N$ 矩阵的特征值只能取四种值，规模一大就必然大量重根（书页 207 原文就说：对于大于 4 的规模，必定会有而且确实会有重复的特征值）。这也说明：决定 $F$ 的并不是它的谱（谱太贫乏了），而是它的特征向量结构。</span>\n若把 $F$ 与 $\\Omega$ 都除以 $\\sqrt{N}$，那么这两个矩阵既是互逆的，又是复共轭的：它们都是酉矩阵（unitary matrices）。\n```math\n\\text{Unitary matrices}\\qquad \\left( \\frac{1}{\\sqrt{N}} F_N \\right)\\left( \\frac{1}{\\sqrt{N}} \\Omega_N \\right) = \\left( \\frac{1}{\\sqrt{N}} F_N \\right)\\left( \\frac{1}{\\sqrt{N}} \\bar F_N \\right) = I . \\tag{6}\n```\n酉矩阵是正交矩阵的复版本。代替实情形的 $Q^{T} = Q^{-1}$（$Q$ 表示正交矩阵，与 DFT 矩阵 $\\Omega$ 无关），这里我们有 $\\bar Q^{T} = Q^{-1}$（上划线表示取复共轭）。对复矩阵做转置时，同时取复共轭是恰当的（大多数线性代数程序都会自动这样做）。同样地，实对称矩阵的复版本是埃尔米特矩阵（Hermitian matrix），满足 $\\bar S^{T} = S$。\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `讠` 还原为虚数单位 $i$，`冠`／`丌` 还原为 $\\pi$，`仞`／`忉`／`慟` 还原为 $w$，`曰 O` 还原为 `Figure`，`厶` 还原为 $I$（单位矩阵），`况 刀 i 0` 还原为 `unitary`（酉矩阵），`U maüices` 还原为 `Unitary matrices`，`尹 O` 还原为 $F\\Omega$。图中标注行（`3`、`5`、`1`、`7`、`= 1 / 慟`、`e / 4 ）` 等碎片）系插图内的点标注被 OCR 打散，图片本身无法翻译，仅保留图题与图注。（原书此处 OCR 残缺）本页末尾「酉矩阵与埃尔米特矩阵」一段在旧译中整段缺失，现据 OCR 残句（`Instead of QT = Q-1 we have QbarT = Q-1`、`a Hermitian matrix with SbarT = S`）补译；原书用的上划线记号究竟表示共轭还是共轭转置，请回原书确认。\n\n现在输出修订后的译文全文（从 `@@PAGE:207@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6732,
+            "outputTokens": 7026,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6732,
+              "outputTokens": 7026,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 10679,
+          "contextWindow": 1000000,
+          "pressureTokens": 10572,
+          "sampledSurfaceTokens": 5421
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3861,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 5258,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9535
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

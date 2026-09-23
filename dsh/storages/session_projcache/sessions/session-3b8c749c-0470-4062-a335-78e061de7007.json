@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128792263,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 第一遍计算 $A$ 的每一列与 $B$ 的每一行的平方长度。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这三句话解释了为什么前面那个最优概率不是白拿的。式 (5) 的概率是 $p_j=\\|\\text{column }j\\|\\,\\|\\text{row }j\\|/C$，分母 $C$ 是**全体**列长度与行长度之和：要确定第一列被抽中的概率，你必须已经知道所有列的信息。这是一个**全局归约**（global reduction）——概率无法边读边定，只能先完整扫一遍数据。\r\n\r\n放进 CSAPP 的存储层次里算笔账。若 $A$ 是 $16\\,000\\times16\\,000$ 的 double 矩阵，那是 $16000^{2}\\times8\\ \\text{B}\\approx2\\ \\text{GB}$，还塞得进内存；但若 $A$ 是 $10^{5}\\times10^{5}$，就是 $8\\times10^{10}\\ \\text{B}=80\\ \\text{GB}$，远超内存，只能躺在 SSD 上。第一遍是**顺序流式**扫描：每读进一个 64 字节的 cache line 就拿到 8 个 double，把它们平方后累加进一个长度为 $n$ 的累加器（额外空间 $O(n)$）；这一遍要读写 $\\Theta(mn)$ 个元素，但对预取器与页粒度极其友好。第二遍才需要随机取回被抽中的 $s$ 列与 $s$ 行：每列 $m$ 个 double，取 $s=2000$ 列约 $1.6\\ \\text{GB}$，压成 $m\\times s$ 的 $AS$，终于小到能进快速内存反复使用。这正是 CSAPP 反复强调的两条原则：**顺序访问远便宜于随机访问**，以及**把反复使用的数据搬进近处存储**。用 6.006 的语言说，这不是内存模型下的 $\\Theta(mn)$，而是一个两遍的外部存储/流式算法，第一遍的 $\\Theta(mn)$ 次 I/O 决定它是 I/O-bound 的。\r\n\r\n把它命名为**全局权重必多一遍**：凡是抽样概率依赖于全体数据的算法，都躲不开一次全局扫描；能躲开的是概率事先已知的算法——比如均匀采样 $p_j=1/n$，单遍即可完成。于是本节反复出现的取舍在这里第一次露头：**均匀采样便宜但方差大，范数平方采样方差最小但要多读一遍**。这也解释了第 155 页为什么 single-pass 算法（每个元素只访问一次）要付出 ill-conditioning 的代价、再用 over-sampling 补救：你省掉的不只是时间，还有回头再看一眼的能力，而数值稳定性常常恰恰依赖回头（例如 Gram-Schmidt 要把新列对已有方向重新正交化一次）。\r\n\r\n顺带记个量级感受：$s$ 只需 $O(k/\\varepsilon^{2})$ 级别（$k$ 是想要的秩），而 $n$ 可能到 $10^{5}$，所以第二遍读入的数据量约为第一遍的 $s(m+n)/(mn)\\approx s/n$，通常不到百分之几；两遍的总 I/O 近似就是两倍的一遍。这个方案的合理性全在这里。\r\n\r\n=== ANCHOR: 在 $L_2$ 矩阵范数下，我们或许期待同样的方案也能成功。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 这一页的枢纽问题是用哪个范数，因为范数的选择直接决定最优 $M$ 是谁。回到两个范数的定义差别：Frobenius 范数就是把矩阵摊平成 $mn$ 维向量后的欧氏长度 $\\|E\\|_F^{2}=\\sum_{i,l}E_{il}^{2}$，它是**逐元素**的；$L_2$ 矩阵范数是最是大奇异值 $\\|E\\|_2=\\sigma_1$，回答的是单位球被拉得最长的那个方向有多长，是**最坏方向**的量。\r\n\r\n两者都被正交变换保持：$\\|Q_C^{T}EQ_R\\|=\\|E\\|$（左右乘正交矩阵只是换一组标准正交基）。但只有 Frobenius 范数在分块下**可加**：把误差搬到 $\\begin{bmatrix}\\hat A-CMR&0\\\\0&0\\end{bmatrix}$ 这样的分块形状后，各块用的是互不重叠的坐标，平方和直接相加，于是\r\n```math\r\n\\|A-CMR\\|_F^{2}=\\|A-\\hat A\\|_F^{2}+\\|\\hat A-CMR\\|_F^{2}.\r\n```\r\n第一项动不了（它只由 $C$、$R$ 决定），第二项可以靠选 $M$ 关掉，所以 $CMR=\\hat A$ 就是 Frobenius 意义下的最优解，这就是式 (10)。而 $L_2$ 范数是 $\\sigma_1$，奇异值列表不是逐元素相加的，块与块可以共享同一个奇异向量方向从而叠高 $\\sigma_1$，因此角块取零未必最优。\r\n\r\n一个可以自己验算的例子：设固定住两个块，只剩角上的标量 $x$ 可调，误差矩阵形如 $M_x=\\begin{bmatrix}2&1\\\\1&x\\end{bmatrix}$。取 $x=0$（即让角块归零）时 $M_0^{T}M_0=\\begin{bmatrix}5&2\\\\2&1\\end{bmatrix}$，特征值为 $3\\pm2\\sqrt2$，于是 $\\|M_0\\|_2=1+\\sqrt2\\approx2.414$。取 $x=-2$（角块非零、且取负）时 $M_{-2}=\\begin{bmatrix}2&1\\\\1&-2\\end{bmatrix}$，两行 $(2,1)$ 与 $(1,-2)$ 恰好正交且等长 $\\sqrt5$，故 $M_{-2}^{T}M_{-2}=5I$，$\\|M_{-2}\\|_2=\\sqrt5\\approx2.236<2.414$。角块取负值反而把两个奇异值**拉平**了——最大值因此下降，这就是正文最小的 $L_2$ 范数由取 $-1$ 而非取 $0$ 的子矩阵达到的机制。（正文该例题印出的数值与 $\\|E\\|_2=\\sigma_1$ 的定义不完全吻合，读者按定义自己算一遍即可；要带走的是机制而不是那两个数字。）\r\n\r\n抽象成模板——**分块正交对角化 + 范数可加性判别**：遇到分块矩阵取范数最小的题，先用正交变换把误差搬到分块坐标（这一步对任何正交不变范数都合法），再问一句这个范数在分块下可加吗。可加（Frobenius 这类逐元素范数）$\\Rightarrow$ 各块独立处理，把可控块置零即可；不可加（$L_2$/算子范数）$\\Rightarrow$ 块间耦合必须显式处理，问题升级为真正的矩阵近似问题，Davis、Kahan 与 Weinberger 在 1982 年解决的正是这个耦合子矩阵的最优选择。注意与 Eckart-Young 的对比：那里 $U$、$V$ 都可自由选取，两种范数给出同一个答案（截断 SVD）；这里 $C$、$R$ 被固定，只剩 $M$ 一个自由度，两个范数立刻分道扬镳。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2286,
+            "outputTokens": 5717,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 2286,
+              "outputTokens": 5717,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 5805,
+          "contextWindow": 1000000,
+          "pressureTokens": 5742,
+          "sampledSurfaceTokens": 2595
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1035,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3210,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 4661
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

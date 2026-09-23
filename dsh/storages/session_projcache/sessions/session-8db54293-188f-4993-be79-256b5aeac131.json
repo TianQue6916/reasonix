@@ -1,0 +1,291 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128830926,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 64,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 64,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 本页为书页 167，为 §III.1 习题集（Problem Set III.1）的续页；页眉与页码为重复元素，不译。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 本页 Problem 10 把「矩阵被改一点怎么办」搬到了数据上：已知 $b_1,\\dots,b_{999}$ 的平均值 $c_{\\text{old}}$，第 1000 个数到来时，要不要把 999 个数重新加一遍？Strang 给出一行递推 $c_{\\text{new}}=c_{\\text{old}}+\\frac{1}{1000}(b_{1000}-c_{\\text{old}})$。验算：设前 999 个数都是 10，$b_{1000}=20$，递推给 $10+\\frac{1}{1000}\\cdot10=10.01$；直接求和是 $(9990+20)/1000=10.01$，一致。这个式子读成一句话就是「新估计 = 旧估计 + 增益 × 残差」，残差 $b_{1000}-c_{\\text{old}}$ 表示新数据打了旧估计一个措手不及的那部分。它在概率论（Bertsekas 那本）里就是条件期望的递推形式：把 $c$ 当成待估参数、$b_i=c+\\text{噪声}$，最小二乘 $\\min_c\\sum(b_i-c)^2$ 的解是算术平均；若各测量方差 $\\sigma_i^2$ 不同，加权最小二乘给出 $\\sum b_i/\\sigma_i^2 \\big/ \\sum 1/\\sigma_i^2$，权重自动由 $1/\\sigma_i^2$ 决定。把先验方差 $\\sigma^2$ 与测量方差 $r^2$ 代进去，增益是 $\\sigma^2/(\\sigma^2+r^2)$：旧估计越不确定（$\\sigma^2$ 大）或新测量越可信（$r^2$ 小），增益越靠近 1，越愿意相信新数据。1000 个等权样本是它的特例，增益恰为 $1/1000$，这也解释了 Problem 11 里 $F=1$ 的漂移模型为何给最近的 $b_1$ 更大权重。从 6.006 的角度看，这是一次 $O(n)\\to O(1)$ 的均摊优化：重算平均要读完全部数据，递推只要常数时间，代价是内存里多留两个状态量（$c_{\\text{old}}$ 与计数），典型的「用状态换时间」。CSAPP 第 2 章提醒你注意代价：每次递推都做一次浮点乘加，$10^9$ 次之后舍入误差会累积，$c_{\\text{old}}$ 会缓慢漂移，工程上用 Welford 式算法或每隔若干步重算一次来校准。文本提到的 Bill Hager 综述（*SIAM Review* **31**，1989）正是把这套递推语言系统化的工作。命名模板：**增量更新模板（新 = 旧 + 增益 × 残差）**——均值、方差、协方差、信念更新、随机梯度下降的参数更新都落在这个模板上，区别只在增益怎么取。\r\n\r\n=== ANCHOR: 求 $d\\lambda/dt$ 的关键，是把我们已知的事实组装起来。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 从第 169 页到第 172 页，Strang 反复做同一件事：把「矩阵变了，特征值怎么变」化成「把变化投影到一个敏感方向上」。先回答最基础的问题——为什么求导需要两个特征向量 $x$ 与 $y$？因为 $A$ 不保证对称。只有对称时才有正交特征向量组、才有 $y=x$；一般情况下 $A$ 与 $A^T$ 共享特征值但特征向量不同，$y$ 取自 $A^T$ 的特征向量矩阵 $(X^{-1})^T$，归一化条件是 $y^Tx=1$ 而不是 $x^Tx=1$。这一点是整个推导的支点。命名模板：**归一化消项法（把多余项压成零）**——先把待求量写成已知量的双线性型 $\\lambda=y^TAx$，再用归一化条件让乘积法则里的多余项整体变成某个常数倍的 $\\frac{d}{dt}(y^Tx)$，从而自动为零；式（5）的第一、三项合计为 $\\lambda\\frac{d}{dt}(y^Tx)=0$，只剩 $\\frac{d\\lambda}{dt}=y^T\\frac{dA}{dt}x$。同一模板还有非交换版本：$\\frac{d}{dt}A^{-1}=-A^{-1}\\frac{dA}{dt}A^{-1}$（本页 Problem 9），把变化夹在两个「敏感方向」$A^{-1}$ 之间。验算（自造一个可自洽核对的小例）：取 $S=\\operatorname{diag}(5,3,1)$，$A(t)=S+t\\,uu^T$，$u=\\frac{1}{\\sqrt3}(1,1,1)^T$。$t=0$ 时 $x=q_1=e_1$ 且 $y=x$，$\\dot A=uu^T$，于是 $\\frac{d\\lambda_1}{dt}=x^Tuu^Tx=(u^Tx)^2=\\frac13$。这个 $\\frac13$ 可以用第 171 页的久期方程独立复核：$t$ 小时 $\\frac1t=\\frac13\\left(\\frac{1}{z-5}+\\frac{1}{z-3}+\\frac{1}{z-1}\\right)$，令 $z=5+\\varepsilon$ 并只留主项，得 $\\varepsilon\\approx t/3$，两种算法给出同一个斜率。文本的例子则说明敏感度与特征值大小无关：$\\lambda_1(0)=2$ 与 $\\lambda_2(0)=0$ 的导数都是 1。凸优化（Boyd）里这条公式是主干：简单特征值处的特征值函数可微，梯度恰为 $yx^T$（对称时 $xx^T$），于是 $\\lambda_{\\max}(A)$ 这个看似非线性的函数其实是凸函数，其次梯度就是 $xx^T$；半定规划、log-det 障碍函数、谱范数正则的求导都建立在这个标量公式上。边界条件也要记住：特征值重根时 $y^Tx=1$ 的归一化失效（$X$ 不可逆），导数可能不存在，对应 Boyd 里「非光滑点用次梯度」的处理。最后一点工程直觉：非对称情形下 $\\|y\\|$ 可以远大于 1，特征值对扰动的敏感度被特征向量矩阵的条件数放大，这正是特征值问题比奇异值问题难缠的根源，也是下一页奇异值公式更干净的原因。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 64,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 64,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 64,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 64,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 64,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 3505,
+            "outputTokens": 16206,
+            "cacheReadTokens": 112640,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 9,
+            "buckets": {
+              "uncachedInputTokens": 157,
+              "outputTokens": 3283,
+              "cacheReadTokens": 18688,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 64,
+        "val": {
+          "surfaceTokens": 11724,
+          "contextWindow": 1000000,
+          "pressureTokens": 18845,
+          "sampledSurfaceTokens": 10177
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 64,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 963,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 758,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 973,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 1150,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 649,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 2313,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 642,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 47,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 50,
+              "heuristicTokens": 363,
+              "system": false
+            },
+            {
+              "seq": 52,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 55,
+              "heuristicTokens": 546,
+              "system": false
+            },
+            {
+              "seq": 57,
+              "heuristicTokens": 76,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 62,
+              "heuristicTokens": 1547,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10580
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 64,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 64,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 61,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 63
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 64,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 64,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 64,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 64,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 64,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 64,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

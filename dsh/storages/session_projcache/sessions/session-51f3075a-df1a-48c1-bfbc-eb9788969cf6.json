@@ -1,0 +1,269 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790131589599,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 17,
+        "val": "你是学术译稿的**逐字校对修"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**逐字校对修复专家**。下面是 Strang《Linear Algebra and Learning From Data》§III.2「Interlacing and the Weyl Inequalities」（书页 175）的译稿。\r\n\r\n【已用视觉逐字核对原书页确认的事实（权威）】\r\n原文的 Weyl 不等式框内容为：\r\n> **Weyl inequalities**  $\\lambda_{i+j-1}(S+T) \\le \\lambda_i(S) + \\lambda_j(T)$   (23)\r\n> $\\lambda_k(S) + \\lambda_n(T) \\le \\lambda_k(S+T) \\le \\lambda_k(S) + \\lambda_1(T)$   (24)\r\n\r\n即 (23) 是「下标 $i+j-1$ 与 $i,j$ 的关系」，(24) 是**带上下界的夹逼形式**（左边 $\\lambda_k(S)+\\lambda_n(T)$、中间 $\\lambda_k(S+T)$、右边 $\\lambda_k(S)+\\lambda_1(T)$）。\r\n\r\n【任务】当前译文的 (23)(24) 两式写法与原文不符（(23) 写成了 $\\lambda_{j+n}$、(24) 只写了左边一半的不等式）。请：\r\n1. 把 (23) 改为与原文一致的 $\\lambda_{i+j-1}(S+T) \\le \\lambda_i(S) + \\lambda_j(T)$（保留原编号 $\\tag{23}$）\r\n2. 把 (24) 改为三段夹逼形式 $\\lambda_k(S) + \\lambda_n(T) \\le \\lambda_k(S+T) \\le \\lambda_k(S) + \\lambda_1(T)$（保留原编号 $\\tag{24}$）\r\n3. 检查紧跟其后的正文所述推论是否与原文一致：原文说「$T=\\theta uu^{T}$ 是秩一矩阵，$\\lambda_1(T)=\\theta$，其余特征值为零；于是对每个 $j=2,3,\\dots$，Weyl 不等式给出 $\\lambda_{i+1}(S+T)\\le\\lambda_i(S)$，即 $S+T$ 的每个特征值 $z_{i+1}$ 不会越过 $S$ 的相邻特征值 $\\lambda_i$；而当 $j=1$ 时有 $\\lambda_1(S+T)\\le\\lambda_1(S)+\\theta$，给出信号加噪声最大特征值的上界」——译文若与此不符（含 $\\theta$、$\\sigma$ 记号混用），按原文订正为 $\\theta$\r\n4. 该页随后的交错定理框（The $n-1$ eigenvalues $\\alpha_i$ of $S_{n-1}$ interlace the $n$ eigenvalues of $S$）若译文缺失，按原文补出\r\n\r\n【🚨 红线】\r\n− 除指出的修正外**一字不改**：其他公式、数字、例子、译者注全部原样保留\r\n− 所有 `$...$`、```math 围栏、反斜杠命令完整保留；禁止 `$$`；禁止 Unicode 上下标\r\n− 保留 `> ` blockquote 前缀与配色 span；保留页首灰色说明行\r\n− 输出**修订后的完整本页**，页首用 `@@PAGE:178@@`；不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待修订的本页译稿 ===========================\r\n@@PAGE:178@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 175，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较重，已按数学语境重建：`th e`→the、`symmetnc`→symmetric、`WeyI`→Weyl、`interl acing`→interlacing、`matnx`→matrix、`hogonal`→orthogonal、`colu 画`→column、`SinguIar`→Singular；例中的 $2\\times2$ 子矩阵第二行第一列是 $-2$（OCR 把负号吞掉了），取 $+2$ 时特征值为 $(3\\pm\\sqrt{17})/2$，与正文给出的 $3,1$ 不符；公式 (23)(24) 与 (26)(27) 的下标、指标范围均已按 Weyl 不等式的标准形式还原。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 2. Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n### Interlacing 与 Weyl 不等式\r\n\r\n对任意对称矩阵 $S$ 与 $T$，Weyl 找到了 $S+T$ 的特征值的上下界：\r\n\r\n```math\r\n\\lambda_{j+n}(S+T)\\ \\le\\ \\lambda_j(S)+\\lambda_n(T),\\qquad j=1,\\dots,n \\tag{23}\r\n```\r\n\r\n```math\r\n\\lambda_j(S)+\\lambda_1(T)\\ \\le\\ \\lambda_j(S+T),\\qquad j=1,\\dots,n \\tag{24}\r\n```\r\n\r\n图 III.1 中看到的那些 $\\lambda_i$ 的交错（interlacing）性质，也可以由方程 (23) 证明。设 rank one matrix（秩一矩阵）为 $T=\\sigma uu^{T}$，它的最大特征值是 $\\lambda_1(T)=\\sigma$，其余特征值全为零，即 $\\lambda_n(T)=0$。于是对每个 $j=1,2,3,\\dots,n-1$，Weyl 不等式给出 $\\lambda_{j+1}(S+T)\\le\\lambda_j(S)$：$S+T$ 的每一个特征值都不能越过 $S$ 的下一个特征值。而对 $j=1$，我们有 $\\lambda_1(S+T)\\le\\lambda_1(S)+\\sigma$，这就是 signal plus noise（信号加噪声）的最大特征值的一个上界。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n**Interlacing theorem（交错定理）** 这里有一个关于特征值的优美交错定理：当对称矩阵 $S$ 的最后一行与最后一列被删去时，留下一个大小为 $n-1$ 的矩阵 $S_{n-1}$。\r\n\r\n```math\r\n\\lambda_1(S)\\ \\ge\\ \\alpha_1\\ \\ge\\ \\lambda_2(S)\\ \\ge\\ \\alpha_2\\ \\ge\\ \\cdots\\ \\ge\\ \\alpha_{n-1}\\ \\ge\\ \\lambda_n(S)\r\n```\r\n\r\n矩阵 $S_{n-1}$ 的 $n-1$ 个特征值 $\\alpha_i$ 与 $S$ 的特征值交错排列。\r\n\r\n<span style=color:#2471a3;>**[proof]**</span>\r\n\r\n证明的想法是：删去最后一行与最后一列，等价于强制一切向量都与 $(0,0,\\dots,0,1)$ 正交。于是 (22) 中的最小值就可能下降到 $\\lambda_i$ 以下；但它不会降到 $\\lambda_{i+1}$ 以下，因为 $\\lambda_{i+1}$ 允许在维数为 $i+1$ 的空间中自由选取。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（交错定理：夹逼与维数预算）：**</span> 这条定理常被称为 Cauchy interlacing theorem（柯西交错定理）：删掉对称矩阵的一行一列，剩下的 $(n-1)\\times(n-1)$ 矩阵的特征值不会「另起炉灶」，而是被原矩阵的特征值一对一对地夹住。理解它的钥匙是第 174 页的 Courant-Fischer 刻画，但要看清一个集合包含关系：$\\dim V=i$ 而 $c\\perp e_n$，这就等于在 $\\{e_n\\}^{\\perp}$ 这个 $n-1$ 维空间中找 $i$ 维子空间。于是 $\\alpha_i=\\max_{\\dim V=i,\\,V\\perp e_n}\\min_{c\\in V}R(c)$ 里的「$V$ 还要垂直于 $e_n$」是一条额外约束，候选对象比 $\\lambda_i=\\max_{\\dim V=i}\\min_{c\\in V}R(c)$ 少，所以 $\\alpha_i\\le\\lambda_i$。反方向看：$\\lambda_{i+1}$ 允许在 $i+1$ 维空间里自由选取，比 $\\alpha_i$ 的一族「被钉在正交补里」的 $i$ 维空间更宽松；维数预算保证任何 $i+1$ 维子空间必与 $\\{e_n\\}^{\\perp}$ 有至少 $1$ 维的交（$(i+1)+(n-1)\\ge n$），在这个交里取一个向量就能把比值压到 $\\alpha_i$ 附近，于是 $\\alpha_i\\ge\\lambda_{i+1}$。两边合起来就是 $\\lambda_i\\ge\\alpha_i\\ge\\lambda_{i+1}$，交错由此得名。注意「删去行列」与「限制在正交补内」是同一件事：删掉最后一行一列后，二次型 $c^TSc$ 中凡出现 $c_n$ 的项全部消失，剩下的恰好是子矩阵的二次型，而 $c$ 自然满足 $c_n=0$，也就是 $c\\perp e_n$。这条定理是压缩感知与低秩建模的技术底座：它告诉你删掉一帧、丢掉一个传感器、少测一个坐标，谱只会「小幅挪动」，不会跳变，所以低秩结构在缺数据时依然可辨认。跨课程连接：概率论与数理统计里的「极值统计」处理的是随机样本的最大最小，而这里的 $\\max\\min$ 是几何对象（子空间族）上的极值，两者的共同点是都靠夹逼定界，区别在于后者的可行性由维数整数决定，与随机性无关。常见误用要避免：交错定理只对**对称**矩阵（或 Hermitian 矩阵）成立，一般方阵没有实特征值可交错；写成「所有矩阵」就错了。另外 $\\alpha_i$ 是删去后子矩阵的特征值，不是原矩阵任意 $n-1$ 个特征值，别把两个列表混着比。\r\n>\r\n> 补充机制：为什么不能换成任意一个 $(n-1)\\times(n-1)$ 子矩阵来比？因为夹逼的两端都被 $\\{e_n\\}^{\\perp}$ 这个特定空间钉住，一旦 Courant-Fischer 的候选子空间族改变，包含关系立刻失效，不等式也无从谈起。定理成立的根源在于「删去一行一列」与「限制在正交补上」在二次型层面完全等价：于是两个最优化问题的可行族之间存在包含关系，而包含关系只能给出不等号、不能给出等号，这正是交错是不等式而非恒等式的理由。另一条独立通道是扰动：把 $S$ 写成分块秩一形式，删去行列相当于对左上块做一次秩一修正，特征值的移动量被修正项的范数控制，这解释了弱耦合情形下谱为什么几乎不动。\r\n>\r\n> 补充验算：取 $S=\\begin{bmatrix}2&1&0\\\\1&2&1\\\\0&1&2\\end{bmatrix}$，展开 $\\det(S-tI)$ 并括出因子 $(2-t)$，得 $p_S(t)=-(2-t)\\big((2-t)^2-2\\big)$，故 $\\lambda=(2-\\sqrt2,\\,2,\\,2+\\sqrt2)\\approx(0.586,\\,2,\\,3.414)$。删去最后一行一列后 $\\alpha$ 满足 $p_\\alpha(t)=(2-t)^2-1$，即 $\\alpha=(1,3)$。逐项核对：$0.586\\le1\\le2$ 与 $2\\le3\\le3.414$ 同时成立，两条夹逼都通过，可复算。注意删掉的是与 $c_3$ 有关的全部项，剩下的二次型恰好是左上块的，这正是前面那句等价性的具体表现。\r\n>\r\n> 补充跨课程连接：CSAPP 的性能分析里有一条同型的维数预算论证——分块矩阵乘（tiling）能把缓存未命中从 $O(n^3)$ 压到 $O(n^3/s)$，靠的正是「大小为 $s$ 的块与一整行必然相交」这一计数保证。连接路径是「维数预算 −> 交集非空 −> 得到界」；区别在于那里的预算是缓存行数与块长的整数关系、界是访存次数的渐近量，而这里维数预算给出的是谱的精确数值不等式。\r\n>\r\n> 命名模板：把「用维数预算保证子空间必相交、再在交里取向量压出界」这套推理命名为「维数预算夹逼法」。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 取 $S$ 与其 $2\\times 2$ 的顺序主子矩阵 $S_2$：\r\n\r\n```math\r\nS=\\begin{bmatrix} 1 & 2 & 2\\\\ 2 & −2 & 2\\\\ 2 & 2 & 3\\end{bmatrix},\r\n\\qquad\r\nS_2=\\begin{bmatrix} 1 & 2\\\\ 2 & −2\\end{bmatrix},\r\n\\qquad\r\n\\lambda(S):\\ 3,\\ 3,\\ 0\r\n```\r\n\r\n```math\r\n\\lambda(S_2):\\ 3,\\ 1\r\n\\qquad\\Longrightarrow\\qquad\r\n3\\ \\ge\\ 3\\ \\ge\\ 1\\ \\ge\\ 0\r\n```\r\n\r\n### Interlacing of Singular Values（奇异值的交错）\r\n\r\n假设 $A$ 不是方阵也不对称——这时涉及的是它的 singular value（奇异值）。$A$ 的每一列代表一段视频中的一帧；我们想识别出隐藏在这些列中的 rank one signal（秩一信号）$\\beta cy^{T}$，而这一信号被 random noise（随机噪声）所掩盖。若在视频播放期间有一盏灯被打开或被关掉，我们的目标就是看出这件事发生在什么时刻。\r\n\r\n这就引导我们提出一个问题：从 $A$ 变到 $A+B$ 时，奇异值究竟改变了多少？对称矩阵特征值的变化如今已被理解清楚，所以我们可以转而研究 $A^TA$ 或 $B^TB$，或者研究下面这个大小为 $m+n$ 的对称矩阵，它的特征值正是 $\\pm\\sigma$：\r\n\r\n```math\r\n\\begin{bmatrix} 0 & A\\\\ A^{T} & 0\\end{bmatrix}\r\n\\qquad\\text{与}\\qquad\r\n\\begin{bmatrix} 0 & A+B\\\\ A^{T}+B^{T} & 0\\end{bmatrix} \\tag{25}\r\n```\r\n\r\n与其自己硬推，我们推荐陶哲轩（Terence Tao）那篇精彩的笔记，网址为 https://terrytao.wordpress.com/2010/01/25/random-matrices-and-hermitian-matrices/ 。\r\n\r\n**Weyl inequalities（Weyl 不等式）** 用于奇异值的形式为：\r\n\r\n```math\r\n\\sigma_{i+j-1}(A+B)\\ \\le\\ \\sigma_i(A)+\\sigma_j(B),\r\n\\qquad i+j\\le n+1 \\tag{26}\r\n```\r\n\r\n```math\r\n\\sigma_j(A+B)\\ \\ge\\ \\sigma_j(A)-\\sigma_1(B),\r\n\\qquad j=1,\\dots,n \\tag{27}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（Weyl 不等式的读法）：**</span> Weyl 不等式把「扰动」这件事说成一句人话：矩阵加了噪声，特征值和奇异值最多按噪声的**大小**（而不是方向）成比例地移动。看 (23)：$\\lambda_{j+n}(S+T)\\le\\lambda_j(S)+\\lambda_n(T)$，它说的是「$S+T$ 靠后的那个特征值，不会超过 $S$ 靠前的那个特征值再加上 $T$ 的最大特征值」——下标错位 $n$ 位，正是把扰动项整段平移的价格。取 $j=1$ 得到 $\\lambda_1(S+T)\\le\\lambda_1(S)+\\lambda_1(T)$，这是「最大特征值是好孩子」的准确含义：它对扰动是 1-Lipschitz 的，扰动多大，它最多变多大，绝不放大。取 $T$ 为秩一矩阵 $\\sigma uu^T$ 时，$\\lambda_1(T)=\\sigma$、$\\lambda_n(T)=0$，(23) 立刻退化为 $\\lambda_{j+1}(S+T)\\le\\lambda_j(S)$——这就是交错：加一个秩一扰动，谱整体被「压」进原来的相邻缝隙里。奇异值版本 (26)(27) 是同一思想的平移：$\\sigma_{i+j-1}(A+B)\\le\\sigma_i(A)+\\sigma_j(B)$ 是上界，$\\sigma_j(A+B)\\ge\\sigma_j(A)-\\sigma_1(B)$ 是下界，两边合起来就是 $\\lvert\\sigma_j(A+B)-\\sigma_j(A)\\rvert\\le\\lVert B\\rVert_2$，即奇异值对扰动是 1-Lipschitz 的。注意 (26) 的指标范围和普通的「逐项夹」不同：$i+j\\le n+1$ 要求两个下标不能都大，因为两条「大奇异值」的缝隙没有余量可挤，这正是维数预算在谱上的又一次现身。跨课程连接：概率论与数理统计里的大数定律告诉你样本量 $m$ 增大时估计误差按 $1/\\sqrt{m}$ 缩小，Weyl 不等式告诉你的是另一件事——误差如何**确定性地**被 $\\lVert B\\rVert_2$ 控制，两者相乘就得到随机矩阵理论里常见的 $\\lVert B\\rVert_2\\approx C\\sqrt{n}$ 型结论。工程味道：压缩感知与 PCA 都靠这两条不等式把「噪声有多大」翻译成「奇异值最多偏多少」，再据此判断哪些奇异值是真的信号、哪些只是噪声尾巴；如果只知 $\\lambda_j$ 而不知缝隙宽度，就无法判断某个奇异值是否显著。常见的三处误用必须避开：第一，把下标写成 $\\lambda_j(S+T)\\le\\lambda_j(S)+\\lambda_1(T)$（丢掉错位 $n$，结论过强而错）；第二，把 (26)(27) 里的 $\\sigma_1(B)$ 误写成 $\\lVert B\\rVert_F$（Frobenius 范数一般更大，界会松）；第三，把「奇异值扰动 ≤ $\\sigma_1(B)$」误推广为「奇异向量也只差这么多」——特征向量的扰动被特征值缝隙 $\\lvert\\lambda_j-\\lambda_k\\rvert$ 除一次，缝隙很小时方向可以转得很厉害，这是数值线性代数与 CSAPP 里浮点误差分析反复强调的同一件事。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p. 175</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 17,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 17,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 17,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4874,
+            "outputTokens": 4989,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4874,
+              "outputTokens": 4989,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 17,
+        "val": {
+          "surfaceTokens": 6972,
+          "contextWindow": 1000000,
+          "pressureTokens": 7690,
+          "sampledSurfaceTokens": 3591
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 17,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2031,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3381,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 5828
+          }
+        }
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "sessionStats": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "turns": 1,
+          "steps": 1,
+          "llmMs": 28566,
+          "toolMs": 0,
+          "ttftMs": 10388,
+          "ttftSteps": 1,
+          "decodeMs": 18178,
+          "decodeTokens": 4989,
+          "lastTurn": 1,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "turnOutline": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "turns": [
+            {
+              "turn": 1,
+              "seq": 4,
+              "prompt": "你是学术译稿的**逐字校对修复专家**。下面是 Strang《Linear Algebra and…",
+              "response": "@@PAGE:178@@ > <span style=color:#7f8c8d;>本页为书页 175，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页…"
+            }
+          ],
+          "draft": ""
+        }
+      },
+      "agentPreset": {
+        "ver": 1,
+        "seq": 17,
+        "val": null
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 17,
+        "val": {}
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": true
+        }
+      },
+      "modelSelection": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "lastUsed": {
+            "provider": "commandcode-goat",
+            "model": "deepseek/deepseek-v4.1-flash",
+            "reasoningEffort": "high"
+          },
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1790131590437
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 17,
+        "val": null
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 17,
+        "val": null
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 17,
+        "val": null
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      },
+      "armor": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "running": false,
+          "verdict": "pass",
+          "words": [],
+          "safe": [
+            "范围",
+            "范围"
+          ],
+          "risk": [],
+          "domain": null,
+          "domainHits": 0
+        }
+      }
+    }
+  }
+}

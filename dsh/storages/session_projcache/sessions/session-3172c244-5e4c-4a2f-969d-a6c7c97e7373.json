@@ -1,0 +1,291 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129189339,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 66,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 66,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。\r\n\r\n【任务】把下面 1 条译者注扩写到 **800-1200 个汉字**（公式与 `math` 围栏不计入）。\r\n− **扩写**：补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 🚫 不得删除原有数学内容、公式、例子、连接\r\n\r\n【读者画像（必须对齐，禁止甩未学概念）】\r\n− 大二上学期、智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n− ✅ 已学：离散数学 6.042J（等价关系、偏序、数论、图论、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、Strang 线性代数、算法 6.006/CLRS（分治、图、复杂度）\r\n− 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法、概率论（Bertsekas）、CS144 计算机网络、凸优化（Boyd）\r\n− ⚠️ 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——不得甩这些名词\r\n− 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式、```math 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda\r\n2. 禁止 Unicode 上下标；禁止 `$$`\r\n3. `@@ANCHOR@@` 行必须**逐字原样保留**（它是插入锚点）\r\n\r\n【输出协议（🚨 结构化，必须逐字照此格式，便于程序提取）】\r\n\r\n@@NOTE@@\r\n@@ANCHOR@@原文片段（从下方译文中**逐字复制**的连续片段，12-40 个汉字；必须在该页译文中唯一出现，不要改写、不要加省略号）\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n@@END@@\r\n\r\n− 一条注一个 @@NOTE@@ … @@END@@ 块；块与块之间空一行\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n【待归一化的注】\r\n@@NOTE@@\r\n@@ANCHOR@@则存在一个从 $\\mathbf{R}^m$ 到 $\\mathbf{R}^k$ 的投影 $J$，使得这些点之间的所有距离都几乎被保持\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 上一页刚证的是**平均而言**长度不变：$E\\big[\\|Jc\\|^{2}\\big]=\\|c\\|^{2}$。这个引理把它升级为**所有 $\\binom{n}{2}$ 对点同时**被 $1\\pm\\varepsilon$ 夹住。升级的机器是你 6.042J 学过的两件工具：**Chernoff/Hoeffding 型集中不等式 + 并集界（union bound）**，最后再套一层**概率方法**。\r\n\r\n三步走。第一步，固定一对点，令 $c=C_i-C_j$，则 $(Jc)_r$ 是 $k$ 个独立同分布的零均值项之和（$J$ 的元素独立、均值 $0$、方差 $1/k$），所以 $\\|Jc\\|^{2}/\\|c\\|^{2}$ 是$k$ 个独立项之和型随机变量，它偏离 $1$ 超过 $\\varepsilon$ 的概率被指数型界压到约 $2e^{-\\varepsilon^{2}k/8}$。第二步，对全部 $\\binom{n}{2}<n^{2}/2$ 对做并集界：坏事件概率不超过 $n^{2}\\cdot2e^{-\\varepsilon^{2}k/8}$，只要\r\n```math\r\nk\\;\\gtrsim\\;\\frac{8\\,(2\\ln n+\\ln 4)}{\\varepsilon^{2}}\r\n```\r\n它就小于 $1$。**这就是 $8\\log n/\\varepsilon^{2}$ 里 $\\log n$ 的确切来源**：对数来自约束个数是 $n^{2}$ 量级，而 $\\varepsilon^{2}$ 出现在指数上，所以必须以 $1/\\varepsilon^{2}$ 的反比出现。这里为什么要用并集界而不是逐对硬算？因为逐对保证只给出一个期望或一条概率曲线，不能同时约束所有对；并集界用**不相交化**的代价换来了统一保证——代价就是 $k$ 里多一个 $\\log n$，收益是同一个随机 $J$ 同时对全部点对生效。第三步，既然随机选出的 $J$ 以正概率满足全部约束，就必然存在一个（确定性的）$J$ 满足它——这正是 6.042J 概率方法的第一课：正概率成功 $\\Rightarrow$ 存在成功实例。正文提到证明中随机选一组 $\\pm1$ 符号就是这个随机 $J$ 的构造（元素取 $\\pm1/\\sqrt{k}$，仍是零均值、方差 $1/k$ 的独立变量，集中不等式照样适用）。\r\n\r\n数量级验算：取 $n=1000$、$\\varepsilon=0.1$，则 $k\\approx8\\ln(1000)/0.01=8\\times6.908/0.01\\approx5526$，单对失败概率上界约 $2e^{-5526\\times0.01/8}\\approx2e^{-6.9}\\approx0.0020$，乘以 $\\binom{n}{2}\\approx5\\times10^{5}$ 得约 $10^{3}$，不够小；改用 $k=8000$（此时 $8(2\\ln1000+\\ln4)/0.01\\approx8\\times(13.816+1.386)/0.01\\approx12162$ 是保守的充分条件），单对失败概率约 $2e^{-10}\\approx9.1\\times10^{-5}$，乘以 $\\binom{n}{2}$ 后约 $45$，说明常数取法影响很大，实际实现会用更紧的 Bernstein 型界和 $\\pm1/\\sqrt{k}$ 的次高斯性把常数压下来。正文说 18.065 的项目在 $m=2700$ 时距离精度崩坏、$m>2800$ 可行，与这个量级一致（用的是更紧的常数或不同的 $n$、$\\varepsilon$）。更要注意：这个下界**只依赖点数 $n$ 和精度 $\\varepsilon$，与原始维数 $m$ 无关**，所以从 $10^{6}$ 维压到几千维仍能保距——这正是它有用的原因。复杂度上也顺手对上了 6.006：全维算 $n$ 个点的所有点对距离要 $\\Theta(n^{2}m)$，投影后先花 $\\Theta(nmk)$ 做一次乘法，再在 $k$ 维算 $\\Theta(n^{2}k)$，当 $k\\ll m$ 时是数量级的节省。\r\n\r\n把它命名为**单点集中 + 并集界换对数**：只要单次失败概率随 $k$ 指数下降，就能用并集界把多项式多个约束一次搞定，代价是 $k$ 里多一个 $\\log n$。这个配方从 6.042J 的哈希与负载均衡一路通用到这里的降维引理，形状完全一样。最后记住两者的区别：$E[\\|Jc\\|^{2}]=\\|c\\|^{2}$ 说的是平均，而**平均对不等于每一对都对**；JL 引理的贡献恰恰是把平均保证换成高概率下的全体保证。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 66,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 66,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 66,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 66,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 66,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 3552,
+            "outputTokens": 13391,
+            "cacheReadTokens": 112640,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 11,
+            "buckets": {
+              "uncachedInputTokens": 149,
+              "outputTokens": 1833,
+              "cacheReadTokens": 16896,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 66,
+        "val": {
+          "surfaceTokens": 9611,
+          "contextWindow": 1000000,
+          "pressureTokens": 17045,
+          "sampledSurfaceTokens": 8744
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 66,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 816,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 134,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 654,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 1135,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 366,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 212,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 1064,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 36,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 215,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 1072,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 206,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 1107,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 867,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 8467
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 66,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 66,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 63,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 65
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 66,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 66,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 66,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 66,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 66,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 66,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

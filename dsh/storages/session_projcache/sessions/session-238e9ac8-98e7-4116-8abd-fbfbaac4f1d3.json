@@ -1,0 +1,186 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148598876,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 40,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 40,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_237]\nIV.5. Toeplitz Matrices and Shift Invariant Filters\\hfill 235\n\nAs always, circulant formulas are exact and Toeplitz formulas are close. You will see integrals instead of point values of $A(\\theta)$. \\textit{The formulas only become exact as the size of the Toeplitz matrix becomes infinite.} So there is a limit as $n \\to \\infty$ included in Szegő's Theorem about the eigenvalues of $A$. Two special cases and then the full theorem.\n\n\\noindent\\fbox{\\parbox{\\dimexpr\\textwidth-2\\fboxsep-2\\fboxrule}{%\n\\textbf{Szegő} \\quad As $n \\to \\infty$, the trace and the log determinant of a Toeplitz matrix $A$ satisfy\n\\begin{equation}\n\\frac{1}{n} \\operatorname{trace}(A) = \\frac{1}{2\\pi} \\int_{0}^{2\\pi} A(\\theta) \\, d\\theta = a_0 \\tag{1}\n\\end{equation}\n\\begin{equation}\n\\lim_{n \\to \\infty} \\frac{1}{n} \\log(\\det A) = \\frac{1}{2\\pi} \\int_{0}^{2\\pi} \\log(A(\\theta)) \\, d\\theta \\tag{2}\n\\end{equation}\n}}\n\nThe trace and determinant of any matrix are the sum and product of the eigenvalues. We are seeing their arithmetic mean in (1) and their geometric mean in (2): log determinant $=$ sum of $\\log \\lambda_k$. Those two limits are the most important cases $F(\\lambda) = \\lambda$ and $F(\\lambda) = \\log \\lambda$ of the full theorem, which allows any continuous function $F$ of the eigenvalues of $A$:\n\n\\noindent\\fbox{\\parbox{\\dimexpr\\textwidth-2\\fboxsep-2\\fboxrule}{%\n\\textbf{Szegő's Theorem} \\quad $\\displaystyle \\lim_{n \\to \\infty} \\frac{1}{n} \\sum_{k=0}^{n-1} F(\\lambda_k) = \\frac{1}{2\\pi} \\int_{0}^{2\\pi} F(A(\\theta)) \\, d\\theta.$ \\tag{3}\n}}\n\nThe control on $A(\\theta)$ comes from Wiener's condition that $\\sum |a_k| < \\infty$. Excellent notes are posted on the Stanford website \\texttt{ee.stanford.edu/\\textasciitilde gray/toeplitz.pdf}.\n\nThose notes by Professor Gray also develop a major application to discrete time random processes. When the process is weakly stationary, the statistics stay the same at every time step. \\textit{The covariance matrix between outputs at times $t$ and $T$ depends only on the difference $T - t$.} \\textit{Then the covariance matrix is Toeplitz $=$ shift invariant.}\n\nBefore applications, we mention three more key topics in Toeplitz matrix theory:\n\n\\begin{itemize}\n\\item The Gohberg-Semencul formula for $A^{-1}$ (Gohberg was truly remarkable)\n\\item The Wiener-Hopf factorization of infinite systems $A_\\infty x = b$ (so was Wiener!)\n\\item The test for invertibility of $A_\\infty$ is $A_\\infty(\\theta) \\neq 0$ and winding number $= 0$\n\\end{itemize}\n\nAn infinite one-step shift models the difficulties that come with $n = \\infty$. It has a diagonal of 1's above or below the main diagonal. Its symbol is just $e^{i\\theta}$ or $e^{-i\\theta}$ (never zero). But $e^{i\\theta}$ winds around zero as $\\theta$ goes from $0$ to $2\\pi$, and the infinite shift matrix $S(x_0, x_1, \\dots) = (x_1, x_2, \\dots)$ or $Sx = (0, x_0, x_1, \\dots)$ is not invertible.\n\n### [原文 page_238]\n**236**  **Special Matrices**\n\n**Lowpass Filters in Signal Processing**\n\n**A filter is a convolution: Multiply by a Toeplitz matrix.** Going through a “lowpass filter”, the constant vector \\(x = (\\dots, 1, 1, 1, 1, \\dots)\\) can come out unchanged: \\(Ax = x\\). But an oscillating high-frequency signal like \\(y = (\\dots, -1, 1, -1, 1, \\dots)\\) has \\(Ay \\approx 0\\). Those are the outputs if \\(A(0) = \\sum a_k = 1\\) and \\(A(\\pi) \\approx 0\\). Here is a lowpass example.\n\n**Lowpass averaging filter** \\((Ax)_n = \\frac{1}{4} x_{n+1} + \\frac{1}{2} x_n + \\frac{1}{4} x_{n-1}\\).\n\nThat Toeplitz matrix \\(A\\) is symmetric. Its three diagonals have entries \\(\\frac{1}{4}, \\frac{2}{4}, \\frac{1}{4}\\). Its symbol \\(A(\\theta)\\) (frequency response) is real and \\(A(\\theta) = 1\\) at frequency \\(\\theta = 0\\): lowpass filter.\n\n**Frequency response** \\(A(\\theta) = \\frac{1}{4} (e^{-i\\theta} + 2 + e^{i\\theta}) = \\frac{1}{2} (1 + \\cos \\theta) \\ge 0\\).\n\nThe highest frequency \\(\\theta = \\pi\\) produces the infinitely long plus-minus signal \\(y = (\\dots, -1, 1, -1, 1, \\dots)\\). That signal has \\(Ay = 0\\). It is filtered out. A typical component of \\(Ay\\) is \\(-\\frac{1}{4} + \\frac{1}{2} - \\frac{1}{4} = 0\\). And we see this also from the symbol: \\(A(\\theta) = \\frac{1}{2}(1 + \\cos \\theta)\\) is zero at \\(\\theta = \\pi\\).\n\n**Figure IV.3:** Frequency responses \\(A(\\theta)\\) : Short lowpass filter, ideal lowpass, ideal highpass.\n\nYou see two *ideal filters* in Figure IV.3. They are achievable only with infinitely many nonzero diagonals in the matrix \\(A\\) because an ordinary polynomial can’t stay constant. The numbers \\(a_k\\) down the diagonals of \\(A\\) are the Fourier coefficients of \\(A(\\theta)\\).\n\nIn practice, filters are a compromise between short and ideal. *Equiripple filters* are a natural favorite—they oscillate around 1 and around 0. The ripples (oscillations around the ideal) all have the same height. That height decreases as we use more coefficients \\(a_k\\). The filter gets sharper—the drop from 1 to 0 is steeper—but computing \\(Ax\\) takes longer.\n\n**Averages and Differences and Wavelets**\n\nLowpass filters are *running averages*. Highpass filters are *running differences*. That word “running” means that a window moves along the vector \\(x\\). Suppose the window lets only 3 components of the signal \\(x\\) show through. The lowpass filter multiplies them by \\(\\frac{1}{4}, \\frac{1}{2}, \\frac{1}{4}\\) and adds, to find the averaged signal \\(Ax\\). A highpass filter could alternate those signs to produce \\(-\\frac{1}{4}, \\frac{1}{2}, -\\frac{1}{4}\\). Then \\(A\\) is taking second differences instead of averages of averages.\n\n【当前译文】\n@@PAGE:237@@\n<!-- page 237 -->\n> <span style=color:#1e8449;>[note] 本页为书页 235，是 §IV.5 的续页；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 噪声较多，均已按数学语境重建：`1V5` 即 §IV.5，`孟@）` 为 $\\hat{c}(\\theta)$，`乪` 为 $\\theta$，`心 刀 巳`／`−+` 为 $n \\to \\infty$，`什 om` 为 from，`@剧` 为 $\\sum |c_k| < \\infty$，`COV 了 忉 刀 ce` 为 covariance，`0 况 驷 况` 为 the signals，`0 纱` 为 only，`一 1` 为 $A^{-1}$，`AOO(O)` 为 $\\hat{A}_\\infty(\\theta)$，`lt` 为 It，`l's` 为 1's，`S （ £ 0 ， 1 ，` 为 $S = (0, 1, \\ldots)$，`Sc` 依 OCR 保留为 $S_c$；完整定理的编号 (3) 在 OCR 中丢失，但由书页 238 习题 1、2 对「(2) 与 (3)」「Szegő's Theorem (3)」的引用可以确证，故补为 (3)。另：本书自本页起把 symbol 记作 $\\hat{c}(\\theta)$（前几页记作 $C(\\theta)$），二者是同一个频率响应函数，译文照原文记号保留。（原书此处 OCR 残缺）`An infinite one-step shift models the difficulties that come with` 之后的宾语被 OCR 吞掉（本译文按 $n \\to \\infty$ 重建），且末尾 `S = (0,1,0,\\ldots)` 与 `S_c = (0,1,0,\\ldots)` 两个序列在 OCR 中完全相同，$S_c$ 的确切形式请以纸书复核。</span>\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.5, p.235</span>\n一如往常，循环矩阵的公式是精确的，而托普利茨矩阵的公式只是接近的。\n你会看到的是积分，而不是 $\\hat{c}(\\theta)$ 的点值。\n当尺寸 $n \\to \\infty$ 时，这些公式变成渐近形式，所以极限存在。\n这一切都包含在关于 $A_n$ 的 eigenvalues 的 Szegő's Theorem（塞格定理）之中：先看两个特殊情形，然后再给出完整的定理。\n<span style=color:#2471a3;>**[theorem]**</span> <span style=color:#c0392b;>**Szegő's Theorem（塞格定理）**</span>\n当 $n \\to \\infty$ 时，托普利茨矩阵的 trace（迹）与 log determinant（对数行列式）满足\n```math\n\\frac{1}{n}\\,\\text{trace}(A) = \\frac{1}{2\\pi}\\int_{0}^{2\\pi} A(\\theta)\\, d\\theta = a_0 \\tag{1}\n```\n```math\n\\lim_{n \\to \\infty} \\frac{1}{n}\\log(\\det A) = \\frac{1}{2\\pi}\\int_{0}^{2\\pi} \\log(A(\\theta))\\, d\\theta \\tag{2}\n```\n任何矩阵的迹与行列式，都是其特征值之和与特征值之积。\n我们在 (1) 中看到的是这些特征值的 arithmetic mean（算术平均），在 (2) 中看到的是它们的 geometric mean（几何平均）：$\\log(\\det A)$ 等于 $\\sum \\log \\lambda_k$。\n这两条极限正是完整定理中最重要的两种情形：$F(\\lambda) = \\lambda$ 与 $F(\\lambda) = \\log \\lambda$。\n> <span style=color:#1e8449;>[note] 译者注：**Szegő 定理——特征值分布就是 symbol 的“采样”，一个用期望去读的极限定理。** 这条定理乍看像分析学里的怪物，其实它的左边和右边分别是你已经有两门课基础的两个东西：**样本均值**与**期望**。把 $\\theta$ 看成一个在 $[0,2\\pi)$ 上均匀分布的随机变量 $\\Theta$，那么右边 $\\frac{1}{2\\pi}\\int_0^{2\\pi}F(A(\\theta))\\,d\\theta$ 就是 $\\mathbb{E}\\big[F(A(\\Theta))\\big]$——函数 $\\hat c$ 在“均匀抽取一个频率”时的期望值。左边 $\\frac1n\\sum_{k=1}^n F(\\lambda_k)$ 是特征值的经验平均。定理说的是：$n\\to\\infty$ 时，Toeplitz 矩阵特征值的经验分布收敛到 symbol 取值的分布。</span>\n>\n> <span style=color:#1e8449;>为什么会这样？上一页（page_236／书页 234）已经给出钥匙：**循环矩阵**的特征值是精确的采样——$\\hat c(\\theta)$ 在 $\\theta=2\\pi k/n$ 这 $n$ 个等距点上的取值。而“$n$ 个等距点上的平均”正是黎曼和除以区间长度，$n\\to\\infty$ 时收敛为积分除以 $2\\pi$。对循环矩阵，定理是平凡的。Szegő 定理的贡献在于：**Toeplitz 矩阵的特征值虽然不像循环矩阵那样精确等于采样值，但它们的整体分布仍然被同一个 symbol 钉死**。这也呼应本页开头那句话——循环矩阵的公式是精确的，Toeplitz 的公式只是接近的。</span>\n>\n> <span style=color:#1e8449;>你在 6.431 学的“样本均值逼近期望”依靠随机性与大数定律；这里不靠随机性，靠的是**等距采样 + 黎曼和收敛**。这个对照值得记住：**同一句“平均收敛到积分”的话，在概率论里是定律，在数值分析里是求积法则。** 两条路给出同样的极限，是因为它们背后的对象（经验测度）本质是同一个。</span>\n>\n> <span style=color:#1e8449;>为什么 $F(\\lambda)=\\lambda$ 与 $F(\\lambda)=\\log\\lambda$ 是两种最重要的情形？因为任何矩阵的迹是特征值之和、行列式是特征值之积，于是 $\\frac1n\\operatorname{trace}(A_n)$ 是特征值的**算术平均**，$\\frac1n\\log\\det A_n=\\frac1n\\sum\\log\\lambda_k$ 是它们的**几何平均**的对数。几何平均对小特征值极其敏感：只要 symbol 在某个频率上取到 $0$，$\\log\\hat c$ 就在那里发散，行列式随 $n$ 增大而急剧塌向零。回到前面那个例子（page_235／书页 233）：$-1,2,-1$ 的 symbol 是 $2-2\\cos\\theta$，在 $\\theta=0$ 处为零，所以有限矩阵只是“勉强正定”，无限矩阵奇异。**符号函数的一个零点，决定了整个矩阵族在极限中的死活**——这就是这条定理的实用价值。</span>\n>\n> <span style=color:#1e8449;>本页还提到一个非常漂亮的应用出口：离散时间**弱平稳**随机过程。平稳的意思是统计性质不随时间平移而改变，于是时刻 $t$ 与 $T$ 处信号的协方差只依赖时差 $T-t$，协方差矩阵就自动是 Toeplitz 的，也就是平移不变的。把 Szegő 定理套上去，立刻得到你在概率论课程（MIT 6.431 Applied Probability）里会（或已经）见到的结论：**协方差矩阵的特征值分布就是过程的功率谱密度**。大矩阵的特征值问题被翻译成“对一个已知函数求平均”，不需要真的去算 $n$ 个特征值。定理成立需要一定的控制条件，书上给的是 Wiener 条件 $\\sum|c_k|<\\infty$（它保证 symbol 连续、不发散）；想深入的话，书上点名的 Stanford 讲义 ee.stanford.edu/~gray/toeplitz.pdf（Gray 教授）是可直接取用的公开来源。</span>\n>\n> <span style=color:#1e8449;>可迁移结论：**当一个矩阵大到无法求特征值，但它具有平移不变结构时，你根本不需要求特征值——求它的 symbol，然后对 symbol 做平均（期望）或积分。** 这是“局部规则决定全局统计”的一个可计算版本。</span>\n而完整定理允许 $F$ 是特征值的任意连续函数：\n<span style=color:#2471a3;>**[theorem]**</span> <span style=color:#c0392b;>**Szegő's Theorem（塞格定理，完整形式）**</span>\n```math\n\\lim_{n \\to \\infty} \\frac{1}{n}\\sum_{k=0}^{n-1} F(\\lambda_k) = \\frac{1}{2\\pi}\\int_{0}^{2\\pi} F(A(\\theta))\\,d\\theta . \\tag{3}\n```\n对 $\\hat{c}(\\theta)$ 的控制来自 Wiener's condition（维纳条件）：$\\sum |c_k| < \\infty$。\n斯坦福（Stanford）网站 ee.stanford.edu/~gray/toeplitz.pdf 上张贴了非常优秀的讲义。\nGray 教授的讲义还展开了一个重大应用：discrete time random processes（离散时间随机过程）。\n当该过程是 weakly stationary（弱平稳）时，统计量在每一个时间步都保持不变。\n时刻 $t$ 与时刻 $T$ 的信号之间的 covariance（协方差）只依赖于时差 $T - t$。\n于是 covariance matrix（协方差矩阵）就是托普利茨的，也就是 shift invariant（平移不变）的。\n在讲应用之前，我们再提一下托普利茨矩阵理论中另外三个关键主题：\n- 关于 $A^{-1}$ 的 Gohberg-Semencul formula（Gohberg-Semencul 公式）——Gohberg 确实是非凡的人物。\n- 无限系统的 Wiener-Hopf factorization（Wiener-Hopf 分解），即求解 $A_\\infty x = b$——这是 Wiener 的工作！\n- $A_\\infty$ 可逆的判别条件：$\\hat{A}_\\infty(\\theta) \\neq 0$，且 winding number（绕数）$= 0$。\n一个无穷的“一步”位移（shift）恰好模型化了 $n \\to \\infty$ 随之而来的种种困难。\n它在主对角线上方或下方只有一条由 $1$ 组成的对角线。\n它的 symbol 恰好是 $e^{i\\theta}$ 或 $e^{-i\\theta}$（永远不为零）。\n但当 $\\theta$ 从 $0$ 走到 $2\\pi$ 时，$e^{i\\theta}$ 会绕着零点转圈，因此这个 infinite shift matrix（无限移位矩阵）是不可逆的。\n```math\nS(x_0, x_1, \\ldots) = (x_1, x_2, \\ldots) \\quad \\text{or} \\quad Sx = (0, x_0, x_1, \\ldots)\n```\n\n@@PAGE:238@@\n<!-- page 238 -->\n> <span style=color:#1e8449;>[note] 本页为书页 236，含 §IV.5 的 Lowpass Filters in Signal Processing（信号处理中的低通滤波器）与 Averages and Differences and Wavelets（平均、差分与小波）两小节正文及图 IV.3；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：`Matnces` → Matrices，`avera ging` → averaging，`entnes` → entries，`re al` → real，`mnus` → minus，`Ä(9)` → $\\hat{A}(\\theta)$，`C08` → $\\cos$，`力 方 e`／`劍 r` → filter，`行 0 m` → from，`ru g`／`rll 靴` → running，`山 at` → that，`ghp ass` → highpass；频响公式依数学语境重建为 $\\hat{c}(\\theta) = \\frac{1+\\cos\\theta}{2}$（它才等于 $\\frac{1}{2} + \\frac{1}{4}e^{i\\theta} + \\frac{1}{4}e^{-i\\theta}$，且在 $\\theta = 0$ 处为 $1$、在 $\\theta = \\pi$ 处为 $0$）；带状的 $C$ 依「对称、三条对角线元素为 $\\frac14, \\frac24, \\frac14$」重建为 $\\frac14\\,\\mathrm{tridiag}(1,2,1)$。（原书此处 OCR 残缺）`Equiripple 力 方 e` 一句中被 OCR 吞掉的冠词与复数形式，本译文按 equiripple filters（等波纹滤波器）重建，请以纸书复核。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### Lowpass Filters in Signal Processing（信号处理中的低通滤波器）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.5, p.236</span>\n一个 filter 本质上就是一次 convolution：即乘以一个托普利茨矩阵。\n经过一个 “lowpass filter（低通滤波器）” 之后，常数向量 $x = (\\ldots, 1, 1, 1, \\ldots)$ 可以原样不变地出来：$Ax = x$。\n但像 $y = (\\ldots, -1, 1, -1, 1, \\ldots)$ 这样的 oscillating high-frequency signal（振荡的高频信号）则有 $Ay \\approx 0$。\n这些就是 $A(0) = \\sum a_k = 1$ 且 $A(\\pi) \\approx 0$ 时的输出。\n下面就是一个低通滤波器的例子。\n```math\n\\text{Lowpass averaging filter}\\qquad (Ax)_n = \\frac{1}{4}x_{n+1} + \\frac{1}{2}x_n + \\frac{1}{4}x_{n-1} .\n```\n这个托普利茨矩阵 $A$ 是对称的。\n它的三条对角线上的元素分别是 $\\frac{1}{4}, \\frac{2}{4}, \\frac{1}{4}$。\n它的 symbol $A(\\theta)$（也就是频率响应）是实值的，并且在频率 $\\theta = 0$ 处等于 $1$：这就是低通滤波器。\n```math\n\\text{Frequency response}\\qquad A(\\theta) = \\frac{1}{4}\\left( e^{-i\\theta} + 2 + e^{i\\theta} \\right) = \\frac{1}{2}(1 + \\cos\\theta) \\ge 0 .\n```\n```math\n\\text{}\\left(e^{i\\theta} + e^{-i\\theta}\\right) \\geq 0\n```\n最高的频率 $\\theta = \\pi$ 会产生无穷长的正负交替信号 $y = (\\ldots, -1, 1, -1, 1, \\ldots)$。\n该信号的 $Ay = 0$，它被完全滤除了。\n$Ay$ 的典型分量是 $-\\frac{1}{4} + \\frac{1}{2} - \\frac{1}{4} = 0$。\n而从 symbol 也能看出这一点：$A(\\theta) = \\frac{1}{2}(1+\\cos\\theta)$ 在 $\\theta = \\pi$ 处为零。\n\n**Figure IV.3:** Frequency responses $\\hat{A}(\\theta)$: Short lowpass filter, ideal lowpass, ideal highpass（图 IV.3：频率响应 $\\hat{A}(\\theta)$——短低通滤波器、理想低通、理想高通）。\n> <span style=color:#1e8449;>[note] 图 IV.3 并列了三条频率响应曲线：短低通滤波器的响应在 $\\theta = 0$ 附近等于 $1$、在 $\\theta = \\pi$ 处降为 $0$；理想低通与理想高通则是取值为 $1$ 与 $0$ 的矩形曲线（图中坐标标注为 $0$ 与 $1$）。图片本身保留原貌，此处只译出图号与图注。</span>\n你在图 IV.3 中看到的是两个“理想”的响应。\n它们只有在矩阵含有无穷多条非零对角线时才能实现，因为一个普通的多项式不可能保持常数。\n沿 $A$ 的各条对角线排布的那些数 $a_k$，正是 $A(\\theta)$ 的 Fourier coefficients（傅里叶系数）。\n在实践中，滤波器总是在“短”与“理想”之间做折中。\n其中 equiripple filters（等波纹滤波器）是一种很自然的选择——它们在 1 附近和 0 附近振荡。\n这些 ripple（波纹，即在理想值附近的振荡）的高度全都相同。\n随着我们使用更多的系数，这个高度会下降。\n滤波器变得更 sharp（锐利）——从 1 掉到 0 的过程更陡——但计算起来也更费时间。\n<span style=color:#2471a3;>**[section]**</span>\n### Averages and Differences and Wavelets（平均、差分与小波）\n低通滤波器是 running averages（滑动平均）。\n高通滤波器是 running differences（滑动差分）。\n“running”这个词的意思是：一个 window（窗口）沿着向量 $x$ 移动。\n假设这个窗口只让信号的 3 个分量透出来。\n低通滤波器把它们分别乘以 $\\frac{1}{4}, \\frac{1}{2}, \\frac{1}{4}$ 然后相加，得到平均后的信号 $Ax$。\n而高通滤波器可以把这些符号交替过来，得到 $-\\frac{1}{4}, \\frac{1}{2}, -\\frac{1}{4}$。\n这时 $A$ 所做的是取 second differences（二阶差分），而不是平均的平均。\n\n现在输出修订后的译文全文（从 `@@PAGE:237@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 40,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 40,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 40,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 40,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 0,
+            "outputTokens": 0,
+            "cacheReadTokens": 0,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 0,
+              "outputTokens": 0,
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 40,
+        "val": {
+          "surfaceTokens": 5448,
+          "contextWindow": 1000000,
+          "pressureTokens": 0,
+          "sampledSurfaceTokens": 5448
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 40,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3888,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 4304
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 40,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 39
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 40,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 40,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 40,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

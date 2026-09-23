@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      dsh-infinite-gen-4:
+        specifier: file:../../plugins/dsh-infinite-gen-4
+        version: file:../../plugins/dsh-infinite-gen-4
+
+packages:
+
+  dsh-infinite-gen-4@file:../../plugins/dsh-infinite-gen-4:
+    resolution: {directory: ../../plugins/dsh-infinite-gen-4, type: directory}
+
+snapshots:
+
+  dsh-infinite-gen-4@file:../../plugins/dsh-infinite-gen-4: {}

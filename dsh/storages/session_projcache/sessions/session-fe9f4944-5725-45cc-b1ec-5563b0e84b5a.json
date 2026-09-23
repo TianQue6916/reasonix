@@ -11,34 +11,34 @@
     "rows": {
       "title": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": "Simple one-word greeting request"
       },
       "titleInput": {
         "ver": 3,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "first": {
             "seq": 8,
             "text": "say hi in one word, do not call any tool"
           },
-          "count": 1,
-          "lastSeq": 8
+          "count": 2,
+          "lastSeq": 22
         }
       },
       "llmRetry": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": {}
       },
       "sandboxMode": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": "danger-full-access"
       },
       "goal": {
         "ver": 6,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "current": null,
           "seenGoalIds": [],
@@ -47,21 +47,21 @@
       },
       "tokenUsage": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "totals": {
-            "uncachedInputTokens": 183,
-            "outputTokens": 12,
-            "cacheReadTokens": 1152,
+            "uncachedInputTokens": 454,
+            "outputTokens": 468,
+            "cacheReadTokens": 2944,
             "cacheWriteTokens": 0
           },
           "last": {
-            "turn": 1,
+            "turn": 2,
             "step": 1,
             "buckets": {
-              "uncachedInputTokens": 183,
-              "outputTokens": 12,
-              "cacheReadTokens": 1152,
+              "uncachedInputTokens": 271,
+              "outputTokens": 456,
+              "cacheReadTokens": 1792,
               "cacheWriteTokens": 0
             }
           }
@@ -69,17 +69,17 @@
       },
       "contextPressure": {
         "ver": 4,
-        "seq": 16,
+        "seq": 26,
         "val": {
-          "surfaceTokens": 56,
+          "surfaceTokens": 454,
           "contextWindow": 1000000,
-          "pressureTokens": 1335,
-          "sampledSurfaceTokens": 34
+          "pressureTokens": 2063,
+          "sampledSurfaceTokens": 81
         }
       },
       "contextBreakdown": {
         "ver": 4,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "nodes": [
             {
@@ -96,48 +96,58 @@
               "seq": 13,
               "heuristicTokens": 22,
               "system": false
+            },
+            {
+              "seq": 22,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 373,
+              "system": false
             }
           ],
           "breakdown": {
             "systemTokens": 16,
-            "toolsTokens": 1063,
-            "messageTokens": 40
+            "toolsTokens": 1755,
+            "messageTokens": 438
           }
         }
       },
       "turnBoundary": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "openTurnStartSeq": null,
-          "lastStepStartSeq": 6,
+          "lastStepStartSeq": 21,
           "lastStepBoundary": {
             "kind": "end",
-            "seq": 14
+            "seq": 25
           },
-          "lastTurn": 1
+          "lastTurn": 2
         }
       },
       "sessionStats": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": {
-          "turns": 1,
-          "steps": 1,
-          "llmMs": 2835,
+          "turns": 2,
+          "steps": 2,
+          "llmMs": 7844,
           "toolMs": 0,
-          "ttftMs": 2710,
-          "ttftSteps": 1,
-          "decodeMs": 125,
-          "decodeTokens": 12,
-          "lastTurn": 1,
+          "ttftMs": 5115,
+          "ttftSteps": 2,
+          "decodeMs": 2729,
+          "decodeTokens": 468,
+          "lastTurn": 2,
           "openStep": null,
           "pendingCalls": {}
         }
       },
       "turnOutline": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "turns": [
             {
@@ -145,6 +155,12 @@
               "seq": 4,
               "prompt": "say hi in one word, do not call any tool",
               "response": "Hi"
+            },
+            {
+              "turn": 2,
+              "seq": 19,
+              "prompt": "《信号与系统（MATLAB版·微课视频版·第2版）》，汤全武主编，清华大学出版社，2024年，IS…",
+              "response": "我无法提供该书的免费下载或网盘/盗版链接。建议通过正规渠道获取： - **清华大学出版社官网**：搜索书名或 ISBN `9787302658368` - **文泉书局**（清华大学出版社旗下电子教材平台） - **京东、当当、天猫**：…"
             }
           ],
           "draft": ""
@@ -152,19 +168,19 @@
       },
       "agentPreset": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": "anchored-standard"
       },
       "subagentCatalog": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "inheritedEventCount": 0
         }
       },
       "subagentTiming": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "descriptorSeen": false,
           "settledMs": 0
@@ -172,22 +188,22 @@
       },
       "subagent": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {}
       },
       "permissions": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "preset": "danger-full-access",
           "sandbox": "danger-full-access",
           "approval": "never",
-          "seeded": false
+          "seeded": true
         }
       },
       "modelSelection": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "lastUsed": {
             "provider": "commandcode-goat",
@@ -199,33 +215,25 @@
       },
       "sessionListMetadata": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "blank": false,
-          "lastPromptAt": 1789867091501
+          "lastPromptAt": 1790132624801
         }
       },
       "imageLimits": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": null
-      },
-      "inbox": {
-        "ver": 1,
-        "seq": 16,
-        "val": {
-          "next-turn": [],
-          "next-step": []
-        }
       },
       "todos": {
         "ver": 2,
-        "seq": 16,
+        "seq": 26,
         "val": null
       },
       "plan": {
         "ver": 3,
-        "seq": 16,
+        "seq": 26,
         "val": {
           "active": false,
           "wanted": null,
@@ -235,8 +243,34 @@
       },
       "subagentModelSelectionPolicy": {
         "ver": 1,
-        "seq": 16,
+        "seq": 26,
         "val": null
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 26,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      },
+      "armor": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "running": false,
+          "verdict": "refusal",
+          "words": [
+            "我无法",
+            "无法提供"
+          ],
+          "safe": [
+            "lab"
+          ],
+          "risk": [],
+          "domain": "miniprogram",
+          "domainHits": 1
+        }
       }
     }
   }

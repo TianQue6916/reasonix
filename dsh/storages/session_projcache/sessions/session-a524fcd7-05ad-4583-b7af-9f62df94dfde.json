@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147711980,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_203]\n200 \\hfill Low Rank and Compressed Sensing\n\n\\section*{Problem Set III.5}\n\n\\textbf{1} \\quad For one or more of these examples in the text, can you find the completion that minimizes \\( \\|A\\|_N \\) ?\n\\[\nA_0 = \\begin{bmatrix} 1 & 2 \\\\ * & * \\end{bmatrix} \\quad B_0 = \\begin{bmatrix} 1 & * \\\\ * & 4 \\end{bmatrix} \\quad C_0 = \\begin{bmatrix} 1 & 2 \\\\ 3 & * \\end{bmatrix}\n\\]\n\n\\textbf{2} \\quad Corresponding to the important Figure I.16 near the start of Section I.11, can you find the matrix with smallest ``sum norm'' \\( \\|A\\|_S = |a| + |b| + |c| + |d| \\) so that\n\\[\n\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\begin{bmatrix} 3 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix} ?\n\\]\n\n\\textbf{3} \\quad For 2 by 2 matrices, how would you describe the unit ball \\( \\|A\\|_S \\le 1 \\) in that sum norm \\( |a| + |b| + |c| + |d| \\) ?\n\n\\textbf{4} \\quad Can you find inequalities that connect the sum norm to the nuclear norm for \\( n \\) by \\( n \\) matrices?\n\\[\n\\|A\\|_N \\le c(n) \\, \\|A\\|_S \\quad \\text{and} \\quad \\|A\\|_S \\le d(n) \\, \\|A\\|_N\n\\]\n\n\\textbf{5} \\quad If only one entry of a matrix \\( A \\) is unknown, how would you complete \\( A \\) to minimize \\( \\|A\\|_S \\) or \\( \\|A\\|_N \\) ?\n\nHere are two neat formulas for the nuclear norm (thank you to Yuji Nakatsukasa).\n\\[\n\\boxed{ \\|A\\|_N = \\min_{UV=A} \\|U\\|_F \\|V\\|_F = \\min_{UV=A} \\frac{1}{2}\\|U\\|_F^2 + \\frac{1}{2}\\|V\\|_F^2 } \\tag{*}\n\\]\n\n\\textbf{6} \\quad Start from \\( A = U\\Sigma V^T = (U\\Sigma^{1/2})(\\Sigma^{1/2}V^T) \\). If you rename those two factors \\( U^* \\) and \\( V^* \\), so that \\( A = U^* V^* \\), show that \\( \\|U^*\\|_F^2 = \\|V^*\\|_F^2 = \\|A\\|_N \\): equality in (*).\n\n\\textbf{7} \\quad If \\( A \\) is positive semidefinite then \\( \\|A\\|_N = \\operatorname{trace} \\) of \\( A \\) (why?). Then if \\( A = UV \\), explain how the Cauchy-Schwarz inequality gives\n\\[\n\\|A\\|_N = \\operatorname{trace}(UV) = \\Sigma \\Sigma \\, U_{ij} V_{ji} \\le \\|U\\|_F \\|V\\|_F .\n\\]\n\n### [原文 page_204]\nPart IV\nSpecial Matrices\n\nIV.1 Fourier Transforms : Discrete and Continuous\n\nIV.2 Shift Matrices and Circulant Matrices\n\nIV.3 The Kronecker Product \\(A \\otimes B\\)\n\nIV.4 Sine and Cosine Transforms from Kronecker Sums\n\nIV.5 Toeplitz Matrices and Shift Invariant Filters\n\nIV.6 Graphs and Laplacians and Kirchhoff's Laws\n\nIV.7 Clustering by Spectral Methods and \\(k\\)-means\n\nIV.8 Completing Rank One Matrices\n\nIV.9 The Orthogonal Procrustes Problem\n\nIV.10 Distance Matrices\n\n【当前译文】\n@@PAGE:203@@\n<!-- page 203 -->\n> <span style=color:#7f8c8d;>本页为书页 200，Problem Set III.5（习题集 III.5），是 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的收尾习题页；页眉 “Low Rank and Compressed Sensing” 与印页码为重复元素，不译。按体例，习题题干保留英文原文。</span>\n\n> <span style=color:#7f8c8d;>本页（书页见页首说明）原书为 Problem Set III.5，共 7 道习题。按技能**铁律 9**（非必要习题不收录），此处不保留习题原文。</span>\n\n@@PAGE:204@@\n<!-- page 204 -->\n> <span style=color:#7f8c8d;>本页为书页 201，是 Part IV（第四部分）Special Matrices（特殊矩阵）的目录页；页眉、印页码为重复元素，不译。章节编号与页码按原文保留。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## Part IV Special Matrices（第四部分 特殊矩阵）\n> <span style=color:#7f8c8d;>Strang LaLFD Part IV, p.201</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把章节编号中的罗马数字 `IV` 误识为 `l` 或 `皿`（如 `lV.6`、`lV•7`、`lV•8`、`皿 10`），`IV.3` 一行的 `A ． B` 为 $A \\otimes B$（克罗内克积，Kronecker product）之误，`il ters` 还原为 filters，`0 感 ho gonal Pro crustes` 还原为 Orthogonal Procrustes。末三章的编号在 OCR 中只剩 `lV•8` 与 `皿 10`（即 IV.10），IV.9 脱落；依序号连续性补足为 IV.8、IV.9、IV.10。（原书此处 OCR 残缺）末三章与题目的对应（IV.8 Completing Rank One Matrices／IV.9 The Orthogonal Procrustes Problem／IV.10 Distance Matrices）请对照原书目录确认。\n**IV.1** 傅里叶变换：离散与连续（Fourier Transforms: Discrete and Continuous）\n**IV.2** 移位矩阵与循环矩阵（Shift Matrices and Circulant Matrices）\n**IV.3** 克罗内克积 $A \\otimes B$（The Kronecker Product $A \\otimes B$）\n**IV.4** 由克罗内克和导出的正弦与余弦变换（Sine and Cosine Transforms from Kronecker Sums）\n**IV.5** 托普利茨矩阵与平移不变滤波器（Toeplitz Matrices and Shift Invariant Filters）\n**IV.6** 图、拉普拉斯矩阵与基尔霍夫定律（Graphs and Laplacians and Kirchhoff's Laws）\n**IV.7** 用谱方法与 k-means 聚类（Clustering by Spectral Methods and k-means）\n**IV.8** 补全秩一矩阵（Completing Rank One Matrices）\n**IV.9** 正交 Procrustes 问题（The Orthogonal Procrustes Problem）\n**IV.10** 距离矩阵（Distance Matrices）\n> <span style=color:#1e8449;>**[note] 译者注（目录说明）：**</span> 本批正文只覆盖 IV.1–IV.7；IV.8–IV.10 三章属本部分其余内容，此处仅照录目录，供交叉引用时核对章号。\n\n现在输出修订后的译文全文（从 `@@PAGE:203@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2277,
+            "outputTokens": 6463,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 2277,
+              "outputTokens": 6463,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8067,
+          "contextWindow": 1000000,
+          "pressureTokens": 6117,
+          "sampledSurfaceTokens": 3094
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1534,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4973,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6923
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

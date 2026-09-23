@@ -1,0 +1,241 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128832974,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 41,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 41,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 对称矩阵 $S$ 的最大特征值，就是瑞利商 $\\dfrac{x^T S x}{x^T x}$ 的最大值。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 第 172 页这段话给出本节最省力的上界工具，全部内容就是「把一个最大值拆成两个最大值」。既然 $\\lambda_{\\max}(S)=\\max_{x\\ne0}\\frac{x^TSx}{x^Tx}$，而对每个 $x$ 都有 $\\frac{x^T(S+T)x}{x^Tx}=\\frac{x^TSx}{x^Tx}+\\frac{x^TTx}{x^Tx}\\le\\lambda_{\\max}(S)+\\lambda_{\\max}(T)$，两边对 $x$ 取最大值即得 $\\lambda_{\\max}(S+T)\\le\\lambda_{\\max}(S)+\\lambda_{\\max}(T)$。命名模板：**最大值拆分上界法（对同一个 $x$ 分别放大，再取上确界）**。它其实是 $\\sup(f+g)\\le\\sup f+\\sup g$ 的一次实例，和你在 6.042J 概率方法里「把和的期望拆成期望的和」是同一个动作；要记住它的代价：等号只在两个最大值于同一点取到时成立，$S$ 与 $T$ 的主特征向量不一致时上界就是松的。验算（松的情形）：$S=\\operatorname{diag}(5,1)$，$T=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$，$\\lambda_{\\max}(T)=1$；$S+T=\\begin{bmatrix}5&1\\\\1&1\\end{bmatrix}$ 的特征值是 $(6\\pm\\sqrt{20})/2=3\\pm\\sqrt5$，最大值 $3+\\sqrt5\\approx5.236$，明显小于上界 $5+1=6$，松掉的原因正是 $S$ 的最大化向量是 $e_1$，而 $T$ 的最大化向量是 $\\frac{1}{\\sqrt2}(1,1)^T$。验算（紧的情形）：$T=\\theta q_1q_1^T$ 时两者共享 $q_1$，等号成立，最大特征值恰好抬高 $\\theta$。把同一技巧用于最小特征值（对 $-S,-T$ 用最大值原理）得 $\\lambda_{\\min}(S+T)\\ge\\lambda_{\\min}(S)+\\lambda_{\\min}(T)$；两式合起来还能造出更一般的 Weyl 上界 $\\lambda_{i+j-1}(S+T)\\le\\lambda_i(S)+\\lambda_j(T)$，取 $j=1$ 就是最大特征值版本，取 $i=1$ 并交换 $S,T$ 得另一侧，从而 $|\\lambda_i(S+T)-\\lambda_i(S)|\\le\\|T\\|_2$。这就是为什么**最大与最小特征值好用、中间特征值困难**：$\\lambda_1$ 与 $\\lambda_n$ 有纯极值刻画，扰动是 Lipschitz 的；而 $\\lambda_2,\\dots,\\lambda_{n-1}$ 只是瑞利商的鞍点。鞍点的麻烦在二阶信息：$R(c)$ 的 Hessian 在那里不定（正负特征值都有），因此共轭梯度这类要求正定的算法直接失效，也与 Boyd 里「鞍点不是最优点、KKT 条件需要二阶信息筛选」相呼应。第 174 页的极大-极小原理就是专门为捕获这些鞍点而设计的语言。\r\n\r\n=== ANCHOR: 拉格朗日对大量鞍点问题负有责任。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> Strang 这句话是双关：拉格朗日乘子法既**解决**很多鞍点问题，也**制造**它们。第 173 页的推导把「带约束的最小化」变成一个线性方程组，而这个方程组的矩阵天然不定。链条很干净：最小化 $\\frac12c^TSc$ 受约束 $Ac=b$，构造 $L(c,\\lambda)=\\frac12c^TSc+\\lambda^T(Ac-b)$，令 $\\partial L/\\partial c=0$ 与 $\\partial L/\\partial\\lambda=0$，得到 $H=\\begin{bmatrix}S&A^T\\\\A&0\\end{bmatrix}$ 上的分块系统；$H$ 对称，但右下角的零块注定它不定。判定不定性的标准做法是 Schur 补加惯性不变，值得命名：**分块消元与惯性不变法（Schur 补定号则整体不定）**。当 $S$ 正定、$A$ 行满秩时，$H=\\begin{bmatrix}I&0\\\\AS^{-1}&I\\end{bmatrix}\\begin{bmatrix}S&0\\\\0&-AS^{-1}A^T\\end{bmatrix}\\begin{bmatrix}I&S^{-1}A^T\\\\0&I\\end{bmatrix}$，左右两个因子是单位三角矩阵，这个变换不改变惯性（Sylvester 的惯性定律，19 世纪经典结论）。中间的对角分块里 $S$ 贡献 $n$ 个正特征值，$-AS^{-1}A^T$ 因 $A$ 行满秩而负定，贡献 $m$ 个负特征值；所以 $H$ 的特征值有正有负。几何含义是：沿某些方向走 $L$ 上升，沿另一些方向走 $L$ 下降，解 $(c,\\lambda)$ 正是 $L$ 的鞍点。最小验算就是文本里的 $H=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$：$\\det H=-1$，特征值 $\\pm1$，一正一负。稍大一点的例子：$S=I_2$，$A=\\begin{bmatrix}1&1\\end{bmatrix}$，$H=\\begin{bmatrix}1&0&1\\\\0&1&1\\\\1&1&0\\end{bmatrix}$，$\\det H=1\\cdot(1\\cdot0-1\\cdot1)+1\\cdot(0\\cdot1-1\\cdot1)=-2\\ne0$；Schur 补 $-AS^{-1}A^T=-2$ 是 $1\\times1$ 负定块，于是 $H$ 有 $2$ 个正特征值、$1$ 个负特征值，与「$n$ 正 $m$ 负」吻合。跨课程连接：你在 Boyd 里学的 KKT 条件是同一件事的优化语言——原问题与对偶问题的最优解一起构成 $L$ 的鞍点，$L(c^*,\\lambda)\\le L(c^*,\\lambda^*)\\le L(c,\\lambda^*)$；这里说的则是这个鞍点在矩阵层面的指纹，即惯性为 $(n,m)$。区别在关注点：Boyd 关心「解是否满足最优性条件」，Strang 关心「这个方程组怎么解、为什么比正定系统难解」——共轭梯度要求正定，对 $H$ 直接用会失败；实践中的做法是分块消元（把 $\\lambda$ 消掉，得到 $AS^{-1}A^T$ 上的系统）或使用允许 $1\\times1$、$2\\times2$ 主元的对称不定分解。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 41,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 41,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 41,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 41,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 41,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4117,
+            "outputTokens": 17049,
+            "cacheReadTokens": 74624,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 6,
+            "buckets": {
+              "uncachedInputTokens": 459,
+              "outputTokens": 3481,
+              "cacheReadTokens": 18944,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 41,
+        "val": {
+          "surfaceTokens": 12081,
+          "contextWindow": 1000000,
+          "pressureTokens": 19403,
+          "sampledSurfaceTokens": 10478
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 41,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1023,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1374,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 3175,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 430,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 22,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 1847,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 947,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 1603,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10937
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 41,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 41,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 38,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 40
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 41,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 41,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 41,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 41,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 41,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 41,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

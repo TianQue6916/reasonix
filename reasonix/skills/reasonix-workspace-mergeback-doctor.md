@@ -45,6 +45,60 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "$env:USERPROFILE\Desktop\re
 - 「active work」那条是**正常保护**：合并会切换/删除 checkout，会话在跑时本就该被拦。
 - **先读 `.git\info\exclude` 的内容再动手**：它可能被 Reasonix 重写（2026-09-21 被重写为「只排除依赖/缓存」的 26 行版）。
 
+## 第四步：UI 报错怎么分派（2026-09-23 新增，含一次真实事故）
+
+**原则（最重要的一条）**：
+
+> **要动 Reasonix 的 worktree，就得连它的 state 一起动；做不到，就别在 git 侧裸删。**
+
+- ✅ **全程在 UI 里做** —— Reasonix 自己管 state，最干净
+- ✅ **外部删 + 同步清 state** —— 用 `drop-worktree-clean.ps1`（它会自动等你关桌面版）
+- ❌ **只删 git、不管 state** —— 唯一会留烂摊子的操作
+
+### 事故复盘（2026-09-23，我犯的）
+
+```
+UI 合并被 active work 拦住
+  → 误判「零内容，放弃吧」
+  → git worktree remove --force          ← 雷在这里
+  → Reasonix 的 state 不知道 → 死条目
+  → UI 报：resolve worktree root: exit status 128:
+            fatal: cannot change to '<路径>': No such file or directory
+```
+
+**漏掉的关键一步**：`active work` 这条 **doctor 查不出来**（doctor 只认 `task.lock` 文件，UI 认运行时会话/写租约状态）。
+**正确做法是重启桌面版让它重算**，而不是去动 git。
+
+### 决策树（UI 报错 → 怎么走，全部不用关应用）
+
+| UI 报什么 | 真因 | 按顺序怎么做 |
+|---|---|---|
+| 阻断项有 WARN | 残留 `task.lock` / 任务日志 | ① `reasonix-doctor.ps1 -Heal -IncludeTaskLogs` ② **重启桌面版** ③ 再合并 |
+| `active work` 但 doctor 全 OK | 运行时状态与磁盘不一致（两者判定不同源） | **重启桌面版**（重算内存态）→ 再合并 |
+| `No such file or directory` | 已经外部删过 worktree | ① `git -C <source> branch <br> <commit>` ② `git worktree add <path> <br>` 重建 ③ 回 UI 走完合并 |
+| 领先 0 / 变更 0 | 没内容可合并 | 直接点合并，成功 = 收掉空分支 |
+
+### 要放弃 worktree 时（唯一安全路径）
+
+```powershell
+powershell -File "C:\Users\27063\Desktop\reasonix-ops\drop-worktree-clean.ps1"
+```
+
+它会：安全三检（未提交/未跟踪/被忽略 必须全为 0）→ **自动等你关桌面版**（每 3 秒轮询）
+→ `git worktree remove --force` + `branch -D` + `prune` → 调 `fix-dead-worktree-state.py` 清 state
+→ 清残留目录。
+
+**「删 git」与「清 state」被绑死，不可能再留死条目。**
+
+### 附带事实：谁需要关，谁不需要
+
+| 进程 | 数据目录 | 需要关吗 |
+|---|---|---|
+| `Reasonix.exe` / `reasonix-desktop.exe`（桌面版） | `%APPDATA%\reasonix\` | **需要**（它写 `desktop\workspace-state-v1.json`） |
+| `reasonix-bot.exe`（微信机器人） | `%APPDATA%\reasonix-bot\`（**独立**） | **不需要**，任何 state 操作都不用关它 |
+
+---
+
 ## 硬约束（违反视为错误）
 
 1. 不 `push` / 不改 `config.toml` / 不重启应用 / 不删用户数据文件

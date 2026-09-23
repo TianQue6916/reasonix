@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148595468,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_235]\nHere is the faithful transcription of the provided page:\n\nIV.5. Toeplitz Matrices and Shift Invariant Filters \\hfill 233\n\n**Toeplitz Matrices : Basic Ideas**\n\nIn signal processing, a Toeplitz matrix is a filter. The matrix multiplication \\(Ax\\) in the time domain translates into ordinary multiplication \\(A(\\theta)x(\\theta)\\) in the frequency domain. That is the fundamental idea but it is not exactly true. So Toeplitz theory is on the edge of simple Fourier analysis (one frequency at a time), but boundaries interfere.\n\nA finite length signal \\(x = (x_0, \\ldots, x_n)\\) has boundaries at \\(0\\) and \\(n\\). Those boundaries destroy a simple response to each separate frequency. We cannot just multiply by \\(A(\\theta)\\). In many applications—but not all—this inconvenient fact can be suppressed. Then a Toeplitz matrix essentially produces a convolution. If we want a bandpass filter that preserves frequencies \\(a \\leq \\theta \\leq b\\) and removes all other frequencies, then we construct \\(A(\\theta)\\) to be near \\(1\\) in that band and near zero outside the band. (Again, an ideal filter with \\(A\\) exactly \\(1\\) and \\(0\\) is impossible until \\(n = \\infty\\).)\n\nLinear finite difference equations with constant coefficients produce Toeplitz matrices. The equations don't change as time goes forward (\\(\\text{LTI} = \\text{Linear Time Invariant}\\)). They don't change in space (\\(\\text{LSI} = \\text{Linear Shift Invariant}\\)). The familiar \\(-1, 2, -1\\) second difference matrix is an important example :\n\nTridiagonal \\(-1, 2, -1\\) matrix with symbol \\(A(\\theta) = -e^{-i\\theta} + 2 - e^{i\\theta} = 2 - 2 \\cos \\theta\\).\n\nThe fact that \\(A(\\theta) \\geq 0\\) tells us that \\(A\\) is symmetric positive semidefinite or definite. The fact that \\(A = 2 - 2 = 0\\) when \\(\\theta = 0\\) tells us that \\(\\lambda_{\\min}(A)\\) will approach zero as \\(n\\) increases. The finite Toeplitz matrix \\(A\\) is barely positive definite and the infinite Toeplitz matrix is singular, all because the symbol has \\(A(\\theta) = 0\\) at \\(\\theta = 0\\).\n\n**The inverse of a Toeplitz matrix \\(A\\) is usually not Toeplitz.** For example,\n\n\\[\nA^{-1} = \\begin{bmatrix} 2 & -1 & 0 \\\\ -1 & 2 & -1 \\\\ 0 & -1 & 2 \\end{bmatrix}^{-1} = \\frac{1}{4} \\begin{bmatrix} 3 & 2 & 1 \\\\ 2 & 4 & 2 \\\\ 1 & 2 & 3 \\end{bmatrix} \\quad \\text{is not Toeplitz}\n\\]\n\nBut Levinson found a way to use the Toeplitz pattern in a recursion—reducing the usual \\(O(n^3)\\) solution steps for \\(Ax = b\\) to \\(O(n^2)\\). Superfast algorithms were proposed later, but the Levinson-Durbin recursion is better for moderate \\(n\\). Superfast algorithms give accurate answers (not exact) for large \\(n\\)—one way is a circulant preconditioner.\n\nOne more general comment. It frequently happens that the first and last rows do not fit the Toeplitz pattern of shift invariance. The entries in those boundary rows can be different from \\(a_0\\) and \\(a_1\\) and \\(a_{-1}\\). This change can come from boundary conditions in a differential equation or in a filter. When \\(A\\) multiplies a vector \\(x = (x_1, \\ldots, x_n)\\), the Toeplitz matrix (sharp cutoff) is assuming \\(x_0 = 0\\) and \\(x_{n+1} = 0\\) (zero-padding).\n\nZero padding may give a poor approximation at the endpoints. Often we change the boundary rows for a better approximation. A close analysis of those changes can be difficult, because the constant-diagonal pattern in the Toeplitz matrix is perturbed.\n\n### [原文 page_236]\nHere is the faithful transcription of the provided page from Gilbert Strang's *Linear Algebra and Learning from Data*:\n\n**234** \\hfill **Special Matrices**\n\n---\n\n### Fast Multiplication by the FFT\n\nFor tridiagonal matrices, we don’t need a special algorithm to multiply \\(Ax\\). This requires only \\(3n\\) separate multiplications. But for a full dense matrix, the Toeplitz and circulant properties allow major speedup in \\(\\theta\\)-space by using the Fast Fourier Transform.\n\nCirculants are cyclic convolutions. In \\(\\theta\\)-space, the matrix-vector multiplication \\(Cx\\) becomes \\((\\sum c_k e^{ik\\theta})(\\sum x_k e^{ik\\theta})\\). This product will give powers of \\(e^{i\\theta}\\) that go outside the range from \\(k = 0\\) to \\(k = n - 1\\). Those higher frequencies and negative frequencies are “aliases” of standard frequencies—they are equal at every \\(\\theta = p2\\pi/n\\):\n\n**Aliasing** \\hfill \\(e^{in\\theta} = 1\\) and \\(e^{i(n+1)\\theta} = e^{i\\theta}\\) and \\(e^{i(n+p)\\theta} = e^{ip\\theta}\\) at \\(\\theta = \\frac{2\\pi}{n}, \\frac{4\\pi}{n}, \\dots\\)\n\nCyclic convolution \\(c \\circledast x\\) brings every term of \\((\\sum c_k e^{ik\\theta})(\\sum x_k e^{ik\\theta})\\) back to a term with \\(0 \\le k < n\\). So a circulant multiplication \\(Cx\\) needs only \\(O(n \\log_2 n)\\) steps because of convolution by the Fast Fourier Transform.\n\n**Cyclic convolution** \\hfill \\(c \\circledast x\\) and \\(c \\circledast d\\) give the entries of \\(Cx\\) and \\(CD\\).\n\nA Toeplitz matrix multiplication \\(Ax\\) is not cyclic. Higher frequencies in \\(A(\\theta)x(\\theta)\\) don’t fold back perfectly into lower frequencies. But we can use cyclic multiplication and a circulant by a doubling trick: **embed \\(A\\) into a circulant matrix \\(C\\)**.\n\n$$\nA = \\begin{bmatrix}\na_0 & a_{-1} & \\cdot & \\cdot & a_{1-n} \\\\\na_1 & \\cdot & & & \\cdot \\\\\n\\cdot & & \\cdot & & \\cdot \\\\\n\\cdot & & & \\cdot & a_{-1} \\\\\na_{n-1} & \\cdot & \\cdot & a_1 & a_0\n\\end{bmatrix}\n\\qquad\nC = \\begin{bmatrix} A & * \\\\ * & * \\end{bmatrix} =\n\\begin{bmatrix}\na_0 & a_{-1} & \\cdot & a_{1-n} & a_{n-1} & \\cdot & a_1 \\\\\na_1 & & & & & & \\cdot \\\\\n\\cdot & & & & & & \\cdot \\\\\n\\cdot & & & & a_{-1} & & a_{n-1} \\\\\na_{n-1} & \\cdot & \\cdot & a_1 & a_0 & & a_{1-n} \\\\\na_{1-n} & & & & & & \\cdot \\\\\n\\cdot & & & & & & \\cdot \\\\\n\\cdot & & & & & & a_{-1} \\\\\na_{-1} & \\cdot & \\cdot & a_{1-n} & a_{n-1} & \\cdot & a_1 & a_0\n\\end{bmatrix}\n$$\n\nTo compute \\(Ax\\) of size \\(n\\), we can use this circulant matrix \\(C\\) of size \\(2n + 1\\).\n\n1. Add \\(n - 1\\) zeros to extend \\(x\\) to a vector \\(X\\) of size \\(2n - 1\\).\n2. Multiply \\(CX\\) using the Fast Fourier Transform (cyclic convolution).\n3. Then the first \\(n\\) components of \\(CX\\) produce the desired \\(Ax\\).\n\nIf size \\(2n\\) is preferred for \\(C\\), a diagonal of \\(a_0\\)’s can go between \\(a_{1-n}\\) and \\(a_{n-1}\\).\n\n---\n\n### Toeplitz Eigenvalues and Szegő’s Theorem\n\nThe exact eigenvalues of circulant matrices were found in Section IV.2. The eigenvectors are known in advance—always the same! They are the columns of the Fourier matrix \\(F\\). The eigenvalues of \\(C\\) are the components of the vector \\(Fc\\). They are the values of \\(C(\\theta)\\) at \\(n\\) equally spaced points. In other words, the eigenvalues are the discrete Fourier transform of column 0 of the circulant matrix \\(C\\).\n\n【当前译文】\n@@PAGE:235@@\n<!-- page 235 -->\n> <span style=color:#1e8449;>[note] 本页为书页 233，是 §IV.5 Toeplitz Matrices and Shift Invariant Filters（托普利茨矩阵与平移不变滤波器）的续页；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 噪声较重：`mafrix`／`m atnx`／`matnces` → matrix／matrices、`ln`／`lt` → In／It、`ndamental` → fundamental、`Foun er` → Fourier、`desff0Y` → destroys、`s ep arate` → separate、`symmetnc` → symmetric、`epli tz` → Toeplitz、`0 3 ）` → $O(n^3)$、`0 2 ）` → $O(n^2)$、`什 0 m` → from、`ro padding` → zero padding；符号记号 `蓋` 一律还原为 $C(\\theta)$，被破坏的公式按数学语境重建。（原书此处 OCR 残缺）`is assuming = 0 and + 1` 一句中被吞掉的角标，本译文按 0 基下标（信号为 $c_0,\\ldots,c_{n-1}$）还原为 $c_{-1}=0$ 与 $c_n=0$，纸书若作 $c_{n+1}=0$ 请改正。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## （续）Toeplitz Matrices and Shift Invariant Filters（托普利茨矩阵与平移不变滤波器）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.5, p.233</span>\n<span style=color:#2471a3;>**[section]**</span>\n### Toeplitz Matrices: Basic Ideas（托普利茨矩阵：基本想法）\n在 signal processing（信号处理）中，一个 Toeplitz matrix 就是一个 filter（滤波器）。\n在 time domain（时域）中，矩阵乘法 $Ax$ 翻译到 frequency domain（频域）里，就变成普通的乘法 $A(\\theta)x(\\theta)$。\n这就是那个 fundamental idea（根本想法），但事情并没有那么简单：Toeplitz theory（托普利茨理论）处在简单 Fourier analysis（傅里叶分析，一次只看一个频率）的边缘地带，而 boundaries（边界）会来干扰。\n一个 finite length signal（有限长信号）$x = (x_0, \\ldots, x_n)$ 在 $0$ 与 $n$ 处有边界。\n这些边界破坏了对每一个单独频率的简单响应，我们不能只是乘上 $A(\\theta)$。\n在许多应用（但并非全部）中，这个不便的事实可以被压制下去。\n于是 Toeplitz matrix 实质上产生一次 convolution（卷积）。\n如果我们想要一个 bandpass filter（带通滤波器），它保留频率 $a \\le \\theta \\le b$ 并去掉所有其它频率，那我们就构造 $A(\\theta)$ 使其在该频带内接近 $1$、在频带之外接近零。\n（同上，一个恰好取值为 $1$ 和 $0$ 的 ideal filter（理想滤波器）在 $n = \\infty$ 之前是不可能的。）\n> <span style=color:#1e8449;>[note] 译者注：**Toeplitz 矩阵就是“卷积算子”——平移不变性如何把 $n^{2}$ 个数压成 $2n-1$ 个。** 一个一般的 $n\\times n$ 矩阵要用 $n^{2}$ 个数字才能写下来；而 Toeplitz 矩阵只要求“同一条对角线上的元素相同”，于是整张矩阵只由第一行和第一列决定，共 $2n-1$ 个数字。这不是记号上的小节省，而是结构上的巨大压缩：把 $O(n^{2})$ 的存储降到 $O(n)$。为什么“常数对角线”这个貌似随意的规定能换来控制矩阵乘法？因为它等价于一条非常强的物理/工程假设——**平移不变性**。</span>\n>\n> <span style=color:#1e8449;>把矩阵乘法写成分量形式：$(Ac)_i=\\sum_{k} a_{i-k}c_k$。注意下标只以**差值** $i-k$ 的形式出现。这意味着：如果把输入向量整体向右平移一格（$c_k \\to c_{k-1}$），输出也整体向右平移一格，形状分毫不变。这就是书上说的 LTI（线性时不变）与 LSI（线性平移不变），也是“滤波器”这个词的全部含义：滤波器不知道“现在几点”，它只看窗口内各点的相对位置。矩阵的每一行都是上一行向右移一格，所以滑窗卷积的代码就是那个你写过的双层循环——外层遍历输出位置 $i$，内层遍历固定的 $a_k$。</span>\n>\n> <span style=color:#1e8449;>这里可以接上你在 CSAPP 学过的东西。第 6 章讲存储层次与缓存：滑窗卷积的相邻两次迭代复用同一批输入元素，局部性天然很好；而一个通用的稠密矩阵乘法必须靠 cache blocking（分块）才能把缓存命中率拉起来。第 5 章讲循环优化（循环展开、减少过程调用）：卷积正是“循环展开最有效”的典型模式，因为循环体极短且长度已知。换句话说，Toeplitz 结构不只是省存储，它还让程序员的优化技巧（分块、展开、向量化）都能生效。</span>\n>\n> <span style=color:#1e8449;>书上还给了翻译字典：symbol $C(\\theta)=\\sum_k a_k e^{ik\\theta}$。把矩阵“搬到频域”之后，本来是矩阵乘法的动作变成普通的逐点乘法 $C(\\theta)\\,\\hat{c}(\\theta)$。二阶差分矩阵 $-1,2,-1$ 的 symbol 是 $C(\\theta)=2-2\\cos\\theta$，它处处 $\\ge 0$，所以矩阵对称半正定；它在 $\\theta=0$ 处为零，所以 $n$ 越大 $\\lambda_{\\min}$ 越小，无限矩阵奇异。这就是“矩阵的性质”与“函数的性质”之间的对应：正定性看 $C(\\theta)$ 是否非负，奇异性看它是否碰到零。</span>\n>\n> <span style=color:#1e8449;>最后是边界这个“不方便的事实”。有限长信号只在 $0,\\dots,n-1$ 上有定义，矩阵乘 $c$ 时其实是在暗地里假定 $c_{-1}=0,\\;c_n=0$（zero padding，补零）。于是窗口滑到边缘时有一半落在零上，输出被系统性地拉偏——逼近在最需要小心的地方最不可靠。这就是书上专门提“边界行可以和 $a_0,a_1,a_{-1}$ 不同”的原因：它对应微分方程里的边界条件，也是滤波器设计里的边缘处理。可迁移的结论只有一句：**当你看到一个沿对角线常数的矩阵，先问它是不是某个平移不变算子的表示；如果是，就把它搬到频域去算，并且专门检查边界行。**</span>\n令 finite difference equations（有限差分方程）的系数为 constant（常数），就产生 Toeplitz matrices。\n这些方程随时间向前推进时不变，也就是 LTI = Linear Time Invariant（线性时不变）；在空间中移动时也不变，也就是 LSI = Linear Shift Invariant（线性平移不变）。\n熟悉的 $-1, 2, -1$ second difference matrix（二阶差分矩阵）是一个重要例子：一个 tridiagonal（三对角）的 $-1,2,-1$ 矩阵，其 symbol 为\n```math\nA(\\theta) = -e^{-i\\theta} + 2 - e^{i\\theta} = 2 - 2\\cos\\theta .\n```\n由 $A(\\theta) \\ge 0$ 这一事实可知，$A$ 是 symmetric positive semidefinite or definite（对称半正定或正定）的。\n而当 $\\theta = 0$ 时 $A(\\theta) = 2 - 2 = 0$，这一事实则告诉我们，随着 $n$ 增大，$\\lambda_{\\min}(A)$ 将趋于零。\n有限 Toeplitz matrix $A$ 只是勉强 positive definite（正定），而无限 Toeplitz matrix 是 singular（奇异）的——这一切都因为该 symbol 在 $\\theta = 0$ 处取 $C(\\theta) = 0$。\nToeplitz matrix $A$ 的 inverse（逆）通常不是 Toeplitz 的。例如\n```math\nA^{-1} = \\begin{bmatrix} 2 & -1 & 0 \\\\ -1 & 2 & -1 \\\\ 0 & -1 & 2 \\end{bmatrix}^{-1}\n= \\frac{1}{4}\\begin{bmatrix} 3 & 2 & 1 \\\\ 2 & 4 & 2 \\\\ 1 & 2 & 3 \\end{bmatrix}\\qquad \\text{is not Toeplitz}\n```\n而右边这个矩阵并不是 Toeplitz 的。\n但 Levinson 找到了一种在 recursion（递推）中利用 Toeplitz pattern（托普利茨模式）的办法——把求解 $Ax = b$ 通常所需的 $O(n^3)$ 步降到 $O(n^2)$。\n后来人们又提出了 superfast algorithms（超快算法），但对于中等规模的 $n$，Levinson-Durbin recursion（Levinson-Durbin 递推）更好。\n超快算法对大 $n$ 给出的是 accurate（数值上准确）而非 exact（精确）的答案——其中一种做法是使用 circulant preconditioner（循环预条件子）。\n再说一条更一般的评论。\n经常出现的情况是，第一行和最后一行并不符合 shift invariance（平移不变性）的 Toeplitz pattern。\n这些 boundary rows（边界行）中的元素可以和 $a_0$、$a_1$、$a_{-1}$ 不同。\n这种改变来自微分方程中的 boundary conditions（边界条件），或者来自 filter 的边缘。\n当 $A$ 乘以向量 $x = (x_1, \\ldots, x_n)$ 时，那个（sharp cutoff，锐截止的）Toeplitz matrix 是在假定 $x_0 = 0$ 与 $x_{n+1} = 0$（zero padding（补零））。（续）ding（补零）在端点处可能给出很差的逼近。\n我们常常改动边界行以获得更好的逼近。\n对这些改动的细致分析可能很困难，因为 Toeplitz matrix 中 constant-diagonal（常数对角线）的模式被 perturbation（扰动）了。\n\n@@PAGE:236@@\n<!-- page 236 -->\n> <span style=color:#1e8449;>[note] 本页为书页 234，是 §IV.5 Toeplitz Matrices and Shift Invariant Filters（托普利茨矩阵与平移不变滤波器）的续页；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 噪声严重：`Matnces` → Matrices，`tndiagonal` → tridiagonal，`th e` → the，`th at` → that，`Fo urier` → Fourier，`eplitz` → Toeplitz，`CycIic`／`Cyc lic` → Cyclic，`t0` → to，`0f` → of；`0-space`、`ln O-space` 依数学语境重建为 $\\theta$-space（$\\theta$ 空间，即频域，因为该处讨论的正是以 $\\theta$ 为变量的频域乘法），`一 1` → $-1$，`size 2 + 1` → $2n-1$（与下文第 1 步中向量 $X$ 的大小 $2n-1$ 相互印证）；被破坏的算式与矩阵一律按数学语境重建。（原书此处 OCR 残缺）本页 `they are equal at every 9 = 2 丌 /` 依上下文重建为 $\\theta = 2\\pi k/n$，`(Also 1 and ... + 1)` 依上下文重建为 $e^{in\\theta}$ 与 $1$ 在 $\\theta = 2\\pi k/n$ 处相等，`Higher frequencies in ） 可 9 ）` 的记号取其作 $C(\\theta)X(\\theta)$——三处均请以纸书复核。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### Fast Multiplication by the FFT（用 FFT 快速乘法）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.5, p.234</span>\n对于 tridiagonal matrices，我们不需要什么特殊算法来做乘法 $Ax$，那只要 $3n$ 次单独的乘法。\n但对于 full dense matrix（满稠密矩阵），托普利茨矩阵与 circulant matrix 的性质允许我们借助 Fast Fourier Transform（快速傅里叶变换）在 $\\theta$-space（$\\theta$ 空间）中大幅加速。\n在 $\\theta$-space 中，矩阵-向量乘法变成两个函数的乘积：\n```math\n\\left( \\sum_k c_k e^{ik\\theta} \\right)\\left( \\sum_k x_k e^{ik\\theta} \\right)\n```\n这个乘积会给出 $e^{i\\theta}$ 的各次幂，其指数会跑到 $k = 0$ 到 $k = n-1$ 的范围之外。\n循环矩阵所作的就是 cyclic convolution。\n那些更高的频率（higher frequencies）与负频率（negative frequencies）是标准频率的 alias（混叠）——在每一个 $\\theta = 2\\pi k/n$ 处，它们彼此相等：\n```math\n\\text{Aliasing}\\qquad e^{in\\theta} = 1 \\quad \\text{and} \\quad e^{i(n+1)\\theta} = e^{i\\theta} \\quad \\text{and} \\quad e^{i(n+p)\\theta} = e^{ip\\theta} \\quad \\text{at } \\theta = \\frac{2\\pi}{n}, \\frac{4\\pi}{n}, \\ldots\n```\n（同样，$e^{in\\theta}$ 与 $1$ 在 $\\theta = 2\\pi k/n$ 处也相等。）这就是 aliasing（混叠）。\n循环卷积 $c \\circledast x$ 把 $\\left(\\sum c_ke^{ik\\theta}\\right)\\left(\\sum x_ke^{ik\\theta}\\right)$ 的每一项都折回到一个指数满足 $0 \\le k < n$ 的项，所以一次循环矩阵乘法 $Cx$ 只需 $O(n\\log_2 n)$ 步，这是因为卷积可以借助 Fast Fourier Transform 完成。\n> <span style=color:#1e8449;>[note] 译者注：**用 FFT 把卷积从 $O(n^{2})$ 压到 $O(n\\log n)$——加倍技巧与混叠。** circulant matrix（循环矩阵）有一个别的矩阵做梦都想要的性质：它的特征向量是**事先就知道的**，永远不变——就是傅里叶矩阵 $F$ 的各列。既然特征向量已知，矩阵乘法在频域里就退化成逐点相乘，一步 $O(n)$ 搞定。Toeplitz 矩阵没有这个福气（它的特征向量依赖具体数据），所以 Strang 用一个“嵌进去再截出来”的办法把 Toeplitz 问题偷换成循环问题。</span>\n>\n> <span style=color:#1e8449;>先讲清混叠（aliasing），否则技巧看起来像变魔术。在 $n$ 个采样点 $\\theta=2\\pi k/n$ 上，$e^{i\\theta}$ 与 $e^{i(\\theta+2\\pi)}$、$e^{i(\\theta+4\\pi)}$ 取**完全相同的值**。多项式乘法会产生 $e^{i(k+j)\\theta}$ 这类高次项，指数跑出 $0\\le\\cdot<n$ 的范围；可是在采样点上，高次项与某个低次项无法区分，于是一个“折回”发生了：线性卷积（长度 $2n-1$）被压成循环卷积（长度 $n$），尾巴绕回来叠在头上。这正是你在算法课（MIT 6.006 Introduction to Algorithms）里做多项式乘法时被反复叮嘱“要把长度补到 $2n-1$ 以上再变换”的那个细节——补零不是形式主义，它是防混叠。</span>\n>\n> <span style=color:#1e8449;>傅里叶变换为什么能做到 $O(n\\log n)$？靠分治。把 $n$ 点变换按奇偶下标拆成两个 $n/2$ 点变换，递归式 $T(n)=2T(n/2)+O(n)$ 解出 $T(n)=O(n\\log n)$。这是你熟悉的同一套递归分析：复杂度改善的来源永远是“把一个大问题拆成两个一半的问题，再花线性时间合并”。</span>\n>\n> <span style=color:#1e8449;>所谓 doubling trick（加倍技巧），就是把这三件事串起来：**1.** 把 $n$ 维向量补零成 $2n-1$（或 $2n$）维，让想保留的那段结果不被绕回来的尾巴污染；**2.** 把 $n\\times n$ 的上三角/下三角 Toeplitz 数据填进一个 $(2n-1)\\times(2n-1)$ 的循环矩阵 $C$，缺的位置补上合适的对角线；**3.** 做一次循环乘法（用 FFT），取前 $n$ 个分量，就是 $Ac$。整个动作可以用一句话概括：**把“有边界的卷积”嵌进“无边界的循环卷积”，算完之后把多余的切掉。**</span>\n>\n> <span style=color:#1e8449;>这里必须接上 CSAPP 的教训，才不至于把 $O(n\\log n)$ 当成无条件的胜利。第一，常数因子：FFT 每次运算都要做复数乘加，$O(n\\log n)$ 前面的常数比朴素卷积大得多；$n$ 小的时候直接算更快——书上正是因此说“对中等规模的 $n$，Levinson-Durbin 递推更好”（它用的还是 Toeplitz 结构，$O(n^{2})$ 但常数小）。第二，访存模式：FFT 的蝶形运算在原始顺序与位反转顺序之间来回跳，缓存不友好；这与 CSAPP 第 6 章“实际性能由缓存不命中率决定，而不只由运算次数决定”完全一致。第三，浮点：FFT 路径长、复数运算多，IEEE 754 舍入误差会累积，所以超快算法给的是数值上准确而不是精确（exact）的答案——这也解释了书上为什么要提 circulant preconditioner（用循环矩阵做预条件子，把问题改造成容易被迭代法吃掉的形状）。</span>\n>\n> <span style=color:#1e8449;>可迁移的结论：**当你面对一个结构矩阵，不要急着优化朴素乘法，先问“有没有一个变换能把它对角化”。** 能对角化，矩阵乘法就变成逐点乘法，复杂度从 $n^{2}$ 掉到 $n\\log n$ 甚至 $n$；代价是变换本身的开销、访存代价与数值误差，这三项决定了这个“降复杂度”到底划不划算。</span>\n```math\n\\text{Cyclic convolution}\\qquad c \\circledast x \\ \\text{ and } \\ c \\circledast d \\ \\text{ give the entries of } Cx \\text{ and } CD .\n```\n一次托普利茨矩阵乘法 $Ax$ 不是 cyclic 的：乘积 $A(\\theta)x(\\theta)$ 中的更高频率并不会完美地折回低频。\n但我们可以用循环乘法，再加上一个把托普利茨矩阵嵌入循环矩阵的 doubling trick（加倍技巧）：把 $A$ 嵌入一个 circulant matrix $C$：\n```math\nC = \\begin{bmatrix}\na_0 & a_{-1} & \\cdots & a_{1-n} & a_{n-1} & \\cdots & a_1 \\\\\na_1 & a_0 & a_{-1} & & & & \\vdots \\\\\n\\vdots & \\ddots & \\ddots & \\ddots & & & a_{n-1} \\\\\na_{n-1} & & \\ddots & \\ddots & \\ddots & & a_{1-n} \\\\\na_{1-n} & \\ddots & & \\ddots & \\ddots & \\ddots & \\vdots \\\\\n\\vdots & & \\ddots & & \\ddots & \\ddots & a_{-1} \\\\\na_{-1} & \\cdots & a_{1-n} & a_{n-1} & \\cdots & a_1 & a_0\n\\end{bmatrix}\n```\n要计算大小为 $n$ 的托普利茨矩阵乘法 $Ax$，我们可以使用这个大小为 $2n+1$ 的 circulant matrix $C$：\n**1.** 添加 $n-1$ 个零，把向量 $c$ 扩展成大小为 $2n-1$ 的向量 $X$。\n**2.** 用 Fast Fourier Transform 乘出 $CX$（即循环卷积）。\n**3.** 于是 $CX$ 的前 $n$ 个分量就给出所需的 $Ax$。\n如果更希望 $C$ 的大小为 $2n$，可以在 $a_{1-n}$ 与 $a_{n-1}$ 之间放一条由 $a_0$ 组成的对角线。\n<span style=color:#2471a3;>**[section]**</span>\n### Toeplitz Eigenvalues and Szegö's Theorem（托普利茨矩阵的特征值与塞格定理）\n循环矩阵的 exact eigenvalues（精确特征值）已在 §IV.2 中求出。\n它们的 eigenvectors 事先就知道——永远相同！\n它们就是 Fourier matrix $F$ 的各列。\n$C$ 的 eigenvalues 就是向量 $Fc$ 的各分量。\n它们就是 $C(\\theta)$ 在 $n$ 个 equally spaced points（等距点）上的取值。\n换句话说，这些 eigenvalues 就是循环矩阵 $C$ 的第 $0$ 列的 discrete Fourier transform。\n\n现在输出修订后的译文全文（从 `@@PAGE:235@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7415,
+            "outputTokens": 6230,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7415,
+              "outputTokens": 6230,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 10026,
+          "contextWindow": 1000000,
+          "pressureTokens": 11255,
+          "sampledSurfaceTokens": 6198
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4638,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3828,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 8882
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

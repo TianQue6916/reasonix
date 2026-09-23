@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147722191,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_209]\nIV.1. Fourier Transforms: Discrete and Continuous\n\n207\n\n**The DFT Matrix \\(\\Omega\\) is a Permutation of the Fourier Matrix \\(F\\)**\n\nThe matrices \\(F\\) and \\(\\Omega\\) have the same columns. So \\(F\\) and \\(\\Omega\\) are connected by a permutation matrix. That permutation \\(P\\) leaves the zeroth columns alone: the column of 1's in both matrices. Then \\(P\\) exchanges the next column \\((1, w, w^2, \\ldots, w^{N-1})\\) of \\(F\\) for its last column \\((1, \\omega, \\omega^2, \\ldots, \\omega^{N-1})\\). After the 1 in its zeroth row and column, \\(P\\) contains the reverse identity matrix \\(J\\) (with 1's on the antidiagonal):\n\n\\[\nP = \\begin{bmatrix} 1 & 0 \\\\ 0 & J \\end{bmatrix} = \\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 0 \\end{bmatrix} \\qquad P^2 = I \\text{ and } \\Omega = FP \\text{ and } \\Omega P = FP^2 = F\n\\]\n\nHere are the full matrices for \\(\\Omega = FP\\) when \\(N = 4\\):\n\n\\[\n\\Omega = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & -i & (-i)^2 & (-i)^3 \\\\ 1 & (-i)^2 & (-i)^4 & (-i)^6 \\\\ 1 & (-i)^3 & (-i)^6 & (-i)^9 \\end{bmatrix} = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & i & i^2 & i^3 \\\\ 1 & i^2 & i^4 & i^6 \\\\ 1 & i^3 & i^6 & i^9 \\end{bmatrix} \\begin{bmatrix} 1 & & & \\\\ & & & 1 \\\\ & & 1 & \\\\ & 1 & & \\end{bmatrix} \\qquad \\begin{matrix} 1 = 1 \\\\ -i = i^3 \\\\ (-i)^2 = i^2 \\\\ (-i)^3 = i \\end{matrix}\n\\]\n\nThese matrix identities lead to the remarkable fact that \\(F^4 = \\Omega^4 = N^2 I\\). Four transforms bring back the original vector (times \\(N^2\\)). Just combine \\(F\\Omega = NI\\) and \\(FP = \\Omega\\) with \\(P^2 = I\\):\n\n\\[\n\\boxed{ F^2 P = F \\Omega = NI \\quad \\text{so} \\quad P F^2 = NI \\quad \\text{and} \\quad F^4 = F^2 P P F^2 = N^2 I. }\n\\]\n\nFrom \\(F^4 = N^2 I\\), it follows that the Fourier matrix \\(F\\) and the DFT matrix \\(\\Omega\\) have only four possible eigenvalues! They are the numbers \\(\\lambda = \\sqrt{N}\\) and \\(i\\sqrt{N}\\) and \\(-\\sqrt{N}\\) and \\(-i\\sqrt{N}\\) that solve \\(\\lambda^4 = N^2\\). For sizes \\(N > 4\\) there must be and will be repeated \\(\\lambda\\)'s. The eigenvectors of \\(F\\) are not so easy to find.\n\n**The Discrete Fourier Transform**\n\nStart with any \\(N\\)-dimensional vector \\(f = (f_0, \\ldots, f_{N-1})\\). The Discrete Fourier Transform expresses \\(f\\) as a combination of \\(c_0 b_0 + c_1 b_1 + \\cdots + c_{N-1} b_{N-1}\\) of the Fourier basis vectors. Those basis vectors are the columns \\(b\\) (containing powers of \\(w\\)) in the Fourier matrix \\(F_N\\):\n\n\\[\n\\begin{bmatrix} f_0 \\\\ \\vdots \\\\ f_{N-1} \\end{bmatrix} = \\begin{bmatrix} b_0 & \\cdots & b_{N-1} \\end{bmatrix} \\begin{bmatrix} c_0 \\\\ \\vdots \\\\ c_{N-1} \\end{bmatrix} \\qquad \\begin{matrix} f = F_N c \\\\ c = F_N^{-1} f \\\\ c = \\frac{1}{N} \\Omega_N f \\end{matrix} \\tag{7}\n\\]\n\nThe forward transform \\(c = \\text{fft}(f)\\) multiplies \\(f\\) by the DFT matrix \\(\\Omega\\) (and divides by \\(N\\)). That is the analysis step, to separate \\(f\\) into \\(N\\) orthogonal pieces. The DFT finds the coefficients in a finite Fourier series \\(f = c_0 b_0 + \\cdots + c_{N-1} b_{N-1}\\).\n\n### [原文 page_210]\n**208** \\hfill Special Matrices\n\nThe synthesis step is the inverse transform \\(f = \\textbf{ifft}(c) = Fc\\). It starts with those coefficients \\(c = (c_0, \\ldots, c_{N-1})\\). It carries out the matrix-vector multiplication \\(Fc\\) to recover \\(f\\).\n\nThus \\(\\textbf{ifft}(\\textbf{fft}(f)) = f\\). Examples will throw light on the two vectors \\(f\\) and \\(c\\).\n\n**Example 1** \\quad The transform of \\(f = (1, 0, \\ldots, 0)\\) is \\(c = \\frac{1}{N}(1, 1, \\ldots, 1)\\).\n\nThat vector \\(f\\) with one spike is a discrete delta function. It is concentrated at one point. Its transform \\(c\\) spreads out over all frequencies. Multiplying \\(\\Omega f\\) picks out the zeroth column of \\(\\Omega\\). Therefore \\(c\\) shows the same Fourier coefficients \\(1/N\\) from all frequencies. Here \\(N = 4\\):\n\n\\[\nc = \\frac{1}{4}\\Omega f = \\frac{1}{4} \\begin{bmatrix} 1 & \\cdot & \\cdot & \\cdot \\\\ 1 & \\cdot & \\cdot & \\cdot \\\\ 1 & \\cdot & \\cdot & \\cdot \\\\ 1 & \\cdot & \\cdot & \\cdot \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix} = \\frac{1}{4} \\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} \\qquad f = Fc = \\frac{1}{4} \\left( \\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ i \\\\ i^2 \\\\ i^3 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ i^2 \\\\ i^4 \\\\ i^6 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ i^3 \\\\ i^6 \\\\ i^9 \\end{bmatrix} \\right) = \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}.\n\\]\n\nThis transform \\(c\\) of a delta vector \\(f\\) is like the continuous transform of a delta function. The delta function concentrates everything at \\(x = 0\\). Its Fourier transform spreads out flat:\n\n\\[\n\\delta(x) = \\sum_{-\\infty}^{\\infty} c_k e^{ikx} \\quad \\text{has} \\quad c_k = \\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} \\delta(x) e^{-ikx} dx = \\frac{1}{2\\pi} \\quad \\text{for every frequency } k. \\tag{8}\n\\]\n\nYou see how \\(2\\pi\\) in the continuous transform matches \\(N\\) in the discrete transform.\n\n**Example 2** \\quad \\(f = (1, 1, \\ldots, 1)\\) will transform back to the delta vector \\(c = (N, 0, \\ldots, 0)\\).\n\n**Example 3** \\quad A shift in the delta vector to \\(f = (0, 1, 0, \\ldots, 0)\\) produces a modulation in its transform. This shifted \\(f\\) picks out the next column \\((1, \\omega, \\ldots, \\omega^{N-1})\\) of \\(F\\):\n\n\\[\nc = \\frac{1}{N} \\Omega_N f = \\frac{1}{N} \\begin{bmatrix} 1 \\\\ \\omega \\\\ \\cdot \\\\ \\omega^{N-1} \\end{bmatrix} \\quad \\text{and} \\quad f = Fc = \\frac{1}{N} \\begin{bmatrix} 1 & 1 & \\cdot & 1 \\\\ 1 & w & \\cdot & w^{N-1} \\\\ \\cdot & \\cdot & \\cdot & \\cdot \\\\ 1 & w^{N-1} & \\cdot & w^{(N-1)^2} \\end{bmatrix} \\begin{bmatrix} 1 \\\\ \\omega \\\\ \\cdot \\\\ \\omega^{N-1} \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ \\cdot \\\\ 0 \\end{bmatrix}. \\tag{9}\n\\]\n\nFourier series would have a shift from \\(f(x)\\) to \\(f(x - s)\\). Each coefficient \\(c_k\\) is multiplied by \\(e^{-iks}\\). This is exactly like the multiplications of \\((1, 1, \\ldots, 1)\\) in Example 1 to produce \\((1, \\omega, \\ldots, \\omega^{N-1})\\) in Example 3.\n\n\\textbf{Shift rule} \\quad \\text{A shift in } x\\text{-space is multiplication of the coefficients in } k\\text{-space.}\n\n【当前译文】\n@@PAGE:209@@\n<!-- page 209 -->\n> <span style=color:#7f8c8d;>本页为书页 207，属 Part IV Special Matrices（特殊矩阵）之 §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）；页眉与页码为重复元素，不译。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### The DFT Matrix $\\Omega$ is a Permutation of the Fourier Matrix $F$（DFT 矩阵 $\\Omega$ 是傅里叶矩阵 $F$ 的一个置换）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.207</span>\n矩阵 $F$ 与 $\\Omega$ 拥有相同的各列，因此 $F$ 与 $\\Omega$ 由一个置换矩阵（permutation matrix）相连。那个置换 $P$ 不动第零列：即两个矩阵中全为 $1$ 的那一列；随后 $P$ 把 $F$ 的下一列 $(1, w, w^2, \\ldots, w^{N-1})$ 与它的最后一列 $(1, w^{N-1}, w^{2(N-1)}, \\ldots, w^{(N-1)^2})$ 互相交换。在它的第零行与第零列的那个 $1$ 之后，$P$ 就包含反序单位矩阵（reverse identity matrix）$J$——即反对角线上全为 $1$ 者：\n```math\nP = \\begin{bmatrix} 1 & 0 \\\\ 0 & J \\end{bmatrix} = \\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 0 \\end{bmatrix}\n\\qquad\nP^2 = I \\quad \\text{and} \\quad \\Omega = FP \\quad \\text{and} \\quad \\Omega P = FP^2 = F\n```\n下面是 $N=4$ 时 $\\Omega = FP$ 的完整矩阵，以及矩阵恒等式 $P^2 = I$、$\\Omega = FP$、$\\OmegaP = FP^2 = F$：\n```math\n\\Omega = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & -i & (-i)^2 & (-i)^3 \\\\ 1 & (-i)^2 & (-i)^4 & (-i)^6 \\\\ 1 & (-i)^3 & (-i)^6 & (-i)^9 \\end{bmatrix}\n= \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & i & i^2 & i^3 \\\\ 1 & i^2 & i^4 & i^6 \\\\ 1 & i^3 & i^6 & i^9 \\end{bmatrix}\\begin{bmatrix} 1 & & & \\\\ & & 1 & \\\\ & 1 & & \\\\ & & & 1 \\end{bmatrix}\n\\quad \\text{because} \\quad 1 = 1, \\quad -i = i^3, \\quad (-i)^2 = i^2, \\quad (-i)^3 = i\n```\n```math\n```\n这些矩阵恒等式引出一个引人注目的事实：$F^4 = \\Omega^4 = N^2 I$。四次幂把原向量带回来（乘以 $N^2$）。只需把 $F\\Omega = NI$ 与 $FP = \\Omega$ 结合，并用 $P^2 = I$：\n```math\nF^2 P = F\\Omega = NI \\quad \\text{so} \\quad P F^2 = NI \\quad \\text{and} \\quad F^4 = F^2 P P F^2 = N^2 I\n```\n由 $F^4 = N^2 I$ 推知，傅里叶矩阵 $F$ 与 DFT 矩阵 $\\Omega$ 只有四种可能的特征值（eigenvalues）！它们就是满足 $\\lambda^4 = N^2$ 的那些数：$\\sqrt{N}$、$-\\sqrt{N}$、$i\\sqrt{N}$ 以及 $-i\\sqrt{N}$。对于大于 $4$ 的规模，必定会有而且确实会有重复的特征值 $\\lambda$。$F$ 的特征向量（eigenvectors）就不那么容易找出了。\n<span style=color:#2471a3;>**[section]**</span>\n### The Discrete Fourier Transform（离散傅里叶变换）\n设 $f$ 为任意 $N$ 维向量 $f = (f_0, f_1, \\ldots, f_{N-1})$。离散傅里叶级数（Discrete Fourier Series）把 $f$ 表示为傅里叶基向量的一种组合 $c_0 b_0 + c_1 b_1 + \\cdots + c_{N-1} b_{N-1}$。那些基向量正是傅里叶矩阵 $F_N$ 的各列 $b_k$（其中含 $w$ 的各次幂）：\n```math\n\\begin{bmatrix} f_0 \\\\ f_1 \\\\ \\vdots \\\\ f_{N-1} \\end{bmatrix} = \\begin{bmatrix} b_0 & b_1 & \\cdots & b_{N-1} \\end{bmatrix} \\begin{bmatrix} c_0 \\\\ c_1 \\\\ \\vdots \\\\ c_{N-1} \\end{bmatrix}\n\\qquad \\begin{array}{l} f = F_N c \\\\ c = F_N^{-1} f \\\\ c = \\frac{1}{N} \\Omega_N f \\end{array} \\tag{7}\n```\n命令 `c = fft(f)` 乘以 DFT 矩阵 $\\Omega$（再除以 $N$）。这一步是分析步骤（analysis step），把信号分解为相互正交的分量。DFT 求出一个有限傅里叶级数 $f = c_0 b_0 + c_1 b_1 + \\cdots + c_{N-1} b_{N-1}$ 的各个系数。\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`Foun er`／`Four 皿 s 皿 s` 等为 Fourier（傅里叶）之误；`O`／`0` 多为 DFT 矩阵 $\\Omega$；`仞`、`国`、`歹`、`忉`、`五` 为 $w$（$w = e^{2\\pi i/N}$）或 $N$ 之误；`co nnected`／`mutauion` 分别为 connected／permutation；`overlineI` 类上标按数学语境重建（如 `N21` = $N^2I$）；`ÄB` 之类残码按 §IV.1 的矩阵恒等式 $F\\Omega = NI$、$FP = \\Omega$、$P^2 = I$ 重建；`= 0 司 y` 还原为 `only four`（四种）。有限傅里叶级数一行的系数被 OCR 吞掉（`f = bo + · 。 《 + 一 1 一 1`），依上一段 $c_0b_0 + \\cdots + c_{N-1}b_{N-1}$ 补回为 $f = c_0b_0 + c_1b_1 + \\cdots + c_{N-1}b_{N-1}$。（原书此处 OCR 残缺）式（7）后半 `—\\OmegaNf` 在 OCR 中只剩 `\\Omega_Nf`，此处依命令 `fft` 的定义补上因子 $\\frac{1}{N}$，写成 $c = \\frac{1}{N}\\Omega_Nf$；原书是否把两个方向都排进式（7），请回原书确认。\n\n@@PAGE:210@@\n<!-- page 210 -->\n> <span style=color:#7f8c8d;>本页为书页 208，承接书页 207 的 §IV.1（傅里叶变换：离散与连续）；页眉与页码为重复元素，不译。</span>\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.208</span>\n合成步骤（synthesis step）就是逆变换 $f = \\text{ifft}(c) = Fc$。它从那些系数 $(c_0, c_1, \\ldots, c_{N-1})$ 出发，执行矩阵-向量乘法 $Fc$，从而恢复出 $f$。于是 $\\text{ifft}(\\text{fft}(f)) = f$。例子会让 $f$ 与 $c$ 这两个向量更清楚。\n<span style=color:#2471a3;>**[example]**</span>\n**例 1** $f = (1, 0, 0, 0)$ 的变换是 $c = (1, 1, 1, 1)/N$。\n那个只有一个尖峰（spike）的向量是一个离散 $\\delta$ 函数（discrete delta function）。它集中在一个点上；它的变换 $c$ 则铺开到 $N$ 个频率上。乘以 $\\Omega$ 就把 $\\Omega$ 的第零列挑了出来；因此 $c$ 从所有频率显示出相同的傅里叶系数 $1/N$。这里取 $N = 4$：\n```math\nc = \\frac{1}{4}\\Omega f = \\frac{1}{4}\\begin{bmatrix} 1 & \\cdot & \\cdot & \\cdot \\\\ 1 & \\cdot & \\cdot & \\cdot \\\\ 1 & \\cdot & \\cdot & \\cdot \\\\ 1 & \\cdot & \\cdot & \\cdot \\end{bmatrix}\\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix} = \\frac{1}{4}\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix}\n\\qquad\nf = Fc = \\frac{1}{4}\\left( \\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ i \\\\ i^2 \\\\ i^3 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ i^2 \\\\ i^4 \\\\ i^6 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ i^3 \\\\ i^6 \\\\ i^9 \\end{bmatrix} \\right) = \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}\n```\n一个 $\\delta$ 向量（delta vector）$f$ 的这种变换 $c$，就像“$\\delta$ 函数（delta function）”的连续变换。$\\delta$ 函数把一切都集中在 $x = 0$；它的傅里叶变换平坦地铺开：\n```math\n\\delta(x) = \\sum_{k=-\\infty}^{\\infty} c_k e^{ikx} \\quad \\text{has} \\quad c_k = \\frac{1}{2\\pi}\\int_{-\\pi}^{\\pi} \\delta(x)\\, e^{-ikx}\\, dx = \\frac{1}{2\\pi} \\qquad \\text{for every frequency } k . \\tag{8}\n```\n可见连续变换中的 $2\\pi$ 对应于离散变换中的 $N$。\n<span style=color:#2471a3;>**[example]**</span>\n**例 2** $f = (1, 1, \\ldots, 1)$ 将变换回 delta vector（$\\delta$ 向量）$c = (N, 0, \\ldots, 0)$。\n<span style=color:#2471a3;>**[example]**</span>\n**例 3** 把 delta vector 移位到 $f = (0, 1, 0, \\ldots, 0)$，会在它的变换中产生一次“调制（modulation）”。\n这个移位后的 $f$ 挑出 $F$ 的下一列 $(1, w, \\ldots, w^{N-1})$：\n```math\nc = \\frac{1}{N}\\Omega_N f = \\frac{1}{N}\\begin{bmatrix} 1 \\\\ \\omega \\\\ \\vdots \\\\ \\omega^{N-1} \\end{bmatrix} \\quad \\text{and} \\quad f = Fc = \\frac{1}{N}\\begin{bmatrix} 1 & 1 & \\cdots & 1 \\\\ 1 & w & \\cdots & w^{N-1} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 1 & w^{N-1} & \\cdots & w^{(N-1)^2} \\end{bmatrix}\\begin{bmatrix} 1 \\\\ \\omega \\\\ \\vdots \\\\ \\omega^{N-1} \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ \\vdots \\\\ 0 \\end{bmatrix} \\tag{9}\n```\n傅里叶级数中的位移是把 $f(x)$ 变成 $f(x - s)$，每个系数 $c_k$ 都乘以 $e^{-iks}$。这恰好就像把例 1 中的 $(1, 1, \\ldots, 1)$ 逐项相乘，从而在例 3 中得到 $(1, \\omega, \\ldots, \\omega^{N-1})$。\n**移位法则（Shift rule）：** $c$ 空间中的一次移位，就是 $k$ 空间中各系数的乘法。\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `C — 1`／`c 一 1` 中的 `一` 为负号被吞，还原为 $c_{N-1}$；`1 frequencies` 中数值缺失，按上下文还原为 $N$ 个频率；`Multiplying Of` 还原为 Multiplying $\\Omega$；`dc`／`诀 dc` 为 $e^{-ikx}\\,dx$ 的残码；`1 ）` 等孤立括号为向量元被吞，已按 $N$ 维向量补全；`Thi s`／`Examp1es`／`tran sform` 为 OCR 空格噪声，不另注。（原书此处 OCR 残缺）式（8）在 OCR 中只存 `1`、`2 丌`（两处）、`诀 dc =`、`has Ck` 等碎片，此处依「连续变换中的 $2\\pi$ 对应离散变换中的 $N$」这一平行关系（例 1 给出 $c=(1,1,1,1)/N$）重建为 $c_k=\\frac{1}{2\\pi}\\int\\delta(x)e^{-ikx}dx=\\frac{1}{2\\pi}$；又末尾 Shift rule 一句的 OCR 为 `A shift in c-space is multiplication of the coefficients in k-space`，而例 3 演示的其实是「$c$ 移位 ⇒ $f$ 各分量乘 $w^{j}$（调制）」，两种说法的原文措辞请回原书确认。\n\n现在输出修订后的译文全文（从 `@@PAGE:209@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 5940,
+            "outputTokens": 21930,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 5940,
+              "outputTokens": 21930,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 20428,
+          "contextWindow": 1000000,
+          "pressureTokens": 9780,
+          "sampledSurfaceTokens": 5165
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3605,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 15263,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 19284
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

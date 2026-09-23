@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132521163,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_193（书页 190） @@@@@\r\n−---- 【权威原文】 −---------------\r\n**190** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Low Rank and Compressed Sensing\r\n\r\n**Example 3** &nbsp;&nbsp; **Nonnegative Matrix Factorization \\(A \\approx CR\\) with \\(C_{ij} \\ge 0\\) and \\(R_{ij} \\ge 0\\)**\r\nADMM begins with an *alternating minimization*—our favorite way to factor a matrix.\r\n\r\n\\[\r\n\\boxed{\r\n\\begin{aligned}\r\n&\\text{Find } C \\ge 0 && \\text{Minimize } \\|A − CR\\|_F^2 \\text{ with } R \\ge 0 \\text{ fixed} \\\\\r\n&\\text{Find } R \\ge 0 && \\text{Minimize } \\|A − CR\\|_F^2 \\text{ with } C \\ge 0 \\text{ fixed}\r\n\\end{aligned}\r\n}\r\n\\]\r\n\r\nBoyd et al. point out an equivalent problem with \\(C\\) and \\(R\\) in the constraint \\(X = CR\\):\r\n\r\n\\[\r\n\\textbf{NMF} \\qquad \\text{Minimize } \\|A − X\\|_F^2 + I_+(C) + I_+(R) \\text{ with } X = CR\r\n\\]\r\n\r\nADMM adds a third step that updates the dual variable \\(U\\). And it introduces a new variable \\(X\\) constrained by \\(X = CR \\ge 0\\). The indicator function \\(I_+(C)\\) is zero for \\(C \\ge 0\\) and infinite otherwise. Now ADMM splits into a minimization over \\(X\\) and \\(C\\), alternating with a minimization over \\(R\\):\r\n\r\n\\[\r\n(X_{k+1}, C_{k+1}) = \\operatorname{argmin} \\left[ \\|A − X\\|_F^2 + \\frac{1}{2} \\rho \\|X − C R_k + U_k\\|_F^2 \\right] \\text{ with } X \\ge 0, C \\ge 0\r\n\\]\r\n\\[\r\nR_{k+1} = \\operatorname{argmin} \\|X_{k+1} − C_{k+1} R + U_k\\|_F^2 \\text{ with } R \\ge 0\r\n\\]\r\n\\[\r\nU_{k+1} = U_k + X_{k+1} − C_{k+1} R_{k+1}\r\n\\]\r\n\r\nThe rows of \\(X_{k+1}, C_{k+1}\\) and then the columns of \\(R_{k+1}\\) can all be found separately. The splitting promotes parallel computation.\r\n\r\n**Example 4** &nbsp;&nbsp; **LASSO aims for a sparse solution to \\(Ax = b\\) by including an \\(\\ell^1\\) penalty:**\r\n\r\n\\[\r\n\\textbf{LASSO} \\qquad \\text{Minimize } \\frac{1}{2}\\|Ax − b\\|^2 + \\lambda \\|x\\|_1 \\tag{25}\r\n\\]\r\n\r\nImmediately that problem splits into \\(f(x) + g(z)\\) with the constraint \\(x − z = 0\\). The subproblem for \\(x\\) is least squares so we meet \\(A^{\\mathrm{T}}A\\). Augment with \\(\\frac{1}{2}\\rho \\|Ax − b\\|^2\\).\r\n\r\n**Scaled ADMM** &nbsp;&nbsp;&nbsp;&nbsp; \\(x_{k+1} = (A^{\\mathrm{T}}A + \\rho I)^{-1}(A^{\\mathrm{T}}b + \\rho(z_k − u_k))\\)\r\n**Soft thresholding** &nbsp;&nbsp;&nbsp;&nbsp; \\(z_{k+1} = S_{\\lambda/\\rho}(x_{k+1} + u_k)\\)\r\n**Dual variable** &nbsp;&nbsp;&nbsp;&nbsp; \\(u_{k+1} = u_k + x_{k+1} − z_{k+1}\\)\r\n\r\nBy storing the \\(LU\\) factors of \\(A^{\\mathrm{T}}A + \\rho I\\), the first step reduces to back substitution. Boyd et al remark that replacing \\(\\|x\\|_1 = \\sum |x_i|\\) by \\(\\|Fx\\|_1 = \\sum |x_{i+1} − x_i|\\) converts this example into “total variation denoising”. Their online book offers excellent and convincing examples of ADMM.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:193@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 190；页眉「Low Rank and Compressed Sensing」（低秩与压缩感知）与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例 3（Example 3）非负矩阵分解（Nonnegative Matrix Factorization，NMF）**：$A \\approx CR$，其中 $C_{ij} \\ge 0$，$R_{ij} \\ge 0$。\r\n交替方向乘子法（alternating direction method of multipliers，ADMM）从一次交替最小化起步——这是我们最偏爱的矩阵分解方式。\r\n固定 $R \\ge 0$，对 $\\|A − CR\\|_F^2$ 关于 $C$ 做最小化，求出 $C \\ge 0$。\r\n固定 $C \\ge 0$，对 $\\|A − CR\\|_F^2$ 关于 $R$ 做最小化，求出 $R \\ge 0$。\r\n\r\nBoyd 等人接着指出一个等价的问题：把 $C$ 与 $R$ 挪进约束 $X = CR$ 里：\r\n\r\n```math\r\n\\text{NMF}\\qquad \\text{Minimize}\\ \\|A − X\\|_F^2 + \\iota_+(C) + \\iota_+(R) \\quad \\text{with } X = CR\r\n```\r\n\r\nADMM 再补上第三步，用来更新对偶变量 $U$；同时引入一个新变量 $X$，由约束 $X = CR$ 把它绑定。\r\n其中的指示函数（indicator function）$\\iota_+(C)$ 在 $C \\ge 0$ 时取 $0$，其他情形取 $+\\infty$。\r\n现在 ADMM 分裂为对 $X$、$C$ 的最小化，再与对 $R$ 的最小化交替进行：\r\n\r\n```math\r\n\\begin{aligned}\r\n(X_{k+1},\\,C_{k+1}) &= \\arg\\min_{X,\\,C}\\ \\|A − X\\|_F^2 + \\iota_+(C) + \\tfrac{\\rho}{2}\\bigl\\|X − C R_k + U_k\\bigr\\|_F^2, \\quad X \\ge 0,\\ C \\ge 0 \\\\\r\nR_{k+1} &= \\arg\\min_{R}\\ \\tfrac{\\rho}{2}\\bigl\\|X_{k+1} − C_{k+1} R + U_k\\bigr\\|_F^2, \\quad R \\ge 0 \\\\\r\nU_{k+1} &= U_k + X_{k+1} − C_{k+1} R_{k+1}\r\n\\end{aligned}\r\n```\r\n\r\n$X_{k+1}$ 的各行、$C_{k+1}$ 的各行，随后是 $R_{k+1}$ 的各列，全都可以彼此独立地求出。\r\n这种分裂（splitting）促进了并行计算。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例 4（Example 4）** LASSO 通过加入罚项 $\\lambda\\|x\\|_1$，追求 $Ax = b$ 的稀疏解（sparse solution）：\r\n\r\n```math\r\n\\text{LASSO}\\qquad \\text{Minimize}\\ \\|Ax − b\\|_2^2 + \\lambda\\|x\\|_1 \\tag{25}\r\n```\r\n\r\n这个问题立刻可以分裂成 $f(x) + g(z)$，约束为 $x − z = 0$。\r\n$f$ 的子问题是最小二乘（least squares），于是我们遇到 $A^T A$。\r\n把约束的增广项 $\\tfrac{\\rho}{2}\\|x − z + u\\|_2^2$ 加到目标上，就得到缩放形式的 ADMM（scaled ADMM）：\r\n\r\n```math\r\n\\begin{aligned}\r\nx_{k+1} &= (A^T A + \\rho I)^{-1}\\bigl(A^T b + \\rho(z_k − u_k)\\bigr) \\\\\r\nz_{k+1} &= S_{\\lambda/\\rho}\\bigl(x_{k+1} + u_k\\bigr) \\quad \\text{(soft thresholding，软阈值)} \\\\\r\nu_{k+1} &= u_k + x_{k+1} − z_{k+1} \\quad \\text{(dual variable，对偶变量)}\r\n\\end{aligned}\r\n```\r\n\r\n只要把 $A^T A + \\rho I$ 的 LU 因子（LU factors）存起来，第一步就简化为回代（back substitution）。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这句话把 ADMM 与「计算机系统基础」课（教材 CSAPP，即《深入理解计算机系统》）和「数值线性代数／数值分析」里的两件事缝在一起：**把循环里不变的计算提到循环外**，以及**条件数决定误差放大倍数**。\r\n>\r\n> 先说这段在设计上要解决什么问题。ADMM 的每一次迭代都要解一个形如 $x^{k+1}=\\arg\\min_x\\big(\\frac{\\rho}{2}\\|Ax-z^k+u^k\\|^2+g(x)\\big)$ 的子问题；如果 $g$ 可微或结构简单，这一步最终归结为解线性方程组 $(A^{\\top}A)x=b^k$，其中右端项 $b^k$ 逐轮变化，而矩阵 $A^{\\top}A$ 从不变化。于是**真正的设计问题**变成：怎样让「每轮都要重复的昂贵运算」不重复？答案是：把与循环下标 $k$ 无关的运算外提（loop-invariant code motion）。$A^{\\top}A$ 的构造是 $O(n^3)$，一旦把它预先因式化，例如 Cholesky 分解 $A^{\\top}A=LL^{\\top}$，那么每轮只剩前代与回代两步，各 $O(n^2)$。这正好是 CSAPP 里那件事的数学版：循环不变量外提、强度削减（把乘法换成加法）、以及用缓存局部性换取常数因子。$L$ 一旦算好就常驻内存，每轮只是顺序读写它，访存模式规则、cache 命中率高；若每轮重新因式化，则既浪费 $O(n^3)$ 的 CPU，又不断把同一批矩阵元素从内存搬进搬出。\r\n>\r\n> 从第一性原理看，为什么必须这样做？因为 $A$ 是问题的**数据**，$k$ 是**算法的时间步**；数据不随时间变，时间步却要跑几百上千次。把「只依赖数据、不依赖时间步」的部分提前到循环外，复杂度就从「乘 $k$」变成「加 $k$」：总代价 $O(n^3)+O(kn^2)$ 而不是 $O(kn^3)$。这也是 ADMM「每步子问题都要能被快速精确求解」这一前提的具体落地方式——如果每步都重新因式化，ADMM 就退化成一个每轮都很贵的算法，失去了「简单一步」的意义。\r\n>\r\n> 给一个可手算的验算。取 $A=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$，则 $A^{\\top}A=2I$，直接看出 $L=\\sqrt{2}\\,I$，因式化一次即永久可用。若右端项从 $b^0=(2,0)^{\\top}$ 变到 $b^1=(0,2)^{\\top}$，每轮的解只是把 $b^k$ 除以 $2$：$x^0=(1,0)^{\\top}$、$x^1=(0,1)^{\\top}$，全程没有第二次分解。再对比「不预先分解」的情形：每轮都要从零重算 $A^{\\top}A$ 并求逆，$n=1000$ 时单轮约 $10^{9}$ 次浮点运算，一千轮就是 $10^{12}$，而预先分解后总代价降到约 $10^{9}+1000\\times10^{6}$，量级差了一千倍。\r\n>\r\n> 第二件事是条件数。解线性方程组的扰动界说：相对误差被 $\\kappa(A)=\\|A\\|\\,\\|A^{-1}\\|$ 放大，即 $\\frac{\\|\\delta x\\|}{\\|x\\|}\\lesssim\\kappa(A)\\frac{\\|\\delta b\\|}{\\|b\\|}$。这解释了为什么数值线性代数课反复强调「不要显式求逆」「优先用正交变换（QR）而非正规方程」。跨课程连接上：**6.042J 离散数学**里的等价关系与划分，为「同一个矩阵属于同一类、可以共用一个分解」提供了抽象语言，但 6.042J 研究的是关系的代数性质（自反、对称、传递），数值课关心的是浮点误差这个具体代价；**Strang 线性代数与 18.065** 中的 LU/QR 分解研究的是分解的存在性与唯一性，而 CSAPP 关心的是分解结果怎样放进寄存器与缓存、以怎样的访存顺序被反复使用。区别一句话：数学课保证「分解是对的」，系统课保证「分解被复用得起」。\r\n>\r\n> 把这个思路命名一下，可叫**循环不变量外提＋条件数预算**：先问「哪些量不随迭代变」，再问「它们的条件数允许误差放大多少倍」。\r\n\r\n$x_{k+1}=(A^TA+\\rho I)^{-1}\\bigl(A^Tb+\\rho(z_k-u_k)\\bigr)$ 每轮的系数矩阵都是同一个 $A^TA+\\rho I$，只有右端项在变。若每轮都重新消元，代价是 $O(n^3)$；一旦预先算出 $A^TA+\\rho I=LU$，之后每轮只需解 $Ly=P$ 与 $Ux=y$ 两个三角方程组，代价降到 $O(n^2)$。代入 $n=1000$、迭代 $k=50$ 估一下量级：$n^3=10^9$ 次浮点乘加，$kn^2=5\\times10^7$ 次，相差二十倍；反过来说，若每轮重做分解，就等于多付五十份分解钱。这正是 CSAPP 第 5 章讲的代码移动（code motion）：把不变的计算提到循环外；第 6 章讲的局部性（locality）解释了回代为什么快——三角矩阵每轮顺序扫一遍内存，缓存命中率高。区别在于 CSAPP 管的是指令与缓存，这里管的是分解结果的复用：循环体从「分解 + 回代」缩成「回代」，理论加速比是 $O(n)$ 量级。Strang 讲 MATLAB 反斜杠命令时用的是同一套逻辑：`A\\b` 内部先分解、再回代，只是把分解藏了起来；自己写 ADMM 循环时，分解必须显式提到循环外，否则这份加速白丢。\r\n\r\n再看 $\\rho I$ 的深层好处。$A^TA$ 可能奇异或接近奇异，此时 $\\kappa(A^TA)=\\kappa(A)^2$ 极大，舍入误差会被放大：CSAPP 第 2 章讲过，双精度浮点只有约 $10^{-16}$ 的相对精度，若 $\\kappa\\sim10^{12}$，算出的解可能一位有效数字都不剩。$A^TA+\\rho I$ 把每个特征值 $\\sigma_i^2$ 抬成 $\\sigma_i^2+\\rho$，条件数从 $\\sigma_{\\max}^2/\\sigma_{\\min}^2$ 降到 $\\bigl(\\sigma_{\\max}^2+\\rho\\bigr)/\\bigl(\\sigma_{\\min}^2+\\rho\\bigr)$。取 $\\sigma_{\\max}=1$、$\\sigma_{\\min}=0$（奇异）、$\\rho=0.01$，条件数从无穷降到 $1.01/0.01=101$；取 $\\sigma_1^2=1$、$\\sigma_2^2=0.0001$、$\\rho=0.25$，条件数从 $10^4$ 降到 $1.25/0.2501\\approx5$。零特征值被抬成正数，秩亏矩阵变成满秩正定矩阵，LU 与 Cholesky 都不必再处理零主元或极小主元。要记住 $\\rho$ 是算法内部的参数：它不改动 LASSO 的解（迭代收敛到的不动点仍满足原问题的最优性条件），只改变每步子问题的求解难度。\r\n\r\n顺带校正一处常数：若 (25) 的数据项取 $\\|Ax-b\\|_2^2$（不带 $\\frac12$）、增广项取 $\\frac{\\rho}{2}\\|x-z+u\\|_2^2$，回代矩阵本应是 $2A^TA+\\rho I$；书中写成 $A^TA+\\rho I$，相当于把因子 2 折进了 $\\rho$ 的标定（等价于把数据项读作 $\\frac12\\|Ax-b\\|_2^2$）。这不影响上面的结论：$\\rho I$ 的作用仍然只是把谱抬离零。\r\n\r\n同一门课（MIT 18.065《Matrix Methods in Data Analysis, Signal Processing, and Machine Learning》）里还有一条对偶路线：截断 SVD，把小奇异值直接当零丢掉。两者的连接路径相同——都在对付近零奇异值；区别在时机与代价：$\\rho I$ 在求解之前把整个谱推离零，所有方向都被改动，换来稳定；截断 SVD 在求解之后按阈值丢分量，省事，但丢错的风险与阈值的选择都得自己承担。\r\n\r\n代价也要讲明：$\\rho$ 变大，条件数更好，但增广项的权重更大，迭代先被拉去满足约束，收敛到高精度所需的轮数反而变多。Boyd 等人的综述正强调这一点——ADMM 常常在几十轮内达到中等精度，要达到高精度却很慢。\r\n\r\nBoyd 等人还指出：把罚项 $\\|x\\|_1 = \\sum |x_i|$ 换成 $\\|Dx\\|_1 = \\sum |x_{i+1} − x_i|$（$D$ 是相邻分量作差的差分矩阵），这个例子就变成全变差去噪（total variation denoising）。\r\n他们那本在线书籍给出了出色而有说服力的 ADMM 实例。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.4, p.190</span>\r\n\r\n@@@@@ page_194（书页 191） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.4. Split Algorithms for $\\ell^2 + \\ell^1$ \\hfill 191\r\n\r\n\\begin{center}\r\n\\textbf{\\Large Matrix Splitting and Proximal Algorithms}\r\n\\end{center}\r\n\r\nA first connection of $Ax = b$ to ADMM comes from splitting that matrix into $A = B + C$. In classical examples $B$ could be the diagonal part of $A$ or the lower triangular part of $A$ (Jacobi or Gauss-Seidel splitting). Those were improved by Douglas-Rachford and Peaceman-Rachford, who regularized by adding $\\alpha I$ and alternated between $B$ and $C$ :\r\n\\begin{equation}\r\n\\begin{aligned}\r\n(B + \\alpha I)\\boldsymbol{x}_{k+1} &= b + (\\alpha I − C)\\boldsymbol{z}_k \\\\\r\n(C + \\alpha I)\\boldsymbol{z}_{k+1} &= b + (\\alpha I − B)\\boldsymbol{x}_{k+1}\r\n\\end{aligned}\r\n\\tag{26}\r\n\\end{equation}\r\nThis idea appeared in 1955, when problems were linear. It led to deeper nonlinear ideas: proximal operators and monotone operators. A special feature is the appearance of exact formulas for several important proximal operators—particularly the $\\ell^1$ minimization that led to soft thresholding and shrinkage in Example 2. We will define the \\textbf{Prox} operator and connect it to ADMM.\r\n\r\nIn optimization, the analog to those matrix equations (26) has $b = 0$ and $B = \\nabla F_2$. Here $F_2$ is the $\\ell^2$ part and its gradient $\\nabla F_2$ (or its subgradient $\\partial F_2$) is effectively linear. Then $\\partial F_2 + \\alpha I$ corresponds to $B + \\alpha I$ and its inverse is a \\textbf{“proximal operator”}:\r\n\\begin{equation}\r\n\\textbf{Prox}_F(\\boldsymbol{v}) = \\text{argmin} \\left( F(\\boldsymbol{x}) + \\frac{1}{2} \\|\\boldsymbol{x} − \\boldsymbol{v}\\|_2^2 \\right)\r\n\\tag{27}\r\n\\end{equation}\r\nThe key facts to justify this proximal approach (and the splitting into $F_1 + F_2$) are\r\n\\begin{enumerate}\r\n\\item The $\\ell^2$ problem is well understood and fast to solve\r\n\\item The $\\ell^1$ problem often has a \\textbf{closed form solution (by shrinkage)}.\r\n\\end{enumerate}\r\nThe double-step combination—the analog for optimization of the double-step matrix equations (26)—is the \\textbf{“proximal version”} of ADMM with scaling factor $\\alpha$ :\r\n\\begin{equation}\r\n\\begin{aligned}\r\n\\textbf{ADMM} \\qquad \\boldsymbol{x}_{k+1} &= (\\partial F_2 + \\alpha I)^{-1} (\\alpha \\boldsymbol{z}_k − \\alpha \\boldsymbol{u}_k) \\tag{28a} \\\\\r\n\\boldsymbol{z}_{k+1} &= (\\partial F_1 + \\alpha I)^{-1} (\\alpha \\boldsymbol{x}_{k+1} + \\alpha \\boldsymbol{u}_k) \\tag{28b} \\\\\r\n\\boldsymbol{u}_{k+1} &= \\boldsymbol{u}_k + \\boldsymbol{x}_{k+1} − \\boldsymbol{z}_{k+1} \\tag{28c}\r\n\\end{aligned}\r\n\\end{equation}\r\nOverall, proximal algorithms apply to convex optimization. For the right problems they are fast. This includes distributed problems—minimizing a sum of terms in parallel (as for ADMM). Parikh and Boyd remark that \\textbf{Prox} compromises between minimizing a function and not moving too far. They compare it to gradient descent $\\boldsymbol{x} − \\alpha \\nabla F(\\boldsymbol{x})$ in which $\\alpha$ plays the role of the stepsize. The fixed points of \\textbf{Prox} are the minimizers of $F$.\r\n\r\nHere are two excellent references and a website with source code for examples:\r\n\\begin{itemize}\r\n\\item P. Combettes and J.-C. Pesquet, \\textit{Proximal splitting methods in signal processing, in Fixed-Point Algorithms for Inverse Problems}, Springer (2011). arXiv: 0912.3522\r\n\\item N. Parikh and S. Boyd, \\textit{Proximal algorithms}, Foundations and Trends in Optimization 1 (2013) 123-321.\r\n\\end{itemize}\r\n\\textbf{Book and codes:} http://stanford.edu/~boyd/papers/pdf/prox\\_algs.pdf\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:194@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 191；页眉「III.4 Split Algorithms for $A^+$」（$A^+$ 的分裂算法）与页码为重复元素，不译。本页正文出现标题「Matrix Splitting and Proximal Algorithms」（矩阵分裂与近端算法）。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 矩阵分裂与近端算法（Matrix Splitting and Proximal Algorithms）\r\n\r\n把 $Ax = b$ 与 ADMM 联系起来的第一条线索，来自把矩阵 $A$ 分裂为 $A = B + C$。\r\n在经典例子中，$B$ 可以取 $A$ 的对角部分（diagonal part），也可以取 $A$ 的下三角部分（lower triangular part）——这就是 Jacobi 分裂与 Gauss-Seidel 分裂。\r\nDouglas-Rachford 与 Peaceman-Rachford 改进了它们：用加入 $aI$ 的办法做正则化（regularization），并在 $B$ 与 $C$ 之间交替：\r\n\r\n```math\r\n\\begin{aligned}\r\n(B + aI)\\,x_{k+1} &= b + (aI − C)\\,z_k \\\\\r\n(C + aI)\\,z_{k+1} &= b + (aI − B)\\,x_{k+1}\r\n\\end{aligned}\r\n\\tag{26}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与来路）：**</span> (26) 的原文字符已被 OCR 破坏，此处按 Douglas-Rachford／Peaceman-Rachford 的交替方向隐式（ADI）格式重建：第一步用上一次的 $z_k$，第二步用刚算出的 $x_{k+1}$，两步各解一个加了 $aI$ 的方程组；这一形式与下文 (28a)(28b) 的 $x$、$z$ 交替逐一对应。重建的依据也说明一下：第一式把 $Cz_k$ 留在右边、第二式把 $Bx_{k+1}$ 移到右边，正是「用最新算出的值」的交替精神；令 $a=0$ 并取共同解 $x=z$，两式都化为 $Ax=b$，说明格式没有偷换原问题。\r\n\r\n先把 (26) 放回「数值分析」（计算方法）课的语境。把 $A$ 拆成 $A=B+C$、迭代 $Bx_{k+1}=b-Cz_k$：取 $B$ 为对角部分就是 Jacobi 迭代，取 $B$ 为下三角部分就是 Gauss-Seidel 迭代——你在解线性方程组那一章算过它们的迭代矩阵与收敛条件（系数矩阵对角占优，或迭代矩阵的谱半径小于 $1$）。连接路径是：这两个经典迭代都要求 $B$ 可逆、收敛还要碰运气；而 (26) 给两边各加 $aI$，让 $B+aI$ 与 $C+aI$ 变得一定可逆（$B,C$ 半正定时只要 $a>0$ 就正定；一般情形取足够大的 $a>0$ 也能避开奇异），既不怕零主元，又能让两步交错推进。\r\n\r\n区别有两层。第一层在解法：Jacobi／Gauss-Seidel 是单向迭代，一次只更新一个未知块；(26) 在 $B$ 与 $C$ 之间来回交替，是「双步」格式，也正是 ADMM 的雏形。第二层在对象：1950 年代中期，Peaceman-Rachford（1955）与 Douglas-Rachford（1956）提出这个格式，是为了解热传导这类抛物型偏微分方程的隐式差分方程，那里的 $B,C$ 来自对二维网格两个方向的分裂，一次求解把二维问题拆成两步一维问题；而本页的优化版本面对的是不可微的凸目标，$B$ 换成了次微分 $\\partial F_2$，$aI$ 的作用也从「保证可逆」变成「把逆算子写成近端算子」。\r\n\r\n交替本身并不保证收敛，$aI$ 才是换来稳定性的那一项。标量情形最能看清：$A=b+c$ 时两步复合的迭代矩阵是 $T=\\frac{(a-b)(a-c)}{(a+b)(a+c)}$，只要 $a>0$ 且 $b,c>0$ 就有 $|T|<1$；若取 $a=0$，则 $T=1$，迭代原地打转。这就是 (26) 中必须出现 $aI$ 的原因，也是下文把 $a$ 叫作缩放因子（scaling factor）的由来。\r\n\r\n读 (28) 时留意符号：$b_k$ 是对偶变量，与 $Ax=b$ 的右端项 $b$ 不是一回事——优化对应物里 (26) 的右端项已经取 $b=0$，这个字母被借去当对偶变量了。\r\n\r\n这个思想出现在 1955 年，当时处理的问题还是线性的。\r\n它引出了更深刻的非线性思想：近端算子（proximal operators）与单调算子（monotone operators，多值映射 $T$ 满足 $\\langle u − v,\\, x − y\\rangle \\ge 0$，凸函数的次微分 $\\partial F$ 就是典型例子）。\r\n一个特别之处，是若干重要的近端算子都有精确公式（exact formulas）——尤其是例 2 中那个引出软阈值（soft thresholding）与收缩（shrinkage）的最小化问题。\r\n我们将定义 Prox 算子（近端算子），并把它与 ADMM 联系起来。\r\n\r\n在优化（optimization）中，与那些矩阵方程 (26) 对应的是 $b = 0$ 且 $B = \\nabla F_2$。\r\n这里的 $F_2$ 是 $\\ell_2$ 部分，它的梯度 $\\nabla F_2$（在不可微点换成「次梯度」$\\partial F_2$）实际上是线性的。\r\n于是 $\\partial F_2 + aI$ 对应于 $B + aI$，而它的逆就是我们所说的「近端算子」：\r\n\r\n```math\r\n\\text{Prox}_{F}(y) = \\arg\\min_{x}\\ \\Bigl( F(x) + \\tfrac{1}{2}\\|x − y\\|^2 \\Bigr) \\tag{27}\r\n```\r\n\r\n为这种近端方法（proximal approach，以及把 $F$ 分裂成 $F_1 + F_2$ 的做法）提供依据的关键事实有两条：\r\n**1.** $\\ell_2$ 问题已被透彻理解，求解很快。\r\n**2.** $\\ell_1$ 问题常常有闭式解（closed form solution），靠收缩得到。\r\n\r\n这种双步组合（double-step combination）——矩阵双步方程 (26) 在优化中的对应物——就是带缩放因子（scaling factor）$a$ 的 ADMM 的「近端版本」：\r\n\r\n```math\r\n\\begin{aligned}\r\nx_{k+1} &= (DF_2 + aI)^{-1}(a z_k − b_k) \\tag{28a} \\\\\r\nz_{k+1} &= (DF_1 + aI)^{-1}(a x_{k+1} + b_k) \\tag{28b} \\\\\r\nb_{k+1} &= b_k + a x_{k+1} − a z_{k+1} \\tag{28c}\r\n\\end{aligned}\r\n```\r\n\r\n总体而言，近端算法（proximal algorithms）适用于凸优化（convex optimization）。\r\n对合适的问题，它们收敛得很快。\r\n这也包括分布式问题（distributed problems）——并行地最小化若干项之和，这正是 ADMM。\r\nParikh 与 Boyd 指出，Prox 在「最小化一个函数」与「不要走得太远」之间做出折中。\r\n他们把它比作梯度下降（gradient descent）里的 $-a\\nabla F(x)$，其中 $a$ 扮演步长（step size）的角色。\r\n而 Prox 的不动点（fixed points）正是 $F$ 的最小值点。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 式 (27) 只写了一行，却一次解决了梯度下降最麻烦的两件事：目标不可微，以及步长不好选。先问最基础的问题——为什么不能直接用 $y − a\\nabla F(y)$？因为 $\\ell_1$ 这类函数在尖点（左右导数不相等处）没有梯度，硬取一个次梯度（subgradient，不可微点处代替梯度的一整集合）会得到不唯一的方向；而且即使可微，梯度步也常要把 $a$ 调得很小才不发散。近端算子换了个思路：下降交给 $F$ 自己，用 $\\arg\\min$ 精确求解；二次项 $\\frac{1}{2}\\|x-y\\|^{2}$ 只负责「不要走太远」。\r\n>\r\n> 把这两件事拆开看，机制就清楚了。第一，不可微为什么会让梯度法失效？在 $F(x)=|x|$ 的原点处，左右导数分别是 $-1$ 与 $+1$，次微分是区间 $[-1,1]$。次梯度法必须从这个区间里自己挑一个方向，挑法不唯一，于是迭代路径依赖实现细节，收敛速度也从光滑情形的 $O(1/k)$ 退化到 $O(1/\\sqrt{k})$，而且没有通用的步长规则保证单调下降。近端算子绕开了「挑方向」：它不解一阶条件，而是直接解一个**强凸**的子问题，子问题的最优解由最优性条件 $0\\in\\partial F(x)+a^{-1}(x-y)$ 唯一确定。第二，步长为什么难选？梯度步只在 $\\nabla F$ 满足 Lipschitz 连续、且 $a<2/L$ 时才保证收敛，$L$ 常常估不准。近端步里的二次项 $\\frac{1}{2}\\|x-y\\|^{2}$ 的梯度是 $x-y$，Lipschitz 常数恒为 $1$，与 $F$ 无关；因此这个子问题永远是 $1$-强凸加光滑的，不需要对 $F$ 做任何光滑性假设。第三，二次项还有个容易被忽略的作用：它是旋转不变的各向同性惩罚，只度量「离 $y$ 多远」，不偏向任何坐标方向，因此不引入额外偏置。\r\n>\r\n> 手算一个验算。取 $F(x)=|x|$，$y=0.3$，$a=0.5$。子问题是 $\\min_x\\ |x|+\\frac{1}{2\\times0.5}(x-0.3)^2$，即 $\\min_x\\ |x|+(x-0.3)^2$。在 $x>0$ 上导数为 $1+2(x-0.3)=2x-0.4$，零点在 $x=0.2$，但 $0.2>0$ 成立，故先得候选 $x=0.2$；代入得 $0.2+0.01=0.21$。再验 $x=0$：值为 $0+0.09=0.09$，更小；验 $x=0.3$：值为 $0.3+0=0.3$。故最优解是 $x^{\\star}=0$，即被阈值「压」到了零。把 $y$ 换成 $2$：在 $x>0$ 上导数为 $2x-1.6$，零点 $x=0.8>0$，值为 $0.8+1.44=2.24$，而 $x=0$ 处为 $4$，故 $x^{\\star}=0.8=2-0.5$。两次手算合起来正是软阈值公式 $x^{\\star}=\\mathrm{soft}(y,a)=\\mathrm{sign}(y)\\max(|y|-a,0)$，也验证了阈值刚好等于步长 $a$：$-a\\le y\\le a$ 时输出恒为零。\r\n>\r\n> 跨课程连接上：**在学的凸优化（Boyd）**里，近端算子与 Moreau 包络是同一枚硬币的两面，Boyd 用它推出「近端梯度法＝对光滑部分做梯度步、对非光滑部分做近端步」；而**在学的概率论（Bertsekas）**中的条件期望 $\\mathbb{E}[X\\mid\\mathcal{G}]$ 也共享同一套「投影到更简单的集合、使偏差最小」的结构。区别在于：凸优化关心的是算子是否非扩张、是否有不动点（收敛性证明），概率论关心的是可测性与最优预测误差（估计精度）。还可以接一条**6.042J 离散数学**的路：软阈值把区间 $[-a,a]$ 里的所有实数映射到同一个值 $0$，这本质上是一次划分，把「足够小就视为噪声」编码进映射里；但 6.042J 研究的是划分本身的等价类结构，优化课研究的是这个划分带来的统计偏差与稀疏性收益。\r\n>\r\n> 最后给个命名模板，叫**近端吸收法**：凡是遇到「不可微＋步长敏感」，就把线性部分做一步梯度、把非光滑项吸收进一个强凸子问题里精确求解，再用软阈值公式把解写成可复算的收缩形式。\r\n\r\n写出最优性条件：$0\\in\\partial F(x^{+})+(x^{+}-y)$，移项得 $x^{+}=y-\\partial F(x^{+})$。把它与 $x^{+}=y-a\\nabla F(y)$ 并排看，差别只有两处：步长固定为 $1$，且导数在**新点** $x^{+}$ 处取值。后者正是「数值分析」课里解常微分方程的后向欧拉（隐式）格式 $y_{n+1}=y_n+hf(y_{n+1})$：显式格式要限制步长才稳定，隐式格式无条件稳定——所以 Prox 可以记成 $(I+\\partial F)^{-1}$，对步长不挑。\r\n\r\n一维验算最能看清差别。取 $F(x)=\\frac{1}{2}x^{2}$，则 $\\operatorname{Prox}_F(y)=\\arg\\min \\frac{1}{2}x^{2}+\\frac{1}{2}(x-y)^{2}$，求导得 $x+(x-y)=0$，即 $x^{+}=y/2=(1+1)^{-1}y$，与公式一致；而梯度下降取 $a=1$ 时 $x^{+}=y-y=0$，一步砸到原点（步长过大，一步越过极小点），要稳定必须 $a<2$，且 $a$ 越小越慢。同一个 $a=1$，Prox 给出的是「减半」这个恰到好处的收缩。\r\n\r\n不动点也值得算一遍：$x^{*}=\\operatorname{Prox}_F(x^{*})$ 当且仅当 $0\\in\\partial F(x^{*})+(x^{*}-x^{*})$，即 $0\\in\\partial F(x^{*})$——这恰好是 $F$ 的最优性条件。于是「求 $F$ 的最小值点」与「求 Prox 的不动点」是同一件事，近端算法因此自带不动点算法的收敛理论，而不必依赖「下降量越来越小」的直觉。\r\n\r\n补一句「$\\ell_1$ 问题常有闭式解」是什么意思：$\\ell_1$ 范数的 Prox 就是软阈值，$\\operatorname{Prox}_{\\lambda\\|\\cdot\\|_1}(y)$ 的第 $i$ 个分量是 $\\operatorname{sign}(y_i)\\max(|y_i|-\\lambda,\\,0)$，一行就能算完；而 $\\ell_2$ 的 Prox 归结为一个线性方程组。正文那两条关键事实就这样各自落地。\r\n\r\n最后看 (28a) 为什么长成 $(DF_2+aI)^{-1}$：$F_2$ 是 $\\ell_2$ 部分，它的次微分就是线性映射 $DF_2$（正文给「次梯度」加引号正是提醒这一点），于是 $\\partial F_2+aI$ 就是矩阵 $DF_2+aI$，求逆相当于做一次 Prox，每轮只解一个线性方程组。可复用的模板：**隐式步—不动点模板**——把更新写成 $x^{+}=(I+\\partial F)^{-1}(y)$，先证「不动点等价于最优性条件」，再借不动点迭代的收敛条件谈收敛。\r\n\r\n以下是两份出色的参考文献，以及一个附带示例源码的网站：\r\n其一，P. Combettes 与 J.-C. Pesquet 的《Proximal Splitting Methods in Signal Processing》（信号处理中的近端分裂方法），收入《Fixed-Point Algorithms for Inverse Problems》（逆问题的不动点算法），Springer (2011)，arXiv: 0912.3522。\r\n其二，N. Parikh 与 S. Boyd 的《Proximal Algorithms》（近端算法），载于 Foundations and Trends in Optimization 1 (2013) 123–321。\r\n书籍与代码（Book and codes）：http://stanford.edu/~boyd/papers/pdf/prox_algs.pdf\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.4, p.191</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 10123,
+            "outputTokens": 8136,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 10123,
+              "outputTokens": 8136,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11140,
+          "contextWindow": 1000000,
+          "pressureTokens": 13579,
+          "sampledSurfaceTokens": 6700
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5140,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4440,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9996
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

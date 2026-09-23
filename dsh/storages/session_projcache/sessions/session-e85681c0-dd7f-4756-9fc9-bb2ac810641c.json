@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790131173127,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**扩写专家**"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**扩写专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注各自扩写到 **800-1200 个汉字**（`$...$` 公式、```math 围栏、引文不计入）。\r\n\r\n【扩写方法】\r\n− 补**机制解释**：先回答这一段/这个定理在解决什么设计问题，再从第一性原理展开为什么必须这样做\r\n− 补**一个具体例子或验算**：代入具体数值、小矩阵（如 $2\\times2$）、或两步手算，让结论可复算\r\n− 补**一条跨课程连接**：精确到「课程名 + 概念 + 连接路径 + 区别」。可用锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− 必要时给一个**命名模板**（如谱夹逼法能量检验法零空间吸收法）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 原有 `$...$`、```math 围栏、反斜杠命令**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda、把 `$A$` 写成 A\r\n2. 🚫 不得删除原有数学内容、公式、例子、跨课程连接——只做加法\r\n3. 禁止 Unicode 上下标；禁止 `$$`\r\n4. 保留 `> ` blockquote 前缀（整条注是一个引用块，续行也带 `> `）\r\n5. `@@PAGE@@` 与 `@@NOTEIDX@@` 两行必须逐字原样照抄\r\n\r\n【输出格式（🚨 结构化，逐字照此）】\r\n@@PAGE:NNN@@\r\n@@NOTEIDX@@k\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（类型）：**</span> 注的正文……（续行以 `> ` 开头）\r\n@@END@@\r\n\r\n只输出这些块，不要前言、说明、汇总、思考过程。\r\n\r\n=========================== 待扩写的注 ===========================\r\n@@PAGE:179@@\r\n@@NOTEIDX@@2\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（二阶差分矩阵的交错）：**</span> 第 5 题看到的三只矩阵是本书反复出场的「二阶差分矩阵」，也叫一维离散拉普拉斯矩阵：对角元全为 $2$，次对角元全为 $-1$，整体对称且对角占优。它的物理身份是「弹簧—质点链」的刚度矩阵，数学身份是二阶导数 $u''$ 的离散版本——把 $-u''$ 在等距网格上用 $(-u_{i-1}+2u_i-u_{i+1})/h^2$ 近似，取 $h=1$ 就得到它。为看清交错，写下 $3\\times3$ 版的特征方程：$(2-\\lambda)\\big[(2-\\lambda)^2-1\\big]-(-1)\\big[-1\\cdot(2-\\lambda)\\big]$ 展开后是 $(2-\\lambda)\\big[(2-\\lambda)^2-2\\big]=0$，于是三个特征值是 $2-\\sqrt2\\approx0.586$、$2$、$2+\\sqrt2\\approx3.414$；$2\\times2$ 版同样算得 $2-1=1$ 与 $2+1=3$；$1\\times1$ 版就是 $2$。把两组数按降序排好，$3.414 \\ge 3 \\ge 2 \\ge 2 \\ge 0.586 \\ge 1$ 并不成立——这说明交错比较的是「大矩阵从第 $k+1$ 个起」与「小矩阵从第 $k$ 个起」：$3.414\\ge3\\ge2$ 且 $3\\ge2\\ge0.586$，也就是 $3\\times3$ 的特征值把小矩阵的每个特征值都夹住。原因在于 $2\\times2$ 矩阵正是 $3\\times3$ 矩阵去掉首行首列的主子矩阵（$1\\times1$ 又是 $2\\times2$ 的主子矩阵），而「主子矩阵的特征值与原矩阵特征值交错」正是 Cauchy 交错定理的内容，题 4 与题 8 的极大极小刻画就是它的一般形式。跨课程连接：数值分析课在讲差分格式与收敛阶时会指出，这只矩阵的条件数随阶数 $n$ 按 $O(n^2)$ 增长，这正是显式热传导格式的稳定性条件 $\\Delta t\\le h^2/2$ 的矩阵来源；机器学习课上的图拉普拉斯平滑（图卷积、谱聚类）把「对角线度数、非对角 $-1$」推广到一般图，交错定理随之升级为图粗化前后的谱夹逼，是多重网格方法能收敛的理由。\r\n@@END@@\r\n\r\n@@PAGE:179@@\r\n@@NOTEIDX@@3\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（特征值导数与 Weyl 界）：**</span> 第 6 题是一个「算得出答案」的模型题，值得把三条小问串成一条链。① 求导：$D+tS$ 的第 $k$ 个特征值在 $t=0$ 处的导数，由题 3(b) 的公式 $d\\lambda/dt=q^{T}(dA/dt)q$ 直接得到，$t=0$ 时特征向量就是坐标向量 $e_k$，而 $dA/dt=S$，于是 $\\lambda_k'(0)=e_k^{T}Se_k=s_{kk}$，也就是**取 $S$ 的对角元**——注意不是特征值 $s_k$，也不是 $s_k^2$，这里 $s_{kk}$ 只是 $S$ 第 $k$ 行第 $k$ 列的元素，全文的下标与上标含义必须分清。② 交错：$t>0$ 很小时，$\\lambda_k(t)=k+t\\,s_{kk}+O(t^2)$ 与常数 $k$ 只差一个小量，并且 $D+tS$ 与 $D$ 共享「$S$ 正定故 $D+tS$ 正定」这一性质，把两组数都按升序排好便得到一个夹一个：$\\lambda_1(t)\\le1\\le\\lambda_2(t)\\le2\\le\\cdots$。③ 界：对任意 $t>0$，特征值的变分刻画给出 $1+t\\,\\lambda_{\\min}(S)\\le\\lambda_{\\min}(D+tS)$ 与 $\\lambda_{\\max}(D+tS)\\le n+t\\,\\lambda_{\\max}(S)$，反向的界 $1\\le\\lambda_{\\min}(D+tS)$、$n\\le\\lambda_{\\max}(D+tS)$ 只需注意 $tS$ 正半定（加一个正半定矩阵，每个特征值都不降）。这一组不等式就是 Weyl 不等式的特例：$\\lambda_{\\min}(A)+\\lambda_{\\min}(B)\\le\\lambda_{\\min}(A+B)$ 与 $\\lambda_{\\max}(A+B)\\le\\lambda_{\\max}(A)+\\lambda_{\\max}(B)$。跨课程连接：优化课讲梯度下降的收敛率时会用到这里的结论——步长 $1/L$ 使得迭代矩阵的谱落在 $[1-\\rho,\\,1+\\rho]$ 内（$\\rho$ 即相对扰动幅度），谱越「挤」收敛越快；数值线性代数课则把它当作特征值条件数的来源，告诉我们对角占优矩阵的特征值不会被小扰动带偏太远。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1766,
+            "outputTokens": 3865,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1766,
+              "outputTokens": 3865,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 4001,
+          "contextWindow": 1000000,
+          "pressureTokens": 5222,
+          "sampledSurfaceTokens": 2350
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 790,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1651,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2857
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

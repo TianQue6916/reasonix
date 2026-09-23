@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129217973,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。\r\n\r\n【任务】把下面 1 条译者注扩写到 **800-1200 个汉字**（公式与 `math` 围栏不计入）。\r\n− **扩写**：补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 🚫 不得删除原有数学内容、公式、例子、连接\r\n\r\n【读者画像（必须对齐，禁止甩未学概念）】\r\n− 大二上学期、智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n− ✅ 已学：离散数学 6.042J（等价关系、偏序、数论、图论、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、Strang 线性代数、算法 6.006/CLRS（分治、图、复杂度）\r\n− 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法、概率论（Bertsekas）、CS144 计算机网络、凸优化（Boyd）\r\n− ⚠️ 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——不得甩这些名词\r\n− 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式、```math 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda\r\n2. 禁止 Unicode 上下标；禁止 `$$`\r\n3. `@@ANCHOR@@` 行必须**逐字原样保留**（它是插入锚点）\r\n\r\n【输出协议（🚨 结构化，必须逐字照此格式，便于程序提取）】\r\n\r\n@@NOTE@@\r\n@@ANCHOR@@原文片段（从下方译文中**逐字复制**的连续片段，12-40 个汉字；必须在该页译文中唯一出现，不要改写、不要加省略号）\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n@@END@@\r\n\r\n− 一条注一个 @@NOTE@@ … @@END@@ 块；块与块之间空一行\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n【待归一化的注】\r\n@@NOTE@@\r\n@@ANCHOR@@（谢尔曼-莫里森-伍德伯里）恒等式的数学语境重建。本页为习题页\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 本页习题围绕同一个设计问题：$A$ 被低秩矩阵 $UV^T$ 改动之后，能不能不重新做一次 $n\\times n$ 求逆，就得到 $(A-UV^T)^{-1}b$？Strang 的答案是「只解方程，不造逆矩阵」，这正是 6.006 里「先算清复杂度再动手」的又一个具体化身。复杂度账本如下：把 $M$ 直接求逆约需 $2n^3/3$ 次浮点运算，而 $U,V$ 每变一次就要重付；Problem 5 的两步法则是对 $A$ 做一次 LU 分解（约 $n^3/3$），再解 $k+1$ 个右端项（每个 $O(n^2)$），最后解一个 $k\\times k$ 的小系统 $C=I-V^TZ$（$k^3$）。取 $n=1000,\\,k=1$：重算求逆约 $6.7\\times10^8$ 次运算，而更新一次只要几次 $n^2$ 量级的代入（约 $4\\times10^6$），差两个数量级。CSAPP 的视角把差距说得更具体：解方程阶段做的是矩阵-向量乘法，访存是顺序流式的，缓存命中率高；LU 分解则要在 $n\\times n$ 数据上反复扫过整块，即使分块优化后仍是访存受限（memory bound），这正是第 6 章缓存层次那套分析的直接应用。低秩更新之所以快，不只是浮点运算少，而是把「必须反复触碰全部 $n^2$ 个元素」换成了「$k+1$ 次触碰」。Problem 1 用几何级数推出 $k=1$ 的公式，这一步你在 6.042J 的生成函数里见过：$(I-X)^{-1}=I+X+X^2+\\cdots$。关键在 $X=uv^T$ 时级数塌缩成标量几何级数，因为 $(uv^T)^2=u(v^Tu)v^T=(v^Tu)\\,uv^T$，于是 $X^m=(v^Tu)^{m-1}uv^T$，求和得 $I+\\dfrac{uv^T}{1-v^Tu}$。这也标出了公式失效的边界：$v^Tu=1$ 时级数不收敛、$I-uv^T$ 奇异；数值上 $1-v^Tu$ 接近 $0$ 会发生灾难性抵消，与 CSAPP 第 2 章「相近浮点数相减丢有效位」以及你在 Strang 里反复见到的条件数是同一件事。命名模板：**低秩更新法（不改分解，只解方程）**——凡是「大矩阵被小改动、又要反复使用」的场合，先固定大矩阵的分解，把小改动全部塞进一个 $k\\times k$ 的小系统。增量 PCA、递归最小二乘、在线学习的协方差更新都是这个模板的实例。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1207,
+            "outputTokens": 3020,
+            "cacheReadTokens": 3584,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1207,
+              "outputTokens": 3020,
+              "cacheReadTokens": 3584,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 3849,
+          "contextWindow": 1000000,
+          "pressureTokens": 4791,
+          "sampledSurfaceTokens": 2134
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 574,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1715,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2705
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

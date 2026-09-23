@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128795930,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 这个公式有两个引人注目的特点。第一个是对 $A^{-1}$ 的修正项同样是秩一的 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 秩一扰动的逆为什么还是秩一扰动？回到第一性原理，只需看 $I-uv^{T}$ 对向量的作用：若 $x\\perp v$（即 $v^{T}x=0$），它原封不动地返回 $x$；只有在 $u$ 这一个方向上才有变化，$(I-uv^{T})u=u-(v^{T}u)u=(1-v^{T}u)u$。也就是说 $\\mathbb{R}^n$ 中有一个 $(n-1)$ 维子空间（$v$ 的正交补）整片是特征值 1 的特征向量，剩下一个方向是 $u$、特征值为 $1-v^{T}u$。一个矩阵只有一处不同于 $I$，它的逆当然也只有一处不同于 $I$，两次只有一处合起来正是公式 (1) 的形状。由此立刻得到式 (2)：$\\det M=\\prod_i\\lambda_i=1^{n-1}\\cdot(1-v^{T}u)=1-v^{T}u$；当 $v^{T}u=1$ 时 $u$ 方向被压成零，$M$ 奇异，修正项以除以零收场——修正项可能无穷大与行列式为零是同一件事的两种说法。验算一维：$M=1-uv$，公式给 $1+\\frac{uv}{1-uv}=\\frac{1-uv+uv}{1-uv}=\\frac{1}{1-uv}$，与直接求倒数一致；书上的 Example 1 里 $u=v=\\mathbf{1}/\\sqrt3$ 使 $v^{T}u=1$，$M=I-\\frac13\\mathbf{1}\\mathbf{1}^{T}$ 奇异，而例中给出的 $M^{-1}=I+\\frac16\\mathbf{1}\\mathbf{1}^{T}$ 可以用 $\\mathbf{1}^{T}\\mathbf{1}=3$ 直接验算 $MM^{-1}=I$。把这一页的推导方式抽象成模板：**分块消元降阶法（Schur 补法）**——要证关于 $M$ 的矩阵恒等式，就把 $M$ 认作扩展矩阵 $E=\\begin{bmatrix}I&u\\\\ v^{T}&1\\end{bmatrix}$ 的 Schur 补 $D-CA^{-1}B=1-v^{T}u$，按两种顺序消元得到 $E$ 的两种块三角分解，再令两式的对应块相等。它与 6.006 里的分治同构：都是把一个 $n$ 阶问题化归成更小的子问题，只不过分治靠切分、这里靠消元，最终把一个 $n\\times n$ 的求逆问题变成一次 $1\\times1$ 的除法。工程账本也在这里：直接求逆是 $O(n^{3})$，而先有 $A^{-1}$、再来一次秩一修正只需一个矩阵-向量积的 $O(n^{2})$——这正是所有更新而非重算算法的立足点。\r\n\r\n=== ANCHOR: 我们用一个尺寸为 $k$ 的逆，换掉了一个尺寸为 $n$ 的逆。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这一句是整节的成本账本，值得把它算成具体数字。用 6.006 的复杂度语言：求 $I_n-UV^{T}$ 的逆若从零开始做消元约需 $\\frac{2}{3}n^{3}$ 次乘加；而按公式 (7)，只需对 $k\\times k$ 的 $I_k-V^{T}U$ 求逆（$O(k^{3})$），再加上两次 $n\\times k$ 与 $k\\times n$ 的乘法形成修正项（$O(n^{2}k)$），总计 $O(n^{2}k+k^{3})$。取 $n=1000$、$k=10$：直接求逆约 $6.7\\times10^{8}$ 次运算，走公式只要约 $10^{7}$ 次，快了两个数量级。但注意这不是免费的午餐——它要求你**已经持有** $A^{-1}$（或某个已有分解）；若从零开始，一步也省不下来。这正是卡尔曼滤波与递归最小二乘存在的理由：每步都保留上一步的逆，于是新数据到来时只花 $O(n^{2})$。公式 (7) 的证明核心是一条搬运恒等式 $(I_n-UV^{T})U=U(I_k-V^{T}U)$：左端展开是 $U-UV^{T}U$，右端展开是 $U-UV^{T}U$，逐项相同，但它把 $V^{T}$ 从 $U$ 的左边搬到了右边，从而让 $U$ 可以被提到括号外，$MM^{-1}$ 的四个交叉项随即两两抵消。同一个搬运精神也解释了式 (8) 的行列式恒等式 $\\det(I_n-UV^{T})=\\det(I_k-V^{T}U)$：两个乘积的非零特征值相同，差的只是 $|n-k|$ 个零（下面的注解会给出证明）。用 CSAPP 的缓存视角看这件事会更清楚：$k\\ll n$ 时，$I_k-V^{T}U$ 小到可以整块放进缓存甚至寄存器，而 $n\\times n$ 的大矩阵在内存里来回搬运的代价本身就不可忽略；用小块替换大块既是复杂度上的胜利，也是访存局部性上的胜利。扩展到本节的用途：只要扰动是低秩的（新增一行测量、删掉一列、状态按 $x\\mapsto Ax$ 演化），都应当维护旧逆 + 修改记录，而不是每步重建整个矩阵。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1893,
+            "outputTokens": 2797,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1893,
+              "outputTokens": 2797,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 3721,
+          "contextWindow": 1000000,
+          "pressureTokens": 5349,
+          "sampledSurfaceTokens": 2399
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 839,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1322,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2577
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

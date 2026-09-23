@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128853678,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 于是我们「放松」或称凸化这个 $\\ell_0$ 问题，以得到一个真正的范数 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 你在 MIT 6.042J 学过概率方法，也在 6.006 学过用随机化来换取效率；压缩感知（compressed sensing）里有一个几乎同构的概率换信息的交易，值得在这里提前埋下伏笔，因为 §III.5 会正式用到。\r\n\r\n问题设定是这样的：$A$ 是 $m\\times n$ 的，$m\\ll n$，$x$ 有 $k$ 个非零分量（$k$ 称为稀疏度）。我们要问的是——要恢复这个 $x$，$m$ 至少要多小？直觉上你需要 $m\\ge k$ 个方程来解 $k$ 个未知数，但真正的答案弱得多：$m\\approx Ck\\log(n/k)$ 就足够，而这个把戏的秘密全在$\\log$上。为什么会出现 $\\log$？因为证明的骨架和你 6.042J 里用过的 Chernoff 界如出一辙：先假设一个坏随机测量矩阵会让稀疏向量落在 $\\ell_1$ 球的某个坏点上，对单个坏点算出一个指数小的概率，再用 union bound 把 $O(n^k)$ 量级的坏点全加起来——$\\binom{n}{k}$ 个组合乘上 $e^{-cm}$，要让总和小于 1，就得有 $m=\\Omega(k\\log(n/k))$。这和 Chernoff 界处理抛 $m$ 次硬币偏差累加的手法在结构上完全一样：都是想让**多个弱约束联合失败的概率**被压制到可忽略，代价是约束个数要乘以一个对数因子。\r\n\r\n区别也要说清楚，否则容易套错公式：(1) 6.042J 里随机变量的独立性来自独立地抛硬币，这里则需要矩阵的高斯/伯努利条目独立来提供 concentration；(2) Chernoff 界本身给的是尾部概率上界，而压缩感知需要的是一个带常数、非渐近的界，因此要用到更精细的版本（如伯努利矩阵的 restricted isometry 论证）；(3) 最重要的是结论方向不同——概率方法通常只告诉你存在，这里必须给出**可计算**的恢复算法，而承担这个算法的正是 §III.4 的分裂迭代。\r\n\r\n=== ANCHOR: 一个凸集 $\\|Ax − b\\|^2 = C$ 很有机会在那个菱形的一个尖点处与之相碰。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 这条注专治我知道 $\\ell_1$ 会稀疏，但为什么几何上一眼就能看出来的疑惑。请把两件事分开看：**可行/惩罚集合的形状** 与 **水平集的形状**。\r\n\r\n在二维情形（$n=2$，$x=(x_1,x_2)$）手算一遍：$\\|x\\|_1\\le 1$ 是四个不等式 $x_1+x_2\\le 1$、$x_1-x_2\\le 1$、$-x_1+x_2\\le 1$、$-x_1-x_2\\le 1$ 的交集，画出来就是一个顶点在 $(\\pm1,0)$、$(0,\\pm1)$ 的菱形；而 $\\|x\\|_2\\le1$ 是圆。现在把 $\\|Ax-b\\|^2=C$ 的等值面（在 $x$ 空间里是一个椭圆）从原点向外膨胀，直到它第一次碰到可行集。这个第一次相碰的点就是解。\r\n\r\n关键就在于：**膨胀的椭圆碰到菱形时，为什么偏爱碰顶点？** 因为顶点是菱形上远离原点程度相对最大的位置——用数学语言说，顶点是菱形的极值点（不能写成集合内两点的严格凸组合），它所在的局部区域曲率是无穷（一个角），而圆的每一点曲率都有限且相同。一个光滑的椭圆去切一个光滑的圆，切点可以落在任意方向，完全由椭圆的朝向决定；去切一个菱形，角是天然的应力集中点，多数朝向下椭圆会先咬住角。而菱形的角恰好落在坐标轴上，对应的解就是 $x_2=0$ 或 $x_1=0$——稀疏。\r\n\r\n这也顺手解释了另一个现象：**解对噪声过敏**。既然最优解常常是那个角，那么椭圆稍微转一点点、或者常数 $C$ 稍微变一点点，切点就可能从角上滑走、跳到棱边上，$\\ell_1$ 解因此容易在支撑集层面突变（支撑集不稳定）。这与 $\\ell_2$ 解的光滑依赖形成鲜明对照：$\\ell_2$ 解是 $b$ 的连续甚至 Lipschitz 函数，但代价是永不稀疏。\r\n\r\n命名一个可复用的检验模板：**角点引力法（corner-attraction test）**——给定一个凸惩罚 $p(x)$ 与线性约束，先画出 $p$ 的单位球，数一数它的极值点落在哪些坐标子空间上；极值点落在坐标轴/坐标面上，惩罚就会诱导稀疏。把 $p$ 换成 $\\|x\\|_0$，单位球退化成 $2n$ 个孤立点，稀疏性满格，但不再是凸集——这正是放松的取舍所在。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1802,
+            "outputTokens": 2981,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1802,
+              "outputTokens": 2981,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 3812,
+          "contextWindow": 1000000,
+          "pressureTokens": 5258,
+          "sampledSurfaceTokens": 2361
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 801,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1451,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2668
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

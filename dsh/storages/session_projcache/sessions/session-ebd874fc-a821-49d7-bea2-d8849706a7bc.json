@@ -1,0 +1,231 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128894672,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 36,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 36,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: Lin 与 Zhou 针对同一个问题提出了一种 online learning（在线学习）算法。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 译文这里说一旦新观测值到达就立刻执行 $k\\to k+1$，把 Kaczmarz 变成了在线学习算法。要理解为什么这条路线值得单独提，先把单步误差看清楚：设 $x^*$ 是满足 $Ax=b$ 的真解，令 $e_k=x_k-x^*$，则 $b_i-a_i^{T}x_k=-a_i^{T}e_k$，代入 (33) 得 $e_{k+1}=e_k-\\frac{a_i^{T}e_k}{\\|a_i\\|_2^2}a_i$，也就是从 $e_k$ 中减去它在 $a_i$ 方向上的投影。取平方得 $\\|e_{k+1}\\|_2^2=\\|e_k\\|_2^2-\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}\\le\\|e_k\\|_2^2$：误差范数单调不增，而且整个过程没有任何步长参数可调，这是 Kaczmarz 最讨人喜欢的性质。但单调不增不等于收敛快。如果 $a_i$ 反复选中那些与当前误差几乎垂直的行，损失项 $\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}$ 会很小，迭代就会原地踏步；顺序扫描遇到病态的行序时完全可能发生这种事。随机化正是为此而生：按概率 $p_i=\\|a_i\\|_2^2/\\|A\\|_F^2$ 抽取第 $i$ 行，则每步的期望损失为 $\\sum_i p_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}=\\frac{\\|Ae_k\\|_2^2}{\\|A\\|_F^2}$，再用 SVD 给出下界 $\\|Ae_k\\|_2^2\\ge\\sigma_{\\min}^2\\|e_k\\|_2^2$，便得到期望收缩 $\\mathbb{E}\\|e_{k+1}\\|_2^2\\le\\left(1-\\frac{\\sigma_{\\min}^2}{\\|A\\|_F^2}\\right)\\|e_k\\|_2^2$，收缩因子 $\\rho=\\sigma_{\\min}^2/\\|A\\|_F^2$ 只依赖于矩阵本身，不再依赖行的顺序。不过期望变好并不是你运行一次程序时真正得到的承诺，要把期望升级为高概率，就要请出你在 6.042J 学过的那件工具。把第 $j$ 轮的收缩因子记作随机变量 $Z_j\\le1$，则 $\\|e_k\\|_2^2=\\|e_0\\|_2^2\\prod_{j<k}Z_j$；对 $\\log Z_j$ 用 Chernoff 界（其本质是对独立随机变量的和做指数矩估计），可得前 $k$ 步平均收缩没有达到 $\\log(1-\\rho)$ 太多的概率随 $k$ 指数衰减，于是为了以 $1-\\delta$ 的概率把误差压到 $\\epsilon_0$ 以下，只需 $k=O\\!\\left(\\frac{1}{\\rho}\\log\\frac{1}{\\epsilon_0\\delta}\\right)$ 步。把这个三段式固定下来，命名为**期望收缩 → 乘积形式 → 集中不等式**：先证每一步期望在缩，再把多步写成乘积，最后用集中不等式把平均意义上在缩翻译成这一次运行大概率在缩。你在 6.042J 用 Chernoff 界算过负载均衡的失败概率，这里是同一件事的数值版本；也正因为随机性是算法设计的一部分，压缩感知的定理才会反复出现以压倒性的概率这种措辞。最后补一个 CSAPP 视角的工程权衡：随机挑行在缓存眼里是最坏访问模式，每次跳到一个新内存块；实践中常改成先随机置换行序、再顺序扫描，用一个置换保留随机性的统计保证，同时恢复顺序访问的局部性优势——这是数学保证与缓存层次之间一次非常典型的谈判。\r\n\r\n=== ANCHOR: 我们无法用导数 $u'$ 的 $L_2$ 范数来工作，但 $u'$ 的 $L_1$ 范数很好用。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 译文给出了一组对照：$\\|\\nabla u\\|_{L_2}^2=\\iint|\\nabla u|^2\\,dx\\,dy=\\infty$，而 $\\|u\\|_{BV}=\\iint|\\nabla u|\\,dx\\,dy<\\infty$。同一条边缘，为什么平方之后发散、取绝对值之后有限？用离散化的方式看最清楚：一维阶跃从 0 跳到 1，在任何真实的图像或任何数值实现里，这个跳跃都发生在宽度为 $h$ 的过渡带内（像素之间有间距，$h$ 就是网格步长），过渡带里的斜率是 $1/h$。于是 $\\int|u'|^2\\,dx\\approx\\frac{1}{h^2}\\cdot h=\\frac{1}{h}$，$h\\to0$ 时发散到无穷；而 $\\int|u'|\\,dx\\approx\\frac{1}{h}\\cdot h=1$，与 $h$ 完全无关，恒等于跳跃高度。这个加密网格看极限的实验值得命名，叫**阶跃检验法**：想判断一个罚项能不能容忍边缘，只需要在一个阶跃函数上算它的值。结论非常锋利：$L_2$ 梯度罚项在阶跃上趋于无穷，所以优化器宁可把边缘摊平到整个定义域，也不愿保留一条锐利边缘；$L_1$ 梯度罚项的代价恒等于跳跃高度，与过渡带多窄无关，于是锐利边缘变成一种有限价格的商品。这个结论和你在 CSAPP 里养成的浮点直觉也吻合：$1/h^2$ 随分辨率提高会迅速逼近浮点表示的极限甚至溢出，$1/h$ 只线性增长，因此直接最小化 $\\|\\nabla u\\|_2^2$ 的实现必须小心地把正则化参数与网格步长配套调节，而 BV 版本几乎不用调。再往深处追一步，用你在实分析（Thomson TBB 那本）里已经建立的语言：阶跃函数的导数是 δ 函数这种把质量集中在一个点上的对象，$\\int\\delta$ 有定义且等于 1，而 $\\int\\delta^2$ 根本没有意义——平方可积性要求对象本身是函数，不允许质量集中在一个点上或一条线上。这就是一个初看反直觉的事实：图像处理里最有效的正则化，恰恰工作在那套处处可导的经典函数框架之外。最后做一个可以自己验算的边缘计价例子，顺便把它和本页之后的 Problem 13 连起来：单位正方形内取 $u=1$、外部取 $u=0$，梯度质量全部压在边界上，此时 $\\|u\\|_{BV}$ 恰好等于周长 4；若把强度减半（内 $u=1$、外 $u=0.5$），范数变成 2。也就是说 BV 范数像一个按边缘长度 × 跳跃高度线性收费的计价器，这正是 Rudin、Osher 与 Fatemi 在 1992 年那篇论文里采用的模型：目标函数 = 数据保真项 + BV 罚项，解因此保持分片光滑，而随机斑点噪声（它意味着大量细碎边缘）被昂贵地罚掉。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 36,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 36,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 36,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 36,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 3177,
+            "outputTokens": 7875,
+            "cacheReadTokens": 41088,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 5,
+            "buckets": {
+              "uncachedInputTokens": 183,
+              "outputTokens": 2958,
+              "cacheReadTokens": 10752,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 36,
+        "val": {
+          "surfaceTokens": 7254,
+          "contextWindow": 1000000,
+          "pressureTokens": 10935,
+          "sampledSurfaceTokens": 5695
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 36,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1012,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 866,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 1317,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 506,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 297,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 67,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 1559,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6110
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 36,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 33,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 35
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 36,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 36,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 36,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

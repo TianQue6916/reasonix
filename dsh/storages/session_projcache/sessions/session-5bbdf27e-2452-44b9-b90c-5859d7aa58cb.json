@@ -1,0 +1,221 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128859719,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 31,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 31,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 解 $x_i^{*}$ 就是相应量的 soft thresholding（软阈值） ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 公式 (24) 那个分段表达式看起来像三条规则拼起来的补丁，其实它来自一个一维的、可以手算的极小化问题。请务必自己推一遍，因为后面 §III.4 里所有$\\ell_1$ 子问题有闭式解的说法都靠它撑腰。\r\n\r\n一维问题是：minimize $f(t)=\\lambda|t|+\\frac{\\rho}{2}(t-v)^2$。分成 $t>0$、$t<0$、$t=0$ 三段。$t>0$ 时 $f'=\\lambda+\\rho(t-v)$，令其为零得 $t=v-\\lambda/\\rho$，但这个候选点只有在 $v>\\lambda/\\rho$ 时才落在 $t>0$ 区间内；$t<0$ 时 $f'=-\\lambda+\\rho(t-v)=0$ 得 $t=v+\\lambda/\\rho$，仅在 $v<-\\lambda/\\rho$ 时有效；当 $|v|\\le\\lambda/\\rho$ 时两个驻点都跑出了各自区间，此时唯一的极小值点就是那个不可导的 $t=0$。验算：取 $\\lambda/\\rho=1$、$v=0.6$，$t>0$ 段给出 $-0.4<0$ 无效，$t<0$ 段给出 $1.6>0$ 无效，于是 $t^*=0$；取 $v=3$，得 $t^*=2$，把 $|t|$ 从 $3$ 削到 $2$，整整削掉一个 $\\lambda/\\rho$。\r\n\r\n把它抽象成一个可复用的模板，命名为**一维分段接力法（1-D piecewise relay）**：处理 $\\lambda|x_i|+\\text{光滑项}$ 这类目标时，(1) 先在 $x_i>0$ 与 $x_i<0$ 两个开区域各自求驻点并记下解析式；(2) 用驻点是否落在本区域内做筛选，这一步就是接力的交接棒；(3) 若都不落在区域内，则极小值只能落在不可导点 $x_i=0$ 上。模板的适用条件是目标函数凸且不可导点只有有限个（这里是每个坐标的原点）。把它用在 $n$ 维可分离问题上，因为 $\\sum_i$ 与 $\\min$ 可以交换，整体解就是每个坐标独立做一次一维接力——**这正是 ADMM 能把大问题拆成 $n$ 个标量问题的原因**。\r\n\r\n顺带记住这个算子的两个名字：soft thresholding（软阈值）与 shrinkage（收缩）。从工程角度看它的作用极其直观——把每个分量朝零吸 $\\lambda/\\rho$ 的距离，幅度不足 $\\lambda/\\rho$ 的直接吸成零。对照岭回归：$\\ell_2$ 惩罚给出的解是 $v/(1+\\lambda/\\rho)$，是**乘性缩放**，所以再小也是非零；$\\ell_1$ 给的是**加性平移后截断**，所以能精确置零。这个差别就是 LASSO 与 ridge 的全部差异所在。\r\n\r\n=== ANCHOR: 现在对 $L$ 关于 $c$ 的最小化分裂为 $N$ 个可以并行求解的最小化问题。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 你在 CSAPP 第 5 章（优化程序性能）和第 6 章（存储器层次）里学到的那套局部性换并行的思路，在对偶分解里有一个精确的数学对应物，而代价结构也惊人地相似。\r\n\r\n先看数学侧。原始问题 (4) 是 minimize $f(x)$ s.t. $Ax=b$，其中 $Ax=\\sum_{i=1}^N A_ic_i$ 是唯一把各个子向量 $c_i$ 耦合起来的地方，$f$ 本身是分开的。式 (8) 做的操作是把耦合项 $y^T(Ac-b)=y^T\\sum_i A_ic_i-y^Tb$ 分配到每个 $L_i$ 里，于是 $L(c,y)=\\sum_i L_i(c_i,y)-y^Tb$。这一步能成立，唯一的依据是**和的极小等于极小的和**：$\\min_{c_1,\\dots,c_N}\\sum_i L_i(c_i,y)=\\sum_i\\min_{c_i}L_i(c_i,y)$，因为每个 $c_i$ 只出现在自己那一项里。于是 (9) 的 $N$ 个最小化彼此完全独立，可以扔到 $N$ 台机器上同时跑；协调只通过一个共享的 $m$ 维向量 $y$ 完成，而 $y$ 的更新 (10) 只需要把各机算出的 $A_ic_i^{k+1}$ 加起来与 $b$ 比较。\r\n\r\n再看 CSAPP 侧的对应。并行最怕的是共享写，这里共享的只有 $y$，$m$ 维、每轮一次全局归约（all-reduce）——相当于 CSAPP 里说的 reduce 通信量，是 $O(m)$ 而非 $O(n)$，这是它划算的根本原因。而 (9) 内部各机器访问的是 $A_i$ 的列块，如果按列块存储，每台机器只读自己那一块不读别人的，这就是**空间局部性**；反过来若按行存 $A$，每台机器都要读整个 $A$ 的每一行，缓存全部失效。所以怎么切矩阵直接决定了并行方案是真实加速还是通信灾难。\r\n\r\n区别必须点明，否则容易把两者混为一谈：(1) 数学上的可分离性是**精确等号**，不涉及任何近似；而计算机里的并行加速比永远受 Amdahl 定律限制，$y$ 的串行更新就是那个不可并行的尾项。(2) 数学上 (9) 的 $N$ 个子问题可以取任意 $N$；工程上 $N$ 超过物理核数反而增加调度与通信开销，通常取 $N\\approx$ 核数。(3) 对偶分解的收敛性本身并不免费——$f$ 不可分离时 (9) 只能退化成一次大型最小化 (6)，这就是 (11) 的增广拉格朗日要付出的代价。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 31,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 31,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 31,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 31,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 31,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2677,
+            "outputTokens": 10104,
+            "cacheReadTokens": 39552,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 4,
+            "buckets": {
+              "uncachedInputTokens": 194,
+              "outputTokens": 2071,
+              "cacheReadTokens": 13440,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 31,
+        "val": {
+          "surfaceTokens": 7466,
+          "contextWindow": 1000000,
+          "pressureTokens": 13634,
+          "sampledSurfaceTokens": 6427
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 31,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 902,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2282,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 33,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 1107,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 502,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 1039,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6322
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 31,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 31,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 28,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 30
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 31,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 31,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 31,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 31,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 31,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 31,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

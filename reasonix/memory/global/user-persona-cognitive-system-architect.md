@@ -1,11 +1,12 @@
 ---
 id: legacy-0e176543fab402a20f3d83eb
-revision: 1
+revision: 2
 created_at: "2026-07-13T23:16:16.4462932Z"
-updated_at: "2026-07-13T23:16:16.4462932Z"
+updated_at: "2026-09-23T10:44:13.8123586Z"
 name: user-persona-cognitive-system-architect
 title: 个人画像 — 认知系统架构师
 description: 用户完整画像：构建主义认知操作系统、方舟计划学习体系、资源调度策略、终局目标（AGI→量子→核聚变）、当前阶段定位、人格特征
+activation: relevant
 metadata:
   type: user
   scope: global

@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129188421,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。\r\n\r\n【任务】把下面 1 条译者注扩写到 **800-1200 个汉字**（公式与 `math` 围栏不计入）。\r\n− **扩写**：补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 🚫 不得删除原有数学内容、公式、例子、连接\r\n\r\n【读者画像（必须对齐，禁止甩未学概念）】\r\n− 大二上学期、智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n− ✅ 已学：离散数学 6.042J（等价关系、偏序、数论、图论、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、Strang 线性代数、算法 6.006/CLRS（分治、图、复杂度）\r\n− 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法、概率论（Bertsekas）、CS144 计算机网络、凸优化（Boyd）\r\n− ⚠️ 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——不得甩这些名词\r\n− 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式、```math 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda\r\n2. 禁止 Unicode 上下标；禁止 `$$`\r\n3. `@@ANCHOR@@` 行必须**逐字原样保留**（它是插入锚点）\r\n\r\n【输出协议（🚨 结构化，必须逐字照此格式，便于程序提取）】\r\n\r\n@@NOTE@@\r\n@@ANCHOR@@原文片段（从下方译文中**逐字复制**的连续片段，12-40 个汉字；必须在该页译文中唯一出现，不要改写、不要加省略号）\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n@@END@@\r\n\r\n− 一条注一个 @@NOTE@@ … @@END@@ 块；块与块之间空一行\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n【待归一化的注】\r\n@@NOTE@@\r\n@@ANCHOR@@请注意，投影 $J$ 与投影矩阵 $P$ 是不同的东西\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这一页在区分两个容易混的对象：投影 $J$ 是 $k\\times m$，把 $\\mathbf{R}^m$ 压到 $\\mathbf{R}^k$，像填满 $\\mathbf{R}^k$；投影矩阵 $P=J^{T}J$ 是 $m\\times m$，留在 $\\mathbf{R}^m$ 里，把向量压到 $A$ 的一个 $k$ 维子空间上。前者是降维的映射，后者是选代表的操作。\r\n\r\n跨课程连接（6.042J 的等价关系与划分）：正交投影就是等价关系的标准代表元。定义 $b\\sim c\\iff b-c\\in N(J)$，这三条性质——自反、对称、传递——恰好就是 $N(J)$ 对加减与数乘封闭的三种说法，于是 $\\mathbf{R}^m$ 被划分成一批平行于 $N(J)$ 的仿射层（陪集）。投影 $P$ 在每个等价类里挑出唯一一个落在行空间 $C(J^{T})$ 中的代表元。$P^{2}=P$ 正是代表元的代表元还是它自己的代数指纹：幂等性（idempotence）是选代表这一动作的全部要求；对称性 $P=P^{T}$ 则是额外的几何内容——在所有满足 $Jc=Jb$ 的 $c$ 里，$Pb$ 是欧氏距离最近的那一个（这就是最小二乘的正交性）。**区别要记牢**：一般的等价关系只需幂等就够了；只有对称（自伴）才让最近成立。\r\n\r\n验算：取 $J=\\begin{bmatrix}\\cos\\theta&\\sin\\theta\\end{bmatrix}$，则 $JJ^{T}=\\cos^{2}\\theta+\\sin^{2}\\theta=1$，$P=J^{T}J=\\begin{bmatrix}\\cos^{2}\\theta&\\cos\\theta\\sin\\theta\\\\ \\cos\\theta\\sin\\theta&\\sin^{2}\\theta\\end{bmatrix}$。直接代入三角恒等式即得 $P^{2}=P$；且 $P(\\cos\\theta,\\sin\\theta)=(\\cos\\theta,\\sin\\theta)$（该方向被完整保留），而 $P(-\\sin\\theta,\\cos\\theta)=(0,0)$（垂直方向被压成零）。取 $\\theta=45^{\\circ}$、$k=1$、$m=2$ 时 $P=\\frac12\\begin{bmatrix}1&1\\\\1&1\\end{bmatrix}$，把 $(3,0)$ 映到 $(1.5,1.5)$，正是到直线 $y=x$ 的垂足。\r\n\r\n再补一个谱上的指纹，可以当定理用：$P$ 对称半正定，若 $Pv=\\lambda v$，则 $P^{2}v=\\lambda^{2}v$，而 $P^{2}=P$ 给出 $\\lambda^{2}=\\lambda$，所以 $P$ 的特征值只能是 $0$ 或 $1$，$\\operatorname{rank}(P)$ 就是特征值 $1$ 的个数（也等于 $k$）。要证 $\\operatorname{rank}(J^{T}J)=\\operatorname{rank}(J)$，用**零空间吸收法**：一方面 $N(J)\\subseteq N(J^{T}J)$ 显然；另一方面若 $J^{T}Jx=0$，左乘 $x^{T}$ 得 $\\|Jx\\|^{2}=0$，故 $Jx=0$。反向包含成立，两个零空间相等，秩自然相等。这是格兰姆矩阵型问题的通用第一招：把 $x^{T}(\\cdot)x$ 变成非负标量，逼出零向量——和你在 part002 里见过的能量检验是同一件事。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1336,
+            "outputTokens": 2506,
+            "cacheReadTokens": 3584,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1336,
+              "outputTokens": 2506,
+              "cacheReadTokens": 3584,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 3621,
+          "contextWindow": 1000000,
+          "pressureTokens": 4920,
+          "sampledSurfaceTokens": 2247
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 687,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1374,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2477
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

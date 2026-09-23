@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790149375226,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_247]\nIV.7. Clustering by Spectral Methods and k-means\n\n245\n\n**IV.7 Clustering by Spectral Methods and k-means**\n\nHow to understand a graph with many nodes (and not all possible edges)? An important starting point is to separate the nodes into two or more clusters—like groups of friends. Edges are more likely within the clusters than between different clusters. We hope the clusters have similar size so that we are not just picking off a few loners. Identifying these clusters will give a first rough understanding of our graph.\n\nA key step in decoding genetic data is to *cluster genes* that show highly correlated (and sometimes anti-correlated!) expression levels. Clustered genes may lie in the same cellular pathway. The great achievement of the Human Genome project was to tell us the pieces in the puzzle of life: the rows of $G$. We now face the greater problem of fitting those pieces together to produce *function*: such as creating proteins.\n\n**An Example with Two Clusters**\n\nThe figure below shows $n = 5$ nodes. Those nodes are separated into $k = 2$ clusters. The points marked by $*$ are the centroids $(2, 1)$ and $(-1, 2/3)$ of the two clusters. The first centroid is the average $\\frac{1}{2}(1, 1) + \\frac{1}{2}(3, 1)$ of the two points, and the second centroid is the average $\\frac{1}{3}[(0, 0) + (-3, 0) + (0, 2)]$. Those centroids $c_1$ and $c_2$ minimize the sum of squared distances $||c - a_j||^2$ to the points $a_j$ in the clusters.\n\nThese clusters were produced by the famous $k$-means algorithm with $k = 2$. This is a simple way to cluster the nodes—but not the only way. (And probably not the fastest or best way for a large set of nodes.) Before using eigenvalues and cuts to produce clusters, we show how $k$-means is one more excellent example of a central theme in this book:\n\nApproximate an $m \\times n$ matrix $A$ by $CR = (m \\times k)(k \\times n)$  (1)\n\nThe rank of $CR$ is low because $C$ has only $k$ columns and $R$ has $k$ rows. In the $k$-means approximation, *the columns of $C$ are the centroids of the clusters*. What is $R$?\n\nEach column of $R$ has a single $1$ and $k - 1$ zeros. More exactly, $R_{ij} = 1$ (or $0$) if centroid $i$ is closest (or not) to the point $x_j$. Then the $1$'s in row $i$ of $R$ tell us the cluster of nodes around the centroid (marked by $*$) in column $i$ of $C$.\n\nFor $5$ nodes and $2$ clusters, $R$ has only two different columns (centroids) in $A \\approx CR$.\n\n$\\begin{bmatrix} 0 & 1 & 3 & 0 & -3 \\\\ 0 & 1 & 1 & 2 & 0 \\end{bmatrix} \\approx \\begin{bmatrix} -1 & 2 & 2 & -1 & -1 \\\\ 2/3 & 1 & 1 & 2/3 & 2/3 \\end{bmatrix}$\n\n$A \\approx CR = \\begin{bmatrix} -1 & 2 \\\\ 2/3 & 1 \\end{bmatrix} \\begin{bmatrix} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 1 & 0 & 0 \\end{bmatrix}$\n\n### [原文 page_248]\n246 \\hfill Special Matrices\n\n\\begin{center}\n\\textbf{\\Large Four Methods for Clustering}\n\\end{center}\n\nOut of many applications, we start with this one: \\textbf{to break a graph in two pieces}. Those pieces are clusters of nodes. Most edges should be \\textit{inside} one of the clusters.\n\n1. Each cluster should contain roughly half of the nodes.\n\n2. The number of edges \\textit{between} clusters should be relatively small.\n\nFor load balancing in high performance computing, we are assigning equal work to two processors (with small communication between them). For social networks we are identifying two distinct groups. We are segmenting an image. We are reordering rows and columns of a matrix to make the off-diagonal blocks sparse.\n\nMany algorithms have been and will be invented to partition a graph. I will focus on four successful methods that extend to more difficult problems: \\textbf{Spectral clustering} (using the graph Laplacian or the modularity matrix), \\textbf{minimum cut}, and \\textbf{weighted \\(k\\)-means}. Here are those four methods:\n\n\\textbf{I.} Find the \\textbf{Fiedler vector} \\(z\\) that solves \\(A^TCAz = \\lambda Dz\\). The matrix \\(A^TCA\\) is the graph Laplacian. Its diagonal \\(D\\) contains the total weights on edges into each of the nodes. \\(D\\) \\textit{normalizes the Laplacian}. The Fiedler vector has\n\nThe eigenvector for \\(\\lambda_1 = 0\\) is \\((1, \\ldots, 1)\\). The Fiedler eigenvalue comes next: \\(\\lambda = \\lambda_2\\).\n\\textit{Positive and negative components of its eigenvector indicate the two clusters of nodes.}\n\n\\textbf{II.} Replace the graph Laplacian matrix \\(A^TCA\\) by the \\textbf{modularity matrix} \\(M\\). Choose the eigenvector that comes with the largest eigenvalue of \\(M\\). Again it will be the positive and negative components that indicate the two clusters:\n\n\\begin{center}\n\\fbox{\\parbox{0.8\\textwidth}{\n\\textbf{Modularity matrix} \\hfill \\(M = (\\text{adjacency matrix}) - \\frac{1}{2m} d d^T\\)\n}}\n\\end{center}\n\nThe vector \\(d\\) gives the degrees of the \\(n\\) nodes (the number of edges adjacent to the nodes). Each row and column of \\(M = M^T\\) adds to zero, so one eigenvector of \\(M\\) is again \\((1, 1, \\ldots, 1)\\). If its eigenvalue \\(\\lambda = 0\\) happens to be the largest—so \\(M\\) has \\textit{no} positive eigenvalues—then all nodes will and should go into one cluster.\n\nThe article by Mark Newman in PNAS \\textbf{103} (2006) 8577-8582 makes a strong case for the modularity matrix in clustering the nodes.\n\n\\textbf{III.} Find the \\textbf{minimum normalized cut} that separates the nodes in two clusters \\(P\\) and \\(Q\\). The unnormalized measure of a cut is the \\textbf{sum of edge weights} \\(w_{ij}\\) across that cut. Those edges connect a node in \\(P\\) to a node outside \\(P\\):\n\n\\begin{equation}\n\\textbf{Weight across cut} \\quad \\textit{links}(P) = \\sum w_{ij} \\quad \\text{for } i \\text{ in } P \\text{ and } j \\text{ not in } P. \\tag{2}\n\\end{equation}\n\nBy this measure, a minimum cut could have no nodes in \\(P\\). \\textit{So we normalize by the sizes of \\(P\\) and \\(Q\\).} These are sums of weights inside clusters:\n\n\\begin{equation}\n\\textbf{Size of cluster} \\quad \\textit{size}(P) = \\sum w_{ij} \\quad \\text{for } i \\text{ in } P. \\tag{3}\n\\end{equation}\n\n【当前译文】\n@@PAGE:247@@\n<!-- page 247 -->\n> <span style=color:#7f8c8d;>本页为书页 245，是 §IV.7 Clustering by Spectral Methods and k-means（谱方法与 k-means 聚类）的开篇页；页眉与印页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声极重：`Clustenng`→Clustering、`S Methods`→Spectral Methods、`means`→k-means、`℃`→to、`酣`→all、`starnng pornt`→starting point、`sep arate`→separate、`fnends`→friends、`山`→than／and（依语境）、`s i 皿 I`→similar、`什`→of、`ldentlfying`→identifying、`glve`→give、`0 ur`→our、`decodmg`→decoding、`gen`→genes、`someumes`→sometimes、`llul pathway`→cellular pathway、`gre at achlevement`→great achievement、`fitung`→fitting、`creatm g`→creating、`犭`→$\\frac{1}{3}$、`丐`→$x_i$、`0 y`→only、`娓`→$R$、`丿`→$R_{ij}$、`CO 廓 s`→columns、`咒 h as`→$k$ has。图中的节点次序在 OCR 中不可完全辨读，下面的 $C$、$R$ 依文中两个质心的均值与指示含义重建：$C$ 为 $2\\times2$（两列质心），$R$ 为 $2\\times5$（两行指示），与 $CR=(m\\times k)(k\\times n)$ 中 $m=2$、$k=2$、$n=5$ 相符（原稿曾把维数写成 $5\\times2$ 与 $2\\times5$，与之不符，已改正）。</span>\n如何理解一个拥有许多节点（且并非所有可能的边都存在）的图（graph）？\n一个重要的起点，是把这些节点分成两个或更多个簇（cluster）——就像一群群朋友那样。\n边（edges）更可能落在同一个簇内部，而较少跨越不同的簇。\n我们希望各个簇的规模（size）相近，这样才不至于只是挑出几个孤立的节点。\n辨识出这些簇，会让我们对这张图获得第一层粗略的理解。\n在解码基因数据（genetic data）时，一个关键步骤是把表达水平（expression levels）高度相关（有时甚至是反相关！）的基因聚成簇。\n聚在一起的基因可能位于同一条细胞通路（cellular pathway）之中。\n人类基因组计划（Human Genome Project）的伟大成就，是告诉了我们生命之谜中的那些拼块——即 $G$ 的各行。\n如今我们面对一个更重大的问题：把这些拼块组装起来以产生功能，例如合成蛋白质（protein）。\n<span style=color:#2471a3;>**[section]**</span>\nAn Example with Two Clusters（一个含两个簇的例子）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.7, p.245</span>\n下图给出了 $n = 5$ 个节点，这些节点被分成 2 个簇。\n用 * 标出的点是两个簇的质心（centroid），分别为 $(2,1)$ 与 $(-1,2/3)$。\n第一个质心是那 2 个点的平均 $\\frac{1}{2}\\big[(1,1)+(3,1)\\big]=(2,1)$，第二个质心则是 3 个点的平均 $\\frac{1}{3}\\big[(0,0)+(-3,0)+(0,2)\\big]=(-1,2/3)$。\n这两个质心 $c_1$ 与 $c_2$ 使各点到簇内质心的 squared distances（距离平方和）$\\|c - a_j\\|^2$ 达到最小，其中 $a_j$ 是簇内的点。\n这些簇是由著名的 k 均值算法（k-means algorithm）在 $k = 2$ 时产生的。\n这是把节点聚成簇的一种简单方法——但并不是唯一的方法（对于大规模的节点集合，它很可能也不是最快或最好的方法）。\n在运用特征值（eigenvalues）与割（cuts）来产生簇之前，我们先说明：k 均值如何又一次成为本书一个核心主题的出色范例——\n```math\n\\text{Approximate an } m \\times n \\text{ matrix } A \\text{ by } CR = (m \\times k)(k \\times n)\n\\tag{1}\n```\n$CR$ 的秩很低，因为 $C$ 只有 $k$ 列，而 $R$ 只有 $k$ 行。\n在 k 均值近似中，$C$ 的各列就是各簇的质心。\n那么 $R$ 是什么？\n$R$ 的每一列只有一个 1 与 $k-1$ 个 0。\n更精确地说，若质心 $i$ 离点 $x_j$ 最近（否则不最近），则 $R_{ij} = 1$（或 $0$）。\n于是 $R$ 第 $i$ 行中的那些 1，就告诉我们：$C$ 第 $i$ 列中那个质心（用 * 标出）周围的节点属于哪个簇。\n对于 5 个节点和 2 个簇，在 $A \\approx CR$ 中 $R$ 只有两个不同的列（即两个质心）：\n```math\n\\begin{bmatrix}\n0 & 1 & 3 & 0 & -3\\\\\n0 & 1 & 1 & 2 & 0\n\\end{bmatrix}\n\\approx\n\\begin{bmatrix}\n-1 & 2 & 2 & -1 & -1\\\\\n2/3 & 1 & 1 & 2/3 & 2/3\n\\end{bmatrix}\n```\n```math\nA \\approx CR =\n\\begin{bmatrix}\n-1 & 2\\\\\n2/3 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 0 & 0 & 1 & 1\\\\\n0 & 1 & 1 & 0 & 0\n\\end{bmatrix}\n```\n> <span style=color:#7f8c8d;>图片本身无法翻译：5 个节点为第一簇的 $(1,1),(3,1)$ 与第二簇的 $(0,0),(-3,0),(0,2)$，两簇质心用 * 标出，分别为 $(2,1)$ 与 $(-1,2/3)$；$C$ 是 $2\\times2$ 的质心矩阵，$R$ 是 $2\\times5$ 的指示矩阵。</span>\n> <span style=color:#1e8449;>**[note] 译者注：** k 均值就是一次“带约束的低秩逼近”——聚类与 SVD／PCA 是同一件事的两种取舍\n> <span style=color:#1e8449;>本页把 $m\\times n$ 的数据矩阵写成 $X\\approx CR$，其中 $C$ 是 $m\\times k$、$R$ 是 $k\\times n$。这个写法一下子把聚类从“算法”抬到了“矩阵分解”的高度，值得慢慢拆。首先，$CR$ 的秩最多是 $k$，因为 $C$ 只有 $k$ 列：**k 均值做的是一次低秩逼近**。其次，$R$ 的每一列是 one-hot（只有一个 $1$，其余全 $0$），$R_{ij}=1$ 的意思是“点 $x_i$ 离质心 $c_j$ 最近”。于是 $CR$ 的第 $i$ 列就是 $x_i$ 所属簇的质心——用 $k$ 个不同的向量去近似 $n$ 个数据点。</span>\n> <span style=color:#1e8449;>把它与你已经学过的 SVD／PCA 对照，差别非常清楚。截断 SVD 给出的低秩逼近是平方误差意义下**最优**的（这是 Strang 书里那条低秩逼近定理的内容），但它的基向量是任意方向的奇异向量，你无法指着某一个说“这就是第 3 类”。k 均值反过来：它放弃了最优性，换来了**可解释性**——每个点被硬分到一个簇。用本页的记号说，SVD 允许 $R$ 是任意实矩阵，k 均值把 $R$ 限制成 one-hot。**自由度换可解释性**，这个取舍决定了你在什么场合该用哪个：想压缩／去噪／看主方向，用 SVD；想做“分组、贴标签、负载切分”，用聚类。</span>\n> <span style=color:#1e8449;>再看优化结构，这一步正好用得上你在 Boyd 前五章建立的语言。目标函数是 $E=\\sum_{i\\in P}\\lVert v_i-c_P\\rVert^{2}+\\sum_{i\\in Q}\\lVert v_i-c_Q\\rVert^{2}$。若**固定分配**（哪个点属于哪一簇），$E$ 是质心的二次函数：令梯度为零，即 $2\\sum_{i\\in P}(c_P-v_i)=0$，得到的驻点正是“质心 = 簇内点的平均”。若**固定质心**，最优分配就是把每个点丢给最近的质心（只需比较 $k$ 个距离）。两步轮流做，就是 Lloyd 算法：每一步都让 $E$ 不增，而 $E\\ge 0$ 有下界，所以算法**一定收敛**。但收敛到的是局部最优，不是全局最优——原因也正好是 Boyd 的主线：**联合起来对 $(C,R)$ 并不凸**（$R$ 是离散的 one-hot 集合），而“凸性保证局部最优即全局最优”这条定理在这里不适用。这就是为什么实践中要多次随机初始化、挑最优的那次。</span>\n> <span style=color:#1e8449;>复杂度同样接得上 6.006：一次迭代的代价是 $O(nkd)$（$n$ 个点、$k$ 个簇、$d$ 维，每点要算 $k$ 个距离）。对比一下分治式的算法分析习惯——总代价 = 迭代次数 × 单轮代价，而迭代次数没有理论上的紧界，只能靠经验与收敛准则，这是聚类算法和排序／FFT 这类“有清晰复杂度保证”的算法在性格上的区别。</span>\n> <span style=color:#1e8449;>本页末尾还留了一个接口，是通往下一节的桥：目标函数 $E$ 用的是欧几里得距离，但**节点表示成向量 $v_i$ 这件事本身可以是任意的**；更进一步，核 k 均值只用一个核矩阵 $K_{ij}=v_i\\cdot v_j$ 就够了，距离与均值都可以由核算出。这等于说：**k 均值真正需要的不是坐标，而是内积（相似度）**。而图恰恰只给你相似度（边权），不给你坐标——所以谱聚类的思路就是把图先“嵌入”成一个向量空间（用拉普拉斯矩阵的特征向量作坐标），再在这个空间里做 k 均值。于是两种方法不是竞争关系，而是同一条流水线的两段。</span>\n> <span style=color:#1e8449;>可迁移结论：**看到“把数据分成若干组”，先问：它在用什么样的低秩分解逼近数据？约束加在哪里——加在基（质心、奇异向量）还是加在系数（one-hot 与实数）？** 回答了这两个问题，你就能判断这个方法会偏向“最优的重构”还是“可解释的标签”，也就能判断换一个相似度度量、换一个核，哪些结论还成立。</span>\n\n@@PAGE:248@@\n<!-- page 248 -->\n> <span style=color:#7f8c8d;>本页为书页 246，续 §IV.7 Clustering by Spectral Methods and k-means 正文；页眉 “Special Matrices” 与印页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声：`asslgning`→assigning、`c 0 mmunic atio n`→communication、`sparsee`→sparse、`p artition`→partition、`ÄDz`→$\\lambda Dz$、`刀`→$D$、`讫`→normalizes、`Fie dler`→Fiedler、`/\\=Ä2`→$\\lambda=\\lambda_2$、`CO 0 e 0 歹 括`→components、`加 0 c 豆 e 可 刀 Od`→two clusters of the graph、`ILaplacian`→Laplacian、`忉`→$w_{ij}$、`乥`→$\\sum w_{ij}$、`rmnimum`→minimum、`刀 orm 磊 五 ze`→normalize、`尸`→$P$、`0 f`→of、`1 〗`／`1 ·`／`2 ·` 为条目编号。方法编号依原文补回（OCR 漏掉 `II.`）。另：`刀 orm 讫 “ the Laplacian` 依上下文为 “$D$ normalizes the Laplacian”，原稿误作 $\\frac{1}{2}D$，已改正。公式 (2) 左侧依 (5) 式统一记作 $\\text{links}(P)$（即“跨越该割的权重之和”）。</span>\n<span style=color:#2471a3;>**[section]**</span>\nFour Methods for Clustering（聚类的四种方法）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.7, p.246</span>\n在许多应用之中，我们先从这一个开始：把一张图切成两块。\n这两块就是节点的簇。\n大多数边应当落在其中一个簇的内部。\n**1.** 每个簇应当大致包含一半的节点。\n**2.** 簇与簇之间的边的数目应当相对较少。\n在高性能计算（high performance computing）中做负载均衡（load balancing）时，我们是在把等量的工作分配给两个处理器（并让它们之间的通信量很小）。\n对于社交网络（social networks），我们是在辨识两个彼此不同的群体。\n我们是在对一幅图像做分割。\n我们是在重排一个矩阵的行与列，使非对角块变得稀疏。\n已经并且还将有大量算法被发明出来，用于对图做划分（partition）。\n我将聚焦于四种成功的方法，它们都能推广到更困难的问题：谱聚类（spectral clustering，它使用图拉普拉斯矩阵（graph Laplacian）或模块度矩阵（modularity matrix））、最小割（minimum cut），以及加权 k 均值（weighted k-means）。\n这四种方法如下：\n**I.** 求出满足 $A^{T}CAz = \\lambda Dz$ 的费德勒向量（Fiedler vector）$z$。\n矩阵 $A^{T}CA$ 就是图拉普拉斯矩阵。\n它的对角元 $D$ 包含进入每个节点的各条边上的总权重。\n$D$ 使拉普拉斯矩阵实现归一化（normalize）。\n该费德勒向量具有以下性质：\n**1.** 对应 $\\lambda_1 = 0$ 的特征向量是 $(1,1,\\dots,1)$。\n**2.** 费德勒特征值（Fiedler eigenvalue）紧随其后：$\\lambda = \\lambda_2$。\n该特征向量中正、负的分量（components）指明了图中的两个簇。\n**II.** 用模块度矩阵（modularity matrix）$M$ 替换图拉普拉斯矩阵 $A^{T}CA$。\n选取伴随 $M$ 最大特征值的那个特征向量。\n同样地，正是其正、负分量指示出两个簇：\n```math\n\\text{Modularity matrix } M = (\\text{adjacency matrix}) - \\frac{1}{2m}dd^{T}\n```\n向量 $d$ 给出各节点的度（degree，即与该节点相邻的边数）。\n矩阵 $M = M^{T}$ 的每一行与每一列之和都为零，所以 $M$ 的一个特征向量是 $(1,1,\\dots,1)$。\n如果它对应的特征值 $= 0$ 恰好是最大的——也就是说 $M$ 没有正特征值——那么所有节点都将会、也应该进入同一个簇。\nMark Newman 在 *PNAS* **103** (2006) 8577–8582 上的文章，为用模块度矩阵对节点做聚类给出了强有力的论证。\n**III.** 求出把节点分成两个簇 $P$ 与 $Q$ 的最小归一化割（minimum normalized cut）。\n一个割的未归一化度量，是跨越该割的各条边权重之和。\n这些边把一个 $P$ 中的节点连到一个 $P$ 之外的节点：\n```math\n\\text{Weight across cut} \\quad \\text{links}(P) = \\sum w_{ij} \\quad \\text{for } i \\text{ in } P \\text{ and } j \\text{ not in } P.\n\\tag{2}\n```\n按这个度量，一个最小割可能使 $P$ 中一个节点也没有。\n所以我们把 $P$ 与 $Q$ 的规模归一化。\n这些规模是各簇内部权重之和：\n```math\n\\text{Size of cluster } P: \\quad \\text{size}(P) = \\sum w_{ij} \\quad \\text{for } i \\text{ in } P.\n\\tag{3}\n```\n\n现在输出修订后的译文全文（从 `@@PAGE:247@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6179,
+            "outputTokens": 6627,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6179,
+              "outputTokens": 6627,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 10212,
+          "contextWindow": 1000000,
+          "pressureTokens": 10019,
+          "sampledSurfaceTokens": 5360
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3800,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4852,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9068
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

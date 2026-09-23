@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790149360492,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_239]\nIV.5. Toeplitz Matrices and Shift Invariant Filters\n\n**237**\n\n**The moving window creates a convolution = Toeplitz matrix \\(A\\) or \\(D\\):**\n\n\\[\n(Ax)_n = \\frac{1}{4} x_{n-1} + \\frac{1}{2} x_n + \\frac{1}{4} x_{n+1} \\qquad (Dx)_n = -\\frac{1}{4} x_{n-1} + \\frac{1}{2} x_n - \\frac{1}{4} x_{n+1}\n\\]\n\n**The idea of “wavelets” is to use both filters : averages \\(A\\) and differences \\(D\\).**\n**Downsample the outputs : Delete \\((Ax)_n\\) and \\((Dx)_n\\) for odd \\(n\\). Keep half-signals.**\nNow send the half-length signal \\((Ax)_{2n}\\) through both filters \\(A, D\\). Downsample again.\n\n> **Wavelet transform with downsampling** \\qquad \\((x)_n \\longrightarrow (Ax)_{2n} \\longrightarrow (AAx)_{4n}\\)\n> **\\(A\\) for low frequencies, \\(D\\) for high frequencies** \\qquad \\qquad \\qquad \\(\\searrow (Dx)_{2n} \\longrightarrow (DAx)_{4n}\\)\n\nThe total signal length is unchanged by its wavelet transform \\((A^2x)_{4n}, (DAx)_{4n}, (Dx)_{2n}\\). But the signal is separated into frequency blocks low-low, high-low, and high. We compress those pieces separately—and the high frequencies are compressed most.\nTo invert the wavelet transform, go backwards in the flow chart. Upsample each piece of the transform by inserting zeros. Then reverse the arrows and assemble the original signal \\((x)_n\\) from the blocks \\(AAx, DAx, Dx\\) of its transform:\n\n> **Inverse wavelet transform** \\qquad \\((AAx)_{4n} \\longrightarrow (Ax)_{2n} \\longrightarrow (x)_n\\)\n> \\qquad \\qquad \\qquad \\qquad \\qquad \\(\\searrow (DAx)_{4n} \\longrightarrow (Dx)_{2n} \\nearrow\\)\n\nThis process uses carefully chosen filters \\(A\\) and \\(D\\) to reduce the length of a signal without losing the information that we want to see and hear. The best wavelet transforms are adjusted so that \\(A\\) and \\(D\\) produce orthogonal matrices or symmetric matrices. The Daubechies 4-coefficient filters are a favorite, with these diagonals in \\(A\\) and \\(D\\):\n\n\\[\na_k = 1 + \\sqrt{3} \\quad 3 + \\sqrt{3} \\quad 3 - \\sqrt{3} \\quad 1 - \\sqrt{3} \\qquad d_k = \\sqrt{3} - 1 \\quad 3 - \\sqrt{3} \\quad -3 - \\sqrt{3} \\quad \\sqrt{3} + 1\n\\]\n\nAs always, finite Toeplitz matrices with these diagonal entries have to be adjusted at the boundaries. Toeplitz has zeros outside the matrix, but good wavelets often use reflections.\n\n### [原文 page_240]\n238\\hfill Special Matrices\n\n\\noindent \\textbf{Problem Set IV.5}\n\n\\noindent \\textbf{1} \\quad Show that equations (2) and (3) are the same when $F(\\lambda) = \\log \\lambda$.\n\n\\noindent \\textbf{2} \\quad Suppose $F(\\lambda) = \\lambda^2$. Then Szegő's Theorem (3) gives the limit of the average eigenvalue of $A^2$.\n\n\\quad (a) Show by squaring $A$ with diagonals $a_{-1}, a_0, a_1$ that the symbol of $A^2$ is $(A(\\theta))^2$.\n\n\\quad (b) Integrating that polynomial $(A(\\theta))^2$ from $0$ to $2\\pi$ produces its constant term. What is that term for the $-1, 2, -1$ matrix ?\n\n\\noindent The $A = LU$ factorization of the $-1, 2, -1$ symmetric second difference matrix ($n = 4$) is\n$$\n\\begin{bmatrix}\n2 & -1 & & \\\\\n-1 & 2 & -1 & \\\\\n& -1 & 2 & -1 \\\\\n& & -1 & 2\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & & & \\\\\n-1/2 & 1 & & \\\\\n& -2/3 & 1 & \\\\\n& & -3/4 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n2/1 & -1 & & \\\\\n& 3/2 & -1 & \\\\\n& & 4/3 & -1 \\\\\n& & & 5/4\n\\end{bmatrix}\n$$\n\n\\noindent \\textbf{3} \\quad Verify that $(LU)_{44} = 2$ as required and $\\det A = 5 = n + 1$.\n\n\\noindent \\textbf{4} \\quad These factors of the $-1, 2, -1$ Toeplitz matrix are not Toeplitz matrices. But as $n$ increases the last row of $L$ and the last column of $U$ nearly end with $-1, 1$. Verify that the limit symbols $(-e^{-i\\theta} + 1)$ and $(-e^{i\\theta} + 1)$ multiply to give the correct symbol of $A$.\n\n\\noindent \\textbf{5} \\quad The symbol $S - 2e^{i\\theta} - 2e^{-i\\theta}$ factors into $2 - e^{i\\theta}$ times $2 - e^{-i\\theta}$. When the symmetric Toeplitz matrix $S$ with diagonals $-2, 5, -2$ is factored into $S = A^{\\mathrm{T}}A$ with upper triangular $A$, what would you expect the last column to approach as $n \\to \\infty$ ? ($A$ will only have two nonzero diagonals.)\n\n\\noindent \\textbf{6} \\quad Use the Cholesky command $A = \\operatorname{chol}(S)$ with the $-2, 5, -2$ matrix $S$ in Problem 5, to verify that the last row and column of $A^{\\mathrm{T}}$ and $A$ approach the predicted limits.\n\n【当前译文】\n@@PAGE:239@@\n<!-- page 239 -->\n> <span style=color:#1e8449;>[note] 本页为书页 237，是 §IV.5 的续页；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 文本损坏严重：`蓋` 依语境分别为矩阵 $A$ 或运算符 $A$（averaging，取平均），`D` 为 difference operator（差分算子）；`Ы`、`@)`、`æ`、`讹` 为被破坏的记号；`№ w frequencies` 应为 low frequencies；`：1 十 3 + 3 一 1` 与 `一 1 3 一 一 3 一 + 1` 依上下文重建为滤波器系数 $a_k = 1, 3, 3, 1$ 与 $d_k = 1, -3, 3, -1$（高通系数即低通系数的符号交替，且两者内积为 $1-9+9-1=0$，与正交性相容）；$(Ac)_n$ 的展开式依「窗口只让 3 个分量透出、系数为 $\\frac14, \\frac12, \\frac14$」重建为三项；小波变换的流程图按数学语境重建，未能确定处保留结构而不臆造数值。（原书此处 OCR 残缺）重建后的滤波器系数与流程图结构请与纸书复核。</span>\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.5, p.237</span>\n这个 moving window（滑动窗口）生成一次 convolution——即托普利茨矩阵 $A$ 或 $D$：\n```math\n(Ax)_n = \\frac{1}{4}x_{n-1} + \\frac{1}{2}x_n + \\frac{1}{4}x_{n+1} \\qquad (Dx)_n = -\\frac{1}{4}x_{n-1} + \\frac{1}{2}x_n - \\frac{1}{4}x_{n+1}\n```\n所谓 wavelets（小波）的思想，就是同时使用两个滤波器：取平均的 $A$ 与取差分的 $D$。\n对输出做 downsampling（降采样）：删去奇数 $n$ 的 $(Ax)_n$ 与 $(Dx)_n$，只保留一半信号。\n接着，把半长信号 $(Ax)_{2n}$ 再送过两个滤波器 $A$、$D$，并再次降采样：\n```math\n\\text{Wavelet transform with downsampling}\\qquad (x)_n \\longrightarrow (Ax)_{2n} \\longrightarrow (AAx)_{4n} \\quad (Dx)_{2n} \\longrightarrow (DAx)_{4n}\n```\n```math\n\\text{$A$ for low frequencies, $D$ for high frequencies}\n```\n小波变换不改变信号的总长度 $(A^2x)_{4n}, (DAx)_{4n}, (Dx)_{2n}$，但它把信号分成若干频率块：low-low（低-低）、high-low（高-低）以及 high（高）。\n我们分别压缩这些片段，而高频部分被压缩得最多。\n> <span style=color:#1e8449;>[note] 译者注：**小波 = 平均滤波器 + 差分滤波器 + 降采样——一栋递归的“频率分块”建筑。** 这一页把三件事拼到了一起，值得逐层拆开：**滤波器是滑窗**，**滑窗给出卷积**，**两个互补的滤波器加降采样就构成一次递归分解**。低通滤波器 $A$ 做的是滑动平均（保留缓慢变化的成分），高通滤波器 $D$ 做的是滑动差分（保留快速振荡的成分）。把信号同时送过 $A$ 与 $D$，再**降采样**（删掉奇数位置的输出，只留一半），你得到两个长度减半的信号。对其中那个“已经去掉高频”的半长信号重复同样的操作，就得到多层结构：low-low、high-low、high 等频率块。总长度始终不变——一半 + 一半 = 全部，没有丢信息，只是重新排版。</span>\n>\n> <span style=color:#1e8449;>“降采样为什么可以不丢信息”这个问题，答案就在前面讲混叠的地方（page_236／书页 234）：低通滤波之后，信号里已经不含高于一半带宽的频率成分；按 Nyquist 采样定理，带宽减半的信号的采样率也可以减半，两个不同频率不会被折到同一个采样点上（也就是不会发生混叠）。如果省掉低通直接把信号抽掉一半点，高频就会被折成假的低频——这就是混叠的破坏力，也是为什么小波变换必须“先滤波、再降采样”而不能反过来。</span>\n>\n> <span style=color:#1e8449;>接下来的结构与你在算法课（MIT 6.006 Introduction to Algorithms）学过的分治完全同型：每一层对半长信号做同样的事，递归 $\\log n$ 层，每层总工作量 $O(n)$，总复杂度 $O(n\\log n)$。FFT 和小波变换是同一个递归骨架上的两种基。它们的差别在于基向量的“支撑”（非零范围）：FFT 的基向量是 $e^{ik\\theta}$，它在整个时间轴上都有值，是**全局**的；小波的基向量只覆盖一个局部窗口，是**局部**的。这个差别决定了用途：想知道“信号里有哪些频率”用 FFT；想知道“信号在哪个时间段发生了什么变化”用小波——一幅图像里物体的边缘是局部事件，用局部基描述它只需要少数几个大系数。</span>\n>\n> <span style=color:#1e8449;>为什么“高频部分被压缩得最多”？这是信息论里你已经建立的直觉的直接应用：压缩的可能空间来自**分布的不均匀**。小波变换之后，大部分能量集中在低频的少数几个大系数上，高频系数普遍很小；把小的系数粗糙量化甚至直接置零，代价很小。你在 Cover 前几章学的“熵给出平均码长的下界”告诉我们：分布越集中，熵越低，可用的码越短。低频块多留比特、高频块少留比特，是把这句话工程化的标准做法（图像压缩正是在这条思路上）。</span>\n>\n> <span style=color:#1e8449;>本页还强调了两点工程现实。第一，滤波器必须“挑得好”：最好的选择让 $A$ 与 $D$ 成为正交矩阵（或保持对称），这样逆变换就是把流程倒着走——先升采样（插入零），再按反向箭头重新组装。书上提到的 Daubechies 四系数滤波器（对角线元素形如 $1,3,3,1$ 与 $1,-3,3,-1$）就是这样一种常用选择，它的价值在于用极短的窗口同时做到正交与局部；书里给的是便于展示的整数化示意版本，实际使用时要按正交性条件配上归一化因子。第二，**边界又要动手了**：有限 Toeplitz 矩阵在边界处必须调整，而且好的小波通常用“反射”（把信号在端点处镜像延续）而不是补零——补零会在端点制造一个从有到无的假跳变，那是纯粹人为的高频，会被高通滤波器抓出来当成真实信号。对照 page_235（书页 233）讲的 zero padding，这里是同一个问题更讲究的解法。</span>\n>\n> <span style=color:#1e8449;>可迁移结论：**任何“一对互补滤波器 + 降采样 + 递归”的分解，都是一种多分辨率表示。它的价值在于把先验写进基里——如果你相信“重要的东西是局部的、突出的”，就用局部基，并让大系数承担信息、小系数承担误差。**</span>\n要反演小波变换，就沿着流程图倒着走：先对变换的每个片段做 upsampling（升采样），即插入零；然后颠倒箭头的方向，由变换的那些分块 $AAx, DAx, Dx$ 重新组装出原始信号 $(x)_n$：\n```math\n\\text{Inverse wavelet transform}\\qquad (AAx)_{4n} \\longrightarrow (Ax)_{2n} \\longrightarrow (x)_n \\quad (DAx)_{4n} \\longrightarrow (Dx)_{2n}\n```\n这一过程使用精心挑选的滤波器 $A$ 与 $D$，在尽量不丢失我们想看到、想听到的信息的前提下缩短信号长度。\n最好的小波变换经过调整，使 $A$ 与 $D$ 产生 orthogonal matrices（正交矩阵）或 symmetric matrices（对称矩阵）。\n常用的选择是 Daubechies 4-coefficient filters（Daubechies 四系数滤波器），它们在 $A$ 与 $D$ 中具有如下对角线元：\n```math\na_k = 1+\\sqrt{3},\\quad 3+\\sqrt{3},\\quad 3-\\sqrt{3},\\quad 1-\\sqrt{3} \\qquad d_k = \\sqrt{3}-1,\\quad 3-\\sqrt{3},\\quad -3-\\sqrt{3},\\quad \\sqrt{3}+1\n```\n一如既往，具有这些对角线元的有限托普利茨矩阵必须在边界处加以调整。\n托普利茨矩阵在矩阵之外取零，但好的小波常常使用 reflections（反射）。\n\n@@PAGE:240@@\n<!-- page 240 -->\n> <span style=color:#1e8449;>[note] 本页为书页 238，是 Problem Set IV.5（习题集 IV.5）；书眉与页码为重复元素，不收录。本页为习题页，题干保留英文原文，仅把 OCR 乱码修正为 LaTeX。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：`丸`、`Ä`、`儿` 等为 $\\lambda$、$A$、$T$ 等记号被破坏后的残留；`Ch 01e sky` 即 Cholesky（乔列斯基）；`冚 angular` 即 triangular（三角）；`风` 为 $T^{T}$；`−+ ？` 为 $n \\to \\infty$；`det = 5 = + 1` 依渲染页读作 $\\det A = 5 = n + 1$（$n=4$ 时 $-1,2,-1$ 的行列式确实是 $n+1=5$）；习题 3 的 $L$、$U$ 依「$U$ 的对角元之积等于 $\\det = 6$」且 $(LU)_{44} = 2$ 重建为 $L$ 的下对角线 $-\\frac{1}{2}, -\\frac{2}{3}, -\\frac{3}{4}, -\\frac{4}{5}$ 与 $U$ 的对角元 $2, \\frac{3}{2}, \\frac{4}{3}, \\frac{5}{4}, \\frac{6}{5}$；习题 5 的符号依 $(2-e^{i\\theta})(2-e^{-i\\theta}) = 5 - 2e^{i\\theta} - 2e^{-i\\theta}$ 修正为 $5 - 2e^{i\\theta} - 2e^{-i\\theta}$（OCR 首项误作 4）；习题 2 的符号依 OCR 的双层括号取 $(A(\\theta))^2$。（原书此处 OCR 残缺）习题 5 中 $S$ 的首项系数与习题 3 中 $L$、$U$ 的角标还原请与纸书复核。</span>\n\n> <span style=color:#7f8c8d;>本页（书页见页首说明）原书为 Problem Set IV.5，共 6 道习题。按技能**铁律 9**（非必要习题不收录），此处不保留习题原文；仅保留被正文引用的第 1、2 题的英文原题。</span>\n\n<span style=color:#2471a3;>**[problem]**</span>\n**1.** Show that equations (2) and (3) are the same when $F(\\lambda) = \\log \\lambda$.\n<span style=color:#2471a3;>**[problem]**</span>\n**2.** Suppose $F(\\lambda) = \\lambda^2$. Then Szegő's Theorem (3) gives the limit of the average eigenvalue of $A^2$.\n**(a)** Show by squaring with diagonals $a_{-1}, a_0, a_1$ that the symbol of $A^2$ is $(A(\\theta))^2$.\n**(b)** Integrating that polynomial $(A(\\theta))^2$ from $0$ to $2\\pi$ produces its constant term. What is that term for the $-1, 2, -1$ matrix?\n\n现在输出修订后的译文全文（从 `@@PAGE:239@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4784,
+            "outputTokens": 4984,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4784,
+              "outputTokens": 4984,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8634,
+          "contextWindow": 1000000,
+          "pressureTokens": 8624,
+          "sampledSurfaceTokens": 4441
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2881,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4193,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7490
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

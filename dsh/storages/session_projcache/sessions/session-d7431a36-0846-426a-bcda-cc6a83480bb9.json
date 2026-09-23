@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128853446,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: Chebyshev series（切比雪夫级数）适用于区间（如 $[-1, 1]$）上的非周期函数。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这句话是一条可以带走的工程准则：**基的选择必须匹配函数在边界上的行为**。周期函数在 $[-\\pi,\\pi]$ 两端自动接得上，傅里叶基 $1,\\cos\\theta,\\sin\\theta,\\cos2\\theta,\\dots$ 天然适配；非周期函数在端点处没有承接关系，强行用傅里叶基会导致边界附近的吉布斯式振荡。桥梁是恒等式 $\\cos n\\theta=T_n(\\cos\\theta)$：把 $\\theta$ 通过 $c=\\cos\\theta$ 投到 $[-1,1]$ 上，傅里叶基函数就变成了 Chebyshev 多项式——$T_0=1$、$T_1=c$、$T_2=2c^2-1$、$T_3=4c^3-3c$。这个代换揭示了一个此前不明显的几何事实：**$\\cos n\\theta$ 的零点在 $\\theta$ 里等间距，投到 $c$ 变量后却在 $\\pm1$ 附近挤成一团**，位置是 $c=\\cos\\!\\big(\\pi(k-\\tfrac12)/n\\big)$。这个端点加密不是缺陷而是优点：等间距插值的高阶多项式会在区间边缘剧烈甩动（Runge 现象），而用这些聚集的插值节点，误差的最大值被压得极小。再证明一个恰当性结论：$T_n$ 在 $[-1,1]$ 上满足 $|T_n(c)|\\le1$ 且首项系数为 $2^{n-1}$，在所有首一 $n$ 次多项式中它使区间上的最大绝对值最小——这正是「节点选在 Chebyshev 点」最优的原因，也让幂级数 $1+i\\theta+\\cdots$ 这种在边界处收敛极慢的展开，被换成收敛快得多的 Chebyshev 展开。chebfun.org 这个计算系统就是建立在这一点上：它把你的函数换成一个次数恰到好处的 Chebyshev 级数，之后的所有运算都在系数向量上进行，次数由代码按所需精度自动选取。**接回你的浮点知识**：Chebyshev 展开的系数按几何速率下降，通常在 $|c|\\le1$ 上收敛到机器精度只需几十项——这正是数值分析与浮点精度第一次咬合的地方，也是理解「为什么换基能救精度」的最佳入口。\r\n\r\n=== ANCHOR: 在 $\\ell_2$ 中出现的小非零量会在 $\\ell_1$ 中消失 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 为什么稀疏这件事只能交给 $\\ell_1$ 来办，而不能交给 $\\ell_2$？先回到最基础的问题：我们真正想要的解是什么？是 $\\|x\\|_0$ 最小，也就是非零分量个数最少。但正文已经点破，$\\|x\\|_0$ 不是范数：范数定义里必须有齐次性 $\\|cx\\|=|c|\\|x\\|$，而 $\\|2x\\|_0=\\|x\\|_0\\ne 2\\|x\\|_0$。齐次性一旦崩掉，单位球这个概念就无从谈起，凸性也随之瓦解——而没有凸性，你在凸优化课（Boyd）里学的整套对偶理论、KKT 条件、梯度类算法全部失效。\r\n\r\n于是问题变成：找一个凸的替代品，越接近数非零个数越好。把 $\\|x\\|_0$ 放松成 $\\sum_i |x_i|^p$，你会发现只有 $p=1$ 既能保持凸性、又能把小分量彻底压到零。验算一下：$p=2$ 时，想让 $x_1^2+x_2^2$ 变小，最优做法是把每个分量都按比例缩小一点点，结果是大分量变小、小分量更小，但没有任何一个分量被逼到恰好为零；$p=1$ 时，总预算分摊到各分量上，最容易的做法是让一部分分量干脆取零，把全部预算留给剩下的那几个。这就是正文那句话的真正含义——$\\ell_2$ 里的小非零量（比如 $10^{-3}$）在 $\\ell_1$ 里会被直接砍掉，因为保留它的边际代价和保留一个大分量完全一样，不划算。\r\n\r\n注意这里有个反直觉点：$\\ell_2$ 惩罚对大分量格外苛刻（平方惩罚），所以它均匀地惩罚一切；$\\ell_1$ 惩罚对所有非零分量一视同仁，所以它宁愿少而精。你可以把这理解成一种离散化的代价结构：$\\ell_1$ 的目标函数在零点不可导（尖点），正是这个不可导点充当了吸尘器，把解吸向坐标轴。这也解释了为什么 basis pursuit 求解的不是 $A$ 的 SVD——SVD 天然对应 $\\ell_2$，它的最小范数解 $x^+=A^+b$ 会把解均匀地铺满整个行空间，几乎不会给出零分量。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1734,
+            "outputTokens": 2500,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1734,
+              "outputTokens": 2500,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 3903,
+          "contextWindow": 1000000,
+          "pressureTokens": 5190,
+          "sampledSurfaceTokens": 2345
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 785,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1558,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2759
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

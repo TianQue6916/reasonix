@@ -19,7 +19,7 @@ llm-pi-ai:
       displayName: Command Code GOAT
       apiKeyEnv: COMMANDCODE_API_KEY
       api: openai-completions
-      baseURL: https://api.commandcode.ai/provider/v1
+      baseURL: http://127.0.0.1:8788/v1
       # GOAT deepseek 系返回 reasoning，与 deepseek 兼容
       compat:
         thinkingFormat: deepseek

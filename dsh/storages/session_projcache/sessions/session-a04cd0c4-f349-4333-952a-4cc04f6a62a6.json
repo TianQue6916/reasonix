@@ -1,0 +1,216 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129545978,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 30,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 30,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_197 = 书页 194\r\npage_198 = 书页 195\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:197@@（书页 194）\r\n−-- OCR 原文 −--\r\nLow Rank an d Compressed Sensing\r\n194\r\nProbIem Set 111,4\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n| 2 for on the line = 1 ？\r\nWhat vector C mini nuzeS 歹 （ ） =\r\nFollowing Ex ample 1 in this section ， write problem 1 as a minimization of\r\nz · Describe th at 0 一 1 indicator function g(z), and take\r\n+ g(z) w ith\r\none ADMM step starung 什 om = 0 ， z = 0 ， = 0 ·\r\nWhi h /\\II 到 1 on the linec = 1 if = （ 2 ， 3 ） ？\r\nFoll owing Ex ample 2 ， take one ADMM step in Problem 3 丘 om c = （ 1 ， 1 ） ·\r\nWhat c 之 0 and 月 之 0 mmimize 一 c 咒 if\r\nFolIowing Ex ample 3 in thi s section, take one ADMM step in Problem 5 ：\r\n9\r\ncompute XI ， CI ， 1 ， ·\r\nFrom =\r\nFind LASSO that minimizes 訓 一 b113 + @日 1 with\r\n1\r\n1\r\nFoIIowing Example 4 ， take one ADMM step in ProbIem 7 什 om 0\r\nwith P = 2 ·\r\n1\r\n2\r\n1\r\nFind proxF （ 司\r\nargmm\r\n2\r\n2\r\nin equation （ 27 ） · 1 s is the\r\n2\r\n| 2 · lt is a function Of ·\r\n1\r\nproximal operator for 尹 （ ） 一\r\n2\r\nHere are three function spaces (each contained in the next) and three examples of ：\r\nSmooth ， Lipschitz (slope can jump) B ounded variation can jump)\r\n2 Flat base max(c2+y2— 1 ， 0 ） CyIinder base (add step up along r= 1)\r\nBowl +\r\nA neat “ c “ rm ' ' expresses the BV no 皿 of as the i n tegral of the lengths 0f\r\nlgrad 丨 匈 ： f(length of 0 ）\r\nthe level sets L(t) where\r\n2\r\nExample Compute both sides 0f the coarea 皿 ula for a bowl ： = + ·\r\n鼠 2 川 = 2 The bowl are a integrates 什 om 0 t0 咒 ：\r\nOn the 1 side, 日 grad |\r\nIIUIIBV = 丨 《 grad 1 = （ 2r ） = 4 丌 3 / 3 ·\r\n= with length 2 丌 ·\r\n2\r\nOn the right side, the level set where = is the circle 2 +\r\nThe integral of that length L(t) 什 om t = 0 to 2 is f 2 丌 = 4 丌 咒 3 / 3 ·\r\n10 What is ifu(), ： + in the gle with sides = 04 = 0 + = 1 ？\r\nWhat is llullBV if = 0 in a unit square and = 1 outside ？\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 197 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 194，是 Problem Set III.4（习题集 III.4），配套 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）。按本系列惯例，习题题干保留英文原文；题干中的 OCR 乱码按数学语境重建为 LaTeX，并以绿色 note 说明。页眉（Low Rank and Compressed Sensing）、印页码 194 与左侧竖排题号噪声不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Problem Set III.4（习题集 III.4）\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>本页由 Windows OCR 输出，噪声极重：`歹`/`鼠` 多为函数名与积分号之误，`什 om`/`丘 om` 为 from，`mnimize`/`mmimize`/`nuzeS` 为 minimize，`丨`/`ll` 为 $\\ell$ 或 $\\|\\cdot\\|$，`訓` 为 $\\|Ac-b\\|_1$ 之误，`@`/`日` 为系数与 $\\gamma$ 之误，`之` 为 $\\ge$，`丌` 为 $\\pi$，`咒` 为 $R$，`一` 常为下标或负号之误。各题的重建均依据本页数学语境与所在节（§III.4 的例 1—例 4 与式 (27)）给出。</span>\r\n\r\n**Problem 1.** On the line $x = 1$, what vector $c$ minimizes the function $F(c) = \\frac{1}{2}\\|c\\|_2^2$ ?\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `What vector C mini nuzeS 歹 （ ） = 1 ？` 中 `歹` 依本节的能量型目标重建为 $\\frac{1}{2}\\|c\\|_2^2$，约束 `on the line = 1` 重建为直线 $x = 1$。</span>\r\n\r\n**Problem 2.** Following Example 1 in this section, write Problem 1 as a minimization of $\\frac{1}{2}\\|z\\|_2^2 + g(z)$, where $g(z)$ is the $0$-$1$ indicator function of the line. Describe that $0$-$1$ indicator function $g(z)$, and take one ADMM step starting from $x = 0$, $z = 0$, $u = 0$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `write problem 1 as a minimization of $z$ · Describe th at $0$ 一 $1$ indicator function $g(z)$ , and take $+ g(z)$ w ith one ADMM step starung 什 om $= 0$ ， $z = 0$ ， $= 0$` 行序被打乱，重排为上式：目标为 $\\frac{1}{2}\\|z\\|_2^2 + g(z)$，其中 $g(z)$ 为该直线的 $0$-$1$ indicator function（指示函数），ADMM 初值 $x = z = u = 0$。</span>\r\n\r\n**Problem 3.** Which vector $x$ minimizes $F(x) = \\frac{1}{2}\\|x − a\\|_2^2$ on the line $x = 1$ if $a = (2, 3)$ ?\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `Whi h /\\II 到 1 on the linec = 1 if = （ 2 ， 3 ） ？` 中 `/\\II` 为 vector $x$ 的误读，缺失的目标函数依本节例 2 的投影形式重建为 $\\frac{1}{2}\\|x-a\\|_2^2$，`on the linec = 1` 重建为直线 $x = 1$，$a = (2,3)$ 依括号内数值保留。</span>\r\n\r\n**Problem 4.** Following Example 2, take one ADMM step in Problem 3 from $c = (1, 1)$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `Foll owing Example 2 ， take one ADMM step in Problem 3 丘 om c = （ 1 ， 1 ）` 中 `丘 om` 为 from，起点 $c = (1,1)$ 依原文保留（此处变量记号与题 3 的 $x$ 混用，仍按原文写作 $c$）。</span>\r\n\r\n**Problem 5.** What $c \\ge 0$ and $y \\ge 0$ minimize $c + y$ if $cy = 1$ ?\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `What $c$ 之 0 and 月 之 0 mmimize 一 $c$ 咒 if` 中 `之` 为 $\\ge$，`月` 为 $y$，`一` 为 $+$，`咒` 为 $y$；末行缺失的约束依上下文的对称结构重建为 $cy = 1$。</span>\r\n\r\n**Problem 6.** Following Example 3 in this section, take one ADMM step in Problem 5: compute $x_1$, $c_1$, $z_1$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `take one ADMM step in Problem 5 ： 9 compute XI ， CI ， 1 ， ·` 中 `9` 为行首噪声，`XI ， CI ， 1` 重建为 ADMM 第一步的三个迭代量 $x_1$、$c_1$、$z_1$（例 3 的三变量更新次序）。</span>\r\n\r\n**Problem 7.** Find the LASSO solution that minimizes $\\|Ac − b\\|_1 + \\gamma\\|c\\|_1$, with $Ac = b$ given by the pair of numbers shown in the text and $\\gamma = 1$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `Find LASSO that minimizes 訓 一 b113 + @日 1 with 1 1` 中 `訓` 为 $\\|Ac-b\\|_1$，`113` 为下标 $1$ 与 $\\ell_1$ 记号之误，`@` 为系数 $\\gamma$、`日` 为 $\\|c\\|_1$；原文所列 $A$ 与 $b$ 的具体数值在 OCR 中丢失（仅余两个 $1$），故正文写作 the pair of numbers shown in the text，请以原书该处数值为准。</span>\r\n\r\n**Problem 8.** Following Example 4, take one ADMM step in Problem 7 from $x^0 = 0$, with $P = 2I$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `FoIIowing Example 4 ， take one ADMM step in ProbIem 7 什 om 0 with P = 2 ·` 中 `什 om` 为 from，缺失的上标重建为初值 $x^0 = 0$；例 4 中的矩阵 $P$ 重建为 $P = 2I$（原文只余数字 $2$）。</span>\r\n\r\n**Problem 9.** Find $\\mathrm{prox}_F(c) = \\arg\\min_z\\left(\\frac{1}{2}\\|c − z\\|_2^2 + F(z)\\right)$ in equation (27), where $F(z) = \\frac{1}{2}\\|z\\|_2^2 − 1$. Is this the proximal operator for $F$? It is a function of $z$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `Find proxF （ 司 argmm 2 2 in equation （ 27 ） · 1 s is the 2 | 2 · lt is a function Of · 1 proximal operator for 尹 （ ） 一 2` 中 `司` 为 $c$，`argmm` 为 $\\arg\\min$，`1 s` 为 Is，`lt` 为 It，`尹` 为 $F$；被拆散的分数重建为 $F(z) = \\frac{1}{2}\\|z\\|_2^2 − 1$ 与近端算子定义中的 $\\frac{1}{2}\\|c-z\\|_2^2 + F(z)$（式 (27) 即 proximal operator（近端算子）的定义式）。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 本页 Problem 1 到 Problem 9 是一整条 ADMM 流水线，先讲清它要解决的设计问题：目标函数常常是光滑项 + 非光滑项，比如 $\\frac12\\|Ac-b\\|_2^2+\\gamma\\|c\\|_1$。光滑项可以直接调用线性代数（正规方程、QR、共轭梯度都行），但 $\\|c\\|_1$ 在原点没有梯度，梯度法立刻失效。ADMM 的处理是引入一个副本 $z$，把问题改写成 $\\min f(c)+g(z)$ 且 $c=z$，然后交替各解一半：$c$ 步只面对光滑的 $f$（一个线性系统），$z$ 步只面对非光滑的 $g$（往往有现成的近端公式，例如注 2 里的软阈值），最后用一个对偶变量 $u$ 把两者拉回一致。拿 Problem 1 与 Problem 2 亲自走一步：在直线 $x=1$ 上最小化 $\\frac12\\|x\\|_2^2$，答案是 $x^*=(1,0)$，因为在平面上钉住第一坐标为 1 之后只剩 $x_2^2$ 要压小；写成 Problem 2 的形式就是 $\\min\\frac12\\|z\\|_2^2+g(z)$，其中 $g$ 是这条直线的指示函数（线上取 0，线外取 $+\\infty$）。从 $x=z=u=0$ 出发，$x$ 步解 $\\min\\frac12\\|x\\|_2^2+\\frac{\\rho}{2}\\|x-z+u\\|_2^2$，求导得 $(1+\\rho)x=\\rho(z-u)$，代入零初值得到 $x_1=0$；$z$ 步是向直线做投影，得 $z_1=(1,0)$；$u$ 步累加残差，得 $u_1=u_0+x_1-z_1=(-1,0)$。再做一轮就能看到机制：$x_2=\\frac{\\rho}{1+\\rho}(z_1-u_1)=\\frac{\\rho}{1+\\rho}(2,0)$，$\\rho$ 越大越靠近真解 $(1,0)$——这解释了为什么 ADMM 里的惩罚参数 $\\rho$ 在角色上更像步长，而不只是一个约束得紧不紧的旋钮。这个例子里的线性系统还可以直接代入数字验算：取 $\\rho=9$，则 $x_2=\\frac{9}{10}(2,0)=(1.8,0)$，与真解 $(1,0)$ 的残差是 $0.8$；再把 $\\rho$ 提到 $99$，$x_2=(1.98,0)$，残差降到 $0.02$。残差按 $\\frac{1}{1+\\rho}$ 的速度缩小，$\\rho$ 每加一个数量级，误差就少约一个数量级，这正是对偶上升那套「乘子越大、约束越硬」的定量版本，也是 Boyd 凸优化课里讨论 ADMM 收敛速率时反复出现的因子形式。把流程抽象出来命名：**分裂—交替—对偶三步法**，先分裂出一个副本把耦合解开，再交替求解两个各自好解的子问题，最后用对偶变量修正不一致，代价是收敛速度依赖 $\\rho$ 的取值（这正是你在 Boyd 凸优化课里会看到的对偶上升与 ADMM 收敛性讨论的内容）。这里还有一个和 Strang 线性代数直接接上的观察：指示函数的近端算子在几何上就是投影，因为 $\\operatorname{prox}_g(v)=\\arg\\min_z\\frac12\\|z-v\\|_2^2+g(z)$，当 $g$ 是某个凸集的指示函数时，那个 $+\\infty$ 的惩罚把最小值点逼到集合内距离 $v$ 最近的位置，也就是 $v$ 在该凸集上的投影——Problem 1 与 Problem 2 里的 $z_1=(1,0)$，正是 $(0,0)$ 到直线 $x=1$ 的投影。这条连接可以用已学的两个概念拆成四步走：连接路径是「正规方程 → 系数矩阵 $I+\\rho M$ → 奇异值/特征值 → 条件数」；课程是 Strang 线性代数与 18.065 矩阵方法；概念是条件数 $\\kappa=\\sigma_{\\max}/\\sigma_{\\min}$；区别在于，这里变难的不是原问题的病态程度，而是 ADMM 自己造出来的子问题——$\\rho$ 变大时 $I+\\rho M$ 的所有特征值都被推向同一个方向，系统在数值上反而更好解，可每一步的进展却变慢，于是存在一个折中值，这就是实践里要在「子问题好不好解」和「收敛快不快」之间调 $\\rho$ 的原因，也是 18.065 里讲特征值扰动与条件数时最想让你建立的那种权衡感。最后留意 Problem 9 的问法：$F$ 是函数，$\\operatorname{prox}_F$ 是由 $F$ 诱导出的一个映射，两者定义域与含义都不同；题目特意追问Is $F$ the proximal operator for $F$?，就是在考你有没有把函数与作用于函数的算子这两层区分开。这种「对象层 / 算子层」的区分在离散数学里其实已经见过：等价关系是集合上的一个二元关系，而「取商集」是由这个关系诱导出的一个映射，关系和映射不是同一层东西，和 $F$ 与 $\\operatorname{prox}_F$ 的关系同构。把这套流水线的证明策略固定成一个可复用的模板，就叫**分裂—投影—乘子校验法**：第一步分裂出副本并写出增广拉格朗日量，第二步对光滑子问题求导得到形如 $(I+\\rho M)x=\\rho(z-u)$ 的线性系统并用一次迭代验算，第三步对非光滑子问题调用近端公式（指示函数情形即投影），第四步用乘子更新核对残差是否按 $\\frac{1}{1+\\rho}$ 量级收缩，最后回到原问题检验解是否真的落在约束集上。这四步恰好对应本页 Problem 1 到 Problem 9 的推进顺序，也解释了为什么题目要在最后单独把函数与算子的层级区分拎出来追问一次。\r\n\r\n\r\n**Problem 10.** Here are three function spaces (each contained in the next) and three examples of functions: Smooth（光滑）, Lipschitz（利普希茨，斜率可跳跃）, Bounded variation（有界变差，可跳跃）. Examples: bowl $x^2 + y^2$; flat base $\\max(x^2 + y^2 − 1, 0)$; cylinder base (add step up along $r = 1$).\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `Smooth ， Lipschitz (slope can jump) B ounded variation can jump) 2 Flat base max(c2+y2— 1 ， 0 ） CyIinder base (add step up along r= 1)` 中 `c` 为 $x$、`c2+y2` 为 $x^2+y^2$、`CyIinder` 为 Cylinder；括号内的 (slope can jump) 与 (can jump) 是三个函数空间各自性质的平行说明。原文把三个空间与三个例子混排，此处按「先空间、后例子」整理，并用中英对照注出空间名。</span>\r\n\r\n**Problem 11.** A neat coarea formula expresses the BV norm of $u$ as the integral of the lengths of the level sets $L(t)$, where $\\mathrm{grad}\\,u \\ne 0$:\r\n\r\n```math\r\n\\|u\\|_{BV} = \\int |\\mathrm{grad}\\,u|\\,dx\\,dy = \\int_{-\\infty}^{\\infty} \\big(\\text{length of } L(t)\\big)\\, dt\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `A neat “ c “ rm ' ' expresses the BV no 皿 of as the i n tegral of the lengths 0f lgrad 丨 匈 ： f(length of 0 ） the level sets L(t) where 2` 中 `c “ rm` 为 coarea formula（余面积公式），`no 皿` 为 norm，`lgrad 丨 匈` 为 $|\\mathrm{grad}\\,u|$（其后的 $dx\\,dy$ 在 OCR 中完全丢失），`where 2` 残片重建为条件 $\\mathrm{grad}\\,u \\ne 0$；公式编号原文未标，故不添加。</span>\r\n\r\n**Problem 12.** Example. Compute both sides of the coarea formula for a bowl: $u = x^2 + y^2$.\r\n\r\nOn the left side,\r\n\r\n```math\r\n\\int |\\mathrm{grad}\\,u|\\,dx\\,dy = \\int_0^R (2\\pi r)(2r)\\,dr = \\int_0^R 4\\pi r^2\\,dr = 4\\pi R^3/3 .\r\n```\r\n\r\nThe bowl area integrates from $0$ to $R$. On the right side, the level set where $u = t$ is the circle $x^2 + y^2 = t$ with length $2\\pi\\sqrt{t}$. The integral of that length $L(t)$ from $t = 0$ to $R^2$ is $\\int_0^{R^2} 2\\pi\\sqrt{t}\\,dt = 4\\pi R^3/3$.\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `Example Compute both sides 0f the coarea 皿 ula for a bowl ： = + · 鼠 2 川 = 2 The bowl are a integrates 什 om 0 t0 咒 ： = with length 2 丌 · 2 On the right side, the level set where = is the circle 2 + The integral of that length L(t) 什 om t = 0 to 2 is f 2 丌 = 4 丌 咒 3 / 3 ·` 中 `皿 ula` 为 formula，`鼠 2 川` 为 $\\int_0^R (2\\pi r)(2r)\\,dr$，`什 om` 为 from，`咒` 为 $R$，`丌` 为 $\\pi$，`f` 为积分号；被积函数依极坐标面积元 $dx\\,dy = 2\\pi r\\,dr$ 重建，右端积分上限 $R^2$ 由等号两边的量纲一致性确定（原文该处数字被 OCR 吞掉）。</span>\r\n\r\n**Problem 13.** What is $\\|u\\|_{BV}$ if $u(x,y) = x^2 + y^2$ in the triangle with sides $x = 0$, $y = 0$, $x + y = 1$? What is $\\|u\\|_{BV}$ if $u = 1$ in a unit square and $u = 0$ outside?\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>原文 `What is ifu(), ： + in the gle with sides = 04 = 0 + = 1 ？ What is llullBV if = 0 in a unit square and = 1 outside ？` 中 `ifu()` 为 is $\\|u\\|_{BV}$ if $u(x,y)$，`gle` 为 triangle，`llullBV` 为 $\\|u\\|_{BV}$；`= 04 = 0 + = 1` 重建为三边 $x = 0$、$y = 0$、$x + y = 1$，末句依上下文重建为方内取值 $u = 1$、方外取值 $u = 0$。</span>\r\n\r\n@@PAGE:198@@（书页 195）\r\n−-- OCR 原文 −--\r\n田 5 compres s ed Sensing and Matri x CompIetion\r\n195\r\nIII 5 Compressed Sensing and Matrix C ompletion\r\nfie basic pnnciple 0f compressed sensing is th at a sparse signal c an be ex actly recovered\r\nfrom incomplete dataø lt is a remarkable experience to see a perfect image emergin g\r\nfrom t00 few measurements · Th e g eometry of an 1 diamond versus an 2 sphere is one\r\nway t0 expl 田 n it. Now mathematical analysis has identified the conditions on and the\r\nminimum number Of measurements · We Will summarize.\r\nThe reader will understand th at the Nyquist-Shannon theorem is still in force. To\r\nrecover a noisy signal ex ac tly, Y ou must sample with at least twice its top frequency ·\r\nOtherwi s e part of th at signal is missed. But sparse signals are not noisy ！ If a signal\r\nis expres s ed by a small number of sinusoids or wavelets, then that sparse signal c an be\r\nrecovere d (with prob ability extremely close to 1 ） by a s mall number of me asurements ·\r\nlt is important t0 remember ： Sparsity depends On the basis 鬱 1 ， ·\r\n， 鬱 in which the\r\nsignal represented. lt uses only a few v's. And th e signal c an be sensed in a different\r\nWn. Th e 鬱 ， s are the columns Of a representing matrix V, and the ， s are the\r\nbasis 慟 1 ， ·\r\ncolumn s Of an acquinng m atri X 彬 · A common example ： The 鬱 ， s are a Founer basis and\r\nthe 慟 ， s are a spike basis. Then V is the FO uri er matrix F and is the identity matrix I.\r\nA key reqmrement for compressed sensmg is incoherence ” of V and W ： the\r\nerfries of VT are smallø Those are the inner products 鬱 iT 慟 尸 Lu ckily we do have\r\nlow coherenc e for F and 0 1 entries of F have equ al size. And even luckier ：\r\nRandom matrices with llcolumnsl\r\n1 are almost sure tO be incoherent with any fixed\r\nbasis · SO randomness and prOb abilitie s c10 se tO 1 are key ideas in compressed sensing.\r\nThe sensing step produces only < nonzero coefficients Yk Of the unknown signal 。\r\nY = WT f reconstruct * = Vc* close t0 this 六 we use 1 optimzation t0 find *\r\nMinimize llclll subject t0 wTvc =\r\nThis is a linear programmmg problem ()t is basis pursuit) ． That tell s us agam to expect\r\na SParse solution * （ at a c orner of the set 0f vectors with wTvc = · SO the simplex\r\nmethod is a potenti al algorithm for locating * · And there are fas ter ways t0 solve (1).\r\nThe basic theorem was established by Candös an d 0 and Donoh0 ：\r\nSuppose V and are incoherent an d * is sparse （ 孓 5 nonzeros). The probability\r\nis 0verwhelming that if m > C S lo g the solution t0 (1) will reproduce exactly.\r\nNO One unusu al situation anses when the true signal is supersparse in the basis of ， s ·\r\nMaybe it is ex ac tly one of the 慟 ， s · Then probes might find only zero s and we totally\r\nmlss that 慟 in * ， Thi s is O ne reason that prob ability enter S intO compressed sensing.\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 198 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 195，是 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的开篇正文页；页眉（`田 5` = §III.5）与印页码 195 为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>本页 OCR 噪声修正：`fie` 为 The，`expl 田 n` 为 explain，`c an`/`ex ac tly`/`recovere d` 等为断词噪声，`鬱` 为表示基向量 $\\varphi$，`慟` 为探测向量 $w$（acquiring matrix 的列），`彬`/`Wn` 为传感矩阵 $W$，`erfries` 为 entries，`Candös` 为 Candès，`0` 与 `Donoh0` 为 Romberg 与 Donoho，`supersparse` 为 super-sparse，`1`/`2` 分别指 $\\ell_1$ 与 $\\ell_2$。公式与编号 (1) 均按压缩感知的标准记号重建。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\ncompressed sensing（压缩感知）的基本原理是：稀疏信号能够从不完全的数据中被精确恢复。眼看着一幅完美图像从少得可怜的测量值中浮现出来，是一种非凡的体验。$\\ell_1$ 范数的 diamond（菱形）与 $\\ell_2$ 范数的 sphere（球面）之间的几何对比，是解释这一点的一条途径。如今数学分析已经确定了所需的条件，以及测量数目的最小值。我们将对此作一概述。\r\n\r\n读者会明白，Nyquist-Shannon theorem（奈奎斯特-香农定理）依然有效。要**精确**恢复一个带噪信号，你必须以至少两倍于其最高频率的速率采样。否则该信号的一部分就被漏掉了。但稀疏信号并不带噪！如果一个信号可以由少数几条 sinusoids（正弦波）或 wavelets（小波）表示出来，那么这个稀疏信号就可以由少量测量值恢复出来（概率极其接近 $1$）。有一点必须牢记：稀疏性取决于表示该信号所用的基 $\\varphi_1, \\ldots, \\varphi_n$。它只用到少数几个 $\\varphi$。而信号的 sensing（传感）可以在另一个不同的基中进行。这些 $\\varphi$ 是表示矩阵 $V$ 的列，而这些 $w$ 则是 acquiring matrix（传感矩阵）$W$ 的列。一个常见的例子：$\\varphi$ 们构成 Fourier basis（傅里叶基），$w$ 们构成 spike basis（尖峰基）。此时 $V$ 就是 Fourier matrix（傅里叶矩阵）$F$，而 $W$ 就是 identity matrix（单位矩阵）$I$。\r\n\r\n压缩感知的一个关键要求，是 $V$ 与 $W$ 的 incoherence（不相干性）：$V^{T}W$ 的元素都很小。这些元素就是内积 $\\varphi_i^{T} w_j$。幸运的是，$F$ 与 $I$ 确实具有低的 coherence（相干性）：$F$ 的 $0$-$1$ 元大小都相等。更幸运的是：所有列范数为 $1$ 的随机矩阵，几乎必然与任何固定的基都不相干。所以 randomness（随机性）与接近 $1$ 的概率，正是 compressed sensing（压缩感知）的核心思想。\r\n\r\n传感步骤只产生未知信号 $f$ 的 $m < n$ 个非零系数 $y_k$，即 $y = W^{T}f$。为了重建 $f^{*} = Vc^{*}$、使其接近这个 $f$，我们用 $\\ell_1$ optimization（$\\ell_1$ 优化）来求 $c^{*}$：\r\n\r\n```math\r\n\\text{Minimize } \\|c\\|_1 \\quad \\text{subject to } W^{T} V c = y \\tag{1}\r\n```\r\n\r\n这是一个 linear programming problem（线性规划问题），也就是 basis pursuit（基追踪）。它再次告诉我们：应当期待一个 sparse（稀疏）的解 $c^{*}$，它位于满足 $W^{T}Vc = y$ 的向量集合的一个 corner（顶点）处。所以 simplex method（单纯形法）是定位 $c^{*}$ 的一种可能的算法。当然还有更快的方法来求解 (1)。\r\n\r\n基本定理是由 Candès、Romberg 与 Donoho 建立的：设 $V$ 与 $W$ 不相干，且 $c^{*}$ 是稀疏的（非零元个数 $S$ 很小）。那么只要 $m \\ge C\\,S\\log n$，就有压倒性的概率使 (1) 的解 $c^{*}$ 精确重现真实信号。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 定理里的 $m \\ge C\\,S\\log n$ 不是凑出来的，它可以用 6.042J 的三件工具——计数、并集界、Chernoff 界——一步步搭出来。这条推理链值得完整走一遍，因为它解释了压缩感知为什么必须带「概率」二字。第一步是计数：固定一个支撑集 $T$（$|T| = S$，即非零位置已知的情形），只要测量足够，$\\ell_1$ 最小化就能恢复 $T$ 上的系数；真正的麻烦在于我们事先不知道 $T$ 是哪一个，必须让**所有**可能的 $T$ 同时成功。支撑集个数是 $\\binom{n}{S}$，用 $\\binom{n}{S} \\le (en/S)^{S}$ 取对数得 $\\log\\binom{n}{S} \\approx S\\log(n/S) + S$。这就是 $\\log n$ 的来源：它是枚举全部稀疏支撑集的对数代价，而 $S$ 是线性代价。第二步是并集界：要让「存在某个支撑集失败」的概率小于 $1$，需要 $\\binom{n}{S}\\times p_{\\text{单}} < 1$，其中 $p_{\\text{单}}$ 是固定支撑集下的失败概率；于是 $p_{\\text{单}}$ 必须小到 $e^{-cS\\log n}$ 这个量级，注意它随 $S\\log n$ 指数下降，而不是随 $m$ 线性下降。第三步是 Chernoff 界：为什么 $p_{\\text{单}}$ 能指数小？因为传感矩阵是随机的，每一次测量相当于对「$\\ell_1$ 最小化会不会选错支撑」投一票，$m$ 票近似独立，偏差型不等式（6.042J 里用矩生成函数证的那一类）给出失败概率按 $e^{-cm}$ 衰减。令 $e^{-cm} \\approx e^{-c'S\\log n}$，立刻解出 $m \\ge C\\,S\\log n$。若只用 Markov 界，尾部只有多项式衰减，阈值会差出量级——这就是为什么这类定理几乎都以「压倒性的概率」陈述，而不是「一定成立」。把它和奈奎斯特-香农定理摆在一起，区别非常干净：那里 $m$ 必须与信号带宽成正比（线性、无对数、绝对不能少），这里 $m$ 只需与稀疏度 $S$ 成正比、与 $n$ 成对数关系，代价是保证从确定性变成了概率性。数量级上很直观：$n = 10^{6}$、$S = 100$ 时 $\\log n \\approx 13.8$，$m$ 约在 $1400C$ 量级，比 $n$ 小三个数量级。正文最后那段「超稀疏」讨论恰好把概率的来源讲透了：如果真实信号恰好就是某一个探测向量 $w$，那么某几次探测可能全部读到 $0$，此时任何算法都无法区分「没有这个分量」和「有这个分量但没被采到」。这不是算法不够聪明，而是信息真的不在数据里，所以结论只能用概率陈述。一个工程连接：实际系统不必存整个 $m\\times n$ 的传感矩阵，只存伪随机种子，用与 CSAPP 同类的伪随机数生成器现场展开即可，这也让「随机矩阵与任何固定基都不相干」这条性质在两端可复现；而计算 $y = W^{T}f$ 是按列流式访问矩阵的矩阵-向量乘，瓶颈在内存带宽而非浮点速度。可复用的模板：**计数—并集界—指数尾模板**。(1) 数坏事件个数 $N$；(2) 写出单个坏事件的概率 $p$；(3) 令 $Np < 1$ 得到要求；(4) 用 Chernoff 界把 $p$ 压成指数小；(5) 解出资源下界。凡是看到「以极大概率同时对所有 $S$-稀疏信号成立」的说法，先套这五步，阈值里的 $\\log n$ 就会自然浮现。\r\n\r\n\r\n当真实信号在所给 $\\varphi$ 基下是 super-sparse（超稀疏）的时候，会出现一种不寻常的情形。也许它恰好就是某一个 $w$ 本身。那么若干次探测可能只得到零，于是我们完全错过了 $c^{*}$ 中的那个 $w$。这正是 probability（概率）进入压缩感知的一个原因。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 30,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 30,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 30,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 30,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 30,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 17610,
+            "outputTokens": 22402,
+            "cacheReadTokens": 38528,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 3,
+            "buckets": {
+              "uncachedInputTokens": 170,
+              "outputTokens": 13606,
+              "cacheReadTokens": 22016,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 30,
+        "val": {
+          "surfaceTokens": 25301,
+          "contextWindow": 1000000,
+          "pressureTokens": 22186,
+          "sampledSurfaceTokens": 16748
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 30,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4926,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 8743,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 199,
+              "system": false
+            },
+            {
+              "seq": 20,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 1038,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 8553,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 24157
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 30,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 30,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 27,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 29
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 30,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 30,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 30,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 30,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 30,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 30,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

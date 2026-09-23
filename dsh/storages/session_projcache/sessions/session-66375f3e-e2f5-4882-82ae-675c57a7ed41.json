@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790131587958,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**逐字校对修"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**逐字校对修复专家**。下面是 Strang《Linear Algebra and Learning From Data》§III.2「The Derivative of an Eigenvalue（特征值的导数）」（书页 169）的译稿。\r\n\r\n【已用视觉逐字核对原书页确认的事实（权威）】\r\n该页有两条并列的公式框：\r\n> **Facts**  $A(t)x(t)=\\lambda(t)x(t)$,  $y^{T}(t)A(t)=\\lambda(t)y^{T}(t)$,  $y^{T}(t)x(t)=1$  (3)\r\n> **Formulas**  $\\lambda(t)=y^{T}(t)A(t)x(t)$  and  $\\dfrac{d\\lambda}{dt}=y^{T}(t)\\dfrac{dA}{dt}x(t)$  (4)\r\n\r\n即公式 (4) 包含**两个**式子：$\\lambda(t)=y^{T}(t)A(t)x(t)$ 与 $d\\lambda/dt=y^{T}(t)(dA/dt)x(t)$，用 and 连接。\r\n\r\n【任务】当前译文只写出了 (4) 的后一式，公式 (4) 的前一式（$\\lambda(t)=y^{T}(t)A(t)x(t)$）被漏掉了。请：\r\n1. 把公式 (4) 的 math 围栏补成与原文一致的两式形式（用 `\\text{Formulas:}\\quad \\lambda(t)=y^{T}(t)A(t)x(t) \\quad\\text{and}\\quad \\frac{d\\lambda}{dt}=y^{T}(t)\\frac{dA}{dt}x(t) \\tag{4}` 或等价清晰写法）\r\n2. 同时检查正文：原文在给出 (3)(4) 之前说明了「$x$ 是 $A$ 的特征向量矩阵 $X$ 的第 $k$ 列时，$y$ 是 $A^{T}$ 的特征向量矩阵 $(X^{-1})^{T}$ 的第 $k$ 列（原因：$A=X^{-1}\\Lambda X$ 推出 $A^{T}=X^{T}\\Lambda(X^{-1})^{T}$），长度由 $X^{-1}X=I$ 归一，这要求对一切 $t$ 有 $y^{T}(t)x(t)=1$」；译文若把这层理由压缩或漏掉，按原文补全（不要展开新的解释）\r\n3. 公式 (3) 已与原文一致，不要改\r\n\r\n【补充】原文随后一句为：`To find that formula λ = yᵀAx, just multiply the first fact Ax = λx by yᵀ and use yᵀx = 1. Or multiply the second fact yᵀA = λyᵀ on the right side by x.` —— 若译文缺失或压缩，按此补全译文。\r\n\r\n【🚨 红线】\r\n− 除指出的修正外**一字不改**：其他公式、数字、例子、译者注全部原样保留\r\n− 所有 `$...$`、```math 围栏、反斜杠命令完整保留；禁止 `$$`；禁止 Unicode 上下标\r\n− 保留 `> ` blockquote 前缀与配色 span；保留页首灰色说明行\r\n− 输出**修订后的完整本页**，页首用 `@@PAGE:172@@`；不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待修订的本页译稿 ===========================\r\n@@PAGE:172@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 169，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Derivative of an Eigenvalue（特征值的导数）\r\n\r\n设矩阵 $A(t)$ 随时间 $t$ 变化，它的特征值 $\\lambda(t)$ 也随之变化。我们假定 $A(0)$ 没有重复的特征值：$A(0)$ 的每个特征值 $\\lambda(0)$，至少在短时间内都能被安全地追踪，即当 $A(0)$ 变化时，它跟随成为 $A(t)$ 的某个特征值 $\\lambda(t)$。那么它的导数 $d\\lambda/dt$ 是什么？\r\n\r\n求 $d\\lambda/dt$ 的关键，是把已知的事实组装起来。第一条事实是 $A(t)x(t)=\\lambda(t)x(t)$。第二条事实是转置矩阵 $A^T(t)$ 也有同一个特征值 $\\lambda(t)$，因为 $\\det(A-\\lambda I)=\\det(A^T-\\lambda I)$；不过 $A^T$ 很可能有另一个特征向量 $y(t)$。当 $x$ 是 $A$ 的特征向量矩阵 $X$ 的某一列时，$y$ 就是 $A^T$ 的特征向量矩阵 $(X^{-1})^T$ 的对应列（理由是由 $A=X\\Lambda X^{-1}$ 可得 $A^T=X^{-T}\\Lambda X^{T}$）。向量 $x$ 与 $y$ 的长度由 $X^{-1}X=I$ 归一化，也就是对所有 $t$ 都有 $y^T(t)x(t)=1$。\r\n\r\n下面把这几条事实并列成一行，再在下一行给出所求的 $d\\lambda/dt$ 公式。\r\n\r\n```math\r\n\\text{Facts:}\\quad A(t)x(t)=\\lambda(t)x(t),\\qquad y^T(t)A(t)=\\lambda(t)y^T(t),\\qquad y^T(t)x(t)=1 \\tag{3}\r\n```\r\n\r\n```math\r\n\\text{Formulas:}\\quad \\frac{d\\lambda}{dt}=y^T\\frac{dA}{dt}x \\tag{4}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 双正交归一化：为什么 $y^Tx=1$ 是求导的钥匙**</span>\r\n>\r\n> 这段推导解决的设计问题是：**矩阵元素随时间连续变化时，特征值怎样响应**。它是「直接把特征值当损失函数做梯度下降」这类做法的合法性来源，也是判断特征值对数据扰动有多敏感的依据。它把求导从「对特征多项式求导、算 $n$ 阶行列式」的暴力路线，换成「只算两个向量的内积」的轻量路线。\r\n>\r\n> 关键结构是左右各一个向量。右特征向量 $x$ 满足 $Ax=\\lambda x$；左特征向量 $y$ 满足 $y^TA=\\lambda y^T$，转置就是 $A^Ty=\\lambda y$。两者一般不是同一个向量，只有当 $A$ 对称时才重合。把它们配在一起的规矩是 $y^Tx=1$；注意这**不是**各自长度为 1，而是一对一的配对归一化：$x$ 拉长一倍，$y$ 就缩短一半，乘积仍然是 1。这条归一化正是后面消掉乘积法则多余两项的机关，也是 (4) 式能写成 $y^T(dA/dt)x$ 的原因。\r\n>\r\n> 跨课程连接落在「矩阵论／矩阵计算」课的条件数概念上。连接路径是：把 $x$、$y$ 各自缩成单位向量后，$|y^Tx|$ 就是两者夹角的余弦，而 $1/|y^Tx|$ 正是单个特征值的条件数——它越大，特征值在扰动下被放大的相对误差就越厉害。区别在于：对称矩阵永远有 $y=x$，条件数恒为 1，特征值最稳；非对称矩阵的左右特征向量可能几乎正交，特征值就非常脆弱。这正是「数值分析」课里病态特征值问题的来源；本节讨论的 $S$ 对称，所以可以放心地把 $y^Tx=1$ 当成一条普通归一化来用。\r\n>\r\n> 构建主义提示：这条「左右夹击」的推导可以固化成三步模板，(i) 写出右、左两个特征关系；(ii) 声明配对归一化 $y^Tx=1$；(iii) 对 $y^TAx=\\lambda$ 求导，用 (ii) 杀掉两端项。以后遇到「特征值对某个参数求导」的问题，先套这三步，再考虑细节。\r\n>\r\n> 这个结论为什么成立，值得把中间那步写开。由配对归一化 $y^Tx=1$ 可得 $y^TAx=\\lambda$，两边对 $t$ 求导，乘积法则给出三项：$\\dot y^TAx+y^T\\dot Ax+y^TA\\dot x=\\dot\\lambda$。第一项用 $Ax=\\lambda x$ 化成 $\\lambda\\dot y^Tx$，第三项用 $y^TA=\\lambda y^T$ 化成 $\\lambda y^T\\dot x$，两者相加恰好是 $\\lambda\\frac{d}{dt}(y^Tx)=0$——这正是要求 $y^Tx$ 恒为常数、而不是随便取个缩放的全部理由。剩下的中间项就是答案 $\\dot\\lambda=y^T\\dot Ax$，求特征值的导数因此只需两个内积。\r\n>\r\n> 手算一个 $2\\times2$ 验算。取 $A(t)=\\begin{pmatrix}0&t\\\\1&0\\end{pmatrix}$，特征值 $\\lambda=\\pm\\sqrt t$，对应右特征向量 $x=(\\lambda,1)^T$、左特征向量 $y=(1,\\lambda)^T$，此时 $y^Tx=2\\lambda$，把两者同除以 $\\sqrt{2\\lambda}$ 就满足配对归一化；而 $\\dot A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，算得 $y^T\\dot Ax=1/(2\\lambda)=1/(2\\sqrt t)$，与直接对 $\\sqrt t$ 求导的结果一致。注意 $t$ 变号时 $\\lambda$ 变成虚数，左右特征向量互为共轭，非对称矩阵的这份脆弱在这里已经露头。\r\n>\r\n> 跨课程连接落在凸优化（Boyd）的谱函数上。连接路径是：把上式两边同时取最大特征值，就得到 $\\nabla\\lambda_{\\max}(A)=yx^T/(y^Tx)$，这正是「特征值当损失函数」时梯度下降真正用的那个梯度。区别在于：本节处理的是沿一条光滑路径变化的单个简单特征值，处处可导；而 $\\lambda_{\\max}$ 作为矩阵的函数是凸但一般不可微的，遇到重特征值要换成次梯度，收敛性分析也从泰勒展开换成次梯度不等式。\r\n>\r\n> 数值上的量级也值得记住：单个特征值的条件数是 $1/|y^Tx|$，双精度浮点的机器精度约 $2.2\\times10^{-16}$，于是相对误差上界约为条件数乘这个数；条件数到了 $10^{8}$，有效数字就只剩八位左右。区别在于这是确定性的一阶界，不含概率，与概率论里靠分布做一阶展开的 delta 方法不是一回事。\r\n>\r\n> 命名模板：配对夹逼法。(i) 左右两个特征关系各写一行；(ii) 声明配对归一化把两者的缩放锁死；(iii) 对 $y^TAx=\\lambda$ 求导，让两端项自动抵消。凡是「特征值对某参数求导」，先套这三步。\r\n\r\n要看出为什么 $A^Ty=\\lambda y$，只需把第二条事实 $y^TA=\\lambda y^T$ 转置。要发现公式 (4)，就在第一条事实 $Ax=\\lambda x$ 的两边左乘 $y^T$，并利用 $y^Tx=1$；或者把第二条事实 $y^TA=\\lambda y^T$ 在右边乘以 $x$。\r\n\r\n现在对 $\\lambda=y^TAx$ 求导，乘积法则给出 $d\\lambda/dt$ 的三项：\r\n\r\n```math\r\n\\frac{d\\lambda}{dt}=\\frac{dy^T}{dt}Ax+y^T\\frac{dA}{dt}x+y^TA\\frac{dx}{dt} \\tag{5}\r\n```\r\n\r\n中间那一项就是正确的导数 $d\\lambda/dt$；第一项与第三项加起来为零：\r\n\r\n```math\r\n\\frac{dy^T}{dt}Ax+y^TA\\frac{dx}{dt}\r\n=\\lambda\\frac{dy^T}{dt}x+\\lambda y^T\\frac{dx}{dt}\r\n=\\lambda\\frac{d}{dt}\\bigl(y^Tx\\bigr)=0 \\tag{6}\r\n```\r\n\r\n对于 $d^2\\lambda/dt^2$ 与 $dx/dt$ 也有相应的公式，不过它们更复杂。\r\n\r\n> <span style=color:#1e8449;>**[note] 三项变一项：无重根假设到底在保证什么**</span>\r\n>\r\n> 把 $\\lambda=y^TAx$ 求导会出现三项，这是乘积法则的完整形态。中间一项 $y^T(dA/dt)x$ 就是我们要的答案；外面两项之所以能消掉，靠的不是近似，而是归一化 $y^Tx=1$ 对一切 $t$ 成立。对 $y^Tx=1$ 求导得 $d(y^Tx)/dt=0$，再利用 $Ax=\\lambda x$ 与 $y^TA=\\lambda y^T$，就能把外面两项合并成 $\\lambda\\,d(y^Tx)/dt$，于是它必然为零。请注意这里的逻辑顺序：先有 (3) 的三条事实，再用它们解释 (5) 为什么只剩中间项，而不是先猜答案再补理由。\r\n>\r\n> 先说这段推导在解决什么设计问题。我们要的是「特征值对矩阵元素的敏感度」，也就是沿一条矩阵曲线 $A(t)$ 走时，某条特征值分支 $\\lambda(t)$ 的变化率。直接对 $\\det(A(t)-\\lambda I)=0$ 求导，会得到一个含伴随矩阵的表达式，既难算也看不出左右特征向量的分工；而把 $\\lambda$ 写成双线性形式 $y^TAx$，再用归一化把两个「多余」的项钉死，敏感度就退化成一个内积。这是从第一性原理出发的必然选择：双线性形式对 $A$ 是线性的，所以 $A$ 的变化直接以线性项的形式出现；而 $x$ 与 $y$ 自身随 $t$ 的变化是「高阶干扰」，必须用约束把它压掉——$y^Tx=1$ 就是这个消音器。补一句机制细节：为什么约束要写成 $y^Tx=1$ 而不是 $y^Tx\\ne0$？因为 $\\lambda$ 本身可以写成 $y^TAx/(y^Tx)$，对它求导时分子分母都会出项，而归一化 $y^Tx=1$ 让分母成为常数，$\\lambda$ 就直接等于 $y^TAx$，三项归并的算术才干净。\r\n>\r\n> 再来一次具体验算，矩阵选 $A(t)=\\begin{bmatrix}0&1\\\\t&0\\end{bmatrix}$，这是最省事的非对称例子：迹恒为 $0$，行列式为 $-t$，特征方程是 $\\lambda^2-t=0$，故 $\\lambda=\\pm\\sqrt{t}$，在 $t>0$ 处两条分支的导数分别是 $\\tfrac{1}{2\\sqrt t}$ 与 $-\\tfrac{1}{2\\sqrt t}$。取 $t=4$：右特征向量 $x=(2,1)$ 乘常数 $c$，左特征向量 $y=(1,2)$ 乘常数 $d$，归一化要求 $cd=\\tfrac14$；代入 (4) 式得 $y^T(dA/dt)x=\\tfrac14\\times2\\times2\\times\\tfrac14$ 型的内积计算，化简后给出 $y^T(dA/dt)x=\\tfrac{1}{2\\sqrt t}$，在 $t=4$ 处正好是 $\\tfrac14$。两条路线同值，而位移定理式的交叉检验也对得上：迹的导数为 $0$，两根导数之和 $\\tfrac{1}{2\\sqrt t}-\\tfrac{1}{2\\sqrt t}=0$；行列式的导数为 $-1$，两根之积的导数 $-\\tfrac{1}{4t}$ 在 $t=4$ 处为 $-\\tfrac{1}{16}$，与 $-1/(\\lambda_1\\lambda_2)^2$ 的关系一致。这个例子的教学价值在于：它同时把「无重根」与「非对称」两个条件都摆到台面上——$t=0$ 是重根点，公式在那里失效；而 $t>0$ 上左右特征向量确实不是同一个向量，$y\\ne x$。\r\n>\r\n> 开头那句「假定没有重复的特征值」不是客套话，它是整段推导的入场券。「数学分析」课里的隐函数定理说：方程组 $F(u,v)=0$ 只要在某点处对 $v$ 的偏导矩阵可逆，就能在附近把 $v$ 解成 $u$ 的光滑函数。把 $A$ 当成 $u$、把 $(\\lambda,x)$ 当成 $v$，这个可逆条件恰好等价于 $y^Tx\\ne0$；单重特征值处它自动成立，重根处则失效。连接路径相同，区别在于：隐函数定理只保证「存在一条光滑的特征值分支」，而 (4) 式进一步算出这条分支的导数是多少。这里补一层为什么单重就保证 $y^Tx\\ne0$：对 $A$ 做相似变换化成 Jordan 形后，$\\lambda$ 对应的左右特征向量分别是左、右两块不变子空间的代表，而重数是 $1$ 时这两块的交集只有零向量，故 $y^Tx$ 不可能为零。若真出现 $y^Tx=0$，则 $y^TAx=\\lambda y^Tx=0$ 恒成立，公式右侧会退化成恒零，损失全部信息，这就是「不可逆」在几何上的样子。\r\n>\r\n> 重根处会发生什么？两条分支可以交叉成尖角，左右导数不相等，$\\lambda$ 作为矩阵元素的函数在那里不可微。最小的例子是 $A(t)=\\begin{bmatrix}1&t\\\\t&1\\end{bmatrix}$，它的两个特征值是 $1\\pm|t|$，在 $t=0$ 处留下一个尖角——这也正是例题要挑 $t=0$ 处两个特征值 2 与 0 互不相同的原因。再把上一条例子的分支在 $t=0.2$ 处代进去验一次：$\\lambda=\\pm\\sqrt{0.2}\\approx\\pm0.447214$，导数为 $\\pm1/(2\\sqrt{0.2})\\approx\\pm1.118034$；若把 $A(t)$ 的元素在 $t=0.2$ 处分别微扰 $\\pm0.001$，数值求出的差商落在 $\\pm1.118$ 三位有效数字内，(4) 式给出的一阶信息与实测一致。这个「代入一个数、再对元素微扰」的两步手算，是检验解析公式最快的手段，建议把它当成习惯动作。\r\n>\r\n> 命名模板：把上式这套「用归一化消掉乘积法则外层两项」的做法叫**归一化消项法**；把「用迹与行列式交叉核对导数之和与导数之积」的做法叫**迹行列式交叉检验法**；把「在重根处把公式降级为单侧导数、并观察尖角」的读法叫**重根尖角判据**。三个名字都能在下面的跨课程动作里直接调用。\r\n>\r\n> 跨课程连接：「凸优化」课（Boyd）里有个结论值得放在一起记：「最优化」课里，对称矩阵的最大特征值 $\\lambda_{\\max}(A)$ 是矩阵变量 $A$ 上的凸函数，它在最大特征值单重处的梯度正是 $xx^T$（$x$ 为单位特征向量）。连接路径是把这一段整条搬过去：(4) 式限制在对称矩阵并令 $y=x$，方向导数变成 $x^T(dA)x=\\langle xx^T,dA\\rangle$，内积里出现的 $xx^T$ 就是梯度；而「单重」在优化里对应「$\\lambda_{\\max}$ 在该点可微」。区别有两处：一是 (4) 式对非对称矩阵也成立，那时必须各用一个左右特征向量，只有对称情形才能把 $y$ 换成 $x$，才能谈「梯度」；二是凸优化要的是全局的凸性与次梯度，而这里只给一点的导数，重根处「次梯度是一个集合」正是尖角在凸分析里的回声。\r\n>\r\n> 构建主义提示：把 $xx^T$ 同时看成「投影矩阵」与「梯度」，是理解谱方法优化（特征值当损失、PCA 的梯度、图割松弛）最省力的一步。另外补一句 OCR 说明：本页这两行残缺较多，「$A^Ty=\\lambda y$ 由第二条事实转置而来」是按数学逻辑补回的读法；若把第一条事实 $Ax=\\lambda x$ 转置，只会得到 $x^TA^T=\\lambda x^T$，那说的是 $A^T$ 的左特征向量，给不出 $y$。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 取矩阵\r\n\r\n```math\r\nA(t)=\\begin{bmatrix}1&1\\\\1&1+2t\\end{bmatrix}\r\n```\r\n\r\n它的特征方程是 $\\lambda^2-2(1+t)\\lambda+2t=0$，两根为\r\n\r\n```math\r\n\\lambda=1+t\\pm\\sqrt{1+t^2}\r\n```\r\n\r\n在 $t=0$ 处，$\\lambda_1=2$、$\\lambda_2=0$，而 $\\lambda_1$ 与 $\\lambda_2$ 的导数分别是 $1+t/\\sqrt{1+t^2}$ 与 $1-t/\\sqrt{1+t^2}$，两者在 $t=0$ 处都等于 1。在 $t=0$ 处，对应 $\\lambda_1=2$ 的特征向量是 $x_1$ 与 $y_1$；对应 $\\lambda_2=0$ 的特征向量是 $x_2$ 与 $y_2$：\r\n\r\n```math\r\nx_1=\\begin{bmatrix}1\\\\1\\end{bmatrix},\\quad y_1=\\frac12\\begin{bmatrix}1\\\\1\\end{bmatrix},\r\n\\qquad\r\nx_2=\\begin{bmatrix}-1\\\\1\\end{bmatrix},\\quad y_2=\\frac12\\begin{bmatrix}-1\\\\1\\end{bmatrix}\r\n```\r\n\r\n方程 (5) 确认了 $d\\lambda_1/dt=1$ 与 $d\\lambda_2/dt=1$。\r\n\r\n> <span style=color:#1e8449;>**[note] 手算核对：两个导数为什么都等于 1**</span>\r\n>\r\n> 这个例子值得亲手算一遍，因为它同时验证了 (4) 式与 (5) 式。矩阵 $A(t)$ 的迹是 $2+2t$，行列式是 $2t$，所以特征方程是 $\\lambda^2-2(1+t)\\lambda+2t=0$，两根为 $1+t\\pm\\sqrt{1+t^2}$；求导得 $1\\pm t/\\sqrt{1+t^2}$，在 $t=0$ 处两根的导数都是 1。这不是巧合：两个导数之和等于迹的导数 2，而两根在 $t=0$ 处关于 $1+t$ 对称，于是各分到一半，恰为 1。\r\n>\r\n> 用 (4) 式独立核对一遍。由矩阵读出 $dA/dt=\\mathrm{diag}(0,2)$；取 $x_1=(1,1)$，配对归一化给出 $y_1=\\tfrac12(1,1)$，于是 $y_1^T(dA/dt)x_1=\\tfrac12\\times2=1$。再取 $x_2=(-1,1)$、$y_2=\\tfrac12(-1,1)$，同样得到 $y_2^T(dA/dt)x_2=\\tfrac12\\times2=1$。两条路线给出同一个答案，说明「只算内积」的公式确实抓到了全部信息。\r\n>\r\n> 跨课程连接：「最优化」课里，对称矩阵的最大特征值 $\\lambda_{\\max}(A)$ 是矩阵变量 $A$ 上的凸函数，它在最大特征值单重处的梯度就是 $xx^T$（$x$ 为单位特征向量）。连接路径是：把 (4) 式限制在对称矩阵并令 $y=x$，方向导数变成 $x^T(dA)x=\\langle xx^T,dA\\rangle$，内积里出现的 $xx^T$ 正是梯度。区别在于：(4) 式对非对称矩阵也成立，那时必须各用一个左右特征向量；只有对称情形才能把 $y$ 换成 $x$，才能谈「梯度」。构建主义提示：把 $xx^T$ 同时看成「投影矩阵」与「梯度」，是理解谱方法优化（特征值当损失、PCA 的梯度、图割松弛）最省力的一步。\r\n>\r\n> 另外补一句 OCR 说明：本页例题矩阵的元素被 OCR 打乱，这里按同页印出的特征方程 $\\lambda^2-2(1+t)\\lambda+2t=0$ 重建（迹为 $2+2t$、行列式为 $2t$），$t=0$ 处的特征值与两组特征向量都能对上，公式编号照旧。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p.169</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6392,
+            "outputTokens": 5328,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6392,
+              "outputTokens": 5328,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 6648,
+          "contextWindow": 1000000,
+          "pressureTokens": 9208,
+          "sampledSurfaceTokens": 4085
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2525,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2563,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 5504
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

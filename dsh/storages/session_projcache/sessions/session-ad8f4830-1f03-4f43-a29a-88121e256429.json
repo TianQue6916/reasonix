@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790130627236,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**扩写专家**"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**扩写专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注各自扩写到 **800-1200 个汉字**（`$...$` 公式、```math 围栏、引用不计入）。\r\n\r\n【扩写方法（照此补足）】\r\n− 补**机制解释**：先回答这一段/这个定理在解决什么设计问题，再从第一性原理展开为什么必须这样做\r\n− 补**一个具体例子或验算**：代入具体数值、小矩阵（如 $2\\times2$）、或两步手算，让结论可复算\r\n− 补**一条跨课程连接**：精确到「课程名 + 概念 + 连接路径 + 区别」，可用锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− 必要时给一个**命名模板**（如谱夹逼法能量检验法零空间吸收法）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 原有 `$...$`、```math 围栏、反斜杠命令**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda、把 `$A$` 写成 A\r\n2. 🚫 不得删除原有数学内容、公式、例子、跨课程连接——你只做加法\r\n3. 禁止 Unicode 上下标；禁止 `$$`\r\n4. 保留 `> ` blockquote 前缀（每条注整体是一个引用块，续行也要带 `> `）\r\n5. `@@LOC@@` 行必须逐字原样保留\r\n\r\n【输出格式（🚨 结构化，逐字照此）】\r\n@@NOTE@@\r\n@@LOC@@<逐字原样保留>\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（类型）：**</span> 注的正文……（续行以 `> ` 开头）\r\n@@END@@\r\n\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待扩写的注 ===========================\r\n@@NOTE@@\r\n@@LOC@@手算核对：两个导数为什么都等于 1\r\n>\r\n> 这个例子值得亲手\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 手算核对：两个导数为什么都等于 1**</span>\r\n>\r\n> 这个例子值得亲手算一遍，因为它同时验证了 (4) 式与 (5) 式。矩阵 $A(t)$ 的迹是 $2+2t$，行列式是 $2t$，所以特征方程是 $\\lambda^2-2(1+t)\\lambda+2t=0$，两根为 $1+t\\pm\\sqrt{1+t^2}$；求导得 $1\\pm t/\\sqrt{1+t^2}$，在 $t=0$ 处两根的导数都是 1。这不是巧合：两个导数之和等于迹的导数 2，而两根在 $t=0$ 处关于 $1+t$ 对称，于是各分到一半，恰为 1。\r\n>\r\n> 用 (4) 式独立核对一遍。由矩阵读出 $dA/dt=\\mathrm{diag}(0,2)$；取 $x_1=(1,1)$，配对归一化给出 $y_1=\\tfrac12(1,1)$，于是 $y_1^T(dA/dt)x_1=\\tfrac12\\times2=1$。再取 $x_2=(-1,1)$、$y_2=\\tfrac12(-1,1)$，同样得到 $y_2^T(dA/dt)x_2=\\tfrac12\\times2=1$。两条路线给出同一个答案，说明「只算内积」的公式确实抓到了全部信息。\r\n>\r\n> 跨课程连接：「最优化」课里，对称矩阵的最大特征值 $\\lambda_{\\max}(A)$ 是矩阵变量 $A$ 上的凸函数，它在最大特征值单重处的梯度就是 $xx^T$（$x$ 为单位特征向量）。连接路径是：把 (4) 式限制在对称矩阵并令 $y=x$，方向导数变成 $x^T(dA)x=\\langle xx^T,dA\\rangle$，内积里出现的 $xx^T$ 正是梯度。区别在于：(4) 式对非对称矩阵也成立，那时必须各用一个左右特征向量；只有对称情形才能把 $y$ 换成 $x$，才能谈「梯度」。构建主义提示：把 $xx^T$ 同时看成「投影矩阵」与「梯度」，是理解谱方法优化（特征值当损失、PCA 的梯度、图割松弛）最省力的一步。\r\n>\r\n> 另外补一句 OCR 说明：本页例题矩阵的元素被 OCR 打乱，这里按同页印出的特征方程 $\\lambda^2-2(1+t)\\lambda+2t=0$ 重建（迹为 $2+2t$、行列式为 $2t$），$t=0$ 处的特征值与两组特征向量都能对上，公式编号照旧。\r\n@@END@@\r\n\r\n@@NOTE@@\r\n@@LOC@@译者注（两端消项模板）：\r\n> 特征值导数与奇异值导数看起来是\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（两端消项模板）：**</span>\r\n> 特征值导数与奇异值导数看起来是两套公式，其实是同一个机械装置换了两个零件。装置的骨架是：把要研究的量写成两个向量的双线性型，求导后凡出现「向量与自身导数的内积」的项，都被单位长度约束杀掉。奇异值一侧写 $u^TAv=\\sigma$，两边对 $t$ 求导得到 $\\frac{du^T}{dt}Av+u^T\\frac{dA}{dt}v+u^TA\\frac{dv}{dt}$ 三项；用 $Av=\\sigma u$ 把首项改写成 $\\sigma\\frac{du^T}{dt}u$，用 $A^Tu=\\sigma v$ 把末项改写成 $\\sigma v^T\\frac{dv}{dt}$，而这两项分别等于 $\\frac{\\sigma}{2}\\frac{d}{dt}(u^Tu)$ 与 $\\frac{\\sigma}{2}\\frac{d}{dt}(v^Tv)$；归一化要求 $u^Tu=v^Tv=1$ 恒成立，导数只能为零，于是只剩中间项 $u^T\\frac{dA}{dt}v$。特征值一侧完全同构：式 (4) 把特征值写成双线性型 $\\lambda=y^TAx$（$Ax=\\lambda x$、$A^Ty=\\lambda y$，并约定 $y^Tx=1$），式 (5) 的三项里，首项与末项同样是「向量与自身导数」的内积，被 $y^Tx=1$ 的导数杀掉。两边的差别只有一处：特征值问题用两个不同向量的配对 $y^Tx=1$ 做归一化，奇异值问题用各自与自身的配对 $u^Tu=v^Tv=1$；对称正定矩阵把两者合并，因为那时 $y=x$、$u=v$。\r\n>\r\n> 跨课程连接：《数学分析》里的乘积法则与链式法则提供三项结构，《高等代数》（线性代数）里的特征关系 $Av=\\sigma u$、$A^Tu=\\sigma v$ 提供把首末两项「换成同向量内积」的那把钥匙；连接路径是「双线性型 → 乘积法则 → 用特征关系换位 → 认出归一化约束的导数 → 判零」。区别要说清：数学分析只教你机械求导，这里的关键一步是判断哪一项在几何上必然为零，这一步靠线性代数而不靠微积分。这个模板的收益是复利式的：今后只要目标量能写成两个单位向量的双线性型（Rayleigh 商、广义 Rayleigh 商 $\\frac{x^TAx}{x^TBx}$ 都是），同样三步就能直接写出导数，不必展开任何具体矩阵。\r\n>\r\n> 本页 OCR 修正：原文 `鬱`／`蓋` 在本节大多指矩阵 $A$（在 `伊 鬱` 中指 $v$），`伊` 指 $v$，`山 计 d` 是 third（第三）；式 (7)–(9) 按奇异值导数的标准推导重建，编号照旧；式 (9) 上方的小标题 `Derivative 0f a Singular Value` 即「奇异值的导数」。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1972,
+            "outputTokens": 6147,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1972,
+              "outputTokens": 6147,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 5326,
+          "contextWindow": 1000000,
+          "pressureTokens": 5428,
+          "sampledSurfaceTokens": 2413
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 853,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2913,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 4182
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

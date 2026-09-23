@@ -1,0 +1,481 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128888934,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 161,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 161,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 于是 $g$ 在最小值处取 $0$，这就迫使最小值点落在 $K$ 之中。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 例 1 里那个分段定义的 $g$（$z\\in K$ 取 $0$，$z\\notin K$ 取 $+\\infty$）叫指示函数（indicator function）。它是个只有两个取值的函数，看上去什么信息都没装，实际上把$x$ 必须在 $K$ 里这条硬约束**编码进了目标函数**，这正是无约束化约束问题的标准手腕，值得单独说清楚。\r\n\r\n为什么能编码成功？因为最小化时 $+\\infty$ 是不可接受的值——任何取 $+\\infty$ 的候选点都会被直接淘汰，所以极小值点只可能落在 $g(z)=0$ 的区域，也就是 $K$ 内部。验算一维例子：$K=[0,1]$，minimize $f(x)=x^2$ subject to $x\\in K$，与 minimize $f(x)+g(x)=x^2+\\iota_{[0,1]}(x)$ 的最优值都是 $0$，都在 $x=0$；把 $f$ 换成 $f(x)=(x-3)^2$，约束版本的最优值是 $4$（在 $x=1$），无约束化版本给出 $1^2+4=5$ 在 $x=1$、在 $x=3$ 处 $0+\\infty$，取最小仍是 $x=1$ 处的 $5$——最优**点**相同，最优**值**相差 $g$ 的取值，这一点在做对偶时必须小心，因为常数偏移会影响对偶函数的零点位置而不影响对偶最优解。\r\n\r\n再算 ADMM 把 (22) 分裂后的 $z$ 步。$z^{k+1}=\\arg\\min_z\\big(g(z)+\\frac{\\rho}{2}\\|x^{k+1}-z+u^k\\|^2\\big)$。因为 $g$ 只认在不在 $K$ 里，这个最小化就是：在 $K$ 内最小化那个二次距离，答案自然是 $x^{k+1}+u^k$ 在 $K$ 上的投影，即 $z^{k+1}=P_K(x^{k+1}+u^k)$。这就是正文那句一个 minimization 与一个 projection 交替的来历：**指示函数把抽象的约束最小化变成了几何上的投影**，而投影对盒子、球、非负象限这些常见 $K$ 都有 O(n) 的显式公式。\r\n\r\n把它抽象为模板并命名：**指示函数换投影法（indicator-to-projection）**。三步走：(1) 把约束 $x\\in K$ 改写成加一个指示函数 $g$；(2) 引入冗余变量 $z$ 与约束 $x=z$，让 $g$ 只作用在 $z$ 上；(3) 在 ADMM 的 $z$ 步中，$g$ 的存在使最小化退化为到 $K$ 的投影。检验要点：必须有 $K$ 闭且凸，投影才存在且唯一——若 $K$ 非凸，$P_K$ 可能多值，整个证明链条断裂。这就是正文特意补一句指示函数 $g(z)$ 是闭的、凸的的原因，它不是客套话，是逻辑必需。\r\n\r\n=== ANCHOR: 只要把 $A^T A + \\rho I$ 的 LU factors（LU 因子）存起来，第一步就简化为 back substitution（回代）。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这句话把 ADMM 与你在 CSAPP 和数值线性代数里学的两件事缝在一起：**分解一次、反复求解**，以及**条件数决定误差放大倍数**。\r\n\r\n先看前者。$x_{k+1}=(A^TA+\\rho I)^{-1}(A^Tb+\\rho(z_k-u_k))$ 在每次迭代中的系数矩阵都是同一个 $A^TA+\\rho I$，只有右端项在变。若每次迭代都老老实实做一次求逆或重新消元，代价是 $O(n^3)$；而一旦预先算出 $A^TA+\\rho I=LU$，后续每轮只解两个三角方程组 $Ly=P$、$Ux=y$，代价降到 $O(n^2)$。这正是你在 CSAPP 第 6 章见过的把重复计算提到循环外的矩阵版本：$O(n^3)$ 只付一次，$O(n^2)$ 付 $k$ 次，$k$ 是迭代轮数。Strang 在 §II.1 讲 backslash 命令时也是同一逻辑——MATLAB 的 `A\\b` 内部先分解再回代。\r\n\r\n再看后者，也就是加上 $\\rho I$ 的深层好处。$A^TA$ 本身可能奇异或接近奇异（当 $A$ 列相关、或 $n$ 很大时这很常见），此时 $A^TA$ 的条件数 $\\kappa(A^TA)=\\kappa(A)^2$ 极大，浮点消元中的舍入误差会被放大到无法接受——你在 CSAPP 第 2 章学的浮点表示只有约 $10^{-16}$ 的相对精度，若 $\\kappa\\sim10^{12}$，解出的解可能一位有效数字都不剩。而 $A^TA+\\rho I$ 把所有特征值抬高了 $\\rho$：若 $A^TA$ 的特征值是 $\\sigma_i^2$，则新矩阵的特征值是 $\\sigma_i^2+\\rho$，条件数从 $\\sigma_{\\max}^2/\\sigma_{\\min}^2$ 降到 $(\\sigma_{\\max}^2+\\rho)/(\\sigma_{\\min}^2+\\rho)$。取 $\\sigma_{\\max}=1$、$\\sigma_{\\min}=0$（奇异），条件数原本是无穷；取 $\\rho=0.01$ 后变成 $1.01/0.01=101$，一下从病态变成良态。这就是正则化在最朴素的数值层面上的意义：**不是改变问题的解，而是改变求解问题的难度**。\r\n\r\n区别要讲明：$\\rho$ 增大确实改善了条件数、让每步更快更稳，但代价是增广目标里惩罚项权重变大，迭代被拉向先满足约束，收敛到高精度所需的轮数反而可能变多。这正是正文反复强调ADMM 达到很高精度可能很慢、但达到可接受精度快得惊人的数值根源——不是玄学，是条件数与收敛速率的交换。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 161,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 161,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 161,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 161,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 161,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 12399,
+            "outputTokens": 18085,
+            "cacheReadTokens": 434176,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 30,
+            "buckets": {
+              "uncachedInputTokens": 220,
+              "outputTokens": 2494,
+              "cacheReadTokens": 25728,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 161,
+        "val": {
+          "surfaceTokens": 15381,
+          "contextWindow": 1000000,
+          "pressureTokens": 25948,
+          "sampledSurfaceTokens": 14249
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 161,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 925,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 375,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 33,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 105,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 119,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 183,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 90,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 406,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 108,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 179,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 111,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 119,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 101,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 325,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 311,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 214,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 357,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 79,
+              "heuristicTokens": 1695,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 37,
+              "system": false
+            },
+            {
+              "seq": 84,
+              "heuristicTokens": 62,
+              "system": false
+            },
+            {
+              "seq": 86,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 89,
+              "heuristicTokens": 488,
+              "system": false
+            },
+            {
+              "seq": 91,
+              "heuristicTokens": 29,
+              "system": false
+            },
+            {
+              "seq": 94,
+              "heuristicTokens": 695,
+              "system": false
+            },
+            {
+              "seq": 96,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 99,
+              "heuristicTokens": 808,
+              "system": false
+            },
+            {
+              "seq": 101,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 104,
+              "heuristicTokens": 787,
+              "system": false
+            },
+            {
+              "seq": 106,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 109,
+              "heuristicTokens": 676,
+              "system": false
+            },
+            {
+              "seq": 111,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 114,
+              "heuristicTokens": 201,
+              "system": false
+            },
+            {
+              "seq": 116,
+              "heuristicTokens": 53,
+              "system": false
+            },
+            {
+              "seq": 119,
+              "heuristicTokens": 211,
+              "system": false
+            },
+            {
+              "seq": 121,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 124,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 126,
+              "heuristicTokens": 537,
+              "system": false
+            },
+            {
+              "seq": 129,
+              "heuristicTokens": 138,
+              "system": false
+            },
+            {
+              "seq": 131,
+              "heuristicTokens": 75,
+              "system": false
+            },
+            {
+              "seq": 134,
+              "heuristicTokens": 147,
+              "system": false
+            },
+            {
+              "seq": 136,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 139,
+              "heuristicTokens": 104,
+              "system": false
+            },
+            {
+              "seq": 141,
+              "heuristicTokens": 31,
+              "system": false
+            },
+            {
+              "seq": 144,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 146,
+              "heuristicTokens": 507,
+              "system": false
+            },
+            {
+              "seq": 149,
+              "heuristicTokens": 180,
+              "system": false
+            },
+            {
+              "seq": 151,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 154,
+              "heuristicTokens": 99,
+              "system": false
+            },
+            {
+              "seq": 156,
+              "heuristicTokens": 91,
+              "system": false
+            },
+            {
+              "seq": 159,
+              "heuristicTokens": 1132,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 14237
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 161,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 161,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 158,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 160
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 161,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 161,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 161,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 161,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 161,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 161,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

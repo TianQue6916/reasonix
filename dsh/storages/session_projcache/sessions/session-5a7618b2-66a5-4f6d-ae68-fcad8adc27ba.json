@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790149367171,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_243]\nIV.6. Graphs and Laplacians and Kirchhoff's Laws\n\n241\n\n**Kirchhoff's Current Law**\n\nThe equation \\(Ax = 0\\) is not very interesting. All its solutions are constant vectors. The equation \\(A^{\\mathrm{T}}y = 0\\) is extremely interesting: a central equation of applied mathematics. We need to see what it means and to find a full set of \\(n - m + 1\\) independent solutions.\n\n**[Boxed Content]**\n**Kirchhoff's Current Law**\n**KCL is \\(A^{\\mathrm{T}}y = 0\\)**\n\\[\n\\begin{bmatrix} -1 & -1 & 0 & 0 & 0 & -1 \\\\ 1 & 0 & -1 & -1 & 0 & 0 \\\\ 0 & 1 & 1 & 0 & -1 & 0 \\\\ 0 & 0 & 0 & 1 & 1 & 1 \\end{bmatrix} \\begin{bmatrix} y_1 \\\\ y_2 \\\\ y_3 \\\\ y_4 \\\\ y_5 \\\\ y_6 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix} . \\tag{2}\n\\]\n\nFirst, count the solutions. With \\(m = 6\\) unknown \\(y\\)'s and \\(r = 3\\) independent equations, there are \\(6 - 3\\) independent solutions. The nullspace of \\(A^{\\mathrm{T}}\\) has dimension \\(m - r = 3\\). We want to identify a basis for that subspace of \\(\\mathbf{R}^6\\).\n\nWhat is the meaning of the four equations in Kirchhoff's Current Law \\(A^{\\mathrm{T}}y = 0\\)? Each equation is a balance law for currents going in or out of a node:\n\n**KCL = Balance of currents : Flow into each node equals flow out from that node.**\n\nAt node 4, the last equation in (2) is \\(y_4 + y_5 + y_6 = 0\\). The total net flow into node 4 is zero (or electrons would pile up). This balance of currents or forces or money occurs everywhere in engineering and science and economics. It is the balance equation of equilibrium.\n\n**The key to solving \\(A^{\\mathrm{T}}y = 0\\) is to look at the small loops in the graph.** A loop is a cycle of edges—a path that comes back to the start. The first graph in Figure IV.4 has three small loops. Going around those loops are these edges :\n\n**loop 1 :** Forward on edge 2, backward on edges 3 and 1\n**loop 2 :** Forward on edges 3 and 5, backward on edge 4\n**loop 3 :** Forward on edge 6, backward on edges 5 and 2\n\n*Flow around a loop automatically satisfies Kirchhoff's Current Law.* At each node in the loop, the flow into the node goes out to the next node. The three loops in the graph produce three independent solutions to \\(A^{\\mathrm{T}}y = 0\\). Each \\(y\\) gives six edge currents around a loop:\n\n\\[\nA^{\\mathrm{T}}y = 0 \\quad \\text{for} \\quad y_1 = \\begin{bmatrix} -1 \\\\ 1 \\\\ -1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix} \\quad \\text{and} \\quad y_2 = \\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\\\ -1 \\\\ 1 \\\\ 0 \\end{bmatrix} \\quad \\text{and} \\quad y_3 = \\begin{bmatrix} 0 \\\\ -1 \\\\ 0 \\\\ 0 \\\\ -1 \\\\ 1 \\end{bmatrix} . \\tag{3}\n\\]\n\nThere are no more independent solutions even if there are more (larger) loops! The large loop around the whole graph is exactly the sum of the three small loops. So the solution \\(y = (-1, 0, 0, -1, 0, 1)\\) for that outer loop is exactly the sum \\(y_1 + y_2 + y_3\\).\n\n### [原文 page_244]\n**242** \\hfill **Special Matrices**\n\nThe subspace dimensions lead to a fundamental identity in topology (discovered by Euler):\n\n\\[\n\\boxed{\\text{(Number of nodes)} - \\text{(Number of edges)} + \\text{(Number of loops)} = (n) - (m) + (m - n + 1) = 1.} \\tag{4}\n\\]\n\nThe reader will already know that a tree has no loops. Our second and third graphs were trees with 4 nodes and 3 edges. Then Euler’s count is \\((4) - (3) + (0) = 1\\). And \\(A^T y = 0\\) has only the solution \\(y = 0\\). The rows of \\(A\\) are independent for every tree.\n\n\\[\nA_2 = \\begin{bmatrix} -1 & 1 & 0 & 0 \\\\ -1 & 0 & 1 & 0 \\\\ 0 & -1 & 0 & 1 \\end{bmatrix} \\quad \\text{and} \\quad A_3 = \\begin{bmatrix} -1 & 1 & 0 & 0 \\\\ -1 & 0 & 1 & 0 \\\\ -1 & 0 & 0 & 1 \\end{bmatrix}.\n\\]\n\n## The \\(A^T C A\\) Framework in Applied Mathematics\n\nGraphs are perfect examples for three equations that I see everywhere in engineering and science and economics. Those equations describe a system in *steady state equilibrium*. For flows in an electrical network (currents along the six edges of our first graph) the three equations connect the voltages \\(x = (x_1, x_2, x_3, x_4)\\) at the four nodes and the direct currents \\(y = (y_1, y_2, y_3, y_4, y_5, y_6)\\) along the six edges.\n\n| | | |\n| :--- | :---: | :--- |\n| **Voltage differences** | \\(e = Ax\\) | \\(e_1 = \\text{voltage at end node 2}\\) |\n| **across edges** | | \\(-\\text{ voltage at start node 1}\\) |\n| **Ohm's Law** | \\(y = Ce\\) | \\(\\text{current } y_1 = c_1 \\text{ times } e_1\\) |\n| **on each edge** | | \\(= (\\text{conductance})(\\text{voltage})\\) |\n| **Kirchhoff's Law** | \\(f = A^T y\\) | \\(\\text{current sources } f \\text{ into nodes}\\) |\n| **with current sources** | | \\(\\text{balance the internal currents } y\\) |\n\nThose three equations \\(e = Ax\\) and \\(y = Ce\\) and \\(f = A^T y\\) combine into one equilibrium equation \\(A^T C A x = f\\). This is the form of so many fundamental laws. The beauty is in the appearance of both \\(A\\) and \\(A^T\\). The result is that the governing matrix \\(A^T C A\\) is symmetric. \\(A^T C A\\) is positive semidefinite because \\(Ax = 0\\) has the all-ones solution \\(x = (1, \\ldots, 1)\\).\n\nWith a boundary condition such as \\(x_4 = 0\\) (which grounds node 4 and removes the last column of \\(A\\)) the reduced matrix \\(A^T C A\\) becomes symmetric positive definite.\n\nThe grounded network has \\(n - 1 = 3\\) unknown voltages (\\(x_4 = 0\\) is known)\n\nThe reduced incidence matrix \\(A\\) is now 6 by 3 : full rank 3.\n\nThe system matrix \\(A^T C A\\) is \\((3 \\times 6)(6 \\times 6)(6 \\times 3) = 3 \\times 3\\)\n\nThe energy is positive: \\(x^T A^T C A x = (Ax)^T C(Ax) > 0\\) if \\(x \\neq 0\\)\n\nNow \\(A^T C A\\) is symmetric and invertible and positive definite.\n\n【当前译文】\n@@PAGE:243@@\n<!-- page 243 -->\n> <span style=color:#7f8c8d;>本页为书页 241，§IV.6 Graphs and Laplacians and Kirchhoff's Laws（图、拉普拉斯矩阵与基尔霍夫定律）正文；页眉与页码为重复元素，不译。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声严重：`蓋`／`风` 为 $A$，`刊` 为 the，`AT` 依上下文为 $A^{T}$，`T = 0` 为 $A^{T}y = 0$，`1V.6` 为 IV.6，`一 襯 + 1` 为 $m - n + 1$，`（ 2 ）` 为公式编号 (2)，`鼐 ow`／`且 ow`／`FIow` 为 flow，`100p`／`op`／`№ op`／`0 砒记纱` 为 loop，`p 佣 谳 里 e definite` 为 positive definite。电流向量的字母取自本页 `6 unknown y's` 一句，全书（含书页 243 的 $A^{T}y = 0$ 与 Problem Set IV.6 第 5、7 题）一致记作 $y$；公式 (2) 的碎片按 $A^{T}$ 为 $4 \\times 6$（节点 × 边）重建，最后一个方程（节点 $4$）恰为 $y_4 + y_5 + y_6 = 0$。公式 (3) 的三个向量 OCR 只剩孤立数字，按 $A^{T}y = 0$ 的独立解重建；回路 1 的走法 OCR 词序已乱（`Forw ard on edge 2 ， b ackward 0n edges 3 and 1`），依 (3) 的第一列修正为「沿边 $1$ 与边 $2$ 正向走、沿边 $3$ 反向走」（三条回路分别是三角形 $1$-$2$-$3$、$1$-$3$-$4$、$2$-$3$-$4$，三者之和正是外回路 $1$-$2$-$4$）。页末外回路向量的 OCR 首项 `一 1` 为噪点：三条回路解之和为 $(1, 0, 0, -1, 0, 1)$，且它才是 $A^{T}y = 0$ 的解（$(-1,0,0,-1,0,1)$ 不满足节点 $1$ 的方程）。（原书此处 OCR 残缺）本批 notes_n3b.md 的同页译者注沿用 `$f$` 作为电流向量记号，本页与 page_244、page_245 均用 `$y$`，此处依译文正文统一为 `$y$`。</span>\n<span style=color:#2471a3;>**[section]**</span>\nKirchhoff's Current Law（基尔霍夫电流定律）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.6, p.241</span>\n方程 $Ac = 0$ 并不十分有趣：它的所有解都是常向量。\n而方程 $A^{T}y = 0$ 则极其有趣——它是应用数学的一个中心方程。\n我们需要看清它的含义，并找出全部 $n - m + 1$ 个独立解。\n<span style=color:#2471a3;>**[theorem]**</span>\n<span style=color:#c0392b;>**Kirchhoff's Current Law（基尔霍夫电流定律）**</span>\n基尔霍夫电流定律（KCL）就是 $A^{T}y = 0$：\n```math\nA^{T}y =\n\\begin{bmatrix}\n-1 & -1 & 0 & 0 & 0 & -1\\\\\n1 & 0 & -1 & -1 & 0 & 0\\\\\n0 & 1 & 1 & 0 & -1 & 0\\\\\n0 & 0 & 0 & 1 & 1 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\ny_1\\\\ y_2\\\\ y_3\\\\ y_4\\\\ y_5\\\\ y_6\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0\\\\ 0\\\\ 0\\\\ 0\n\\end{bmatrix}\n\\tag{2}\n```\n首先数一数解的个数。\n有 $m = 6$ 个未知量 $y$，而独立方程只有 $r = 3$ 个，于是有 $6 - 3$ 个独立解。\n$A^{T}$ 的零空间维数是 $m - r = 3$。\n我们要为 $\\mathbf{R}^6$ 的这个子空间找出一组基。\n那么基尔霍夫电流定律 $A^{T}y = 0$ 中这四个方程的含义是什么？\n每一个方程都是关于流入或流出某个节点的电流的平衡定律（balance law）：\n基尔霍夫电流定律即电流的平衡——流入每个节点的流量等于从该节点流出的流量。\n在节点 $4$ 处，(2) 中的最后一个方程是 $y_4 + y_5 + y_6 = 0$：流入节点 $4$ 的净流量为零，否则电子就会堆积（pile up）起来。\n这种电流、力或金钱的平衡在工程、科学与经济学中处处出现，它就是平衡态（equilibrium）的平衡方程。\n求解 $A^{T}y = 0$ 的关键在于观察图中的小回路。\n回路（loop）是由若干条边组成的环（cycle）——一条回到起点的路径。\n图 IV.4 中的第一个图有三个小回路。沿着这些回路走一圈涉及以下各边：\nloop 1：沿边 $2$ 正向走，沿边 $3$ 与边 $1$ 反向走。\nloop 2：沿边 $3$ 与边 $5$ 正向走，沿边 $4$ 反向走。\nloop 3：沿边 $6$ 正向走，沿边 $5$ 与边 $2$ 反向走。\n让流量绕着每个回路环行，就得到基尔霍夫电流定律的解。\n在回路中的每个节点处，流入该节点的流量又流向下一节点。\n图中的这三个回路给出 $A^{T}y = 0$ 的三个独立解，每一个都给出绕某个回路的六条边电流：\n```math\ny_1 =\n\\begin{bmatrix} -1 \\\\ 1 \\\\ -1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}\n\\ \\text{for loop 1},\\qquad\ny_2 =\n\\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\\\ -1 \\\\ 1 \\\\ 0 \\end{bmatrix}\n\\ \\text{for loop 2},\\qquad\ny_3 =\n\\begin{bmatrix} 0 \\\\ -1 \\\\ 0 \\\\ 0 \\\\ -1 \\\\ 1 \\end{bmatrix}\n\\ \\text{for loop 3.}\n\\tag{3}\n```\n即使存在更多（更大）的回路，也不会有更多的独立解！\n绕整个图的大回路恰好是这三个小回路之和。\n因此，那个外回路的解 $y = (-1, 0, 0, -1, 0, 1)$ 正好等于 $y_1 + y_2 + y_3$。\n> <span style=color:#1e8449;>**[note] 译者注：** 基尔霍夫电流定律 $A^{T}y=0$ 就是线性代数——回路空间与四个基本子空间\n> <span style=color:#1e8449;>这一页是 Strang 把图论和线性代数焊在一起的地方，值得把机制彻底讲透。图有 $m$ 条边、$n$ 个节点，关联矩阵 $A$ 是 $m\\times n$：第 $i$ 行对应第 $i$ 条边，从节点 $j$ 到节点 $k$ 的边在第 $j$ 列写 $-1$、第 $k$ 列写 $+1$。于是**每一行之和为零**，等价地 $A\\mathbf{1}=\\mathbf{0}$：常向量 $\\mathbf{1}=(1,\\dots,1)$ 在零空间里。为什么？因为每一行都在说“一条边的两端”，两端相加自然抵消。</span>\n> <span style=color:#1e8449;>方程 $A^{T}y=0$ 是基尔霍夫电流定律，它的第 $i$ 个方程说的是“流入／流出节点 $i$ 的净流量为零”。这一页最漂亮的观察是解的结构：**6 个未知数、只有 4 个方程、其中只有 3 个独立（因为 4 个方程相加恒为 0），所以解空间维数是 $6-3=3$；而它的基恰好是图中的 3 个小回路上的绕行电流。** 机制一目了然：沿着一个环走一圈，每到一个节点，“进来多少”和“出去多少”自动相等，守恒律自动满足——所以每个回路都白送一个解。反过来，任何守恒流都能拆成若干回路的叠加，所以回路给全了。这就是本页那句“绕整个图的大回路恰好是这三个小回路之和”的含义：外圈回路的解等于那三个小回路解的和，它不提供新的独立方向（三个小回路解之和是 $(1,0,0,-1,0,1)$，正好又落在这三个方向张成的平面里）。</span>\n> <span style=color:#1e8449;>现在把这个结论翻译成 6.042J 的语言。连通图的边数 $m$、节点数 $n$、独立回路数 $m-n+1$ 之间的关系，你在离散数学里已经用过：**树是连通且无环的图，恰好有 $n-1$ 条边**。这正对应本书的两个极端：树的时候 $m-n+1=0$，$A^{T}y=0$ 只有 $y=0$，也就是“树对应的那些行线性无关”（书页 240 即 page_242 的那两棵树就是这种情形）；完全图的时候独立回路最多。**每往树上加一条边，就多出恰好一个独立回路，零空间维数就加一。** 于是离散数学里的计数等式 $m-n+1$，在矩阵语言里就是零空间维数 $\\dim N(A^{T})$。维数公式不是背出来的，它是“数环”。</span>\n> <span style=color:#1e8449;>四子空间的完整对应（Strang 的核心洞察）可以列成一张表：**$N(A)$** 是 $\\mathbf{1}$ 张成的一条直线（1 维）——所有节点取同一个电位，物理上对应“整体加一个常数电压，什么都不变”；**$C(A^{T})$**（行空间，$n-1$ 维）是满足 $c_1+\\cdots+c_n=0$ 的向量，即所有“各节点电位差可以取到的形态”，也是“在一棵生成树上流动的电流”，因为 $A$ 的 $n-1$ 条独立行正好选出图的一棵树；**$C(A)$**（$n-1$ 维）是所有“可以写成势差”的边向量，即每条边上的电压降；**$N(A^{T})$**（$m-n+1$ 维）是所有守恒的流，基是回路。注意维数对偶：$\\dim C(A)+\\dim N(A^{T})=(n-1)+(m-n+1)=m$——整个 $m$ 维边空间恰好被分成“梯度型（势差）”与“守恒型（回路流）”两部分。</span>\n> <span style=color:#1e8449;>还有一个可以带走的算法直觉：在 6.006 里判断连通性用 BFS／DFS，$O(m+n)$；在这里等价的动作是“从 $A$ 里挑出 $n-1$ 条线性无关的行”，挑法就是选一棵生成树。**“选生成树”和“给矩阵选一组行基”是同一个动作的两种说法。** 顺带，本页提醒我们：这些边并不是有向的，$-1$ 在 $+1$ 之前只是记账约定；流可正可负，所以反转某条边的记号只会翻转 $y$ 的符号，不改变 $A^{T}A$（这一点在 Problem Set IV.6 的第 2 题被点明，见 page_246／书页 244）。</span>\n> <span style=color:#1e8449;>可迁移结论：**以后凡遇到“每行零和”的矩阵，先别急着做消元；问它的零空间是不是“守恒律”、行空间是不是“势差”、以及“独立守恒量有多少个”能否用一个计数公式（这里是 $m-n+1$）直接写出来。** 守恒律 + 势，是所有网络型问题的统一骨架。</span>\n\n@@PAGE:244@@\n<!-- page 244 -->\n> <span style=color:#7f8c8d;>本页为书页 242，§IV.6 正文续页；页眉 “Special Matrices” 与页码为重复元素，不译。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 `a42` 为页码噪声，`蓋` 为 $A$，`AT` 为 $A^{T}$，`rc 0 ， s Law` 为 Kirchhoff's Law，`T = 0` 为 $A^{T}y = 0$，`山 at` 为 that，`ÄTCA` 为 $\\hat{A}^{T}C\\hat{A}$，`p 佣 谳 里 e definite` 为 positive definite，`一 1 = 3` 为 $n - 1 = 3$；OCR 的 `Ac = 0` 与 `(Ac)TC(Ac)` 依上下文重建为 $Au = \\mathbf{0}$ 与 $(Au)^{T}C(Au)$（电压向量在本页记作 $u$，与 `04 = 0` 即 $u_4 = 0$ 一致）。Euler 恒等式的三项顺序按子空间维数关系重建：$\\dim N(A^{T}) = m - n + 1$ 与 $n - 1 = m - \\dim N(A^{T})$ 给出「节点数 $-$ 边数 $+$ 回路数 $= 1$」。第三个方程的 OCR 只留下 `f =`，按「三式合并为 $A^{T}CAu = f$」重建为 $A^{T}w = f$（$w$ 为各边电流，$f$ 为注入节点的电流源）。</span>\n子空间的维数导出了拓扑学中一个基本恒等式（由 Euler 发现）：\n```math\n(\\text{Number of nodes}) - (\\text{Number of edges}) + (\\text{Number of loops}) = (n) - (m) + (m - n + 1) = 1 .\n\\tag{4}\n```\n读者已经知道，树没有回路。\n我们的第二个和第三个图都是树，各有 $4$ 个节点与 $3$ 条边。\n此时 Euler 计数为 $4 - 3 + 0 = 1$。\n而 $A^{T}y = 0$ 只有解 $y = 0$：对每一棵树，$A$ 的各行都是线性无关的。\n```math\nA_2 =\n\\begin{bmatrix}\n-1 & 1 & 0 & 0\\\\\n-1 & 0 & 1 & 0\\\\\n0 & -1 & 0 & 1\n\\end{bmatrix}\n\\quad\\text{and}\\quad\nA_3 =\n\\begin{bmatrix}\n-1 & 1 & 0 & 0\\\\\n-1 & 0 & 1 & 0\\\\\n-1 & 0 & 0 & 1\n\\end{bmatrix} .\n```\n<span style=color:#2471a3;>**[section]**</span>\nThe $A^{T}CA$ Framework in Applied Mathematics（应用数学中的 $A^{T}CA$ 框架）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.6, p.242</span>\n图是三个方程的绝佳范例，我在工程、科学与经济学中处处见到它们。\n这些方程描述一个处于稳态（steady state）平衡的系统。\n对于电网中的流动（flow，即我们第一个图中沿六条边的电流），这三个方程把四个节点上的未知 voltage（电压）$x = (x_1, x_2, x_3, x_4)$ 与沿六条边的六个未知 direct currents（电流）$y = (y_1, y_2, y_3, y_4, y_5, y_6)$ 联系起来。\n```math\n\\text{Voltage differences across edges}\\qquad e = Ax\n```\n```math\n\\text{Ohm's Law on each edge}\\qquad y = Ce\n```\n```math\n\\text{Kirchhoff's Law with current sources}\\qquad f = A^{\\mathrm{T}}y\n```\n（$e_1$ = voltage at end node 2 − voltage at start node 1；current $y_1 = c_1$ times $e_1$ = (conductance)(voltage)；current sources $f$ into nodes balance the internal currents $y$。）\n其中 $e_1 = x_2 - x_1$ 是终点节点 $2$ 的 voltage（电压）减去起点节点 $1$ 的电压，即边 $1$ 两端的电压差；电流 $y_1 = c_1 e_1$ 等于 conductance（电导）乘以电压。（续）电导）（电压）；流入节点的电流源与内部电流相平衡。\n这三个方程 $e = Ax$、$y = Ce$ 与 $f = A^{\\mathrm{T}}y$ 合为一个 equilibrium equation（平衡方程）$A^{\\mathrm{T}}CAx = f$。\n这正是如此众多基本定律的形式。\n其美妙之处在于 $A$ 与 $A^{\\mathrm{T}}$ 同时出现。\n结果是：governing matrix（控制矩阵）$A^{\\mathrm{T}}CA$ 是对称的。\n$A^{\\mathrm{T}}CA$ 是 positive semidefinite（半正定）的，因为 $Ax = \\mathbf{0}$ 有全 $1$ 解 $x = (1, \\ldots, 1)$。（续）\n若再加上一个 boundary condition（边界条件），例如 $x_4 = 0$（这使节点 $4$ grounded（接地），并去掉 $A$ 的最后一列），则约化矩阵 $A^{\\mathrm{T}}CA$ 变成 symmetric positive definite（对称正定）。\n接地网络有 $n - 1 = 3$ 个未知电压（$x_4 = 0$ 是已知的）。\n约化后的关联矩阵现在是 $6 \\times 3$：满秩（full rank）为 $3$。\n系统矩阵 $\\hat{A}^{T}C\\hat{A}$ 的规模是 $(3 \\times 6)(6 \\times 6)(6 \\times 3) = 3 \\times 3$。\n能量为正：$x^{\\mathrm{T}}A^{\\mathrm{T}}CAx = (Ax)^{\\mathrm{T}}C(Ax) > 0$，只要 $x \\ne 0$。\n现在 $A^{\\mathrm{T}}CA$ 既对称、可逆，又是 positive definite（正定）的。\n\n现在输出修订后的译文全文（从 `@@PAGE:243@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6679,
+            "outputTokens": 23499,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6679,
+              "outputTokens": 23499,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 21213,
+          "contextWindow": 1000000,
+          "pressureTokens": 10519,
+          "sampledSurfaceTokens": 5346
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3786,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 15867,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 20069
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -118,7 +118,15 @@
     {
       "root": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\文件翻译2",
       "topicOrder": [
+        "topic_20260923-013241_ef815bcbfcc18c03",
         "topic_20260906-113552_1217c8f7a578c19c"
+      ],
+      "groups": []
+    },
+    {
+      "root": "C:\\Users\\27063\\AppData\\Local\\reasonix\\worktrees\\5837d8e9c978de32\\d5db8375b0\\global-workspace",
+      "topicOrder": [
+        "topic_20260923-074338_e997fb401f4972f9"
       ],
       "groups": []
     }

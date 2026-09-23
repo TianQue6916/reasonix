@@ -1,0 +1,211 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128895827,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 26,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 1 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 当 $A$ 具有 restricted isometry property（受限等距性质，RIP）且 $\\delta_S < 0.1$ 时，这一结论成立： ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> RIP 的不等式是 $(1-\\delta_S)\\|x\\|^2\\le\\|Ax\\|^2\\le(1+\\delta_S)\\|x\\|^2$（对一切 $S$-稀疏的 $x$），它读起来像一个近似保长的声明，但要理解它为什么恰好写成这个形状，得分三层看。第一层是形状本身：两边把 $\\|Ax\\|^2$ 夹在 $\\|x\\|^2$ 附近，也就是说 $A$ 限制在只有 $S$ 个坐标非零的那些子空间上时是良态的。第二层回答为什么只要求稀疏向量：$n\\gg m$ 时 $A$ 必有非平凡的零空间，维数是 $n-m$，所以对一般向量 $\\|Ax\\|$ 可以任意小，全局保长是根本不可能的要求；稀疏性把 $A$ 的作用范围收缩成所有 $S$ 元支撑子空间的并集，RIP 只在这个并集上要求良态，把一个不可能完成的全局任务换成一个可行的局部任务。第三层是稳定性从哪来：设 $x$ 与 $x'$ 都是 $S$-稀疏且 $\\|Ax-Ax'\\|_2\\le\\varepsilon$，令 $d=x-x'$，则 $d$ 的非零坐标至多 $2S$ 个，用 $\\delta_{2S}$ 那一档的 RIP 得 $\\|Ad\\|_2^2\\ge(1-\\delta_{2S})\\|d\\|_2^2$，于是 $\\|x-x'\\|_2\\le\\varepsilon/\\sqrt{1-\\delta_{2S}}$：数据里的噪声被一个常数倍放大，而不是被可能任意大的条件数放大——这就是稳定恢复的全部含义，也解释了为什么含噪情形要把基追踪换成式 (3) 那种带 $\\|Ax-b\\|_2\\le\\varepsilon$ 的 LASSO。把这个思路抽象成模板，命名**能量夹逼法**：把能不能恢复、误差多大翻译成一条双边的能量不等式，之后所有估计都靠这条不等式来回搬运，中间只用三角不等式。它对你并不陌生——Strang 讲最小二乘与条件数时就是用 $\\sigma_{\\min}$、$\\sigma_{\\max}$ 把解误差夹住的，RIP 只是把它从整个矩阵推广到所有稀疏列子矩阵：等价地说，要求 $\\sigma_{\\min}(A_S)^2\\ge1-\\delta_S$ 且 $\\sigma_{\\max}(A_S)^2\\le1+\\delta_S$ 对所有 $|S|\\le S$ 一致成立，而不是要求 $A$ 自己良态（$n>m$ 时 $\\sigma_{\\min}(A)=0$，那个要求没救）。至于 $\\delta_S$ 为什么取 0.1 这种小常数：它只是一个充分条件的余量，因为证明里每用一次三角不等式就要牺牲一个 $(1+\\delta)$ 或 $1/(1-\\delta)$ 的因子，而稀疏恢复的论证要在少数大分量和众多小分量之间反复搬运误差，通常要放大三五次，累积之后只有 $\\delta$ 足够小才留得下空间；你可以把它类比成迭代法的收敛条件 $\\rho<1$——不是自然常数，而是多个不等式累积后剩下的余量，后续文献把常数放宽到了 0.2 一类的水平，正说明 0.1 并非必要。最后一个问题：随机矩阵为什么以压倒性概率满足 RIP？固定一个支撑集 $S$ 时，$\\mathbb{E}\\|Ax\\|_2^2=\\|x\\|_2^2$，偏差超界的概率由集中不等式（6.042J 里 Chernoff 界的那套指数矩估计）压到 $e^{-cm}$ 以下；再对所有稀疏支撑同时成立，就要上联合界，而 $S$ 元支撑的个数是 $\\binom{n}{S}$，取对数用 Stirling 公式得 $\\approx S\\log(n/S)$，所以必须 $m\\gtrsim S\\log(n/S)$ 才能把这些坏事件全部盖住。命名这个组合拳：**集中不等式 × 联合界**。它也顺带解释了为什么门槛里出现的是 $\\log(n/S)$ 而不是 $\\log n$——真正需要数的自由度是稀疏支撑有多少种，而不是信号有多少维。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 26,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 26,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 26,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2635,
+            "outputTokens": 5057,
+            "cacheReadTokens": 17152,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 3,
+            "buckets": {
+              "uncachedInputTokens": 222,
+              "outputTokens": 1433,
+              "cacheReadTokens": 8448,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 26,
+        "val": {
+          "surfaceTokens": 5095,
+          "contextWindow": 1000000,
+          "pressureTokens": 8670,
+          "sampledSurfaceTokens": 4403
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 26,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 738,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 524,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 1553,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 692,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 3951
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 26,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 23,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 25
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 26,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 26,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 26,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

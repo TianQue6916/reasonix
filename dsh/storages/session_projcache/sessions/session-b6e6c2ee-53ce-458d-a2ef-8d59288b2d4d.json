@@ -1,0 +1,231 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128794155,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 36,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 36,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 随机化的 $m\\times k$ 因子 $Y$ 就是 $AG$，其中 $G$ 是 $n\\times k$ 的 Gaussian random matrix（高斯随机矩阵）。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（拓展前沿）：**</span> 这里给出的是把随机化线性代数落到实处的两段式流程：先用随机草图 $Y=AG$ 把 $n$ 维列空间压到 $k$ 维，再在 $k\\times n$ 的小矩阵上做确定性的精确分解。为什么 $Y$ 可靠？两点从你已知的概念就能搭出来。其一，$G$ 是 $n\\times k$ 的高斯矩阵，任意 $k$ 列几乎必然线性无关，故 $\\operatorname{rank}(Y)=k$ 以概率 $1$ 成立（退化只发生在行列式恰为零这一零测集上）；其二，对任意固定向量 $x$，$E\\big[\\|Gx\\|^{2}\\big]=\\|x\\|^{2}$（元素方差为 $1$，与上一页式 (12) 同理），所以 $Y$ 在期望意义下保留了 $A$ 在每个方向上的能量。于是 $Y$ 的列空间以高概率抓住 $A$ 的前 $k$ 个奇异方向——这就是随机投影几乎必然给出一个好的 $k$ 维列空间的来源。\r\n\r\n把它命名为**草图 + 精确收尾两段式**（sketch-and-solve）：对任何全局最优分解太贵的问题，第一步用随机线性映射把规模从 $n$ 降到 $k$（一次乘法，代价 $O(mnk)$，可流式、可单遍），第二步在 $O(k)$ 规模上做精确算法（$Y=QR$ 是 $O(mk^{2})$，$Q^{T}A=UDV^{T}$ 是 $O(nk^{2})$），最后把因子拼回原尺寸。复杂度验算：$m=10^{6}$、$n=10^{4}$、$k=100$ 时，完整 SVD 约 $2mn^{2}\\approx2\\times10^{14}$ flops，而随机路径约 $mnk=10^{12}$ flops（加上 $nk^{2}=10^{8}$ 可忽略），快了约两个数量级，而且 $A$ 只被触摸一次。这与 6.006 里先用廉价随机步骤砍规模、再用确定性算法收尾的思路（快速选择、随机化快排）是同一种复杂度再分配，区别是这里没有递归、只有两段，而且随机步骤的风险不是概率性失败，而是数值病态。\r\n\r\n病态从哪来？single-pass 意味着每读到一个元素就得立刻更新草图，无法回头把已算出的方向重新正交化（那是经典 Gram-Schmidt 稳定性的来源），于是 $Y$ 的列容易接近平行、条件数变大——省下的正是回头访问的内存流量，付出的正是条件数。补救办法是 over-sampling：多取 $k+p$ 列再压缩掉冗余方向。条件数的含义在这里很具体：它衡量 $Y$ 的 $k$ 个方向够不够分开，也衡量小的读取扰动会被放大多少。\r\n\r\n最后是与 $A\\approx CZ$（$C$ 取 $A$ 的真实列）的取舍：用真实列做 $C$ 能保住 sparsity 与 nonnegativity，代价是精度受列的选择限制，不会像 Eckart-Young 那样最优；$Y=AG$ 的列是 $A$ 的稠密线性组合，精度好但破坏稀疏结构。也就是说，**数据的表示形式（稀疏、非负）与逼近精度之间存在真实矛盾**，这正是这条研究路线（Martinsson 的综述、Woodruff 的 sketching 综述）持续活跃的原因，也是随机化不是万能加速键的诚实结论。\r\n\r\n=== ANCHOR: ... ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 正文……\r\n\r\nThe `> ` prefix on the note line — the template shows the header prefixed with `> `. Should the body also be in the blo\r\nckquote? The example shows only the header line as a blockquote. I'll write the whole note as blockquote lines? The tem\r\nplate says:\r\n\r\n> <span ...>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n\r\nSo header and body on the same line, starting with `> `. I'll follow exactly: one line starting with `> ` containing th\r\ne span and the body. For readability, multiple paragraphs might complicate. I'll write a single long line? That's hard \r\nto read but matches. Hmm, previous parts presumably did this. I'll write the body as a single flowing paragraph (or use\r\n line breaks within the blockquote starting each line with `> `). Blockquote continuation lines starting with `> ` are \r\nfine in markdown. But the instruction says 不要输出任何其他内容. I'll keep each note as one blockquote line with the full text \r\n— safer for programmatic handling. Long single lines are OK.\r\n\r\nHmm, but readability... I'll write it as a single line per note. Actually, maybe 2-3 lines each starting with >  is f\r\nine too. I'll go with a single line to be safe (no ambiguity about blockquote structure).\r\n\r\nLet me now compose.\r\n\r\n−--\r\n\r\n**N1** (p156)\r\n\r\nANCHOR: 本页为 Problem Set II.4（习题集 II.4），整页均为习题；按本系列先例，题干保留英文原文不译\r\n\r\nHmm — is this a 连续片段 in the translation? Yes, from the italic note. Let me double check exact text: 本页为 Problem Set \r\nII.4（习题集 II.4），整页均为习题；按本系列先例，题干保留英文原文不译，仅把 OCR 乱码按数学语境修正为 LaTeX，修正处加绿色说明。 So my anchor is a verbatim prefix. Good.\r\n\r\nBody: \r\n\r\n这一页的七道题其实是同一件事的七种外衣：在 $\\sum p_i=1$、$p_i>0$ 的约束下最小化 $\\sum a_i^2/p_i$。先问设计问题：什么时候需要这个？当你要用 $k$ 次随机采样去估计一个 $n$ 项之和（$n\\gg k\r\n$）时，采哪一项就是你唯一能设计的东西，而误差直接由 $p_i$ 决定。……写出拉格朗日函数 $L=\\sum a_i^2/p_i+\\lambda(\\sum p_i-1)$，令 $\\partial L/\\partial p_i=-a_i\r\n^2/p_i^2+\\lambda=0$，得 $p_i=a_i/\\sqrt\\lambda$，代入约束得 $p_i=a_i/\\sum_j a_j$，最小值 $(\\sum a_i)^2$。取 $p_i=1/n$ 就退回 Problem 3 的不\r\n等式 $n\\sum a_i^2\\ge(\\sum a_i)^2$——这正是柯西-施瓦茨取等号的形式。\r\n\r\n把结论抽象成模板：平方根加权律——若目标形如 $\\sum c_i/p_i$，则最优 $p_i\\propto\\sqrt{c_i}$；因为求导得到 $p_i\\propto a_i$（此处 $c_i=a_i^2$）。Problem 7 的随机矩\r\n阵乘法是同一模板的矩阵版：用 $\\frac{1}{p_i}a_ib_i^T$ 估计 $AB=\\sum_i a_ib_i^T$，方差含 $\\sum_i\\|a_i\\|^2\\|b_i\\|^2/p_i$，于是 $p_i\\propto\\|a_i\\|\r\n\\|b_i\\|$；当 $B=A^T$ 时 $b_i=a_i^T$，$p_i\\propto\\|a_i\\|^2$，分母恰是 $\\|A\\|_F^2$。验算两变量情形：$\\sigma^2=a^2/p+b^2/(1-p)$，求导 $-a^2/p^2\r\n\r\n跨课程连接（6.042J → 18.065）：你在 6.042J 证 Chernoff 界时做过完全相同的动作——先引入自由参数（那里是 $t$，这里是不是概率），把界写成 $e^{-tx}E[e^{tX}]$ 或 $\\sum c_i/p\r\n_i$，再对这个自由参数求最优；区别在于 Chernoff 的自由度是矩母函数的参数、目标是指数衰减率，而这里的自由度是采样概率、目标是方差，约束是概率和为 1。最后一句 $E[X^2]\\ge(EX)^2$ 就是方差非负，也是柯西-施瓦茨\r\n在概率语言下的同一件事。\r\n\r\nThat's maybe ~900 chars. Good.\r\n\r\n**N2** (p159, nuclear norm anchor)\r\n\r\nANCHOR: 也就是说，在所有可能的缺失元素取值中，使核范数（nuclear norm）$\\|A\\|_*$ 达到最小。\r\n\r\nWait, is this unique? 也就是说，在所有可能的缺失元素取值中，使核范数（nuclear norm）$\\|A\\|_*$ 达到最小。 appears once (following the math block). Y\r\nes.\r\n\r\nBody: 第一性原理：为什么秩不能用凸优化直接最小化，而核范数可以。秩是非零奇异值的个数，它像 $\\ell_0$ 一样是计数函数：$\\operatorname{rank}(2A)=2\\operatorname{rank}(A)$ 不\r\n成立（秩是齐次度为 0 的量，$\\operatorname{rank}(cA)=\\operatorname{rank}(A)$），所以它不是范数，$\\{A:\\operatorname{rank}(A)\\le k\\}$ 也不是凸集——两个秩\r\n一矩阵之和可以是秩二，中点不在集合里。凸优化的机器（Boyd 在学的那套：凸集、凸函数、KKT）只接受凸的约束。\r\n\r\n凸松弛的精确含义：$\\|A\\|_*=\\sum\\sigma_i$ 的单位球是秩一矩阵集合的凸包（更准确地说，$\\{A:\\|A\\|_*\\le1\\}$ 是 $\\{A:\\operatorname{rank}(A)\\le1,\\ \\|A\\|_2\\\r\nle1\\}$ 的凸包）。这是二维 $\\ell_1$ 球是菱形、且是四个点 $(\\pm1,0),(0,\\pm1)$ 的凸包的矩阵版。所以核范数是最紧的凸替代：任何凸函数若在秩一矩阵上不小于那个计数指示函数，它就不小于核范数（凸包是最小凸集）\r\n。\r\n\r\n几何直觉与稀疏性：在仿射约束集 $\\{A:\\text{已知元素固定}\\}$（一个仿射子空间，类似 $Ax=b$ 的解集）上最小化核范数，切点倾向于落在单位球的顶点/低维面上——那里正是低秩矩阵。验算最简情形：一维仿射集 $x_1+x_\r\n2=1$，$\\ell_1$ 最小给 $(1,0)$ 或 $(0,1)$（稀疏），$\\ell_2$ 最小给 $(1/2,1/2)$（不稀疏）；矩阵版同样，最小化 $\\|A\\|_*$ 的解在奇异值集中到少数几个的地方停住，因为再往某个方向\r\n增加一个非零奇异值，核范数（奇异值之和）的代价比把能量摊到已有方向更大。\r\n\r\n模板：凸包松弛法——把组合目标（选 $k$ 列、选秩 $k$）换成它的凸包上的线性泛函（$\\ell_1$、核范数）最小化。但要记住凸松弛只保证没有更好的凸方法，不保证一定恢复出真正的最小秩解；压缩感知需要的额外条件（不相干性/RIP）\r\n在 §III.5。历史点缀：把 $\\ell_1$ 用于稀疏恢复的系统性结果通常归于 2006 年前后的 Candès–Romberg–Tao 与 Donoho 的工作。\r\n\r\n~950 chars. Good.\r\n\r\n**N3** (p159, ℓ1 anchor) — wait, I merged N2 and N3. Let me re-check: I decided 8 notes: p156, p159(convex relaxation, \r\none note), p160, p162, p163×2, p164, p165. So p159 gets one note. Good, so N2 above is the only p159 note. But it shoul\r\nd also cover ℓ1 (it does, briefly). Fine. Actually, hmm, is one note enough for the ℓ1 mystery? The convex relaxation n\r\note covers both. Good.\r\n\r\nAnchor for N2: I used the nuclear norm line. But my note discusses both ℓ1 and nuclear norm — fine, the ℓ1 discussion i\r\ns in the same page section.\r\n\r\n**N3** (p160, Sherman-Morrison)\r\n\r\nANCHOR: 这个公式有两个引人注目的特点。第一个是对 $A^{-1}$ 的修正项同样是秩一的\r\n\r\nHmm, need to verify the exact text: 这个公式有两个引人注目的特点。第一个是对 $A^{-1}$ 的修正项同样是秩一的，也就是公式中最后那一项 $uv^{T}/(1 − v^{T}u)$。 So my\r\n anchor is a verbatim prefix. Good. But 12-40 个汉字 — count: 这个公式有两个引人注目的特点(14) 第一个是对(5) 的修正项同样是秩一的(11) = 30 汉字. Good.\r\n\r\nBody: 第一性原理：为什么 $(I-uv^T)^{-1}$ 只是 $I$ 加一个秩一项？把 $I-uv^T$ 作用在向量上：若 $x\\perp v$（即 $v^Tx=0$），它原封不动地返回 $x$；只有在 $u$ 这个方向上才有改变\r\n，$(I-uv^T)u=u-(v^Tu)u=(1-v^Tu)u$。所以 $\\mathbb{R}^n$ 有一个 $(n-1)$ 维的子空间（$v$ 的正交补）全是特征值 1 的特征向量，剩下一个方向是 $u$，特征值 $1-v^Tu$。一个\r\n矩阵只有一处与 $I$ 不同，它的逆当然也只有一处与 $I$ 不同——都是秩一扰动，这正是本页说的第二个特点是修正项可能无穷大的来源：当 $v^Tu=1$ 时那个方向被压成 0，$M$ 奇异，$\\det M=0$。由 $\\det M=\r\n\\prod\\lambda_i=1^{n-1}\\cdot(1-v^Tu)$ 立刻得到式 (2)。\r\n\r\n验算一维与三维：$n=1$ 时 $M=1-uv$，公式给 $1+uv/(1-uv)=(1-uv+uv)/(1-uv)=1/(1-uv)$ ✓。书上的 Example 1：$u=v=\\mathbf{1}/\\sqrt3$，$v^Tu=1$，于\r\n是 $M=I-\\frac13\\mathbf{1}\\mathbf{1}^T$ 奇异，$\\det M=0$；例中把它写成 $v^Tu=1$ 之外的情形并给 $M^{-1}=I+\\frac16\\mathbf{1}\\mathbf{1}^T$，可自\r\n行验证 $MM^{-1}=I$（用 $\\mathbf{1}^T\\mathbf{1}=3$）。\r\n\r\n模板：分块消元降阶法（Schur 补法）。要证一个关于 $M$ 的恒等式，就把 $M$ 当作扩展矩阵 $E=\\begin{bmatrix}I&u\\\\v^T&1\\end{bmatrix}$ 的 Schur 补，按两种顺序消元得到 $E$ 的\r\n两种块三角分解，令 $\\det$ 或左上块相等。这个模板的一般形式是 $E=\\begin{bmatrix}A&B\\\\C&D\\end{bmatrix}\\Rightarrow \\det E=\\det A\\cdot\\det(D-CA^{-1}B\r\n)$，本页的 $1-v^Tu$ 就是 $D-CA^{-1}B$。与 6.006 的分治同构：把一个 $n\\times n$ 的问题化归为一个更小的问题（这里是 $1\\times1$ 的除法），只不过分治靠切分、这里靠消元。工程意义：直接求\r\n逆 $O(n^3)$，而用公式只需 $O(n^2)$ 次运算（一个矩阵-向量积），这就是更新而不是重算的全部价值。\r\n\r\n~950 chars. Good.\r\n\r\n**N4** (p162, rank-k, big/small inverse)\r\n\r\nANCHOR: 我们用一个尺寸为 $k$ 的逆，换掉了一个尺寸为 $n$ 的逆。\r\n\r\nCheck uniqueness: yes, appears once. 汉字 count: 我们用一个尺寸为(8)的逆(2)换掉了一个尺寸为(10)的逆(2) = 22. Good.\r\n\r\nBody: 这一句是整节 III.1 的成本账本。先算复杂度：算 $I_n-UV^T$ 的逆（$n\\times n$）朴素消元是 $O(n^3)$；而 $I_k-V^TU$ 只是 $k\\times k$，求逆 $O(k^3)$，再加上两次\r\n矩阵乘法 $U(\\cdot)V^T$ 的 $O(nk\\cdot n)=O(n^2k)$，总代价 $O(n^2k+k^3)$。当 $k\\ll n$（典型是 $k=1$ 或几十）时这是 $O(n^2)$ 量级，远小于 $O(n^3)$。但注意\r\n：这不是免费的午餐——你还必须已经拥有 $A^{-1}$（或一个已有的分解）；若从零开始，还是省不下来。这正是 Kalman 滤波与递归最小二乘存在的理由：每一步都保留上一步的逆。\r\n\r\n验算恒等式 $(I_n-UV^T)U=U(I_k-V^TU)$：左端逐项展开 $U-UV^TU$，右端 $U-UV^TU$，两者一致；书上是把 $\\left(I_n-UV^T\\right)U$ 换成 $U\\left(I_k-V^TU\\ri\r\nght)$ 完成 $MM^{-1}=I$ 的化简。这个恒等式是把 $V^T$ 移到 $U$ 后面的搬运技巧，也是式 (8) 行列式恒等式 $\\det(I_n-UV^T)=\\det(I_k-V^TU)$ 的同类现象（这个等式的另一条路径\r\n是取非零特征值：$UV^T$ 与 $V^TU$ 的非零谱相同，见 p163 的注解）。\r\n\r\n连接算例：Example 2 里 $M$ 是 $3\\times3$ 的严格上三角、秩为 2，把它写成 $UV^T$（$U$ 为 $3\\times2$，$V^T$ 为 $2\\times3$）后，只需要对一个 $2\\times2$ 矩阵求逆。\r\n注意 Example 2 里的 $V^TU=\\begin{bmatrix}0&1\\\\0&1\\end{bmatrix}$ 是奇异的（$\\det=0$，秩 1），所以 $I_k-V^TU$ 求逆这一步会失败——这正对应 $M$ 的不可逆；换句\r\n话说，$I_k-V^TU$ 何时可逆是一个可以先用 $k\\times k$ 的小矩阵判断的问题，不必去看 $n\\times n$ 的大矩阵。设计问题视角：当你手上的矩阵只被低秩修改过，应当维护逆+修改记录，而不是每次重算——这是 CS\r\nAPP 里缓存+增量更新的矩阵版本，代价从 $O(n^3)$ 降到 $O(n^2k)$。\r\n\r\nHmm, careful with Example 2's claim. Let me re-read the translation of Example 2: 若 $M = \\begin{bmatrix} 0 & 1 & 1 \\\\ \r\n0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{bmatrix} = UV^T$，则 $M^{-1}$... Wait, this is a singular matrix (strictly upper triangular \r\nwith zeros on the diagonal) — it says $M^{-1}$ 由把首个显示出来的矩阵写成 $UV^T$、再反过来写成 $V^TU$ 而得到 and then the text has $-1 + U[\r\n0\\ 1; 0\\ 1]^{-1}V^T$ which suggests $I + U[...]^{-1}V^T$? The OCR is mangled. Hmm. The $3\\times3$ matrix shown with \r\nrows (0,1,1),(0,0,1),(0,0,0) is nilpotent, $M^3=0$, not invertible. But it says $= UV^T$ — with $U$ being 3×2 as given:\r\n $U = \\begin{bmatrix}0&1\\\\0&1\\\\0&0\\end{bmatrix}$, $V^T=\\begin{bmatrix}1&1&0\\\\0&0&1\\end{bmatrix}$. Then $UV^T = \\begin{b\r\nmatrix}0&0&1\\\\0&0&1\\\\0&0&0\\end{bmatrix}$. Hmm, that doesn't equal the displayed $M$ either. The OCR is garbled; the ori\r\nginal example in Strang's book (III.1 Example 2) is likely about $M = I − UV^T$ or similar. Let me not over-commit to i\r\nnterpreting Example 2. Actually the given translation says 则 $M^{-1}$ 由把首个显示出来的矩阵写成 $UV^T$、再反过来写成 $V^TU$ 而得到 and 于是上\r\n式中的 $-1$ 就是 $+\\,U\\,[-\\,V^T U]^{-1}V^T$. This is confusing/OCR-damaged. Safer: avoid making claims about Example 2's in\r\nvertibility. I'll instead use Example 1 as the concrete verification (already used in N3) — but N3 used Example 1. I ca\r\nn reference a different concrete check in N4: the $k=2$ cost arithmetic, e.g. $n=1000$, $k=10$: direct inverse ~$10^9$ \r\nflops vs $n^2k=10^7$ plus $k^3=10^3$. That's a clean concrete verification. Good, avoid Example 2 claims.\r\n\r\nLet me use: 算一笔账：$n=1000$、$k=10$ 时，直接求逆约 $\\frac{2}{3}n^3\\approx6.7\\times10^8$ 次浮点运算；用 (7) 式是 $n^2k=10^7$ 加上 $k^3=10^3$，\r\n快了近两个数量级。 (The 2/3 n^3 flop count for inversion — standard.)\r\n\r\nAlso mention the identity check $(I-UV^T)U = U(I_k − V^TU)$ verification with a tiny example: take $U=\\binom{1}{0}$, $V\r\n^T=[1\\ 0]$ (1×1 case, k=1): $(I-uv^T)u = u − u(v^Tu) = u(1-v^Tu)$ ✓ and $u(1-v^Tu)$ ✓. Fine.\r\n\r\n**N5** (p163, AB/BA)\r\n\r\nANCHOR: 换言之，$-1$ 不是 $AB$ 的特征值，恰好当 $-1$ 不是 $BA$ 的特征值。\r\n\r\nCareful with exact text: 换言之，$-1$ 不是 $AB$ 的特征值，恰好当 $-1$ 不是 $BA$ 的特征值。$AB$ 与 $BA$ 拥有相同的非零特征值（eigenvalues）。 ✓\r\n\r\nBody: 第一性原理：证明的核心只有一行。设 $BAx=\\lambda x$，$x\\neq0$，$\\lambda\\neq0$。两边左乘 $A$：$A(BAx)=AB(Ax)=\\lambda(Ax)$。要让 $Ax$ 成为 $AB$ 关于\r\n $\\lambda$ 的特征向量，还差一句 $Ax\\neq0$：若 $Ax=0$，则 $\\lambda x=BAx=B0=0$，与 $\\lambda\\neq0$、$x\\neq0$ 矛盾。于是映射 $x\\mapsto Ax$ 把 $BA$ \r\n的每个非零特征向量搬成 $AB$ 的特征向量。反向同理（用 $x\\mapsto Bx$），两边配对，非零谱完全相同。维度不同则用零特征值补齐：$AB$ 是 $m\\times m$，$BA$ 是 $k\\times k$，差 $|m-k|$ \r\n个 0。\r\n\r\n反例检查——为什么必须说非零：$A=[1\\ \\ 0]$（$1\\times2$），$B=\\binom{1}{0}$（$2\\times1$）。$AB=[1]$，特征值 $\\{1\\}$；$BA=\\begin{bmatrix}1&0\\\\0&0\r\n\\end{bmatrix}$，特征值 $\\{1,0\\}$。非零谱都是 $\\{1\\}$，但 $BA$ 多一个 0，因为它大了一维。第二类反例：$A=\\binom{1}{0}$、$B=[0\\ \\ 1]$ 给 $AB=\\begin{bmatri\r\nx}0&1\\\\0&0\\end{bmatrix}$（特征值 $0,0$）与 $BA=[0]$（特征值 $0$），两边全零谱，定理依然只说非零部分。\r\n\r\n跨课程连接（18.065 / part002 的 SVD）：取 $B=A^T$，$A^TA$ 与 $AA^T$ 的非零特征值同为 $\\sigma_i^2$，这就是 SVD 里左右奇异向量共享同一组 $\\Sigma$ 的原因，也是为什么 P\r\nCA 既可以在协方差矩阵 $X^TX$（$n\\times n$，$n$ 是特征数）上做、也可以在 Gram 矩阵 $XX^T$（$m\\times m$，$m$ 是样本数）上做——两者的非零谱相同，只是多出的那些 0 不携带信息，所以应挑尺\r\n寸更小的那个来算。同一个事实还给出条件数：$\\kappa(A^TA)=\\sigma_1^2/\\sigma_n^2=\\kappa(AA^T)$。\r\n\r\n模板：谱搬运法——要证两个不同尺寸的矩阵谱相同，不要去展开行列式 $\\det(AB-\\lambda I)$，而是显式构造一个把特征向量互相搬运的映射，并检查它不把非零向量映成零。这套路在 §I.6 出现过（由 $(I+B)Ax=0$ 推 \r\n$(I+A)Bx=0$），和投影矩阵 $A(A^TA)^{-1}A^T$ 与 $I$ 有相同的非零特征值是同一件事。\r\n\r\n~950. Good. Hmm, is 投影矩阵... 与 I 有相同的非零特征值 accurate? Projection matrices have eigenvalues 0 and 1; non-zero eigenvalue\r\ns all equal 1. Yes, fine, but maybe I should say 投影 $P=A(A^TA)^{-1}A^T$ 只取到特征值 0 和 1. Let me phrase carefully: 例如投影矩阵\r\n $P=A(A^TA)^{-1}A^T$ 的非零特征值只能是 1（它是 $r$ 个 1 和 $n-r$ 个 0）。That's true. Good but maybe unnecessary. I'll keep the §I.6 co\r\nnnection and add the projection remark briefly.\r\n\r\n**N6** (p163, derivative)\r\n\r\nANCHOR: 对一个 $1 \\times 1$ 矩阵 $A = t$，且 $dA/dt = 1$，我们就得到 $1/t$ 的导数为 $-1/t^2$。\r\n\r\nBody: 第一性原理：为什么导数公式长成 $-A^{-1}\\dot A A^{-1}$ 而不是 $\\dot A A^{-2}$？最快的推导不是套 (11) 式，而是对恒等式 $AA^{-1}=I$ 两边求 $t$ 的导数（乘积法则对矩阵\r\n同样成立）：$\\dot A A^{-1}+A\\dot{A^{-1}}=0$，于是 $A\\dot{A^{-1}}=-\\dot A A^{-1}$，左乘 $A^{-1}$ 得 $\\dot{A^{-1}}=-A^{-1}\\dot A A^{-1\r\n}$。这个推导顺便解释了为什么 $\\dot A$ 被夹在两个 $A^{-1}$ 中间：它是从等式右边乘进来的 $A^{-1}$ 和从左边乘进来的 $A^{-1}$，位置由矩阵乘法不可交换决定。若 $A$ 与 $\\dot A$ 恰好可交\r\n换（例如 $A(t)$ 都是同一个矩阵的多项式，或同时可对角化），公式才退化为对称形式；一般情况下把 $\\dot A$ 挪到边上就错了。\r\n\r\n验算三种情形：$n=1$、$A=t$：$-\\frac1t\\cdot1\\cdot\\frac1t=-\\frac1{t^2}$ ✓。$A=\\begin{bmatrix}t&0\\\\0&t^2\\end{bmatrix}$：$\\dot A=\\begi\r\nn{bmatrix}1&0\\\\0&2t\\end{bmatrix}$，$A^{-1}=\\begin{bmatrix}1/t&0\\\\0&1/t^2\\end{bmatrix}$，乘积给 $\\begin{bmatrix}-1/t^2&0\\\\0&-\r\n2/t^3\\end{bmatrix}$，与逐元素求导完全一致。$A=\\begin{bmatrix}1&t\\\\0&1\\end{bmatrix}$：$A^{-1}=\\begin{bmatrix}1&-t\\\\0&1\\end{bmatrix}$，\r\n$\\dot{A^{-1}}=\\begin{bmatrix}0&-1\\\\0&0\\end{bmatrix}$；而 $-A^{-1}\\dot A A^{-1}=-A^{-1}\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix\r\n}A^{-1}$，算一下：$\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}A^{-1}=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$（因为第二行是 0），再左乘 $-A^{-1}$：\r\n$-A^{-1}\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}=-\\begin{bmatrix}1&-t\\\\0&1\\end{bmatrix}\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}\r\n=-\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}=\\begin{bmatrix}0&-1\\\\0&0\\end{bmatrix}$ ✓。注意这个例子里 $\\dot A$ 与 $A$ 不可交换（$A\\dot A=\\b\r\negin{bmatrix}0&1\\\\0&0\\end{bmatrix}$，$\\dot A A=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$... hmm let me check: A = [[1,t],[0,\r\n1]], Ā = [[0,1],[0,0]]. AĀ = [[1,t],[0,1]]·[[0,1],[0,0]] = [[0,1],[0,0]]. ĀA = [[0,1],[0,0]]·[[1,t],[0,1]] = [[0,1],[0,\r\n0]]. They're equal here! Oops. So it's not a non-commuting example. Let me use a different example: $A=\\begin{bmatrix}1\r\n&t\\\\t&1\\end{bmatrix}$? Ā = [[0,1],[1,0]]. AĀ = [[1,t],[t,1]]·[[0,1],[1,0]] = [[t,1],[1,t]]. ĀA = [[0,1],[1,0]]·[[1,t],[\r\nt,1]] = [[t,1],[1,t]]. Also equal! Hmm, symmetric with constant derivative. Let me try $A=\\begin{bmatrix}1&t\\\\0&2\\end{b\r\nmatrix}$: Ā = [[0,1],[0,0]]. AĀ = [[1,t],[0,2]]·[[0,1],[0,0]] = [[0,1],[0,0]]. ĀA = [[0,1],[0,0]]·[[1,t],[0,2]] = [[0,2\r\n],[0,0]]. Not equal ✓. Good, use this one. Compute $\\dot{A^{-1}}$: $A^{-1} = \\begin{bmatrix}1&-t/2\\\\0&1/2\\end{bmatrix}$\r\n, derivative = $\\begin{bmatrix}0&-1/2\\\\0&0\\end{bmatrix}$ ✓. Now $-A^{-1}\\dot A A^{-1}$: $\\dot A A^{-1}=\\begin{bmatrix}0\r\n&1\\\\0&0\\end{bmatrix}\\begin{bmatrix}1&-t/2\\\\0&1/2\\end{bmatrix}=\\begin{bmatrix}0&1/2\\\\0&0\\end{bmatrix}$. Then $-A^{-1}\\cd\r\not$that $=-\\begin{bmatrix}1&-t/2\\\\0&1/2\\end{bmatrix}\\begin{bmatrix}0&1/2\\\\0&0\\end{bmatrix}=-\\begin{bmatrix}0&1/2\\\\0&0\\e\r\nnd{bmatrix}=\\begin{bmatrix}0&-1/2\\\\0&0\\end{bmatrix}$ ✓. Great, and $A\\dot A \\ne \\dot A A$ as computed. If one wrongly w\r\nrote $-\\dot A A^{-2}$: $A^{-2}=\\begin{bmatrix}1&-3t/4\\\\0&1/4\\end{bmatrix}$; $\\dot A A^{-2}=\\begin{bmatrix}0&1\\\\0&0\\end{\r\nbmatrix}\\begin{bmatrix}1&-3t/4\\\\0&1/4\\end{bmatrix}=\\begin{bmatrix}0&1/4\\\\0&0\\end{bmatrix}$, which is wrong (should be $\r\n−1/2$). Nice concrete refutation. Use that.\r\n\r\nThen condition number & CSAPP: 误差放大 $\\frac{\\|\\Delta A^{-1}\\|}{\\|A^{-1}\\|}\\le\\kappa(A)\\frac{\\|\\Delta A\\|}{\\|A\\|}$，这正是 pa\r\nrt002 的条件数 $\\kappa=\\|A\\|\\|A^{-1}\\|$ 的来历：逆的导数算子范数就是 $\\|A^{-1}\\|^2$。CSAPP 的浮点视角：条件数就是输入的相对舍入误差被放大多少倍的因子；在 $M=I-uv^T$ 里，\r\n$1-v^Tu$ 的减法就是一次灾难性抵消（catastrophic cancellation）——若 $v^Tu=1-10^{-8}$，double 只有约 16 位十进制有效数字，相减后只剩约 8 位，$M^{-1}$ 的相对误差放大\r\n到 $10^8$ 量级。这与奇异（$v^Tu=1$）是连续的同一个现象。\r\n\r\n模板：首阶展开法——要算 $f(A)$ 的导数，把 $f(A+\\Delta A)$ 写成 $f(A)+L(\\Delta A)+o(\\|\\Delta A\\|)$，那个线性映射 $L$ 就是导数；对 $A^{-1}$ 用 $(A(I+A^{-\r\n1}\\Delta A))^{-1}=(I+A^{-1}\\Delta A)^{-1}A^{-1}\\approx(I-A^{-1}\\Delta A)A^{-1}$，立刻读出 $L(\\Delta A)=-A^{-1}\\Delta A A^{-1\r\n}$。这个先乘逆、再用 $(I+X)^{-1}\\approx I-X$的手法在拟牛顿、卡尔曼增益的推导中反复使用。\r\n\r\nThat's long (~1100). OK.\r\n\r\n**N7** (p164, RLS/Kalman)\r\n\r\nANCHOR: 当 $A$ 新增多行而不只是新增一行时，同样的想法依然成立。这就是 recursive least squares（递归最小二乘）。\r\n\r\nBody: 设计问题先行：如果每来一个新数据就重解正规方程，代价是每步 $O(n^3+m n^2)$（重新构造 $A^TA$ 并求逆/分解）；而在线的场景（导航、跟踪、推荐系统的增量更新）里，我们希望每步 $O(n^2)$、并且把上一步\r\n的结果用起来。§III.1 的 SMW 公式就是为此服务的：$A^TA+r^Tr$ 是对 $A^TA$ 的秩一修正（把 $r^Tr$ 看成 $-(-r^Tr)$），代入 (9) 式立即得到 (14) 式，其中 $c=1/(1+r^T(A\r\n^TA)^{-1}r)$ 的分母正是 $1-v^Tu$ 的翻版——只是那里的 $v^Tu$ 换成了 $r^T(A^TA)^{-1}r$。为了算出 $c$，只需要用已有的 $(A^TA)^{-1}$ 做一次矩阵-向量乘（等价于解一次旧方程）\r\n，不需要任何新的分解。注意这里的更新在数值上未必稳定：$A^TA$ 的条件数是 $\\kappa(A)^2$，递归地把新信息加进去可能让舍入误差累积，实际实现里更常用 QR 的秩一更新（Givens 旋转）而非直接更新逆。\r\n\r\n第一性原理连接（概率论 Bertsekas 在学）：卡尔曼滤波的预测-校正结构，本质是两个带噪声的估计如何按可靠性加权。设预测 $x_1$ 的方差为 $\\sigma_1^2$、测量 $x_2$ 的方差为 $\\sigma_2^2$，取线\r\n性组合 $x=x_1+K(x_2-x_1)$，方差为 $(1-K)^2\\sigma_1^2+K^2\\sigma_2^2$，对 $K$ 求导得 $K=\\sigma_1^2/(\\sigma_1^2+\\sigma_2^2)$。验算：$\\sigm\r\na_1^2=4$、$\\sigma_2^2=1$，则 $K=0.8$，新估计 $=0.2x_{\\rm state}+0.8b_{m+1}$——测量更准（方差小 4 倍）就拿 80% 的权重。两个极限也自洽：测量无穷不准（$\\sigma_2^\r\n2\\to\\infty$）则 $K\\to0$，完全不采纳；预测完全不可信（$\\sigma_1^2\\to\\infty$）则 $K\\to1$，直接跳到测量值。这与 (16) 式完全一致：$b_{m+1}-r\\cdot x_{\\rm state}\r\n$ 是新息（innovation），它与预测值一致时校正为零——正像书里强调的。\r\n\r\n跨课程连接：这与你在概率论里将学到的贝叶斯更新 $p(\\theta\\mid x)\\propto p(x\\mid\\theta)p(\\theta)$ 同构——预测对应先验、校正对应似然，高斯情形下后验均值就是上式那个线性组合，所以卡尔曼滤波被\r\n称作高斯假设下的递推贝叶斯滤波。区别在于：概率论给你的是最优性与分布解释，线性代数给你的是一个只依赖矩阵恒等式的 $O(n^2)$ 递推算法，不需要显式地处理分布。\r\n\r\n模板：预测-校正两段式（predict-correct），配合逆方差加权律（权 $\\propto$ 精度 $=1/\\sigma^2$）。同一模板在 RLS、Kalman、以及 part002 的在线梯度下降里反复出现。\r\n\r\n~1000. Good.\r\n\r\nHmm — 方差为 $(1-K)^2\\sigma_1^2+K^2\\sigma_2^2$ assumes independence. Fine, state it.\r\n\r\n**N8** (p165, quasi-Newton)\r\n\r\nANCHOR: 这就是我们沿移动方向所获得的关于 $J\\,\\Delta c = \\Delta f$ 的信息。\r\n\r\nBody: 第一性原理：为什么拟牛顿法必须猜 $J$？牛顿一步要解 $J(c_{\\rm old})\\Delta c=-f(c_{\\rm old})$，其中 $J$ 是 $n\\times n$。对它做一次完整的求值就是 $n$ 次偏导向\r\n量（在深度学习里等于 $n$ 次反向传播），而 $n$ 是千万级参数——代价不可接受。而一次迭代真正买到的信息只有一个向量方向的方程：$J_{\\rm new}\\Delta c=\\Delta f$（割线条件，式 (18)），这是 $n$\r\n 个标量方程，而 $J$ 有 $n^2$ 个未知元，欠定维数 $n^2-n$。所以任何拟牛顿法都必须在满足割线条件的无穷多个矩阵里按某个准则挑一个——BFGS 的准则是：在所有对称矩阵中选最接近旧矩阵的那个（在一个由加权 Froben\r\nius 范数定义的度量下），因此它天然保持对称，并且在凸问题里保持正定。这也是为什么更新是秩二的：$J_{\\rm new}-J_{\\rm old}$ 要既满足一个向量方程又保持对称，至少需要两个秩一项（$uv^T+vu^T$ 型）；单个 \r\n$uv^T$ 一般不改变矩阵的对称性——除非 $u\\parallel v$，那样秩一就够了。\r\n\r\n等一下——秩一的 $uv^T$ 一般不对称；但若要求 $J_{\\rm new}$ 对称，$uv^T$ 必须等于它的转置 $vu^T$，即 $u\\parallel v$，此时 $uv^T$ 本身对称且是秩一。所以秩一 + 对称其实是可以\r\n的（例如 SR1 更新），BFGS 之所以用秩二是因为它还要保持正定性/保证下降方向。让我修正：SR1（symmetric rank-one）确实是秩一且对称的更新，但不保证正定。BFGS 是秩二且保正定。所以准确说法：BFGS 用两个秩\r\n一项保证正定性（从而使搜索方向 $J^{-1}f$ 是下降方向），SR1 只用一项但可能破坏正定。这与对称 + 割线条件的最小改动解是 SR1 是一致的（在对称类中最小 Frobenius 范数改动给 SR1）。Good — this\r\n is more accurate and richer. Let me write: 若只在对称矩阵里找最近的解，最小改动解其实是秩一的（SR1 更新），但它可能破坏正定性；BFGS 选择对称且正定这一类，于是需要两个秩一项（可\r\n看成两次秩一修正的复合），换来的是保证下降方向。这是一个极好的例子：约束类越大解越简单，但性质越弱。\r\n\r\n验算一个二维割线条件：$c_{\\rm old}=(0,0)$，$c_{\\rm new}=(1,1)$，$f_{\\rm old}=(1,0)$，$f_{\\rm new}=(0,1)$，则 $\\Delta c=(1,1)^T$，$\\Delta\r\n f=(-1,1)^T$，割线条件要求 $J_{\\rm new}\\binom{1}{1}=\\binom{-1}{1}$。取 $J_{\\rm old}=I$，SR1 型最小改动解是 $J_{\\rm new}=I+\\frac{(\\Delta \r\nf-J_{\\rm old}\\Delta c)(\\Delta f-J_{\\rm old}\\Delta c)^T}{(\\Delta f-J_{\\rm old}\\Delta c)^T\\Delta c}$：这里 $\\Delta f-J_{\\rm \r\nold}\\Delta c=\\binom{-1}{1}-\\binom{1}{1}=\\binom{-2}{0}$，分母 $=(-2,0)\\binom{1}{1}=-2$，故 $J_{\\rm new}=I+\\frac{1}{-2}\\begin{\r\nbmatrix}4&0\\\\0&0\\end{bmatrix}=\\begin{bmatrix}-1&0\\\\0&1\\end{bmatrix}$。检查：$\\begin{bmatrix}-1&0\\\\0&1\\end{bmatrix}\\binom{1}\r\n{1}=\\binom{-1}{1}$ ✓。这个例子同时说明 SR1 的代价：$J_{\\rm new}$ 不再是正定的（特征值 $-1,1$），下一步的方向未必下降——这就是 BFGS 宁愿多用一秩也要保正定的原因。\r\n\r\nLet me double check the SR1 formula: $J_{\\rm new} = J + \\frac{(y − Js)(y-Js)^T}{(y-Js)^Ts}$ where $y=\\Delta f$, $s=\\Del\r\nta c$. Yes standard SR1. And the denominator: $(-2,0)\\cdot(1,1)^T = −2$ ✓. So $J_{\\rm new} = I − \\frac{1}{2}\\begin{bmat\r\nrix}4&0\\\\0&0\\end{bmatrix} = \\begin{bmatrix}1-2&0\\\\0&1\\end{bmatrix}=\\begin{bmatrix}-1&0\\\\0&1\\end{bmatrix}$ ✓. And $J_{\\r\r\nm new}s = (-1,1)^T = y$? $y=\\Delta f = (-1,1)^T$ ✓. \r\n\r\n连接（Boyd 凸优化在学 + 6.006 复杂度）：每步代价：牛顿 $O(n^3)$ 分解 + $O(n^2)$ 求 Hessian；拟牛顿 $O(n^2)$（只更新 $J^{-1}$）；L-BFGS 只存最近 $m$ 步的 $(s,y\r\n)$，用两次循环在 $O(mn)$ 内算出 $H_k g$ 的作用，内存 $O(mn)$；梯度下降 $O(n)$。这是用收敛速度换每步成本的一条完整谱系，也是凸优化课上会反复出现的取舍。与 part002 的 minimum norm\r\n solution 同一个原则：条件不够时，用最小改动/最小范数把解唯一化。\r\n\r\n历史点缀：BFGS 由 Broyden、Fletcher、Goldfarb、Shanno 于 1970 年各自独立提出，名字就是四人姓氏首字母。\r\n\r\nGood, ~1050 chars.\r\n\r\nNow, one concern: N4's complexity claim 直接求逆约 $\\frac23 n^3$ — standard flop count for Gaussian elimination is $\\frac{\r\n2}{3}n^3$ (or $n^3$ counting both). I'll say 约 $\\frac{2}{3}n^3$ 次乘加.\r\n\r\nNow let me double check anchors against the actual translation text character by character.\r\n\r\nAnchor 1: 本页为 Problem Set II.4（习题集 II.4），整页均为习题；按本系列先例，题干保留英文原文不译 — from the text: <span style=color:#7f8c8d;>本页为 Pr\r\noblem Set II.4（习题集 II.4），整页均为习题；按本系列先例，题干保留英文原文不译，仅把 OCR 乱码按数学语境修正为 LaTeX，修正处加绿色说明。</span> ✓ verbatim prefix.\r\n\r\nAnchor 2: 也就是说，在所有可能的缺失元素取值中，使核范数（nuclear norm）$\\|A\\|_*$ 达到最小。 — text: 也就是说，在所有可能的缺失元素取值中，使核范数（nuclear norm）$\\|A\\|_*\r\n$ 达到最小。 ✓ (it's a standalone paragraph).\r\n\r\nAnchor 3: 这个公式有两个引人注目的特点。第一个是对 $A^{-1}$ 的修正项同样是秩一的 — text: 这个公式有两个引人注目的特点。第一个是对 $A^{-1}$ 的修正项同样是秩一的，也就是公式中最后那一项 $uv^\r\n{T}/(1 − v^{T}u)$。 ✓.\r\n\r\nAnchor 4: 我们用一个尺寸为 $k$ 的逆，换掉了一个尺寸为 $n$ 的逆。 — text: 这就带出了关于这类逆公式的一个重要观点：我们用一个尺寸为 $k$ 的逆，换掉了一个尺寸为 $n$ 的逆。 ✓ substring\r\n.\r\n\r\nAnchor 5: 换言之，$-1$ 不是 $AB$ 的特征值，恰好当 $-1$ 不是 $BA$ 的特征值。 — text: 换言之，$-1$ 不是 $AB$ 的特征值，恰好当 $-1$ 不是 $BA$ 的特征值。 ✓.\r\n\r\nAnchor 6: 对一个 $1 \\times 1$ 矩阵 $A = t$，且 $dA/dt = 1$，我们就得到 $1/t$ 的导数为 $-1/t^2$。 — text: 对一个 $1 \\times 1$ 矩阵 $A = t$，且\r\n $dA/dt = 1$，我们就得到 $1/t$ 的导数为 $-1/t^2$。 ✓.\r\n\r\nAnchor 7: 当 $A$ 新增多行而不只是新增一行时，同样的想法依然成立。这就是 recursive least squares（递归最小二乘）。 — text: 当 $A$ 新增多行而不只是新增一行时，同样的想法依然成立。\\\r\nn这就是 recursive least squares（递归最小二乘）。 — hmm! These are on separate lines in the translation:\r\n\r\n当 $A$ 新增多行而不只是新增一行时，同样的想法依然成立。\r\n这就是 recursive least squares（递归最小二乘）。\r\n\r\nSo a continuous verbatim fragment spanning the line break includes \\n. Risky for the matcher. Safer to use just: 当 $\r\nA$ 新增多行而不只是新增一行时，同样的想法依然成立。 — 汉字: 当(1)新增多行而不只是新增一行时(13)同样的想法依然成立(9) = 23 ✓ unique. Use that.\r\n\r\nAnchor 8: 这就是我们沿移动方向所获得的关于 $J\\,\\Delta c = \\Delta f$ 的信息。 — text: 这就是我们沿移动方向所获得的关于 $J\\,\\Delta c = \\Delta f$ 的信息。 ✓. \r\n汉字: 这就是我们沿移动方向所获得的关于(16)的信息(3) = 19 ✓.\r\n\r\nWait — the anchor must be 在该页译文中唯一出现 (唯一的). Fine.\r\n\r\nAlso check anchor 3 uniqueness: 这个公式有两个引人注目的特点。 unique ✓.\r\n\r\nNow, another consideration: for anchor 2 — I'm putting my convex-relaxation note there, and my note discusses ℓ1 too, w\r\nhich appears just below. Fine.\r\n\r\nNow let me also double-check the mix of note types: \r\n1. p156 — 跨课程连接 (or 证明策略模板). I'll label 跨课程连接.\r\n2. p159 — 第一性原理洞察.\r\n3. p160 — 证明策略模板.\r\n4. p162 — 第一性原理洞察? It's about complexity/cost — maybe label 跨课程连接 (6.006 complexity + CSAPP caching) or 第一性原理. I'll lab\r\nel 跨课程连接 since it connects to 6.006 复杂度分析 and CSAPP 缓存/增量更新. Hmm, the header format examples show （跨课程连接）. I'll use （跨课\r\n程连接）.\r\n5. p163 AB/BA — 跨课程连接 (SVD/PCA) or 证明策略模板. I'll label 证明策略模板 since I name 谱搬运法... but it also has the SVD connection. E\r\nither is fine; I'll use （证明策略模板）.\r\n6. p163 derivative — 第一性原理洞察.\r\n7. p164 — 跨课程连接（概率论）.\r\n8. p165 — 拓展前沿 (L-BFGS, deep learning) — good, I need at least one 拓展前沿. Yes, label （拓展前沿）.\r\n\r\nGood spread of types.\r\n\r\nNow write final output. Ensure no other content. Let me carefully compose each body, checking LaTeX correctness ($-1$ e\r\ntc., not bare lambda).\r\n\r\nOne more check on N1: p_i = a_i/\\sqrt{\\lambda} — fine.\r\n\r\nAlso, in N1 I should make sure I describe the randomized matrix multiplication correctly: probabilities in the text equ\r\nation (5) are $\\|a_i\\|^2/\\|A\\|_F^2$ when $B=A^T$. My note says the general rule gives $p_i \\propto \\|a_i\\|\\|b_i\\|$, and\r\n when $B=A^T$, $b_i = a_i^T$ so $p_i\\propto\\|a_i\\|^2$; and since $\\sum_i\\|a_i\\|^2=\\|A\\|_F^2$, the normalized probabilit\r\ny is $\\|a_i\\|^2/\\|A\\|_F^2$ ✓ matching the text.\r\n\r\nCareful: In the text, $A$ is $m\\times n$ with rows $a_i$? Problem 7 says the norm-squared or length-squared probabilit\r\nies in the text equation (5) are $\\|a_i\\|^{2}/\\|A\\|_F^{2}$ — $a_i$ could be rows of $A$ (for sampling columns of $A^T$\r\n?) Let's not over-specify: I'll say 把 $AB$ 写成秩一项之和 $AB=\\sum_i a_ib_i^T$（$a_i$ 是 $A$ 的第 $i$ 列、$b_i^T$ 是 $B$ 的第 $i$ 行）.\r\n In the text's randomized construction for $AB$ (from §II.4), sampling columns of A and rows of B. Then eq (5)'s probab\r\nilities when $B=A^T$: $b_i = a_i^T$ where $a_i$ is column $i$ of $A$ = row $i$ of $A^T$. Fine. And $\\sum_i \\|a_i\\|^2 = \r\n\\|A\\|_F^2$ ✓.\r\n\r\nNow write it all out. I'll aim for clean, dense prose.\r\n\r\nLength check per note: I'll write roughly 3 paragraphs each, ~900-1100 chars. Let me be disciplined.\r\n\r\nI'll now produce the final answer. Note: no preamble/summary; only the ANCHOR blocks separated by blank lines."
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 36,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 36,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 36,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 36,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 24678,
+            "outputTokens": 28031,
+            "cacheReadTokens": 146432,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 5,
+            "buckets": {
+              "uncachedInputTokens": 212,
+              "outputTokens": 2408,
+              "cacheReadTokens": 42112,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 36,
+        "val": {
+          "surfaceTokens": 24925,
+          "contextWindow": 1000000,
+          "pressureTokens": 42324,
+          "sampledSurfaceTokens": 23488
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 36,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 6485,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 12211,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 36,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 623,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 1029,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 33,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 1467,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 23,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 1437,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 23781
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 36,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 33,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 35
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 36,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 36,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 36,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

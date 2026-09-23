@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148183845,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_225]\nIV.3. The Kronecker Product $A \\otimes B$ \\hfill 223\n\n**Example 1**  With $N = 4$ there are $N^2 = 16$ pixels in a square. The block matrix $\\Omega_{4 \\times 4}$ for the $2D$ transform is $16$ by $16$:\n$$ \\Omega_{4 \\times 4} = \\Omega_4 \\otimes \\Omega_4 = \\begin{bmatrix} \\Omega_4 & \\Omega_4 & \\Omega_4 & \\Omega_4 \\\\ \\Omega_4 & -i\\Omega_4 & (-i)^2\\Omega_4 & (-i)^3\\Omega_4 \\\\ \\Omega_4 & (-i)^2\\Omega_4 & (-i)^4\\Omega_4 & (-i)^6\\Omega_4 \\\\ \\Omega_4 & (-i)^3\\Omega_4 & (-i)^6\\Omega_4 & (-i)^9\\Omega_4 \\end{bmatrix} $$\nThat matrix has to be divided by $4$ times $4 = 16$ to correctly match the $1D$ transform $\\Omega_4/4$. Then the inverse of this $16$ by $16$ matrix gives the two-dimensional inverse DFT—which is $F_4 \\otimes F_4$. Apply the inverse formula $(4)$ for Kronecker products:\n$$ \\text{The } 2D \\text{ inverse is } \\left(\\frac{1}{16}\\Omega_4 \\otimes \\Omega_4\\right)^{-1} = F_4 \\otimes F_4 = \\text{Kronecker product of } 1D \\text{ inverses.} $$\n\n**The Kronecker Sum $A \\oplus B$**\n\nThe $2D$ Fourier transform is the **product** of two steps: transform by rows and transform the result by columns. Those steps were $I \\otimes \\Omega$ and $\\Omega \\otimes I$. In other problems we want the **sum** instead of the product. That produces a different matrix. Its size is still $N^2$ or $MN$.\n\n$\\boxed{\n\\begin{aligned}\n&A \\text{ is } M \\text{ by } M \\\\\n&B \\text{ is } N \\text{ by } N\n\\end{aligned}\n\\quad \\text{The Kronecker sum } A \\oplus B = A \\otimes I_N + I_M \\otimes B \\text{ is } MN \\text{ by } MN. \\tag{9}\n}$\n\nThis construction is natural for Laplace's equation (or Poisson's equation) in $2D$:\n$$ \\text{Laplace equation in a square} \\quad -\\frac{\\partial^2 u}{\\partial x^2} - \\frac{\\partial^2 u}{\\partial y^2} = F(x, y) \\quad \\text{for } 0 \\leq x \\leq 1, 0 \\leq y \\leq 1 $$\n\nDivide that unit square into $N^2$ small squares with sides $h = 1/N$. Put nodes or meshpoints at the corners of those squares. There will be $(N + 1)^2$ nodes. Then replace Laplace's second order differential equation by a second order difference equation that connects the values $U_{jk}$ at the nodes:\n$$ \\text{In one dimension } -\\frac{\\partial^2 u}{\\partial x^2} \\text{ becomes a second difference } \\frac{-u(x + h) + 2u(x) - u(x - h)}{h^2} $$\nFor a line of $N + 1$ nodes those second differences go into a matrix $\\Delta$ of size $N + 1$:\n$$ \\begin{aligned} N &= 4 \\\\ h &= 1/4 \\end{aligned} \\qquad \\Delta_5 = \\frac{1}{(1/4)^2} \\begin{bmatrix} 1 & -1 & & & \\\\ -1 & 2 & -1 & & \\\\ & -1 & 2 & -1 & \\\\ & & -1 & 2 & -1 \\\\ & & & -1 & 1 \\end{bmatrix} \\tag{10} $$\n\nNotice the first and last entries on the diagonal: $1$ and not $2$. Those reflect the boundary conditions at the ends of the row. We are choosing the free condition $\\partial u/\\partial x = 0$ in rows $1$ and $5$. (Fixed conditions $u = 0$ would lead to $2$'s on the whole diagonal.)\n\n### [原文 page_226]\n224 \\hfill Special Matrices\n\nThe second difference matrix \\(\\Delta_5\\) is positive semidefinite. Its nullspace contains the column vector \\(\\mathbf{1}=(1,1,1,1,1)\\).\n\nThis matrix \\(\\Delta_5\\) replaces \\(-\\partial^2/\\partial x^2\\) along each row and \\(-\\partial^2/\\partial y^2\\) down each column. We want the \\(25\\times25\\) matrix \\(\\Delta_{\\text{row}}\\) that finds second differences along all rows at once, plus second differences \\(\\Delta_{\\text{column}}\\) down all columns at once:\n\\[\n\\Delta_{\\text{row}}=\\begin{bmatrix}\n\\Delta_5 & & \\\\\n& \\ddots & \\\\\n& & \\Delta_5\n\\end{bmatrix}=I_5\\otimes\\Delta_5\n\\]\n\\[\n\\Delta_{\\text{column}}=(\\text{column at a time})=\\Delta_5\\otimes I_5\n\\]\n\nSo far this is like the discrete Fourier transform: all-row operation and all-column. The difference is that we add these matrices. We are aiming to approximate \\(-\\partial^2/\\partial x^2\\) plus \\(-\\partial^2/\\partial y^2\\). The overall 2D finite difference matrix is the \\(25\\times25\\) Kronecker sum:\n\\[\n\\Delta_{5\\times5}=I_5\\otimes\\Delta_5+\\Delta_5\\otimes I_5=\\Delta_{\\text{row}}+\\Delta_{\\text{column}}. \\tag{11}\n\\]\n\nThe same matrix \\(\\Delta_{5\\times5}\\) comes from the finite element method (for linear finite elements).\n\nThis matrix is also a graph Laplacian ! The graph is the 5 by 5 square array of 25 nodes. It has 20 horizontal edges and 20 vertical edges. Its incidence matrix \\(A\\) is \\(40\\times25\\). Then its graph Laplacian \\(A^{\\mathrm{T}}A\\) is the same \\(25\\times25\\) matrix \\(\\Delta_{5\\times5}\\). This matrix is positive semidefinite but not invertible. We study graph Laplacians in Section IV.6.\n\nThe nullspace of \\(\\Delta_{5\\times5}\\) contains the vector of 25 ones. That vector is \\(\\mathbf{1}\\otimes\\mathbf{1}\\).\n\n\\begin{center}\n\\textbf{Eigenvectors and Eigenvalues of \\(A\\otimes B\\) and \\(A\\oplus B\\)}\n\\end{center}\n\nSuppose \\(x\\) is an eigenvector of \\(A:Ax=\\lambda x\\). Suppose \\(y\\) is an eigenvector of \\(B:By=\\mu y\\). Then the Kronecker product of \\(x\\) and \\(y\\) is an eigenvector of \\(A\\otimes B\\). The eigenvalue is \\(\\lambda\\mu\\):\n\\[\n(A\\otimes B)(x\\otimes y)=(Ax)\\otimes(By)=(\\lambda x)\\otimes(\\mu y)=\\lambda\\mu(x\\otimes y). \\tag{12}\n\\]\n\nHere \\(A\\) is \\(n\\) by \\(n\\) and \\(B\\) is \\(N\\) by \\(N\\). Therefore \\(x\\) is \\(n\\) by 1 and \\(y\\) is \\(N\\) by 1. So \\(A\\otimes B\\) is a square matrix of size \\(nN\\) and \\(x\\otimes y\\) is a vector of length \\(nN\\). The same pattern also succeeds for Kronecker sums---with the same eigenvector \\(x\\otimes y\\):\n\\[\n(A\\oplus B)(x\\otimes y)=(A\\otimes I_N)(x\\otimes y)+(I_n\\otimes B)(x\\otimes y)=(\\lambda+\\mu)(x\\otimes y). \\tag{13}\n\\]\n\nThe eigenvalue of \\(A\\oplus B\\) is \\(\\lambda+\\mu\\). The vector \\(y\\) is certainly an eigenvector of the identity matrix \\(I_N\\) (with eigenvalue 1). The vector \\(x\\) is certainly an eigenvector of \\(I_n\\) (with eigenvalue 1). So equation (13) for the Kronecker sum just comes from two applications of equation (12) for the Kronecker product. \\(A\\otimes I_N\\) has eigenvalue \\(\\lambda\\) times 1, and \\(I_n\\otimes B\\) has eigenvalue 1 times \\(\\mu\\). The eigenvector in both cases is \\(x\\otimes y\\). So we add to see equation (13) with eigenvalue \\(\\lambda+\\mu\\).\n\n【当前译文】\n@@PAGE:225@@\n<!-- page 225 -->\n> <span style=color:#7f8c8d;>本页为书页 223，属 §IV.3（Kronecker 积）的正文续页；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中的 `04` 为 $\\Omega_4$，`蓋`、`C` 为克罗内克和记号 $\\oplus$，`厶` 为矩阵 $A$，`孓` 为 $\\le$，`刀` 为 $D$ 或 $N$，`行 om`、`什 om` 为 from；残缺的分块矩阵按书页 205（page_207）确立的记号补全为 $\\bigl[\\bar w^{\\,jk}\\Omega_4\\bigr]$（$\\bar w = w^{-1} = -i$，行与列的编号都从 $0$ 起），OCR 残存的 $(\\text{—}i)^4$、$(\\text{—}i)^6$、$(\\text{—}i)^9$ 与这一读法一致。\n<span style=color:#2471a3;>**[section]**</span>\n## （续）The Kronecker Product $A \\otimes B$（克罗内克积 $A \\otimes B$）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.3, p.223</span>\n<span style=color:#2471a3;>**[example]**</span> **Example 1（例 1）**\n取 $N = 4$，则一个正方形中共有 $N^2 = 16$ 个像素。\n二维变换（2D transform）所对应的分块矩阵（block matrix）是 $16 \\times 16$ 的：\n```math\n\\Omega_{4\\times4} = \\Omega_4 \\otimes \\Omega_4 = \\begin{bmatrix}\n\\Omega_4 & \\Omega_4 & \\Omega_4 & \\Omega_4\\\\\n\\Omega_4 & -i\\,\\Omega_4 & (-i)^2\\Omega_4 & (-i)^3\\Omega_4\\\\\n\\Omega_4 & (-i)^2\\Omega_4 & (-i)^4\\Omega_4 & (-i)^6\\Omega_4\\\\\n\\Omega_4 & (-i)^3\\Omega_4 & (-i)^6\\Omega_4 & (-i)^9\\Omega_4\n\\end{bmatrix}\n```\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）原译把分块写成 $i^{\\,j+k-2}\\Omega_4$（即「外和」型），与 Kronecker product 的「外积」定义不符；此处按 $\\Omega_4 = [\\bar w^{\\,jk}]$（书页 205 明言行列编号从 $0$ 起）重建为 $\\bar w^{\\,jk}\\Omega_4$，此时 $\\Omega_{4\\times4}=\\Omega_4\\otimes \\Omega_4$ 才成立。如需精确核对，请对照原书相应页。\n这个矩阵还必须整体除以 $4 \\times 4 = 16$，才能与一维变换（1D transform）$\\Omega_4/4$ 正确匹配。\n于是这个 $16 \\times 16$ 矩阵的逆就给出二维逆 DFT（two-dimensional inverse DFT）——它就是 $F_4 \\otimes F_4$。\n把关于 Kronecker 积的逆公式（4）用上去：\n```math\n\\left( \\frac{1}{16}\\Omega_4 \\otimes \\Omega_4 \\right)^{-1} = F_4 \\otimes F_4 = \\text{Kronecker product of 1D inverses} .\n```\n也就是两个一维逆变换的 Kronecker 积。\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）原译此处写成 $\\frac{1}{16}\\overline{\\Omega_4}\\otimes\\overline{\\Omega_4}=F_4^{-1}\\otimes F_4^{-1}$，与该书自身记号不符：由 $\\bar F_N=\\Omega_N$、$F_N\\Omega_N=NI$（书页 205）得 $\\bigl(\\tfrac{1}{16}\\Omega_4\\otimes \\Omega_4\\bigr)^{-1}=\\overline{\\Omega_4}\\otimes\\overline{\\Omega_4}=F_4\\otimes F_4$，即「两个一维逆变换 $F_4$ 的 Kronecker 积」，既不乘 $1/16$ 也不是 $F_4^{-1}$。如需精确核对，请对照原书相应页。\n<span style=color:#2471a3;>**[section]**</span>\n### The Kronecker Sum $A \\oplus B$（克罗内克和 $A \\oplus B$）\n二维 Fourier transform（傅里叶变换）是两个步骤的乘积：先按行作变换，再把结果按列作变换。\n这两个步骤分别是 $I \\otimes \\Omega$ 与 $\\Omega \\otimes I$。\n在另一些问题中，我们要的却是和（sum）而不是乘积，这会生成一个不同的矩阵。\n它的规模仍然等于 $N^2$ 或 $MN$。\n这个和的定义为\n```math\n\\begin{array}{l} A \\text{ is } M \\text{ by } M\\\\ B \\text{ is } N \\text{ by } N \\end{array}\\qquad \\text{The Kronecker sum } A \\oplus B = A \\otimes I_N + I_M \\otimes B \\text{ is } MN \\text{ by } MN . \\tag{9}\n```\n其中 $A$ 是 $M \\times M$ 的，$B$ 是 $N \\times N$ 的。\n这一构造对于二维的 Laplace's equation（拉普拉斯方程，即 Poisson's equation 泊松方程）十分自然：\n```math\n\\text{Laplace equation in a square}\\qquad -\\frac{\\partial^2 u}{\\partial x^2} - \\frac{\\partial^2 u}{\\partial y^2} = F(x,y) \\quad \\text{for } 0 \\le x \\le 1,\\ 0 \\le y \\le 1 .\n\\qquad 0 \\le x \\le 1,\\quad 0 \\le y \\le 1\n```\n把这个单位正方形分成 $N^2$ 个边长为 $h = 1/N$ 的小正方形。\n在小正方形的角点处放置节点（node，又称网格点 meshpoint），一共会有 $(N+1)^2$ 个节点。\n然后我们把 Laplace 的二阶微分方程换成联系各节点取值 $u_{jk}$ 的二阶差分方程（second order difference equation）：\n```math\n\\text{In one dimension } -\\frac{\\partial^2 u}{\\partial x^2} \\ \\text{ becomes a second difference } \\frac{-u(x+h) + 2u(x) - u(x-h)}{h^2}\n```\n在一维情形下，$\\dfrac{d^2u}{dx^2}$ 就是这样变成一个二阶差分（second difference）的。\n对一条含 $N+1$ 个节点的直线，这些二阶差分被装进一个规模为 $N+1$ 的矩阵 $\\Delta$：\n```math\n\\begin{array}{c} N = 4\\\\ h = 1/4 \\end{array}\\qquad \\Delta_5 = \\frac{1}{(1/4)^2}\\begin{bmatrix}\n1 & -1 & & & \\\\\n-1 & 2 & -1 & & \\\\\n& -1 & 2 & -1 & \\\\\n& & -1 & 2 & -1\\\\\n& & & -1 & 1\n\\end{bmatrix} \\tag{10}\n```\n请注意对角线上的第一个和最后一个元素：它们是 $1$ 而不是 $2$。\n这反映了该行两端的边界条件（boundary condition）。\n我们在第 1 行和第 5 行选择的是自由条件（free condition）$\\partial u/\\partial x = 0$。\n（若取固定条件（fixed condition）$u = 0$，整条对角线都将出现 $2$。）\n\n@@PAGE:226@@\n<!-- page 226 -->\n> <span style=color:#7f8c8d;>本页为书页 224，属 §IV.3 The Kronecker Product（克罗内克积）的续页；页眉「Special Matrices」与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中的 `^ 5`、`厶` 为矩阵 $\\Delta_5$，`蓋`、`S` 为克罗内克和记号 $\\oplus$，`IAT` 为 $A^{T}A$，`皿` 为不定冠词 an，`02` 为编号 $(12)$；`A5 ． 15` 与 `厶 5 ． 15` 依上下文读作 $I_5 \\otimes \\Delta_5$ 与 $\\Delta_5 \\otimes I_5$；末段「eigenvalue umes 1」按数学语境读作「eigenvalue $\\lambda$ times $1$」，行末残缺的编号按前后引用补为 $(11)$、$(12)$、$(13)$。\n二阶差分矩阵（second difference matrix）$\\Delta_5$ 是 positive semidefinite（半正定）的。\n它的 nullspace（零空间）包含列向量 $\\mathbf{1} = (1,1,1,1,1)$。\n这个矩阵 $\\Delta_5$ 沿每一行（row）代替 $-\\partial^2/\\partial x^2$，沿每一列（column）代替 $-\\partial^2/\\partial y^2$。\n我们要的是那个 $25 \\times 25$ 的矩阵 $\\Delta_{\\text{row}}$：它一次求出沿**所有行**的二阶差分；另外还要 $\\Delta_{\\text{column}}$，一次求出沿**所有列**的二阶差分：\n```math\n\\Delta_{\\text{row}} = \\begin{bmatrix} \\Delta_5 & & \\\\ & \\ddots & \\\\ & & \\Delta_5 \\end{bmatrix} = I_5 \\otimes \\Delta_5\n```\n```math\n\\Delta_{\\text{column}} = \\text{(column at a time)} = \\Delta_5 \\otimes I_5\n```\n到目前为止，这与 discrete Fourier transform（离散傅里叶变换）的作法相同：都是全行操作加上全列操作。\n区别在于我们要把这些矩阵相加。\n我们的目标是逼近 $-\\partial^2/\\partial x^2 - \\partial^2/\\partial y^2$。\n整个二维有限差分矩阵（2D finite difference matrix）就是下面这个 $25 \\times 25$ 的 Kronecker sum（克罗内克和）：\n```math\n\\Delta_{5\\times5} = I_5 \\otimes \\Delta_5 + \\Delta_5 \\otimes I_5 = \\Delta_{\\text{row}} + \\Delta_{\\text{column}} . \\tag{11}\n```\n同一个矩阵 $\\Delta_{5 \\times 5}$ 也可以由 finite element method（有限元方法，指线性有限元 linear finite element）得到。\n这个矩阵同时还是一个 graph Laplacian（图拉普拉斯矩阵）！\n它所对应的图是 $5 \\times 5$ 的方形节点阵列，共 $25$ 个节点。\n该图有 $20$ 条水平边（horizontal edge）和 $20$ 条垂直边（vertical edge）。\n它的 incidence matrix（关联矩阵）是 $40 \\times 25$ 的。\n于是它的 graph Laplacian $A^{T}A$ 正是同一个 $25 \\times 25$ 矩阵 $\\Delta_{5 \\times 5}$。\n<span style=color:#2471a3;>**[note]**</span>\n> <span style=color:#1e8449;>**[note] 译者注 ｜ 这个 $25\\times25$ 的差分矩阵其实是一张图的拉普拉斯矩阵：**</span> 本页说同一个矩阵 $A_{5\\times5}=\\Delta_5\\otimes I_5+I_5\\otimes \\Delta_5$ 有三个身份：二维差分算子、有限元的刚度矩阵、图拉普拉斯矩阵 $A^{T}A$。第三个身份最值得展开——它把「离散化」和「图论」接了起来，而且接得完全精确，不是比喻。\n>\n> <span style=color:#1e8449;>**它是怎么对上的。** 把 $5\\times5$ 网格看成一张图：$25$ 个节点，$20$ 条水平边 + $20$ 条垂直边，共 $40$ 条边。关联矩阵 $A$ 是 $40\\times25$：每条边一行，在这条边的两个端点处分别取 $+1$ 与 $-1$（差一个方向约定）。那么 $A^{T}A$ 的第 $(i,i)$ 个元素是节点 $i$ 的度数（网格内部为 $4$、边界非角点为 $3$、角点为 $2$），第 $(i,j)$ 个元素在 $i$ 与 $j$ 相邻时为 $-1$、否则为 $0$。回头看 $\\Delta_5\\otimes I+I\\otimes \\Delta_5$：非对角元正是 $-1$，对角元正是度数。也就是说，离散拉普拉斯矩阵就是「度数矩阵 − 邻接矩阵」。</span>\n>\n> <span style=color:#1e8449;>**一个能当场验算的检查。** $\\operatorname{trace}(A^{T}A)$ 等于 $A$ 的所有元素平方和，而每条边贡献 $1^2+(-1)^2=2$，所以是 $2\\times40=80$。另一条路：$4$ 个角点度数 $2$、$12$ 个边界点度数 $3$、$9$ 个内部点度数 $4$，合计 $8+36+36=80$。两个数字必须相等，因为 $\\operatorname{trace}(A^{T}A)=\\sum_i\\sum_j a_{ij}^2$，这正是 Strang 反复强调的 $A^{T}A$ 的对角线含义。</span>\n>\n> <span style=color:#1e8449;>**连接 6.042J：图论里的概念在这里全部变成矩阵语言。**</span>\n> <span style=color:#1e8449;>① **连通性 ↔ 零空间维数**：$A^{T}A$ 的零空间维数等于图的连通分量个数。这里只有 $1$ 维（只有常数向量 $\\mathbf{1}\\otimes\\mathbf{1}$ 满足 $A^{T}A x=0$，因为 $\\|Ax\\|^2=0$ 意味着每条边两端取值相同），所以网格图连通。若把网格切成互不相连的两块，零空间变成 $2$ 维，方程 $-KU=F$ 的解就不唯一（可以整体加常数）——这就是差分方程里「解差一个常数」的可解性条件，也是线性代数里「$Ax=b$ 可解 $\\Leftrightarrow$ $b\\perp$ 左零空间」的几何意义在图上的样子。</span>\n> <span style=color:#1e8449;>② **生成树计数 ↔ 行列式**：基尔霍夫（Kirchhoff）的矩阵树定理说，把拉普拉斯矩阵任意删去一行一列，剩下子式的行列式就等于图的生成树个数。你在 6.042J 里用「删边 / 缩边」递推算过的网格生成树数目，在这里就是一个 $24\\times24$ 子式的行列式。一个纯计数的整数等于一个矩阵的行列式——这是「线性代数的不变量」与「图的结构量」是同一件事的最好证据。</span>\n> <span style=color:#1e8449;>③ **半正定性**：$x^{T}A^{T}Ax=\\|Ax\\|^2\\ge0$，$A^{T}A$ 必然半正定。这正是最小二乘法方程成立的根基：$\\|Ax-b\\|^2$ 能求导、能化成 $A^{T}Ax=A^{T}b$，靠的就是 $A^{T}A$ 的对称半正定。</span>\n>\n> <span style=color:#1e8449;>**CSAPP 视角：稀疏性决定可行性。** $A$ 是 $40\\times25$，$A^{T}A$ 是 $25\\times25$，但真正非零的只有 $25+2\\times40=105$ 个位置，占 $25^2=625$ 的 $17\\%$。若网格是 $n\\times n$ 个节点，矩阵是 $n^2\\times n^2$：稠密存储要 $n^4$ 个 double，稀疏存储只要 $O(n^2)$ 个非零元。$n=1000$ 时前者是 $10^{12}$ 个元素（约 8 TB），后者约 $5\\times10^6$ 个（几十 MB）。CSAPP 讲缓存时说「局部性决定性能」，在这里升级成了「稀疏结构决定可行性」。</span>\n>\n> <span style=color:#1e8449;>**可迁移的结论**：以后看到「物理或图像问题被离散化后得到一个大矩阵」，先问三句：它是稀疏的吗（非零元是 $O(n)$ 还是 $O(n^2)$，注意这里 $n$ 指节点数）？它是哪张图的拉普拉斯矩阵、零空间维数告诉我什么？有没有一组特殊向量能把它对角化？这三问在 §IV.6（图拉普拉斯与基尔霍夫定律）里会变成主线。</span>\n这个矩阵是 positive semidefinite 的，但不可逆（not invertible）。\n我们将在 §IV.6 中研究 graph Laplacian。\n$\\Delta_{5 \\times 5}$ 的 nullspace 包含由 $25$ 个 $1$ 组成的向量，而这个向量就是 $\\mathbf{1} \\otimes \\mathbf{1}$。\n<span style=color:#2471a3;>**[section]**</span>\n### Eigenvectors and Eigenvalues of $A \\otimes B$ and $A \\oplus B$（$A \\otimes B$ 与 $A \\oplus B$ 的特征向量与特征值）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.3, p.224</span>\n假设 $x$ 是 $A$ 的 eigenvector（特征向量）：$Ax = \\lambda x$。\n假设 $y$ 是 $B$ 的 eigenvector：$By = \\mu y$。\n那么 $x$ 与 $y$ 的 Kronecker 积就是 $A \\otimes B$ 的 eigenvector。\n相应的 eigenvalue（特征值）是 $\\lambda \\mu$：\n```math\n(A \\otimes B)(x \\otimes y) = (Ax) \\otimes (By) = (\\lambda x) \\otimes (\\mu y) = \\lambda\\mu\\,(x \\otimes y) . \\tag{12}\n```\n这里 $A$ 是 $n \\times n$ 的，$B$ 是 $N \\times N$ 的。\n因此 $x$ 是 $n \\times 1$ 的，$y$ 是 $N \\times 1$ 的。\n所以 $A \\otimes B$ 是一个规模为 $nN$ 的方阵，而 $x \\otimes y$ 是长度为 $nN$ 的向量。\n同样的模式对 Kronecker sum 也成立——用的是同一个 eigenvector $x \\otimes y$。\n$A \\oplus B$ 的 eigenvalue 是 $\\lambda + \\mu$：\n```math\n(A \\oplus B)(x \\otimes y) = (A \\otimes I_N)(x \\otimes y) + (I_n \\otimes B)(x \\otimes y) = (\\lambda + \\mu)\\,(x \\otimes y) . \\tag{13}\n```\n向量 $y$ 当然是单位矩阵 $I_N$ 的 eigenvector（特征值为 $1$）。\n向量 $x$ 当然是 $A$ 的 eigenvector（特征值为 $\\lambda$）。\n所以关于 Kronecker sum 的方程 $(13)$，不过是对关于 Kronecker product 的方程 $(12)$ 作两次应用而已。\n$A \\otimes I_N$ 的 eigenvalue 是 $\\lambda$ 乘 $1$，而 $I_n \\otimes B$ 的 eigenvalue 是 $1$ 乘 $\\mu$。\n两种情形下的 eigenvector 都是 $x \\otimes y$。\n于是把两者相加，就得到特征值为 $\\lambda + \\mu$ 的方程 $(13)$。\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）$(13)$ 式的编号在 OCR 中只见于后文引用（`equation (13)`），其显示位置残缺。此处按「$A \\oplus B$ 的特征值是 $\\lambda+\\mu$」这一句之后插入（本页末尾即讨论 $A \\otimes I_N$ 与 $I_M \\otimes B$ 的相加），如需精确核对，请对照原书相应页。\n\n现在输出修订后的译文全文（从 `@@PAGE:225@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7162,
+            "outputTokens": 19264,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7162,
+              "outputTokens": 19264,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 19634,
+          "contextWindow": 1000000,
+          "pressureTokens": 11002,
+          "sampledSurfaceTokens": 5922
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4362,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 13712,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 18490
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

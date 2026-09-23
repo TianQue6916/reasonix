@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127960031,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**译者注撰写专家**。本次为 part004（书页 147-197，Part III Low Rank and Compressed Sensing）中的 9 页译文撰写译者注。\r\n\r\n【读者画像（写注必须对齐，禁止甩未学概念）】\r\n- 大二上学期，智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n- ✅ 已学：离散数学 MIT 6.042J（等价关系、偏序集、数论、图论、概率方法、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、线性代数 Strang（收尾中）、算法 6.006（CLRS 分治/图/复杂度）\r\n- 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法（Strang）、概率论（Bertsekas）、计算机网络（CS144）、凸优化（Boyd）\r\n- ⚠️ 尚未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——**不得甩这些名词**\r\n- 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n\r\n【注的类型（每条必须是一条可独立阅读的小专题）】\r\n1. 跨课程连接——精确到**课程名 + 具体概念 + 连接路径 + 区别**（例：你在 6.042J 学的 Chernoff 界在这里就是……）\r\n2. 第一性原理洞察——追溯最基础假设，回答为什么必须这样\r\n3. 证明策略模板——抽象为可复用模板并**命名**（如谱夹逼法能量检验法零空间吸收法）\r\n4. 历史与人物——只作点缀，标明年份（不确定的年份宁可不写）\r\n5. 拓展前沿——从用户已知概念出发搭脚手架，禁止裸甩名词\r\n\r\n【硬性质量标准】\r\n- 每条注正文 **800-1200 个汉字**（配图 / 公式 / 引文不计入）；宁可少写几条，不可注水\r\n- 每条注必须有：与当前内容的直接关系 + 一个具体例子或验算 + 一条命名模板或跨课程连接\r\n- 🚫 禁止：裸甩名词、空洞赞美（精妙经典）、堆历史年表、重复正文\r\n- 🚫 LaTeX 规范：所有公式用 `$...$` 或 ```math 围栏；**严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`**（公式必须完整保留美元符号与反斜杠命令）；禁止 Unicode 上下标\r\n- 分布均匀：本批至少 6 条注，覆盖本范围内的主要概念（不要全堆在一页）\r\n\r\n【输出格式（🚨 严格遵守，主代理按 ANCHOR 精确插入）】\r\n对每一条注，输出：\r\n\r\n=== ANCHOR: <从下方译文中原样复制的连续片段，12-40 个汉字，必须在该页译文中唯一出现> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n\r\n- ANCHOR 必须**逐字**照抄译文中的一段（含标点），以便程序精确匹配；不要改写、不要加省略号\r\n- 每条注一个 ANCHOR 块；块与块之间空一行\r\n- 不要输出任何其他内容（不要前言、不要汇总、不要思考过程）\r\n\r\n【术语表（沿用，术语一致性）】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n【本批译文（9 页，书页 175-183）】\r\n<!-- page 178: 书页 175 -->\r\n<!-- page 178 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 175，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 2. Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n**Interlacing 与 Weyl 不等式**\r\n对任意对称矩阵 $S$ 与 $T$，Weyl（外尔）找到了 $S+T$ 的特征值的上下界：\r\n\r\n```math\r\n\\lambda_{j-1}(S+T)\\ \\le\\ \\lambda_j(S)+\\lambda_1(T) \\tag{23}\r\n```\r\n\r\n```math\r\n\\lambda_j(S)+\\lambda_n(T)\\ \\le\\ \\lambda_j(S+T) \\tag{24}\r\n```\r\n\r\n我们在图 III.1 中看到的那些 $\\lambda_i$ 的交错性质，也可以由方程 (23) 证明。\r\n设 rank one matrix（秩一矩阵）为 $T=\\sigma uu^T$，它的最大特征值是 $\\lambda_1(T)=\\sigma$。\r\n其余所有特征值都为 $\\lambda_k(T)=0$。\r\n于是对每个 $j=2,3,\\dots,n$，Weyl 不等式给出 $\\lambda_{j-1}(S+T)\\le\\lambda_j(S)$，即 $\\lambda_{j+1}(S+T)\\le\\lambda_j(S)$。\r\n换言之，$S+T$ 的每一个特征值都不能越过 $S$ 的下一个特征值。\r\n而对 $j=1$，我们有 $\\lambda_1(S+T)\\le\\lambda_1(S)+\\sigma$，这就是 signal plus noise（信号加噪声）的最大特征值的一个上界。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 OCR 中 (23) 的下标与系数有噪声，此处按 Weyl 不等式的标准形式重建为 $\\lambda_{j-1}(S+T)\\le\\lambda_j(S)+\\lambda_1(T)$ 与 $\\lambda_j(S)+\\lambda_n(T)\\le\\lambda_j(S+T)$。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n<span style=color:#c0392b;>**交错定理**</span> 这里有一个关于特征值的优美交错定理：把对称矩阵 $S$ 的最后一行与最后一列删去，就留下一个大小为 $n-1$ 的矩阵 $S_{n-1}$。\r\n\r\n```math\r\n\\lambda_1(S)\\ \\ge\\ \\alpha_1\\ \\ge\\ \\lambda_2(S)\\ \\ge\\ \\alpha_2\\ \\ge\\ \\cdots\\ \\ge\\ \\alpha_{n-1}\\ \\ge\\ \\lambda_n(S)\r\n```\r\n\r\n矩阵 $S_{n-1}$ 的 $n-1$ 个特征值 $\\alpha_i$ 与 $S$ 的特征值交错排列。\r\n<span style=color:#00838f;>证明的想法是：删去最后一行与最后一列，等价于强制一切向量都与 $(0,0,\\dots,0,1)$ 正交。</span>\r\n于是 (22) 中的最小值就可能下降到 $\\lambda_i$ 以下。\r\n但它不会降到 $\\lambda_{i+1}$ 以下，因为 $\\lambda_{i+1}$ 允许在维数为 $i+1$ 的空间中自由选取。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例**\r\n\r\n```math\r\nS=\\begin{bmatrix} 1 & 2 & 2\\\\ 2 & 2 & 2\\\\ 2 & 2 & 3\\end{bmatrix}\r\n\\quad\\Longrightarrow\\quad\r\nS_{2}=\\begin{bmatrix} 1 & 2\\\\ 2 & 2\\end{bmatrix},\r\n\\qquad \\lambda(S):\\ 3,\\ 3,\\ 0\r\n```\r\n\r\n```math\r\n\\lambda(S_{2}):\\ 3,\\ 1\r\n\\qquad\\Longrightarrow\\qquad 3>3>1>0\r\n```\r\n\r\n**Singular Values 的交错**\r\n假设 $A$ 不是方阵也不对称——这时涉及的是它的 singular value（奇异值）。\r\n$A$ 的每一列代表一段视频中的一帧。\r\n我们想识别出隐藏在这些列中的 rank one signal（秩一信号）$\\beta c y^T$。\r\n这一信号被 random noise（随机噪声）所掩盖。\r\n若在视频播放期间有一盏灯被打开或被关掉，我们的目标就是看出这件事发生在什么时刻。\r\n这就引导我们提出一个问题：从 $A$ 变到 $A+B$ 时，奇异值究竟改变了多少？\r\n对称矩阵特征值的变化如今已被理解清楚。\r\n所以我们可以转而研究 $A^T A$ 或 $B^T B$，或者研究下面这个大小为 $m+n$ 的对称矩阵，它的特征值是 $\\pm\\sigma$：\r\n\r\n```math\r\nC=\\begin{bmatrix} 0 & A\\\\ A^T & 0\\end{bmatrix}\r\n\\qquad\\text{与}\\qquad\r\n\\begin{bmatrix} 0 & A+B\\\\ A^T+B^T & 0\\end{bmatrix} \\tag{25}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文此处夹有被 OCR 严重破坏的网址，按上下文补全其出处：Terence Tao（陶哲轩）关于 random matrices（随机矩阵）与 hermitian matrices（埃尔米特矩阵）的笔记，网址为 https://terrytao.wordpress.com/2010/01/25/random-matrices-and-hermitian-matrices/ 。此网址仅为出处说明，并非正文内容。\r\n\r\n**Weyl 不等式（奇异值形式）**\r\n\r\n```math\r\n\\sigma_{i+j-1}(A+B)\\ \\le\\ \\sigma_i(A)+\\sigma_j(B),\r\n\\qquad\\text{特别地}\\qquad\r\n\\sigma_1(A+B)\\ \\le\\ \\sigma_1(A)+\\sigma_1(B) \\tag{26}\r\n```\r\n\r\n```math\r\n\\sigma_j(A+B)\\ \\ge\\ \\sigma_j(A)-\\sigma_1(B),\r\n\\qquad\\text{其中}\\quad j=1,2,\\dots,n \\tag{27}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> (26)(27) 的原文因 OCR 噪声严重残缺（残片含 `Weyl inequalities`、`m < n` 等字样），此处按 Weyl 不等式的标准奇异值形式重建：奇异值之和的上界与逐项的下界。\r\n\r\n<!-- page 179: 书页 176 -->\r\n<!-- page 179 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 176，属 Part III「Low Rank and Compressed Sensing（低秩与压缩感知）」中 Problem Set III.2（习题集 III.2）的第 1–8 题；页眉与页码为重复元素，不译。按习题页先例，题干保留英文原文，OCR 乱码一律按数学语境重建为 LaTeX。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Problem Set III.2（习题集 III.2）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声极重，已按数学语境重建：`镒@）` → $u(t)$，`风@）` → $A(t)$，`/\\` → $\\lambda$，`之` → $\\ge$，`刀` → $D$，`什 om` → from，`山 at` → that，`Cmax`/`amin` → $\\sigma_{\\max}$/$\\sigma_{\\min}$；第 3 题中被 OCR 吞掉的矩阵定义按「秩一正半定扰动 + 特征值交错」的语境补全，第 5 题的矩阵元素按二阶差分矩阵重建（其交错结论 $2-\\sqrt{2}<1<2<3<2+\\sqrt{2}$ 与原题一致）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** A unit vector $u(t)$ describes a point moving around on the unit sphere $\\|u\\| = 1$. Show that the velocity vector $du/dt$ is orthogonal to the position: $u^{T}(du/dt) = 0$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** Suppose you add a positive semidefinite rank two matrix $T$ to $S$. What interlacing inequalities will connect the eigenvalues of $S$ and of $S + T$?\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** (a) Find the eigenvalues $\\lambda_1(t)$ and $\\lambda_2(t)$ of $A(t) = A(0) + t\\,vv^{T}$.\r\n(b) At $t = 0$, find the eigenvectors of $A(0)$ and verify $d\\lambda/dt = q^{T}(dA/dt)\\,q$.\r\n(c) Check that the change $A(t) - A(0)$ is positive semidefinite for $t > 0$. Then verify the interlacing law $\\lambda_1(t) \\ge \\lambda_1(0) \\ge \\lambda_2(t) \\ge \\lambda_2(0)$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** $S$ is a symmetric matrix with eigenvalues $\\lambda_1 \\ge \\lambda_2 \\ge \\cdots \\ge \\lambda_n$ and eigenvectors $q_1, q_2, \\ldots, q_n$. Which $i$ of those eigenvectors are a basis for an $i$-dimensional subspace $V$ with this property: The minimum of $x^{T}Sx/x^{T}x$ for $x$ in $V$ is $\\lambda_i$?\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** Find the eigenvalues of these $3 \\times 3$, $2 \\times 2$, and $1 \\times 1$ matrices. Show that they are interlacing.\r\n\r\n```math\r\n\\begin{bmatrix} 2 & −1 & 0 \\\\ −1 & 2 & −1 \\\\ 0 & −1 & 2 \\end{bmatrix}, \\qquad\r\n\\begin{bmatrix} 2 & −1 \\\\ −1 & 2 \\end{bmatrix}, \\qquad\r\n\\begin{bmatrix} 2 \\end{bmatrix}\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Suppose $D$ is the diagonal matrix $\\operatorname{diag}(1, 2, \\ldots, n)$ and $S$ is positive definite.\r\n1) Find the derivatives at $t = 0$ of the eigenvalues $\\lambda(t)$ of $D + tS$.\r\n2) For a small $t > 0$ show that the $\\lambda$'s interlace the numbers $1, 2, \\ldots, n$.\r\n3) For any $t > 0$, find bounds on $\\lambda_{\\min}(D + tS)$ and $\\lambda_{\\max}(D + tS)$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Suppose $D$ is again $\\operatorname{diag}(1, 2, \\ldots, n)$ and $E$ is any $n$ by $n$ matrix.\r\n1) Find the derivatives at $t = 0$ of the singular values $\\sigma(t)$ of $D + tE$.\r\n2) What do Weyl's inequalities say about $\\sigma_{\\max}(D + E)$ and $\\sigma_{\\min}(D + E)$?\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** (a) Show that every $i$-dimensional subspace $V$ contains a nonzero vector $z$ that is a combination of $q_i, q_{i+1}, \\ldots, q_n$. (Those $q$'s span a space $Z$ of dimension $n-i+1$. Based on the dimensions $i$ and $n-i+1$, why does $Z$ intersect $V$?)\r\n(b) Why does that vector $z$ have $z^{T}Sz/z^{T}z \\le \\lambda_i$? Then explain\r\n\r\n```math\r\n\\lambda_i = \\max_{\\dim V = i} \\ \\min_{z \\in V} \\frac{z^{T}Sz}{z^{T}z}\r\n```\r\n\r\n<!-- page 180: 书页 177 -->\r\n<!-- page 180 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 177，前半为 §III.2 正文「The Law of Inertia（惯性定律）」的定义与证明思路（完整行内双语翻译），后半为 Problem Set III.2 的第 9–12 题（保留英文原题）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### The Law of Inertia（惯性定律）\r\n\r\n<span style=color:#2471a3;>**[definition]**</span>\r\n\r\n**Definition.** 若 $S$ 对称（symmetric）而 $C$ 可逆（invertible），则矩阵 $C^{T}SC$ 与 $S$ congruent（合同）。\r\n这**不是** similarity（相似变换）$B^{-1}SB$！\r\n$C^{T}SC$ 的特征值可以与 $S$ 的特征值不同，但它们相对零的位置、也就是正负号不会改变。\r\n<span style=color:#00838f;>这正是所谓 Law of Inertia（惯性定律）：$C^{T}SC$ 与 $S$ 拥有相同数目的正特征值、负特征值与零特征值。</span>\r\n\r\n我最喜欢的证明从 $C = QR$ 出发，这一步由 Gram-Schmidt（格拉姆-施密特）给出。\r\n当 $C$ 逐渐变到 $Q$ 时，$C^{T}SC$ 也逐渐变到 $Q^{T}SQ = Q^{-1}SQ$。\r\n此时我们确实拥有了 similarity（相似性）——$Q^{-1}SQ$ 与 $S$ 有相同的特征值。\r\n如果从 $C$ 一路到 $Q$ 的每个中间矩阵都可逆，那么途中不可能有特征值穿过零。\r\n于是正的、负的、零的特征值个数，对 $C^{T}SC$、$Q^{-1}SQ$ 与 $S$ 三者完全相同。\r\n\r\nmax-min principles（极大极小原理）同样能证明 Law of Inertia（惯性定律）。\r\n\r\n---\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 9.** If $S = LDL^{T}$ has nonzero pivots in elimination, show that the signs of the pivots of $S$ (on $D$) match the signs of the eigenvalues of $S$. Apply the Law [of Inertia] to $S$ and $D$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 10.** Show that this $2 \\times 2$ KKT matrix $H$ has positive and negative eigenvalues:\r\n\r\n```math\r\nH = \\begin{bmatrix} S & C^{T} \\\\ C & 0 \\end{bmatrix}\r\n\\qquad S \\text{ positive definite},\\ C \\text{ invertible}\r\n```\r\n\r\nThe first pivots from $S$ are positive. The last pivots come from $-CS^{-1}C^{T}$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 11.** The KKT matrix $H$ is symmetric and indefinite—this problem counts eigenvalues as in equation (17):\r\n\r\n```math\r\nH = \\begin{bmatrix} S & A^{T} \\\\ A & 0 \\end{bmatrix}\r\n\\qquad (n+m) \\text{ by } (n+m)\r\n```\r\n\r\n$H$ comes from minimizing $\\frac{1}{2}x^{T}Sx - x^{T}b$ (positive definite) with $m$ constraints $Ax = b$.\r\nElimination on $H$ begins with $S$. We know its pivots are all positive.\r\nThen elimination multiplies $S^{-1}$ times $[\\,S\\ \\ A^{T}\\,]$ and subtracts from $[\\,A\\ \\ 0\\,]$ to get $[\\,0\\ \\ −AS^{-1}A^{T}\\,]$.\r\nThat Schur complement $-AS^{-1}A^{T}$ is negative definite. Why?\r\nThen the last $m$ pivots of $H$ (coming from $-AS^{-1}A^{T}$) are negative.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 12.** If $x^{T}Sx > 0$ for all $x \\ne 0$ and $C$ is invertible, why is $(Cy)^{T}S(Cy)$ also positive? This shows again that if $S$ has all positive eigenvalues, so does $C^{T}SC$.\r\n\r\n<!-- page 181: 书页 178 -->\r\n<!-- page_181 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 178，是 Part III 中 §III.3 的开篇页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`蓋`/`风` 系 $A$ 之误，`¯ak` 重建为 the，`和 纱` 系 family（族）之误，`0 咖 rm` 重建为 nonuniform，`尹`/`Fø` 系 Fourier 矩阵 $F$ 之误，`皿 s № 皿` 重建为 algorithm is superfast，公式一律依数学语境重建。\r\n\r\n存在一些重要的矩阵，其 singular values（奇异值）衰减得非常快。\r\n这类矩阵往往是可逆的（其逆矩阵大得惊人）。\r\n而且我们常常面对的不是单个矩阵，而是一 entire family（整族）各种尺寸的矩阵——Hilbert matrix（希尔伯特矩阵）与 Vandermonde matrix（范德蒙矩阵），Hankel matrix（汉克尔矩阵）与 Cauchy matrix（柯西矩阵），以及 Toeplitz（托普利茨）矩阵、谱差分矩阵等等。\r\n这些矩阵同时既是容易处理的，又是难以处理的。\r\n容易，是因为只有少数几个奇异值显著。\r\n难以处理，是因为它们的逆矩阵具有巨大的 norm（范数），并随矩阵尺寸呈指数增长。\r\n我们将从众多例子中聚焦两个：\r\n\r\n**1.** nonuniform discrete Fourier transform（非均匀离散傅里叶变换，NUDFT）以 $U = A .* F$ 取代 $F$，其中 $A$ 起修正作用。\r\n**2.** Vandermonde matrix（范德蒙矩阵）$V$ 将一个 $n-1$ 次多项式拟合到数据点上。\r\n\r\n实际上这两个例子是相互联系的。\r\n标准的 DFT 在均匀间隔的点 $2\\pi k/N$ 上拟合数值 $y_0$ 到 $y_{N-1}$。\r\n而 Fourier matrix（傅里叶矩阵）本身就是一个 Vandermonde matrix！\r\n但 DFT 是在单位圆上的复数点上作插值，而实数据的 Vandermonde 矩阵则是在 $-1$ 与 $1$ 之间的实点上插值。\r\n实的这种情形产生极其糟糕的 Vandermonde 矩阵（实质上是奇异的）。\r\n复的情形则产生优美的 Fourier matrix（正交的）。\r\n我们从那个复的 Fourier matrix $F$（照例等间距）开始。\r\n乘以 $F$ 借助 §IV.1 中的 Fast Fourier Transform（快速傅里叶变换）可以超快完成：需 $\\log_2 N$ 次运算。\r\n对于非均匀间距 $c_j \\ne j/N$ 的情形，支撑 FFT 的那些特殊恒等式不复存在。\r\n但 Ruiz-Antolin 与 Townsend 指出，你几乎可以恢复全部速度。\r\n把非均匀的 $U$ 写成 $A .* F$，其中 $A$ 接近一个低秩矩阵：\r\n\r\n```math\r\nU_{jk} = e^{-2\\pi i c_j k} \\quad \\text{and} \\quad A_{jk} = e^{-2\\pi i c_j k}\\Big/ e^{-2\\pi i j k/N}\r\n```\r\n\r\n当 $U = F$ 是等间距的 DFT 时，每个 $A_{jk} = 1$，这就是秩 0的情形。\r\n在非均匀间距下，一个低秩矩阵已几乎与 $A$ 一致，快速变换因而成为可能。\r\n下面给出逐元素乘法 $\\circ$ 与逐元素除法 $\\oslash$ 的记号。\r\n乘法 $U = A .* F$ 与除法 $A = U ./ F$：\r\n\r\n```math\r\nU = A .* F = A \\circ F \\qquad A = U ./ F \\tag{1}\r\n```\r\n\r\n需要快速执行的运算是 NUDFT：$U$ 乘以 $c$。\r\n而快速 Fourier algorithm（算法）计算的是 $F$ 乘以 $c$。\r\n那些比值 $U ./ F$ 给出一个矩阵 $A$，它几乎是低秩的。\r\n于是非均匀变换 $U$ 来自对 Fourier matrix $F$ 的一个修正 $A$：\r\n\r\n```math\r\nU = A .* F \\quad \\text{which gives} \\quad Uc \\approx Y_1 F Z_1 c + \\cdots + Y_r F Z_r c\r\n```\r\n\r\n其中 $A = Y_1 Z_1^T + \\cdots + Y_r Z_r^T$，而且 $Y_i$ 与 $Z_i$ 都是 $N \\times N$ 的对角矩阵，对角线上分别是 $a_i$ 与 $b_i$。\r\n等间距的情形有 $U = F$、$A$ 全为 1，并且 $r = 1$、$Y_1 = Z_1 = I$。\r\n对于不等间距的情形，$r$ 由采样点的非均匀程度决定。\r\n\r\n<!-- page 182: 书页 179 -->\r\n<!-- page_182 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 179，是 §III.3 的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Sample Points near $j/N$（靠近 $j/N$ 的采样点）\r\n\r\n在这种轻微扰动的情形下，我们可以把不等间距的 $c_j$ 与等间距的分数 $j/N$（$0 \\le j < N$）对应起来。\r\n对于 $U$ 的每个元素，$A_{jk}$ 都是对 $F_{jk}$ 的一个修正：\r\n\r\n```math\r\nU_{jk} = A_{jk} F_{jk} \\quad \\text{with} \\quad A_{jk} = \\frac{e^{-2\\pi i k c_j}}{e^{-2\\pi i j k/N}} \\tag{3}\r\n```\r\n\r\n于是快速算法的关键一步，就是为这个矩阵 $A$ 找到好的近似（一旦有了 $A$，乘以 $F$ 就很快）。\r\nEckart-Young theorem（Eckart-Young 定理）会建议使用 $A$ 的 SVD。\r\n但 SVD 这一步比非均匀间距快速变换的其余部分都要昂贵得多。\r\n$A$ 是个有意思的矩阵。\r\n方程 (3) 中它的所有元素都具有 $e^{i\\theta}$ 的形式。\r\n若把 $e^{i\\theta}$ 用它的 power series（幂级数）$1 + i\\theta + \\cdots$ 替换，那么 $A$ 将从一个全 1 矩阵开始。\r\n本节其余部分通过处理 Sylvester equation（西尔维斯特方程）来寻找低秩近似。\r\n这里 Townsend 走了一条不同的路线：近似那些指数函数 $e^{-2\\pi i k c_j}$。\r\n关键想法是把这些矩阵元素各自的 Taylor series（泰勒级数）替换为 Chebyshev expansion（切比雪夫展开）。\r\n这反映了数值分析中一条极其重要的规则：\r\n\r\nFourier series（傅里叶级数）适用于区间（如 $[-\\pi, \\pi]$）上的周期函数。\r\nChebyshev series（切比雪夫级数）适用于区间（如 $[-1, 1]$）上的非周期函数。\r\n\r\nFourier 与 Chebyshev 之间的联系是 $\\cos n\\theta = T_n(\\cos\\theta)$。\r\nFourier basis function（傅里叶基函数）$\\cos n\\theta$ 变成了 Chebyshev polynomial（切比雪夫多项式）$T_n(c)$。\r\nChebyshev 基从 $T_0 = 1$ 与 $T_1 = c$ 开始，而 $T_2 = 2c^2 - 1$，因为 $\\cos 2\\theta = 2\\cos^2\\theta - 1$。\r\n所有这些 basis function（基函数）在 $[-1, 1]$ 上都有 $\\max |T_n(c)| = 1$，从 $c = −1$ 到 $c = 1$。\r\n\r\n重要的一点是，$T_n(c) = 0$ 的解并不等间距。\r\n$\\cos n\\theta$ 的零点等间距，但在 $c$ 变量中，这些点在边界 $-1$ 与 $1$ 附近变得彼此靠近。\r\n在这些点 $c = \\cos(\\pi(k-\\tfrac{1}{2})/n)$ 上作插值，远比等间距插值稳定。\r\n\r\n高度发达的计算系统 chebfun.org 就是建立在 Chebyshev polynomials（切比雪夫多项式）之上的（适用于一维或多维的函数）。\r\n它计算一个非常接近 $f(c)$ 的多项式。\r\n随后对函数的一切运算都以有限 Chebyshev series（切比雪夫级数）的形式产生新的多项式。\r\n达到高精度所需的次数由 chebfun 代码自动选择。\r\n\r\nTownsend 对矩阵的这种处理方式，使 Ruiz-Antolin 与 Townsend 证明了 $A$ 具有 low effective rank（低有效秩）——即它可被一个低秩矩阵很好地逼近。\r\n他们的论文为 nonuniform Fourier transform（非均匀傅里叶变换）提供了非常高效的代码。\r\n\r\n<!-- page 183: 书页 180 -->\r\n<!-- page 183 -->\r\n> <span style=color:#7f8c8d;>本页为书页 180，属 §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`蓋` 为 $A$，`ÄX 一 XB = C` 重建为 $AX - XB = C$，`= QAQ` 重建为 $A = Q\\Lambda Q^T$，`一 is called` 中的 `一` 为负号（即 $B = −A^T$），句末被切碎的下标与点号按插值语境重建。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### The Sylvester Equation（Sylvester 方程）\r\n\r\n我们转向本主题的核心问题：哪些矩阵族具有低有效秩（low effective rank）？目标是找到一个能揭示这一性质的检验。在已经讨论过的 Hilbert 矩阵与 NUDFT 矩阵这两个例子之外，我们还想把 Vandermonde 矩阵加进来。\r\n而且我们期望这个检验能适用于远比 Vandermonde 例子广泛得多的矩阵类。\r\n\r\n这里是由 Beckermann 与 Townsend 发展的 Sylvester test（Sylvester 检验），也称 A, B, C test。关于 $X$ 人们常常使用 low rank（低秩）与 structured（结构化）这两个词。\r\n若对正规矩阵（normal matrix）$A$、$B$（它们没有公共特征值）而言，方程 $AX - XB = C$ 的秩为 $r$，则 $X$ 的奇异值以指数速率衰减，该速率由 $A$、$B$、$C$ 决定。\r\n矩阵是正规的，如果 $A^T A = AA^T$。此时它具有正交的特征向量：$A = Q\\Lambda Q^T$。\r\n对称矩阵与正交矩阵都是正规矩阵，因为上述检验给出 $A^T A = AA^T$ 以及 $I = I$。\r\n\r\nSylvester 矩阵方程 $AX - XB = C$ 在控制论（control theory）中很重要，而当 $B = −A^T$ 时的特殊情形被称为 Lyapunov equation（Lyapunov 方程）。\r\n这个 Sylvester 检验要求我们找出 $A$、$B$、$C$！对于若干极为重要的矩阵族，这件事已经完成了：Toeplitz、Hankel、Cauchy 以及 Krylov 矩阵（其中包含 Vandermonde 矩阵 $V$）。\r\n所有这些矩阵都对简单的 $A$、$B$、$C$ 选择求解 Sylvester 方程。我们取下面这个主要例子：\r\n\r\nVandermonde matrix（Vandermonde 矩阵）\r\n\r\n```math\r\nV = \\begin{bmatrix}\r\n1 & 1 & 1 & \\cdots & 1 \\\\\r\n1 & c_2 & c_2^2 & \\cdots & c_2^{n-1} \\\\\r\n1 & c_3 & c_3^2 & \\cdots & c_3^{n-1} \\\\\r\n\\vdots & \\vdots & \\vdots & & \\vdots \\\\\r\n1 & c_n & c_n^2 & \\cdots & c_n^{n-1}\r\n\\end{bmatrix}\r\n```\r\n\r\n它是 interpolation matrix（插值矩阵）。只要点 $c_1, \\ldots, c_n$ 两两不同，它就是可逆的。\r\n当我们要多项式 $p(x) = c_1 + c_2 x + c_3 x^2 + \\cdots + c_n x^{n-1}$ 的系数时，就求解 $Vc = f$。\r\n把 $V$ 乘以 $c$ 就给出 $p$ 在各点 $c_1, \\ldots, c_n$ 处的值。于是 $Vc = f$ 说明该插值多项式在这些点上恰好取到数据所要求的值。\r\n\r\n我们曾指出，当我们选取复数点 $c_j = w^k$ 且 $w = e^{-2\\pi i/N}$ 时，$V$ 就变成 Fourier matrix（傅里叶矩阵）$F$。在这个傅里叶情形下 $F$ 满秩，而且 $A$ 与 $B$（见下文）具有相同的特征值：这是不允许的，它们不满足我们关于 特征值良好分离 的要求，并且此时全部奇异值大小相等：没有衰减。\r\n只有取实数点的 Vandermonde 矩阵才在其奇异值中具有指数衰减。为确认这一点，用下面这些矩阵来做 $A, B, C$ 检验：\r\n\r\n```math\r\nA = \\begin{bmatrix}\r\n1 & & & \\\\\r\n& 2 & & \\\\\r\n& & \\ddots & \\\\\r\n& & & n\r\n\\end{bmatrix},\r\n\\qquad\r\nB = \\begin{bmatrix}\r\n0 & 1 & & \\\\\r\n& 0 & 1 & \\\\\r\n& & \\ddots & \\ddots \\\\\r\n& & & 0\r\n\\end{bmatrix},\r\n\\qquad\r\nC = \\begin{bmatrix}\r\n1 & 0 & \\cdots & 0 \\\\\r\n0 & 0 & \\cdots & 0 \\\\\r\n\\vdots & \\vdots & & \\vdots \\\\\r\n0 & 0 & \\cdots & 0\r\n\\end{bmatrix}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文此处矩阵被 OCR 打散成零散数字，按其功能重建为对角矩阵 $A = \\mathrm{diag}(1, 2, \\ldots, n)$、上移一位矩阵 $B$，以及只有左上角非零的秩一矩阵 $C = e_1 e_1^T$。\r\n\r\n<!-- page 184: 书页 181 -->\r\n<!-- page_184 -->\r\n> <span style=color:#7f8c8d;>本页为书页 181，是 §III.3 的续页，含 Figure III.2、An Improved Sylvester Test 小节、log-rank 的定义与 Example 1；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值，续）\r\n\r\n那些矩阵 $A$ 与 $B$ 当然是正规矩阵。（这一要求本可以减弱，但此处没有必要。）$B$ 的特征值等间距地分布在单位圆上。\r\n它们位于角度 $2\\pi(k-1)/n$ 处（$k = 1, \\ldots, n$），因此只要 $n$ 为偶数，它们就不是实数。于是它们不会与 $A$ 的实特征值 $1, 2, \\ldots, n$ 相碰。\r\n而 $C$ 的秩为 $1$。所以 $A, B, C$ 检验取得 成功。\r\n\r\n奇异值的图像确认了 $V$ 是高度病态的（highly ill-conditioned）。$K$ 也是如此。\r\n\r\n> <span style=color:#7f8c8d;>**Figure III.2:** 当 $n = 25$ 时 Vandermonde 矩阵与 Krylov 矩阵 $K = [\\,b\\;\\;Ab\\;\\;\\cdots\\;\\;A^{n-1}b\\,]$ 的奇异值。此处 $b$ 为全 $1$ 向量，而 $A = \\mathrm{diag}(1/2,\\,2/2,\\,\\ldots,\\,n/2)$ 为随机数（标准正态）时，$K$ 与 $V$ 相同。图中上、下两条曲线分别对应 Vandermonde 与 Krylov，横轴为 $n = 5, 10, 15, 50$，纵轴为奇异值的对数尺度（$10^0$ 到 $10^{-15}$）。图片本身无法翻译，此处仅给出标题与图注。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### An Improved Sylvester Test（改进的 Sylvester 检验）\r\n\r\n要求 $AX - XB = C$ 具有低秩，这一条件比 结论说 $X$ 具有快速衰减的奇异值 要严格得多。一个完美的定理应当使关于 $C_n$ 的假设与关于 $X_n$ 的结论彼此匹配。诚然，对于规模不断增大的 Vandermonde 或 Krylov 矩阵，其秩并非有界。所以我们必须放宽对 $C_n$ 的低秩要求，同时保持 $X_n$ 的奇异值快速衰减。\r\nTownsend 找到了这样的定理：$C$ 的 log-rank（对数秩） 性质可导出 $X$ 的 log-rank 性质。而最近一篇与 Udell 合作的论文证明，对数秩是一种非常普遍的性质。\r\n下面是其定义（许多对数秩的例子取 $q = 0$ 或 $q = 1$）：\r\n\r\n<span style=color:#00838f;>**定义。**</span> 一族矩阵 $C_n$ 具有 log-rank（对数秩）性质，如果对邻近的矩阵 $E_n$ 有 $\\|C_n - E_n\\|_* < \\epsilon$，其中 $\\mathrm{rank}(E_n) \\le c\\,(\\log n)^q$。\r\n（6）\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**Example 1** 径向基函数核（radial basis function kernel）常用于 support vector machines（支持向量机）：\r\n\r\n```math\r\nK(x, y) = \\exp\\!\\left(-\\frac{\\|x - y\\|^2}{2\\sigma^2}\\right)\r\n```\r\n\r\n对一组特征向量（feature vectors）而言，这产生一个核矩阵 $K$，其元素满足 $0 < K_{ij} \\le 1$。把它们全部计算出来是不可能的。借助良好的近似，我们用 kernel trick（核技巧）求解非线性分类问题，见 §VII.5。这个矩阵具有低有效秩。\r\n\r\n> <span style=color:#7f8c8d;>1. M. D. Buhmann, *Radial Basis Functions*, Acta Numerica 9 (2000) 1–38.\r\n> 2. B. Fornberg and N. Flyer, *A Primer on Radial Basis Functions*, SIAM (2015).\r\n> 3. T. Hofmann, B. Schölkopf, and A. J. Smola, *Kernel methods in machine learning*, Annals of Statistics 36 (2008) 1171–1220（附大量参考文献）。</span>\r\n\r\n<!-- page 185: 书页 182 -->\r\n<!-- page 185 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 182，属 §III.3 之前的引言正文，讨论 Sylvester 方程与位移结构矩阵奇异值快速衰减的两个来源；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## ADI and the Zolotarev Problem（ADI 方法与 Zolotarev 问题）\r\n\r\n用短短一段话，就可以指出两个导致矩阵奇异值快速衰减的想法。\r\n第一个是求解 Sylvester 方程 $AX - XB = C$ 的 ADI 迭代（ADI iteration）。\r\nAlternating Direction Implicit algorithm（交替方向隐式算法）给出了一种计算上高效的解法。\r\n第二个想法把 $A$ 与 $B$ 的特征值（它们被要求不得重叠）同一个 rational approximation（有理逼近）问题联系起来。\r\n\r\nZolotarev problem（Zolotarev 问题）要寻找有理函数 $r(c) = p(c)/q(c)$，其中 $p$、$q$ 为多项式，使 $r(c)$ 在 $A$ 的特征值处很小、而在 $B$ 的特征值处很大。\r\n用有理函数 $r(c)$ 做逼近，可以比用多项式逼近好得多、达到指数级更优——一个著名的例子是 Newman 对绝对值函数的逼近。\r\n$r(c)$ 的指数级精度，最终与 $X$ 的奇异值的指数衰减联系起来。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## ADI Solves $AX - XB = C$（ADI 求解 $AX - XB = C$）\r\n\r\n其中的矩阵是 $X_{j+1/2}$ 与 $X_{j+1}$。\r\n\r\n那个好的有理函数 $r(c) = p(c)/q(c)$，其分子有零点（roots）、分母有极点（poles）。\r\n正是 Zolotarev 在 1877 年（！）于一个模型问题中找到了最优的 $p$ 与 $q$。\r\n在 Sylvester test（Sylvester 检验）中取 $A$、$B$ 时，对 $\\sigma_1(X)$ 的界就是那个「$Z$-number（$Z$-数）」。\r\n这决定了 $\\sigma_1(X)$——即奇异值的指数衰减。\r\n\r\nTownsend 与 Fortunato 把这一想法发展成了正方形区域上的 superfast Poisson solver（超快泊松求解器）。\r\n\r\n2. 当 $X$ 是通常的 5 点 finite difference approximation（有限差分近似），用来逼近 $\\partial^2 u/\\partial x^2 + \\partial^2 u/\\partial y^2$ 时，快速求解器早已为人所知。\r\n他们的目标是一个具有最优复杂度的 spectral method（谱方法）。\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`由 at` 复原为 that，`t0`/`0f`/`0n`/`rati 0`/`Z010tarev` 分别复原为 to / of / on / ratio / Zolotarev，`一 XB = C` 复原为 $AX - XB = C$，`repurred` 复原为 required，`ra 五 0 a / a 0 觐` 复原为 rational approximation，`阝` 复原为 $|x|$，`灭` 依语境复原为 $X$，`‰` 复原为 poles，`01 + （ ）` 依上下文重建为 $\\sigma_1(X)$，`0 。 。` 复原为 $\\theta_1, \\dots, \\theta_n$，`= ： “ is 刀 orm` 复原为 $Q^T Q = I$（Q 为 normal）。脚注中 `e s e Ma e` 复原为 Electron. Trans. Numer. Anal.，`www.math.cornell.edu/rv 可 t` 复原为 www.math.cornell.edu/~townsend，`10v ，` 复原为 Löw。以下参考文献按此修正排印。\r\n\r\n以下是本页的参考文献（保留原文编号与书目信息，OCR 乱码处已按书目语境修正）：\r\n\r\n1. B. Beckermann, *The condition number of real Vandermonde, Krylov, and positive definite Hankel matrices*, Electron. Trans. Numer. Anal. 85 (2000) 553–577.\r\n2. B. Beckermann and A. Townsend, *On the singular values of matrices with displacement structure*, SIAM J. Matrix Anal. Appl., arXiv:1609.09494v1, 29 Sep 2016.\r\n3. P. Benner, R.-C. Li, and N. Truhar, *On the ADI method for Sylvester equations*, J. Comput. Appl. Math. 233 (2009) 1035–1045.\r\n4. D. Fortunato and A. Townsend, *Fast Poisson solvers for spectral methods*, arXiv:1710.11259v1, 30 Oct 2017.\r\n5. D. Ruiz-Antolin and A. Townsend, *A nonuniform fast Fourier transform based on low rank approximation*, arXiv:1701.04492, SIAM J. Sci. Comput. 40:1 (2018).\r\n6. A. Townsend and H. Wilber, *On the singular values of matrices with high displacement rank*, arXiv:1712.05864, Linear Alg. Appl. 548 (2018) 19–41.\r\n7. A. Townsend, www.math.cornell.edu/~townsend/presentations/LowRankMatrices.pdf\r\n8. M. Udell and A. Townsend, *Nice latent variable models have log-rank*, arXiv:1705.07474v1, SIAM J. Math. Data Science, to appear.\r\n\r\n<!-- page 186: 书页 183 -->\r\n<!-- page 186 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为 Problem Set III.3（习题集 III.3），属 §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）之后；按系列先例，页首给出本节标题的中文翻译，习题题干保留英文原文，仅将 OCR 乱码按数学语境修正为 LaTeX。页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Show that a Krylov matrix $K = [\\,b\\ \\ Ab\\ \\ \\cdots\\ \\ A^{n-1}b\\,]$ satisfies a Sylvester equation $AK - KB = C$, with $B$ as in equation (6). Find the matrix $C$.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `K = [b Ab 一 风  一 lb ]` 依 Krylov 矩阵定义重建为 $K = [\\,b\\ \\ Ab\\ \\ \\cdots\\ \\ A^{n-1}b\\,]$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** Show that the evil Hilbert matrix $H$ passes the Sylvester test $AH - HB = C$ with $A = −\\operatorname{diag}(1, 3, \\dots, 2n-1)$, $B = −A$, $C = −\\text{ones}$.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `= 一 diag （ 1 ， 3 ， · ， 2 一 1 ）` 重建为 $A = −\\operatorname{diag}(1,3,\\dots,2n-1)$，`B = 一` 重建为 $B = −A$，`C = ones` 重建为 $C = −\\text{ones}$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** A Toeplitz matrix has constant diagonals (§I.5). Compute $A - A^T = C$:\r\n\r\n```math\r\nA = \\begin{bmatrix}\r\na_0 & a_1 & a_2 \\\\\r\na_{-1} & a_0 & a_1 \\\\\r\na_{-2} & a_{-1} & a_0\r\n\\end{bmatrix},\r\n\\qquad\r\nA - A^T = \\begin{bmatrix}\r\n0 & a_1 & a_2 \\\\\r\n−a_1 & 0 & a_1 \\\\\r\n−a_2 & −a_1 & 0\r\n\\end{bmatrix}\r\n```\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `(IV.5)` 按节号引用语境修正为 (§I.5)；`一 AT = C` 重建为 $A - A^T = C$；`to 一 1 / 0 0 0 / 1 0 0 0 / 0 1 0 0` 为 Toeplitz 矩阵元素的错位噪声，现按常数对角线定义重建为上方两式。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** A Hankel matrix $H$ has constant antidiagonals, like the Hilbert matrix. Then $H_{jk}$ depends only on $j+k$. When $H$ is symmetric positive definite, Beckermann and Townsend show that $H = K^T K$ for a Krylov matrix $K$ (as in Problem 1 above). Then $\\sigma_j(H) = \\bigl(\\lambda_j(K)\\bigr)^2$ (why?), and the singular values of $H$ decay quickly.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `Hi` 复原为 $H_{jk}$，`t +` 复原为 $j + k$，`H = K K` 重建为 $H = K^T K$，`(H) = 《 丐 （ 月 2` 重建为 $\\sigma_j(H) = (\\lambda_j(K))^2$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** A Pick matrix has entries $P_{jk} = (x_j + x_k)/(y_j + y_k)$, where $x_j = (z_j,\\,1)$ and $y_j = (z_j^2,\\,z_j)$, and $z_j$ can be complex. Show that $AP - P(-A) = s\\,\\mathbf{1}^T + \\mathbf{1}\\,s^T$, where $\\mathbf{1}^T = [\\,1\\ \\ 1\\ \\ \\cdots\\ \\ 1\\,]$ and $s = \\operatorname{diag}(x_1,\\dots,x_n)$. Here $A$ has positive eigenvalues, $B = −A$ has negative eigenvalues, and the Sylvester test is passed.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `舄 = （ 力 + ） / （ 与 + (k)` 依 Pick 矩阵定义重建为 $P_{jk} = (x_j + x_k)/(y_j + y_k)$，`s1T + 1sT` 重建为 $s\\,\\mathbf{1}^T + \\mathbf{1}\\,s^T$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** If an invertible matrix $X$ satisfies the Sylvester equation $AX - XB = C$, find a Sylvester equation for $X^{-1}$.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `mafrix` 复原为 matrix，`一 1` 依语境复原为 $X^{-1}$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** $A = Q\\Lambda Q^T$ has complex eigenvalues $\\theta_1,\\dots,\\theta_n$ in the columns $q_1,\\dots,q_n$ of $Q$. Show that $Q^T Q = I$ is normal. The eigenvalues can be complex.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `= QAQ` 重建为 $A = Q\\Lambda Q^T$，`0 。 。 ， qn in the c olumn s 0f Q` 重建为 $\\theta_1,\\dots,\\theta_n$ 位于 $Q$ 的各列 $q_1,\\dots,q_n$，`= ： “ is 刀 orm` 重建为 $Q^T Q = I$ 是 normal（正规的）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** If $S^T = S$ and $Z^T = −Z$ and $SZ = ZS$, verify that $N = S + Z$ is normal. Since $S$ has real eigenvalues and $Z$ has imaginary eigenvalues, $N = S + Z$ probably has complex eigenvalues.\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `ZT 一 —Z` 重建为 $Z^T = −Z$，`= S + Z` 重建为 $N = S + Z$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 9.** Show that equation (3) for $U_c$ follows from equation (2) for $U$."
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 12787,
+            "outputTokens": 6405,
+            "cacheReadTokens": 5504,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 12787,
+              "outputTokens": 6405,
+              "cacheReadTokens": 5504,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 12628,
+          "contextWindow": 1000000,
+          "pressureTokens": 18291,
+          "sampledSurfaceTokens": 9632
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 8072,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2996,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11484
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

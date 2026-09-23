@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127926707,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 MIT 课程讲义的专业学术"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 课程讲义的专业学术译者，服务对象是大二学生（智能科学与技术专业）。你正在翻译 Gilbert Strang《Linear Algebra and Learning From Data》part005（书页 198-248，OCR 页 201-250）。本批内容为 **Part III §III.5 压缩感知与矩阵补全收尾**（含 Problem Set III.5）+ **Part IV Special Matrices**（§IV.1 Fourier Transforms: Discrete and Continuous → §IV.2 Shift Matrices and Circulant Matrices → §IV.3 The Kronecker Product $A \\otimes B$ → §IV.4 Sine and Cosine Transforms from Kronecker Sums → §IV.5 Toeplitz Matrices and Shift Invariant Filters → §IV.6 Graphs and Laplacians and Kirchhoff's Laws → §IV.7 Clustering by Spectral Methods and k-means）。\r\n\r\n任务：将指定的 2 页 PDF 原文（Windows OCR 文本）翻译为行内双语 Markdown。\r\n\r\n【wiki 先行（铁律 23）】主代理已完成全资源搜索，结果注入如下（本机 PocketWiki 8808 与离线维基 ZIM 当前不可达，已记录在案；以下为本机实测资源）：\r\n- 原书：Strang《Linear Algebra and Learning From Data》Part IV Special Matrices（PDF 页 201-250 = 书页 198-248）\r\n- 同系列已交付稿（术语与格式以此为准）：`strang_p003/part003.bilingual.md`、`strang_p004/pages/page_151..162.bilingual.md`\r\n- 配套视频字幕（主力机）：`D:\\40-媒体\\b站视频\\解析视频\\麻省理工学院—线性代数课（完整版72讲）…\\`——18.065 by Gilbert Strang，含英文 .srt 与 `_中文.srt`／`.zho-hans.srt`，术语可据此对齐 Strang 本人的讲法\r\n- 术语、编号、史实以数学常识与本书自身定义为准；不确定处保留英文术语，**不得臆造年份/人名/文献**\r\n\r\n【第一步：结构清单】翻译前先列出本页全部结构单元（节标题 / 定理 / 定义 / 例子 / 习题 / 图 / 表格）清单，再逐单元翻译。\r\n\r\n【🚨 段落与标签规则（最容易犯的错，务必遵守）】\r\n1. 正文段落**不加任何标签**——不要给正文句子加 `[note]`！`[note]` 只属于译者注（本批除 OCR 修正外不写注）。\r\n2. 保持原文的段落结构：**同一段内的多个句子连续排列（句末换行、段内不空行）**，段与段之间空一行。绝对不要把每句话单独成段（即不要在每句后面加空行）。\r\n3. 只在这些功能模块前加蓝色标签：`[section]`（节标题）、`[theorem]`、`[proof]`、`[definition]`、`[example]`、`[problem]`（习题）、`[note]`（仅 OCR 修正说明）。\r\n4. 原文的编号段落（**1.**、**2.**、**3.** 等）保留编号并加粗，后接正文，**不要**加标签。\r\n\r\n【核心格式】（唯一正确格式）\r\n- 句子主体用中文自然叙述，关键英文术语保留原文，首次出现时用括号紧跟中文翻译：`English term（中文翻译）`\r\n- 输出中没有任何完整的英文原句。英文只以术语片段形式嵌入中文句子。\r\n- 绝对禁止「先写完整英文段 + 再写中文翻译段」的英中对照模式。\r\n\r\n【格式规范】\r\n- 行内公式用 `$...$`，块级公式用 ```math fenced block（禁止 `$$...$$`）\r\n- 🚨 **LaTeX 环境内一律不允许出现中文**（包括 `\\text{}` 内）——公式里若需说明文字，把该说明写在公式块之外的正文中\r\n- 标题标记（### 等）必须在行首，前面不能有 HTML tag\r\n- 禁止使用 `<div>`；**答案**用 `>` blockquote 包裹（虚化）\r\n- 配色：功能标签蓝 `#2471a3`、定理标题 `#c0392b`、定义核心句 `#00838f`、译者注/OCR 修正 `#1e8449`、引用行 `#7f8c8d`\r\n- 禁止 Unicode 上下标字符（₀₁₂₃⁰¹² 等），一律 LaTeX\r\n- 公式编号（如 `\\tag{14}`）保留原文编号；图的**标题与图注**要完整翻译（图片本身无法翻译，可留一行说明）\r\n- span 属性必须写成 `<span style=color:#2471a3;>`（**引号不能省**）\r\n\r\n【逐句翻译标准】（🚨 必须逐句，禁止概括压缩）\r\n- 原文每一句都对应至少一句中文翻译，不得将 3-5 句压缩为 1 句\r\n- 密度标准：本页译文应达到 30-40 行、约 500-1100 个汉字——明显低于此密度即为伪翻译\r\n\r\n【OCR 噪声预处理（必须先做）】输入是 Windows OCR 文本，含大量符号噪声。翻译前必须先依据数学语境修正：\r\n- `蓋`/`风`/`兒`/`儿` → $A$（矩阵）；`乥`/`Σ` → $\\Sigma$；`叻` → 运算（min/max 依语境）；`鬱` → 依语境\r\n- `田`/`田 N` → 节号 §N（页眉噪声）；`什 om`/`丘 om`/`彳 om`/`讠 om` → from；`Uc`/`Uc` → 依语境\r\n- `¯I` → 上标 $-1$（如 `A¯I` = $A^{-1}$）；`ÄB` → $\\approx AB$；`一` → 负号或连字符；`·`/`•` → 乘法或句号\r\n- 注意：原文中的 `−`（U+2212）与 `-` 等价，都是减号\r\n- 你**必须**凭数学知识重建被噪声破坏的公式（先例：OCR 的 `C = AS and = STB and CR = ASSTB ÄB` 正确重建为 $C = AS$、$R = S^T B$、$CR = AS\\,S^T B \\approx AB$）\r\n- 无法确定的乱码：宁可依据上下文合理重建，不得直译乱码\r\n\r\n【差异化规则】\r\n- **正文页**：节标题 / 定理 / 证明 / 定义 / 例子 / 正文段落——完整行内双语翻译\r\n- **例题（Examples）**：必须完整行内双语翻译\r\n- **习题页 / 习题（Problem Set / Problem）**：按 part002/part003 先例：\r\n  1. 习题**题干保留英文原文，不翻译成中文**（这些页汉字少是正常的）\r\n  2. 每题前加蓝色标签行：`<span style=color:#2471a3;>**[problem]**</span> **Problem N.**`\r\n  3. 页首加灰色说明行：`> <span style=color:#7f8c8d;>本页为 Problem Set X.Y（习题集 X.Y）…保留英文原文。</span>`\r\n  4. 题干中的 OCR 乱码按数学语境修正为 LaTeX，修正处加绿色 OCR 修正说明\r\n  5. 一页**混合**正文与习题：正文完整翻译，习题保留英文原题，两者用 `---` 分隔\r\n- 页眉 / 页脚（含印页码数字）**不译、不收录**\r\n- 图号与公式编号按原文保留\r\n\r\n【⚠️ 避坑清单（Strang 翻译实战教训，违反必返工）】\r\n1. 禁止「英文句子（中文翻译）」单行对照——英文只能以术语片段形式出现\r\n2. 禁止概括式压缩（每句仅 5-6 个中文字的伪逐句）\r\n3. OCR 乱码必须先修正再翻译\r\n4. 章节密度必须均匀，不得某页仅 6 行\r\n5. 每句话第一个字必须是中文，不能以英文单词开句\r\n6. 定理 / 定义 / 例子 / 公式编号必须与原文一致（不硬编码编号）\r\n7. 不要给正文句子加 `[note]` 标签；不要一句一个空行\r\n\r\n【风格锚点（照此格式，取自本系列 part003 已交付稿，务必对齐）】\r\n<!-- page 118: 书页 114, OCR page 18 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 114，是 Part II 总览正文的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## （续）Computations with Large Matrices（大型矩阵的计算）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `风` 亦为 $A$，`叻` 为范数记号之误，公式均按数学语境重建。\r\n\r\n**3.** 假设 $m < n$。\r\n此时若方程 $Ax = b$ 有解，就会有许多解——因为 $A$ 有非零的 nullspace（零空间）。\r\n于是解是欠定的（underdetermined）。我们要针对自己的目的挑选最好的解 $x$。\r\n其一为 $x^+ = A^+ b$——由 pseudoinverse（伪逆）$A^+$ 给出的 minimum norm solution（最小范数解）。\r\n其二，$x_1$ 是使 $\\ell_1$ 范数取最小的解，即 minimum $\\ell_1$ norm solution（最小 $\\ell_1$ 范数解）。\r\n\r\n−--（以上为风格锚点，以下是你本次要翻译的原文）\r\n\r\n【术语表】（必须沿用，术语一致性铁律）\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n### part004 新增术语（Part III 低秩与压缩感知：§III.1–§III.5）— 由主代理预注入\r\n- perturbation（扰动）/ changes in $A^{-1}$（$A^{-1}$ 的变化）/ sensitivity（敏感性）\r\n- interlacing eigenvalues（特征值交错）/ low rank signal（低秩信号）/ rank-one signal（秩一信号）\r\n- rapidly decaying singular values（快速衰减的奇异值）/ decay rate（衰减速率）\r\n- split algorithm（分裂算法）/ splitting（分裂）\r\n- proximal operator, prox（近端算子）/ soft thresholding（软阈值）/ hard thresholding（硬阈值）\r\n- alternating direction method of multipliers, ADMM（交替方向乘子法）\r\n- compressed sensing（压缩感知）/ matrix completion（矩阵补全）/ completing rank one matrices（补全秩一矩阵）\r\n- nuclear norm（核范数）/ trace norm（迹范数）/ sparsity（稀疏性）/ sparse vector（稀疏向量）\r\n- Netflix problem（Netflix 问题）/ recommender system（推荐系统）\r\n- semidefinite program（半定规划）/ convex relaxation（凸松弛）\r\n- biconvex（双凸）/ alternating least squares（交替最小二乘）\r\n- ridge regression（岭回归）/ weighting matrix（权重矩阵）\r\n- incoherence（不相干性）/ with high probability（以高概率）\r\n\r\n### part005 新增术语（Part IV Special Matrices：§IV.1–§IV.7）— 由主代理预注入\r\n#### §IV.1 Fourier Transforms: Discrete and Continuous\r\n- Discrete Fourier Transform, DFT（离散傅里叶变换）/ Fast Fourier Transform, FFT（快速傅里叶变换）\r\n- Fourier matrix $F$（傅里叶矩阵）/ DFT matrix $Q$（DFT 矩阵）\r\n- Fourier series（傅里叶级数）/ periodic function（周期函数）/ Fourier coefficients（傅里叶系数）\r\n- orthogonality（正交性）/ orthogonal functions（正交函数）/ eigenfunction（特征函数）\r\n- synthesis（合成）/ analysis（分析）/ inverse transform（逆变换）/ ifft（逆快速傅里叶变换）\r\n- permutation matrix $P$（置换矩阵）/ bit-reversed order（位反转顺序）/ butterfly（蝶形）\r\n- frequency response（频率响应）/ Nyquist（奈奎斯特）\r\n#### §IV.2 Shift Matrices and Circulant Matrices\r\n- shift matrix（移位矩阵）/ cyclic permutation（循环置换）/ shift invariance（平移不变性）\r\n- circulant matrix $C$（循环矩阵）/ cyclic convolution（循环卷积）/ convolution rule（卷积法则）\r\n- convolution（卷积）/ deconvolution（反卷积）\r\n- cross-correlation（互相关）/ autocorrelation（自相关）\r\n- circulant diagonalization（循环矩阵的对角化）/ eigenvalues of a circulant（循环矩阵的特征值）\r\n#### §IV.3 The Kronecker Product $A \\otimes B$\r\n- Kronecker product（克罗内克积）/ Kronecker sum（克罗内克和）\r\n- block matrix（分块矩阵）/ block multiplication（分块乘法）/ mixed product rule（混合积法则）\r\n- two-dimensional transform, 2D DFT（二维变换／二维 DFT）/ lexicographic ordering（字典序排列）\r\n- separation of variables（分离变量）/ second difference matrix（二阶差分矩阵）\r\n- Laplace's equation（拉普拉斯方程）/ discrete Laplacian（离散拉普拉斯算子）\r\n#### §IV.4 Sine and Cosine Transforms from Kronecker Sums\r\n- Discrete Sine Transform, DST（离散正弦变换）/ Discrete Cosine Transform, DCT（离散余弦变换）\r\n- sine/cosine transform（正弦／余弦变换）/ odd/even extension（奇／偶延拓）\r\n- quantization（量化）/ compression（压缩）/ JPEG（JPEG 图像压缩）\r\n- lossless/lossy（无损／有损）/ block transform（分块变换）\r\n#### §IV.5 Toeplitz Matrices and Shift Invariant Filters\r\n- Toeplitz matrix（托普利茨矩阵）/ constant diagonals（常数对角线）/ banded matrix（带状矩阵）\r\n- filter（滤波器）/ shift invariant filter（平移不变滤波器）/ lowpass filter（低通滤波器）\r\n- impulse response（冲激响应）/ moving window（滑动窗口）/ finite length（有限长）\r\n- Szegö's theorem（塞格定理）/ eigenvalues of a Toeplitz matrix（托普利茨矩阵的特征值）\r\n- zero padding（补零）/ edge effect（边缘效应）/ sharp cutoff（锐截止）\r\n#### §IV.6 Graphs and Laplacians and Kirchhoff's Laws\r\n- graph（图）/ node, vertex（节点／顶点）/ edge（边）/ degree（度）\r\n- incidence matrix $A$（关联矩阵）/ edge-node matrix（边-节点矩阵）\r\n- degree matrix $D$（度矩阵）/ adjacency matrix $B$（邻接矩阵）\r\n- graph Laplacian $L = A^{T}CA$（图拉普拉斯矩阵）/ weighted Laplacian（加权拉普拉斯矩阵）\r\n- Kirchhoff's current law（基尔霍夫电流定律）/ Kirchhoff's voltage law（基尔霍夫电压定律）\r\n- spanning tree（生成树）/ loop（回路）/ cycle（环）/ connected component（连通分量）\r\n- Euler's formula（欧拉公式）/ number of loops（回路数）/ topology（拓扑）\r\n- conductance（电导）/ resistance（电阻）/ grounded（接地）\r\n#### §IV.7 Clustering by Spectral Methods and k-means\r\n- clustering（聚类）/ cluster（簇）/ spectral clustering（谱聚类）/ spectral method（谱方法）\r\n- k-means（k-均值）/ centroid（质心）/ partition（划分）\r\n- cut（割）/ ratio cut（比例割）/ normalized cut（归一化割）/ minimum cut（最小割）\r\n- Fiedler vector（费德勒向量）/ algebraic connectivity（代数连通度）\r\n- modularity matrix（模块度矩阵）/ modularity（模块度）/ community（社群）\r\n- weighted size（加权规模）/ degree sum（度和）/ indicator vector（指示向量）\r\n\r\n【本 worker 页范围】page_223（书页 221）— page_224（书页 222）｜§IV.3 The Kronecker Product A⊗B（克罗内克积）\r\n\r\n【输出协议（🚨 严格，违反将导致回填失败）】\r\n- **直接输出两页的完整双语 Markdown**，不要任何前言、说明、总结、思考过程，不要文件一 / 文件二之类的组装标记\r\n- 每页以一行 HTML 注释开始：`<!-- page NNN −->`（NNN 为该页 OCR 页码，与下文原文标注一致）\r\n- 页与页之间用单独一行 `<!-- ===== PAGE BREAK ===== −->` 分隔\r\n- 结尾不要写任何汇报语\r\n\r\n原文内容：\r\n===== page_223 (book page 221) =====\r\n1V3 ． Th e Kmnecker Product ． B\r\nI 3 The Kronecker Product ． B\r\n221\r\nSection IV. 1 descnbed th e Discrete Fourier Transform of a 1 −dimensional signal f\r\nThis secuon will describe the 2-dimensionaI DFT—which is needed for image processing.\r\nWhen th e l-dimensional tran s form uses a matri x Of size ， th e 2-dimensional transform\r\nneeds a matrix Of size 2 (and video will introduce a th ird dimension). The 2D matnces\r\nwill be large. We hope to construct them easily 什 om th e ID Fourier matrices F an d O.\r\nThis construction uses th e Kronecker products ． 尹 and O ． O. Th e earlier word\r\nwa s 怊 “ ro Th e MATLAB command is kron （ 丆 ， 丆 ） and kron(), O).\r\nThis opera ti 0 n is extremely convenient for many purposes. SO this section develops\r\nthe key ideas an d operations on K = ． B ： to invert ， to solve （ ． B) =\r\nand to find th e eigenvalues and eigenvectors and SVD of ． B.\r\nTh e first thing t0 know about Kronecker products is the size of ． 方 = kron （ ， B) ：\r\n1 If an d are by then ． B is 2 by 2\r\n2 If is m by “ an d B is by ， th e n 蓋 ． B has mM rows and nN columnse\r\nThe entries 0f ． B are (all mn entries of ） times (all MN entries of B).\r\nThe next fact is th e position Of those products in th e 1 arge matrix. The rule is tO\r\nmultiply each entry of 蓋 times the whole matrix B. Then ． B is a block matnx.\r\nEvery block is a multiple of B ：\r\nKronecker product\r\nOIIB\r\n蓋 ． B ：\r\nam1B\r\n01nB\r\nThe simplest case has identity matrices for and B ： （ 2 by 2 ） ． （ 3 by 3 ） = 6 by 6 ·\r\n1 0 0\r\n． 0 1 0\r\n0 0 1\r\n1 0\r\n0 1\r\nA h arder case (but not impossible) comes 什 om multiplying tw 0 Kronecker products ：\r\n蓋 ． B time s C ． 刀\r\n蓋 ． B time s 蓋 一 1 ． B¯\r\nequals AC ． BD\r\nequals I ． I\r\n（ 2 ）\r\n（ 3 ）\r\n（ 4 ）\r\nEquati0n （ 3 ） allows rectangular matrices · Equ atio n （ 4 ） is for invertible square matnces.\r\n/ / is th e identity matrix of size · So the inverse of 蓋 ． B is 蓋 一 1 ． B¯I,\r\n\r\n===== page_224 (book page 222) =====\r\n2\r\nSpecial Matr1ces\r\nThe proof of equation （ 3 ） comes 什 0 m block multiplication 0f Kronecker Products ·\r\na11c11 + a12c21 ） BD （ a11c12 + a12c22 ） 00 ]\r\na11B a12 召 C11 刀 C12 刀 （\r\n021B a22B c21 刀 c22 刀 21c11 + a22c21 ） BD （ a21c12 + a22c22 ） BD · （ 5 ）\r\nThat is exac tly C ． B 刀 · A matrix Of size 2 times a matrix Of size 2 is still a matrix\r\n0f size 2 The final basic identity produces th e transpose 0f ． ：\r\n（ ． B)T = AT ． BT\r\na12\r\na21B a22B\r\nOIIBT a21 召 T\r\na12BT 022BT\r\nTvvo-dimensional Discrete Fourier Transforms\r\nS tart with an by image. lt could be a photograph with 2 small pixels, take n by\r\nYO 匿 phone. lt could be a pamting by Chuck CIose (who realized that your eyes merge th e\r\nsmall squares intO a COnUnUOUS image—this is hOW th e phone camera works t00 ） ·\r\nWe have 2 numbers.\r\nAn d we have a choice. We could unfold those numbers into a long vector 0f length N2\r\nOr we could keep them in an by matnx ， so that pixels which are close in the image\r\nremam close. The unfolding into a vector ()y an operator called vec) will be described I ater\r\n2\r\nin this section. For now we think Of a vector in Rn With i tS 2 components in a square.\r\nWe intend to apply a 2 刀 Discrete Fourier Transform to 不 The result will be a\r\n2 刀 vector c. You could think of this process in tw 0 step s ·\r\nApp 1 y the 1 刀 DFT to each ro w 0f pixels separately.\r\nRow by row\r\nCOI umn by column Rearrange th e output by columns and transform each column.\r\nThe rnaü•ix for each s tep is 2 by 2 · First think of th e 2 pixels a row at a time and\r\nmultiply each row in that long vector by the one-dimensional DFT m atn x ON ：\r\nrow 1\r\nro W 2\r\nrow 3\r\nro W 4\r\n@ an d Orowf have length (2) （ 7 ）\r\nThat matrix is Orow = / ． ON. lt is a Kronecker product of size 2\r\nNow the output Qrowf is (mentally not electronically) rearranged into columns. Th e\r\nsecond step of the 2 刀 tran sform multiplies each column of that halfway image Orowf\r\nby ON · Agam we are multiplying by a matrix O\r\nof size 2 · The full 2D transform\r\nCOl umn\r\nis QN ．\r\nThat ma trix 0 灬 n is th e Kronecker product ON ． IN.\r\nThe 2 刀 transform puts the row a nd c ol umn s te ps together into QNx ，\r\nONxN = 0 n 0 斑 w = ()N ． IN)(IN ． 0 ） = QN ． QN•"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2211,
+            "outputTokens": 2108,
+            "cacheReadTokens": 8448,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 2211,
+              "outputTokens": 2108,
+              "cacheReadTokens": 8448,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 7113,
+          "contextWindow": 1000000,
+          "pressureTokens": 10659,
+          "sampledSurfaceTokens": 6024
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4464,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1089,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 5969
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

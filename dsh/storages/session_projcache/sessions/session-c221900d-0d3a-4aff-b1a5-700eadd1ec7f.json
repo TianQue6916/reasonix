@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147436419,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_201]\n\\noindent\\textbf{198}\\hfill\\textbf{Low Rank and Compressed Sensing}\n\nThe mathematical question is : By knowing \\(K\\) entries in an \\(n\\) by \\(n\\) matrix of rank \\(r\\), can we expect a perfect recovery of the whole matrix ? The remarkable answer is yes--- provided \\(K\\) is large enough. Cand\\`es and Recht proved that if \\(K > C n^{5/4} r \\log n\\), then with high probability (in a suitable model !) the recovery of \\(A\\) is perfect.\n\nHere are a few comments on their 20-page proof, followed by references.\n\n1. ``With high probability'' does not mean ``certain''. We must work with a model for random matrices \\(A\\). One choice takes \\(U\\) and \\(V\\) as random orthogonal matrices in \\(A=U\\Sigma V^{\\mathrm T}\\).\n\n2. The analysis and proof use matrix versions of the key inequalities of statistics in V.3.\n\n3. Finding \\(A\\) with smallest nuclear norm can be expressed as a semidefinite program:\n\\[\n\\text{Minimize the trace of }\n\\begin{bmatrix}\nW_1 & X\\\\\nX & W_2\n\\end{bmatrix}\n\\quad\n\\begin{array}{l}\nX \\text{ contains the known entries}\\\\\nW_1,W_2 \\text{ are positive semidefinite}\n\\end{array}\n\\]\n\n1. D. Donoho, \\emph{Compressed sensing}, IEEE Trans. Inform. Th. 52 (2006) 1289-1306.\n\n2. E. Cand\\`es, J. Romberg, and T. Tao, \\emph{Robust uncertainty principles: Exact signal reconstruction from highly incomplete Fourier information}, IEEE Transactions on Information Theory 52 (2006) 489-509.\n\n3. E. Cand\\`es and B. Recht, \\emph{Exact matrix completion via convex optimization}, Foundations of Comp. Math. 9 (2009) 717 -- 736; arXiv:0805.4471v1, 29 May 2008.\n\n4. T. Hastie, B. Mazumder, J. Lee, and R. Zadeh, \\emph{Matrix completion and low-rank SVD via fast alternating least squares}, arXiv:1410.2596, 9 Oct 2014.\n\n\\begin{center}\n\\textbf{Algorithms for Matrix Completion}\n\\end{center}\n\nWe need an algorithm that completes the matrix \\(A\\), with fixed entries \\(A_{\\text{known}}\\). Reference 4 above traces the development of three alternating iterations---each new method improving on the previous algorithm. This is how numerical analysis evolves.\n\n\\textbf{1} \\ (Mazumder et al.) Soft-threshold the SVD of \\(A_k\\) (see Section VI.5 for \\(S_\\lambda\\)):\n\\[\nA_k = U_k\\Sigma_k V_k^{\\mathrm T}\n\\quad \\text{and} \\quad\nB_k = U_k S_\\lambda(\\Sigma_k)V_k^{\\mathrm T}\n\\quad \\text{with} \\quad\nS_\\lambda(\\sigma)=\\max(\\sigma-\\lambda,0)\n\\]\n\\(S_\\lambda\\) sets the smaller singular values of \\(B_k\\) to zero, reducing its rank. Then\n\\[\nA_{k+1}\\ \\text{minimizes}\\quad\n\\frac{1}{2}\\|(A-B_k)_{\\text{known}}\\|_F^2+\\lambda\\|B_k\\|_N\n\\tag{5}\n\\]\nThe drawback is the task of computing the SVD of \\(A_k\\) at each step. In the Netflix competition, \\(A\\) had \\(8\\times 10^9\\) entries. The authors succeeded to reduce this heavy cost. And each previous SVD gives a warm start to the next one. And new ideas kept coming.\n\n\\textbf{2} \\ (Srebro et al.) These authors write the solution matrix as \\(CR^{\\mathrm T}=(m\\times r)(r\\times n)\\):\n\\[\n\\underset{C\\text{ and }R}{\\text{Minimize}}\n\\quad\n\\frac{1}{2}\\|(A-CR^{\\mathrm T})_{\\text{known}}\\|_F^2\n+\\frac{\\lambda}{2}\\left(\\|C\\|_F^2+\\|R\\|_F^2\\right)\n\\tag{6}\n\\]\n\n### [原文 page_202]\nHere is the faithful transcription of the provided page from Gilbert Strang's 'Linear Algebra and Learning From Data'.\n\nIII.5. Compressed Sensing and Matrix Completion \\hfill 199\n\nThis is convex in $C$ alone and in $R$ alone (so biconvex). An alternating algorithm is natural: Update $C$ and then update $R$. Each problem is an $\\ell^2$ ridge regression for each column of $C$ and then each column of $R$. This produces a “maximum margin” factorization $CR$.\n\n**3** (Hastie et. al, see 4 above) The third algorithm came in 2014. It is a variation on the first—but it alternates between $C$ and $R$ as in the second. The minimization now includes all entries of $A - CR^T$, not only those in the known positions. This greatly simplifies the least squares problem, to work with full columns of both known and unknown entries. Start with this (alternating) least squares problem, when $A$ is fully known:\n\n$$ \\begin{array}{c} \\textbf{Minimize} \\\\ C \\text{ and } R \\end{array} \\quad \\frac{1}{2} \\|A - CR^T\\|_F^2 + \\frac{\\lambda}{2} (\\|C\\|_F^2 + \\|R\\|_F^2) \\tag{7} $$\n\nAn explicit solution is $C = U_r S_\\lambda(\\Sigma_r)^{1/2}$ and $R = V_r S_\\lambda(\\Sigma_r)^{1/2}$. All solutions including this one have $CR^T = U_r S_\\lambda(\\Sigma_r) V_r^T = \\text{soft SVD of } A$. The soft thresholding $S_\\lambda$ shows the effect of the penalty term in (7). Amazingly and beautifully, that product $B = CR^T$ solves this rank $r$ nuclear norm problem:\n\n$$ \\begin{array}{c} \\textbf{Minimize} \\\\ \\text{rank}(B) \\le r \\end{array} \\quad \\frac{1}{2} \\|A - B\\|_F^2 + \\lambda \\|B\\|_N \\tag{8} $$\n\nThis connection to (7) yields the following fast alternating computation of $B = CR^T$.\nFor the moment assume all entries of $A$ are known: none missing. Start with $C = \\text{random } m \\times r$ and $D = I_r$. Each step updates $R, C$, and $D$.\n\n$$ \\boxed{ \\begin{array}{ll} \\textbf{1. Minimize over } R \\ (n \\times r) & \\|A - CR^T\\|_F^2 + \\lambda \\|R\\|_F^2 \\hfill (9) \\\\ \\textbf{2. Compute this SVD } RD = U\\Sigma V^T & \\text{Set } D = \\sqrt{\\Sigma} \\text{ and } R_{\\text{new}} = VD \\\\ \\textbf{3. Minimize over } C \\ (m \\times r) & \\|A - CR^T\\|_F^2 + \\lambda \\|C\\|_F^2 \\hfill (10) \\\\ \\textbf{4. Compute this SVD } CD = U\\Sigma V^T & \\text{Set } D = \\sqrt{\\Sigma} \\text{ and } C_{\\text{new}} = UD \\end{array} } $$\n\nRepeat those steps until $CR^T$ converges to the solution $B$ of (8).\nNow Hastie et. al return to the real problem, in which $A$ has missing entries: not known. At each iteration, those are taken from the current matrix $CR^T$. This produces a very efficient sparse plus low rank representation of $A$.\n\n$$ A = A_{\\text{known}} + (CR^T)_{\\text{unknown}} = (A - CR^T)_{\\text{known}} + CR^T. \\tag{11} $$\n\nThe final algorithm is a slight modification of (9)-(10), by using $A$ from equation (13). The solutions to (9)-(10) have remarkably simple forms, because those problems are essentially ridge regressions (least squares):\n\n$$ R^T = (D^2 + \\lambda I)^{-1} D U^T A \\text{ in (9)} \\qquad C = A V D (D^2 + \\lambda I)^{-1} \\text{ in (10)} $$\n\nAltogether the algorithm is described as **Soft-impute Alternating Least Squares**. Hastie et al analyze its convergence and numerical stability. They test an implementation on the data for the Netflix competition—with success.\n\n【当前译文】\n@@PAGE:201@@\n<!-- page 201 -->\n> <span style=color:#7f8c8d;>本页为书页 198，属 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）之末段与算法规整部分；页眉与印页码为重复元素，不译。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声中的 `蓋` 依语境为待补全矩阵 $X$，`儿` 为矩阵 $A$，`舻 / 4` 为 $n^{5/4}$ 一类幂次碎片（即 $K > C\\,n^{5/4}r\\log n$），`UEVT` 为 $U\\Sigma V^{T}$，`血`／`处` 为 $X^{(k+1)}$。式（3）中 $A_k$ 的定义、式（4）整式在本页 OCR 中脱落，凡不可复原者不作臆造，只保留残存符号并就地标出。（原书此处 OCR 残缺）$A_k$ 的定义（依式（5）的残差形状，疑为「已知位置上取 $X^{(k)}$、其余位置取零」的矩阵）需回原书核对。\n这个数学问题是：已知一个 $n \\times n$、秩为 $r$ 的矩阵中 $K$ 个元素，我们能否期望完美恢复出整个矩阵？\n答案是引人注目的——可以，只要 $K$ 足够大。\n> <span style=color:#1e8449;>**[note] 从 $\\ell_0$ 到 $\\ell_1$：压缩感知为什么可以做凸松弛**</span>\n> <span style=color:#1e8449;>先把这个问题的「形状」摆出来。本页问的是：已知 $n\\times n$、秩为 $r$ 的矩阵中 $K$ 个元素，能否完美恢复整个矩阵；Strang 引 Candès–Recht 的结论说，$K > C\\,n^{5/4}r\\log n$ 时以高概率可以。这与本页之前压缩感知那一半是同一件事的两件外衣：向量版说「稀疏的 $x$ 可以从远少于 $n$ 个线性观测 $Ax=b$ 中恢复」，矩阵版说「低秩的 $X$ 可以从远少于 $n^2$ 个已知元素中恢复」。两者的共同困难在于：真正想最小化的那个量不是凸的。</span>\n> <span style=color:#1e8449;>这个量就是 $\\|x\\|_0$（非零元个数）。它只数个数、不看大小——把某个分量从 $0.001$ 挪到 $0.002$，$\\|x\\|_0$ 一点不动，是阶梯函数，因此不凸，你在 Boyd 前五章学的梯度法、内点法这一整套都用不上；更糟的是 $\\min\\|x\\|_0$ s.t. $Ax=b$ 本质上要在 $C(n,k)$ 种支撑集里挑一个再解一个小二乘，属于 6.006 里那种 NP-hard 的味道，规模一大就不可行。</span>\n> <span style=color:#1e8449;>凸松弛的手法是换成形状相近但凸的 $\\|x\\|_1=\\sum_i|x_i|$。几何理由看单位球：二维里 $\\|x\\|_1\\le1$ 是菱形，四个尖角落在坐标轴上；把解集 $\\{x:Ax=b\\}$ 朝原点平移、直到第一次碰到范数球，碰点就是解。$\\ell_2$ 球表面处处光滑、曲率相同，碰点一般落在各分量都不为零的位置；$\\ell_1$ 球的尖角恰恰是最省范数的位置，于是碰点极容易落在某些分量等于零的角上——这就是稀疏性的几何来源，也是 Boyd 讲范数逼近与 $\\ell_1$ 正则化（lasso 一类提法）时反复用的同一张图。凸性与稀疏性这两件事，就是靠「凸集有角」这一条同时拿到的。</span>\n> <span style=color:#1e8449;>可迁移的结论有三条：①「非凸的组合量 + 它的凸包络」是通用配方，稀疏对应 $\\ell_1$，低秩对应奇异值之和（本页下半部分正是后者的矩阵版本）；②判断一个松弛能不能用，先画单位球看有没有角；③松弛的保证通常以「高概率」出现——Candès、Romberg 与 Tao（*IEEE Trans. Inform. Theory* **52** (2006) 489–509）以及 Donoho（同刊 **52** (2006) 1289–1306）给出的是充分条件，病态例子总存在，只是随机模型下概率很小。这正是那批论文二十页证明真正在干的事。</span>\nCandès 与 Recht 证明了：若 $K > C\\, n^{5/4}\\, r \\log n$，则在一个合适的模型下，以高概率（high probability）恢复是完美的。\n以下是对他们那篇二十页证明的几点评论，随后给出参考文献。\n**1.** 所谓以高概率（with high probability）并不意味着必然成立（certain）。我们必须为一个随机矩阵（random matrices）的模型而工作。一种选择是取 $U$ 与 $V$ 为随机正交矩阵，写 $A = U\\Sigma V^{T}$。\n**2.** 分析与证明用的是 §V.3 里那批统计学关键不等式的矩阵版本。\n**3.** 以最小的核范数（nuclear norm）求 $X$，可以表述为一个半定规划（semidefinite program）：\n```math\n\\begin{aligned}\n&\\text{Minimize the trace of}\\quad \\begin{bmatrix} W_1 & X \\\\ X & W_2 \\end{bmatrix} \\succeq 0\\\\\n&\\begin{array}{l}\nX \\text{ contains the known entries}\\\\\nW_1,\\ W_2 \\text{ are positive semidefinite}\n\\end{array}\n\\end{aligned}\n```\n> <span style=color:#1e8449;>**[note] 核范数：秩的凸包络，以及推荐系统里的 Netflix 问题**</span>\n> <span style=color:#1e8449;>本页出现了矩阵补全的中央公式：在所有与已知元素一致的矩阵中，挑核范数（nuclear norm）$\\|X\\|_N$（奇异值之和）最小的那个。为什么是奇异值之和，而不是秩？因为秩就是奇异值中非零的个数，与上面说的 $\\|x\\|_0$ 是同一个函数，只不过作用在奇异值向量上：秩最小化同样非凸、同样组合式。把「数非零个数」换成「把奇异值加起来」，就得到凸的替代品。核范数因此是秩函数的凸包络，一行类比：$\\|x\\|_0$ 对 $\\|x\\|_1=\\sum|x_i|$，正如 $\\operatorname{rank}(X)$ 对 $\\|X\\|_N=\\sum\\sigma_i$。</span>\n> <span style=color:#1e8449;>换成核范数究竟省下了什么？一个 $n\\times n$ 的秩 $r$ 矩阵可写成 $X=U\\Sigma V^{T}$，其中 $U$ 是 $n\\times r$、$V$ 是 $n\\times r$，独立参数约 $2nr$ 个（再加 $r$ 个奇异值），远小于 $n^2$。这正是推荐系统的工作假设：用户对电影的评分矩阵巨大而极稀疏（本页提到 Netflix 竞赛有 $8\\times10^{9}$ 个元素），却假设近似低秩——因为「喜欢什么」背后只有少数几个潜在因子在起作用，而不是每个用户各有一套完全独立的偏好。已知元素个数只要超过 $2nr$ 那个量级的门槛，未知元素就能被唯一确定；Candès 与 Recht 在合适的随机模型下证明门槛是 $K > C\\,n^{5/4}r\\log n$（*Exact matrix completion via convex optimization*, Found. Comput. Math. **9** (2009) 717–736）。</span>\n> <span style=color:#1e8449;>本页第 3 点还说明怎么把它送进现成的凸优化求解器：核范数最小化等价于一个半定规划——极小化 $\\operatorname{trace}(W_1)+\\operatorname{trace}(W_2)$，约束是分块矩阵 $\\begin{bmatrix}W_1&X\\\\X^{T}&W_2\\end{bmatrix}\\succeq 0$，且 $X$ 在已知位置上取值固定。这个分块半正定条件本质上是让 $W_1$、$W_2$ 分别「盖住」$X$ 的两侧，使两条迹之和的下界恰为 $X$ 的奇异值之和；读懂它的全部工具，就是你在 Strang 教材里学的 SVD 与半正定矩阵的谱分解。</span>\n> <span style=color:#1e8449;>还要记住核范数的一个「因子化」写法（出现在本页之后的 Problem Set III.5 第 5、6 题，书页 200）：$\\|A\\|_N=\\min_{UV=A}\\tfrac12(\\|U\\|_F^2+\\|V\\|_F^2)$。机制一眼可见：写 $A=(U\\Sigma^{1/2})(\\Sigma^{1/2}V^{T})$，再对矩阵内积 $\\langle U,V\\rangle=\\operatorname{trace}(U^{T}V)$ 用柯西-施瓦茨不等式（Cauchy–Schwarz），即得 $\\sum\\sigma_i\\le\\|U\\|_F\\|V\\|_F$。它的价值在于把「核范数最小化」这个抽象的谱问题改写成「找两个窄矩阵使范数平方和最小」——参数化之后可以直接用梯度法，这正是本页下半部分交替最小二乘算法的起点。一个漂亮特例：若 $A$ 半正定，则秩与非零特征值个数一致，核范数退化成迹 $\\operatorname{trace}(A)$。</span>\n**1.** 文献 D. Donoho：压缩感知（Compressed sensing），*IEEE Trans. Inform. Theory* **52** (2006) 1289–1306。\n**2.** 文献 E. Candès, J. Romberg, and T. Tao：稳健不确定性原理——从高度不完备的傅里叶信息中精确重建信号（Robust uncertainty principles: Exact signal reconstruction from highly incomplete frequency information），*IEEE Transactions on Information Theory* **52** (2006) 489–509。\n**3.** 文献 E. Candès and B. Recht：通过凸优化精确补全矩阵（Exact matrix completion via convex optimization），*Foundations of Computational Mathematics* **9** (2009) 717–736；arXiv:0805.4471，2008 年 5 月 29 日。\n**4.** 文献 T. Hastie, R. Mazumder, J. Lee, and R. Zadeh：用快速交替最小二乘做矩阵补全与低秩 SVD（Matrix completion and low-rank SVD via fast alternating least squares），arXiv:1410.2596，2014 年 10 月 9 日。\n> <span style=color:#1e8449;>**[note] 译者注（编号说明）：**</span> 本页有三套互不相干的编号并列：上面评论的 1.–3.、文献表的 1.–4.、以及下面算法的 1.–3.。正文说的「上面第 4 篇参考文献」指文献表第 4 条（Hastie 等人），与评论编号无关，读者按各自的列表数即可。\n<span style=color:#2471a3;>**[section]**</span>\n## Algorithms for Matrix Completion（矩阵补全的算法）\n> <span style=color:#7f8c8d;>Strang LaLFD §III.5, p.198</span>\n我们需要一个算法来补全矩阵 $A$，其中有些元素是固定的（记为 $A_{\\text{known}}$）。\n上面第 4 篇参考文献追溯了三种交替迭代（alternating iterations）的发展——每一种新方法都在改进先前的算法。数值分析正是这样演进的。\n**1.**（Mazumder 等人）对 $A_k$ 的 SVD 做软阈值（soft-threshold）（$S_\\lambda$ 的记号见 §VI.5）：\n```math\nA_k = U_k\\Sigma_k V_k^{T} \\quad \\text{and} \\quad B_k = U_k S_\\lambda(\\Sigma_k) V_k^{T}\n\\quad \\text{with} \\quad S_\\lambda(\\sigma) = \\max(\\sigma - \\lambda,\\, 0)\n```\n$S_\\lambda$ 把 $B_k$ 中较小的奇异值置零，从而降低它的秩。接着 $A_{k+1}$ 极小化\n```math\nA_{k+1}\\ \\text{minimizes}\\quad \\tfrac{1}{2}\\left\\| (A - B_k)_{\\text{known}} \\right\\|_F^{2} + \\lambda \\left\\| B_k \\right\\|_N\n\\tag{5}\n```\n> <span style=color:#1e8449;>**[note] 软阈值：一个 $\\max$ 函数如何同时干「压缩」和「降秩」两件事**</span>\n> <span style=color:#1e8449;>本页那一步给出 $B_k=U_kS_\\lambda(\\Sigma_k)V_k^{T}$，其中 $S_\\lambda(\\sigma)=\\max(\\sigma-\\lambda,0)$：从每个数里减去 $\\lambda$，减到负数就按零处理。这个动作叫软阈值（soft thresholding）。它看起来平淡，却同时做了两件本来要分开做的事：一是把大的分量整体拉小（压缩），二是把小于 $\\lambda$ 的分量直接清零（稀疏化）；当作用对象是矩阵的奇异值时，清零奇异值就等于降低秩——这正是它出现在核范数最小化里的原因。</span>\n> <span style=color:#1e8449;>它的来历可以直接算出来。考虑一维问题 $\\min_x \\tfrac12(a-x)^2+\\lambda|x|$：当 $x>0$ 时，导数 $a-x+\\lambda=0$ 给出 $x=a-\\lambda$（要求 $a>\\lambda$）；当 $x<0$ 时同理给出 $x=a+\\lambda$（要求 $a<-\\lambda$）。三段拼起来就是 $x^{*}=\\operatorname{sign}(a)\\max(|a|-\\lambda,0)$。请特别注意 $a=0$ 附近那个折角：$|x|$ 在 $0$ 处不可导，正是这个不可导点制造了「一整段解恰好等于 $0$」的现象——当 $|a|\\le\\lambda$ 时，$0$ 处的次微分区间里包含了让一阶条件成立的取值，于是最优解就停在 $0$ 上。这是 Boyd 前五章里次梯度与 KKT 条件处理的典型情形，也是「凸集有角即出稀疏解」这一机制可以手算的例子。</span>\n> <span style=color:#1e8449;>参数 $\\lambda$ 把「拟合」与「结构」放到同一把尺子上：残差平方项与 $\\lambda$ 乘结构量相加，$\\lambda$ 越大，清零的越多、模型越简单；$\\lambda$ 越小，越贴着已知数据。本页也给了尺度感的一个极端例子——Netflix 竞赛的数据里有 $8\\times10^{9}$ 个元素，而每一步还要对 $A_k$ 做一次完整的奇异值分解。奇异值分解的成本随矩阵规模增长得很快，对这样的规模反复做它是不可行的，所以作者们「成功地削减了这一沉重代价」，并用上一次的 SVD 结果给下一次当起点（warm start，热启动）。这是数值线性代数的常规剧本：先用最干净的数学刻画问题（核范数 + 软阈值），再因为规模把它改写成逐步迭代并复用上一轮的结果。</span>\n> <span style=color:#1e8449;>最后辨清一个常常含混的地方：核范数最小化与软阈值并不是两条并行的路线，而是同一个算子的两种说法。下一页（书页 199）会说明式（7）的交替最小二乘解恰好给出 $CR^{T}=S_\\lambda(A)$，即「解矩阵等于 $A$ 的软阈值」。所以「我到底该最小化核范数，还是该做软阈值」这个问题本身就问错了：对同一族问题，它们指向同一个答案，区别只在于你用什么算法去够到它。可迁移的结论是：面对带结构惩罚的目标，先写出一维情形并把它解掉，往往能直接看出全局算子长什么样；不可导点不是麻烦，而是结构（稀疏、降秩）出货的地方。CSAPP 里「先把单条指令的行为吃透，再谈流水线」的还原式思路，在这里的对应物就是「先把 $\\tfrac12(a-x)^2+\\lambda|x|$ 做透，再推广到矩阵的奇异值上」。</span>\n其缺点在于：每一步都要计算 $A_k$ 的 SVD。\n在 Netflix 竞赛中，$A$ 含有 $8 \\times 10^{9}$ 个元素。\n作者们把这一沉重代价压了下来。\n而且每一次先前的 SVD 都给下一次提供了好的起点（warm start）。\n新想法还在不断涌现。\n**2.**（Srebro 等人）这些作者把解矩阵写成 $CR^{T} = (m \\times r)(r \\times n)$，并极小化\n```math\n\\text{Minimize over } C \\text{ and } R\\quad\n\\tfrac{1}{2}\\left\\| (A - CR^{T})_{\\text{known}} \\right\\|_F^{2} + \\tfrac{\\lambda}{2}\\left( \\|C\\|_F^{2} + \\|R\\|_F^{2} \\right)\n\\tag{6}\n```\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 第 2 段的罚项在 OCR 中仅残存 `膘 + 一 (I ℃ 膘 + ）` 一类碎片，依「该极小化即逐列的岭回归（ridge regression）」这一正文说明，还原为 $\\tfrac{\\lambda}{2}\\bigl(\\|C\\|_F^{2}+\\|R\\|_F^{2}\\bigr)$——因子 $\\tfrac12$ 由下一步的解 $R^{T}=(C^{T}C+\\lambda I)^{-1}C^{T}A$ 反推确认（若罚项系数为 $\\lambda$ 而非 $\\tfrac\\lambda2$，解中会出现 $2\\lambda$）。该式的编号在 OCR 中亦脱落，故不标注编号，以免与原文编号冲突；式（3）与式（5）之间的式（4）在 OCR 中完全丢失，其内容不可复原，未作臆造。（原书此处 OCR 残缺）该式在原文中是否确带 $\\tfrac12$ 因子，请回原书确认。\n\n@@PAGE:202@@\n<!-- page 202 -->\n> <span style=color:#7f8c8d;>本页为书页 199，为 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）中矩阵补全算法的续页，属 Part III 的收尾；页眉与印页码为重复元素，不译。</span>\n> <span style=color:#7f8c8d;>Strang LaLFD §III.5, p.199</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声中的 `乥`／`囡`／`刎`／`刁`／`毋` 等残码均按数学语境重建为矩阵 $A$、$C$、$R$ 或 $\\Sigma$、$U$、$V$；`什 om` 为 from，`山`／`纪` 为 $C$ 的残码，`咒`／`月`／`刀`／`叻` 为 $R$，`0` 常为 $C$ 或 $O$ 之误；页眉残片 `田 5` 为节号 §III.5。\n这一目标对单独的 $C$ 是凸的，对单独的 $R$ 也是凸的（即双凸，biconvex）。\n于是交替算法（alternating algorithm）是自然的：固定 $R$ 求 $C$，再固定 $C$ 求 $R$。\n每个子问题都是针对 $C$ 的每一列、然后针对 $R$ 的每一列的岭回归（ridge regression）。\n> <span style=color:#1e8449;>**[note] 交替最小二乘为什么收敛得动：双凸性与岭回归**</span>\n> <span style=color:#1e8449;>本页的核心句子是「这一目标对单独的 $C$ 是凸的，对单独的 $R$ 也是凸的（即双凸，biconvex）」。这里要小心区分两个层次：$\\tfrac12\\|(A-CR^{T})_{\\text{known}}\\|_F^2+\\tfrac{\\lambda}{2}(\\|C\\|_F^2+\\|R\\|_F^2)$ 对两个变量一起看不是凸的（因为 $CR^{T}$ 里两个变量相乘），但一旦固定 $R$，剩下的部分就是关于 $C$ 的二次函数，二次项系数正定，于是它是一个货真价实的凸问题，而且有闭式解。这种「联合非凸、分别凸」的结构叫双凸，交替算法（固定一个解另一个、来回迭代）就是它的自然算法。</span>\n> <span style=color:#1e8449;>每个子问题为什么是岭回归，可以直接对照你在线性代数里学的最小二乘来看。原问题 $\\min_x\\|Ax-b\\|^2$ 的正规方程是 $A^{T}Ax=A^{T}b$，解为 $x=(A^{T}A)^{-1}A^{T}b$；加上 $\\lambda\\|x\\|^2$ 这一项后，方程变成 $(A^{T}A+\\lambda I)x=A^{T}b$，解为 $x=(A^{T}A+\\lambda I)^{-1}A^{T}b$。本页式（9）与式（10）的极小化正是它在「数据取 $C$、未知量取 $R$ 的每一列」时的样子（逐步更新 $R$、$C$ 与缩放因子 $D$）；两条式子的解 $R^{T}=(D^{2}+\\lambda I)^{-1}DU^{T}A$ 与 $C=AVD(D^{2}+\\lambda I)^{-1}$ 是同一件事的两种排列。那个 $\\lambda I$ 有两个作用：一是缩小解的尺度（正则化），二是把可能奇异的 $C^{T}C$ 抬成可逆——这一条在你将来遇到病态或欠定问题时非常关键。</span>\n> <span style=color:#1e8449;>交替推进的收敛图像是分块坐标下降：每次把当前点沿一个坐标方向推到该方向上的最优点，函数值单调不增。要留意的是它保证收敛到驻点，不一定收敛到全局最优——双凸问题的全局最优本身通常也算不动。Hastie 等人（arXiv:1410.2596，2014 年 10 月 9 日）分析的正是这个算法的收敛性与数值稳定性，并在 Netflix 竞赛的数据上做了实现。这里还有一个工程上的好处值得点出：每个子问题的核心是解一个形如 $(C^{T}C+\\lambda I)x=b$ 的方程组，可以把它 Cholesky 分解一次、复用多次，代价与「未知量个数」的立方成正比，而不是与矩阵元素总数 $n^2$ 成正比——这正是它能把 $8\\times10^9$ 个元素的规模撑下来的原因，也是 CSAPP 里「算法的常数因子与内存存取模式同样决定实际速度」的同一个教训。</span>\n> <span style=color:#1e8449;>本页还有一处值得停下来看的地方：式（11）把 $A$ 写成「稀疏 + 低秩」之和——$A_{\\text{known}} + (CR^{T})_{\\text{unknown}} = (A-CR^{T})_{\\text{known}} + CR^{T}$，即已知位置上取残差、未知位置上取上一步的低秩乘积。这样拆的好处是，缺失元素在每一步迭代中都由上一步的低秩乘积填补（方法因此叫 Soft-impute Alternating Least Squares，软填补交替最小二乘），从而消掉了「已知元素与未知元素混在同一整列」这个麻烦：算法不必对每一列单独挑出已知项，而是对所有元素一视同仁地做岭回归。用 6.006 里熟悉的说法，这就是把带条件的分支处理换成了统一的数据结构加迭代修正，代价是要多迭代几轮。</span>\n这样得到的乘积 $CR^{T}$ 是一种最大间隔分解（maximum margin factorization）。\n**3.**（见上文参考文献 4）第三种算法出现在 2014 年。\n它是第一种算法的变体——但像第二种那样在 $C$ 与 $R$ 之间交替。\n如今的极小化把 $A - CR^{T}$ 的全部元素都纳入进来，而不只是那些位于已知位置的元素。\n这大大简化了最小二乘问题，使我们能够处理“已知元素与未知元素混在同一整列”的列。\n从下面这个（交替）最小二乘问题出发，此时矩阵 $A$ 正是完全可观测的（fully observed）：\n```math\n\\text{Minimize over } C \\text{ and } R\\quad\n\\tfrac{1}{2}\\left\\| A - CR^{T} \\right\\|_F^{2}\n\\tag{7}\n```\n一个显式解是 $C = U_r S_\\lambda(\\Sigma_r)^{1/2}$ 与 $R = V_r S_\\lambda(\\Sigma_r)^{1/2}$。\n包括这一个在内的所有解都满足 $CR^{T} = U_r S_\\lambda(\\Sigma_r)V_r^{T}$，即 $A$ 的 soft SVD（软奇异值分解）。\n$S_\\lambda$ 是软阈值（soft thresholding），它显示了式（7）中惩罚项的作用。\n令人惊叹而又美妙的是，那个乘积 $B = CR^{T}$ 恰好解出下面这个秩为 $r$ 的核范数问题：\n```math\n\\text{Minimize over } B \\text{ of rank } r\\quad\n\\tfrac{1}{2}\\left\\| A - B \\right\\|_F^{2} + \\lambda \\| B \\|_N\n\\tag{8}\n```\n与式（7）的这一联系，催生了下面这个快速交替计算 $B = CR^{T}$ 的做法。\n此刻先假设 $A$ 的所有元素都已知：没有缺失。\n此刻从 $C = \\text{random } m \\times r$ 与 $D = I_r$ 出发。每一步依次更新 $R$、$C$ 与 $D$。\n```math\n\\text{1. Minimize over } R\\ (n \\times r)\\quad \\left\\| A - CR^{T} \\right\\|_F^{2} + \\lambda \\left\\| R \\right\\|_F^{2}\n\\tag{9}\n```\n**2.** 计算这个 SVD：$RD = U\\Sigma V^{T}$。置 $D = \\sqrt{\\Sigma}$ 与 $R_{\\text{new}} = VD$。\n```math\n\\text{3. Minimize over } C\\ (m \\times r)\\quad \\left\\| A - CR^{T} \\right\\|_F^{2} + \\lambda \\left\\| C \\right\\|_F^{2}\n\\tag{10}\n```\n**4.** 计算这个 SVD：$CD = U\\Sigma V^{T}$。置 $D = \\sqrt{\\Sigma}$ 与 $C_{\\text{new}} = UD$。\n反复执行这些步骤，直到 $CR^{T}$ 收敛到式（8）的解。\n现在 Hastie 等人回到真正的问题：$A$ 中含有缺失元素——它们并不已知。\n在每一次迭代中，那些缺失元素取自当前的矩阵 $CR^{T}$。\n这就为 $A$ 产生了一种非常高效的稀疏加低秩（sparse plus low rank）表示：\n```math\nA = A_{\\text{known}} + (CR^{T})_{\\text{unknown}} = (A - CR^{T})_{\\text{known}} + CR^{T}\n\\tag{11}\n```\n最终算法只是式（9）–（10）的轻微修改，办法是使用来自式（13）的项。\n式（9）与式（10）的解具有极为简单的形式，因为这些问题本质上都是岭回归（即最小二乘）：\n```math\nR^{T} = (D^{2} + \\lambda I)^{-1} D U^{T} A \\qquad \\text{in } (9)\n```\n```math\nC = A V D (D^{2} + \\lambda I)^{-1} \\qquad \\text{in } (10)\n```\n合起来看，这个算法被称为 Soft-impute Alternating Least Squares（软填补交替最小二乘）。\nHastie 等人分析了它的收敛性与数值稳定性。\n他们在 Netflix 竞赛的数据上测试了一个实现——并取得了成功。\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页公式在 OCR 中残缺严重：式（7）的罚项被误识为 `(l ℃ 勝 十 伍 勝 ）`，依其解迹（thresholded（阈值化）解）与式（9）的解形反推为 $\\tfrac{\\lambda}{2}\\bigl(\\|C\\|_F^{2}+\\|R\\|_F^{2}\\bigr)$；本页公式编号经对照原书确认依次为 (7)、(8)、(9)、(10)、(11)；方框内为四步（1. Minimize over $R$、2. $RD=U\\Sigma V^{T}$ 置 $D=\\sqrt{\\Sigma}$、$R_{\\text{new}}=VD$、3. Minimize over $C$、4. $CD=U\\Sigma V^{T}$ 置 $D=\\sqrt{\\Sigma}$、$C_{\\text{new}}=UD$）。正文「使用来自式（13）的项」一句中的 (13) 系原书自身的编号引用（本页编号止于 (11)），照原文保留。\n\n现在输出修订后的译文全文（从 `@@PAGE:201@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 10363,
+            "outputTokens": 9144,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 10363,
+              "outputTokens": 9144,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 13010,
+          "contextWindow": 1000000,
+          "pressureTokens": 13179,
+          "sampledSurfaceTokens": 6851
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5291,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 6159,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11866
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

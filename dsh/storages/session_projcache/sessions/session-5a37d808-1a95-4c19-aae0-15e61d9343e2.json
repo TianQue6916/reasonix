@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132437796,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_153（书页 149） @@@@@\r\n−---- 【权威原文】 −---------------\r\n11.4. Randomized Linear Algebra\r\n\r\n149\r\n\r\nConclusion to be verified: The expected value of the $n$ by $n$ matrix $SS^T$ is $I$\r\nSame conclusion in other words: The expected value of $ASS^TB$ is $AB$\r\nThus random sampling computes the matrix product with the correct mean $AB$\r\n\r\nProof. There are $s$ identical trials. Each trial chooses a column-row pair of $A$ and $B$ with probabilities $p_1$ to $p_n$ (column from $A$ times row from $B$ divided by $\\sqrt{sp_j}^2 = sp_j$). Then the expected value = mean = average outcome from each trial is\r\n\r\n$$p_1 \\frac{(\\text{column 1 of } A) (\\text{row 1 of } B)}{sp_1} + \\dots + p_n \\frac{(\\text{column } n \\text{ of } A) (\\text{row } n \\text{ of } B)}{sp_n}. \\tag{4}$$\r\n\r\nThe $p$'s cancel. This is exactly $AB/s$. And since there are $s$ trials, the expected value for the randomized multiplication $(AS)(S^TB)$ is $AB$.\r\n\r\nConclusion All well so far—but we have to choose the probabilities $p_1$ to $p_n$. Any choice (adding to 1) gives the correct expected value $AB$ (the mean). But the choice of the $p$'s can strongly affect the variance!\r\n\r\nUniform sampling would choose equal probabilities $p = 1/n$. This is reasonable if the columns of $A$ (and also the rows of $B$) have similar lengths. But suppose that (column 1 of $A$) (row 1 of $B$) makes up most of $AB$—it dominates the other column-row outer products. Then we don't want to randomly miss it.\r\n\r\nOur approach here is to use unequal probabilities $p_j$. We now state and compute the best $p$'s. And we mention an entirely different option: Introduce a mixing matrix $M$ and work with $AM$ and $M^{-1}B$. Then use equal probabilities $p_j$ for the randomly mixed columns of $A$ and rows of $B$.\r\n\r\nNorm-squared Sampling Minimizes the Variance\r\n\r\nNorm-squared sampling chooses the probabilities $p_j$ proportional to the numbers $\\|\\text{column } j \\text{ of } A\\| \\|\\text{row } j \\text{ of } B\\|$. In the important case $B = A^T$, the $p_j$ are proportional to $\\|\\text{column } j \\text{ of } A\\|^2$. The name norm-squared or length-squared is then natural. We still have to scale all the probabilities $p_j$ by a suitable constant $C$ so they add to 1:\r\n\r\n$$p_j = \\frac{1}{C} \\|\\text{column } j \\text{ of } A\\| \\|\\text{row } j \\text{ of } B\\| = \\frac{\\|a_j\\| \\|b_j^T\\|}{C} \\text{ with } C = \\sum_{j=1}^n \\|a_j\\| \\|b_j^T\\|. \\tag{5}$$\r\n\r\nNow we will painstakingly compute the variance for randomized matrix multiplication using any probabilities $p_j$—and we will verify that the choice of $p$'s in equation (5) minimizes the variance. Best to choose large columns and rows more often. The line after equation (4) showed that all choices give the correct mean $E[ASS^TB] = AB$.\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 153 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 149，属 §III.4 Randomized Linear Algebra（随机化线性代数）；页眉（含节号 4 与印页码 149）为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 校正）：**</span> 本页原扫描件把斜体字母 $s$ 一律识别成数字 5，故 `There are 5 identical trials`、`AB/s` 中的 `5` 均还原为 $s$；`SP9` 还原为 $s p_j$，`1/SP` 还原为 $1/(s p_j)$；`the “ by matrix SST` 依上下文补全为 $n\\times n$ 矩阵 $S S^{T}$；`ASSTB ÄB` 还原为 $E[AS\\,S^{T}B]=AB$；`内 t0 Pn` 还原为 $p_1$ 到 $p_n$；`况 eq ba 历 I 湎` 还原为 norm-squared sampling（范数平方采样）；`mxing rnaü•ix` 还原为 mixing matrix（混合矩阵）$M$；范数符号 `日`、`刀`、`陋` 均还原为 $\\|\\cdot\\|$。式 (4)(5) 的编号与原文一致，未作改动。\r\n\r\n**有待验证的结论（conclusion to be verified）：** $n \\times n$ 矩阵 $S S^{T}$ 的期望值是 $I$。\r\n\r\n同一个结论换一种说法：$AS\\,S^{T}B$ 的期望值是 $AB$。\r\n\r\n因此，随机采样算出的矩阵乘积具有正确的均值 $AB$。\r\n\r\n**一共有 $s$ 次完全相同的试验（identical trials）。** 每次试验都以概率 $p_1$ 到 $p_n$ 选取 $A$ 的一个列-行对（column-row pair），即取 $A$ 的第 $j$ 列乘以 $B$ 的第 $j$ 行，再除以 $s p_j$，其中各概率之和为 $\\sum_j p_j = 1$。\r\n于是期望值 = 均值 = 每次试验结果的平均值，它等于\r\n\r\n```math\r\n\\sum_{j=1}^{n} p_j\\,\\frac{a_j b_j}{s\\,p_j}=\\frac{1}{s}\\sum_{j=1}^{n} a_j b_j=\\frac{AB}{s}. \\tag{4}\r\n```\r\n\r\n这些 $p$ 相互抵消，结果恰好是 $AB/s$。\r\n由于总共有 $s$ 次试验，随机化乘法 $(AS)(S^{T}B)$ 的期望值就是 $AB$。\r\n\r\n**结论（Conclusion）。** 到此为止一切顺利——但我们必须选出概率 $p_1$ 到 $p_n$。\r\n任何一组（加起来等于 1 的）选择都给出正确的期望值 $AB$（也就是均值）。\r\n但概率 $p$ 的选取方式会强烈影响方差（variance）！\r\n\r\n均匀采样（uniform sampling）会选取相等的概率 $p_j = 1/n$。\r\n当 $A$ 的各列（以及 $B$ 的各行）长度相近时，这样做是合理的。\r\n但假如 $(A$ 的第 1 列$)(B$ 的第 1 行$)$ 构成了 $AB$ 的绝大部分——它压倒了其余的列-行外积（outer products），那么我们就不希望在随机选取时把它漏掉。\r\n\r\n我们这里的做法是采用范数平方采样（norm-squared sampling）。\r\n下面我们陈述并算出最好的 $p$。\r\n同时还要提一个完全不同的选项：引入混合矩阵（mixing matrix）$M$，改为对 $AM$ 与 $M^{-1}B$ 做计算，然后对 $A$ 随机混合后的列与 $B$ 的相应行采用相等的概率。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（采样概率为何按长度乘积分配）：**</span> 这一页的核心贡献是：把抽样概率选成 $p_j$ 正比于 $\\|a_j\\|\\,\\|b_j\\|$，就能让方差最小。为什么是这个量、而不是别的量，值得先说清楚。抽样式矩阵乘法是一个**无偏估计**：每次试验随机取一个秩一项 $a_j b_j$（$a_j$ 是 $A$ 的第 $j$ 列，$b_j$ 是 $B$ 的第 $j$ 行），估计量是 $\\hat{X}=a_j b_j/(s p_j)$，于是 $E[\\hat{X}]=\\sum_j p_j\\cdot a_j b_j/(s p_j)=AB/s$，与式 (4) 完全一致。既然是估计，就同时带着均值与方差两个指标——这也正是概率论里估计量的评价框架：无偏只保证平均意义上对，方差才决定单次结果有多飘。\r\n>\r\n> 现在从第一性原理把方差写出来。单个秩一项的 Frobenius 范数平方是 $\\|a_j b_j\\|_F^{2}=\\|a_j\\|^{2}\\|b_j\\|^{2}$，把它记成 $c_j$，就是第 $j$ 项的能量；被选中时它要除以 $s p_j$ 才放回去，所以被放大成 $c_j/(s^{2}p_j^{2})$，再乘上选中概率 $p_j$ 得 $c_j/(s^{2}p_j)$。对 $j$ 求和就是 $E[\\|\\hat{X}\\|_F^{2}]=\\frac{1}{s^{2}}\\sum_j c_j/p_j$。要注意这里比较的不是方差本身，而是式 (6) 里的 $\\sum_j c_j/p_j$：两者只差一个由 $E[\\hat{X}]=AB/s$ 决定的常数 $\\|AB\\|_F^{2}$ 与因子 $1/s^{2}$，所以在 $AB$ 给定的前提下最小化哪一个都等价。于是设计问题变成一个朴素的直觉问题：既然分母上的 $p_j$ 越小、这一项被放大得越狠，那就该让概率去追能量——但为什么要追 $\\sqrt{c_j}$ 而不是 $c_j$？因为目标里是 $c_j/p_j$，把 $p_j$ 记作 $t_j^{2}$，目标就是 $\\sum_j(\\sqrt{c_j}/t_j)^{2}$，按柯西-施瓦茨取 $t_j\\propto\\sqrt{c_j}$ 才能同时压住所有项，若取 $p_j\\propto c_j$ 则小项被压得太狠、方差反而变大。能量单位是长度平方，而概率必须是**长度的量纲**（一维的权重），开一次方正是量纲匹配这一步；只取 $\\|a_j\\|$ 会漏掉行侧的信息，只取 $\\|b_j\\|$ 同理，所以必须是乘积。\r\n>\r\n> 用 $2\\times2$ 验算一遍，绝对值不重要、比例才重要。取 $A=\\begin{pmatrix}3&0\\\\0&4\\end{pmatrix}$，$B=I_2$，两列的能量分别是 $c_1=9$、$c_2=16$，长度乘积是 $3$ 与 $4$，于是 $p_1=3/7$、$p_2=4/7$。样本数取 $s=1$ 时，方差（即式 (6) 的 $\\sum_j c_j/p_j$ 再减去常数 25）等于 $9\\times\\frac{7}{3}+16\\times\\frac{7}{4}-25=21+28-25=24$；若改用均匀采样 $p=(1/2,1/2)$，同样代入得 $18+32-25=25$，比最优解大。若取 $p_1=3/7,p_2=4/7$ 但 $s=2$，误差指标降到 $12$，说明方差按 $1/s$ 衰减，代价则是计算量翻倍。\r\n>\r\n> 这个设计也有名字可记，叫**能量归一化采样**：先算每项的能量，开方后归一化当概率、去掉方根后在估计量里除回来，能量大的项被更频繁地选中、同时被更温和地放大，两个方向把误差夹住。一条跨课程连接：**6.042J 的 Chernoff 界**用的是独立同分布随机变量的和偏离期望的概率上界，它的舞台是单个标量，而这里是矩阵值随机变量的 Frobenius 误差，处理的是二阶矩而非尾部概率；**CLRS 与 6.006 的随机化算法分析**多数情况下可以只算期望代价就收工，而矩阵乘法的采样必须看方差，因为方差直接决定需要抽多少次。前者关心会不会算得太慢，这里关心答案准不准，这是同一套概率工具在两种算法范式下的不同用法。\r\n\r\n按 $p_j$ 抽样，本质上属于重要性采样（importance sampling）：当被抽样项对最终结果的贡献大小悬殊时，就按贡献大小分配抽样次数，贡献大的多抽、贡献小的少抽，从而在固定的 $s$ 次试验里把估计量的波动压下去。下面把贡献量化：$AB=\\sum_j a_j b_j$ 是 $n$ 个秩一矩阵之和，而秩一项 $a_j b_j$ 的 Frobenius 范数平方恰好等于 $\\|a_j\\|^{2}\\|b_j\\|^{2}$，所以第 $j$ 项的能量就是 $c_j=\\|a_j\\|^{2}\\|b_j\\|^{2}$。于是方差正比于 $\\sum_j c_j/p_j$：概率给得越小，那一项在方差里被放大得越厉害。这解释了为什么最优解不是把概率全押在最大的项上——那是贪心策略，会让其余项以极小的 $p_j$ 换来巨大的 $c_j/p_j$，方差反而爆炸；正确做法是按 $\\sqrt{c_j}$ 配平。\r\n\r\n跨课程连接一：概率论与数理统计里的无偏估计与最小方差估计，连接路径是把随机化算法看成估计量 → 无偏性对应 $E[\\hat{X}]=AB$ → 有效性（方差最小）对应下面对 $p_j$ 的优化，区别在于统计课通常假定样本独立同分布，而这里每次试验从有限个秩一项中按自定义分布抽取，分布本身还是我们要设计的变量。跨课程连接二：Strang 线性代数与 18.065 中的 SVD 低秩近似，连接路径是$AB$ 写成秩一项之和 → 每项能量 $c_j$ → 抽样方差 $\\sum_j c_j/p_j$；区别在于 SVD 是确定性截断，保留最大的几项、丢掉其余，而抽样近似是随机保留全部项、只是让大项出现得更频繁，因此估计仍然无偏。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Norm-squared Sampling Minimizes the Variance（范数平方采样使方差最小）\r\n\r\n范数平方采样（norm-squared sampling）选取的概率正比于数 $\\|a_j\\|\\,\\|b_j\\|$，其中 $a_j$ 是 $A$ 的第 $j$ 列，$b_j$ 是 $B$ 的第 $j$ 行。\r\n在重要的情形 $B = A^{T}$ 下，$p_j$ 正比于 $\\|a_j\\|^{2}$。\r\n这时norm-squared（范数平方）或length-squared（长度平方）这个名字就很自然。\r\n\r\n我们仍然要用一个合适的常数 $C$ 去缩放所有概率，使它们加起来等于 1：\r\n\r\n```math\r\np_j=\\frac{\\|a_j\\|\\,\\|b_j\\|}{C},\\qquad C=\\sum_{j=1}^{n}\\|a_j\\|\\,\\|b_j\\|. \\tag{5}\r\n```\r\n\r\n现在我们不惮其烦地计算任意概率 $p_j$ 下随机化矩阵乘法的方差，并验证式 (5) 中的选择使方差取到最小。\r\n最好是更频繁地选取大的列与大的行。\r\n式 (4) 之后的那句话已经说明，这样的选择给出正确的均值 $E[AS\\,S^{T}B] = AB$。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.4, p.149</span>\r\n\r\n@@@@@ page_154（书页 150） @@@@@\r\n−---- 【权威原文】 −---------------\r\n150 \\hfill Computations with Large Matrices\r\n\r\nEach of the $s$ trials produces a matrix $X_j = a_j b_j^{\\mathrm{T}} / s p_j$ with probability $p_j$. Its $i, k$ entry is $(X_j)_{ik} = a_{ij} b_{jk} / s p_j$. In each trial we compute the mean: the $p_j$ cancel.\r\n\r\n$$\r\n\\textbf{Mean} \\quad \\mathrm{E}[X] = \\sum_{j=1}^{n} p_j X_j = \\frac{1}{s} \\sum_{1}^{n} a_j b_j^{\\mathrm{T}} = \\frac{1}{s} AB \\quad \\text{as in (4)}\r\n$$\r\n\r\nThe variance for one trial is by definition $\\mathrm{E}[X^2] − (\\mathrm{E}[X])^2$. Adding the results for $s$ independent trials multiplies the one-trial mean and also the one-trial variance by $s$. The mean becomes $AB$ as we know. The variance will be computed in the Frobenius norm (sum of squares of matrix entries). Compare the correct $AB$ with the random $CR$:\r\n\r\n$$\r\n\\textbf{Variance} \\quad \\mathrm{E}\\left[\\|AB − CR\\|_F^2\\right] = \\sum_{i,k} \\sum_{j=1}^{n} p_j \\frac{a_{ij}^2 b_{jk}^2}{s p_j^2} − \\frac{1}{s} \\|AB\\|_F^2 \\tag{6}\r\n$$\r\n$$\r\n(\\text{sum first over } i \\text{ and } k) = \\sum_{j=1}^{n} \\frac{\\|a_j\\|^2 \\|b_j^{\\mathrm{T}}\\|^2}{s p_j} − \\frac{1}{s} \\|AB\\|_F^2\r\n$$\r\n\r\nFinally we choose probabilities $p_1, \\ldots, p_n$ to minimize this variance. Equation (5) reveals the minimizing choice, proved below. For that choice $p_j = \\|a_j\\| \\|b_j^{\\mathrm{T}}\\| / C$ from (5), the terms $\\|a_j\\|^2 \\|b_j^{\\mathrm{T}}\\|^2 / p_j$ in equation (6) become $C \\|a_j\\| \\|b_j^{\\mathrm{T}}\\|$. Their sum is $C^2$. The smallest variance (using those optimal $p_j$) is our final result:\r\n\r\n$$\r\n\\boxed{\\mathrm{E}\\left[\\|AB − CR\\|_F^2\\right] = \\frac{1}{s} \\left[ \\sum_{j=1}^{n} \\|a_j\\| \\|b_j^{\\mathrm{T}}\\| \\right]^2 − \\frac{1}{s} \\|AB\\|_F^2 = \\frac{1}{s} \\left( C^2 − \\|AB\\|_F^2 \\right).} \\tag{7}\r\n$$\r\n\r\nHere is the proof that (5) gives the probabilities $p_j$ that minimize the variance in (6). Multiply the constraint $p_1 + \\cdots + p_n = 1$ by a Lagrange multiplier $\\lambda$. Add it to the function in (6). This is the key to Lagrange multipliers:\r\n\r\n$$\r\nL(p_1, \\ldots, p_n, \\lambda) = \\sum_{j=1}^{n} \\frac{\\|a_j\\|^2 \\|b_j^{\\mathrm{T}}\\|^2}{s p_j} − \\frac{1}{s} \\|AB\\|_F^2 + \\lambda \\left( \\sum_{1}^{n} p_j − 1 \\right)\r\n$$\r\n\r\nTake the partial derivatives $\\partial L / \\partial p_j$ to find the minimizing $p_j$ (the optimal probabilities):\r\n\r\n$$\r\n\\boxed{\\frac{\\partial L}{\\partial p_j} = 0 \\quad \\text{becomes} \\quad \\frac{1}{s p_j^2} \\|a_j\\|^2 \\|b_j^{\\mathrm{T}}\\|^2 = \\lambda} \\tag{8}\r\n$$\r\n\r\nThis says that $p_j = \\|a_j\\| \\|b_j^{\\mathrm{T}}\\| / \\sqrt{s \\lambda}$. Choose the Lagrange multiplier $\\lambda$ so that $\\sum p_j = 1$.\r\n\r\n$$\r\n\\sum_{1}^{n} p_j = \\sum_{1}^{n} \\frac{\\|a_j\\| \\|b_j^{\\mathrm{T}}\\|}{\\sqrt{s \\lambda}} = 1 \\text{ gives } \\sqrt{s \\lambda} = C \\text{ and } p_j = \\frac{\\|a_j\\| \\|b_j^{\\mathrm{T}}\\|}{C} \\text{ as predicted in (5).}\r\n$$\r\n\r\nNorm-squared sampling uses the optimal probabilities $p_j$ for minimum variance.\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 154 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 150，仍属 §III.4 Randomized Linear Algebra；节内小标题 Computations with Large Matrices 依原文保留并译出。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 校正）：**</span> 本页扫描损毁较重，校正如下：`叻（习g the bab “叻i忉e the variance （6丿` 依语境重建为概率 $p_j$ 的取值决定方差 (6)；`Ä` 重建为拉格朗日乘子 $\\lambda$；`IIAB112F` 重建为 $\\|AB\\|_F^{2}$；`乥巧`、`引`、`cl 丨 丰` 依上下文分别重建为求和号 $\\sum_j$、下标 $j$ 与常数 $C$；`X, = b / 5`、`廾 / 5` 中的 `5` 均为字母 $s$ 的误识，还原为 $X_i=a_j b_j^{T}/(s p_j)$ 与 $(X_i)_{kl}=a_{kj}b_{j\\ell}/(s p_j)$；目标函数首项漏印的因子 $\\frac{1}{s}$ 与约束项漏印的 $-1$ 依式 (6)(7) 的量纲补回。公式 (6)(7) 按方差的标准推导还原，编号与原文一致。\r\n\r\n这里，概率 $p_j$ 的取值决定了方差 (6)。\r\n把约束 $p_1 + \\cdots + p_n = 1$ 乘以一个 Lagrange multiplier（拉格朗日乘子）$\\lambda$，再加到 (6) 中的函数上去。\r\n这正是拉格朗日乘子法的关键之处：\r\n\r\n```math\r\nL = \\frac{1}{s}\\sum_{j=1}^{n}\\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{p_j} − \\|AB\\|_F^{2} + \\lambda\\left(\\sum_{j=1}^{n} p_j − 1\\right)\r\n```\r\n\r\n其中 $a_j$ 是 $A$ 的第 $j$ 列，$b_j$ 是 $B$ 的第 $j$ 行（写成列向量，因此 $a_jb_j^{T}$ 是秩一矩阵）。\r\n对 $p_j$ 求偏导数 $\\partial L/\\partial p_j$，就得到使函数取极小的 $p_j$（即最优概率）：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial p_j} = −\\frac{1}{s}\\,\\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{p_j^{2}} + \\lambda = 0 \\quad\\Longrightarrow\\quad p_j = \\frac{\\|a_j\\|\\,\\|b_j\\|}{\\sqrt{\\lambda s}}\r\n```\r\n\r\n这说明 $p_j$ 与 $\\|a_j\\|\\,\\|b_j\\|$ 成正比。\r\n再选取拉格朗日乘子，使 $\\sum_{j=1}^{n} p_j = 1$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Computations with Large Matrices（大矩阵上的计算）\r\n\r\n在 $s$ 次试验中，每一次都以概率 $p_j$ 生成一个矩阵 $X_i = a_jb_j^{T}/(s\\,p_j)$。\r\n它的元素是 $(X_i)_{kl} = a_{kj}b_{j\\ell}/(s\\,p_j)$，其中 $a_{kj}$ 是 $A$ 第 $j$ 列的第 $k$ 个分量，$b_{j\\ell}$ 是 $B$ 第 $j$ 行的第 $\\ell$ 个分量。\r\n在每次试验中我们都计算均值：$p_j$ 相互抵消。\r\n\r\n```math\r\nE[X] = \\sum_{j=1}^{n} p_j\\,\\frac{a_jb_j^{T}}{s\\,p_j} = \\frac{AB}{s}\r\n```\r\n\r\n这与式 (4) 一致：单次试验的均值是 $AB/s$，把 $s$ 次试验的结果相加，均值就变成 $AB$。\r\n单次试验的方差按定义（by definition）就是 $E[X^{2}] − (E[X])^{2}$。\r\n把 $s$ 次独立试验（independent trials）的结果相加，会把单次试验的均值以及单次试验的方差都乘以 $s$。\r\n均值如我们所知就变成了 $AB$。\r\n方差将在 Frobenius norm（弗罗贝尼乌斯范数）下计算，也就是矩阵各元素平方之和。\r\n把正确的 $AB$ 与随机的 $CR$ 作比较（其中 $C = AS$，$R = S^{T}B$）：\r\n\r\n```math\r\n\\text{Variance} = \\frac{1}{s}\\left(\\sum_{j=1}^{n}\\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{p_j} − \\|AB\\|_F^{2}\\right) \\tag{6}\r\n```\r\n\r\n这里的求和先对 $j$ 进行，再对矩阵的各个元素进行。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（拉格朗日乘子与柯西-施瓦茨：两条路一起走）：**</span> 这一页把选概率变成一个标准的约束优化问题，并且给出完全解。记 $c_j=\\|a_j\\|^{2}\\|b_j\\|^{2}$（第 $j$ 个秩一项的能量），要最小化的是式 (6) 中的 $\\sum_{j=1}^{n}\\frac{c_j}{p_j}$，因为外面的 $\\frac{1}{s}$ 与 $-\\|AB\\|_F^{2}$ 都是常数，约束是 $p_1+\\cdots+p_n=1$、$p_j>0$。拉格朗日函数写成 $L=\\frac{1}{s}\\sum_j\\frac{c_j}{p_j}-\\|AB\\|_F^{2}+\\lambda\\big(\\sum_j p_j-1\\big)$；对 $p_j$ 求偏导得 $-\\frac{1}{s}\\frac{c_j}{p_j^{2}}+\\lambda=0$，于是 $p_j=\\sqrt{c_j/(\\lambda s)}$，即 $p_j\\propto\\sqrt{c_j}=\\|a_j\\|\\,\\|b_j\\|$，再由 $\\sum_j p_j=1$ 定出 $\\sqrt{\\lambda s}=C$，正好还原式 (5)。\r\n>\r\n> 先说清这一步在解决什么设计问题。上一层已经猜出概率正比于长度乘积，这里要做的是把它**证明**成唯一解，并且顺便算出最优值。第一性原理上的关键是量纲匹配：目标函数里每项是 $c_j/p_j$，$c_j$ 的量纲是长度平方的平方，而 $p_j$ 必须是无量纲的权重，开一次方正好把量纲拉回一次方，所以 $p_j$ 只能正比于 $\\sqrt{c_j}$ 而不能正比于 $c_j$——若取 $p_j\\propto c_j$，则目标函数变成 $\\sum_j c_j/c_j=n$ 这个常数，看起来美观，但它对应的是另一套加权目标，不是式 (6)。另一条独立的路是柯西-施瓦茨：由 $\\sum_j\\frac{c_j}{p_j}=\\sum_j\\Big(\\frac{\\sqrt{c_j}}{p_j}\\Big)^{2}\\sum_j(\\sqrt{p_j})^{2}\\cdot\\frac{1}{\\sum_j p_j}$，化简后得到 $\\sum_j\\frac{c_j}{p_j}\\ge\\Big(\\sum_j\\sqrt{c_j}\\Big)^{2}$，取等条件正是 $\\sqrt{c_j}/p_j\\propto\\sqrt{p_j}$，也就是 $p_j\\propto\\sqrt{c_j}$。两条路给出同一个答案，一条只给必要条件、另一条直接给全局下界，这才是两条路一起走的含义。\r\n>\r\n> 用刚刚的小矩阵验算。$c=(9,16)$ 时，由 $p_j\\propto\\sqrt{c_j}$ 得 $(3,4)$ 归一化为 $p=(3/7,4/7)$；代入目标函数 $\\sum_j c_j/p_j$ 得 $\\frac{9}{3/7}+\\frac{16}{4/7}=21+28=49$，而柯西-施瓦茨的下界 $\\big(\\sum_j\\sqrt{c_j}\\big)^{2}=(3+4)^{2}=49$ 被**取等**，说明得到的正是全局最优。作为对照，均匀采样 $p=(1/2,1/2)$ 给出 $18+32=50$，比最优值多出 $1$——缺口刚好等于 $p_j$ 偏离最优分布带来的代价。还可以顺手检查缩放：把 $A$ 放大 $\\sqrt{t}$ 倍，$c_j$ 都乘 $t$，最优概率不变、最优值乘 $t$；若某个 $c_j=0$，则 $p_j=0$，由 $\\sqrt{\\lambda s}=C$ 的归一化关系推出 $C=0$，算法会自动把零能量项排除在外，这也是为什么存在性讨论要先假定至少有一项能量非零。\r\n>\r\n> 给这个套路起个名字：**拉格朗日定形，柯西定界，归一化定常数**。它其实是在概率单纯形上最小化一个凸函数这件事的教科书做法——几何上，最优点的梯度必须与约束面的法向平行，乘子 $\\lambda$ 就是那个平行因子；$p_j>0$ 成立说明这是内部解，KKT 条件里的互补松弛项自动为零。跨课程连接：**Boyd《凸优化》的拉格朗日对偶**里，$L(p,\\lambda)$ 先对 $p$ 逐点取下确界得到对偶函数 $g(\\lambda)$，再对 $\\lambda$ 最大化；这里因为目标在 $p$ 上是凸的、约束是线性的，弱对偶恰好取等（强对偶成立），所以一阶条件就是充要条件。与 **Strang 线代与 18.065** 里对 $x$ 求偏导得 $A^{T}Ax=A^{T}b$那一套相比，求导动作完全相同，差别在于被优化的变量从向量 $x$ 换成了概率分布 $p$，于是约束从方程换成了单纯形，解也就多了一层归一化。最后要防止一个误解：柯西-施瓦茨给的下界是**按每一个 $p$ 各算一次**的，对均匀分布同样成立，它并不自动说明均匀分布差多少；真正锁定最优的是它与拉格朗日一阶条件的取等条件重合。\r\n\r\n但有个更快、信息更全的做法，值得抽象成模板——**柯西-施瓦茨配平法**：要最小化 $\\sum_j c_j/p_j$ 且 $\\sum_j p_j=1$，就把 $\\sum_j\\sqrt{c_j}$ 拆成内积形式\r\n\r\n```math\r\n\\sum_{j=1}^{n}\\sqrt{c_j}=\\sum_{j=1}^{n}\\frac{\\sqrt{c_j}}{\\sqrt{p_j}}\\cdot\\sqrt{p_j}\r\n\\;\\Longrightarrow\\;\r\n\\Big(\\sum_{j=1}^{n}\\sqrt{c_j}\\Big)^{2}\\le\\Big(\\sum_{j=1}^{n}\\frac{c_j}{p_j}\\Big)\\Big(\\sum_{j=1}^{n}p_j\\Big)=\\sum_{j=1}^{n}\\frac{c_j}{p_j}.\r\n```\r\n\r\n等号当且仅当 $\\frac{\\sqrt{c_j}}{\\sqrt{p_j}}\\propto\\sqrt{p_j}$，即 $p_j\\propto\\sqrt{c_j}$。于是最小的 $\\sum_j c_j/p_j$ 就是 $\\big(\\sum_j\\sqrt{c_j}\\big)^{2}=C^{2}$，代回式 (6) 立刻得到式 (7) 的最小方差 $\\frac{1}{s}(C^{2}-\\|AB\\|_F^{2})$。柯西-施瓦茨一次给出三样东西：最优值、最优解（等号条件）、以及这确实是下界的证明，比只解驻点更强也更短。两条路的分工可以用一句话说清：拉格朗日乘子法负责必要条件怎么列、约束的价格 $\\lambda$ 是多少，柯西-施瓦茨负责下界存在、且等号能取到。关于全局性，$1/p$ 在 $p>0$ 上是凸函数（二阶导 $2/p^{3}>0$），凸函数配正系数相加仍凸，约束又是线性的，所以驻点就是全局最小点，拉格朗日必要条件足够，不必担心局部极小。\r\n\r\n一个可以心算的验算：设三列的 $c=(4,1,1)$，则 $C=2+1+1=4$，$C^{2}=16$，$\\sum_j c_j=6$。均匀概率 $p_j=1/3$ 给出 $\\sum_j c_j/p_j=18$；最优概率 $p=(1/2,1/4,1/4)$ 给出 $4\\cdot2+1\\cdot4+1\\cdot4=16$，恰好等于 $C^{2}$。同一个无偏约束下，方差从 18 压到 16（公共因子 $1/s$ 不影响比较），而这 2 的差距正是柯西-施瓦茨的间隙 $\\sum_j c_j/p_j-\\big(\\sum_j\\sqrt{c_j}\\big)^{2}$；用 Jensen 不等式（$\\sqrt{\\cdot}$ 是凹函数）也能得到同一个下界，但柯西-施瓦茨额外送出了等号条件，也就是最优解本身，这正是两条路要一起走的原因。\r\n\r\n还有一条关于代价的跨课程连接：抽样式矩阵乘法每抽中一个 $j$，就形成秩一项 $a_jb_j$，若 $A,B$ 都是 $n\\times n$，代价是 $O(n^{2})$，抽 $s$ 次总代价 $O(sn^{2})$；而 6.006 与 CLRS 里的精确矩阵乘法是 $O(n^{3})$（分治版本 $8T(n/2)+O(n^{2})$ 仍是同一个量级）。区别在于分治是精确算法、精度不损失，抽样是近似算法，拿方差换时间；式 (6) 里那个 $\\frac{1}{s}$ 还提醒你，方差与 $s$ 成反比而标准差只按 $1/\\sqrt{s}$ 收缩，精度想翻倍就得付四倍工作量。最后一点直觉：拉格朗日乘子 $\\lambda$ 可以理解成约束 $\\sum_j p_j=1$ 的价格，度量放松这条约束能给目标带来多少好处，这正是凸优化对偶变量的经济学解释。\r\n\r\n最后我们选取概率 $p_1,\\dots,p_n$，使这个方差取到最小。\r\n式 (5) 揭示了使方差最小的那个选择 $p_j = \\|a_j\\|\\,\\|b_j\\|/C$，其证明见下。\r\n对这一选择，式 (6) 中的各项 $\\|a_j\\|^{2}\\|b_j\\|^{2}/p_j$ 变成 $C\\,\\|a_j\\|\\,\\|b_j\\|$，而它们的和就是 $C^{2}$。\r\n于是，采用这些最优 $p_j$ 所得到的最小方差就是我们的最终结果：\r\n\r\n```math\r\n\\text{smallest variance} = \\frac{1}{s}\\left(C^{2} − \\|AB\\|_F^{2}\\right) \\tag{7}\r\n```\r\n\r\n而 $\\sum_{j=1}^{n} p_j = 1$ 给出 $\\sqrt{\\lambda s} = C$，以及正如式 (5) 所预言的那样的 $p_j$。\r\n\r\n**范数平方采样使用最优概率 $p_j$，从而取得最小方差。**\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.4, p.150</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 9092,
+            "outputTokens": 21286,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 9092,
+              "outputTokens": 21286,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 19697,
+          "contextWindow": 1000000,
+          "pressureTokens": 12548,
+          "sampledSurfaceTokens": 6062
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4502,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 13635,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 18553
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

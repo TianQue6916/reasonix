@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127962616,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 25,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 25,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**译者注撰写专家**。本次为 part004（书页 147-197，Part III Low Rank and Compressed Sensing）中的 5 页译文撰写译者注。\r\n\r\n【读者画像（写注必须对齐，禁止甩未学概念）】\r\n- 大二上学期，智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n- ✅ 已学：离散数学 MIT 6.042J（等价关系、偏序集、数论、图论、概率方法、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、线性代数 Strang（收尾中）、算法 6.006（CLRS 分治/图/复杂度）\r\n- 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法（Strang）、概率论（Bertsekas）、计算机网络（CS144）、凸优化（Boyd）\r\n- ⚠️ 尚未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——**不得甩这些名词**\r\n- 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n\r\n【注的类型（每条必须是一条可独立阅读的小专题）】\r\n1. 跨课程连接——精确到**课程名 + 具体概念 + 连接路径 + 区别**（例：你在 6.042J 学的 Chernoff 界在这里就是……）\r\n2. 第一性原理洞察——追溯最基础假设，回答为什么必须这样\r\n3. 证明策略模板——抽象为可复用模板并**命名**（如谱夹逼法能量检验法零空间吸收法）\r\n4. 历史与人物——只作点缀，标明年份（不确定的年份宁可不写）\r\n5. 拓展前沿——从用户已知概念出发搭脚手架，禁止裸甩名词\r\n\r\n【硬性质量标准】\r\n- 每条注正文 **800-1200 个汉字**（配图 / 公式 / 引文不计入）；宁可少写几条，不可注水\r\n- 每条注必须有：与当前内容的直接关系 + 一个具体例子或验算 + 一条命名模板或跨课程连接\r\n- 🚫 禁止：裸甩名词、空洞赞美（精妙经典）、堆历史年表、重复正文\r\n- 🚫 LaTeX 规范：所有公式用 `$...$` 或 ```math 围栏；**严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`**（公式必须完整保留美元符号与反斜杠命令）；禁止 Unicode 上下标\r\n- 分布均匀：本批至少 6 条注，覆盖本范围内的主要概念（不要全堆在一页）\r\n\r\n【输出格式（🚨 严格遵守，主代理按 ANCHOR 精确插入）】\r\n对每一条注，输出：\r\n\r\n=== ANCHOR: <从下方译文中原样复制的连续片段，12-40 个汉字，必须在该页译文中唯一出现> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n\r\n- ANCHOR 必须**逐字**照抄译文中的一段（含标点），以便程序精确匹配；不要改写、不要加省略号\r\n- 每条注一个 ANCHOR 块；块与块之间空一行\r\n- 不要输出任何其他内容（不要前言、不要汇总、不要思考过程）\r\n\r\n【术语表（沿用，术语一致性）】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n【本批译文（5 页，书页 193-197）】\r\n<!-- page 196: 书页 193 -->\r\n<!-- page 196 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 193，是 §III.4 的续页；结构单元清单：Kaczmarz 迭代的标准步骤 (33)、稀疏 Kaczmarz 步骤 (34)、步长与在线学习讨论、三条脚注、小节「Bounded Variation: L1 Norm for the Gradient」、BV 范数公式、一维阶跃函数例子、图像去噪应用与 Rudin–Osher–Fatemi 文献。页眉（§III.4 标题）与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页公式按 Kaczmarz 迭代的数学语境重建：`丐 = bt` 为 $a_i^{T}x = b_i$，`犭 山 equatlon` 为第 $i$ 个方程，`扣 2` 为 $\\|a_i\\|_2^2$，`凭` 为 $y$，`5` 为步长 $s$。\r\n\r\nKaczmarz iteration（Kaczmarz 迭代）对含稀疏向量的大数据问题非常有效。\r\n它的标准步骤用于求解 $Ax = b$：按顺序、或者随机地循环经过这些方程 $a_i^{T}x = b_i$（其中 $a_i^{T}$ 是 $A$ 的第 $i$ 行）。\r\n每一步都用 $A^{T}$ 的某一列的一个倍数来调整 $x_k$，使第 $i$ 个方程 $a_i^{T}x_{k+1} = b_i$ 得到满足：\r\n\r\n```math\r\nx_{k+1} = x_k + \\frac{b_i - a_i^{T} x_k}{\\|a_i\\|_2^2}\\, a_i \\tag{33}\r\n```\r\n\r\nSparse Kaczmarz（稀疏 Kaczmarz）步骤把 (33) 与 (31) 中的软阈值结合起来：\r\n\r\n```math\r\ny_{k+1} = y_k + \\frac{b_i - a_i^{T} x_k}{\\|a_i\\|_2^2}\\, a_i,\r\n\\qquad\r\nx_{k+1} = S_\\lambda(y_{k+1}) \\tag{34}\r\n```\r\n\r\n步长始终有选择的自由，取 $s_i = 1/\\|a_i\\|_2^2$ 就与 Kaczmarz 迭代相互一致。\r\nLin 与 Zhou 针对同一个问题提出了一种 online learning（在线学习）算法。\r\n这意味着，一旦新的观测值与新的方程 $a_i^{T}x = b_i$ 到达并加入计算，就立刻执行 $k \\to k+1$ 这一步。\r\n于是学习算法 (34) 立即算出 $y_{k+1}$ 与 $x_{k+1}$。\r\n\r\n> <span style=color:#7f8c8d;>脚注 1：T. Goldstein 与 S. Osher，*The split Bregman method for L1 regularized problems*，SIAM Journal of Imaging Sciences 2 (2009) 323–343。</span>\r\n\r\n> <span style=color:#7f8c8d;>脚注 2：W. Yin、S. Osher、D. Goldfarb 与 J. Darbon，*Bregman iterative algorithms for $\\ell_1$-minimization with applications to compressed sensing*，SIAM J. Imaging Sciences 1 (2008) 143–168。</span>\r\n\r\n> <span style=color:#7f8c8d;>脚注 3：Y. Lei 与 D.-X. Zhou，*Learning theory of randomized sparse Kaczmarz method*，SIAM J. Imaging Sciences 11 (2018) 547–574。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Bounded Variation: L1 Norm for the Gradient（有界变差：梯度的 L1 范数）\r\n\r\n自然图像都有边缘（edges）。\r\n在这些边缘的两侧，定义函数 $u(x,y)$ 会出现跳跃。\r\n它的梯度 $\\nabla u = (\\partial u/\\partial x,\\, \\partial u/\\partial y)$ 沿边缘方向可以是光滑的，但在垂直方向上 $\\nabla u$ 含有一个 delta function（δ 函数）。\r\n梯度 $\\nabla u$ 的能量范数是无穷大，而有界变差范数（bounded variation norm，BV norm）却是有限的：\r\n\r\n```math\r\n\\|\\nabla u\\|_{L_2}^{2} = \\iint |\\nabla u|^{2}\\, dx\\, dy = \\infty,\r\n\\qquad\r\n\\|u\\|_{BV} = \\iint |\\nabla u|\\, dx\\, dy < \\infty\r\n```\r\n\r\n在一维情形下，$u(x)$ 可以取单位阶跃函数（unit step function）。\r\n它的导数是 delta function（δ 函数）$\\delta(x)$。\r\n$\\lvert u' \\rvert^{2}$ 的积分是无穷大，而 $\\lvert u' \\rvert$ 的积分等于 $1$。\r\n我们无法用导数 $u'$ 的 $L_2$ 范数来工作，但 $u'$ 的 $L_1$ 范数很好用。\r\n在 image denoising（图像去噪）的应用中，这个 BV 范数是一个非常成功的惩罚项。\r\n我们用它来拟合数据，并用 BV 范数来防止剧烈的振荡。\r\n图像可以是分片光滑（piecewise smooth）的，但不能含有随机的斑点噪声。\r\n\r\n> <span style=color:#7f8c8d;>参考文献：L. Rudin、S. Osher 与 E. Fatemi，*Nonlinear total variation based noise removal algorithms*，Physica D 60 (1992) 259–268。（这篇论文是把 BV 范数应用于图像处理的奠基性工作。）</span>\r\n\r\n<!-- page 197: 书页 194 -->\r\n<!-- page_197 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为 Problem Set III.4（习题集 III.4），属 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）的配套习题页。按本系列惯例，习题题干保留英文原文、不译为中文；题干中的 OCR 乱码按数学语境重建为 LaTeX，并在每题前加绿色 OCR 修正说明。页眉（Low Rank and Compressed Sensing）、印页码 194 与左侧题号竖排噪声不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n## Problem Set III.4（习题集 III.4）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页由 Windows OCR 输出，噪声极重：`歹`/`鼠` 多为函数名与积分号之误，`什 om`/`丘 om` 为 from，`mnimize`/`mmimize`/`nuzeS` 为 minimize，`丨`/`ll` 为 $\\ell$ 或 $\\|\\cdot\\|$，`訓` 为 $\\|Ac-b\\|_1$ 之误，`@`/`日` 为系数与 $\\gamma$ 之误，`= 0` 与 `一` 常为下标或负号之误。以下每题的重建均依据本页数学语境与所在节（§III.4 的例 1—例 4 与式 (27)）给出；凡原文残缺过甚以致无法唯一确定之处，均在该题内以绿色说明标出，不直译乱码。本页为纯习题页，故中文字数偏少属正常。\r\n\r\n> <span style=color:#7f8c8d;>本页题干保留英文原文；必要的数学重建与说明以绿色行内注解标出，正文不作中译。</span>\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 1.** On the line $x = 1$, what vector $c$ minimizes the function $F(c) = \\frac{1}{2}\\|c\\|_2^2$ ?\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 What vector C mini nuzeS 歹（ $= 1$ ？ 中 `歹` 依上下文重建为目标函数 $\\frac{1}{2}\\|c\\|_2^2$，约束 on the line 重建为 $x = 1$（式中的变量记号依原文保留为 $x$）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 2.** Following Example 1 in this section, write Problem 1 as a minimization of $\\frac{1}{2}\\|z\\|_2^2 + g(z)$, where $g(z)$ is the $0$-$1$ indicator function of the line; describe that indicator function $g(z)$, and take one ADMM step starting from $x = 0$, $z = 0$, $u = 0$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 write problem 1 as a minimization of $z$ · Describe th at $0$ 一 $1$ indicator function $g(z)$ , and take $+ g(z)$ w ith one ADMM step starung 什 om $= 0$ ， $z = 0$ ， $= 0$ 行序被打乱，重建为上式：目标为 $\\frac{1}{2}\\|z\\|_2^2 + g(z)$，其中 $g(z)$ 为该直线的 $0$-$1$ indicator function（指示函数），初值 $x = z = u = 0$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 3.** Which vector $x$ minimizes $F(x) = \\frac{1}{2}\\|x - a\\|_2^2$ on the line $x = 1$ if $a = (2, 3)$ ?\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Whi h $/\\II$ 到 $1$ on the linec $= 1$ if $= （ 2 ， 3 ）$ ？ 中 `/\\II` 为 vector $x$ 的误读，缺失的目标函数依题 1—题 2 的形式重建为 $\\frac{1}{2}\\|x-a\\|_2^2$，on the line $c = 1$ 统一记为直线约束 $x = 1$，$a = (2,3)$ 依括号内数值保留。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 4.** Following Example 2, take one ADMM step in Problem 3 from $c = (1, 1)$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Foll owing Example 2 ， take one ADMM step in Problem 3 丘 om $c = （ 1 ， 1 ）$ 中 `丘 om` 为 from，起点 $c = (1,1)$ 依原文保留（此处变量记号与题 3 的 $x$ 混用，仍按原文写作 $c$）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 5.** What $c \\ge 0$ and $y \\ge 0$ minimize $c + y$ if $cy = 1$ ?\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 What $c$ 之 $0$ and 月 之 $0$ mmimize 一 $c$ 咒 if 中 `之` 为 $\\ge$，`月` 为 $y$，`一` 为 $+$，`咒` 为 $y$；末行缺失的约束依上下文的对称结构重建为 $cy = 1$。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 6.** Following Example 3 in this section, take one ADMM step in Problem 5: compute $x_1$, $c_1$, $z_1$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 take one ADMM step in Problem 5 ： $9$ compute XI ， CI ， $1$ ， · 中 `9` 为行首噪声，`XI ， CI ， 1` 重建为 ADMM 第一步的三个迭代量 $x_1$、$c_1$、$z_1$（例 3 的三变量更新次序）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 7.** Find the LASSO solution that minimizes $\\|Ac - b\\|_1 + \\gamma\\|c\\|_1$, with $A c = b$ given by the pair of numbers shown in the text and $\\gamma = 1$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Find LASSO that minimizes 訓 一 b113 $+$ @日 $1$ with $1$ $1$ 中 `訓` 为 $\\|Ac-b\\|_1$，`113` 为下标 $1$ 与 $\\ell_1$ 记号之误，`@`、`日` 为系数 $\\gamma$ 与 $\\|c\\|_1$ 之误；原文所列 $A$ 与 $b$ 的具体数值在 OCR 中丢失，仅余两个 $1$，故此处写作 the pair of numbers shown in the text，请以原书该处数值为准。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 8.** Following Example 4, take one ADMM step in Problem 7 from $x^0 = 0$, with $P = 2I$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 FoIIowing Example 4 ， take one ADMM step in ProbIem 7 什 om $0$ with $P = 2$ · 中 `什 om` 为 from，缺失的下标重建为初值 $x^0 = 0$；例 4 中的矩阵 $P$ 重建为 $P = 2I$（原文只余数字 $2$）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 9.** Find $\\mathrm{prox}_F(c) = \\arg\\min_z\\left(\\|c - z\\|_2^2 + F(z)\\right)$ in equation (27), where $F(z) = \\frac{1}{2}\\|z\\|_2^2 - 1$. Is $F$ the proximal operator for $F$? It is a function of $z$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Find proxF （ 司 argmm $2$ $2$ in equation （ 27 ） · 1 s is the $2$ | $2$ · lt is a function Of · $1$ proximal operator for 尹 （ ） 一 $2$ 中 `司` 为 $c$，`argmm` 为 $\\arg\\min$，`1 s` 为 Is，`尹` 为 $F$；被拆散的分数重建为 $F(z) = \\frac{1}{2}\\|z\\|_2^2 - 1$ 与近端算子定义中的 $\\|c-z\\|_2^2 + F(z)$（式 (27) 即 prox 的定义式）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 10.** Here are three function spaces (each contained in the next) and three examples of functions: Smooth（光滑）, Lipschitz（利普希茨，斜率可跳跃）, Bounded variation（有界变差，可跳跃）. Examples: bowl $x^2 + y^2$; flat base $\\max(c^2 + y^2 - 1, 0)$; cylinder base（在 $r = 1$ 处加上一段台阶）.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Smooth ， Lipschitz (slope can jump) B ounded variation can jump) $2$ Flat base $\\max(c2+y2— 1 ， 0 ）$ CyIinder base (add step up along $r= 1$) 中 `c` 为 $x$，`c2+y2` 为 $x^2+y^2$，`CyIinder` 为 Cylinder，括号内的 (slope can jump) 与 (can jump) 为三个空间各自性质的平行说明。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 11.** A neat coarea formula expresses the BV norm of $u$ as the integral of the lengths of the level sets $L(t)$, where $\\mathrm{grad}\\,u \\ne 0$:\r\n\r\n```math\r\n\\|u\\|_{BV} = \\int |\\mathrm{grad}\\,u|\\,dx\\,dy = \\int_{-\\infty}^{\\infty} \\big(\\text{length of } L(t)\\big)\\, dt\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 A neat “ c “ rm ' ' expresses the BV no 皿 of as the i n tegral of the lengths 0f lgrad 丨 匈 ： f(length of 0 ） the level sets L(t) where $2$ 中 `c “ rm` 为 coarea formula，`no 皿` 为 norm，`lgrad 丨 匈` 为 $|\\mathrm{grad}\\,u|$、其后的 $dx\\,dy$ 在 OCR 中完全丢失，`where $2$` 残片重建为条件 $\\mathrm{grad}\\,u \\ne 0$；公式编号原文未标，故不添加。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 12.** Example. Compute both sides of the coarea formula for a bowl: $u = x^2 + y^2$.\r\n\r\n```math\r\n\\text{On the left side, } \\int |\\mathrm{grad}\\,u|\\,dx\\,dy = \\int_0^R (2\\pi r)(2r)\\,dr = 2\\pi\\int_0^R 2r^2\\,dr = 4\\pi R^3/3 .\r\n```\r\n\r\nThe bowl area integrates from $0$ to $R$. On the right side, the level set where $u = t$ is the circle $x^2 + y^2 = t$ with length $2\\pi\\sqrt{t}$. The integral of that length $L(t)$ from $t = 0$ to $R^2$ is $\\int_0^{R^2} 2\\pi\\sqrt{t}\\,dt = 4\\pi R^3/3$.\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Example Compute both sides 0f the coarea 皿 ula for a bowl ： $= +$ · 鼠 $2$ 川 $= 2$ The bowl are a integrates 什 om $0$ t0 咒 ： $= with length $2$ 丌 · $2$ On the right side, the level set where $= is the circle $2 +$ The integral of that length L(t) 什 om $t = 0$ to $2$ is f $2$ 丌 $= 4$ 丌 咒 $3 / 3$ · 中 `皿 ula` 为 formula，`鼠 2 川` 为 $\\int_0^R (2\\pi r)(2r)\\,dr$，`什 om` 为 from，`咒` 为 $R$，`丌` 为 $\\pi$，`f` 为积分号；积分上限 $R^2$ 由等号两边的量纲一致性确定（原文该处数字被 OCR 吞掉），左端第一个等号后的被积函数依极坐标面积元 $dx\\,dy = 2\\pi r\\,dr$ 重建。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span>\r\n\r\n**Problem 13.** What is $\\|u\\|_{BV}$ if $u(x,y) = x^2 + y^2$ in the triangle with sides $x = 0$, $y = 0$, $x + y = 1$? What is $\\|u\\|_{BV}$ if $u = 1$ in a unit square and $u = 0$ outside?\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 What is ifu(), ： $+$ in the gle with sides $= 04 = 0 + = 1$ ？ What is llullBV if $= 0$ in a unit square and $= 1$ outside ？ 中 `ifu()` 为 is $\\|u\\|_{BV}$ if $u(x,y)$，`gle` 为 triangle，`$= 04 = 0 + = 1$` 重建为三边 $x = 0$、$y = 0$、$x + y = 1$，`llullBV` 为 $\\|u\\|_{BV}$；末句$= 0$ … $= 1$依上下文重建为方内取值 $u = 1$、方外取值 $u = 0$，故正文按此叙述。\r\n\r\n<!-- page 198: 书页 195 -->\r\n<!-- page_198 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 195，是 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的开篇正文页；页眉（含节号 `田 5` = §III.5）与印页码 195 为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `鬱` 为基向量 $\\varphi$、`慟` 为探测向量 $w$（acquiring matrix 的列）、`彬`/`Wn` 为传感矩阵 $W$、`fie` 为 The、`expl 田 n` 为 explain、`c an`/`ex ac tly` 等为分词断开噪声、`Candös` 为 Candès、`0` 与 `Donoh0` 为 Romberg 与 Donoho；公式均按压缩感知的标准记号重建。\r\n\r\ncompressed sensing（压缩感知）的基本原理是：稀疏信号可以从**不完全的数据**中被精确恢复。\r\n看着一幅完美图像从少得可怜的测量值中浮现出来，是一种非凡的体验。\r\n解释这一现象的一条途径，是 $\\ell_1$ 范数的 diamond（菱形）与 $\\ell_2$ 范数的 sphere（球面）之间的几何对比。\r\n如今数学分析已经确定了所需的条件，以及测量数目的最小值。我们将对此作一概述。\r\n\r\n读者应当明白，Nyquist-Shannon theorem（奈奎斯特-香农定理）依然有效。\r\n要**精确**恢复一个带噪信号，你必须以至少两倍于其最高频率的速率采样。\r\n否则该信号的一部分就被漏掉了。\r\n但稀疏信号并不带噪！\r\n如果一个信号可以由少数几条 sinusoids（正弦波）或 wavelets（小波）表示出来，那么这个稀疏信号就可以由少量测量值恢复出来（概率极其接近 $1$）。\r\n有一点必须牢记：稀疏性取决于表示该信号所用的基 $\\varphi_1, \\ldots, \\varphi_n$。\r\n它只用到少数几个 $\\varphi$。\r\n而信号的传感（sensing）可以在另一个不同的基中进行。\r\n这些 $\\varphi$ 是表示矩阵 $V$ 的列，而这些 $w$ 则是传感矩阵 $W$ 的列。\r\n一个常见的例子：$\\varphi$ 们构成 Fourier basis（傅里叶基），$w$ 们构成 spike basis（尖峰基）。\r\n此时 $V$ 就是 Fourier matrix（傅里叶矩阵）$F$，而 $W$ 就是单位矩阵 $I$。\r\n\r\n压缩感知的一个关键要求是 $V$ 与 $W$ 的 incoherence（不相干性）：矩阵 $V^T W$ 的元素都很小。\r\n这些元素就是内积 $\\varphi_i^T w_j$。\r\n幸运的是，$F$ 与 $I$ 确实具有低的相干性（coherence）：$F$ 的元素大小都相等。\r\n更幸运的是：所有列范数为 $1$ 的随机矩阵，几乎必然与任何固定的基都不相干。\r\n所以随机性与接近 $1$ 的概率，正是压缩感知的核心思想。\r\n\r\n传感步骤只产生未知信号的 $m < n$ 个非零系数 $y_k$。\r\n由 $y = W^T f$ 出发，我们重建 $c^* = V c^*$，使其接近这个 $f$；为此我们使用 $\\ell_1$ optimization（$\\ell_1$ 优化）来寻找 $c^*$：\r\n\r\n```math\r\n\\text{Minimize } \\|c\\|_1 \\quad \\text{subject to } W^T V c = y \\tag{1}\r\n```\r\n\r\n这是一个 linear programming problem（线性规划问题），也就是 basis pursuit（基追踪）。\r\n它再次告诉我们：应当期待一个**稀疏**的解 $c^*$，它位于满足 $W^T V c = y$ 的向量集合的一个 corner（顶点）处。\r\n所以 simplex method（单纯形法）是定位 $c^*$ 的一种可能的算法。\r\n当然还有更快的方法来求解 (1)。\r\n\r\n基本定理是由 Candès、Romberg 与 Donoho 建立的：\r\n设 $V$ 与 $W$ 不相干，且 $c^*$ 是稀疏的（非零元个数 $S$ 很小）。\r\n那么当 $m > C S \\log n$ 时，有压倒性的概率使 (1) 的解 $c^*$ 恰好重现真实信号。\r\n概率是压倒性的（overwhelming）。\r\n\r\n当真实信号在所给 $\\varphi$ 基下是超稀疏（supersparse）的时候，会出现一种不寻常的情形。\r\n也许它恰好就是某一个 $w$ 本身。\r\n那么若干次探测可能只得到零，于是我们完全错过了 $c^*$ 中的那个 $w$。\r\n这正是概率（probability）进入压缩感知的一个原因。\r\n\r\n<!-- page 199: 书页 196 -->\r\n<!-- page 199 -->\r\n> <span style=color:#7f8c8d;>本页为书页 196，属 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）（续）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`角 ll` 实为 whole；`Aæ = b + z` 实为 $Ax = b + z$；`c*` / `孓 S` 指含 $S$ 个非零元的稀疏向量 $x^*$；`N(), l/m)` 实为正态分布 $N(0, 1/m)$；`士 1 / 而` 实为 $\\pm 1/\\sqrt{m}$；`丨@丨 1`、`|@| 0` 实为 $\\ell_1$、$\\ell_0$ 范数；`Candös`、`WaIqn`、`Can&s` 指 Candès 与 Wakin；`IEEE & g 尹 ce g Magazine 21` 实为 *IEEE Signal Processing Magazine* 21；`0 刀 e came ... po` 实为 one-pixel camera ... possible；`ch B araniuk` 指 Richard Baraniuk；`1 ·` 指 $\\ell_1$；`什 0 m`、`Um te d` 分别为 from、United；`PUQ0se` 为 purpose。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n上面这个基本定理并不是故事的全部。\r\n系统总会带有噪声，于是我们实际恢复的是一个满足 $Ax = b + z$ 的向量，其中 $z$ 可以是随机的、未知的。\r\n稀疏问题与它相邻，但并不完全吻合含噪数据。\r\n我们想要的是 stable recovery（稳定恢复）：用含噪数据求解 (1)，得到一个 $x^*$，它接近于从无噪数据本应得到的那个稀疏（$S$ 个非零元）的 $x^*$。\r\n当 $A$ 具有 restricted isometry property（受限等距性质，RIP）且 $\\delta_S < 0.1$ 时，这一结论成立：\r\n\r\n```math\r\n(1-\\delta_S)\\|x\\|^2 \\le \\|Ax\\|^2 \\le (1+\\delta_S)\\|x\\|^2 \\quad \\text{(RIP)}\r\n```\r\n\r\n其中 $x$ 是 $S$-sparse（$S$ 稀疏）的。\r\n\r\n幸运的是，这个矩阵 $A$ 的列可以随机地取自单位球面——或者随机取自正态分布 $N(0, 1/m)$——也可以取独立的随机元素 $\\pm 1/\\sqrt{m}$——或者用其他随机方式生成。\r\n只要 $m > C\\,S\\log(n/S)$，RIP 要求几乎必然得到满足。\r\n这就终于把测量数 $m$ 与稀疏度 $S$ 联系起来了。\r\n含噪数据还促使我们把 basis pursuit（基追踪，其中 $Ax$ 恰好等于 $b$）替换为 LASSO：\r\n\r\n```math\r\n\\text{LASSO with noise} \\qquad \\text{Minimize } \\|x\\|_1 \\ \\text{ subject to } \\ \\|Ax - b\\|_2 \\le \\varepsilon \\tag{3}\r\n```\r\n\r\n关于压缩感知的这一段阐述，沿用了 Candès 与 Wakin 的文章：*IEEE Signal Processing Magazine* 21（2008 年 3 月）。\r\n那篇文章提到了 Candès、Romberg、Tao 与 Donoho 的早期工作——这些工作实现了一个极具价值的目标。\r\n与其先采集海量数据再把它全部压缩（就像照相机所做的那样），我们只采集并使用 $m = O(S\\log(n/S))$ 个测量值。\r\n正如 Richard Baraniuk 所展示的，一台 one-pixel camera（单像素相机）也因此成为可能。\r\n也许医学应用是最有价值的——我们将以它们开始，也以它们结束。\r\n\r\n这一起点来自 Candès 在 2004 年的一个意外观察。\r\nLogan-Shepp 测试图像（人类头部的一个抽象模型）被噪声破坏，看起来就像 Magnetic Resonance Imaging（磁共振成像，MRI）过早停止了一样。\r\n为了改善图像，Candès 尝试了一个使用 $\\ell_1$ 的想法。\r\n令他惊讶的是，图像变得清晰了（尽管数据并不完整）。\r\n这几乎就是 Roentgen 于 1895 年发现 X 射线的在线等价物——一个意外催生了一个产业。\r\n\r\n难以置信的是，就在写这些文字的同一周，David Donoho 的一篇文章出现在 American Math Society 的在线 *Notices* 上（2018 年 1 月）。\r\n它描述了压缩感知如何加速了 MRI：扫描时间从 8 分钟缩短到 70 秒，而且图像质量很高。\r\n动态心脏成像即使对儿童也变得可行。\r\nMichael Lustig 是这一 MRI 成功中的先行者，一大批数学家为理论与算法作出了贡献。\r\nFDA 已批准一项变革，随着成千上万台扫描仪升级，它将在美国逐步推开。\r\nDonoho 这篇文章的目的，是要表明经费、合作、理论与实验（再加上一点点运气）共同产生了某种美妙的东西。\r\n\r\n<!-- page 200: 书页 197 -->\r\n<!-- page 200 -->\r\n> <span style=color:#7f8c8d;>本页为书页 197，属 §III.5 的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Matrix Completion in the Nuclear Norm（核范数下的矩阵补全）\r\n\r\n矩阵的秩就像向量中非零元的个数。\r\n在某种意义上，秩度量的是稀疏性。\r\n对于低秩情形，由奇异值构成的矩阵 $\\Sigma$ 确实是稀疏的（有 $r$ 个非零元）。\r\n正如非零元个数是向量的“$0$-范数”，秩就是矩阵的“$0$-范数”。\r\n但 $\\|x\\|_0$ 与 $\\|A\\|_0$ 并不是真正的向量范数与矩阵范数，因为 $\\|2x\\|_0 = \\|x\\|_0$ 而 $\\operatorname{rank}(A) = \\operatorname{rank}(2A)$。\r\n乘以 2 并不改变非零元的个数或秩——但它总会把任何真正的范数加倍。\r\n\r\n尽管如此，我们常常希望向量稀疏、矩阵低秩。\r\n矩阵补全问题从一个含有缺失元素的矩阵 $A_0$ 开始。\r\n我们希望把 $A_0$ 补全为 $A$，并让秩尽可能低。\r\n我们是在引入最少量的无法解释的数据。\r\n这种数据缺失的问题在观测科学的各个领域都广泛存在。\r\n为了填补空白，需要对补全后的 $A$ 作某种假设，而低秩是一个自然的选择。\r\n看看下面这些例子：\r\n\r\n```math\r\nA_{11} = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}, \\qquad\r\nA_{12} = \\begin{bmatrix} 1 & 2 \\\\ 2 & ? \\end{bmatrix}, \\qquad\r\nA_{13} = \\begin{bmatrix} 1 & 2 & ? \\\\ 2 & 4 & 8 \\\\ ? & 8 & 6 \\end{bmatrix}\r\n```\r\n\r\n这三个例子都能以秩 1 补全。\r\n$A_{12}$ 允许第二行取 $(1, 2)$ 的任意倍数，即 $b$ 与 $c$ 可取任意满足 $bc = 4$ 的数。\r\n$A_{13}$ 的最后一个元素只允许取 6。\r\n\r\n对于向量，我们把稀疏性范数 $\\|x\\|_0$ 放松为 $\\ell_1$ 范数 $\\|x\\|_1$。\r\n对于矩阵，我们现在把秩范数 $\\|A\\|_0$ 放松为 nuclear norm（核范数）$\\|A\\|_N$。\r\n这个核范数就是 $\\Sigma$ 的对角线的 $\\ell_1$ 范数，也就是说，我们在最小化奇异值之和。\r\n\r\n```math\r\n\\text{Nuclear norm } \\|A\\|_N = \\sigma_1 + \\sigma_2 + \\cdots + \\sigma_r \\tag{4}\r\n```\r\n\r\n现在我们有了一个凸范数，但它不是严格凸的：$\\|B_1 + B_2\\|_N = \\|B_1\\|_N + \\|B_2\\|_N$ 在三角不等式取等号时是可能的。\r\n事实上，例子中的矩阵 $B_0$ 可以由介于 $-2$ 与 $2$ 之间的任意 $b$ 对称地补全，而核范数 $\\|B\\|_N$ 始终等于 5（其奇异值等于特征值，且对这个半正定的 $B$ 有 $\\|B\\|_N = \\operatorname{trace}(B)$）。\r\n\r\n秩一矩阵大致类比于 $\\ell_1$ 球（菱形）$\\|x\\|_1 = 1$ 上的尖点。\r\n\r\n矩阵补全的一个著名例子是 Netflix Prize 竞赛。\r\n观众对 $m$ 部电影的评分进入矩阵 $A_0$，但顾客并没有看过全部电影，许多评分是缺失的。\r\n这些缺失值必须由推荐系统（recommender system）来预测。\r\n核范数给出了一个好的解，但它还需要针对人的心理作调整——Netflix 并不是一场纯粹数学的竞赛。\r\n\r\n另一个应用是从大量采样数据出发计算协方差矩阵。\r\n求出全部协方差可能代价高昂（典型情形：365 天里所有股票之间的协方差）。\r\n我们可以只计算其中一部分，再用矩阵补全估计其余的。\r\n一个科学上的例子：在 10 000 个位置上测量海面时涉及的全部协方差。\r\n\r\n下面是把秩最小化凸松弛为核范数最小化的形式：\r\n\r\n```math\r\n\\text{Matrix completion} \\qquad \\text{Minimize } \\|A\\|_N \\ \\text{ subject to } \\ A_{ij} = (A_0)_{ij} \\ \\text{ in the known entries} \\tag{5}\r\n```"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 25,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 25,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 25,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 25,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 232,
+            "outputTokens": 31699,
+            "cacheReadTokens": 14720,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 232,
+              "outputTokens": 31699,
+              "cacheReadTokens": 14720,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 25,
+        "val": {
+          "surfaceTokens": 20807,
+          "contextWindow": 1000000,
+          "pressureTokens": 14952,
+          "sampledSurfaceTokens": 7576
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 25,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 6016,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 13231,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 19663
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 25,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 24
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 25,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 25,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 25,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

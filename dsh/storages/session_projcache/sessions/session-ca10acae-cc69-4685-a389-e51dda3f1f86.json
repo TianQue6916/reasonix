@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132440560,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_159（书页 155） @@@@@\r\n−---- 【权威原文】 −---------------\r\nII.4. Randomized Linear Algebra \\hfill 155\r\n\r\nA key point is that the dimension \\(k\\) must grow like \\((\\log n)/\\epsilon^2\\). An amazing step in the proof shows that a \\textit{random} \\(k\\) by \\(m\\) projection \\(J\\) is very likely to keep the \\(n\\) points apart. Then there must be \\textit{many specific} \\(J\\)’s that confirm equation (13) in the Lemma.\r\n\\begin{quote}\r\nIf a random choice has a positive probability\\\\\r\nof success then a successful choice must exist.\\\\\r\nProbabilistic hypothesis, deterministic conclusion.\r\n\\end{quote}\r\nThat is the “\\textit{probabilistic method}”. Multiple proofs of Johnson-Lindenstrauss are easily found, and we liked the one on this website: \\texttt{cseweb.ucsd.edu/\\textasciitilde dasgupta/papers/jl.pdf}.\r\n\r\nOne of the 18.065 class projects chose an example in which the Lemma requires \\(k > 2800\\). The accuracy of distances \\(\\|x_i − x_j\\|\\) did break down for \\(k = 2700\\). Also interesting: Clustering of points survived even when distances went wrong.\r\n\r\n\\begin{center}\r\n\\textbf{Randomized Matrix Approximation}\r\n\\end{center}\r\n\r\nTo summarize this topic we will follow Per-Gunnar Martinsson: \\textit{Randomized methods for matrix computations}, arXiv: 1607.01649. First we identify the goals.\r\n\\[\r\n\\boxed{\r\n\\begin{array}{l}\r\n1\\ \\text{Rank } k \\text{ factorizations } A \\approx Y(Y^+A) \\text{ and } S \\approx UDU^T \\text{ and } A \\approx (QU)DV^T.\\\\\r\n2\\ \\text{Interpolative decompositions } A \\approx CMR \\text{ and } A \\approx CZ \\text{ using columns of } A \\text{ in } C.\r\n\\end{array}\r\n}\r\n\\]\r\nThe randomized \\(m\\) by \\(k\\) factor \\(Y\\) is \\(AG\\), for an \\(n\\) by \\(k\\) Gaussian random matrix \\(G\\). Always \\(YY^+\\) is the orthogonal projection onto the column space of \\(Y\\). So \\(YY^+A\\) is almost surely a very good rank \\(k\\) approximation to \\(A\\). This is the random part.\r\n\r\n\\textit{How does an approximate SVD follow from \\(A \\approx YY^+A\\)?} For an orthonormal column basis, first apply the \\(QR\\) factorization to \\(Y\\). \\(QQ^T\\) is the same projection as \\(YY^+\\). Then find the SVD of the small matrix \\(Q^TA = UDV^T\\). The desired SVD is \\(A \\approx (QU)DV^T\\).\r\n\r\nNotice the two-stage construction of that SVD. First we fix an approximate column space, reducing the problem to “size \\(k\\)”. Then any desired factorization is deterministic and fast and essentially exact. Martinsson shows how those stages can combine into a \\textit{streaming algorithm} that accesses each entry of \\(A\\) only once. The price is ill-conditioning and the remedy is over-sampling.\r\n\r\nFor positive semidefinite \\(S\\), an extra Nyström step improves the factors at low cost. Finally we look at \\(A \\approx CZ\\) or \\(CMR\\), where \\(C\\) contains actual columns of \\(A\\): preserving sparsity and nonnegativity. The accuracy of a deterministic algorithm is the same as pivoted \\(AP \\approx QR\\) (not always as close as Eckart-Young). Randomized algorithms are faster and better, if \\(A\\) has rapidly decaying singular values as in Section III.3.\r\n\r\nFor a clear picture of randomized matrix algorithms, read Martinsson’s paper and Kannan-Vempala: \\textit{Randomized algorithms in numerical linear algebra}, Acta Numerica (2017), 95-135. These authors discovered norm-squared sampling.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:159@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 155，接续 §II.4 Randomized Linear Algebra（随机化线性代数）的收尾段落，随后进入 Randomized Matrix Approximation（随机化矩阵逼近）小节；页眉与印页码为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声密集，逐处修正如下：`丫` 为 $Y$，`蓋` 为 $A$，`00g /` 为 $(\\log n)/\\varepsilon^{2}$，`睏 d` 为 found，`0 月 e` 为 One，`ro 历 訂 记 e 叻 od` 依上下文重建为 randomized method，`S UDUT` 为 $A\\approx UDV^{T}$，`(QU)DVT` 为 $(QU)DV^{T}$，`CMR`/`CZ` 为 $A\\approx CMR$、$A\\approx CZ$，`0 彳 月` 为 $A\\approx CUR$，`IOW cost` 为 low cost，`an ex tra 訂 r e` 为 an extra step，Martinsson 的论文标题（arXiv:1607.01649）重建为 *Randomized Methods for Matrix Computations*。判断依据有三条：维数与下标必须自洽（$Y=AG$ 要求 $G$ 是 $n\\times k$、$Y$ 是 $m\\times k$）、转置与逆不能混用（$YY^{+}$ 是投影，不是 $Y^{-1}$）、专名与编号可回原文核对（arXiv 编号、Acta Numerica 的卷页）。句中残缺的 `J` 无法可靠复原，译文一律保留符号 $J$ 原样，不做猜测。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Randomized Linear Algebra（随机化线性代数）（续）\r\n\r\n关键在于：维数必须按 $(\\log n)/\\varepsilon^{2}$ 的量级增长。证明中有一个令人惊叹的步骤说明：随机取一个 $J$，它极有可能把各个点彼此分开。\r\n\r\n于是必定存在足够多个 $J$，使 Lemma（引理）中的方程 (13) 成立。\r\n\r\n如果某个随机选择有正的概率成功，那么成功的那一次选择必然存在。\r\n\r\n这是概率性的假设，给出的却是确定性的结论。这就是随机化方法（randomized method）。\r\n\r\n关于 Johnson-Lindenstrauss 的证明有很多种，都很容易找到；我们偏爱这个网站上的那一份：cseweb.ucsd.edu/~dasgupta/papers/jl.pdf。\r\n\r\n课程项目中有这样一个例子：18.065 的一个项目所选的数据要求 Lemma 中的 $m>2800$；而当 $m=2700$ 时，距离 $\\|x_{i}-x_{j}\\|^{2}$ 的精度确实失效了。\r\n\r\n同样有意思的是：即使距离算错了，各点的聚类（clustering）结构依然保留了下来。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Randomized Matrix Approximation（随机化矩阵逼近）\r\n\r\n为了总结这个主题，我们将跟随 Per-Gunnar Martinsson 的 *Randomized Methods for Matrix Computations*（矩阵计算的随机化方法），arXiv:1607.01649。首先明确目标。\r\n\r\n**1.** 秩分解（rank factorizations）：$A\\approx Y(Y^{+}A)$、$A\\approx UDV^{T}$ 以及 $(QU)DV^{T}$。\r\n\r\n**2.** 插值分解（interpolative decompositions）：$A\\approx CMR$ 与 $A\\approx CZ$，其中 $C$ 取的是 $A$ 的列。\r\n\r\n随机化的 $m\\times k$ 因子 $Y$ 就是 $AG$，其中 $G$ 是 $n\\times k$ 的高斯随机矩阵（Gaussian random matrix）。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（两段式随机分解：草图 + 精确收尾）：**</span> 这一段是整节的骨架，先立起一张流程图：**草图（sketch）→ 精确收尾（solve）**。第一步用随机线性映射把 $n$ 列压成 $k$ 列，得到 $Y=AG$；第二步只在 $k\\times n$ 的小矩阵 $Q^{T}A$ 上做确定性的 SVD，最后把因子拼回原尺寸。\r\n>\r\n> $Y$ 为什么靠得住？只要 $\\operatorname{rank}(A)\\ge k$，$G$ 的 $nk$ 个元素独立同分布、任取 $k$ 列几乎必然线性无关，所以 $\\operatorname{rank}(Y)=k$ 以概率 $1$ 成立——失效的情形要求某个行列式恰好为零，那是零测集（不恒为零的多项式只在测度为零处取零，所以“几乎必然”不是修辞）。能量为什么没丢？设 $G$ 的元素方差为 $1$，对固定向量 $x$ 有 $E\\|G^{T}x\\|^{2}=k\\|x\\|^{2}$：$G^{T}x$ 的第 $j$ 个分量是内积 $g_j^{T}x$，方差为 $\\|x\\|^{2}$，$k$ 个分量互相独立，期望相加即得。注意这里的归一化：真正无偏的估计量是 $\\|G^{T}x\\|^{2}/k$，或者干脆把 $G$ 的元素方差取成 $1/k$（等价于用 $G/\\sqrt{k}$）。这一步最容易踩坑——**归一化因子必须显式补上**，否则你以为能量守恒，其实整体放大了 $k$ 倍。\r\n>\r\n> 这也顺带解释了本页开头那句 $(\\log n)/\\varepsilon^{2}$：要让所有点对同时被保住，就得对大约 $n^{2}$ 个点对做联合界（union bound），$\\log n$ 就是这么进来的。\r\n>\r\n> 小算例最能暴露这个坑：取 $n=4$、$k=1$，$G=(g_1,g_2,g_3,g_4)^{T}$ 的元素方差为 $1$，再取 $x=(1,1,1,1)^{T}/2$，则 $\\|x\\|^{2}=1$；而 $G^{T}x=(g_1+g_2+g_3+g_4)/2$，交叉项因独立性期望为零，于是 $E\\|G^{T}x\\|^{2}=4\\cdot\\frac{1}{4}=1=\\|x\\|^{2}$。但一阶矩守恒不等于每次抽样都守恒：$k$ 列共用同一个 $G$、彼此并不独立，单次草图完全可能漏掉某个方向的能量。压制这种波动的唯一办法是多给几列，这正是后面过采样取 $k+p$ 的动机；草图之后先做 $Y=QR$ 而不是直接 SVD，也是同一个道理——单遍抽样会让 $Y$ 的列接近平行，而 $Q$ 的列正交、条件数为 $1$，后续 $Q^{T}A$ 的舍入误差不会被放大。\r\n>\r\n> 收益可以算得很具体：取 $m=10^{6}$、$n=10^{4}$、$k=100$，完整 SVD 约 $2mn^{2}\\approx 2\\times10^{14}$ flops，随机路径约 $mnk=10^{12}$ flops（再加 $nk^{2}=10^{8}$，可忽略），快约两个数量级，而且 $A$ 只被触摸一遍。\r\n>\r\n> 跨课程连接（《深入理解计算机系统》CSAPP → 18.065，即本书配套的 MIT 课程）：单遍算法之所以病态，是因为每读到一个元素就得立刻更新草图，无法回头把已有的方向重新正交化，而“回头正交化”正是经典 Gram-Schmidt 稳定性的来源。接到 CSAPP 的存储层次与局部性上：顺序读一遍 $A$、只维护一个 $n\\times k$ 的草图，工作集小到能常驻缓存，每字节的摊还代价贴近顺序带宽；多遍正交化则要反复冷读整块 $A$，cache miss 随遍数近似线性增长。区别在于关心的量：那里局部性由硬件决定、算的是常数因子，这里由设计者决定“能读几遍”、算的是渐近复杂度；条件数这一端还能接到 CSAPP 的浮点表示——双精度约 16 位有效数字，条件数 $10^{8}$ 的草图只剩约 8 位可信。\r\n>\r\n> 由此可以固化一个自检模板，叫**能量守恒检验法**：拿到随机投影，先验一阶矩 $E\\|G^{T}x\\|^{2}=k\\|x\\|^{2}$（别忘归一化），再估二阶矩（$k$ 列不独立，只能靠过采样压波动），最后验残差 $\\|A-QQ^{T}A\\|$ 是否落在尾部奇异值的量级。三步都过，才敢采信草图的结果。\r\n\r\n始终成立：$YY^{+}$ 是到 $Y$ 的列空间上的正交投影（orthogonal projection）。所以 $YY^{+}A$ 几乎必然（almost surely）是 $A$ 的一个非常好的秩 $k$ 逼近——这就是其中随机的部分。\r\n\r\n那么如何由 $YY^{+}$ 算出 SVD 呢？对于标准正交基（orthonormal basis），对 $Y$ 作 QR 分解：$Y=QR$，此时 $QQ^{T}$ 就是 $YY^{+}$ 的高效版本。\r\n\r\n再求 $Q^{T}A$ 的 SVD：$Q^{T}A=UDV^{T}$。所要的那个 SVD 就是 $(QU)DV^{T}$。\r\n\r\n请注意这个 SVD 的两阶段（two-stage）构造方式。第一步，先固定一个近似的列空间（column space），把问题降到规模 $k$。第二步，任何想要的分解都是确定性的（deterministic）、快速的，而且本质上精确。马丁松（Martinsson）说明了如何把这些阶段合并成一个单遍算法（single-pass algorithm），使 $A$ 的每个元素只被访问一次。代价是病态（ill-conditioning），补救办法是过采样（over-sampling）。\r\n\r\n对于半正定（positive semidefinite）的 $S$，多加一步就能以很低的代价改进这些因子。\r\n\r\n最后来看 $A\\approx CZ$ 或 $A\\approx CUR$，其中 $C$ 由 $A$ 的真实列构成：这样做能保住稀疏性（sparsity）与非负性（nonnegativity）。带主元的 $A\\approx CUR$ 这类确定性算法能达到同样的精度，但并不总能像 Eckart-Young 那样接近最优。如果 $A$ 的奇异值像 §III.3 中那样快速衰减，随机化算法就更快、也更好。\r\n\r\n要想清楚地理解随机化矩阵算法，请读 Martinsson 的论文，以及 Kannan-Vempala 的 *Randomized algorithms in numerical linear algebra*, Acta Numerica (2017), 95-135。范数平方采样（norm-squared sampling）正是这两位作者发现的。\r\n\r\n> <span style=color:#7f8c8d;>Strang §II.4, p.155</span>\r\n\r\n@@@@@ page_160（书页 156） @@@@@\r\n−---- 【权威原文】 −---------------\r\nHere is the faithful transcription of the provided page:\r\n\r\n**Computations with Large Matrices**\r\n\r\n**156**\r\n\r\n**Problem Set II.4**\r\n\r\n**1** Given positive numbers \\(a_1, \\dots, a_n\\) find positive numbers \\(p_1 \\dots, p_n\\) so that\r\n\\[\r\np_1 + \\dots + p_n = 1 \\quad \\text{and} \\quad V = \\frac{a_1^2}{p_1} + \\dots + \\frac{a_n^2}{p_n} \\quad \\text{reaches its minimum} \\quad (a_1 + \\dots + a_n)^2.\r\n\\]\r\nThe derivatives of \\(L(p, \\lambda) = V − \\lambda(p_1 + \\dots + p_n − 1)\\) are zero as in equation (8).\r\n\r\n**2** *(for functions)* Given \\(a(x) > 0\\) find \\(p(x) > 0\\) by analogy with Problem 1, so that\r\n\\[\r\n\\int_0^1 p(x) \\, dx = 1 \\quad \\text{and} \\quad \\int_0^1 \\frac{(a(x))^2}{p(x)} \\, dx \\quad \\text{is a minimum.}\r\n\\]\r\n\r\n**3** Prove that \\(n(a_1^2 + \\dots + a_n^2) \\ge (a_1 + \\dots + a_n)^2\\). This is Problem 1 with \\(p_i = 1/n\\). Back in Problem Set I.11 you proved that \\(\\|a\\|_1 \\le \\sqrt{n}\\|a\\|_2\\).\r\n\r\n**4** If \\(M = \\mathbf{1}\\mathbf{1}^T\\) is the \\(n\\) by \\(n\\) matrix of 1's, prove that \\(nI − M\\) is positive semidefinite. Problem 3 was the energy test. For Problem 4, find the eigenvalues of \\(nI − M\\).\r\n\r\n**5** In case \\(B = A^T\\) show that the norm-squared or length-squared probabilities \\(p_j\\) in the text equation (5) are \\(\\|a_j\\|^2/\\|A\\|_F^2\\). Why is \\(C = \\sum \\|a_j\\|\\|b_j\\| = \\|A\\|_F^2\\)?\r\n\r\n**6** The variance computed in equation (7) cannot be negative! Show this directly:\r\n\\[\r\n\\|AB\\|_F^2 \\le \\left(\\sum \\|a_j\\|\\|b_j^T\\|\\right)^2.\r\n\\]\r\n\r\nProblem 7 returns to the example in the text of sampling \\((a, b)\\) to get \\((a, 0)\\) or \\((0, b)\\). If \\(b > a\\) then the variance will be reduced when \\(b\\) is chosen more often. This is achieved by optimizing the probabilities \\(p\\) and \\(1 − p\\) to minimize \\(\\sigma^2\\):\r\n\\[\r\n\\text{Variance} \\quad \\sigma^2 = p\\frac{a^2}{p^2} + (1 − p)\\frac{b^2}{(1 − p)^2} − (\\text{mean})^2\r\n\\]\r\n\r\n**7** Show that \\(p = a/(a + b)\\) and \\(1 − p = b/(a + b)\\) minimize that variance. (The mean is the same for all \\(p\\).) This optimal \\(p\\) agrees with equation (5) when applied to the small matrix multiplication \\(AB = [1][a \\quad b]\\). In this case \\(C = a + b\\) in equation (5).\r\n\r\n**8** In the randomized construction on the previous page, show why \\((QU)DV^T\\) (the approximate SVD in italics) is close to \\(A\\). Use the steps \\(A \\approx YY^+A\\) and \\(Y \\approx QR\\) and \\(Q^TA = UDV^T\\). Problem II.2.11 on page 135 is a key.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:160@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 156，整页为 Problem Set II.4（习题集 II.4）；按本系列先例，题干保留英文原文不译，仅把 OCR 乱码按数学语境修正为 LaTeX；页眉 Computations with Large Matrices 为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原页题号印在页边，OCR 把页边码提前读出并与正文交错，故题号按书中印刷顺序还原为 Problem 1–8；`11.4` 即 II.4，`珏` 为 If，`№ case` 为 In case，`孓`/`之` 为不等号（依上下文分别为 $\\ge$ 或 $\\le$；Problem 3 中 `|@日 1 孓 《@《 《 2` 依柯西–施瓦茨还原为 $\\|a\\|_1\\le\\sqrt{n}\\,\\|a\\|_2$），`Ä()` 为 $\\lambda(\\cdot)$，`nl 一 M`/`/ 一 M` 为 $nI-M$，`@` 依语境为积分号 $\\int$ 或概率 $p$，`AB = [ 1 ] @ bl` 重建为 $AB=[\\,1\\ \\ 1\\,]\\begin{bmatrix}a\\\\b\\end{bmatrix}$，`C = E 日 b = 膘` 重建为 $C=E\\|b\\|^{2}=\\|A\\|_F^{2}$，`(QU)DV` 依上下文补回转置为 $(QU)DV^{T}$，`P 况 e 11.2.110` 为 Problem II.2.10。做题时若某个符号与正文式 (5)、(7) 对不上，请以正文定义为准，不要以本页修正稿为准。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Problem Set II.4（习题集 II.4）\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Given positive numbers $a_1,\\cdots,a_n$, find positive numbers $p_1,\\cdots,p_n$ so that $p_1+\\cdots+p_n=1$ and\r\n```math\r\n\\frac{a_1^{2}}{p_1}+\\cdots+\\frac{a_n^{2}}{p_n}\r\n```\r\nreaches its minimum.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** The derivatives of $L(x,\\lambda)=\\dfrac{a_1^{2}}{x_1}+\\cdots+\\dfrac{a_n^{2}}{x_n}+\\lambda(x_1+\\cdots+x_n-1)$ are zero as in equation (8).\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** Prove that\r\n```math\r\na_1^{2}+\\cdots+a_n^{2}\\ \\ge\\ \\frac{1}{n}(a_1+\\cdots+a_n)^{2}\r\n```\r\nThis is Problem 1 with $p_i=1/n$. Back in Problem Set I.11 you proved that $\\|a\\|_1 \\le \\sqrt{n}\\,\\|a\\|_2$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** If $M=\\mathbf{1}\\mathbf{1}^{T}$ is the $n$ by $n$ matrix of 1's, prove that $nI-M$ is positive semidefinite. Problem 3 was the energy test.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** For Problem 4, find the eigenvalues of $nI-M$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Given $a(x)>0$ find $p(x)>0$ by analogy with Problem 1, so that\r\n```math\r\n\\int \\frac{a^{2}(x)}{p(x)}\\,dx\r\n```\r\nis a minimum, with $\\int p(x)\\,dx=1$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** In case $B=A^{T}$ show that the norm-squared or length-squared probabilities in the text equation (5) are $\\|a_i\\|^{2}/\\|A\\|_F^{2}$. Why is $c=E\\|b\\|^{2}=\\|A\\|_F^{2}$? The variance computed in equation (7) cannot be negative! Show this directly:\r\n```math\r\nE\\left[X^{2}\\right]\\ \\ge\\ \\left(E\\left[X\\right]\\right)^{2}\r\n```\r\nProblem 7 returns to the example in the text of sampling $(a,b)$ to get $(a,0)$ or $(0,b)$. If $b>a$ then the variance will be reduced when $b$ is chosen more often. This is achieved by optimizing the probabilities $p$ and $1-p$ to minimize $\\sigma^{2}$:\r\n```math\r\n\\text{Variance}\\ \\ \\sigma^{2}=\\frac{a^{2}}{p}+\\frac{b^{2}}{1-p}\r\n```\r\nShow that $p=a/(a+b)$ and $1-p=b/(a+b)$ minimize that variance. (The mean is the same for all $p$.) This optimal $p$ agrees with equation (5) when applied to the small matrix multiplication $AB=[\\,1\\ \\ 1\\,]\\begin{bmatrix}a\\\\b\\end{bmatrix}$. In this case $C=a+b$ in equation (5).\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** In the randomized construction on the previous page, show why $(QU)DV^{T}$ (the upper-case SVD italics) is close to $A$. Use the steps $YY^{+}$ and $Y=QR$ and $Q^{T}A=UDV^{T}$. Problem II.2.10 on page 135 is key.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（八道题背后的同一个模板）：**</span> 这一页八道题是同一件事的八种外衣：在 $\\sum p_i=1$、$p_i>0$ 的约束下最小化 $\\sum a_i^{2}/p_i$。抓住这条主线，八道题就不再是八个孤立的练习。\r\n>\r\n> 先问设计问题：什么时候需要它？当你要用 $k$ 次随机抽样去估计一个 $n$ 项之和（$n\\gg k$）时，抽哪一项是你唯一能设计的自由度，误差方差直接由 $p_i$ 决定。估计量写成 $\\frac{1}{k}\\sum_{t=1}^{k}\\frac{a_{i_t}}{p_{i_t}}$：它的期望是 $\\sum_i a_i$，与 $p_i$ 无关，所以无偏性不花代价；但方差是 $\\frac{1}{k}\\left(\\sum_i\\frac{a_i^{2}}{p_i}-(\\sum_i a_i)^{2}\\right)$，权重出现在分母上——采样越少的项，每被采中一次就放大得越狠。于是全部设计自由度落在 $p_i$ 上，而它被 $\\sum p_i=1$ 与 $p_i>0$ 夹住。\r\n>\r\n> 用拉格朗日乘子解（这就是 Problem 2 提示的式 (8)）：$L=\\sum_i\\frac{a_i^{2}}{p_i}+\\lambda(\\sum_i p_i-1)$，令 $\\partial L/\\partial p_i=-a_i^{2}/p_i^{2}+\\lambda=0$，得 $p_i=a_i/\\sqrt{\\lambda}$，代入约束得 $p_i=a_i/\\sum_j a_j$，此时最小值为 $(\\sum_i a_i)^{2}$。取 $p_i=1/n$ 就退回 Problem 3 的不等式 $n\\sum a_i^{2}\\ge(\\sum a_i)^{2}$，它就是柯西–施瓦茨 $\\langle\\mathbf{1},\\mathbf{a}\\rangle^{2}\\le\\|\\mathbf{1}\\|^{2}\\|\\mathbf{a}\\|^{2}$，等号在 $a_1=\\cdots=a_n$ 时成立。Problem 4 说的 energy test（能量检验）正是它：$x^{T}(nI-\\mathbf{1}\\mathbf{1}^{T})x=n\\|x\\|^{2}-(\\sum_i x_i)^{2}\\ge0$；而 $M=\\mathbf{1}\\mathbf{1}^{T}$ 是秩 1 矩阵，$\\mathbf{1}$ 是它特征值 $n$ 的特征向量，与 $\\mathbf{1}$ 正交的向量都给特征值 $0$——顺着这条线，$nI-M$ 的半正定性与它的特征值（Problem 5）会自己浮出来。\r\n>\r\n> 这里要提醒一处记号陷阱：书上把式 (7) 的那个 $a^{2}/p+b^{2}/(1-p)$ 记作 $\\sigma^{2}$，严格说它是二阶矩 $E[X^{2}]$，方差还要再减去 $(E[X])^{2}$；好在 $(E[X])^{2}$ 与 $p$ 无关，所以最小化二阶矩与最小化方差在同一处取到最优。两变量情形的验算最干净：求导得 $-a^{2}/p^{2}+b^{2}/(1-p)^{2}=0$，即 $a/p=b/(1-p)$，解得 $p=a/(a+b)$，代回得 $E[X^{2}]_{\\min}=(a+b)^{2}$，而方差是 $(a+b)^{2}-(a+b)^{2}=0$——两个点、一次抽样、长度平方概率，估计居然变成确定性的。代入数字看得更清楚：$(a_1,a_2)=(1,3)$ 时均匀采样 $E[X^{2}]=2+18=20$、方差 $4$，最优采样 $E[X^{2}]=4+12=16$、方差 $0$；换成 $(1,50)$，均匀是 $5002$（方差 $2401$），最优是 $(1+50)^{2}=2601$（方差 $0$）。两端差得越远，按 $\\sqrt{c_i}$ 分配权重的收益越大。\r\n>\r\n> 把它固化成模板：**平方根加权律**——目标形如 $\\sum c_i/p_i$ 时，最优权重满足 $p_i\\propto\\sqrt{c_i}$，因为权重出现在分母、而被放大的是 $1/p_i$。此处 $c_i=a_i^{2}$，故 $p_i\\propto a_i$，这就是 Problem 7 的范数平方采样（norm-squared sampling）。矩阵乘法是同一模板的矩阵版：用 $\\frac{1}{p_i}a_ib_i^{T}$ 估计 $AB=\\sum_i a_ib_i^{T}$，二阶矩里出现 $\\sum_i\\|a_i\\|^{2}\\|b_i\\|^{2}/p_i$，于是 $p_i\\propto\\|a_i\\|\\,\\|b_i\\|$；当 $B=A^{T}$ 时 $b_i=a_i^{T}$，得 $p_i\\propto\\|a_i\\|^{2}$，再除以让概率加起来的归一化常数 $\\sum_i\\|a_i\\|^{2}=\\|A\\|_F^{2}$，就是书中的 $\\|a_i\\|^{2}/\\|A\\|_F^{2}$（题中那个 $c$ 就是它，读题时请回到正文核对 $c$ 的定义）。Problem 6 是连续版：求和换成积分，$\\int a^{2}(x)/p(x)\\,dx$ 在 $\\int p(x)\\,dx=1$ 下的最小值同样是 $(\\int a(x)\\,dx)^{2}$。\r\n>\r\n> 跨课程连接一（概率论与数理统计 → 18.065）：这里的估计量就是课本里的无偏估计，方差公式也是同一套；区别是统计学里 $p_i$ 给定、算方差，这里反过来把 $p_i$ 当设计变量去最小化方差，属于重要性采样（importance sampling，用可控的抽样分布降低估计方差）的最优权重问题。跨课程连接二（算法设计与分析，如 MIT 6.006 Introduction to Algorithms → 18.065）：先花一遍 $O(n)$ 扫描算出全部 $p_i$，再做 $k$ 次抽样，与随机化快排“先随机选主元、再确定性划分”同属复杂度再分配；区别是那里分析运行时间的期望与失败概率，这里分析估计量的方差与数值精度。还要记住一个工程细节：这一遍 $O(n)$ 扫描是顺序访问、对缓存友好，真正昂贵的是后面 $k$ 次随机访问，所以这套方法只在 $n$ 很大、单项计算量很高时才划算。\r\n\r\n> <span style=color:#7f8c8d;>Strang §II.4, p.156</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 8030,
+            "outputTokens": 7226,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 8030,
+              "outputTokens": 7226,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 10685,
+          "contextWindow": 1000000,
+          "pressureTokens": 11486,
+          "sampledSurfaceTokens": 6032
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4472,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4653,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9541
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

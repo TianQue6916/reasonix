@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132439072,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_155（书页 151） @@@@@\r\n−---- 【权威原文】 −---------------\r\n11.4. Randomized Linear Algebra\r\n\r\n151\r\n\r\nFor very large matrices, stored outside of Random Access Memory (RAM), norm-squared sampling may ask to read the matrix twice. The first pass computes the squared length of each column of \\(A\\) and row of \\(B\\). Then (inside RAM) the probabilities \\(p_j\\) are found, and \\(s\\) columns and rows are chosen for sampling. The second pass puts the sampling approximation \\(CR\\) into fast memory.\r\n\r\nApplications of Randomized Matrix Multiplication\r\n\r\nNorm-squared sampling = length-squared sampling can help to solve these central problems of numerical linear algebra:\r\n\r\n1 Interpolative approximation \\(A \\approx CMR\\) : \\(C\\) and \\(R\\) use columns and rows of \\(A\\)\r\n2 Approximation of \\(A\\) by a low rank matrix\r\n3 Approximation of the SVD of \\(A\\)\r\n\r\n\\(CMR\\) aims to produce an accurate “sketch” of \\(A\\) from \\(k\\) of its columns and its rows. The columns will go into \\(C\\) and the rows will go into \\(R\\). Then a mixing matrix \\(M\\) connects \\(C\\) with \\(R\\) to produce \\(CMR \\approx A\\). The dimensions are \\((m \\times k) (k \\times k) (k \\times n) = (m \\times n)\\). If \\(A\\) is sparse then \\(C\\) and \\(R\\) will be sparse, because they come directly from \\(A\\).\r\n\r\nNotice the fast multiplication \\((C(M(Rv)))\\). We never explicitly multiply \\(CMR\\).\r\n\r\nUnderstand first that \\(A \\approx CR\\) is probably not true. The column space of \\(A\\) will be accurately captured by \\(C\\) (we hope). The row space of \\(A\\) will be captured by \\(R\\). “The spaces are right but not the matrix.” Every matrix of the form \\(CMR\\) has the same good column and row spaces (for invertible \\(M\\)). We want to choose \\(M\\) so that \\(CMR\\) is close to \\(A\\). We still avoid the notation \\(CUR\\) and reserve the letter \\(U\\) for the SVD.\r\n\r\nTo start, I will look for the mixing matrix \\(M\\) that is theoretically best. Good choices of \\(M\\) have been developed and tested in the sampling literature. Here are six important references to randomized linear algebra:\r\n\r\nN. Halko, P. −G. Martinsson, and J. A. Tropp, Finding structure with randomness: probabilistic algorithms for constructing approximate matrix decompositions. SIAM Review 53 (2011) 217-288.\r\nR. Kannan and S. Vempala, Randomized algorithms in numerical linear algebra, Acta Numerica 26 (2017) 95-135.\r\nE. Liberty, F. Woolfe, P. −G. Martinsson, V. Rokhlin, M. Tygert, Randomized algorithms for the low-rank approximation of matrices, PNAS 104 (2007) no. 51, 20167-20172.\r\nM. W. Mahoney, Lecture Notes on Randomized Linear Algebra. arXiv:1608.04481.\r\nP.-G. Martinsson, Compressing rank-structured matrices via randomized sampling, arXiv:1503.07152.\r\nD. P. Woodruff, Sketching as a tool for numerical linear algebra. Foundations and Trends in Theoretical Computer Science 10 (2014) 1-157.\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 155 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 151，属 §II.4 Randomized Linear Algebra（随机化线性代数）；页眉 11 4 Randomized Linear Algebra 与印页码 151 为重复元素，不译、不收录，节号按原文标出。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §II.4 Randomized Linear Algebra（随机化线性代数）（续）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声密集。`蓋`、`互`、`儿` 三形都是 $A$；`月`、`咒`、`磊`、`朊` 都是 $R$，`C 咒` 即 $CR$；`亻` 是连接因子、混合矩阵 $M$；`什 0 m`、`忉`、`什` 都是英文介词 from；`CII 丆 月` 与 `CNfR` 是 $CMR$。`Norm-squared sampling` 与 `length-squared sampling` 原文以等号相连，意思是**同一个采样的两个名字**：按行、列的**平方长度**赋概率，故下文两句并入一句译出。`the m r` 依上下文补全为 $m\\times n$。六条参考文献按原文照录，仅把 OCR 拆散的卷期页码还原：SIAM Review 53 (2011) 217–288、Acta Numerica 26 (2017) 95–135、PNAS 104 (2007) no. 51, 20167–20172、arXiv:1608.04481、arXiv:1503.07152、Foundations and Trends in Theoretical Computer Science 10 (2014) 1–157。凡带 arXiv: 的编号都是**论文预印本编号**，不含页码，检索时直接把它粘进浏览器或 arXiv 站内搜索框即可，不要拆成卷号和期号。\r\n\r\n对于非常巨大的矩阵，当它们存放在 Random Access Memory（随机存取存储器，RAM）之外时，范数平方采样（norm-squared sampling）可能要求把矩阵读两遍。\r\n第一遍计算 $A$ 的每一列与 $B$ 的每一行的平方长度。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 为什么非要读两遍？因为式 (5) 那个最优概率 $p_j=\\lVert\\text{column }j\\rVert\\,\\lVert\\text{row }j\\rVert/C$ 里，分母 $C$ 是**全体**列长度与行长度之和：要确定第一列被抽中的概率，你必须已经知道所有列的信息。这是一次**全局归约**（global reduction）——概率无法边读边定，只能先完整扫一遍数据，把 $C$ 攒出来，第二遍才谈得上抽样。\r\n>\r\n> 先看它在解决什么设计问题。矩阵乘法 $A B$ 的代价随行数 $m$、列数 $n$、内维 $k$ 一起涨，而真实数据矩阵往往几乎全是零（稀疏）或者有效秩很低。于是我们想换一种算法：不逐元素算，而是**随机抽 $r$ 个列/行做外积**，用少量外积的叠加去逼近 $AB$。一旦改成抽，问题立刻从算得准不准变成抽得公不公平：如果小列和大列被抽中的机会一样大，那么某次抽到超大列就会把估计值一下抬飞，某次全抽到小列又会把它压扁，误差的方差失控，想要 $\\varepsilon$ 精度就得抽天文数字个 $r$。要让方差受控，唯一办法是让抽中 $j$ 的概率正比于这一项对总能量的贡献。\r\n>\r\n> 为什么贡献恰好是 $\\lVert\\text{column }j\\rVert\\,\\lVert\\text{row }j\\rVert$？从第一性原理拆：第 $j$ 个外积是 $\\text{column}_j\\otimes\\text{row}_j$，它的能量（Frobenius 范数平方）是 $\\lVert\\text{column}_j\\rVert^{2}\\lVert\\text{row}_j\\rVert^{2}$，所以它的长度尺度是二者之积。均匀抽样下，估计量 $\\frac{1}{r}\\sum_t \\frac{(\\text{column}\\otimes\\text{row})_t}{q_t}$ 是无偏的（$E$ 上恰好还原成 $AB$），但方差由 $\\sum_j \\lVert\\text{column}_j\\rVert^{2}\\lVert\\text{row}_j\\rVert^{2}/q_j$ 控制；对这个和做一次 Cauchy–Schwarz / Jensen 意义上的最小化，取 $q_j\\propto\\lVert\\text{column}_j\\rVert\\lVert\\text{row}_j\\rVert$ 就把它压到最小，归一化常数正好是 $C$。也就是说，$p_j$ 不是拼凑出来的启发式，而是无偏 + 方差最小这两个约束联立解出来的唯一答案。\r\n>\r\n> 具体算一遍就明白 $C$ 为什么是全局量。取 $A=B=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，$2\\times2$，$m=k=n=2$。每列长度 $\\lVert\\text{column }j\\rVert=\\sqrt{1^2+1^2}=\\sqrt2$，每行长度同样 $\\lVert\\text{row }j\\rVert=\\sqrt2$。于是\r\n>\r\n> ```math\r\n\\begin{aligned}\r\nC&=\\sum_{j=1}^{2}\\lVert\\text{column }j\\rVert\\,\\lVert\\text{row }j\\rVert=\\sqrt2\\cdot\\sqrt2+\\sqrt2\\cdot\\sqrt2=4,\\\\\r\np_1&=p_2=\\frac{2}{4}=\\frac12 .\r\n\\end{aligned}\r\n```\r\n> 第一遍只做归约：算每列、每行的长度并累加成 $C$，不做乘法；第二遍才按配额抽签，用累积分布找出随机数落在哪一列，把该外积除以 $p_j$ 累加。读两遍不是实现偷懒，而是结构必然：分母依赖全体数据，任何单遍流式算法都拿不到它。\r\n>\r\n> 先手算验证无偏性。全 1 矩阵下两个外积完全相同，$AB=2X_j$；取 $r=1$，抽中哪列的概率都是 $1/2$，估计量恒等于 $AB$，方差为零——方差量的是外积之间的差异，不是抽样次数。换成 $A=\\begin{pmatrix}3&0\\\\0&1\\end{pmatrix}$、$B=I$：两项能量为 $9$ 与 $1$，$C=4$，$p_1=3/4$、$p_2=1/4$；$r=1$ 时最优配额的方差是 $9/(3/4)+1/(1/4)-10=6$，均匀抽样是 $9/(1/2)+1/(1/2)-10=10$。方差降四成，代价是先扫完整个矩阵才知道 $p_1$ 不是 $1/2$。\r\n>\r\n> 跨课程连接：概率论（Bertsekas）里，无偏只保证平均对，要变成大概率接近还得把方差送进不等式——$r$ 次平均的切比雪夫界给出 $P(\\lVert\\hat M-AB\\rVert_F\\ge\\varepsilon)\\le\\sigma^2/(r\\varepsilon^2)$，故 $r$ 与 $\\sigma^2/\\varepsilon^2$ 同量级；6.042J 离散数学的 Chernoff 界把同一思路做成指数衰减。区别：切比雪夫只要二阶矩、界松；Chernoff 要求独立有界、界紧但条件强。\r\n>\r\n> 再往实现走一层：CSAPP 的内存层次里，两遍扫描要把矩阵从主存读两遍——第一遍顺序流式几乎跑满带宽，第二遍按抽中的列号跳着取值，列主序时一列连续、缓存友好，行主序则几乎每次冷启动；想省这笔访存税，只能放弃精确配额、用近似分数一遍读完，代价是方差略涨。Strang 与 18.065 的 SVD 低秩截断走另一条路：一次算完、确定性最优，却要先付满 $O(mnk)$。\r\n>\r\n> 命名模板：能量配额两遍抽样法。(i) 第一遍归约出 $p_j$ 与 $C$；(ii) 第二遍按配额抽样、缩放累加；(iii) 用方差反推 $r$。凡遇重要性抽样，先问权重是不是能量、常数是不是全局量。\r\nC=\\sum_{j=1}^{2}\\lVert\\text{column }j\\rVert\\lVert\\text{row }j\\rVert=(\\sqrt2\\cdot\\sqrt2)+(\\sqrt2\\cdot\\sqrt2)=4 .\r\n```\r\n>\r\n> 代入式 (5)：$p_1=p_2=\\frac{\\sqrt2\\cdot\\sqrt2}{4}=\\frac{2}{4}=0.5$，两列各半，合法（和为 $1$）。注意：只要还没读完第二列，$\\lVert\\text{column }2\\rVert$ 就还没进 $C$，$p_1$ 就定不下来。你可以做个反例验算：矩阵换成第一列 $(100,0)^{\\mathsf T}$、第二列 $(0,1)^{\\mathsf T}$，则两列长度是 $100$ 与 $1$，$C\\approx 100\\cdot100+1\\cdot1=10001$。第一遍若在读完第一列后就就地拍一个概率，会得到 $p_1=\\frac{100\\cdot100}{100\\cdot100}=1$（因为第二列尚未入账，分母偏小），于是第二列永不被抽中，估计量系统性丢掉那部分贡献。这就是边读边定必然出错的原因：分母是一个**跨列依赖的量**，任何前缀都不等于它。名字上可以叫它 **两遍归约法（two-pass reduction）**，或者按统计口径叫 **按能量正比的方差最小化重要性抽样（variance-minimal energy-proportional importance sampling）**。跨课程对照一句：CSAPP 里求数组均值先求和再除、或先算 mean 再算 variance必须扫两遍（或 Welford 在线更新）是同一个结构性事实——归一化常数是全局的，全局量没凑齐之前，任何局部判断都只是猜测。\r\n\r\n抽样的目标是无偏：每抽到列 $j$，就按 $1/(sp_j)$ 放大取样结果，期望上恰好还原未被抽中列的全部贡献，于是各项乘上自身概率再求和等于原矩阵。方差由每项权重的平方乘概率求和给出，所以权重越大的项越要把它的方差压下去，办法恰恰是让它更容易被抽中，即 $p_j$ 正比于该列范数与行范数之积。这解释了两件事：分母必须精确，否则权重的期望会整体偏掉；全局归约不是实现偷懒，而是权重已知这个概念本身要求的。\r\n\r\n一个可以自己验算的小例子：设 $s=1$、$n=2$，两列范数分别为 $2$ 与 $1$、行范数都为 $1$，则 $C=2+1=3$，$p_1=2/3$。只抽一列时，抽中第一列的估计为 $1/(1\\cdot2/3)=1.5$ 倍，抽中第二列的估计为 $3$ 倍。反复抽样后估计的期望等于真值，但它围绕真值的跳动明显大于均匀抽样 $p_1=p_2=1/2$ 的情形——这就是概率选择的取舍：换来更小的方差，代价是必须先把 $C$ 算准。\r\n\r\n放进 CSAPP（《深入理解计算机系统》）的存储层次里算笔账。若 $A$ 是 $16\\,000\\times16\\,000$ 的 double 矩阵，那是 $16000^{2}\\times8\\ \\text{B}\\approx2\\ \\text{GB}$，还塞得进内存；若 $A$ 是 $10^{5}\\times10^{5}$，就是 $8\\times10^{10}\\ \\text{B}=80\\ \\text{GB}$，远超内存，只能躺在 SSD 上。第一遍是**顺序流式**扫描：每读进一个 64 字节的 cache line 就拿到 8 个 double，平方后累加进一个长度为 $n$ 的累加器（额外空间 $O(n)$，对 $10^{5}$ 而言只有 0.8 MB，可常驻缓存）；这一遍读写 $\\Theta(mn)$ 个元素，对预取器与页粒度极其友好。第二遍才要随机取回被抽中的 $s$ 列与 $s$ 行：每列 $m$ 个 double，取 $s=2000$ 列约 $1.6\\ \\text{GB}$，压成 $m\\times s$ 的矩阵后，终于小到能进快速内存反复使用。这正是 CSAPP 的两条原则：**顺序访问远便宜于随机访问**，以及**把反复使用的数据搬进近处存储**。用 6.006 的语言说，这不是内存模型下一次 $\\Theta(mn)$ 就够的算法，而是一个两遍的外部存储/流式算法，第一遍的 $\\Theta(mn)$ 次 I/O 决定它是 I/O-bound 的。\r\n\r\n把它命名为**全局权重必多一遍**：凡是抽样概率依赖全体数据的算法，都躲不开一次全局扫描；能躲开的是概率事先已知的算法——比如均匀采样 $p_j=1/n$，单遍即可完成。于是本节反复出现的取舍在这里第一次露头：**均匀采样便宜但方差大，范数平方采样方差最小但要多读一遍**。这也预告了后文 single-pass 算法（每个元素只访问一次）为什么要付出病态（ill-conditioning）的代价、再用过采样补救：你省掉的不只是时间，还有回头再看一眼的能力，而数值稳定性常常恰恰依赖回头（例如 Gram-Schmidt 要把新列对已有方向重新正交化一次）。\r\n\r\n顺带记个量级感受：$s$ 只需 $O(k/\\varepsilon^{2})$ 级别（$k$ 是想要的秩），第二遍真正读入的数据量约为第一遍的 $s(m+n)/(mn)$，当 $m\\approx n$ 时近似为 $s/n$；取 $s=2000$、$n=10^{5}$ 就是 $2\\%$。对随机化算法，这个界是**高概率成立**的——多跑几次取中位数即可，而不是每次运行都保证。两遍的总 I/O 近似就是两倍的一遍，这个方案的合理性全在这里。\r\n\r\n随后（在 RAM 内部）求出各个概率，并选出 $s$ 列与 $s$ 行用于采样。\r\n第二遍则把采样近似 $CR$ 送入快速内存。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Applications of Randomized Matrix Multiplication（随机化矩阵乘法的应用）\r\n\r\n范数平方采样就是长度平方采样（length-squared sampling），它有助于解决数值线性代数中下面这些核心问题：\r\n\r\n**1.** 插值近似（interpolative approximation）：构造 $A \\approx CMR$，其中 $C$ 与 $R$ 分别取 $A$ 的部分列与部分行。\r\n\r\n**2.** 用一个低秩矩阵（low rank matrix）逼近 $A$。\r\n\r\n**3.** 逼近 $A$ 的 SVD（奇异值分解）。\r\n\r\n这里的 $C$ 试图从 $A$ 的若干列与若干行出发，给出 $A$ 的一个准确 sketch（草图）。\r\n这些列进入 $C$，这些行进入 $R$。\r\n然后一个混合矩阵 $M$ 把 $C$ 与 $R$ 连接起来，产生 $CMR$。\r\n其维数分别是 $(m \\times s)$、$(s \\times s)$、$(s \\times n)$。\r\n如果 $A$ 是稀疏的，那么 $C$ 与 $R$ 也会是稀疏的，因为它们直接取自 $A$。\r\n\r\n注意这种快速乘法 $(C(M(Rv)))$。\r\n我们从不显式地去乘 $CMR$。\r\n\r\n首先要明白：$A \\approx CR$ 很可能并不成立。\r\n而 $A$ 的 column space（列空间）会被 $C$ 捕捉住（我们希望如此）。\r\n$A$ 的 row space（行空间）会被 $R$ 捕捉住。\r\n乘积 $CMR$ 是 $m \\times n$ 的。\r\n在 $M$ 可逆时，每一个形如 $CMR$ 的矩阵都具有同样良好的列空间与行空间。\r\n我们希望选择 $M$，使 $CMR$ 接近 $A$。\r\n我们仍然回避 $CUR$ 这一记号，把字母 $U$ 留给 SVD。\r\n\r\n作为起点，我要寻找理论上最好的混合矩阵 $M$。\r\n在采样文献中，人们已经发展并检验了若干良好的 $M$ 选择。\r\n以下是关于随机化线性代数的六篇重要参考文献：\r\n\r\nN. Halko, P.-G. Martinsson, and J. A. Tropp, Finding structure with randomness: probabilistic algorithms for constructing approximate matrix decompositions, *SIAM Review* 53 (2011) 217–288.\r\n\r\nR. Kannan and S. Vempala, Randomized algorithms in numerical linear algebra, *Acta Numerica* 26 (2017) 95–135.\r\n\r\nE. Liberty, F. Woolfe, P.-G. Martinsson, V. Rokhlin, M. Tygert, Randomized algorithms for the low-rank approximation of matrices, *PNAS* 104 (2007) no. 51, 20167–20172.\r\n\r\nM. Mahoney, Lecture Notes on Randomized Linear Algebra, arXiv:1608.04481.\r\n\r\nP.-G. Martinsson, Compressing rank-structured matrices via randomized sampling, arXiv:1503.07152.\r\n\r\nD. P. Woodruff, Sketching as a tool for numerical linear algebra, *Foundations and Trends in Theoretical Computer Science* 10 (2014) 1–157.\r\n\r\n> <span style=color:#7f8c8d;>Strang §II.4, p.151</span>\r\n\r\n@@@@@ page_156（书页 152） @@@@@\r\n−---- 【权威原文】 −---------------\r\n**152** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Computations with Large Matrices\r\n\r\n**Best \\(M\\) in \\(A \\approx CMR\\): Frobenius Norm and \\(L^2\\) Norm**\r\n\r\nWe are given \\(A, C, R\\). Suppose \\(Q_C\\) contains an orthonormal basis for the column space of \\(C\\). Then \\(Q_C Q_C^{\\mathrm{T}}\\) is the projection matrix onto that subspace. Similarly \\(Q_R\\) contains an orthonormal basis for \\(\\mathrm{C}(R^{\\mathrm{T}})\\) and \\(Q_R Q_R^{\\mathrm{T}}\\) is the projection matrix onto that row space. \\(Q_R^{\\perp}\\) contains an orthonormal basis for the nullspace \\(\\mathrm{N}(R)\\), and \\(Q_C^{\\perp}\\) for \\(\\mathrm{N}(C^{\\mathrm{T}})\\).\r\n\r\nBy definition, the projection of \\(A\\) into row/column spaces is \\(\\widehat{A} = Q_C^{\\mathrm{T}} A Q_R\\). The purpose of these projections is to separate the subspaces where we choose \\(M\\) from the subspaces that we cannot change. Yuji Nakatsukasa clarified and solved this problem (conversations in Oxford). In the Frobenius norm, that solution is especially neat.\r\n\r\nThe orthogonal matrices \\(\\begin{bmatrix} Q_C & Q_C^{\\perp} \\end{bmatrix}\\) and \\(\\begin{bmatrix} Q_R & Q_R^{\\perp} \\end{bmatrix}\\) won't change the Frobenius and \\(L^2\\) norms of \\(A − CMR\\). But they help us to see the optimal \\(M\\) to minimize this error.\r\n\r\n\\[\r\n\\begin{bmatrix} Q_C & Q_C^{\\perp} \\end{bmatrix}^{\\mathrm{T}} (A − CMR) \\begin{bmatrix} Q_R & Q_R^{\\perp} \\end{bmatrix} = \\begin{bmatrix} \\widehat{A} & X \\\\ Y & Z \\end{bmatrix} − \\begin{bmatrix} \\widehat{C} M \\widehat{R} & 0 \\\\ 0 & 0 \\end{bmatrix}. \\qquad (9)\r\n\\]\r\n\r\n**Should we choose \\(M\\) so that \\(\\widehat{A} = \\widehat{C} M \\widehat{R}\\)?** In the Frobenius norm, this is optimal!\r\n\r\nFrobenius deals separately with every entry in each block of these matrices. The error is smallest when the top corner is exactly right: \\(\\widehat{C} M \\widehat{R} = \\widehat{A}\\). This corner is the (only) problem that we control. We have found the same \\(M\\) as in sections II.3 and I.1.\r\n\r\n\\[\r\n\\textbf{Frobenius norm} \\qquad \\min_M \\|A − CMR\\|_F = \\left\\| \\begin{bmatrix} 0 & X \\\\ Y & Z \\end{bmatrix} \\right\\|_F. \\qquad (10)\r\n\\]\r\n\r\nIn the \\(L^2\\) matrix norm, we might expect the same plan to succeed. But a zero block in the corner may not give the smallest \\(L^2\\) norm!\r\n\r\n\\[\r\n\\textbf{Example} \\qquad \\left\\| \\begin{bmatrix} −1 & 1 \\\\ 1 & 1 \\end{bmatrix} \\right\\|_{L^2} \\text{ is smaller than } \\left\\| \\begin{bmatrix} 0 & 1 \\\\ 1 & 1 \\end{bmatrix} \\right\\|_{L^2} \\qquad (11)\r\n\\]\r\n\r\nOn the left, the columns are orthogonal with length \\(\\sqrt{2}\\). Both singular values have \\(\\sigma^2 = 2\\). On the right, the larger singular value has \\(\\sigma_1^2 = \\frac{1}{2}(3 + \\sqrt{5}) > 2\\). **The zero submatrix produced a larger \\(L^2\\) norm for the whole matrix.**\r\n\r\nThe optimal submatrix is a beautiful problem solved by Davis, Kahan, and Weinberger in 1982. The optimal \\(M\\) often does not make \\(\\widehat{C} M \\widehat{R} = \\widehat{A}\\). But it reduces the \\(L^2\\) norm to the larger of \\(\\|[Y \\;\\; Z]\\|\\) and \\(\\|[X^{\\mathrm{T}} \\;\\; Z^{\\mathrm{T}}]\\|\\)—a smaller \\(L^2\\) norm is clearly impossible in (10). In the example the smallest \\(L^2\\) norm was achieved by that submatrix \\(-1\\) (**not zero**).\r\n\r\n**Randomized Matrix Factorizations**\r\n\r\nNow we come to a summary of our subject. Orthogonal matrices are the goal in \\(A = QR\\) and \\(A = U \\Sigma V^{\\mathrm{T}}\\). The matrix \\(A\\) is too large for exact factorizations—maybe too large to read every entry \\(a_{ij}\\). If we start from an \\((m \\times k)(k \\times n)\\) approximation \\(A \\approx CB\\), then Halko-Martinsson-Tropp find the \\(QR\\) and \\(U \\Sigma V^{\\mathrm{T}}\\) factorizations quickly and accurately.\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 156 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 152，页眉 Computations with Large Matrices 与印页码 152 为重复元素，不译、不收录；正文仍属 §II.4 Randomized Linear Algebra。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Best $M$ in $A \\approx CMR$: Frobenius Norm and $L_2$ Norm（$A \\approx CMR$ 中的最佳 $M$：弗罗贝尼乌斯范数与 $L_2$ 范数）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `蓋` 为 $A$，`月` 为 $R$，`CNfR` 与 `C 亻 月` 为 $CMR$，`Qc`、`QR` 为 $Q_C$、$Q_R$。`Qk` 与 `Q{` 依零空间 $N(R)$ 与 $N(C^{T})$的维数对应关系重建为 $Q_R^{\\perp}$ 与 $Q_C^{\\perp}$：$C$ 有 $m$ 行，故 $C^{T}$ 的零空间在 $\\mathbb{R}^{m}$ 中，对应左侧因子；$R$ 有 $n$ 列，故 $R$ 的零空间在 $\\mathbb{R}^{n}$ 中，对应右侧因子。式 (10)(11) 的方括号、上下标按数学语境重建；`no 皿` 是 norm 的 OCR 讹形，一律译作范数。\r\n\r\n我们已知 $A$、$C$、$R$。\r\n假设 $Q_C$ 含有 $C$ 的列空间的一组标准正交基。\r\n那么 $Q_CQ_C^{T}$ 就是投影到该子空间上的 projection matrix（投影矩阵）。\r\n类似地，$Q_R$ 含有 $A$ 的行空间 $C(R^{T})$ 的一组标准正交基，而 $Q_RQ_R^{T}$ 就是投影到该行空间上的投影矩阵。\r\n$Q_R^{\\perp}$ 含有零空间 $N(R)$ 的一组标准正交基，$Q_C^{\\perp}$ 含有 $N(C^{T})$ 的一组标准正交基。\r\n\r\n按定义，$A$ 到行空间 / 列空间上的投影是 $\\hat{A} = Q_CQ_C^{T}AQ_RQ_R^{T}$。\r\n这些投影的用途，是把我们能选择 $M$ 的那些子空间，与我们无法改变的那些子空间分离开来。\r\n这个问题由 Yuuji Nakatsukasa 在牛津的讨论中澄清并解决。\r\n在 Frobenius norm（弗罗贝尼乌斯范数）下，这个解尤其简洁。\r\n\r\n正交矩阵 $\\begin{bmatrix} Q_C & Q_C^{\\perp} \\end{bmatrix}$ 与 $\\begin{bmatrix} Q_R & Q_R^{\\perp} \\end{bmatrix}$ 不会改变 $A − CMR$ 的 Frobenius 范数与 $L_2$ 范数。\r\n但它们帮助我们看出使这个误差最小的最优 $M$。\r\n\r\n```math\r\n\\begin{bmatrix} Q_C & Q_C^{\\perp} \\end{bmatrix}^{T} (A − CMR) \\begin{bmatrix} Q_R & Q_R^{\\perp} \\end{bmatrix}\r\n= \\begin{bmatrix} \\hat{A} − CMR & 0 \\\\ 0 & 0 \\end{bmatrix}\r\n```\r\n\r\n我们是否应当选择 $M$，使得 $\\hat{A} = CMR$？\r\n在 Frobenius 范数下，这就是最优的！\r\nFrobenius 范数分别处理这些矩阵每个分块中的每一个元素。\r\n当左上角恰好取对，即 $CMR = \\hat{A}$ 时，误差最小。\r\n这个角块是我们（唯一）能控制的问题。\r\n我们找到了与 §II.3 和 §I.1 中相同的 $M$。\r\n\r\n```math\r\n\\text{Frobenius norm: } \\|A − CMR\\|_F^{2} = \\|A − \\hat{A}\\|_F^{2} + \\|\\hat{A} − CMR\\|_F^{2} \\tag{10}\r\n```\r\n\r\n在 $L_2$ 矩阵范数下，我们或许期待同样的方案也能成功。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 这一页的枢纽问题是用哪个范数，因为范数的选择直接决定最优 $M$ 是谁。回到两个范数的定义差别：Frobenius 范数就是把矩阵摊平成 $mn$ 维向量后的欧氏长度 $\\|E\\|_F^{2}=\\sum_{i,l}E_{il}^{2}$，它是**逐元素**的；$L_2$ 矩阵范数（也叫谱范数、算子范数）是最大奇异值 $\\|E\\|_2=\\sigma_1$，回答的是单位球被拉得最长的那个方向有多长，是**最坏方向**的量。\r\n>\r\n> 先问它在解决什么设计问题。我们事先只承诺以高概率得到一个近似矩阵 $\\tilde A$，但近似这个词是不完整的：同一个误差矩阵 $E=A-\\tilde A$，用不同尺子量出来的数可以差很多，而误差界的形式是 $r=$（某个常数）$\\times$（某个范数）$\\div\\varepsilon^2$——尺子换一把，$r$ 就换一个数量级。所以范数不是记号偏好，它是**预算单位**：你承诺用哪把尺子衡量成功，就决定了要抽多少列行、要花多少算力。这也解释了为什么这一页要单独把范数拎出来讨论，而不是把它塞进附录。\r\n>\r\n> 两者的差别有多大？Frobenius 是把 $mn$ 个元素各自平方再求和，天然把误差**平摊**到所有元素上；谱范数只看**一个方向**，它能忽略大量小而分散的误差，却对集中在某个方向上的误差极其敏感。用一个 $2\\times2$ 的全 $1$ 矩阵 $J_2$ 验算：逐元素平方和是 $1+1+1+1=4$，故 $\\|J_2\\|_F=2$。而 $J_2=\\mathbf{1}\\mathbf{1}^{\\mathsf T}$ 是秩 $1$，唯一非零奇异值 $\\sigma_1=\\lVert\\mathbf{1}\\rVert_2\\lVert\\mathbf{1}\\rVert_2=\\sqrt2\\cdot\\sqrt2=2$，所以 $\\|J_2\\|_2=2$，两者相等——这不是巧合，凡秩 $1$ 矩阵都满足 $\\|E\\|_F=\\|E\\|_2$。再取对角矩阵 $E=\\operatorname{diag}(1,1)$：同样 $\\|E\\|_F=\\sqrt{1^2+1^2}=\\sqrt2$，$\\|E\\|_2=1$，比值恰好 $\\sqrt2=\\sqrt n$。推广到 $n\\times n$ 单位阵 $\\|I_n\\|_F=\\sqrt n$ 而 $\\|I_n\\|_2=1$：**Frobenius 比谱范数最多松 $\\sqrt n$ 倍**。这个 $\\sqrt n$ 的代价直接进了抽样复杂度——同一个 $\\varepsilon$，用 Frobenius 记账往往要多抽 $\\sqrt n$ 倍的列。更妙的是，谱范数面对稀疏结构时反而给出更紧的常数：$J_2$ 的能量集中在四个元素上，谱范数把它全看见了，而 Frobenius 已经在做无意义的平方摊派。\r\n>\r\n> 于是可以命名一条**谱夹逼检验法**：拿到一个误差矩阵，先算最大奇异值 $\\sigma_1$（用幂迭代几行就能估），再算 Frobenius 长度；如果两者量级接近（例如实测比值 $\\ll\\sqrt n$），说明误差是**能量集中型**，用谱范数记账能得到远小的 $r$；如果比值接近 $\\sqrt n$，说明误差**弥散**，两把尺子的代价差不多，此时可以只看 Frobenius，省下每次迭代做奇异值分解的开销。反过来，这个比值本身就是一个便宜的诊断量，不需要真的构造矩阵。注意最优 $M$ 的常数形式也要跟着范数变：Frobenius 口径下的上界来自列与行的可分性，而更紧的界要把最大列长 $\\times$ 最大行长这类峰值因子引进来——同一个矩阵，用峰值因子记账比用总和记账小得多，这又一次说明范数决定 $M$。\r\n>\r\n> 跨课程连接（Strang 线性代数 / 18.065）：$\\|E\\|_2=\\sigma_1$ 与 $\\|E\\|_F=(\\sum_i\\sigma_i^{2})^{1/2}$ 是同一组奇异值的不同函数——谱范数是 $\\ell_\\infty$ 型（只看最大），Frobenius 是 $\\ell_2$ 型（全体），这条同一谱、不同泛函的线索把 SVD 与抽样复杂度焊在一起；区别在于 SVD 关心如何把误差投影到最优低秩子空间，而这里关心的是**先用哪把尺子给误差定价**，前者是手段、后者是预算口径。第二个连接（6.042J 离散数学）：抽样复杂度对 $\\varepsilon$ 是 $O(1/\\varepsilon^{2})$、对失败概率 $\\delta$ 是 $O(\\log(1/\\delta))$，这正是 Chernoff 界的标准形状，因为 $r$ 个独立样本的估计误差服从次高斯型集中不等式；区别在于 Chernoff 处理的是标量和，而这里要和的是矩阵值随机变量，谱范数的作用恰恰是把矩阵和压成一个可控的标量尺度，才能套用同一套集中工具。\r\n\r\n两者都被正交变换保持：$\\|Q_C^{T}EQ_R\\|=\\|E\\|$，因为左右乘正交矩阵只是换一组标准正交基，不改变任何长度。但只有 Frobenius 范数在分块下**可加**：把误差搬到 $\\begin{bmatrix}\\hat A-CMR&0\\\\0&0\\end{bmatrix}$ 这样的分块形状后，各块占用互不重叠的坐标，平方和直接相加，于是\r\n\r\n```math\r\n\\|A-CMR\\|_F^{2}=\\|A-\\hat A\\|_F^{2}+\\|\\hat A-CMR\\|_F^{2}.\r\n```\r\n\r\n第一项动不了（它只由 $C$、$R$ 决定），第二项可以靠选 $M$ 关掉，所以 $CMR=\\hat A$ 就是 Frobenius 意义下的最优解，这就是式 (10)。而 $L_2$ 范数是 $\\sigma_1$，奇异值不按块逐元素相加，块与块可以共享同一个奇异向量方向从而把 $\\sigma_1$ 叠高，因此角块取零未必最优。\r\n\r\n一个可以自己验算的例子：设固定住三个块，只剩角上的标量 $x$ 可调，误差矩阵形如 $M_x=\\begin{bmatrix}2&1\\\\1&x\\end{bmatrix}$。取 $x=0$（角块归零）时 $M_0^{T}M_0=\\begin{bmatrix}5&2\\\\2&1\\end{bmatrix}$，特征值为 $3\\pm2\\sqrt2$，于是 $\\|M_0\\|_2=\\sqrt{3+2\\sqrt2}=1+\\sqrt2\\approx2.414$。取 $x=-2$（角块非零、且取负）时 $M_{-2}=\\begin{bmatrix}2&1\\\\1&-2\\end{bmatrix}$，两行 $(2,1)$ 与 $(1,-2)$ 恰好正交且等长 $\\sqrt5$，故 $M_{-2}^{T}M_{-2}=5I$，$\\|M_{-2}\\|_2=\\sqrt5\\approx2.236<2.414$。角块取负值反而把两个奇异值**拉平**了——最大值因此下降，这正是正文所说最小 $L_2$ 范数由取 $-1$ 而非取 $0$ 的子矩阵达到的机制。正文该例题印出的数值与 $\\|E\\|_2=\\sigma_1$ 的定义不吻合（按定义，左边那个矩阵的范数应为 $\\sqrt5$ 而非 $\\sqrt2$），读者按定义自己算一遍即可；要带走的是机制，不是那两个数字。\r\n\r\n抽象成模板——**分块正交对角化加范数可加性判别**：遇到分块矩阵取范数最小的题，先用正交变换把误差搬到分块坐标（这一步对任何正交不变范数都合法），再问一句这个范数在分块下可加吗。可加（Frobenius 这类逐元素范数）$\\Rightarrow$ 各块独立处理，把可控块置零即可；不可加（$L_2$/算子范数）$\\Rightarrow$ 块间耦合必须显式处理，问题升级为真正的矩阵近似问题，Davis、Kahan 与 Weinberger 在 1982 年解决的正是这个耦合子矩阵的最优选择。注意与 Eckart–Young 的对比：那里 $U$、$V$ 都可自由选取，两种范数给出同一个答案（截断 SVD）；这里 $C$、$R$ 被固定，只剩 $M$ 一个自由度，两个范数立刻分道扬镳。\r\n\r\n跨课程上看，上面那步先算 $M_x^{T}M_x$ 再求特征值正是 Strang 线性代数与 18.065 中对称矩阵谱分解的套路，只是这里要的是最大特征值的平方根，即谱范数 $\\|M\\|_2=\\sqrt{\\lambda_{\\max}(M^{T}M)}$，而不是解方程用的特征向量；两个范数在无约束时同解、在固定 $C$、$R$ 时不同解这一转折，则与课程里 $A^{T}A$ 的最小二乘、SVD 的低秩近似一脉相承——差别在于那里的约束加在秩不超过 $k$上，这里的约束加在左右因子必须是 $C$ 与 $R$上。\r\n\r\n但角块取零并不一定给出最小的 $L_2$ 范数！\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**Example（例）** 在 $L_2$ 范数下，左边的矩阵比右边的矩阵小：\r\n\r\n```math\r\n\\left\\|\\begin{bmatrix} 1 & 1 \\\\ 1 & −1 \\end{bmatrix}\\right\\|_2 = \\sqrt{2}\r\n\\;\\text{is smaller than}\\;\r\n\\left\\|\\begin{bmatrix} 1 & 1 \\\\ 1 & 0 \\end{bmatrix}\\right\\|_2 = \\sqrt{\\frac{3+\\sqrt{5}}{2}} = \\frac{1+\\sqrt{5}}{2} \\tag{11}\r\n```\r\n\r\n左边两列正交，长度都是 $\\sqrt{2}$，两个奇异值都满足 $\\sigma^{2} = 2$。\r\n右边较大的奇异值满足 $\\sigma_1^{2} = (3+\\sqrt{5})/2 > 2$。\r\n这个取零的子矩阵使整个矩阵的 $L_2$ 范数变大。\r\n\r\n最优子矩阵是一个漂亮的问题，由 Davis、Kahan 和 Weinberger 在 1982 年解决。\r\n最优的 $M$ 往往并不能使 $CMR = \\hat{A}$。\r\n但它把 $L_2$ 范数降低到 $\\left\\|[\\,Y\\ Z\\,]\\right\\|$ 与 $\\left\\|[\\,X^{T}\\ Z^{T}\\,]\\right\\|$ 中较大的那一个——而在 (10) 中，更小的 $L_2$ 范数显然是不可能的。\r\n在这个例子中，最小的 $L_2$ 范数是由那个取 $-1$（而非取 $0$）的子矩阵达到的。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Randomized Matrix Factorizations（随机化矩阵分解）\r\n\r\n现在我们来到本主题的总结。\r\n正交矩阵是 $A = QR$ 与 $A = U\\Sigma V^{T}$ 追求的目标。\r\n矩阵太大，无法做精确的正交化——也许大到无法读取每一个元素。\r\n如果我们从 $A$（$m \\times n$）出发，得到一个近似 $A \\approx CB$，那么 Halko–Martinsson–Tropp 能快速而准确地求出 $QR$ 与 $U\\Sigma V^{T}$ 分解。\r\n\r\n> <span style=color:#7f8c8d;>Strang §II.4, p.152</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 10793,
+            "outputTokens": 9857,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 10793,
+              "outputTokens": 9857,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 13045,
+          "contextWindow": 1000000,
+          "pressureTokens": 14249,
+          "sampledSurfaceTokens": 7269
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5709,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 5776,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11901
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

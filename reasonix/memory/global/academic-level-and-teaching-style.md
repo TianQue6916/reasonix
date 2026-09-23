@@ -1,11 +1,12 @@
 ---
 id: legacy-7f0d4e9803375ec7f265f6d5
-revision: 3
+revision: 4
 created_at: "2026-07-30T05:49:44.757520718Z"
-updated_at: "2026-07-30T18:46:05.778615269Z"
+updated_at: "2026-09-23T10:44:14.0998485Z"
 name: academic-level-and-teaching-style
 title: 用户学业水平与教学适配指南
 description: 用户各学科当前水平、教材、学习阶段和最佳教学方式（大一暑假执行期更新）
+activation: relevant
 metadata:
   type: feedback
   scope: global

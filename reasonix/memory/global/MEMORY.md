@@ -109,3 +109,21 @@
 - [tool ocs ai tiku gateway keepalive 20260922](tool-ocs-ai-tiku-gateway-keepalive-20260922.md) — [global/reference] OCS AI 题库网关「用一会儿突然连接失败」的根因排查（非杀软、非逻辑 bug）+ 计划任务与 1 分钟看门狗保活加固与实测验收
 
 - [工作区占用问题的真正修复：reasonix-autocommit.ps1 + 计划任务（2026-09-23 检测）](reasonix-workspace-autocommit-verification-20260923.md) — [global/project] 检测确认：本对话「工作区占用/Merge-Back」问题的真正修复体是 reasonix-autocommit.ps1 + 每 2 分钟计划任务（非 dsh，排他证据=9/21 dsh 最晚 10:44），并纠正我上轮「用排除换 porcelain=0」的方向性错误
+
+- [GitHub 每日备份机制：reasonix/dsh/zcode/trae 配置 + tool-box 脚本（2026-09-23）](tool-github-daily-backup-reasonix-dsh-zcode-trae.md) — [global/reference] 建成每次自动备份到 GitHub 的完整机制：reasonix 仓库（子目录 reasonix/dsh/zcode/trae）+ tool-box 仓库（reasonix-ops 脚本）+ 每日 23:30 计划任务，含强制脱敏与 3 个真实脚本 bug 的修法
+
+- [无限四代事件全档案（已全部卸载，含诉求演变与边界）](skill-安装-无限四代载荷存档.md) — [global/reference] 无限四代事件全档案（已全部卸载）：用户诉求演变 10 步、升级与拒绝边界、模型输出四层模型、`✗ 购买授权` 的真实含义（评分器 fallback）、Reasonix 技能落点与官方装卸工具
+
+- [dsh「无限四代」插件 装/卸 档案（含 2026-09-23 完整卸载）](tool-dsh-infinite-gen4-web-install.md) — [global/reference] dsh-infinite-gen-4 插件在 web profile 的完整装卸档案：2026-09-23 已完整卸载（dump 长度回到 baseline 17709）、卸载／安装七步、junction 坑、可逆开关机制、三重验证法、代码审阅结论
+
+- [wps 知识库 kdocs wiki 完整抓取与下载方法 2026 09 23 课程资料推 github 进度](wps-知识库-kdocs-wiki-完整抓取与下载方法-2026-09-23-课程资料推-github-进度.md) — [global/project] WPS 知识库(kdocs wiki)完整抓取与下载方法 + 2026-09-23 课程资料推 GitHub 进度
+
+- [扫描件整理方法论 按章合并成册 带书签 dhash 去重 ocr 页码不可用于排序 名字与内容不符需抽查](扫描件整理方法论-按章合并成册-带书签-dhash-去重-ocr-页码不可用于排序-名字与内容不符需抽查.md) — [global/project] 扫描件整理方法论：按章合并成册（带书签）+ dHash 去重；OCR 页码不可用于排序；名字与内容不符需抽查
+
+- [2026 09 23 课程仓库整理阶段 cpplearning 迁至 codetry 重复文件清理 名字与内容不符修正 information theory 清理](2026-09-23-课程仓库整理阶段-cpplearning-迁至-codetry-重复文件清理-名字与内容不符修正-information-theory-清理.md) — [global/project] 2026-09-23 课程仓库整理阶段：CppLearning 迁至 codetry、重复文件清理、名字与内容不符修正、Information-Theory 清理
+
+- [2026 09 23 第三阶段 视觉核对扫描件 按真实页码重排 空 docx 骨架合并为章节索引 wps 脚本交付 kdocs pull ps1](2026-09-23-第三阶段-视觉核对扫描件-按真实页码重排-空-docx-骨架合并为章节索引-wps-脚本交付-kdocs-pull-ps1.md) — [global/project] 2026-09-23 第三阶段：视觉核对扫描件、按真实页码重排、空 docx 骨架合并为章节索引、WPS 脚本交付（kdocs-pull.ps1）
+
+- [空壳 word 占位文档识别与清理 判定标准 6 042j 547 5 文件 md5 不同 内容不同的教训](空壳-word-占位文档识别与清理-判定标准-6-042j-547-5-文件-md5-不同-内容不同的教训.md) — [global/project] 空壳 Word 占位文档识别与清理：判定标准、6.042J 547→5 文件、MD5 不同≠内容不同的教训
+
+- [用户学业水平与教学适配指南](academic-level-and-teaching-style.md) — [global/feedback] 用户各学科当前水平、教材、学习阶段和最佳教学方式（大一暑假执行期更新）

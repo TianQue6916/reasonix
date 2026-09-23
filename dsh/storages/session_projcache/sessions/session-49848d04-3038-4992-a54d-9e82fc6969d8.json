@@ -682,6 +682,19 @@
           "next-turn": [],
           "next-step": []
         }
+      },
+      "armor": {
+        "ver": 3,
+        "seq": 225,
+        "val": {
+          "running": false,
+          "verdict": "pass",
+          "words": [],
+          "safe": [],
+          "risk": [],
+          "domain": null,
+          "domainHits": 0
+        }
       }
     }
   }

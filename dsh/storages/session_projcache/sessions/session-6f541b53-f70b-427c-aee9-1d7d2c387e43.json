@@ -1,0 +1,206 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128171074,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 25,
+        "val": "你是 MIT 课程讲义（Strang《Linea"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 25,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 课程讲义（Strang《Linear Algebra and Learning From Data》part005，书页 198-248）的专业翻译质量审计员。工作方式为**审计 + 修复一体**（铁律 20）：通读译文、对照 OCR 原文逐项审计，然后**直接输出修订后的这 5 页完整全文**，禁止只列问题清单。\r\n\r\n【输入说明】每个 page_NNN 块给出两部分：`--- 译文（待审）---` 与 `--- OCR 原文 −--`。审计必须**以 OCR 原文为准**判断漏译/错译；OCR 本身有噪声，公式需凭数学语境判断译文是否重建正确。\r\n\r\n【审计清单（逐条执行）】\r\n1. 🔴 英中分段对照：是否存在「完整英文段 + 完整中文段」模式（英文只能以术语片段行内嵌入，术语格式 `English term（中文）`，同一术语首次出现才加括号）\r\n2. 🔴 英文句子开头：每句话第一个字必须是中文（习题题干、公式、专名除外）\r\n3. 🔴 漏译：定理 / 定义 / 例子 / 例题 / 证明 / 过渡段 / 图注 / 参考文献是否被整段跳过\r\n4. 🔴 顺序错乱：例子、公式编号、段落顺序是否与原文一致（编号必须回原文核对，绝不硬编码）\r\n5. 🟡 伪逐句（概括压缩）：每页译文应 30-40 行、约 400-1100 汉字；明显偏低即为压缩，需按原文补全\r\n6. 🟡 习题处理：习题页（Problem Set）题干**保留英文原文不译**，题号与原文一致，每题前有蓝色 `[problem]` 标签行；混排页正文完整翻译、习题保留英文、两者用 `---` 分隔\r\n7. 🟢 格式：行内公式 `$...$`，块级公式用 ```math fenced block（禁止 `$$`）；**LaTeX 环境内不得出现中文**；每个 ```math 块成对闭合、禁止嵌套；标题标记（### 等）必须在行首且前面不能有 HTML tag；禁止 `<div>`；答案用 `>` blockquote\r\n8. 🟢 标签与配色：功能标签蓝 `#2471a3`（写法 `<span style=color:#2471a3;>**[tag]**</span>`，引号不能省）；定理标题 `#c0392b`；定义核心句 `#00838f`；OCR 修正译者注 `#1e8449`；交叉引用灰行 `#7f8c8d`；禁止 Unicode 上下标字符（一律 LaTeX）\r\n9. 🟢 页眉页脚（含印页码数字）不收录；每页保留页首 `<!-- page NNN −->` 注释行\r\n\r\n【🚨 严禁输出思考过程】输出流中只允许出现译文本身：**绝对不允许**出现英文推理/自问自答/规划文本（如 Hmm…、Let me…、Final: I'll go with:、OK writing final now.、Rule 5: …），也不允许 `dsh: reasoning:` 之类前缀。规划只在内部进行。\r\n\r\n【输出协议（严格）】\r\n- 直接输出这 5 页的修订后完整全文\r\n- 每页以单独一行 `<!-- page NNN −->` 开始（NNN 与该页 OCR 页码一致）\r\n- 页与页之间用单独一行 `<!-- ===== PAGE BREAK ===== −->` 分隔\r\n- 不要任何前言、说明、总结、修改清单或汇报语（修改说明可写成每页内的绿色 `[note] 译者注（OCR 修正）：` 一句话）\r\n\r\n【术语表（必须沿用，术语一致性铁律）】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n### part004 新增术语（Part III 低秩与压缩感知：§III.1–§III.5）— 由主代理预注入\r\n- perturbation（扰动）/ changes in $A^{-1}$（$A^{-1}$ 的变化）/ sensitivity（敏感性）\r\n- interlacing eigenvalues（特征值交错）/ low rank signal（低秩信号）/ rank-one signal（秩一信号）\r\n- rapidly decaying singular values（快速衰减的奇异值）/ decay rate（衰减速率）\r\n- split algorithm（分裂算法）/ splitting（分裂）\r\n- proximal operator, prox（近端算子）/ soft thresholding（软阈值）/ hard thresholding（硬阈值）\r\n- alternating direction method of multipliers, ADMM（交替方向乘子法）\r\n- compressed sensing（压缩感知）/ matrix completion（矩阵补全）/ completing rank one matrices（补全秩一矩阵）\r\n- nuclear norm（核范数）/ trace norm（迹范数）/ sparsity（稀疏性）/ sparse vector（稀疏向量）\r\n- Netflix problem（Netflix 问题）/ recommender system（推荐系统）\r\n- semidefinite program（半定规划）/ convex relaxation（凸松弛）\r\n- biconvex（双凸）/ alternating least squares（交替最小二乘）\r\n- ridge regression（岭回归）/ weighting matrix（权重矩阵）\r\n- incoherence（不相干性）/ with high probability（以高概率）\r\n\r\n### part005 新增术语（Part IV Special Matrices：§IV.1–§IV.7）— 由主代理预注入\r\n#### §IV.1 Fourier Transforms: Discrete and Continuous\r\n- Discrete Fourier Transform, DFT（离散傅里叶变换）/ Fast Fourier Transform, FFT（快速傅里叶变换）\r\n- Fourier matrix $F$（傅里叶矩阵）/ DFT matrix $Q$（DFT 矩阵）\r\n- Fourier series（傅里叶级数）/ periodic function（周期函数）/ Fourier coefficients（傅里叶系数）\r\n- orthogonality（正交性）/ orthogonal functions（正交函数）/ eigenfunction（特征函数）\r\n- synthesis（合成）/ analysis（分析）/ inverse transform（逆变换）/ ifft（逆快速傅里叶变换）\r\n- permutation matrix $P$（置换矩阵）/ bit-reversed order（位反转顺序）/ butterfly（蝶形）\r\n- frequency response（频率响应）/ Nyquist（奈奎斯特）\r\n#### §IV.2 Shift Matrices and Circulant Matrices\r\n- shift matrix（移位矩阵）/ cyclic permutation（循环置换）/ shift invariance（平移不变性）\r\n- circulant matrix $C$（循环矩阵）/ cyclic convolution（循环卷积）/ convolution rule（卷积法则）\r\n- convolution（卷积）/ deconvolution（反卷积）\r\n- cross-correlation（互相关）/ autocorrelation（自相关）\r\n- circulant diagonalization（循环矩阵的对角化）/ eigenvalues of a circulant（循环矩阵的特征值）\r\n#### §IV.3 The Kronecker Product $A \\otimes B$\r\n- Kronecker product（克罗内克积）/ Kronecker sum（克罗内克和）\r\n- block matrix（分块矩阵）/ block multiplication（分块乘法）/ mixed product rule（混合积法则）\r\n- two-dimensional transform, 2D DFT（二维变换／二维 DFT）/ lexicographic ordering（字典序排列）\r\n- separation of variables（分离变量）/ second difference matrix（二阶差分矩阵）\r\n- Laplace's equation（拉普拉斯方程）/ discrete Laplacian（离散拉普拉斯算子）\r\n#### §IV.4 Sine and Cosine Transforms from Kronecker Sums\r\n- Discrete Sine Transform, DST（离散正弦变换）/ Discrete Cosine Transform, DCT（离散余弦变换）\r\n- sine/cosine transform（正弦／余弦变换）/ odd/even extension（奇／偶延拓）\r\n- quantization（量化）/ compression（压缩）/ JPEG（JPEG 图像压缩）\r\n- lossless/lossy（无损／有损）/ block transform（分块变换）\r\n#### §IV.5 Toeplitz Matrices and Shift Invariant Filters\r\n- Toeplitz matrix（托普利茨矩阵）/ constant diagonals（常数对角线）/ banded matrix（带状矩阵）\r\n- filter（滤波器）/ shift invariant filter（平移不变滤波器）/ lowpass filter（低通滤波器）\r\n- impulse response（冲激响应）/ moving window（滑动窗口）/ finite length（有限长）\r\n- Szegö's theorem（塞格定理）/ eigenvalues of a Toeplitz matrix（托普利茨矩阵的特征值）\r\n- zero padding（补零）/ edge effect（边缘效应）/ sharp cutoff（锐截止）\r\n#### §IV.6 Graphs and Laplacians and Kirchhoff's Laws\r\n- graph（图）/ node, vertex（节点／顶点）/ edge（边）/ degree（度）\r\n- incidence matrix $A$（关联矩阵）/ edge-node matrix（边-节点矩阵）\r\n- degree matrix $D$（度矩阵）/ adjacency matrix $B$（邻接矩阵）\r\n- graph Laplacian $L = A^{T}CA$（图拉普拉斯矩阵）/ weighted Laplacian（加权拉普拉斯矩阵）\r\n- Kirchhoff's current law（基尔霍夫电流定律）/ Kirchhoff's voltage law（基尔霍夫电压定律）\r\n- spanning tree（生成树）/ loop（回路）/ cycle（环）/ connected component（连通分量）\r\n- Euler's formula（欧拉公式）/ number of loops（回路数）/ topology（拓扑）\r\n- conductance（电导）/ resistance（电阻）/ grounded（接地）\r\n#### §IV.7 Clustering by Spectral Methods and k-means\r\n- clustering（聚类）/ cluster（簇）/ spectral clustering（谱聚类）/ spectral method（谱方法）\r\n- k-means（k-均值）/ centroid（质心）/ partition（划分）\r\n- cut（割）/ ratio cut（比例割）/ normalized cut（归一化割）/ minimum cut（最小割）\r\n- Fiedler vector（费德勒向量）/ algebraic connectivity（代数连通度）\r\n- modularity matrix（模块度矩阵）/ modularity（模块度）/ community（社群）\r\n- weighted size（加权规模）/ degree sum（度和）/ indicator vector（指示向量）\r\n\r\n【本 worker 审计页范围】page_201 — page_205\r\n\r\n【待审材料】\r\n########## page_201（书页 198）｜§III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n−-- 译文（待审）---\r\n<!-- page 201 −->\r\n> <span style=color:#7f8c8d;>本页为书页 198，属 §III.5 压缩感知与矩阵补全（Compressed Sensing and Matrix Completion）之末段与算法规整部分；页眉与页码为重复元素，不译。\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声中的 `蓋` 依语境为矩阵 $X$（待补全矩阵），`儿` 为矩阵 $A$，`舻` 为维数 $n$（依 Candès–Recht 原式的记号），`ÄB` 为 $\\approx$，`¯I` 为上标 $-1$。公式与文献条目均按数学语境重建，人名与年份未作改易。\r\n这个数学问题是：已知一个 $n \\times n$、秩为 $r$ 的矩阵中 $K$ 个元素，我们能否期望完美恢复出整个矩阵？\r\n答案是引人注目的——可以，只要 $K$ 足够大。\r\nCandès 与 Recht 证明了：若 $K > C\\, n^{6/5}\\, r \\log n$，则在一个合适的模型下，以 high probability（高概率）恢复是完美的。\r\n以下是对他们那篇二十页证明的几点评论，随后给出参考文献。\r\n**1.** “With high probability（以高概率）并不意味着必然成立”。我们必须为一个 random matrices（随机矩阵）的模型而工作。\r\n一种选择是取 $U$ 与 $V$ 为随机正交矩阵，写 $A = U\\Sigma V^{T}$。\r\n**2.** 该分析与证明使用了 §V.3 中统计学关键不等式的矩阵版本。\r\n**3.** 以最小的 nuclear norm（核范数）求 $X$ 可以表述为一个 semidefinite program（半定规划）：\r\n```math\r\n\\begin{aligned}\r\n&\\text{Minimize the trace of } W_1 + W_2 \\\\\r\n&\\text{subject to } \\begin{bmatrix} W_1 & X \\\\ X^{T} & W_2 \\end{bmatrix} \\succeq 0,\\quad\r\n\\begin{aligned}\r\n&X \\text{ contains the known entries}\\\\\r\n&W_1,\\ W_2 \\text{ are positive semidefinite}\r\n\\end{aligned}\r\n\\end{aligned}\r\n```\r\n**1.** D. Donoho, Compressed sensing, *IEEE Trans. Inform. Theory* **52** (2006) 1289–1306.\r\n**2.** E. Candès, J. Romberg, and T. Tao, Robust uncertainty principles: Exact signal reconstruction from highly incomplete frequency information, *IEEE Transactions on Information Theory* **52** (2006) 489–509.\r\n**3.** E. Candès and B. Recht, Exact matrix completion via convex optimization, *Foundations of Computational Mathematics* **9** (2009) 717–736；arXiv:0805.4471，2008 年 5 月 29 日。\r\n**4.** T. Hastie, R. Mazumder, J. Lee, and R. Zadeh, Matrix completion and low-rank SVD via fast alternating least squares, arXiv:1410.2596，2014 年 10 月 9 日。\r\n<span style=color:#2471a3;>**[section]**\r\n## Algorithms for Matrix Completion（矩阵补全的算法）\r\n我们需要一个算法来补全矩阵 $X$，而它的一部分元素已经是已知的、固定不动的。\r\n上面第 4 篇参考文献追溯了三种 alternating iterations（交替迭代）的发展——每一种新方法都在改进先前的算法。\r\n数值分析正是这样演进的。\r\n**1.**（核范数版，即 Mazumder 等人的做法）对 $X^{(k)}$ 的 SVD 做 soft-threshold（软阈值）（其记号见 §VI.5）：\r\n```math\r\nX^{(k+1)} = A_k + B_k,\\qquad B_k = S_\\lambda\\!\\left(X^{(k)}\\right),\\qquad\r\nS_\\lambda(c) = \\max(c - \\lambda,\\, 0)\r\n\\tag{3}\r\n```\r\n$S_\\lambda$ 把 $B_k$ 中较小的奇异值置零，从而降低它的秩。接着 $X^{(k+1)}$ 极小化\r\n```math\r\n\\left\\| X - A_k - B_k \\right\\|_{(k)\\,\\text{known}}^{2} + \\lambda \\left\\| B_k \\right\\|_N\r\n\\tag{5}\r\n```\r\n其缺点是：每一步都要计算一次 SVD。\r\n在 Netflix 竞赛中，$X$ 含有 $8 \\times 10^{9}$ 个元素。\r\n作者们成功地削减了这一沉重代价。\r\n而且每一次先前的 SVD 都给下一次提供了好的起点（warm start）。\r\n新想法还在不断涌现。\r\n**2.**（Srebro 等人）这些作者把解矩阵写成 $CR^{T} = (m \\times r)(r \\times n)$，并极小化\r\n```math\r\n\\text{Minimize over } C \\text{ and } R\\quad\r\n\\tfrac{1}{2}\\left\\| (A - CR^{T})_{\\text{known}} \\right\\|_F^{2}\r\n```\r\n−-- OCR 原文 −--\r\nLow Rank and Compressed Sensing\r\n198\r\nThe mathematical question is ： By knowing K entnes in an “ by “ matrix of rank r\r\ncan we expect a perfect recovery of th e whole matrix ？ Th e remarkable answer ， 然 一\r\nprovided K is large enough. CanOs an d Recht proved that if K > C 舻 / 4 r log ，\r\nthen with high probability ()n a suitable model ！ ） the recovery of is perfect.\r\nHere are a few comments on their 20-page proof, followed by references.\r\n1 ． ' 'With high probability does not mean certain ” We must work with a model for ran-\r\ndom matnces 儿 One choice take s U and as random orthogonal matnces in = UEVT\r\n2 · The analysis and proof use m atn x versions of the key inequalities of statistics in V.3.\r\n3 · Finding with smallest nuclear norm c an be expressed as a semidefinite P ro gram 。\r\nWI X ] X contains the known entnes\r\nMininuze the trace Of\r\nX W2 WI, W2 are positive semidefinite\r\n1 · D. Donoh0, Compressed sensing, IEEE Trans. lnform. Th · 52 （ 2006 ） 1289 · 1306 ·\r\n2 ． E. CanOs, J. Romberg ， an d T. Tao ， Rob 豆 况 r 0 r 忉 c 驷 讵 s · · Exact 豆 g 刀\r\nCO ruc 五 0 歹 •ro 九 九 纱 comp Fourier 和 rma 五 0 IEEE Transactions on\r\nlnformation Theory 52 （ 2006 ） 489 · 509 ·\r\n3 · E. and B. Recht ， E 无 matrix comp 0 v convex op 互 襯 讵 0 五 0 刀 ， Founda-\r\ntions of Comp. Math. 9 （ 2009 ） 717 一 736 ； arXiv ： 0805 · 4471 ． 1 ， 29 May 2008 ·\r\n4 ． T. Hastie, B. Mazumder, J. Lee ， and R. Zadeh, M atrix completion and low-rank S VD\r\nvia fast alternating least squares ， arXiv ： 1410 · 2596 ） 9 Oct 2014 ·\r\nAlgorithms for Matrix Completion\r\nWe need an algorithm that completes the matrix 蓋 ， with fixed entries own ·\r\nReference 4 above traces the development Of three alternatm g iterati on s--—e ach new\r\nmethod improving on the preuou s algorithm. Thi s is h0W numeric al analysis evolves.\r\n1 （ M r (l) Soft-threshoId the SVD of (see Section VI.5 for SÄ):\r\n血 = and Bk = s 入 （ ） with Sx(c) = 一 x, 0 ）\r\nSX sets the smaller singular values Of Bk tO zero ， reducing its rank · Then\r\n处 + 1 minimizes 一 鼠 一 (k)known IF + /\\llBkllN\r\n（ 5 ）\r\nThe drawb ack is the task of computing the SVD of at each s tep · ln the Netflix compe-\r\ntition, h ad 8 × 109 entnes. Th e authors succeeded to reduce this heavy cost. And e ach\r\npreviou s SVD gives a W start tO the next one. And new ideas kept commg.\r\n2 (Srebro 刨 · a l) These authors write the solution matrix as CRT = (m × r)(r × ：\r\nMi nimize\r\n1\r\n−II(A 一 c own 膘 + 一 (I ℃ 膘 + ）\r\nC and 月\r\n2\r\n\r\n########## page_202（书页 199）｜§III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n−-- 译文（待审）---\r\n<!-- page 202 −->\r\n> <span style=color:#7f8c8d;>本页为书页 199，为 §III.5 矩阵补全算法的续页，属 Part III 的收尾；页眉与页码为重复元素，不译。\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 页眉 `田 5` 为节号 §III.5；本页 `乥`/`囡`/`刎` 等乱码均按数学语境重建为矩阵 $A$、$C$、$R$ 或系数 $B$、$O$、$T$；`什 om` 为 from，`山` 为 $C$，`刁` 为 $A$，`毋` 为 $X$，`纪` 为 $C$，`咒` 为 $R$，`月` 亦为 $R$（依语境），`0` 常为 $O$ 之误。\r\n这一目标对单独的 $C$ 是凸的，对单独的 $R$ 也是凸的（即 biconvex（双凸））。\r\n于是 alternating algorithm（交替算法）是自然的：固定 $R$ 求 $C$，再固定 $C$ 求 $R$。\r\n每个子问题都是针对 $C$ 的每一列、然后针对 $R$ 的每一列的 ridge regression（岭回归）。\r\n这样得到的乘积 $CR^{T}$ 是一种 maximum margin factorization（最大间隔分解）。\r\n**3.**（即上文第 4 篇参考文献，2014 年）第三种算法出现在 2014 年。\r\n它是第一种算法的变体——但像第二种那样在 $C$ 与 $R$ 之间交替。\r\n如今的极小化把 $A - CR^{T}$ 的全部元素都纳入进来，而不只是那些位于已知位置的元素。\r\n这大大简化了最小二乘问题，使我们能够处理“已知元素与未知元素混在同一整列”的列。\r\n从下面这个（交替）最小二乘问题出发，此时矩阵正是 fully observed（完全可观测的）：\r\n```math\r\n\\text{Minimize over } C \\text{ and } R\\quad\r\n\\tfrac{1}{2}\\left\\| A - CR^{T} \\right\\|_F^{2}\r\n\\tag{7}\r\n```\r\n其显式解为 $C = (A A^{T})^{1/2}_{\\text{thresholded}}$ 与 $R = (A^{T} A)^{1/2}_{\\text{thresholded}}$。\r\n包括这一个在内的所有解都满足 $CR^{T} = A_{\\text{thresholded}}$——通过 $A$ 的 SVD 为之。\r\nsoft thresholding（软阈值）$S_\\lambda$ 显示了式（7）中惩罚项的作用。\r\n令人惊叹而又美妙的是，那个乘积 $B = CR^{T}$ 恰好解出下面这个秩为 $r$ 的核范数问题：\r\n```math\r\n\\text{Minimize over } B \\text{ of rank } r\\quad\r\n\\tfrac{1}{2}\\left\\| A - B \\right\\|_F^{2} + \\lambda \\| B \\|_N\r\n\\tag{8}\r\n```\r\n与式（7）的这一联系，催生了下面这个快速交替计算 $B = CR^{T}$ 的做法。\r\n此刻先假设 $A$ 的所有元素都已知：没有缺失。\r\n**1.** 从 $C = \\text{random } m \\times r$ 与 $R = \\text{random } r \\times n$ 出发。\r\n每一步依次更新 $R$、$O$ 与 $T$。\r\n```math\r\n\\tag{9}\r\n```\r\n**2.** 计算这个 SVD：$R\\,R^{T}C = U\\Sigma V^{T}$。置 $O = U$ 与 $R_{\\text{new}} = V\\Sigma$。\r\n```math\r\n\\tag{10}\r\n```\r\n**4.** 计算这个 SVD：$C\\,C^{T}R = U\\Sigma V^{T}$。置 $O = U$ 与 $C_{\\text{new}} = V\\Sigma$。\r\n反复执行这些步骤，直到 $CR^{T}$ 收敛到式（8）的解。\r\n现在 Hastie 等人回到真正的问题：$A$ 中含有缺失元素——它们并不已知。\r\n在每一次迭代中，那些缺失元素取自当前的矩阵 $CR^{T}$。\r\n这就为 $A$ 产生了一种非常高效的 sparse plus low rank（稀疏加低秩）表示：\r\n```math\r\nA = (A - CR^{T})_{\\text{known}} + (CR^{T})_{\\text{unknown}} + (CR^{T})_{\\text{known}}\r\n\\tag{13}\r\n```\r\n最终算法只是式（9）–（10）的轻微修改，办法是使用来自式（13）的项。\r\n式（9）与式（10）的解具有极为简单的形式，因为这些问题本质上都是岭回归（即最小二乘）：\r\n```math\r\nR^{T} = (C^{T}C + \\lambda I)^{-1} C^{T} A \\quad \\text{in } (9)\r\n```\r\n```math\r\nC = A R (R^{T} R + \\lambda I)^{-1} \\quad \\text{in } (10)\r\n```\r\n合起来看，这个算法被称为 Soft-impute Alternating Least Squares（软填补交替最小二乘）。\r\nHastie 等人分析了它的收敛性与数值稳定性。\r\n他们在 Netflix 竞赛的数据上测试了一个实现——并取得了成功。\r\n−-- OCR 原文 −--\r\n田 5 Compltssed Sensing and Matrix CompIetion\r\n199\r\nThis is convex in C alone and in 咒 alone ()o biconvex) · An alternating algorithm is n atural ：\r\n纪 0 and 叻 R. Each problem is an ridge regression for each column of\r\nC and then each column of R. Thi s produces a maximum margin factonzation CR ·\r\n3 （ ， see 4 above) Th e third algorithm came in 2014 · lt is a vanation on th e\r\nfirst—but it alternates between C and 月 as in the second. The minimization now includes\r\nentnes 0f 一 CRT, not only those in the known positions. This greatly simplifies\r\nthe least squares problem, t0 work with full columns of both known an d unknown entries.\r\nS tart with this (alternating) least squares problem, when isfully 0 汐 刀 ：\r\n1\r\nMinimlze\r\n−IIA 一 CRTII% + 一 (l ℃ 勝 十 伍 勝 ）\r\nan d 咒\r\n2\r\nAn explicit solution is C = （ 乥 。 ） 1 / 2 an d 月 = （ 1 / 2 · AII solutions including\r\nthis on e h ave CRT = 毋 SÄ （ 刁 琢 ! = s 0 S VD of 儿 The soft thresholding SA shows\r\nthe effect 0f the penalty term in （ 7 ） · Amazingly and beautifully, that product = 0 T\r\nsolves this rank r nuclear norm problem ·\r\nMinimize\r\n1\r\n一@ 一 十 /\\IIBIIN\r\n（ 8 ）\r\nrank(B)\r\n2\r\nTh1S connection to （ 7 ） yields th e following fast alternati ng computation of B = CRT\r\nFor the moment assume all entnes Of are known ： none mssing.\r\nS tart 山\r\nC = random × r and 刀 = · Each step updates 月 ， 0 an d 刀 ·\r\n（ 9 ）\r\n2 · Compute this SVD 月 刀 = UEVT Set 刀 = and Rnew = 刀\r\n00 ）\r\n4 · C0mpute this SVD CD = 习 VT Set 刀 = and Cnew = UD\r\nRepe at those steps until CR T converges t0 the solution of （ 8 ） ·\r\nNOW Hastie et. al return tO the real problem, in which has missmg entnes ： not known.\r\nAt each iteration ， those are taken 什 om th e current matrix 0 T · This produces a very\r\nefficient sp ars e plus low rank representation of 儿\r\n= 一 0 )known\r\n+ ()R )unknown\r\nknown\r\nThe final algorithm is a slight modification of (9)-( 10 ） ， by using 什 0 m equauon （ 13 ） ·\r\nThe s01uUons to （ 9 ） · （ 10 ） have remarkably simple forms, because those problems are\r\nessentlally ndge regressions (least squares)\r\nRT = ()2 + (I)-IDUTA in （ 9 ）\r\nin （ 10 ）\r\nAlt0gether the algonthm is described as Soft-impute Alternating Leas t Squares.\r\nHasue et al analYZe its convergence an d numencal Stability. ey test an implementation\r\non the data for the Netflix competition—with success•\r\n\r\n########## page_203（书页 200）｜§III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）｜Problem Set III.5（习题页：题干保留英文原文）\r\n−-- 译文（待审）---\r\n<!-- page 203 −->\r\n> <span style=color:#7f8c8d;>本页为 Problem Set III.5（习题集 III.5），是 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的收尾习题页；页眉 Low Rank and Compressed Sensing 与页码为重复元素，不译。习题题干按先例保留英文原文，仅修正 OCR 乱码为 LaTeX。\r\n<span style=color:#2471a3;>**[section]**\r\n## Problem Set III.5（习题集 III.5）\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 严重失真，范数记号被打散为 `刈`、`襯`、`目`、`同`、`圈`、`吲`、`脑` 等碎片。依据 §III.5 的语境（nuclear norm（核范数）最小化的矩阵补全），统一还原为 $\\|A\\|_*$（nuclear norm，核范数）与 $\\|A\\|_F$（Frobenius norm，弗罗贝尼乌斯范数）、$\\|A\\|_{\\text{sum}}$（sum norm，元素绝对值之和范数）。原文矩阵的数据块在 OCR 中已丢失，无法复原者保留说明，不作臆造。\r\n<span style=color:#2471a3;>**[problem]** **Problem 1.** For one or more of these examples in the text, can you find the completion that minimizes $\\|A\\|_*$ ? Corresponding to the important Figure III.16 near the start of Section III.1, can you find the matrix with smallest nuclear norm $\\|A\\|_* = |a_{11}| + |a_{12}| + |a_{21}| + |a_{22}|$ so that the given entries are matched?\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 原文此处题号 `1` 与其后的矩阵数据（若干 `3`、`4`、`1`、`0` 等孤立数字）在 OCR 中被拆散，题中所指矩阵无法完整复原；`mini 皿 zes 日 刈` 还原为 minimizes $\\|A\\|_*$，`Figure L16`、`Section L11` 依节号体系还原为 Figure III.16 与 Section III.1。\r\n<span style=color:#2471a3;>**[problem]** **Problem 2.** For 2 by 2 matrices, how would you describe the unit ball $\\|A\\|_{\\text{sum}} \\le 1$ that sums all absolute values $\\|A\\|_{\\text{sum}} = |a_{11}| + |a_{12}| + |a_{21}| + |a_{22}|$ ?\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** `unit b 1 目 目 s 孓 1 th at s um no 皿 同 + 圈 + 闷 + 圈` 依语境还原为 sum norm（元素绝对值之和范数）的 unit ball（单位球）$\\|A\\|_{\\text{sum}} \\le 1$，其定义式即四个元素绝对值之和。\r\n<span style=color:#2471a3;>**[problem]** **Problem 3.** Can you find inequalities that connect the sum norm to the nuclear norm for 2 by 2 matrices? Here the two constants are written $c(2)$ and $d(2)$:\r\n```math\r\n\\|A\\|_N \\le c(2)\\,\\|A\\|_{\\text{sum}}, \\qquad \\|A\\|_{\\text{sum}} \\le d(2)\\,\\|A\\|_N .\r\n```\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** `孓 c(n) and 日 驯 s 孓 d(n) 日 驯 N` 依语境还原为上述两个不等式；此处 `n` 应为 `2`（2 by 2 matrices（2 乘 2 矩阵）），`日 驯` 即 $\\|A\\|_{\\text{sum}}$，`N` 标记 nuclear norm（核范数）。\r\n<span style=color:#2471a3;>**[problem]** **Problem 4.** If only one entry of a matrix is unknown, how would you complete it to minimize $\\|A\\|_*$ or $\\|A\\|_{\\text{sum}}$ ?\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** `mimmze or 丨 凶` 还原为 minimize $\\|A\\|_*$ 或 $\\|A\\|_{\\text{sum}}$：未知单个元素时，核范数最小化与和范数最小化给出同一个补全值（即该行该列已有元素所决定的中间值）。\r\n<span style=color:#2471a3;>**[problem]** **Problem 5.** Here are two neat formulas for the nuclear norm (thank you to Yuji Nakatsukasa):\r\n```math\r\n\\|A\\|_N = \\min_{A=UV}\\ \\tfrac{1}{2}\\bigl(\\|U\\|_F^2 + \\|V\\|_F^2\\bigr) .\r\n```\r\nStart from $A = U\\Sigma V^{T} = \\bigl(U\\Sigma^{1/2}\\bigr)\\bigl(\\Sigma^{1/2}V^{T}\\bigr)$. If you rename those two factors as $U$ and $V$, explain how the Cauchy-Schwarz inequality gives\r\n```math\r\n\\|A\\|_N = \\operatorname{trace}(A) = \\sum \\sigma_i \\le \\|U\\|_F\\,\\|V\\|_F .\r\n```\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本段 OCR 把 SVD（奇异值分解）记号打散：`什 om = UEVT = （ U 习 1 / 2 ） （ 乥 1 / 2VT ）` 还原为 $A = U\\Sigma V^{T} = (U\\Sigma^{1/2})(\\Sigma^{1/2}V^{T})$；`乥` 即 $\\Sigma$，`风` 即 $U$。`脑`、`膨` 在同一公式中反复出现，依语境分别还原为核范数 $\\|A\\|_N$ 与 Frobenius norm（弗罗贝尼乌斯范数）$\\|A\\|_F$。\r\n<span style=color:#2471a3;>**[problem]** **Problem 6.** If $A$ is positive semidefinite then $\\|A\\|_N = \\operatorname{trace}(A)$ (why?). Then if $A = UV$, use the Cauchy-Schwarz inequality $\\operatorname{trace}(A) = \\sum \\sigma_i \\le \\|U\\|_F\\,\\|V\\|_F$ to show that the minimum over all factorizations $A = UV$ is attained by the symmetric square-root factorization.\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** `If is positive semidefinite then 日 = trac e of 风 (why ？ ） · Then if = UV` 依语境还原为：若 $A$ 为 positive semidefinite（半正定），则 $\\|A\\|_N = \\operatorname{trace}(A)$（迹），此时取 $A = UV$；`琢 孓 日 吲 F 膨` 还原为 Cauchy-Schwarz（柯西-施瓦茨）不等式给出的 $\\sum \\sigma_i \\le \\|U\\|_F \\|V\\|_F$。\r\n<!-- ===== PAGE BREAK ===== −->\r\n−-- OCR 原文 −--\r\nLow Rank and C ompres s ed Sensing\r\n200\r\nProblem Set llle 5\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\nFor one or more of these examples in the text, c an you find the completion that\r\nmini 皿 zes 日 刈 ？\r\n0\r\ncorre sponding to the important Fi gure L16 near the start of Section L11 ， c an Y ou\r\nfind the matrix with smallest “ “ 襯 “ “ ” 目 刈 = 同 + 圈 + 闷 + 圈 so that\r\n3\r\n4\r\n1\r\n0\r\nFor 2 by 2 matrices, how would you de scribe the unit b 1 目 目 s 孓 1 th at s um\r\nno 皿 同 + 圈 + 闷 + 圈 ？\r\nCan y ou find inequalitie s that connect the sum norm tO the nuclear n orm for by\r\nmatrices ？\r\n孓 c(n) and 日 驯 s 孓 d(n) 日 驯 N\r\nIf only one entry 0f a matrix is unknown, how would Y ou complete t0 mimmze\r\nor 丨 凶 ？\r\nHere are two neat formulas for the nu cle no 皿 ()h ank Y ou to Yuji Nakatsukasa).\r\n日 吲 F 膨 脑 =\r\nmin 1\r\n2\r\n一 + 一 膨 日 F\r\nU V=A\r\nU = 风 2\r\nStart 什 om = UEVT = （ U 习 1 / 2 ） （ 乥 1 / 2VT ） · If you rename those two factoß\r\nIf is positive semidefinite then 日 = trac e of 风 (why ？ ） · Then if = UV,\r\nexplain how the Cauchy-Schwarz inequality gives\r\n脑 = trace@昀 = 琢 孓 日 吲 F 膨 ·\r\n\r\n########## page_204（书页 201）｜Part IV 章首标题页（目录）\r\n−-- 译文（待审）---\r\n<!-- page 204 −->\r\n> <span style=color:#7f8c8d;>本页为书页 201，是 Part IV（第四部分）Special Matrices（特殊矩阵）的目录页；页眉、页码为重复元素，不译。章节编号与页码按原文保留。\r\n<span style=color:#2471a3;>**[section]**\r\n## Part IV Special Matrices（第四部分 特殊矩阵）\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 把章节编号中的罗马数字 `I` 误识为 `l`（如 `lV.6`、`lV•7`、`lV•8`），`IV.3` 一行的 `A ． B` 为 $A \\otimes B$（Kronecker product，克罗内克积）之误，`il ters` 还原为 filters，均已按上下文修正。\r\n**IV.1** Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）\r\n**IV.2** Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）\r\n**IV.3** The Kronecker Product $A \\otimes B$（克罗内克积 $A \\otimes B$）\r\n**IV.4** Sine and Cosine Transforms from Kronecker Sums（由克罗内克和导出的正弦与余弦变换）\r\n**IV.5** Toeplitz Matrices and Shift Invariant Filters（托普利茨矩阵与平移不变滤波器）\r\n**IV.6** Graphs and Laplacians and Kirchhoff's Laws（图、拉普拉斯矩阵与基尔霍夫定律）\r\n**IV.7** Clustering by Spectral Methods and k-means（用谱方法与 k-means 聚类）\r\n**10** Completing Rank One Matrices（补全秩一矩阵）\r\n**11** The Orthogonal Procrustes Problem（正交 Procrustes 问题）\r\n**12** Distance Matrices（距离矩阵）\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 末尾三行的编号在 OCR 中作 `皿 10`、`The 0 感 ho gonal Pro crustes P roblem`、`D istance Matrices`：`皿` 为章号标记的残损、`0 感 ho gonal Pro crustes` 还原为 Orthogonal Procrustes；此三章延续 IV.1–IV.7 的章号序列，故记为 10、11、12。本批正文仅覆盖 IV.1–IV.7。\r\n−-- OCR 原文 −--\r\nIV.I\r\nIV,2\r\nIV.3\r\nIV,4\r\nIVS\r\nlV.6\r\nlV•7\r\nlV•8\r\nPart IV\r\nSpecial Matrices\r\nFourier Transforms ： Discrete and Continuous\r\nShift Matrices and Circulant Matrices\r\nTh e Kronecker P ro duct A ． B\r\nS ine and Cosine Transforms from Kronecker Sums\r\nToeplitz Matrices and Shift lnvariant ilters\r\nGraphs and L aplacians and Kirchhoff's Laws\r\nCIustering by SpectraI Metho ds and k-means\r\n皿 10\r\nCompleting Rank 0 ne Matrices\r\nThe 0 感 ho gonal Pro crustes P roblem\r\nD istance Matrices\r\n\r\n########## page_205（书页 203）｜Part IV 介绍（Special Matrices）\r\n−-- 译文（待审）---\r\n<!-- page 205 −->\r\n> <span style=color:#7f8c8d;>本页为书页 203，是 Part IV（Special Matrices，特殊矩阵）的章首导言页；页眉与页脚印页码为重复元素，不译、不收录。\r\n<span style=color:#2471a3;>**[section]**\r\n## Part IV：Special Matrices（特殊矩阵）\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声极重，按数学语境重建如下：`Founer` → Fourier（傅里叶）；`砀 “ r 忉 巳` → shift invariance（平移不变性）；`co “ 况` → convolution（卷积）；`孝 产` → filter（滤波器）；`山` → With；`0 n` → often；`fimte` → finite；`iS enormou &` → is enormous；`sto of CNN ， s` → story of CNN's；`CI “ s ca 五 0 视` → Classification；`Deep Co “ 况 Neural e ks` → Deep Convolutional Neural Networks；`蓋` → $A$（关联矩阵）；`baphlical` → graphical；`posiUve` → positive。\r\n本章展开两个宏大的主题：Discrete Fourier Transforms（离散傅里叶变换）所需的关键矩阵，以及 graphical models（图模型）所需的关键矩阵。\r\n当问题具有特殊的结构时，这两个主题都会出现在机器学习之中——而这种结构正体现在神经网络的架构（architecture）里。\r\nFourier（傅里叶）对应的是具有 shift invariance（平移不变性）的问题。\r\n对图像中某一个像素所做的运算，与对下一个像素所做的运算是同一个运算。\r\n在这种情形下，该运算就是一次 convolution（卷积）。\r\n底层矩阵的每一行都是上一行的移位，每一列都是上一列的移位。\r\nConvolutional nets（卷积网络）在每个像素周围使用同一组 weights（权重）。\r\n有了这种 shift-invariant（平移不变）的结构，convolution matrix（卷积矩阵，在图像处理中称为 filter，滤波器）就具有 constant diagonals（常数对角线）。\r\n在一维问题中，$n \\times n$ 矩阵完全由它的第一行与第一列决定。\r\n很多时候该矩阵是 banded（带状的）——因为 filter（滤波器）具有 finite length（有限长度）——于是它在某一条对角线带之外全为零。\r\n对于由重复的一维分块构成的二维问题，这种节省是巨大的。\r\n这使得我们能够使用 Convolutional Neural Net（卷积神经网络，简称 CNN 或 ConvNet），而一个装满了相互独立权重的 $n \\times n$ 矩阵则是根本行不通的。\r\nCNN 的一个重大突破是这篇 NIPS 2012 论文：\r\n<span style=color:#7f8c8d;>Alex Krizhevsky、Ilya Sutskever 与 Geoffrey Hinton：ImageNet Classification with Deep Convolutional Neural Networks（用深度卷积神经网络做 ImageNet 分类）。\r\n他们的神经网络有 6000 万个参数。\r\nGraphs（图）具有另一种结构。\r\n它们由节点（nodes）以及连接这些节点的 $m$ 条边（edges）组成。\r\n这些连接由 incidence matrix（关联矩阵）来表达：$m$ 行对应边，$n$ 列对应节点。\r\n每一个图都关联着四个重要矩阵：\r\n- Incidence matrix（关联矩阵）$A$：$m \\times n$ 矩阵，每一行中有一个 $-1$ 和一个 $1$。\r\n- Adjacency matrix（邻接矩阵）$M$：$n \\times n$ 矩阵，当节点 $i$ 与节点 $j$ 相连时取 $1$。\r\n- Degree matrix（度矩阵）$D$：$n \\times n$ 对角矩阵，对角元为该行的行和。\r\n- Laplacian matrix（拉普拉斯矩阵）$L = A^{T}A = D - M$：positive semidefinite（半正定）矩阵。\r\n从深度学习的视角看，Fourier 问题与 CNN 相关联，而 graphical models（图模型）则导向 graphical nets（图网络）。\r\nGraph theory（图论）已经成为我们理解网络上离散问题的最宝贵工具。\r\n<!-- ===== PAGE BREAK ===== −->\r\n−-- OCR 原文 −--\r\npart IV ： Special Matrices\r\nThis chapter develop s two large topics ： the key matrices for Discrete Fourier Transforms\r\nand for graphical models. Both topics appear in machine learning when the problem has\r\nspecial SffUCture—whi ch is reflected in the architecture of the neural net.\r\nFouner is for probl ems with 砀 “ r 忉 巳 The operations on one pixel of an image\r\nare the s ame as the operations on th e next pixel. ln th at case the operation is a co “ 况\r\nEach row of the underlying matrix is a shift of the previous row. E ach column is a shift of\r\nthe previou s column. ConvoIutionaI nets use the same w ei ght s around e ach pixel.\r\n山 that shift-invanant structure, a convolution m atrix (a 孝 产 in image processing)\r\nhas constant diagonals · Th e by m atrix in a l-dimensional problem is fully determined\r\nby its first row and column · Very 0 n the m atrix is banded—the filter has fimte length—\r\nthe has zero s outside a band of diagonals. For 2-dimensional problem s with rep e ated\r\none-dimen sion al blocks the saving iS enormou &\r\nThis makes it possible to use a Convolutional Neural Net (CNN or ConvNet) when\r\nby 2 matrix full of independent weights would be impossible. A maJ or breakthrough\r\nsto of CNN ， s was thi s 'NIP S 2012 P ap er ：\r\nAlex Krizhevsky ， llya Sutskever, an d Geoffrey Hinton ： ImageNet CI “ s ca 五 0 视 w 氵\r\nDeep Co “ 况 Neural e ks · Their neural net h ad 60 million parameters.\r\nGraphs have a different struc ture · They consist of nodes connected by m edges.\r\nThose connections are expressed by the incidence matrix ： m row s for the edges\r\nand column s for the nodes. Every graph is associated with four important matnces ：\r\nlncidence matrix 蓋\r\nAdj acency matrix M\r\nDegree matrix D\r\nm by with 一 1 and 1 in each row\r\n1 when nodes an d j are connected\r\nby with\r\nby diagonal matrix with row sums of\r\nposiUve semidefinite matnx\r\nLaplacian matrix L = AT 蓋 = 一 M\r\nFrom the viewpoint of deep learning, Founer problemS are associated with CNN ， s and\r\nbaphlcal models le ad to graphic al nets. Graph theory has become 0 ur most valuable to 01\r\nto Understand di s crete problems on networks.\r\n203"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 25,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 25,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 25,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 25,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 14106,
+            "outputTokens": 11273,
+            "cacheReadTokens": 19968,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 374,
+              "outputTokens": 10619,
+              "cacheReadTokens": 17152,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 25,
+        "val": {
+          "surfaceTokens": 19204,
+          "contextWindow": 1000000,
+          "pressureTokens": 17526,
+          "sampledSurfaceTokens": 10605
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 25,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 7989,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 716,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 184,
+              "system": false
+            },
+            {
+              "seq": 20,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 8599,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 18060
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 25,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 22,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 24
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 25,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 25,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 25,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 25,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

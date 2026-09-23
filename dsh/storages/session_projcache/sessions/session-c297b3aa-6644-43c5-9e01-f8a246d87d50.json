@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129013953,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**审计员兼修复者**（审计 + 修复一体）。服务对象是大二学生（智能科学与技术专业）。本次审计 part004（书页 147-197）中的 3 页译文。\r\n\r\n【审计清单（逐项执行；发现问题**当场改好**，不要只列意见）】\r\n1. 🔴 漏译：对照 OCR 原文逐句核对，有无句子 / 公式 / 例子 / 习题被跳过，或被压缩成一句（禁止把 3-5 句压成 1 句）\r\n2. 🔴 英中分段对照（先完整英文段再中文段）——必须改为中文主体 + 术语行内嵌入（`English term（中文翻译）`），禁止出现完整英文原句\r\n3. 🔴 公式重建正确性：OCR 乱码处的数学重建是否符合数学语境——下标 / 指标（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$、逆 $-1$、范数、权重 $s_k$ 与 $s_k^2$、系数位置必须逐个核对\r\n4. 🔴 编号一致：定理 / 公式 tag / 图号 / 节号 / 题号必须与原文一致（不硬编码）\r\n5. 🟡 段落与标签：**正文段落不得带 `[note]` 标签**；同一段内多个句子必须连续排列（不得一句一空行）；`[section]` / `[theorem]` / `[proof]` / `[definition]` / `[example]` / `[problem]` 使用位置是否正确\r\n6. 🟡 LaTeX 规范：LaTeX 环境内**不得出现中文**（含 `\\text{{}}`）；不得有 `$$`；不得有 Unicode 上下标；行内 `$...$`、块级 ```math 围栏\r\n7. 🟡 术语一致性（对照下方术语表）；关键术语首次出现必须带中文括号\r\n8. 🟡 习题页（Problem Set / Problem）：题干必须**保留英文原文**（不得译成中文），页首灰色说明行与 `[problem]` 标签齐全\r\n9. 🟢 每句首字必须是中文（不得以英文单词开句）\r\n10. 🟢 span 引号完整：必须写成 `<span style=color:#2471a3;>`\r\n11. 🟢 页内交叉引用（如见 §III.2、Problem II.2.11 on page 135）是否译出并正确\r\n\r\n【本书页映射（供交叉引用核对，已由印页码锚定）】\r\npage_160 = 书页 156\r\npage_161 = 书页 157\r\npage_162 = 书页 159\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 3 页译文**，每页以一行 `@@PAGE:NNN@@` 开始（照抄此写法），页与页之间用 `@@BREAK@@` 分隔\r\n− 不要任何前言、审计说明、总结、思考过程；不要给正文句加标签\r\n− 修订时保持中文主体 + 术语行内双语；OCR 修正说明用绿色 note\r\n− 若某页完全无问题，也要原样输出该页全文（不得省略）\r\n\r\n【术语表】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n− linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n− column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n− subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n− basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n− inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n− eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n− trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n− symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n− pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n− energy（能量）/ energy test（能量检验）\r\n− Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n− covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n− least squares（最小二乘）/ projection（投影）\r\n− factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n− singular value（奇异值）/ singular vector（奇异向量）\r\n− Singular Value Decomposition, SVD（奇异值分解）\r\n− singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n− left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n− stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n− Eckart-Young theorem（Eckart-Young 定理）\r\n− low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n− spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n− norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n− Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n− generalized SVD（广义奇异值分解）\r\n− Principal Component Analysis, PCA（主成分分析）\r\n− linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n− variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n− convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n− gradient descent（梯度下降）/ loss function（损失函数）\r\n− polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n− finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n− Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n− interlacing of eigenvalues（特征值交错性质）\r\n− condition number（条件数）\r\n− interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n− rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n− singular values in descending order（降序排列的奇异值）\r\n− vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n− LTI: Linear Time Invariance（线性时不变）\r\n− Fourier（傅里叶）/ signal processing（信号处理）\r\n− trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n− maximization problem（最大化问题）/ minimum point（最小值点）\r\n− strictly convex function（严格凸函数）\r\n− loss（损失）/ error（误差）\r\n− unsupervised learning（无监督学习）\r\n− data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n− measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n− Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n− tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n− rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n− nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n− data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n− group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n− weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n− best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n− Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n− elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n− pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n− minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n− Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n− Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n− conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n− Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n− symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n− randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n− interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n− least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n− pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n− row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n− independent columns（独立列）/ independent rows（独立行）\r\n− QR factorization（QR 分解）/ full rank（满秩）\r\n− minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n− orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n− singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n− column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n− interpolative decomposition, ID（插值分解）\r\n− well-conditioned（良态）/ safely independent（安全独立）\r\n− column exchanges（列交换）/ pivoted QR（主元 QR）\r\n− CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n− matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n− E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n===================== 待审计材料：OCR 原文 + 现有译文 =====================\r\n########## page_160（书页 156）##########\r\n−-- OCR 原文 −--\r\nComputations w i th Large Matnces\r\n156\r\nProbIem Set 11.4\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n。 ， Pn SO that\r\n· ， an find positive numbers PI 。\r\nGiven positive numbers ， ·\r\n+ · 。 · 十 reaches its minimum (01+• · · + a 2\r\n= 1 and 7 =\r\nThe derivatives of L(), x) = 一 Ä()I + 。 。 。 十 一 1 ） are zero as in equation （ 8 ） ·\r\n@r “ ） Given a(c) > 0 find (@) > 0 by analogy with Problem 1 ， so th at\r\n1 @翊 2\r\niS a mimmum.\r\n(@) = 1 and\r\n0\r\nProve that al + 一 + ({) 之 ()l + 。 一 + (n)2. This is Problem 1 w ith = 1 /\r\nBack in ProbIem S et I. 11 you proved that |@日 1 孓 《@《 《 2 ·\r\n珏 M = 1 IT is the “ by matri x 0f 1 ' s ， prove th at / 一 M is positive semidefinite.\r\nProblem 3 was the energy test. For 'ProbIem 4 ， find the eigenvalues of nl 一 M.\r\n№ case B = AT show that the norm-squared or length- squared prob ab ilitles\r\n日 2 / 临 Why is c = E 日 b = 膘 ？\r\nin the text equ ation （ 5 ） are 日 O\r\nThe vari ance computed in equation （ 7 ） cannot be negative ！ Show this directly ·\r\nB 勝 孓 (E 丨 目 目 嗩 I)2\r\nProbIem 7 returns to the example in the text 0f sampling ， b) t0 get (), 0 ） or （ 0 ， b) ·\r\n'lf b > a then the van ance will be reduc ed when b is chosen more often. Th1 s is\r\nachieved by optiml zing the prob abilities P and 1 一 P t0 mininuze 0\r\n7\r\n8\r\n2\r\nVariance 0 ： p + （ 1 一 p)\r\nS how that p = a/(a + b) and 1 一 P = b/(a + b) minimize that variance. (The mean\r\nis the s ame for all (.) This optimal P agrees with equation （ 5 ） when applied t0 the\r\nsmall matrix multiplic ation AB = [ 1 ] @ bl · ln thi s case C = a + b in equation （ 5 ） ·\r\nln the randomized construction on the previous page ， show why (QU)DV\r\n(the 叩 p e SVD italics) is clo se to · Us e the s tep s 丫 丫 + an d\r\n丫 QR and QTA = UDVT · P 况 e 11.2.110 page 135 is key.\r\n−-- 现有译文 −--\r\n<!-- page 160 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为 Problem Set II.4（习题集 II.4），整页均为习题；按本系列先例，题干保留英文原文不译，仅把 OCR 乱码按数学语境修正为 LaTeX，修正处加绿色说明。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原页边码数字被 OCR 提前读出并与正文交错，故题号按书中印刷顺序还原；`11.4` 即 II.4，`珏` 为 If，`№ case` 为 In case，`孓`/`之` 为 $\\ge$，`Ä()` 为 $\\lambda(\\cdot)$，`nl 一 M`/`/ 一 M` 为 $nI-M$，`@` 依语境为积分号 $\\int$ 或概率 $p$，`AB = [ 1 ] @ bl` 依上下文重建为 $AB=[\\,1\\ \\ 1\\,]\\binom{a}{b}$，`C = E 日 b = 膘` 重建为 $c=E\\|b\\|^{2}=\\|A\\|_F^{2}$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Problem Set II.4（习题集 II.4）\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Given positive numbers $a_1,\\cdots,a_n$, find positive numbers $p_1,\\cdots,p_n$ so that $p_1+\\cdots+p_n=1$ and\r\n```math\r\n\\frac{a_1^{2}}{p_1}+\\cdots+\\frac{a_n^{2}}{p_n}\r\n```\r\nreaches its minimum.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** The derivatives of $L(x,\\lambda)=\\dfrac{a_1^{2}}{x_1}+\\cdots+\\dfrac{a_n^{2}}{x_n}+\\lambda(x_1+\\cdots+x_n-1)$ are zero as in equation (8).\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** Prove that\r\n```math\r\na_1^{2}+\\cdots+a_n^{2}\\ \\ge\\ \\frac{1}{n}(a_1+\\cdots+a_n)^{2}\r\n```\r\nThis is Problem 1 with $p_i=1/n$. Back in Problem Set I.11 you proved that $\\|a\\|_1 \\le \\sqrt{n}\\,\\|a\\|_2$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** If $M=\\mathbf{1}\\mathbf{1}^{T}$ is the $n$ by $n$ matrix of 1's, prove that $nI-M$ is positive semidefinite. Problem 3 was the energy test.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** For Problem 4, find the eigenvalues of $nI-M$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Given $a(x)>0$ find $p(x)>0$ by analogy with Problem 1, so that\r\n```math\r\n\\int \\frac{a^{2}(x)}{p(x)}\\,dx\r\n```\r\nis a minimum, with $\\int p(x)\\,dx=1$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** In case $B=A^{T}$ show that the norm-squared or length-squared probabilities in the text equation (5) are $\\|a_i\\|^{2}/\\|A\\|_F^{2}$. Why is $c=E\\|b\\|^{2}=\\|A\\|_F^{2}$? The variance computed in equation (7) cannot be negative! Show this directly:\r\n```math\r\nE\\left[X^{2}\\right]\\ \\ge\\ \\left(E\\left[X\\right]\\right)^{2}\r\n```\r\nProblem 7 returns to the example in the text of sampling $(a,b)$ to get $(a,0)$ or $(0,b)$. If $b>a$ then the variance will be reduced when $b$ is chosen more often. This is achieved by optimizing the probabilities $p$ and $1-p$ to minimize $\\sigma^{2}$:\r\n```math\r\n\\text{Variance}\\ \\ \\sigma^{2}=\\frac{a^{2}}{p}+\\frac{b^{2}}{1-p}\r\n```\r\nShow that $p=a/(a+b)$ and $1-p=b/(a+b)$ minimize that variance. (The mean is the same for all $p$.) This optimal $p$ agrees with equation (5) when applied to the small matrix multiplication $AB=[\\,1\\ \\ 1\\,]\\begin{bmatrix}a\\\\b\\end{bmatrix}$. In this case $C=a+b$ in equation (5).\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** In the randomized construction on the previous page, show why $(QU)DV^{T}$ (the upper-case SVD italics) is close to $A$. Use the steps $YY^{+}$ and $Y=QR$ and $Q^{T}A=UDV^{T}$. Problem II.2.10 on page 135 is key.\r\n\r\n########## page_161（书页 157）##########\r\n−-- OCR 原文 −--\r\nPart III\r\nLow Rank and Compressed\r\nIII.I\r\n111.2\r\n111.3\r\n111.4\r\n111,5\r\nSensing\r\nChanges in 蓋 一 1 什 om Changes № 蓋\r\nlnterlacing Eigenvalues and L ow Rank Signals\r\nRapidly D ecaying Singular Values\r\nSplit Algorithms for + 1\r\nCompressed Sensing and Matrix C ompletion\r\n−-- 现有译文 −--\r\n<!-- page_161 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 157，是 Part III（第三部分）的章首标题页，只有章名与五个节标题；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原 OCR 的 `蓋 一 1` 为 $A^{-1}$，`№ 蓋` 为 in $A$，`111.2`–`111,5` 为节号 III.2–III.5，`+ 1` 为 $\\ell_1$；左右两栏曾被 OCR 交错读出，此处按语义重新排序。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Part III — Low Rank and Compressed Sensing（第三部分——低秩与压缩感知）\r\n\r\n本部分共分五节：\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.1 Changes in $A^{-1}$ from Changes in $A$（$A$ 变化时 $A^{-1}$ 的变化）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.4 Split Algorithms for $\\ell_1$（$\\ell_1$ 的分裂算法）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\n########## page_162（书页 159）##########\r\n−-- OCR 原文 −--\r\npart III ： LOW Rank and Compressed Sensing\r\nThi s part of the book looks at three types 0f low rank matnces ：\r\nI. Maffices that truly have a small rank （ 鬱 T is an ex treme case with rank = 1 ）\r\n2 · Maffices 山 at have exp onenti ally decreasing singular values 00w effective rank) ·\r\n3 · lncomplete matri ces (mssing entries) th at are completed t0 10w rank matrices.\r\nThe first type are not i nvertible (because rank < · The second type are invertible in\r\ntheory but not in practice · The matrix with entrie s @ + j 一 1 ）\r\niS a famous example ·\r\nHOW can y ou recogmze that this matnx or ano ther matrix has very 10w effective rank ？\r\nThe 山 计 d questi on—matrix completion—is appro ached in Section 111.5. We create\r\na 皿 mmization problem that applie s tO re c 0 mmender matric e s ：\r\nMinimiz e 丨 丨 蓋 《 lN ove r all possible choices of th e missing entries.\r\nThat nuclear no 皿 ” gives a well-posed problem to repl ace a nonconvex problem ：\r\n皿 nimzing rank · 况 c r 刀 0- S are conjectured be im or gradient descent.\r\nThe rank Of a mafr1X corresponds in some deep way tO the number Of nonzeros in a\r\nvector. ln that an alogy, a IOW rank matnx is 1 e a sparse vector. Again, the number\r\nOf nonzero S ln iS not a n orm ！ That numb er is sometlmes written as 日 0 ， but thi s\r\n2 《 卜 We don ， t double the number of nonzeros.\r\n0 norm ” violates the rule 目 2 叫 I\r\nlt is highly imp ortant to find sparse solutions to = b. By a seeming mracle ，\r\n= 丨 + 一 + @誄 fact\r\nsparse solutions come by minimzing the norm llclll\r\nhas led to a n ew world of compressed sensing, with applications throughout engineenng\r\nand medicine (including changes in th e machines for MagneUc Resonance lmaging) ·\r\nAlgorithms for minimization are described and compared in 111.4.\r\nT)—I and\r\nS ection III.I opens this ch ap ter with a famous formula for @ _\r\n） 一 1 · This is the Sherman-Morrison-Woodbury formula. lt shows that the\r\nch ange in the inverse matrix so has rank 1 ()f the matnX remams inveruble). Thi s\r\nfomula with its exten si o n to hi gher rank perturbations （ 一 UVT)-\r\n一 1 d /\\(t) and 0@） when “\r\ncompute the “ 咖 “ 羔@）\r\n−-- 现有译文 −--\r\n<!-- page_162 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 159，是 Part III（第三部分）总览正文的首页；页眉为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原 OCR 噪声按数学语境修正：`鬱 T` 为 $uv^T$，`Maffices`/`mafr1X` 为 matrices/matrix，`山 at` 为 that，`@ + j 一 1` 为 $1/(i+j-1)$，`丨丨蓋《l` 为 $\\|A\\|_*$，`皿 nimizing` 为 minimizing，`日 0` 为 $\\ell_0$，`111.4`/`111.5` 为 §III.4/§III.5，`llclll` 为 $\\|x\\|_1$，`= 丨 + 一 + @誄` 为 $\\|x\\|_1 = |x_1| + \\cdots + |x_n|$。\r\n\r\n本部分（Part III）考察三种类型的低秩矩阵（low rank matrices）：\r\n\r\n**1.** 真正具有小秩的矩阵——$uv^T$ 是极端情形，其 rank（秩）等于 1。\r\n\r\n**2.** 奇异值（singular values）呈指数衰减的矩阵，即有效秩（effective rank）很低的矩阵。\r\n\r\n**3.** 不完整的矩阵（incomplete matrices，含有缺失元素 missing entries），它们被补全（completed）成低秩矩阵。\r\n\r\n第一类矩阵不可逆（not invertible），因为 rank $< n$。\r\n第二类矩阵在理论上可逆，在实践中却不可逆。\r\n元素为 $1/(i+j-1)$ 的矩阵就是一个著名的例子。\r\n\r\n你怎样才能看出这个矩阵或者另一个矩阵具有非常低的有效秩（effective rank）？\r\n\r\n第三个问题——矩阵补全（matrix completion）——将在 §III.5 中讨论。\r\n我们要构造一个适用于推荐矩阵（recommender matrices）的最小化问题（minimization problem）：\r\n\r\n```math\r\n\\text{Minimize } \\|A\\|_* \\text{ over all possible choices of the missing entries.}\r\n```\r\n\r\n也就是说，在所有可能的缺失元素取值中，使核范数（nuclear norm）$\\|A\\|_*$ 达到最小。\r\n\r\n这个核范数给出一个适定问题（well-posed problem），用来替代一个非凸问题（nonconvex problem）：最小化 rank（秩）。\r\n人们猜测，梯度下降（gradient descent）一类的算法是求解它的最佳途径。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 末句原文 OCR 严重残损（`况 c r 刀 0- S are conjectured be im or gradient descent`），此处依据上下文与 §III.4 的算法内容重建其大意。\r\n\r\n矩阵的 rank（秩）在某种深刻的意义上与向量中非零元素的个数（number of nonzeros）相对应。\r\n在这种类比之下，低秩矩阵（low rank matrix）就如同稀疏向量（sparse vector）。\r\n再说一遍：$x$ 中非零元素的个数并不是一个范数（norm）！\r\n\r\n这个数有时被写成 $\\ell_0$；但所谓的“$\\ell_0$ 范数”违反了范数规则 $\\|2x\\| = 2\\|x\\|$——我们并不把非零元的个数加倍。\r\n\r\n求 $Ax = b$ 的稀疏解（sparse solution）极为重要。\r\n看似奇迹的是，稀疏解竟来自最小化 $\\ell_1$ 范数（$\\ell_1$ norm）$\\|x\\|_1 = |x_1| + \\cdots + |x_n|$。\r\n事实上，这一事实带来了一个崭新的压缩感知（compressed sensing）世界，其应用遍及工程与医学（包括核磁共振成像 Magnetic Resonance Imaging 所用机器的变革）。\r\n$\\ell_1$ 最小化的算法将在 §III.4 中加以描述与比较。\r\n\r\n§III.1 以关于 $A^{-1}$ 与 $(A − uv^T)^{-1}$ 的一个著名公式开启本章。\r\n这就是 Sherman-Morrison-Woodbury 公式（Sherman-Morrison-Woodbury formula）。\r\n它表明，逆矩阵的变化同样是 rank 1（秩一）的——只要该矩阵仍然可逆。\r\n这个公式及其对更高秩扰动 $(A − UV^T)^{-1}$ 的推广，将用来计算矩阵发生变化时的 $A^{-1}(t)$ 与 $A(t)$（原句在此处 OCR 残损，且在下一页继续）。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 186,
+            "outputTokens": 6777,
+            "cacheReadTokens": 10240,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 186,
+              "outputTokens": 6777,
+              "cacheReadTokens": 10240,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11989,
+          "contextWindow": 1000000,
+          "pressureTokens": 10426,
+          "sampledSurfaceTokens": 5843
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4283,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 6146,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10845
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

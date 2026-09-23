@@ -1,10 +1,11 @@
 ---
 id: legacy-79dd7288330aa3f116c717f7
-revision: 1
+revision: 2
 created_at: "2026-07-13T23:02:36.7815586Z"
-updated_at: "2026-07-13T23:02:36.7815586Z"
+updated_at: "2026-09-23T10:44:14.3795716Z"
 name: csapp-summary-methodology
 description: CSAPP方舟复述方法论——设计问题驱动+跨课程连接+事实核查的课程总结标准
+activation: relevant
 metadata:
   type: feedback
   scope: global

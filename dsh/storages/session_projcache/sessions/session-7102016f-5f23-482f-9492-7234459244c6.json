@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132457688,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_167（书页 164） @@@@@\r\n−---- 【权威原文】 −---------------\r\nHere is the faithful transcription of the page:\r\n\r\n**164** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Low Rank and Compressed Sensing\r\n\r\n# Updating Least Squares\r\n\r\nSection II.2 discussed the least squares equation \\(A^{\\mathrm{T}} A\\widehat{x} = A^{\\mathrm{T}} b\\)—the “normal equations” to minimize \\(||b − Ax||^2\\). Suppose that a new equation arrives. Then \\(A\\) has a new row \\(r\\) (1 by \\(n\\)) and there is a new measurement \\(b_{m+1}\\) and a new \\(\\widehat{x}\\) :\r\n\\[\r\n\\begin{bmatrix} A^{\\mathrm{T}} & r^{\\mathrm{T}} \\end{bmatrix} \\begin{bmatrix} A \\\\ r \\end{bmatrix} \\widehat{x} = \\begin{bmatrix} A^{\\mathrm{T}} & r^{\\mathrm{T}} \\end{bmatrix} \\begin{bmatrix} b \\\\ b_{m+1} \\end{bmatrix} \\quad \\text{is} \\quad \\left[ A^{\\mathrm{T}} A + r^{\\mathrm{T}} r \\right] \\widehat{x} = A^{\\mathrm{T}} b + r^{\\mathrm{T}} b_{m+1}. \\tag{13}\r\n\\]\r\nThe matrix in the new normal equations is \\(A^{\\mathrm{T}} A + r^{\\mathrm{T}} r\\). This is a rank one correction to the original \\(A^{\\mathrm{T}} A\\). To update \\(\\widehat{x}\\), we do *not* want to create and solve a whole new set of normal equations. Instead we use the update formula :\r\n\\[\r\n\\left[ A^{\\mathrm{T}} A + r^{\\mathrm{T}} r \\right]^{-1} = (A^{\\mathrm{T}} A)^{-1} − c (A^{\\mathrm{T}} A)^{-1} r^{\\mathrm{T}} r (A^{\\mathrm{T}} A)^{-1} \\text{ with } c = 1/(1+r(A^{\\mathrm{T}} A)^{-1} r^{\\mathrm{T}}) \\tag{14}\r\n\\]\r\nTo find \\(c\\) quickly we only need to solve the old equation \\((A^{\\mathrm{T}} A) y = r^{\\mathrm{T}}\\).\r\n\r\nProblem 4 will produce the least squares solution \\(\\widehat{x}_{\\text{new}}\\) as an update of \\(\\widehat{x}\\). The same idea applies when \\(A\\) has \\(M\\) new rows instead of one. This is **recursive least squares**.\r\n\r\n# The Kalman Filter\r\n\r\nKalman noticed that this update idea also applies to **dynamic least squares**. That word *dynamic* means that even without new data, the state vector \\(x\\) is changing with time. If \\(x\\) gives the position of a GPS satellite, that position will move by about \\(\\Delta x = v \\Delta t\\) (\\(v\\) = velocity). This approximation or a better one will be the **state equation** for \\(x_{n+1}\\) at the new time. Then a new measurement \\(b_{m+1}\\) at time \\(t + \\Delta t\\) will further update that approximate position to \\(\\widehat{x}_{\\text{new}}\\). I hope you see that we are now adding **two new equations** (state equation and measurement equation) to the original system \\(Ax \\approx b\\) :\r\n\r\n**Original**\r\n**State update**\r\n**Measurement update**\r\n\\[\r\nA_{\\text{new}} = \\begin{bmatrix} A & 0 \\\\ −I & I \\\\ 0 & r \\end{bmatrix} \\begin{bmatrix} x_{\\text{old}} \\\\ x_{\\text{new}} \\end{bmatrix} = \\begin{bmatrix} b \\\\ v \\Delta t \\\\ b_{m+1} \\end{bmatrix}. \\tag{15}\r\n\\]\r\nWe want the least squares solution of (15). And there is one more twist that makes the Kalman filter formulas truly impressive (or truly complicated). The state equation and the measurement equation have their own covariance matrices. Those equations are inexact (of course). The variance or covariance \\(V\\) measures their different reliabilities. The normal equations \\(A^{\\mathrm{T}} A\\widehat{x} = A^{\\mathrm{T}} b\\) should properly be weighted by \\(V^{-1}\\) to become \\(A^{\\mathrm{T}} V^{-1} A\\widehat{x} = A^{\\mathrm{T}} V^{-1} b\\). And in truth \\(V\\) itself has to be updated at each step.\r\n\r\nThrough all this, Kalman pursued the goal of using update formulas. Instead of solving the full normal equations to learn \\(\\widehat{x}_{\\text{new}}\\), he updated \\(\\widehat{x}_{\\text{old}}\\) in two steps.\r\n\r\nThe prediction \\(\\widehat{x}_{\\text{state}}\\) comes from the state equation. Then comes the correction to \\(\\widehat{x}_{\\text{new}}\\), using the new measurement \\(b_{m+1}\\) : zero correction.\r\n\r\n\\[\r\nK = \\text{Kalman gain matrix} \\qquad \\widehat{x}_{\\text{new}} = \\widehat{x}_{\\text{state}} + K(b_{m+1} − r \\widehat{x}_{\\text{state}}) \\tag{16}\r\n\\]\r\nThe **gain matrix** \\(K\\) is created from \\(A\\) and \\(r\\) and the covariance matrices \\(V_{\\text{state}}\\) and \\(V_b\\). You see that if the new \\(b_{m+1}\\) agrees perfectly with the prediction \\(\\widehat{x}_{\\text{state}}\\), then there is a zero correction in (16) from \\(\\widehat{x}_{\\text{state}}\\) to \\(\\widehat{x}_{\\text{new}}\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:167@@\r\n> <span style=color:#7f8c8d;>本页为书页 164，属 §III.1 正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Updating Least Squares（最小二乘的更新）\r\n\r\n第 II.2 节讨论了最小二乘方程 $A^T A\\,x = A^T b$——即用来最小化 $\\|b − Ax\\|^2$ 的 normal equations（正规方程）。假设新来一个方程 $r \\cdot x = b_{m+1}$。于是 $A$ 多出一个新行 $r^T$（$1 \\times n$ 的行向量），并且多出一个新测量值 $b_{m+1}$，以及新正规方程中右端多出的一项 $r^T b_{m+1}$：\r\n\r\n```math\r\n\\begin{bmatrix} A^T A + r^T r \\end{bmatrix} x_{\\text{new}} = A^T b + r^T b_{m+1} \\tag{13}\r\n```\r\n\r\n新正规方程中的矩阵是 $A^T A + r^T r$。这是对原矩阵 $A^T A$ 的一个 rank one correction（秩一修正）。为了做更新，我们并不想重新构造并求解一整套新的正规方程。相反，我们使用更新公式：\r\n\r\n```math\r\n[A^T A + r^T r]^{-1} = (A^T A)^{-1} − c\\,(A^T A)^{-1} r^T r\\,(A^T A)^{-1}, \\qquad c = \\frac{1}{1 + r^T (A^T A)^{-1} r} \\tag{14}\r\n```\r\n\r\n为了快速求出 $c$，我们只需要解一次旧方程 $(A^T A)\\,y = r$。习题 4 将把最小二乘解 $x_{\\text{new}}$ 写成对 $x_{\\text{old}}$ 的更新。当 $A$ 新增多行而不只是新增一行时，同样的想法依然成立。这就是 recursive least squares（递归最小二乘）。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Kalman Filter（卡尔曼滤波）\r\n\r\n卡尔曼（R. E. Kalman）注意到，这一更新思想同样适用于 dynamic least squares（动态最小二乘）。dynamic（动态）一词意味着：即使没有新数据，state vector（状态向量）也随时间而变。若 $x$ 给出一个 GPS 卫星的位置，那么该位置大约会移动 $\\Delta x = v\\,\\Delta t$（$v$ 为速度）。这个近似——或者一个更好的近似——将作为新时刻 $t + \\Delta t$ 的 state equation（状态方程）。随后在时刻 $t + \\Delta t$ 得到的新测量值 $b_{m+1}$ 会进一步把该近似位置更新为 $x_{\\text{new}}$。我希望你看到：我们现在是把两个新方程（状态方程与测量方程）添加到原来的系统 $Ax = b$ 上。\r\n\r\n```math\r\n\\begin{aligned}\r\nAx &= b && \\text{original} \\\\\r\nx_{\\text{state}} &= x_{\\text{old}} + \\Delta t\\,v && \\text{state update} \\\\\r\nr \\cdot x_{\\text{new}} &= b_{m+1} && \\text{measurement update}\r\n\\end{aligned} \\tag{15}\r\n```\r\n\r\n我们要的是 (15) 的最小二乘解。还有一个额外的曲折，使 Kalman filter（卡尔曼滤波）公式真正令人印象深刻（或者真正复杂）。状态方程与测量方程各自拥有自己的 covariance matrices（协方差矩阵）。这些方程当然是不精确的。方差或协方差 $V$ 度量它们各自不同的可靠性。正规方程 $A^T A\\,x = A^T b$ 应当恰当地用 $V^{-1}$ 加权，从而成为 $A^T V^{-1} A\\,x = A^T V^{-1} b$。而实际上，$V$ 本身也必须在每一步更新。\r\n\r\n贯穿这一切，Kalman 追求的目标是使用更新公式。为了学得 $x_{\\text{new}}$，他不是求解完整正规方程，而是分两步更新 $x_{\\text{old}}$。prediction（预测）状态来自状态方程。接着是利用新测量值 $b_{m+1}$ 对 $x_{\\text{new}}$ 所作的 correction（校正）：若新测量值与预测状态完全一致，则校正为零。\r\n\r\n```math\r\n\\begin{aligned}\r\nK &= \\text{Kalman gain matrix（卡尔曼增益矩阵）} \\\\\r\nx_{\\text{new}} &= x_{\\text{state}} + K\\,(b_{m+1} − r \\cdot x_{\\text{state}})\r\n\\end{aligned} \\tag{16}\r\n```\r\n\r\ngain（增益）$K$ 由 $A$ 与 $r$ 以及协方差矩阵 $V_{\\text{state}}$ 和 $V_{\\text{meas}}$ 生成。你看到：如果新测量值 $b_{m+1}$ 与预测状态 $x_{\\text{state}}$ 完全一致，那么在 (16) 中从 $x_{\\text{state}}$ 到 $x_{\\text{new}}$ 的校正就是零。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（秩一更新与卡尔曼滤波的同一件事）：**</span> 先把 (14) 的来历钉死。它叫 Sherman-Morrison 公式（舍曼-莫里森公式）：给可逆矩阵 $M$ 加上秩一项 $r^T r$，新逆不必从头算，只在旧逆上加一个由 $(A^T A)^{-1} r^T$ 与 $r (A^T A)^{-1}$ 拼出的修正项。要点在于 $r^T$ 只有一列，$A^T A + r^T r$ 相对 $A^T A$ 只多出一个方向的曲率——**秩一改动只值得一次秩一修正**。公式里两次出现的 $(A^T A)^{-1} r^T$ 是同一个向量，所以整步只花 $O(n^2)$ 次运算，不必对 $A^T A$ 重做 $O(n^3)$ 的分解。分母 $1 + r^T (A^T A)^{-1} r$ 是 $\\det(A^T A + r^T r)$ 与 $\\det(A^T A)$ 的比值：列满秩时 $(A^T A)^{-1}$ 正定，故分母恒大于 $1$，公式永不失效；若 $A$ 本来不满秩，这个分母会给出警报，这正是数值实现里必须监测它的原因。还有一个实现细节值得记住：为求 $c$ 要先解 $(A^T A)\\,y = r$，用的仍是**旧**矩阵，一次分解可反复复用，新行每来一条只需一次前代回代，这是它能在线运行的根本原因。递归最小二乘正是把这件事做成算法：每来一个观测，先把新行接到 $A$ 上，用 (14) 改写逆，再乘新右端得解，历史数据不必保存。跨课程连接（数值分析 / 6.006）：这属于「增量算法」——用一点额外状态（这里就是那个逆）换掉重算整题的成本；与 6.006 里动态维护数据结构、避免每次重建的区别在于，这里代价的瓶颈是矩阵分解而非指针操作。接第 165 页的卡尔曼滤波：那不过是把同一个秩一更新搬到概率语言里。状态方程写成 $x_{\\text{state}} = x_{\\text{old}} + \\Delta t\\,v$，它本身就是一条关于未知向量的线性方程；测量方程又是另一条，两者叠加就是 (15)，与 (13) 结构完全一致。差别只在权重：状态方程是外推，可靠性由 $V_{\\text{state}}$ 给出；测量方程来自传感器，可靠性由 $V_{\\text{meas}}$ 给出，加权正规方程 $A^T V^{-1} A\\,x = A^T V^{-1} b$ 就是为此而写。增益 $K$ 由此而生——它正好就是 (14) 里的 $c (A^T A)^{-1} r^T$，只是换成了协方差矩阵的表达，于是「状态预测方差大就把新测量多信一点、测量噪声大就多信预测」成了同一个式子的两种读法。接控制类课程的状态空间模型：状态方程与测量方程并列，只是把未知数从静态的 $x$ 换成随时间演化的 $x_t$，测量矩阵 $H_t$ 取代单独一行 $r_t$，结构判断完全一样，要学会的迁移是「动态只是多了一维时间下标」。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 重建说明）：**</span> 本页 OCR 文本噪声严重（如 `T` 实为 $A^T A$、`T = AT b` 实为 $A^T A\\,x = A^T b$、`[ T + rTrl` 实为 $[A^T A + r^T r]^{-1}$、`什 om` 实为 from、`鬱` 实为 $v\\,\\Delta t$、`蓋 b` 实为 $Ax = b$），全部公式均按数学语境重建。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.1, p.164</span>\r\n\r\n@@@@@ page_168（书页 165） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.1. Changes in \\(A^{-1}\\) from Changes in \\(A\\)\r\n\r\n165\r\n\r\nWe also need to update the covariance of the whole system—measuring the reliability of \\(\\hat{x}_{\\text{new}}\\). In fact this \\(V\\) is often the most important output. It measures the accuracy of the whole system of sensors that produced \\(\\hat{x}_{\\text{final}}\\).\r\n\r\nFor the GPS application, our text with Kai Borre provides much more detail: *Algorithms for Global Positioning* (Wellesley-Cambridge Press). The goal is to estimate the accuracy of GPS measurements: very high accuracy for the measurement of tectonic plates, lower accuracy for satellites, and much lower accuracy for the position of your car.\r\n\r\n**Quasi-Newton Update Methods**\r\n\r\nA completely different update occurs in approximate Newton methods to solve \\(f(x) = 0\\). Those are \\(n\\) equations for \\(n\\) unknowns \\(x_1, \\ldots, x_n\\). The classical Newton's method uses the Jacobian matrix \\(J(x)\\) containing the first derivatives of each component of \\(f\\):\r\n\r\n\\[\r\n\\text{Newton} \\quad J_{ik} = \\frac{\\partial f_i}{\\partial x_k} \\quad \\text{and} \\quad x_{\\text{new}} = x_{\\text{old}} − J(x_{\\text{old}})^{-1} f(x_{\\text{old}}). \\tag{17}\r\n\\]\r\n\r\nThat is based on the fundamental approximation \\(J \\Delta x = \\Delta f\\) of calculus. Here \\(\\Delta f = f(x_{\\text{new}}) − f(x_{\\text{old}})\\) is \\(-f(x_{\\text{old}})\\) because our whole plan is to achieve \\(f(x_{\\text{new}}) \\approx 0\\).\r\n\r\nThe difficulty is the Jacobian matrix \\(J\\). For large \\(n\\), even automatic differentiation (the key to backpropagation in Chapter VII) will be slow. Instead of recomputing \\(J\\) at each iteration, quasi-Newton methods use an update formula \\(J(x_{\\text{new}}) = J(x_{\\text{old}}) + \\Delta J\\).\r\n\r\nIn principle \\(\\Delta J\\) involves the derivatives of \\(J\\) and therefore second derivatives of \\(f\\). The reward is second order accuracy and fast convergence of Newton's method. But the price of computing all second derivatives when \\(n\\) is large (as in deep learning) may be impossibly high.\r\n\r\nQuasi-Newton methods create a low rank update to \\(J(x_{\\text{old}})\\) instead of computing an entirely new Jacobian at \\(x_{\\text{new}}\\). The update reflects the new information that comes with computing \\(x_{\\text{new}}\\) in (17). Because it is \\(J^{-1}\\) that appears in Newton's method, the update formula accounts for its rank one change to \\(J_{\\text{new}}^{-1}\\)—without recomputing \\(J^{-1}\\). Here is the key, and derivatives of \\(f_1, \\ldots, f_n\\) are not needed:\r\n\r\n\\[\r\n\\text{Quasi-Newton condition} \\quad J_{\\text{new}} (x_{\\text{new}} − x_{\\text{old}}) = f_{\\text{new}} − f_{\\text{old}} \\tag{18}\r\n\\]\r\n\r\nThis is information \\(J \\Delta x = \\Delta f\\) in the direction we moved. Since equation (17) uses \\(J^{-1}\\) instead of \\(J\\), we update \\(J^{-1}\\) to satisfy (18). The Sherman-Morrison formula will do this. Or the BFGS correction is a rank-2 matrix discovered by four authors at the same time. Another approach is to update the \\(LU\\) or the \\(LDL^T\\) factors of \\(J_{\\text{old}}\\).\r\n\r\nFrequently the original \\(n\\) equations \\(f(x) = 0\\) come from minimizing a function \\(F(x_1, \\ldots, x_n)\\). Then \\(f = (\\partial F/\\partial x_1, \\ldots, \\partial F/\\partial x_n)\\) is the gradient of this function \\(F\\), and \\(f = 0\\) at the minimum point. Now the Jacobian matrix \\(J\\) (first derivatives of \\(f\\)) becomes a Hessian matrix \\(H\\) (second derivatives of \\(F\\)). Its entries are \\(H_{jk} = \\partial^2 F/\\partial x_j \\partial x_k\\).\r\n\r\nIf all goes well, Newton's method quickly finds the point \\(x^*\\) where \\(F\\) is minimized and its derivatives are \\(f(x^*) = 0\\). The quasi-Newton method that updates \\(J\\) approximately instead of recomputing \\(J\\) is far more affordable for large \\(n\\). For extremely large \\(n\\) (as in many problems of machine learning) the cost may still be excessive.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:168@@\r\n> <span style=color:#7f8c8d;>本页为书页 165，属 §III.1 正文；页眉与页码为重复元素，不译。</span>\r\n\r\n我们还需要更新整个系统的协方差——用它来度量新的 $x_{\\text{final}}$ 的可靠性。事实上，这个 $V$ 往往是最重要的输出。它度量的是产生 $b_{\\text{final}}$ 的整个传感器系统的精度。\r\n\r\n对于 GPS 应用，我们与 Kai Borre 合著的教材提供了多得多的细节：*Linear Algebra, Geodesy, and GPS*（Wellesley-Cambridge Press）。其目标是估计 GPS 测量的精度：对 tectonic plates（构造板块）的测量精度极高，对卫星的精度较低，而对你汽车位置的精度则低得多。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Quasi-Newton Update Methods（拟牛顿更新方法）\r\n\r\n在求解 $f(c) = 0$ 的近似 Newton 方法中，出现了一种完全不同的更新。这些方程是关于未知量 $c_1, \\dots, c_n$ 的方程。经典的 Newton's method（牛顿法）使用 Jacobian matrix（雅可比矩阵）$J(c)$，它包含 $f$ 的每个分量的一阶导数：\r\n\r\n```math\r\nJ_{ik} = \\frac{\\partial f_i}{\\partial c_k}, \\qquad c_{\\text{new}} = c_{\\text{old}} − J(c_{\\text{old}})^{-1} f(c_{\\text{old}}) \\tag{17}\r\n```\r\n\r\n这建立在微积分的基本近似 $\\Delta f \\approx J\\,\\Delta c$ 之上。这里 $\\Delta f = f(c_{\\text{new}}) − f(c_{\\text{old}})$ 是 $-f(c_{\\text{old}})$，因为我们整个计划就是要实现 $f(c_{\\text{new}}) \\approx 0$。\r\n\r\n困难在于 Jacobian 矩阵 $J$。对于大型问题，即使 automatic differentiation（自动微分）（这是第七章中 backpropagation（反向传播）的关键）也会很慢。于是不再在每次迭代重新计算 $J$，而是改用 quasi-Newton methods（拟牛顿方法），去近似或更新 $J(c_{\\text{new}})$。原则上 $\\Delta J$ 涉及 $J$ 的导数，因而是 $f$ 的二阶导数。其回报是二阶精度以及 Newton 方法的快速收敛。但当 $n$ 很大（例如在 deep learning（深度学习）中）时，计算全部二阶导数的代价可能高得无法承受。\r\n\r\n拟牛顿方法在 $J(c_{\\text{old}})$ 上构造一个 low rank update（低秩更新），而不是在 $c_{\\text{new}}$ 处计算一个全新的 Jacobian。该更新反映了随 (17) 中计算 $c_{\\text{new}}$ 而来的新信息。由于 Newton 方法中出现的是 $J^{-1}$，更新公式针对它对 $J_{\\text{new}}^{-1}$ 的秩一改变。这里的关键是——而且不需要 $f$ 的导数：\r\n\r\n```math\r\nJ_{\\text{new}}\\,(c_{\\text{new}} − c_{\\text{old}}) = f_{\\text{new}} − f_{\\text{old}} \\qquad \\text{quasi-Newton condition（拟牛顿条件）} \\tag{18}\r\n```\r\n\r\n这就是我们沿移动方向所获得的关于 $J\\,\\Delta c = \\Delta f$ 的信息。由于方程 (17) 用的是 $J^{-1}$ 而不是 $J$，我们就更新 $J^{-1}$ 使之满足 (18)。Sherman-Morrison 公式可以做到这一点。或者用 BFGS correction（BFGS 校正），那是由四位作者各自独立发现的一个 rank-2 matrix（秩二矩阵）。另一种做法是去更新 $J_{\\text{old}}$ 的 LU 分解或 $LDL^T$ 分解。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（拟牛顿法：知道得少，就改动得少）：**</span> 核心两个字：**最小改动**。为什么不能直接算 $J$？牛顿法每步要解 $J(c_{\\text{old}})\\,\\Delta c = −f(c_{\\text{old}})$，$J$ 是 $n \\times n$；在深度学习里，求出它的每个偏导向量都对应一次第七章的反向传播，$n$ 到千万级，代价爆炸。而一步迭代真正买到的新信息只有割线条件 (18) 那一条向量方程：$n$ 个标量方程定不住 $n^2$ 个未知元，欠定维数是 $n^2 − n$。所以要补一条选择准则，把解唯一化。**补哪条准则，就得到哪个算法。** BFGS 的准则是「在对称正定矩阵里挑离旧矩阵最近的那个」，于是它天然保对称、在凸问题里保正定，搜索方向才保证下降；它用两个秩一项而非一个，正是为了留在正定这个约束类里——若只在对称类里找最近点，最小改动只需一个秩一项（SR1），但它可能破坏正定性。约束类放宽，解的形式更简单，你要的性质也更弱，这就是设计上的取舍。验算一个二维反例：$c_{\\text{old}}=(0,0)$、$c_{\\text{new}}=(1,1)$、$f_{\\text{old}}=(1,0)$、$f_{\\text{new}}=(0,1)$，则 $\\Delta c=\\binom{1}{1}$，割线条件要求 $J_{\\text{new}}\\binom{1}{1}=\\binom{-1}{1}$。取 $J_{\\text{old}}=I$，SR1 更新中 $y-Js=\\binom{-2}{0}$、分母 $(y-Js)^{T}s=-2$，得 $J_{\\text{new}}=\\begin{bmatrix}-1&0\\\\0&1\\end{bmatrix}$：割线条件成立，特征值却是 $-1$ 与 $1$，已不正定；这正是 BFGS 宁愿多花一个秩也要保住正定性的原因。再看 BFGS 本身：取 $\\Delta f=\\binom{2}{-2}$，则 $y^{T}s=0$，而 BFGS 的分母正是 $y^{T}s$，更新直接无定义——工程实现靠 Wolfe 线搜索保证 $y^{T}s>0$，这才是那张安全网。往前看一步：只存最近 $m$ 步 $\\Delta c,\\Delta f$、把内存从 $O(n^{2})$ 压到 $O(mn)$ 的做法就是 L-BFGS；$n=10^{6}$ 时满矩阵要 $10^{12}$ 个数，$m=10$ 的 L-BFGS 只要 $10^{7}$ 个数，差五个数量级，这就是它成为深度学习默认优化器的原因。命名模板：**约束类决定秩数**——先写下你要的性质集合（对称、正定、低秩），再在这个集合里做最小改动，公式里出现几项秩一、分母上出不出 $y^{T}s$，都是约束类的副产品。跨课程连接（凸优化 / 6.006）：$y^{T}s>0$ 就是函数沿 $s$ 方向的平均曲率为正，Armijo 加 Wolfe 线搜索是花一点额外求值把它买到手的，没有线搜索，BFGS 的正定性只是纸面上的；而 6.006 关心最坏情况界与数据结构不变式，这里的关键量是收敛阶（牛顿二次、拟牛顿超线性、梯度下降线性）与每步预算的乘积，衡量口径不同。与 part002 的 minimum norm solution 是同一个原则：约束不够时，用最小改动或最小范数把解钉死。\r\n\r\n这些方程 $f(c) = 0$ 常常来自最小化一个函数 $F(c)$。此时 $f = (\\partial F/\\partial c_1, \\dots, \\partial F/\\partial c_n)$ 正是该函数 $F$ 的 gradient（梯度），而在 minimum point（极小值点）处有 $f = 0$。于是 Jacobian 矩阵 $J$（$f$ 的一阶导数）变成 Hessian matrix（海森矩阵）$H$（$F$ 的二阶导数）。它的元素是 $H_{ik} = \\partial^2 F/\\partial c_i \\partial c_k$。如果一切顺利，Newton 方法会迅速找到使 $F$ 取极小值的点 $c^*$，在该点导数为 $f(c^*) = 0$。那种近似地更新 $J$、而不重新计算 $J$ 的拟牛顿方法，对大型 $n$ 来说代价要低得多。对于极大规模的问题（正如机器学习中的许多问题），其代价可能仍然过高。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.1, p.165</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7288,
+            "outputTokens": 5233,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7288,
+              "outputTokens": 5233,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 9297,
+          "contextWindow": 1000000,
+          "pressureTokens": 10744,
+          "sampledSurfaceTokens": 6006
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4446,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3291,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 8153
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

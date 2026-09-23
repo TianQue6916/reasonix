@@ -1,0 +1,221 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129542491,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 32,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 32,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_191 = 书页 188\r\npage_192 = 书页 189\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:191@@（书页 188）\r\n−-- OCR 原文 −--\r\nL ow Rank an d Compressed Sensing\r\n188\r\nHere are the thre e step s that re ach a new z, closer t0 æ*,z ，\r\nADMM\r\nargmin Lp （ Zk' Yk)\r\nk + 1\r\nargmin Lp @k+l' z ， Yk)\r\nZk+1\r\nYk + P (ACk+1 + BZk+1 一 c)\r\n+ 1\r\n（ 13 ）\r\n（ 14 ）\r\n（ 15 ）\r\n№ practice, ADMM can be slow to reach hi gh accuracy—but surpnsingly fast to achi ev e\r\nacceptable accuracy. We mention here 000 ng ahead to Ch apter V II on deep learning)\r\nthat modest accuracy is 0 n sufficient and even desirable—in situations w here overfitting\r\nthe trmning data leads t0 unhappy results on test data.\r\nWe continue to follow Boyd et 止 by rescaling the dual variable The new vanable is\r\n= y/p and the lin e and quadratic term s are combined in the Lagrangian · Thi s produces\r\na scaled ADMM that has advantages in practice ·\r\nCk+1\r\nZk+1\r\nk + 1\r\nargmin (g + + 1 + Bz 一 c + 目 2 ）\r\nUk + ACk+1 + BZk+1 一 c\r\n（ 16 ）\r\n（ 17 ）\r\n（ 18 ）\r\n№ any optimzauon, and c ertamly in th1S one ， we should identify the equations we are\r\nsolving · Those equations are satisfied ()s we wanted) by the optimal * ， z* in the pnmal\r\np roblem and * or * in the dual problem ：\r\n0 = v ） + 矿\r\n0 = Vg(z*) 十 BTY*\r\nGradients Vf and Vg\r\n0 ） + 矿\r\n0 Dg(z*) + BTy*\r\nSubdifferentials Df and Og\r\n（ 19 ）\r\n（ 20 ）\r\nA proper treatment of 山 1 s prob lem (and a convergence proof for ADMM ） would reqmre\r\nmore convex analysis than we are prep ared for. B ut the reader will see why each step\r\nwas taken, in reaching the scaled ADMM in （ 16 ） 一 （ 18 ） · C0nvergence holds (see recent\r\npapers of HaJinezhad) even if 歹 an d g are not stnctly convex. (They must be closed and\r\n0 on a closed nonempty convex s et and = + otherwise•\r\nproper. This allows\r\nSubdifferentials = multivalued derivatives e n ter for such a function, at the edge of K.)\r\nAnd the unaugmented Lagrangian must have a saddle point.\r\nThe next pages f0110w Boyd's ADMM book by developing four maJ0r examples ·\r\n1 D. P. B ertsekas ， Constrained 0 讫 0 五 0 and Lagrange M 况 驷 五 er Me 0 小 ，\r\nAthena S cientific （ 1986 ） ·\r\n2 M. Fortin and R. Glowinski, Augmented g g Me 0 小 ， No 感 卜 Holl 皿 d （ 1983 巧 ） ·\r\n3 D. Hajinezhad and Q Shi ， ADMM for a c 0 co “ b 沅 r 叩 五 讫 on ，\r\nJournal of GIob Optimization 70 （ 2018 ） 261 二 288 ·\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 191 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 188，属 Part III Low Rank and Compressed Sensing（低秩与压缩感知）中 §III.4 Split Algorithms for $A^{+}$（$A^{+}$ 的分裂算法）的续页；页眉与印页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声按数学语境重建：`Lp` 恢复为 $L_{\\rho}$，`Zk' Yk` 恢复为 $z^{k}, y^{k}$，`@k+l`、`ACk+1` 恢复为 $x^{k+1}$、$Ax^{k+1}$，`矿` 恢复为 $A^{T}y^{*}$，`Vf`、`Dg` 恢复为梯度 $\\nabla f$ 与次微分 $\\partial g$，`000 ng`、`0 n`、`trmning`、`HaJinezhad` 分别修正为 looking、often、training、Hajinezhad。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## ADMM（交替方向乘子法）\r\n\r\n下面就是那三步迭代，它们得到新的 $x, z, y$，并且越来越靠近最优的 $x^{*}, z^{*}$：\r\n\r\n```math\r\nx^{k+1} = \\arg\\min_{x} L_{\\rho}\\left(x, z^{k}, y^{k}\\right) \\tag{13}\r\n```\r\n\r\n```math\r\nz^{k+1} = \\arg\\min_{z} L_{\\rho}\\left(x^{k+1}, z, y^{k}\\right) \\tag{14}\r\n```\r\n\r\n```math\r\ny^{k+1} = y^{k} + \\rho\\left(Ax^{k+1} + Bz^{k+1} − c\\right) \\tag{15}\r\n```\r\n\r\n在实践中，ADMM 要到达很高的精度（high accuracy）可能很慢——但要达到可接受的精度却快得惊人。这里我们要提一句（提前看向第 VII 章关于 deep learning（深度学习）的内容）：适中的精度往往是足够的，甚至是人们所希望的——因为在对 training data（训练数据）过度拟合（overfitting）的情形下，测试数据上会得到不令人满意的结果。\r\n\r\n我们继续沿用 Boyd 等人的做法，对 dual variable（对偶变量）进行 rescaling（重新缩放）。新变量是 $u = y/\\rho$，线性项与二次项在 Lagrangian（拉格朗日函数）中被合并。这样就产生一个 scaled ADMM（缩放形式的 ADMM），它在实践中具有优势。\r\n\r\n```math\r\nx^{k+1} = \\arg\\min_{x}\\left( f(x) + \\frac{\\rho}{2}\\left\\|Ax + Bz^{k} − c + u^{k}\\right\\|^{2} \\right) \\tag{16}\r\n```\r\n\r\n```math\r\nz^{k+1} = \\arg\\min_{z}\\left( g(z) + \\frac{\\rho}{2}\\left\\|Ax^{k+1} + Bz − c + u^{k}\\right\\|^{2} \\right) \\tag{17}\r\n```\r\n\r\n```math\r\nu^{k+1} = u^{k} + Ax^{k+1} + Bz^{k+1} − c \\tag{18}\r\n```\r\n\r\n在任何 optimization（优化）中，尤其是在这一个优化中，我们都应当弄清楚自己在解哪些方程。这些方程（正如我们所希望的那样）被原问题（primal problem）的最优解 $x^{*}, z^{*}$ 与对偶问题（dual problem）的最优解 $y^{*}$ 或 $u^{*}$ 所满足：\r\n\r\n```math\r\n0 = \\nabla f(x^{*}) + A^{T}y^{*} \\tag{19}\r\n```\r\n\r\n```math\r\n0 = \\nabla g(z^{*}) + B^{T}y^{*} \\tag{20}\r\n```\r\n\r\n也就是 Gradients（梯度）$\\nabla f$ 与 $\\nabla g$；\r\n\r\n```math\r\n0 \\in \\partial f(x^{*}) + A^{T}y^{*}\r\n```\r\n\r\n```math\r\n0 \\in \\partial g(z^{*}) + B^{T}y^{*}\r\n```\r\n\r\n也就是 Subdifferentials（次微分）$\\partial f$ 与 $\\partial g$。\r\n\r\n对这一问题的恰当处理（以及 ADMM 的收敛性证明）所需要的 convex analysis（凸分析）超出了我们在这里的准备。但读者会看明白，在通往（16）—（18）的 scaled ADMM 的过程中，每一步为什么这样走。即使 $f$ 与 $g$ 不是 strictly convex（严格凸）的，收敛性仍然成立（见 Hajinezhad 最近的论文）。它们必须是 closed（闭的）且 proper（正常的）：这允许 $f(x) = 0$ 在一个闭的非空凸集 $K$ 上成立，而在该集合之外 $f(x) = +\\infty$。对于这样的函数，在集合 $K$ 的边缘处就要用到 subdifferential（次微分），也就是 multivalued derivative（多值导数）。并且，未增广的（unaugmented）Lagrangian 必须有一个 saddle point（鞍点）。\r\n\r\n接下来的几页将按照 Boyd 的 ADMM 专著，展开四个主要的例子。\r\n\r\n> <span style=color:#7f8c8d;>**注释：** 1. D. P. Bertsekas, *Constrained Optimization and Lagrange Multiplier Methods*（约束优化与拉格朗日乘子法）, Athena Scientific (1986). 2. M. Fortin and R. Glowinski, *Augmented Lagrangian Methods*（增广拉格朗日方法）, North-Holland (1983). 3. D. Hajinezhad and Q. Shi, “ADMM for a class of convex … optimization,” *Journal of Global Optimization* 70 (2018), 261–288.（第 3 条标题中段在 OCR 中残缺，此处仅按可辨字词重建。）</span>\r\n\r\n@@PAGE:192@@（书页 189）\r\n−-- OCR 原文 −--\r\nsplit Algotithms for +\r\n189\r\nExample 1 This classical problem of convex optimization w ill be the starting P0int\r\nof Chapter VI. The function f(c) is convex · Th e set K is clo sed and convex.\r\nMinimize f(c) for in K.\r\n(21)\r\nADMM rewrites ' in K ” as a mimmiz ation of g. lt connects c to z by a constraint.\r\nMinimize f(c) + g(z) subj ect to 一 z = 0 ·\r\n（ 22 ）\r\ng is the indicator function of the set K · g(z)\r\n0 or + for z in or o ut of K.\r\n0 at the ， which forces the minimizer t0 be in K. The indic ator func-\r\nSO g =\r\ntion g(z) is closed and convex ， because the cylinder above its graph (above K) is closed\r\nand convex. The scaled augmented Lagrangian includes the penalty term ：\r\n（ 23 ）\r\nNotic e h OW the usual (c 一 z) w as folded into equation （ 23 ） by the scaling step ·\r\nThen ADMM splits （ 22 ） intO a 襯 im 讫 a 五 0 alternated w 让 九 a projection ：\r\nADMM\r\nZk+1 = projection Of k + 1 + Uk+1 ontO K\r\nk + 1 = QLk + Ck+1 一 Zk+1\r\nExample 2 So thresholding An important problem has an exact solution.\r\n= 入@1 丨 + 一 · + 入@刘 splits into scalar functions 入@在\r\n） = xl 回 1\r\nSeparauon by ADMM leads to the minimization of each special function fl to\r\n翊 = + 一 一 2 with\r\nZi 一\r\nThe solution Ci* is the soft thresholding' ' of drawn in S ection VI.4 ：\r\n（ 24 ）\r\nN 0t 0 虱 y is this thre sholdin g function an explicit s olution to important nonlinear\r\nproblem, is so a shrinkage operator ： ev erY 吻 moves toward zero ·\r\nWe will soon s ee this s oft thresholding as a proximal' ' op erator•\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 192 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 189，属 §III.4 Split Algorithms for $A^{+}$（$A^{+}$ 的分裂算法）；页眉与印页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声按数学语境重建：`襯 im 讫 a 五 0` 恢复为 minimization，`QLk` 恢复为 $u^{k}$，`Ck+1`、`Zk+1` 恢复为 $x^{k+1}$、$z^{k+1}$，`入` 恢复为 $\\lambda$，`@` 与 `丨` 恢复为 $x$ 与 $|\\,|$，`N 0t 0 虱 y` 恢复为 Not only。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n## Example 1（例 1）\r\n\r\n这个经典的 convex optimization（凸优化）问题将成为第 VI 章的起点。函数 $f(x)$ 是凸的，集合 $K$ 是闭的、凸的。\r\n\r\n```math\r\n\\text{minimize } f(x) \\text{ for } x \\in K \\tag{21}\r\n```\r\n\r\nADMM 把「$x$ 在 $K$ 中」改写成对 $g$ 的一个最小化。它用一条约束把 $x$ 与 $z$ 连接起来。\r\n\r\n```math\r\n\\text{minimize } f(x) + g(z) \\quad \\text{subject to } x − z = 0 \\tag{22}\r\n```\r\n\r\n这里 $g$ 是集合 $K$ 的 indicator function（指示函数）：\r\n\r\n```math\r\ng(z) = \\begin{cases} 0, & z \\in K \\\\ +\\infty, & z \\notin K \\end{cases}\r\n```\r\n\r\n于是 $g$ 在最小值处取 $0$，这就迫使最小值点落在 $K$ 之中。指示函数 $g(z)$ 是闭的、凸的，因为它在图像之上（也就是在 $K$ 之上）的柱体是闭的、凸的。缩放后的增广 Lagrangian（augmented Lagrangian）包含 penalty term（惩罚项）：\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 例 1 里那个分段定义的 $g$（$z\\in K$ 取 $0$，$z\\notin K$ 取 $+\\infty$）叫指示函数（indicator function）。它是个只有两个取值的函数，看上去什么信息都没装，实际上把$x$ 必须在 $K$ 里这条硬约束**编码进了目标函数**，这正是无约束化约束问题的标准手腕，值得单独说清楚。\r\n\r\n为什么能编码成功？因为最小化时 $+\\infty$ 是不可接受的值——任何取 $+\\infty$ 的候选点都会被直接淘汰，所以极小值点只可能落在 $g(z)=0$ 的区域，也就是 $K$ 内部。反过来说，如果不用 $+\\infty$ 而用有限的大数 $M$ 当罚函数，那就只是把违反约束的价格标成 $M$，只要 $M$ 不够大就仍可能出现越界的极小点，约束是软的；指示函数把价格标成无穷，约束才是硬的。验算一维例子：$K=[0,1]$，minimize $f(x)=x^2$ subject to $x\\in K$，与 minimize $f(x)+g(x)=x^2+\\iota_{[0,1]}(x)$ 的最优值都是 $0$，都在 $x=0$；把 $f$ 换成 $f(x)=(x-3)^2$，约束版本的最优值是 $4$（在 $x=1$），无约束化版本给出 $1^2+4=5$ 在 $x=1$、在 $x=3$ 处 $0+\\infty$，取最小仍是 $x=1$ 处的 $5$——最优**点**相同，最优**值**相差 $g$ 的取值，这一点在做对偶时必须小心，因为常数偏移会把整个对偶函数整体下移，零点位置不变，所以对偶最优解不受影响，受影响的只是对偶问题的目标值，这是标准的 Fenchel 对偶记账方式。再看矩阵情形：$A^TA$ 常常奇异，这时 $x\\mapsto\\|Ax-b\\|^2$ 有整片极小点集，而只要 $\\rho>0$，加上指示函数后的目标在 $K$ 上仍是强凸的，极小点唯一。\r\n\r\n再算 ADMM 把 (22) 分裂后的 $z$ 步。$z^{k+1}=\\arg\\min_z\\big(g(z)+\\frac{\\rho}{2}\\|x^{k+1}-z+u^k\\|^2\\big)$。因为 $g$ 只认在不在 $K$ 里，这个最小化就是：在 $K$ 内最小化那个二次距离，答案自然是 $x^{k+1}+u^k$ 在 $K$ 上的投影，即 $z^{k+1}=P_K(x^{k+1}+u^k)$。这就是正文那句一个 minimization 与一个 projection 交替的来历：**指示函数把抽象的约束最小化变成了几何上的投影**，而投影对盒子、球、非负象限这些常见 $K$ 都有 O(n) 的显式公式：盒子上就是逐分量截断到区间，球面上就是把过长的向量按范数缩放，非负象限就是把负分量清零。三个常见投影都是逐元素操作，单步代价 O(n)，所以带指示函数的 ADMM 每轮几乎不额外花钱。拿 $K=[0,1]$、$\\rho=2$、$x^{1}=5$、$u^1=0$ 走一步：二次项 $\\frac{\\rho}{2}(5-z)^2$ 在实数上的极小点是 $z=5$，投影到 $K$ 得 $z^{2}=1$，而带硬约束的版本这一步只能取 $z=1$，两者完全相同——$g$ 做的事只是把无约束的 $5$ 裁回 $K$ 的边界，裁法与约束版这一步的解一模一样。\r\n\r\n把它抽象为模板并命名：**指示函数换投影法（indicator-to-projection）**。三步走：(1) 把约束 $x\\in K$ 改写成加一个指示函数 $g$；(2) 引入冗余变量 $z$ 与约束 $x=z$，让 $g$ 只作用在 $z$ 上，这样 $x$ 步保持二次型光滑、$z$ 步保持几何化；(3) 在 ADMM 的 $z$ 步中，$g$ 的存在使最小化退化为到 $K$ 的投影，投影有闭式时整个算法就没有内层循环。检验要点：必须有 $K$ 闭且凸，投影才存在且唯一——若 $K$ 非凸，$P_K$ 可能多值，整个证明链条断裂；若 $K$ 开，如 $K=(0,1)$，$P_K(5)$ 只能把点停在 $1$，而 $1\\notin K$，投影根本不存在，算法当步就失效。这就是正文特意补一句指示函数 $g(z)$ 是闭的、凸的的原因，它不是客套话，是逻辑必需。\r\n\r\n顺手连一条跨课程：投影天然幂等，$P_K(P_K(v))=P_K(v)$，把任何向量先拉进 $K$ 再拉一次结果不变，这正好对应 6.042J 里作用在集合上的函数的幂等性，与等价关系的自反性表面上同形，但一个是函数性质、一个是关系性质，别混为一谈。投影还是非扩张的：$\\|P_K(v)-P_K(w)\\|\\le\\|v-w\\|$，不放大距离，这正是 ADMM 收敛分析的引擎。\r\n\r\n\r\n```math\r\nL_{\\rho}(x, z, u) = f(x) + g(z) + \\frac{\\rho}{2}\\left\\|x − z + u\\right\\|^{2} \\tag{23}\r\n```\r\n\r\n注意通常的 $(x − z)$ 罚项是怎样通过 scaling step（缩放步骤）被折进方程（23）的。然后 ADMM 把（22）分裂（split）成一个 minimization（最小化）与一个 projection（投影）交替进行的迭代：\r\n\r\n**ADMM**\r\n\r\n```math\r\nx^{k+1} = \\arg\\min_{x}\\left( f(x) + \\frac{\\rho}{2}\\left\\|x − z^{k} + u^{k}\\right\\|^{2} \\right)\r\n```\r\n\r\n```math\r\nz^{k+1} = \\text{projection of } x^{k+1} + u^{k+1} \\text{ onto } K\r\n```\r\n\r\n```math\r\nu^{k+1} = u^{k} + x^{k+1} − z^{k+1}\r\n```\r\n\r\n其中投影 $z^{k+1} = P_{K}(x^{k+1} + u^{k+1})$ 表示到集合 $K$ 上的 projection（投影）。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n## Example 2（例 2）Soft Thresholding（软阈值）\r\n\r\n一个重要的问题有精确解。其中的 $\\lambda|x_1| + \\cdots + \\lambda|x_n|$ 分裂成一个个标量函数 $\\lambda|x_i|$。\r\n\r\n用 ADMM 做 separation（分离），就把问题化为对每个特殊函数 $f_i$ 的极小化：\r\n\r\n```math\r\nf_i(x_i) = \\lambda|x_i| + \\frac{\\rho}{2}\\left(x_i − v_i\\right)^{2}, \\qquad v_i = z_i^{k} − u_i^{k}\r\n```\r\n\r\n解 $x_i^{*}$ 就是相应量的 soft thresholding（软阈值），其图像画在第 VI.4 节中：\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 公式 (24) 那个分段表达式看起来像三条规则拼起来的补丁，其实它来自一个一维的、可以手算的极小化问题。请务必自己推一遍，因为后面 §III.4 里所有 $\\ell_1$ 子问题有闭式解的说法都靠它撑腰。\r\n\r\n一维问题是：minimize $f(t)=\\lambda|t|+\\frac{\\rho}{2}(t-v)^2$。分成 $t>0$、$t<0$、$t=0$ 三段。$t>0$ 时 $f'=\\lambda+\\rho(t-v)$，令其为零得 $t=v-\\lambda/\\rho$，但这个候选点只有在 $v>\\lambda/\\rho$ 时才落在 $t>0$ 区间内；$t<0$ 时 $f'=-\\lambda+\\rho(t-v)=0$ 得 $t=v+\\lambda/\\rho$，仅在 $v<-\\lambda/\\rho$ 时有效；当 $|v|\\le\\lambda/\\rho$ 时两个驻点都跑出了各自区间，此时唯一的极小值点就是那个不可导的 $t=0$。验算：取 $\\lambda/\\rho=1$、$v=0.6$，$t>0$ 段给出 $-0.4<0$ 无效，$t<0$ 段给出 $1.6>0$ 无效，于是 $t^*=0$；取 $v=3$，得 $t^*=2$，把 $|t|$ 从 $3$ 削到 $2$，整整削掉一个 $\\lambda/\\rho$。\r\n\r\n把它抽象成一个可复用的模板，命名为**一维分段接力法（1-D piecewise relay）**：处理 $\\lambda|x_i|+\\text{光滑项}$ 这类目标时，(1) 先在 $x_i>0$ 与 $x_i<0$ 两个开区域各自求驻点并记下解析式；(2) 用驻点是否落在本区域内做筛选，这一步就是接力的交接棒；(3) 若都不落在区域内，则极小值只能落在不可导点 $x_i=0$ 上。模板的适用条件是目标函数凸且不可导点只有有限个（这里是每个坐标的原点）。把它用在 $n$ 维可分离问题上，因为 $\\sum_i$ 与 $\\min$ 可以交换，整体解就是每个坐标独立做一次一维接力——**这正是 ADMM 能把大问题拆成 $n$ 个标量问题的原因**。\r\n\r\n顺带记住这个算子的两个名字：soft thresholding（软阈值）与 shrinkage（收缩）。从工程角度看它的作用极其直观——把每个分量朝零吸 $\\lambda/\\rho$ 的距离，幅度不足 $\\lambda/\\rho$ 的直接吸成零。对照岭回归：$\\ell_2$ 惩罚给出的解是 $v/(1+\\lambda/\\rho)$，是**乘性缩放**，所以再小也是非零；$\\ell_1$ 给的是**加性平移后截断**，所以能精确置零。这个差别就是 LASSO 与 ridge 的全部差异所在。\r\n\r\n换个角度验证。不看驻点，改看次梯度：$0\\in\\lambda\\partial|t|+\\rho(t-v)$，其中 $t>0$ 时 $\\partial|t|=\\{1\\}$，$t<0$ 时 $\\{-1\\}$，$t=0$ 时 $[-1,1]$。把后一种代进去，$0\\in\\lambda[-1,1]-\\rho v$，等价于 $|v|\\le\\lambda/\\rho$。分段公式本来就是最优性条件的解，那个三条规则拼补丁的观感纯属误解。习惯次梯度还有一个好处：$|t|$ 在 $t=0$ 处是往上的尖点，最优点可能正好落在那里，而导数判据在那里失效，只有次梯度能给出判据。\r\n\r\n一条跨课程连接。6.042J 讲集合划分时，正负实轴去掉原点本身就是两个天然等价类，$t=0$ 是被单独拎出来的退化类；这里的接力就是按等价类分情况求解，驻点落在哪个区间就是在判定候选解属于哪个等价类，三类各取一次再比较就是取遍所有等价类。区别要说清：等价关系给的是分完再遍历的结构保证，它不保证这三块合起来就是全部答案；真正干活的是凸性——有了凸性，局部最优才等于全局最优，三个候选值取最小才算完整，这也正是次梯度判据成立的前提。\r\n\r\n同一件事在凸优化里有名字：$t^*$ 就是 $\\lambda|t|$ 在点 $v$ 处的近端算子（proximal operator），这也是 LASSO 的坐标下降每步都要调用的那个一维 oracle；ISTA 是梯度下降一步再套一次软阈值，ADMM 则把它嵌进增广拉格朗日的坐标子问题里，三者的区别只在调用方式与收敛保证，算子本身是同一个。\r\n\r\n\r\n```math\r\nx_i^{*} = \\text{soft}\\left(v_i, \\frac{\\lambda}{\\rho}\\right) = \\begin{cases} v_i − \\frac{\\lambda}{\\rho}, & v_i \\ge \\frac{\\lambda}{\\rho} \\\\ 0, & |v_i| \\le \\frac{\\lambda}{\\rho} \\\\ v_i + \\frac{\\lambda}{\\rho}, & v_i \\le −\\frac{\\lambda}{\\rho} \\end{cases} \\tag{24}\r\n```\r\n\r\n这个 thresholding function（阈值函数）不仅是一个重要非线性问题的 explicit solution（显式解），它还是一个 shrinkage operator（收缩算子）：每一个 $x_i$ 都朝零移动。我们很快就会看到，这种 soft thresholding 就是一个 proximal operator（邻近算子）。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 32,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 32,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 32,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 32,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 32,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 15409,
+            "outputTokens": 10273,
+            "cacheReadTokens": 37632,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 3,
+            "buckets": {
+              "uncachedInputTokens": 210,
+              "outputTokens": 6400,
+              "cacheReadTokens": 22400,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 32,
+        "val": {
+          "surfaceTokens": 25845,
+          "contextWindow": 1000000,
+          "pressureTokens": 22610,
+          "sampledSurfaceTokens": 22409
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 32,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3604,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1303,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 12512,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 144,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 3113,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 27,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 3436,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 24701
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 32,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 32,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 29,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 31
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 32,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 32,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 32,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 32,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 32,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 32,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}
