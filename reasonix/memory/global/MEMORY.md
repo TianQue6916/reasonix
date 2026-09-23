@@ -127,3 +127,5 @@
 - [空壳 word 占位文档识别与清理 判定标准 6 042j 547 5 文件 md5 不同 内容不同的教训](空壳-word-占位文档识别与清理-判定标准-6-042j-547-5-文件-md5-不同-内容不同的教训.md) — [global/project] 空壳 Word 占位文档识别与清理：判定标准、6.042J 547→5 文件、MD5 不同≠内容不同的教训
 
 - [用户学业水平与教学适配指南](academic-level-and-teaching-style.md) — [global/feedback] 用户各学科当前水平、教材、学习阶段和最佳教学方式（大一暑假执行期更新）
+
+- [commandcode goat 额度查询端点与看板工具](commandcode-goat-额度查询端点与看板工具.md) — [global/reference] Command Code GOAT 套餐额度（5小时/周/月）的官方端点与本地看板工具 goat-usage.ps1（2026-09-23 实测打通）
