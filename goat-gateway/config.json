@@ -6,7 +6,9 @@
   "upstream": {
     "origin": "https://api.commandcode.ai",
     "basePath": "/provider/v1",
-    "localPrefix": "/v1"
+    "localPrefix": "/v1",
+    "userAgent": "commandcode-goat-gateway/1.0",
+    "stripClientHeaders": ["x-reasonix-", "x-session-id", "x-conversation-id", "x-topic-id"]
   },
   "maxAttemptsPerRequest": 4,
   "strategy": "session",

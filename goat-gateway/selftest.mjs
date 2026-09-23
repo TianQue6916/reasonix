@@ -286,7 +286,44 @@ async function main() {
   fs.writeFileSync(configPath, originalConfigText, 'utf8');
   await fetch(`http://127.0.0.1:${PORT}/_gateway/reload`);
 
-  // 10) 并发正常请求
+  // 10) 客户端带 x-reasonix-session-id 时：既不能崩，也要真正走 header 指纹
+  //     历史 bug：header 形态指纹是 "h:<16hex>"，selectKey 里 parseInt(fp.slice(0,8),16) 得到 NaN，
+  //     balanced[NaN] === undefined，随后读 .name 抛异常 → 整个请求 500。
+  const cfg10 = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  cfg10.strategy = 'session';
+  fs.writeFileSync(configPath, JSON.stringify(cfg10, null, 2), 'utf8');
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reload`);
+  const askWithSessionHeader = async (sid) => {
+    const r = await fetch(`http://127.0.0.1:${PORT}/v1/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: 'Bearer client-side',
+        'x-reasonix-session-id': sid,
+      },
+      body: JSON.stringify({
+        model: 'test-model',
+        stream: true,
+        messages: [{ role: 'user', content: 'header session probe' }],
+      }),
+    });
+    await r.text();
+    return r.status;
+  };
+  const h1 = await askWithSessionHeader('desktop-session-abc');
+  const h2 = await askWithSessionHeader('desktop-session-abc');
+  assert(h1 === 200 && h2 === 200, `x-reasonix-session-id requests should be 200, got ${h1}/${h2}`);
+  const sessions10 = await (await fetch(`http://127.0.0.1:${PORT}/_gateway/sessions`)).json();
+  assert(
+    sessions10.recent.some((x) => String(x.session).startsWith('h:')),
+    `header-based fingerprint should be registered as an h:... session, got ${JSON.stringify(sessions10.recent)}`,
+  );
+  console.log('PASS x-reasonix-session-id header fingerprint (no crash, header wins)');
+  fs.writeFileSync(configPath, originalConfigText, 'utf8');
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reload`);
+
+
+  // 11) 并发正常请求
   const many = await Promise.all(Array.from({ length: 20 }, () => ask()));
   assert(many.every((r) => r.status === 200), '20 concurrent normal requests should all be 200');
   console.log('PASS 20 concurrent requests');

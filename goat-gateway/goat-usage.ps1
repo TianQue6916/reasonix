@@ -23,8 +23,11 @@ param(
   [switch]$Json,
   [switch]$Brief,
   [switch]$NoColor,
-  [string]$KeysFile = (Join-Path $PSScriptRoot 'keys.json')
+  [int]$CacheSeconds = 60,
+  [switch]$Force,
+  [string]$KeysFile
 )
+if (-not $KeysFile) { $KeysFile = Join-Path $PSScriptRoot 'keys.json' }
 
 $ErrorActionPreference = 'Stop'
 try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 } catch {}
@@ -68,11 +71,23 @@ function Get-Color([double]$used, [double]$cap) {
 }
 
 function Render {
+  $cacheFile = Join-Path $env:TEMP 'goat-usage-cache.json'
+  $cached = $null
+  if (-not $Force -and $Watch -eq 0 -and $CacheSeconds -gt 0 -and (Test-Path $cacheFile)) {
+    try {
+      $c = Get-Content $cacheFile -Raw | ConvertFrom-Json
+      if (((Get-Date) - [datetime]$c.ts).TotalSeconds -lt $CacheSeconds) { $cached = @($c.rows) }
+    } catch {}
+  }
+
   $all = Get-Content $KeysFile -Raw | ConvertFrom-Json
   $list = $all.keys | Where-Object { $_.enabled -ne $false }
   if ($Key) { $list = $list | Where-Object { $_.name -eq $Key } }
   if (-not $list) { throw "keys.json 里找不到账号 '$Key'" }
 
+  if ($cached) {
+    $rows = @($cached | Where-Object { -not $Key -or $_.name -eq $Key })
+  } else {
   $rows = @()
   foreach ($k in $list) {
     try {
@@ -88,6 +103,8 @@ function Render {
     } catch {
       $rows += [pscustomobject]@{ name = $k.name; error = $_.Exception.Message; fetchedAt = (Get-Date).ToString('s') }
     }
+  }
+    try { (@{ ts = (Get-Date).ToString('s'); rows = $rows } | ConvertTo-Json -Depth 6) | Set-Content -Path $cacheFile -Encoding UTF8 } catch {}
   }
 
   if ($Json) { return ($rows | ConvertTo-Json -Depth 6) }

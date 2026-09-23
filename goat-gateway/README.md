@@ -60,9 +60,17 @@ dsh      ─┘  /v1      │ 会话 D ─┤──→ key qq    ← 会话按�
 - **响应头发出后上游断流不重试**：已经给客户端看了半截流，不能再换 key 透明重试；直接结束客户端流。
 - **重试策略分级**：`401/402/403/429` 立即冷却换 key；`5xx/网络错误` 先在同一个 key 上按 `attemptsPerKey` 重试，再换 key。
 - **Cloudflare 1010 单独识别**：不会再把 `error code: 1010` 当成 30 分钟 key 失效。
+- **修复 `x-reasonix-session-id` 指纹崩溃（2026-09-24）**：带该 header 的请求，指纹形如 `h:<16hex>`，
+  `selectKey` 里 `parseInt(fp.slice(0,8),16)` 得到 `NaN` → `balanced[NaN]` 未定义 → 读 `.name` 抛异常，**整个请求 500**。
+  现在统一走 `fingerprintBucket()`（`h:` 前缀/非法值都退化成 sha1 分桶），`selftest.mjs` 新增用例覆盖。
+- **统一上游 `User-Agent`（2026-09-24）**：以前把客户端的 header 原样转给上游，reasonix(Go-http-client) 与 dsh(undici) 的指纹不同，
+  Cloudflare 1010 的命中率也不同（表现为「同一个 key，一个客户端 200，另一个 1010」）。现在由 `upstream.userAgent` 统一，
+  并用 `upstream.stripClientHeaders` 丢掉 `x-reasonix-*` / `x-session-id` 等只服务于本地选 key 的头。
+- **1010 不再立刻双 key 冷却（2026-09-24）**：Cloudflare 1010 与 key 无关，现在先在同一 key 上按 `attemptsPerKey` 重试，
+  仍失败才冷却（20s），避免一次风控让两个账号同时冷却、客户端直接「卡住」。日志里 1010 会标记 `cloudflare=1010` 并附上实际 UA。
 - **配置/keys 热重载**：`http://127.0.0.1:8788/_gateway/reload`；`listen.port` 仍必须重启。
 - **`state.json` 原子写、body timeout、hop-by-hop header 清理、坏 JSON 保留上一版配置/keys。**
-- **新增自测**：
+- **新增自测**（含 `x-reasonix-session-id` header 指纹回归）：
 
 ```powershell
 node D:\Toolbox\goat-gateway\selftest.mjs
@@ -75,6 +83,9 @@ config/keys 坏 JSON 回退、session 指纹稳定、20 并发请求。
 
 ```powershell
 cd D:\Toolbox\goat-gateway
+
+# 公平基准：首字延迟 / 解码速率 / 端到端（别再拿 reasonix 状态栏 TPS 跟解码速率比）
+node bench-llm.mjs --runs 3
 
 # 健康检查（每个 key 的可用性、冷却、成败计数、策略、会话数）
 Invoke-RestMethod http://127.0.0.1:8788/health | ConvertTo-Json -Depth 5
@@ -159,6 +170,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\set-goat-endpoint.ps1 -Mod
 |---|---|---|
 | `listen` | `127.0.0.1:8788` | 本地监听地址 |
 | `upstream.basePath` | `/provider/v1` | 上游路径；本地 `/v1/xxx` 映射到 `/provider/v1/xxx` |
+| `upstream.userAgent` | `commandcode-goat-gateway/1.0` | 统一上游 User-Agent；置空字符串 = 透传客户端原值 |
+| `upstream.stripClientHeaders` | `['x-reasonix-','x-session-id',…]` | 转发前丢掉的客户端头前缀（仅本地选 key 用） |
 | `strategy` | `session` | `session` / `sticky` / `round-robin`（见上文策略表） |
 | `maxSessions` | 2000 | 会话绑定表上限，超出按最久未用淘汰 |
 | `maxAttemptsPerRequest` | 4 | 单请求最多换几个 key |

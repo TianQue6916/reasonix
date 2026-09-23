@@ -24,7 +24,17 @@ const LOG_DIR = process.env.GATEWAY_LOG_DIR || p('logs');
 
 const DEFAULTS = {
   listen: { host: '127.0.0.1', port: 8788 },
-  upstream: { origin: 'https://api.commandcode.ai', basePath: '/provider/v1', localPrefix: '/v1' },
+  upstream: {
+    origin: 'https://api.commandcode.ai',
+    basePath: '/provider/v1',
+    localPrefix: '/v1',
+    // 统一上游 User-Agent：不再原样透传客户端指纹。
+    // 原因：reasonix(Go-http-client) 与 dsh(undici) 头不同，Cloudflare 对它们的风控命中率不同，
+    // 会出现「同一个 key，一个客户端 200、另一个 1010」。置空字符串 = 保持透传。
+    userAgent: 'commandcode-goat-gateway/1.0',
+    // 这些客户端自定义头只在本地用于「会话粘 key」，对上游没有意义，还会多一个指纹。
+    stripClientHeaders: ['x-reasonix-', 'x-session-id', 'x-conversation-id', 'x-topic-id'],
+  },
   maxAttemptsPerRequest: 4,
   attemptsPerKey: 1,
   retryDelayMs: 250,
@@ -261,6 +271,19 @@ function pruneSessions() {
 //   session（默认）同一会话永远粘同一个 key（保缓存），不同会话按指纹分散（用上双账号并发）
 //   sticky         全局只粘一个 key，只在其失败时换（最保守）
 //   round-robin    交替使用（仅调试，会打断缓存、显著抬高成本）
+// 会话指纹可能是 16 位十六进制（消息指纹），也可能是 "h:<16hex>"（客户端 session header）。
+// 早期直接 parseInt(fp.slice(0,8),16)：header 形态会得到 NaN，balanced[NaN] === undefined，
+// 随后读 .name 抛异常 → 整个请求 500。这里统一转成稳定整数。
+function fingerprintBucket(fp, n) {
+  const v = String(fp);
+  const hex = v.startsWith('h:') ? v.slice(2) : v;
+  let num = parseInt(hex.slice(0, 8), 16);
+  if (!Number.isFinite(num)) {
+    num = parseInt(crypto.createHash('sha1').update(v).digest('hex').slice(0, 8), 16);
+  }
+  return (Number.isFinite(num) ? num : 0) % n;
+}
+
 function selectKey(candidates, fp) {
   const strategy = String(CFG.strategy || 'session').toLowerCase();
 
@@ -287,11 +310,11 @@ function selectKey(candidates, fp) {
     }
     const minLoad = Math.min(...fresh.map((k) => load[k.name]));
     const balanced = fresh.filter((k) => load[k.name] === minLoad);
-    const pick = balanced[parseInt(fp.slice(0, 8), 16) % balanced.length];
+    const pick = balanced[fingerprintBucket(fp, balanced.length)];
     const prev = state.sessions[fp];
     if (!prev || prev.key !== pick.name) {
       log(
-        `SESSION-BIND ${fp.slice(0, 8)} ${prev ? prev.key + ' -> ' : ''}${pick.name}` +
+        `SESSION-BIND ${fp.startsWith('h:') ? fp.slice(0, 9) : fp.slice(0, 8)} ${prev ? prev.key + ' -> ' : ''}${pick.name}` +
           ` (sessions per key: ${fresh.map((k) => `${k.name}=${load[k.name]}`).join(' ')})`,
       );
     }
@@ -376,6 +399,15 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     delete headers.host;
     delete headers.authorization;
     delete headers['content-length'];
+    // 客户端自定义会话头只在本地选 key 用；转发给上游毫无用处，只会多一个可被风控的指纹
+    for (const prefix of CFG.upstream.stripClientHeaders || []) {
+      const pre = String(prefix).toLowerCase();
+      for (const k of Object.keys(headers)) {
+        if (k.toLowerCase().startsWith(pre)) delete headers[k];
+      }
+    }
+    // 统一 User-Agent（可配置；空字符串表示继续透传客户端原值）
+    if (CFG.upstream.userAgent) headers['user-agent'] = String(CFG.upstream.userAgent);
     // 客户端请求已被 Node 解 chunk；转发时重新按 Buffer 设置 content-length，避免带上原始 chunked 头。
     headers.authorization = `Bearer ${keyEntry.key}`;
     if (body && body.length) headers['content-length'] = String(body.length);
@@ -432,7 +464,9 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
             const text = Buffer.concat(chunks).toString('utf8');
             log(
               `FAIL id=${reqId} ${clientReq.method} ${target} key=${keyEntry.name} status=${status} ${elapsed()}ms` +
-                ` sess=${sess} model=${model} stream=${isStream} body=${JSON.stringify(text.slice(0, 400))}`,
+                ` sess=${sess} model=${model} stream=${isStream}` +
+                (isCloudflareBlock(text) ? ' cloudflare=1010' : '') +
+                ` ua=${JSON.stringify(String(headers['user-agent'] || ''))} body=${JSON.stringify(text.slice(0, 400))}`,
             );
             finish({ ok: false, status, body: text, clientGone });
           });
@@ -467,7 +501,8 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           if (m && m.length) usage = m[m.length - 1].replace(/\s+/g, '');
           log(
             `OK id=${reqId} ${clientReq.method} ${target} key=${keyEntry.name} status=${status} ${elapsed()}ms` +
-              ` sess=${sess} model=${model} stream=${isStream}${usage ? ' usage=' + usage : ''}`,
+              ` sess=${sess} model=${model} stream=${isStream} ua=${JSON.stringify(String(headers['user-agent'] || ''))}` +
+              `${usage ? ' usage=' + usage : ''}`,
           );
           finishStream({ ok: true, status, usage });
         });
@@ -775,12 +810,19 @@ async function handle(req, res) {
     failures.set(target.name, count);
     // 401/402/403/429 属于“明确不能继续用这个 key”，立即冷却换 key；
     // 其它瞬时错误（5xx/网络/超时）允许在 attemptsPerKey 内先重试同一 key。
-    const immediateCooldown = [401, 402, 403, 429].includes(Number(r.status));
+    // 401/402/403/429 属于「这个 key 明确不能用」，立即冷却换 key；
+    // 唯独 Cloudflare 1010 是「客户端指纹被拦」，跟 key 无关：先在同一 key 上重试，
+    // 避免一次风控就把两个账号一起冷却 20s（客户端那边表现成「卡住」）。
+    const cfBlocked = isCloudflareBlock(r.body);
+    const immediateCooldown = [401, 402, 403, 429].includes(Number(r.status)) && !cfBlocked;
     const limit = immediateCooldown ? 1 : attemptsPerKey;
     if (count >= limit) {
       applyCooldown(target.name, r.status, r.body);
     } else {
-      log(`RETRY-SAME-KEY id=${req._reqId} key=${target.name} status=${r.status} fail=${count}/${attemptsPerKey}`);
+      log(
+        `RETRY-SAME-KEY id=${req._reqId} key=${target.name} status=${r.status} fail=${count}/${attemptsPerKey}` +
+          (cfBlocked ? ' cloudflare=1010' : ''),
+      );
     }
   }
 

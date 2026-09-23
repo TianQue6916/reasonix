@@ -24,7 +24,19 @@ function Test-Gateway {
   catch { return $false }
 }
 
-if (Test-Gateway) { exit 0 }
+if (Test-Gateway) {
+  # 顺带刷新 GOAT 额度缓存（≥4 分钟才刷一次）——供 reasonix statusline 秒读，避免状态栏卡在联网查询上
+  try {
+    $cache = Join-Path $env:TEMP 'goat-usage-cache.json'
+    $stale = $true
+    if (Test-Path $cache) { $stale = ((Get-Date) - (Get-Item $cache).LastWriteTime).TotalSeconds -gt 240 }
+    if ($stale) {
+      & (Join-Path $root 'goat-usage.ps1') -Force -Brief 2>$null | Out-Null
+      Write-Log 'quota cache refreshed'
+    }
+  } catch {}
+  exit 0
+}
 Start-Sleep -Seconds 5
 if (Test-Gateway) { exit 0 }
 
