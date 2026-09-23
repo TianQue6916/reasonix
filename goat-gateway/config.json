@@ -1,0 +1,38 @@
+{
+  "listen": {
+    "host": "127.0.0.1",
+    "port": 8788
+  },
+  "upstream": {
+    "origin": "https://api.commandcode.ai",
+    "basePath": "/provider/v1",
+    "localPrefix": "/v1"
+  },
+  "maxAttemptsPerRequest": 4,
+  "strategy": "session",
+  "strategyNote": "session = 同一会话粘同一个 key、不同会话按指纹分散；客户端取消不冷却不切 key；401/402/403/429 立即冷却换 key；5xx/网络错误按 attemptsPerKey 重试同一 key 后再换。",
+  "retryableStatus": [
+    401,
+    402,
+    403,
+    408,
+    429,
+    500,
+    502,
+    503,
+    504
+  ],
+  "cooldownMs": {
+    "unauthorized": 1800000,
+    "quota": 600000,
+    "rateLimit": 60000,
+    "server": 15000,
+    "network": 20000
+  },
+  "maxBodyBytes": 67108864,
+  "upstreamTimeoutMs": 900000,
+  "logKeepDays": 30,
+  "attemptsPerKey": 2,
+  "retryDelayMs": 500,
+  "bodyTimeoutMs": 120000
+}
