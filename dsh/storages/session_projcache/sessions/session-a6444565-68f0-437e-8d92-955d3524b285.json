@@ -2,7 +2,7 @@
   "version": 7,
   "record": {
     "identity": {
-      "formatVersion": 3,
+      "formatVersion": 4,
       "createdAt": 1790290626477,
       "cwd": "C:\\Users\\27063",
       "isSeeded": false,
@@ -56,14 +56,14 @@
         }
       },
       "contextPressure": {
-        "ver": 4,
+        "ver": 5,
         "seq": 3,
         "val": {
           "surfaceTokens": 0
         }
       },
       "contextBreakdown": {
-        "ver": 4,
+        "ver": 5,
         "seq": 3,
         "val": {
           "nodes": [],
@@ -82,6 +82,14 @@
           "lastStepStartSeq": null,
           "lastStepBoundary": null,
           "lastTurn": 0
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 3,
+        "val": {
+          "next-turn": [],
+          "next-step": []
         }
       },
       "sessionStats": {
@@ -115,14 +123,14 @@
         "val": "anchored-standard"
       },
       "subagentCatalog": {
-        "ver": 2,
+        "ver": 3,
         "seq": 3,
         "val": {
           "inheritedEventCount": 0
         }
       },
       "subagentTiming": {
-        "ver": 2,
+        "ver": 3,
         "seq": 3,
         "val": {
           "descriptorSeen": false,
@@ -144,27 +152,6 @@
           "seeded": true
         }
       },
-      "modelSelection": {
-        "ver": 2,
-        "seq": 3,
-        "val": {
-          "lastUsed": null,
-          "pending": null
-        }
-      },
-      "sessionListMetadata": {
-        "ver": 1,
-        "seq": 3,
-        "val": {
-          "blank": true,
-          "lastPromptAt": null
-        }
-      },
-      "imageLimits": {
-        "ver": 1,
-        "seq": 3,
-        "val": null
-      },
       "todos": {
         "ver": 2,
         "seq": 3,
@@ -185,13 +172,26 @@
         "seq": 3,
         "val": null
       },
-      "inbox": {
+      "modelSelection": {
+        "ver": 2,
+        "seq": 3,
+        "val": {
+          "lastUsed": null,
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
         "ver": 1,
         "seq": 3,
         "val": {
-          "next-turn": [],
-          "next-step": []
+          "blank": true,
+          "lastPromptAt": null
         }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 3,
+        "val": null
       }
     }
   }

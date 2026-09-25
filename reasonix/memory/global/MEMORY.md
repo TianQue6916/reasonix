@@ -148,3 +148,5 @@
 - [dsh 版本线快照 20260925](dsh-版本线快照-20260925.md) — [global/reference] dsh 版本现状快照（2026-09-25 实查 npm+GitHub+官网）：无正式版/GA（官网自称开发者预览版），npm latest=0.1.5-rc.3 / next=0.1.7-rc.2，本机 0.1.5-rc.2；桌面端存在于 apps/desktop（Electron，0.1.7-rc.2，仅 mac/win，无公开下载入口）
 
 - [reasonix 状态栏余额打桩为 goat 六额度 2026 09 25](reasonix-状态栏余额打桩为-goat-六额度-2026-09-25.md) — [global/reference] Reasonix 桌面版底部状态栏的 balance（“余额”）项数据源 = provider 级 balance_url；已把它指向本地 http://127.0.0.1:8790/balance（返回 2 账号×5h/周/月 共 6 个额度）+ 请求日志观测法，需重启 Reasonix 生效
+
+- [tool dsh 017rc2 upgrade 20260925](tool-dsh-017rc2-upgrade-20260925.md) — [global/reference] dsh 0.1.5-rc.2 → 0.1.7-rc.2 升级全过程档案（2026-09-25）：settings 导入机制/preset declaration 化/包改名三处迁移、headless+web 双路验证证据、未迁移项、回滚法、token 与 session V4 坑

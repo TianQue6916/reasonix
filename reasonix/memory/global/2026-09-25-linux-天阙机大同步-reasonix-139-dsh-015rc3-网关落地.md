@@ -82,3 +82,25 @@ Linux（Ubuntu 24.04.4，100.79.96.82 / LAN 192.168.0.103）长期离线（tails
 转移后计数 1995 vs 原 1999 **并非丢文件**——这 4 个与 rsync 时已存在的同名 `_` 文件是同一份 OCR 产物，改名后自然合并；各子目录抽样读取均正常。
 
 **未做（需 sudo 或属破坏性，用户选择放弃）**：缩 `/swap.img` 20G→8G（可释放 12G）、清回收站 3.9G、清 `~/.cache` 3.9G、清 snap 旧版本 2–3G。若日后需要，交换文件当前用量 0 且另有 zram 7.6G，缩容风险低。
+
+## 7. Linux 微信 bot 对齐（用户要求「重启、更新、做所有兼容性工作」）
+
+**运行方式（先查清，别猜）**：不是裸进程，而是 systemd 用户服务 `reasonix-bot.service`（enabled、`Restart=always`、`REASONIX_HOME=/home/tianque/.reasonix-bot`、`ExecStart=/home/tianque/.local/bin/reasonix bot start --channels weixin --dir ~/.reasonix/global-workspace`）。升级 reasonix 后 systemd 在 19:45 自动重启，**进程已是 v1.39.0**；重启命令就是 `systemctl --user restart reasonix-bot`。
+> 同理还有 `goat-gateway.service`、`reasonix-auto-rename.service`、`wps-watchdog.service` + 三个 timer（`reasonix-bot-rotate` / `reasonix-peak-price` / `wps-watchdog`）与 `~/.local/bin/reasonix-peak-warn-heal` 的 crontab。
+
+**发现的真问题**：bot home 的配置仍是**官方 DeepSeek**——`default_model="deepseek/deepseek-v4-flash"`、`provider_access=["deepseek"]`、三个 provider 全指 `api.deepseek.com`、`.env` 只有 `DEEPSEEK_API_KEY`。这与主力机修过的「bot HTTP 402」同源（官方余额已耗光）。
+
+**已做的对齐**（改前均备份 `config.toml.bak-gateway-*` / `.bak-approval-*` / `.env.bak-gateway-*`）：
+1. `default_model` → `commandcode-goat/deepseek/deepseek-v4.1-flash`
+2. `provider_access` → `["commandcode-goat"]`
+3. 追加 `commandcode-goat` provider 段：`base_url`/`chat_url`/`request_url` = `http://127.0.0.1:8788/v1...`、`api_key_env = COMMANDCODE_API_KEY`、`no_proxy = true`
+4. bot `.env` 补 `COMMANDCODE_API_KEY`（值从主 home 复制，不落记忆）
+5. `default_tool_approval_mode` → `danger-full-access`（与主力机一致；防 workspace-write 下 bash 被锁）
+6. `check_updates` → `false`
+7. 用 `python3 tomllib` 做 TOML 语法校验，再 `systemctl --user restart reasonix-bot`
+
+**验证**：`reasonix doctor`（带 `REASONIX_HOME=~/.reasonix-bot`）→ model = goat、`commandcode-goat → 127.0.0.1:8788  key:present`；用 bot 自己的 key 经网关实调 → **HTTP 200 / 3.6 s / content=「正常」**，网关 stats `forwarded=6 retries=0 switched=0`，两 key 均 available。
+
+**一处自我更正**：bot home 的 `skills`/`memory`/`projects`/`sessions` **原本就是指向主 home 的符号链接**（2026-08-10 建立），只是 `find` 默认不跟随符号链接才显示 0 文件——不需要也不应复制成副本。**教训：统计带符号链接的目录必须用 `find -L`。**
+
+**留给用户实测**：发一条微信消息给 bot，确认收发链路（可自动验证到 LLM 侧，微信侧必须真实消息）。
