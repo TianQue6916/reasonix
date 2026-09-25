@@ -34,6 +34,16 @@ const DEFAULTS = {
     userAgent: 'commandcode-goat-gateway/1.0',
     // 这些客户端自定义头只在本地用于「会话粘 key」，对上游没有意义，还会多一个指纹。
     stripClientHeaders: ['x-reasonix-', 'x-session-id', 'x-conversation-id', 'x-topic-id'],
+    // 上游连接复用开关（2026-09-24 加入）。
+    // 现象：复用长连接时，上游 SSE 速度会从 ~300 tok/s 一路衰减到个位数
+    //（同一分钟内：直连 315 tok/s / 走网关 9 tok/s，且网关侧耗时 16s→58s→90s→221s 递增）。
+    // false = 每个上游请求新建 TLS 连接，牺牲握手时间换稳定吞吐。true = 复用（旧行为）。
+    keepAlive: true,
+    // 上游连接最大存活时间（毫秒）。超过后下一个请求重建 Agent（新 TLS + 重新解析 DNS）。
+    // 动机：2026-09-24 15:23~15:39 网关侧出现十几分钟的「上游流突然变慢」
+    //（网关 9~90 tok/s，同一分钟直连 315 tok/s；网关侧耗时 16s→58s→90s→221s 
+    // 递增），_gateway/reload 重建连接后立刻恢复 3.5s。0 = 不回收。
+    agentMaxAgeMs: 300000,
   },
   maxAttemptsPerRequest: 4,
   attemptsPerKey: 1,
@@ -87,12 +97,29 @@ function loadConfig() {
 
 CFG = loadConfig();
 let upOrigin = new URL(CFG.upstream.origin);
-let agent = makeAgent();
+let agent = null;
+let agentBornAt = 0;
 
 function makeAgent() {
   const lib = upOrigin.protocol === 'http:' ? http : https;
-  return new lib.Agent({ keepAlive: true, maxSockets: 128, timeout: 60000 });
+  const keepAlive = CFG.upstream ? CFG.upstream.keepAlive !== false : true;
+  return new lib.Agent({ keepAlive, maxSockets: 128, maxFreeSockets: keepAlive ? 32 : 0, timeout: 60000 });
 }
+
+// 定期重建上游 Agent：长寿命连接可能进入「慢速」状态，换新连接即恢复。
+function resetAgent(reason) {
+  agent = makeAgent();
+  agentBornAt = Date.now();
+  if (reason) log(`AGENT-RECYCLE ${reason}`);
+}
+function getAgent() {
+  const maxAge = Number(CFG.upstream?.agentMaxAgeMs ?? 300000);
+  if (maxAge > 0 && agent && Date.now() - agentBornAt > maxAge) {
+    resetAgent(`age=${Date.now() - agentBornAt}ms > ${maxAge}ms`);
+  }
+  return agent;
+}
+resetAgent();
 
 function getTransport() {
   return upOrigin.protocol === 'http:' ? http : https;
@@ -102,7 +129,7 @@ function reloadRuntimeConfig() {
   const oldPort = CFG.listen.port;
   CFG = loadConfig();
   upOrigin = new URL(CFG.upstream.origin);
-  agent = makeAgent();
+  resetAgent('config reload');
   if (CFG.listen.port !== oldPort) {
     log(`WARN config reload: listen.port 从 ${oldPort} 变成 ${CFG.listen.port}；端口需要重启进程才会生效`);
   }
@@ -396,6 +423,9 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     let responseStarted = false;
     const target = mapPath(clientReq.url);
     const headers = stripHopByHop({ ...clientReq.headers });
+    // 诊断用：先留住客户端原始 UA（下面会被统一改写成网关 UA）。
+    // reasonix=Go-http-client/reasonix-*，dsh=undici —— 便于把日志按客户端归类。
+    const origUa = String(clientReq.headers['user-agent'] || '');
     delete headers.host;
     delete headers.authorization;
     delete headers['content-length'];
@@ -426,7 +456,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
         path: target,
         method: clientReq.method,
         headers,
-        agent,
+        agent: getAgent(),
       },
       (upRes) => {
         const status = upRes.statusCode || 0;
@@ -466,7 +496,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
               `FAIL id=${reqId} ${clientReq.method} ${target} key=${keyEntry.name} status=${status} ${elapsed()}ms` +
                 ` sess=${sess} model=${model} stream=${isStream}` +
                 (isCloudflareBlock(text) ? ' cloudflare=1010' : '') +
-                ` ua=${JSON.stringify(String(headers['user-agent'] || ''))} body=${JSON.stringify(text.slice(0, 400))}`,
+                ` clientUa=${JSON.stringify(origUa)} ua=${JSON.stringify(String(headers['user-agent'] || ''))} body=${JSON.stringify(text.slice(0, 400))}`,
             );
             finish({ ok: false, status, body: text, clientGone });
           });
@@ -501,7 +531,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           if (m && m.length) usage = m[m.length - 1].replace(/\s+/g, '');
           log(
             `OK id=${reqId} ${clientReq.method} ${target} key=${keyEntry.name} status=${status} ${elapsed()}ms` +
-              ` sess=${sess} model=${model} stream=${isStream} ua=${JSON.stringify(String(headers['user-agent'] || ''))}` +
+              ` sess=${sess} model=${model} stream=${isStream} clientUa=${JSON.stringify(origUa)} ua=${JSON.stringify(String(headers['user-agent'] || ''))}` +
               `${usage ? ' usage=' + usage : ''}`,
           );
           finishStream({ ok: true, status, usage });

@@ -16,6 +16,10 @@
         "path": "C:\\Users\\27063",
         "title": "27063",
         "sessionIds": [
+          "session-a6444565-68f0-437e-8d92-955d3524b285",
+          "session-bedf6077-8a3e-4a49-90ce-8b98349b52f9",
+          "session-40f026ed-6f62-4b9a-a031-3c1994f7f150",
+          "session-06bd5f22-5b52-482a-8bc6-6de5e0363b12",
           "session-b8b06648-979e-4d33-b078-b7488f13ca2f",
           "session-8e3ec71e-1752-4bd5-821e-4820b9c17b1e",
           "session-e04fc5f7-2399-4dce-9400-8e08dabcc237",
@@ -31,7 +35,7 @@
           "session-c26e4c02-9c12-4d79-9b76-73761c9bf92e"
         ],
         "createdAt": "2026-08-15T14:14:04.871Z",
-        "updatedAt": "2026-09-23T12:41:04.090Z"
+        "updatedAt": "2026-09-24T22:57:06.598Z"
       }
     }
   }

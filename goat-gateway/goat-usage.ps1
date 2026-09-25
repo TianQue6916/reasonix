@@ -1,4 +1,4 @@
-<#
+﻿<#
   goat-usage.ps1 — Command Code GOAT 套餐额度看板（5 小时 / 周 / 月）
   ------------------------------------------------------------------
   数据来源：api.commandcode.ai 的 alpha 端点（用 keys.json 里的 user_ key 直连认证）
@@ -25,7 +25,8 @@ param(
   [switch]$NoColor,
   [int]$CacheSeconds = 60,
   [switch]$Force,
-  [string]$KeysFile
+  [string]$KeysFile,
+  [string]$CacheFile
 )
 if (-not $KeysFile) { $KeysFile = Join-Path $PSScriptRoot 'keys.json' }
 
@@ -71,7 +72,7 @@ function Get-Color([double]$used, [double]$cap) {
 }
 
 function Render {
-  $cacheFile = Join-Path $env:TEMP 'goat-usage-cache.json'
+  $cacheFile = if ($CacheFile) { $CacheFile } else { Join-Path $env:TEMP 'goat-usage-cache.json' }
   $cached = $null
   if (-not $Force -and $Watch -eq 0 -and $CacheSeconds -gt 0 -and (Test-Path $cacheFile)) {
     try {
@@ -104,7 +105,11 @@ function Render {
       $rows += [pscustomobject]@{ name = $k.name; error = $_.Exception.Message; fetchedAt = (Get-Date).ToString('s') }
     }
   }
-    try { (@{ ts = (Get-Date).ToString('s'); rows = $rows } | ConvertTo-Json -Depth 6) | Set-Content -Path $cacheFile -Encoding UTF8 } catch {}
+try {
+    $tmpCache = "$cacheFile.tmp-$PID"
+    [IO.File]::WriteAllText($tmpCache, (@{ ts = (Get-Date).ToString('s'); rows = $rows } | ConvertTo-Json -Depth 6), [Text.UTF8Encoding]::new($false))
+    Move-Item -LiteralPath $tmpCache -Destination $cacheFile -Force
+  } catch {}
   }
 
   if ($Json) { return ($rows | ConvertTo-Json -Depth 6) }

@@ -1,0 +1,18 @@
+{
+  "tabs": [
+    {
+      "id": "tab_17721b8967e83dab18a503c986fb8d79",
+      "scope": "global",
+      "workspaceRoot": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\global-workspace",
+      "workspaceId": "global",
+      "topicId": "topic_20260920-053530_9a46df98204ee807",
+      "sessionId": "desktop-f381a673605dadca022fca4b8fee5840",
+      "model": "commandcode-goat/deepseek/deepseek-v4.1-flash",
+      "tokenMode": "full",
+      "agentPreset": "standard",
+      "qualityFloor": "standard",
+      "toolApprovalMode": "danger-full-access"
+    }
+  ],
+  "activeTab": "tab_17721b8967e83dab18a503c986fb8d79"
+}

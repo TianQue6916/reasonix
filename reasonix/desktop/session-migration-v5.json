@@ -36,6 +36,22 @@
       "status": "completed",
       "targetSessionId": "d135ffdf0cc38ee8e2d136b0"
     },
+    "04b587471bd1d7b3d65a8b12db06dcb79a8946ee792427018f6e394b5e4c3dac": {
+      "attempts": 1,
+      "contentDigest": "718f7becfcdda1787a81ae979c29a8555673ff1700b247c333bd20d1689e9d12",
+      "sourceKey": "04b587471bd1d7b3d65a8b12db06dcb79a8946ee792427018f6e394b5e4c3dac",
+      "sourceRevision": "stat-v1-167205f0f01ffbe120b2cbbe4aa26fe12392af8c9ed292707bc2ebb6b49ea925",
+      "status": "completed",
+      "targetSessionId": "65072ca8636294a9d5f9b807a4fdf289"
+    },
+    "08e72c82687171ce32846cfa2b4ff6a0979c72dd57c03f35cd8dfd0daabdab06": {
+      "attempts": 1,
+      "contentDigest": "006139027a49646742a2def62e57ce94b4847f1b553b4895bf35a7d317d07b2e",
+      "sourceKey": "08e72c82687171ce32846cfa2b4ff6a0979c72dd57c03f35cd8dfd0daabdab06",
+      "sourceRevision": "stat-v1-a7266cd05df609fa27063e2b976b8d60cfdc6741a9b9621fcffc6ad0f1bc98fd",
+      "status": "completed",
+      "targetSessionId": "3ce37c07b654d6785574a6d26b5bf02e"
+    },
     "0a95e690c02fe0b35544c2cc05893d5bf5412737fb1cc875972bf62e81e58ed3": {
       "attempts": 1,
       "contentDigest": "15e6d3ecd82bd9c0ccf0ee48543ec4e99276d0f58e78a41d411f515b5ae483de",
@@ -165,7 +181,7 @@
       "targetSessionId": "165c9e38488f8ed3fcc465eb"
     },
     "1a8fc1b20e1edc46a31cfa318f72e9d3df2eecd5051ee406a374210dc9513dbe": {
-      "attempts": 5,
+      "attempts": 9,
       "contentDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "legacyHeads": [
         ""
@@ -258,6 +274,14 @@
       "sourceRevision": "stat-v1-3ba474bec121ffc1022739f6604a5f99a19b6213dd905c3af26925f8f9f10fe0",
       "status": "completed",
       "targetSessionId": "27218e6cebcacb3759676f09"
+    },
+    "2303acedb2a149e223d4a97292de0fbd02b3d96e9fad6692888cac4eba0794f4": {
+      "attempts": 1,
+      "contentDigest": "6724bd1a613ebce6ec42a4f97a21a7e2280e666659eb5cfefd88465fe3280678",
+      "sourceKey": "2303acedb2a149e223d4a97292de0fbd02b3d96e9fad6692888cac4eba0794f4",
+      "sourceRevision": "stat-v1-89db798cd67c4a0490579b47f1116cd5597d3d58f59f7c1800d7ea42bc0c5682",
+      "status": "completed",
+      "targetSessionId": "4f9cb895479e224749694b1a3b0db1f2"
     },
     "289d0a6690352c5b5f69ca3a270b7382a9456f6453555e3bb68fa5eb627075d6": {
       "attempts": 1,
@@ -381,6 +405,14 @@
       "sourceRevision": "stat-v1-0d6483c777ead47065f67ea43131c592d89d6ac0b2db7ad534b1cc7edaea8e93",
       "status": "completed",
       "targetSessionId": "464c61012f4cc043243ed8ba"
+    },
+    "4027163505aea96d40030618bc340ce64e18e5a2d7176955796cad310ea0d02a": {
+      "attempts": 1,
+      "contentDigest": "6724bd1a613ebce6ec42a4f97a21a7e2280e666659eb5cfefd88465fe3280678",
+      "sourceKey": "4027163505aea96d40030618bc340ce64e18e5a2d7176955796cad310ea0d02a",
+      "sourceRevision": "stat-v1-c716c597dd7a4bc146c9d0c85e5cf886c594476ce22103a1f8875d1b5977f91e",
+      "status": "completed",
+      "targetSessionId": "1cd36db5da6e1393dc7b7254d6bc728b"
     },
     "407c3e6c30520086a0a52dfdc25a015e94d80d03c7911d5b7d2177dfac8c1928": {
       "attempts": 1,
@@ -784,6 +816,13 @@
       "status": "completed",
       "targetSessionId": "3bfef4f2e14a2038093f1310"
     },
+    "99375294797337654d453b5ea7c314ef9292fca2e18fdbdfa7a073cc1415b809": {
+      "attempts": 0,
+      "errorCode": "source_read",
+      "sourceKey": "99375294797337654d453b5ea7c314ef9292fca2e18fdbdfa7a073cc1415b809",
+      "status": "failed",
+      "targetSessionId": "061b99d3da1104fbe37ee03c61360af8"
+    },
     "9b4ba8c1bea8407c0dcb579527fc301a3432d8e59f7693ea643068c2022edc00": {
       "attempts": 49,
       "contentDigest": "d8125e9aa42af66e9bb5a4f98a77e22672c0d7eb7a1ca2220c9797ad6bec0d86",
@@ -795,6 +834,14 @@
       "sourceRevision": "stat-v1-cb3e937548c90985109abbd92086b5495ee576abf0a91ca2b0494c066cc67971",
       "status": "completed",
       "targetSessionId": "cc89f661270167b210ac8cf4"
+    },
+    "9e4b36eaaa8285e01f421f2f4de6dd3339db1b3c3aff09a90a9c128cf2c327f0": {
+      "attempts": 1,
+      "contentDigest": "29a676ce20a8a9370449016b6bef08a09e8af2e732c9358b726083a615f24955",
+      "sourceKey": "9e4b36eaaa8285e01f421f2f4de6dd3339db1b3c3aff09a90a9c128cf2c327f0",
+      "sourceRevision": "stat-v1-dae2a4b6f3d5ebaed63c1e6ab47bb8554a05535c4e9a8a6dceb2060078127c7f",
+      "status": "completed",
+      "targetSessionId": "7152040613450ccf95070c630774828f"
     },
     "a0b126bcae28d9873250dba03a54d14a1a859d5620731d36c58497293200b7e6": {
       "attempts": 1,
@@ -1190,6 +1237,13 @@
       "sourceRevision": "stat-v1-a6f0ec43ad3c8c80d85aa25c4f0dab315364af657f9dd10c87f10268deb08506",
       "status": "completed",
       "targetSessionId": "4914685236f8ee9667d6648a"
+    },
+    "f02a19c0fd1be246f7ff26def8f8fff5fa1a943ec9e77de35f3a8f4db89fd0ca": {
+      "attempts": 0,
+      "errorCode": "source_read",
+      "sourceKey": "f02a19c0fd1be246f7ff26def8f8fff5fa1a943ec9e77de35f3a8f4db89fd0ca",
+      "status": "failed",
+      "targetSessionId": "1400b78299c3a48edf74b387c89cac11"
     },
     "f200ad5483468e689066aca2d3f473cc5f6d1504b6fa585e0e38e7c0c6abe2f5": {
       "attempts": 1,

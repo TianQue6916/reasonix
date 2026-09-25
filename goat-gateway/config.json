@@ -8,7 +8,14 @@
     "basePath": "/provider/v1",
     "localPrefix": "/v1",
     "userAgent": "commandcode-goat-gateway/1.0",
-    "stripClientHeaders": ["x-reasonix-", "x-session-id", "x-conversation-id", "x-topic-id"]
+    "stripClientHeaders": [
+      "x-reasonix-",
+      "x-session-id",
+      "x-conversation-id",
+      "x-topic-id"
+    ],
+    "keepAlive": true,
+    "agentMaxAgeMs": 300000
   },
   "maxAttemptsPerRequest": 4,
   "strategy": "session",

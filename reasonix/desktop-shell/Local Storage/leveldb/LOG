@@ -1,6 +1,6 @@
-2026/09/23-19:45:03.038 53b4 Reusing MANIFEST C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/MANIFEST-000001
-2026/09/23-19:45:03.041 53b4 Recovering log #37
-2026/09/23-19:45:03.041 53b4 Reusing old log C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/000037.log 
-2026/09/23-20:55:12.526 acd0 Level-0 table #41: started
-2026/09/23-20:55:12.530 acd0 Level-0 table #41: 16908 bytes OK
-2026/09/23-20:55:12.533 acd0 Delete type=0 #37
+2026/09/25-17:46:06.344 4c0c Reusing MANIFEST C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/MANIFEST-000001
+2026/09/25-17:46:06.347 4c0c Recovering log #49
+2026/09/25-17:46:06.348 4c0c Reusing old log C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/000049.log 
+2026/09/25-19:21:26.056 1858 Level-0 table #53: started
+2026/09/25-19:21:26.058 1858 Level-0 table #53: 19311 bytes OK
+2026/09/25-19:21:26.061 1858 Delete type=0 #49

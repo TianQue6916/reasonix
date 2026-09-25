@@ -1,14 +1,17 @@
 {
-  "name": "dsh-profile-web",
-  "private": true,
-  "dependencies": {},
-  "dsh": {
-    "profile": {
-      "bundles": [
-        "@deepseek-ai/dsh-base",
-        "@deepseek-ai/dsh-web-app"
-      ],
-      "patchReload": "live"
-    }
-  }
+    "name":  "dsh-profile-web",
+    "private":  true,
+    "dependencies":  {
+                         "@local/dsh-plugin-goat-panel":  "file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel"
+                     },
+    "dsh":  {
+                "profile":  {
+                                "bundles":  [
+                                                "@deepseek-ai/dsh-base",
+                                                "@deepseek-ai/dsh-web-app",
+                                                "@local/dsh-plugin-goat-panel"
+                                            ],
+                                "patchReload":  "live"
+                            }
+            }
 }

@@ -1,0 +1,9 @@
+# 默认冷启动 preset（2026-08-31 同步自 Linux 本机）
+- id: agent-presets
+  config:
+    default: anchored-standard
+
+- insert:
+    - id: tool-goat-quota
+      name: 'D:/Toolbox/goat-gateway/dsh-plugin-goat-quota/lib/index.js'
+      config: {}

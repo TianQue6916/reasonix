@@ -1,0 +1,4 @@
+# 默认冷启动 preset（2026-08-31 同步自 Linux 本机）
+- id: agent-presets
+  config:
+    default: anchored-standard

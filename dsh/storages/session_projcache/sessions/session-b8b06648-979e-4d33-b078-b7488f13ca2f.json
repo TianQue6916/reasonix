@@ -11,12 +11,12 @@
     "rows": {
       "title": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": "排查reasonix最新对话为何频繁"
       },
       "titleInput": {
         "ver": 3,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "first": {
             "seq": 8,
@@ -28,17 +28,17 @@
       },
       "llmRetry": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": {}
       },
       "sandboxMode": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": "danger-full-access"
       },
       "goal": {
         "ver": 6,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "current": null,
           "seenGoalIds": [],
@@ -47,7 +47,7 @@
       },
       "tokenUsage": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "totals": {
             "uncachedInputTokens": 1091205,
@@ -69,7 +69,7 @@
       },
       "contextPressure": {
         "ver": 4,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "surfaceTokens": 480594,
           "contextWindow": 1000000,
@@ -79,7 +79,7 @@
       },
       "contextBreakdown": {
         "ver": 4,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "nodes": [
             {
@@ -2087,7 +2087,7 @@
       },
       "turnBoundary": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "openTurnStartSeq": null,
           "lastStepStartSeq": 1064,
@@ -2100,7 +2100,7 @@
       },
       "sessionStats": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "turns": 7,
           "steps": 186,
@@ -2117,7 +2117,7 @@
       },
       "turnOutline": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "turns": [
             {
@@ -2168,19 +2168,19 @@
       },
       "agentPreset": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": "anchored-standard"
       },
       "subagentCatalog": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "inheritedEventCount": 0
         }
       },
       "subagentTiming": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "descriptorSeen": false,
           "settledMs": 0
@@ -2188,22 +2188,22 @@
       },
       "subagent": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {}
       },
       "permissions": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "preset": "danger-full-access",
           "sandbox": "danger-full-access",
           "approval": "never",
-          "seeded": false
+          "seeded": true
         }
       },
       "modelSelection": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "lastUsed": {
             "provider": "commandcode-goat",
@@ -2215,7 +2215,7 @@
       },
       "sessionListMetadata": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "blank": false,
           "lastPromptAt": 1790175987362
@@ -2223,17 +2223,17 @@
       },
       "imageLimits": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": null
       },
       "todos": {
         "ver": 2,
-        "seq": 1068,
+        "seq": 1069,
         "val": null
       },
       "plan": {
         "ver": 3,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "active": false,
           "wanted": null,
@@ -2243,12 +2243,12 @@
       },
       "subagentModelSelectionPolicy": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": null
       },
       "inbox": {
         "ver": 1,
-        "seq": 1068,
+        "seq": 1069,
         "val": {
           "next-turn": [],
           "next-step": []
