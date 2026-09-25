@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790149667581,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是中文学术译稿的格式规范"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是中文学术译稿的格式规范专家。下面列出译稿中所有**术语格式反格式**的片段——它们写成了 `中文（English）`，而规范（技能铁律 3）要求 **`English（中文）`**（英文术语在前、中文翻译在括号内）。\n\n对每一条，输出一行替换指令，格式严格为：\n旧片段 ||| 新片段\n\n【切分规则（最重要）】\n- 只把**术语本体**移进括号；句中的介词/动词/连词/定语（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、的、这种、那些、它们、我们必须为一个……）**留在括号外**。\n- 中文术语就是那个**完整的名词词组本体**，长度必须与原中文串相同（不能多也不能少），只是从括号外移到括号内。\n- 若英文串是**章节标题/多词专名**（如 `Shift Matrices and Circulant Matrices`），则整段中文整体进括号，前面不加任何前缀。\n\n【示例（必须照此风格）】\n以最小的核范数（nuclear norm） ||| 以最小的 nuclear norm（核范数）\n它们由节点（node） ||| 它们由 node（节点）\n拉普拉斯矩阵（Laplacian matrix） ||| Laplacian matrix（拉普拉斯矩阵）\n移位矩阵与循环矩阵（Shift Matrices and Circulant Matrices） ||| Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）\n谓以高概率（with high probability） ||| 所谓以 with high probability（高概率）\n\n【硬性要求】\n1. **只输出 `旧 ||| 新` 的行**，不要任何前言、解释、编号、markdown 表格、代码围栏。\n2. 新片段除英文/中文位置与括号内容外，其余字符（标点、空格、大小写）**与旧片段完全一致**；新旧中文字符总数必须相同。\n3. 逐条处理，共 203 条，一条不漏（顺序与输入一致）。\n\n【待处理片段】\n以高概率（high probability）\n所谓以高概率（with high probability）\n并不意味着必然成立（certain）\n我们必须为一个随机矩阵（random matrices）\n以最小的核范数（nuclear norm）\n可以表述为一个半定规划（semidefinite program）\n挑核范数（nuclear norm）\n压缩感知（Compressed sensing）\n通过凸优化精确补全矩阵（Exact matrix completion via convex optimization）\n篇参考文献追溯了三种交替迭代（alternating iterations）\n做软阈值（soft-threshold）\n这个动作叫软阈值（soft thresholding）\n都给下一次提供了好的起点（warm start）\n该极小化即逐列的岭回归（ridge regression）\n于是交替算法（alternating algorithm）\n的每一列的岭回归（ridge regression）\n是一种最大间隔分解（maximum margin factorization）\n正是完全可观测的（fully observed）\n是软阈值（soft thresholding）\n产生了一种非常高效的稀疏加低秩（sparse plus low rank）\n语境统一还原为核范数（nuclear norm）\n与和范数（sum norm）\n移位矩阵与循环矩阵（Shift Matrices and Circulant Matrices）\n由克罗内克和导出的正弦与余弦变换（Sine and Cosine Transforms from Kronecker Sums）\n托普利茨矩阵与平移不变滤波器（Toeplitz Matrices and Shift Invariant Filters）\n拉普拉斯矩阵与基尔霍夫定律（Graphs and Laplacians and Kirchhoff's Laws）\n聚类（Clustering by Spectral Methods and k-means）\n补全秩一矩阵（Completing Rank One Matrices）\n问题（The Orthogonal Procrustes Problem）\n距离矩阵（Distance Matrices）\n离散傅里叶变换（Discrete Fourier Transforms）\n以及图模型（graphical models）\n而这种结构正体现在神经网络的架构（architecture）\n傅里叶（Fourier）\n对应的是具有平移不变性（shift invariance）\n该运算就是一次卷积（convolution）\n卷积网络（Convolutional nets）\n在每个像素周围使用同一组权重（weights）\n有了这种平移不变（shift-invariant）\n就具有常数对角线（constant diagonals）\n很多时候该矩阵是带状的（banded）\n因为滤波器（filter）\n具有有限长度（finite length）\n该题名的完整副题与出处（NIPS 2012）\n图（Graphs）\n它们由节点（node）\n条边（edge）\n这些连接由关联矩阵（incidence matrix）\n关联矩阵（incidence matrix）\n邻接矩阵（adjacency matrix）\n度矩阵（degree matrix）\n拉普拉斯矩阵（Laplacian matrix）\n半正定（positive semidefinite）\n而图模型（graphical models）\n则导向图网络（graphical nets）\n图论（Graph theory）\n经典的傅里叶变换（Fourier transforms）\n实傅里叶级数（Real Fourier series）\n复傅里叶级数（Complex Fourier series）\n傅里叶积分变换（Fourier integral transforms）\n离散傅里叶级数（Discrete Fourier series）\n有这些变换都共享同一类傅里叶所用的基函数（basis functions）\n余弦（cosines）\n与正弦（sines）\n复指数（complex exponentials）\n变换（transform）\n实级数（Real series）\n复级数（Complex series）\n傅里叶积分（Fourier integrals）\n离散级数（Discrete series）\n最后一行即傅里叶矩阵（Fourier matrix）\n送进频率空间（frequency space）\n计算系数是分析（analysis）\n是合成（synthesis）\n对四种变换（four transforms）\n这是因为基函数（basis functions）\n是正交的（orthogonal）\n基中往往含有某个对称算子的特征函数（eigenfunctions）\n若把基向量归一化（normalize）\n傅里叶积分（Fourier integral）\n得到离散傅里叶系数（discrete Fourier coefficients）\n它同时揭示了逆变换（inverse transform）\n因为相对的两点（opposite pairs）\n的每一个非对角元（off-diagonal entry）\n它们都是酉矩阵（unitary matrices）\n实对称矩阵的复版本是埃尔米特矩阵（Hermitian matrix）\n由一个置换矩阵（permutation matrix）\n就包含反序单位矩阵（reverse identity matrix）\n只有四种可能的特征值（eigenvalues）\n的特征向量（eigenvectors）\n离散傅里叶级数（Discrete Fourier Series）\n这一步是分析步骤（analysis step）\n合成步骤（synthesis step）\n那个只有一个尖峰（spike）\n函数（discrete delta function）\n向量（delta vector）\n函数（delta function）\n调制（modulation）\n移位法则（Shift rule）\n的循环卷积（cyclic convolution）\n普通卷积（ordinary convolution）\n而循环卷积（cyclic convolution）\n练习（Practice）\n图中标出虚轴（imaginary axis）\n实轴（real axis）\n这个运算更早的名字是张量积（tensor product）\n逐行做（Row by row）\n逐列做（Column by column）\n机器层面的账（CSAPP）\n所对应的分块矩阵（block matrix）\n我们要的却是和（sum）\n的二阶差分方程（second order difference equation）\n就是这样变成一个二阶差分（second difference）\n这反映了该行两端的边界条件（boundary condition）\n行选择的是自由条件（free condition）\n若取固定条件（fixed condition）\n二阶差分矩阵（second difference matrix）\n沿每一行（row）\n沿每一列（column）\n条水平边（horizontal edge）\n条垂直边（vertical edge）\n基尔霍夫（Kirchhoff）\n但不可逆（not invertible）\n帧（frame）\n步（DCT）\n所以前面的去相关（DCT）\n之字形扫描（zig-zag）\n那些更高的频率（higher frequencies）\n与负频率（negative frequencies）\n先讲清混叠（aliasing）\n这正是你在算法课（MIT 6.006 Introduction to Algorithms）\n所以超快算法给的是数值上准确而不是精确（exact）\n立刻得到你在概率论课程（MIT 6.431 Applied Probability）\n斯坦福（Stanford）\n位移（shift）\n接下来的结构与你在算法课（MIT 6.006 Introduction to Algorithms）\n这是离散应用数学（discrete applied mathematics）\n基尔霍夫电流定律（KCL）\n是关于流入或流出某个节点的电流的平衡定律（balance law）\n否则电子就会堆积（pile up）\n它就是平衡态（equilibrium）\n回路（loop）\n是由若干条边组成的环（cycle）\n这些方程描述一个处于稳态（steady state）\n满秩（full rank）\n例如有限元方法（finite element method）\n它们常常是偏微分方程（partial differential equations）\n的最小二乘（least squares）\n中的深度学习（deep learning）\n我们要找出各层神经元（neurons）\n之间的权重（weights）\n能正确分类训练数据（training data）\n每个神经元还会施加一个非线性激活函数（nonlinear activation function）\n是连续的且分段线性的（piecewise linear）\n的图形增加一个折痕（fold）\n关于深度神经网络（deep neural nets）\n是一个加权图拉普拉斯矩阵（weighted graph Laplacian）\n的主要事实适用于每一个连通图（connected graph）\n在工程中可以是刚度矩阵（stiffness matrix）\n也可以是电导矩阵（conductance matrix）\n的五条基本事实（Five Facts about the Graph Laplacians）\n无向图（undirected graph）\n即该节点的度（degree）\n的图（graph）\n是把这些节点分成两个或更多个簇（cluster）\n边（edges）\n我们希望各个簇的规模（size）\n在解码基因数据（genetic data）\n一个关键步骤是把表达水平（expression levels）\n聚在一起的基因可能位于同一条细胞通路（cellular pathway）\n人类基因组计划（Human Genome Project）\n例如合成蛋白质（protein）\n标出的点是两个簇的质心（centroid）\n均值算法（k-means algorithm）\n在运用特征值（eigenvalues）\n与割（cuts）\n在高性能计算（high performance computing）\n中做负载均衡（load balancing）\n对于社交网络（social networks）\n用于对图做划分（partition）\n它使用图拉普拉斯矩阵（graph Laplacian）\n或模块度矩阵（modularity matrix）\n最小割（minimum cut）\n均值（weighted k-means）\n的费德勒向量（Fiedler vector）\n使拉普拉斯矩阵实现归一化（normalize）\n费德勒特征值（Fiedler eigenvalue）\n负的分量（components）\n用模块度矩阵（modularity matrix）\n的最小归一化割（minimum normalized cut）\n那会导出比例割（ratio cut）\n的加权规模（weighted size）\n归一化（normalize）\n他们由此揭示了它与拉普拉斯矩阵（Laplacian）\n并不局限于欧几里得距离（Euclidean distance）\n均值算法（kernel k-means algorithm）\n完全只用一个核矩阵（kernel matrix）\n的度（degree）\n的零空间（nullspace）\n对于归一化的加权拉普拉斯矩阵（normalized weighted Laplacian）\n很像统计学中的相关矩阵（correlation matrix）\n是对称半正定的（symmetric positive semidefinite）\n在某个子空间上极小化瑞利商（Rayleigh quotient）"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2855,
+            "outputTokens": 8785,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 2855,
+              "outputTokens": 8785,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11801,
+          "contextWindow": 1000000,
+          "pressureTokens": 5671,
+          "sampledSurfaceTokens": 3076
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1516,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 8725,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10657
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

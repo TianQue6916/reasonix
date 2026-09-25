@@ -1,0 +1,281 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128791227,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 61,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 61,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 并通过给较大的样本 $s(0, b)$ 赋予更大概率来减小方差 $\\sigma^2$。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 这一页是一个极小的模型实验，但它给出的结论是整节的技术核心：**均值（正确性）与方差（精度）可以被解耦**。第一性原理在于：无偏性是一个**线性**约束——只要每个样本按 $1/p$ 加权后加起来等于目标，均值就正确；而在这个线性约束下，概率仍有一整维的自由度，方差是关于 $p$ 的**非线性**目标。于是可以先锁住均值，再重新分配概率压低方差，两步互不干扰。\r\n\r\n把这一页 $n=2$ 的实验一般化，你就能亲手算出最优概率。设单次试验以概率 $q$ 输出 $(a,0)$、以概率 $1-q$ 输出 $(0,b)$；为了保持单次均值仍是 $(a/2,b/2)$，选中时必须放大成 $(a/(2q),0)$ 与 $(0,b/(2(1-q)))$——这正是上一页除以概率的纠偏动作。单次试验的方差逐项算出为\r\n```math\r\n\\operatorname{Var}=\\frac{a^{2}}{4}\\cdot\\frac{1-q}{q}+\\frac{b^{2}}{4}\\cdot\\frac{q}{1-q}.\r\n```\r\n对 $q$ 求导并令其为零，得 $b/(1-q)=a/q$，即 $q=\\dfrac{a}{a+b}$；代回得单次方差 $ab/2$，两次独立试验相加为 $ab$。也就是说**最优概率与样本的长度成正比**，这正是第 150 页式 (5) 的二维版本；均匀的 $q=1/2$ 只是两个样本长度相近时的特例。若 $b=10a$：均匀抽样给出的单次方差是 $(a^2+b^2)/4=25.25a^{2}$，最优抽样给出 $ab/2=5a^{2}$，差了五倍多。这就是正文那句给较大的样本更大机会的确切含义，而不是一句修辞。\r\n\r\n把它命名为**先锁均值、再压方差的两步设计**：第一步构造无偏估计（一定出现 $1/p$ 纠偏），第二步在无偏的族里挑方差最小的那一个（这里由 $q\\propto a$ 给出）。这个模板可以直接复用到任何抽样式近似算法上。\r\n\r\n跨课程连接：6.042J 里 Chernoff 界的用法是已知方差/二阶矩 $\\Rightarrow$ 偏离均值超过 $\\varepsilon$ 的概率指数小，它把方差翻译成高概率保证；这一页把方向反过来用——想要后面那种高概率保证成立，就得先把方差压小。区别在于 Chernoff 处理的是独立同分布变量之和，而这里是**加权**抽样，权重本身也随机，所以必须先做无偏化把权重的不确定性消掉，方差才好算（第 150 页式 (6) 那个 $\\sum_j c_j/p_j$ 就是这样来的）。\r\n\r\n=== ANCHOR: 最后我们选取概率 $p_1,\\dots,p_n$，使这个方差取到最小。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 这一页把选概率变成了一个标准的约束优化问题，并且给出了完全解。记 $c_j=\\|\\text{column }j\\text{ of }A\\|^{2}\\,\\|\\text{row }j\\text{ of }B\\|^{2}$，要最小化的是式 (6) 中的 $\\sum_{j=1}^{n}\\dfrac{c_j}{p_j}$（外面那层 $\\frac{1}{s}$ 与 $-\\|AB\\|_F^{2}$ 都是常数），约束为 $p_1+\\cdots+p_n=1$、$p_j>0$。第一性原理：$1/p$ 在 $p>0$ 上凸（二阶导 $2/p^{3}>0$），凸函数配正系数相加仍凸，约束又是线性的，所以**驻点就是全局最小点**，拉格朗日必要条件足够——这正是 Boyd 课里 KKT 条件最温和的一档（凸问题、线性约束，Slater 条件自动成立）。求导得 $-\\frac{1}{s}\\frac{c_j}{p_j^{2}}+\\lambda=0$，于是 $p_j\\propto\\sqrt{c_j}=\\|\\text{column }j\\|\\cdot\\|\\text{row }j\\|$，再由 $\\sum_j p_j=1$ 定出 $1/\\sqrt{\\lambda s}=1/C$，正好还原式 (5)。\r\n\r\n但有个更快、信息更全的做法，值得抽象成模板——**柯西-施瓦茨配平法**：要最小化 $\\sum_j c_j/p_j$ 且 $\\sum_j p_j=1$，就把 $\\sum_j\\sqrt{c_j}$ 拆成内积形式\r\n```math\r\n\\sum_{j=1}^{n}\\sqrt{c_j}=\\sum_{j=1}^{n}\\frac{\\sqrt{c_j}}{\\sqrt{p_j}}\\cdot\\sqrt{p_j}\r\n\\;\\Longrightarrow\\;\r\n\\Big(\\sum_{j=1}^{n}\\sqrt{c_j}\\Big)^{2}\\le\\Big(\\sum_{j=1}^{n}\\frac{c_j}{p_j}\\Big)\\Big(\\sum_{j=1}^{n}p_j\\Big)=\\sum_{j=1}^{n}\\frac{c_j}{p_j}.\r\n```\r\n等号当且仅当 $\\frac{\\sqrt{c_j}}{\\sqrt{p_j}}\\propto\\sqrt{p_j}$，即 $p_j\\propto\\sqrt{c_j}$。于是最小的 $\\sum_j c_j/p_j$ 就是 $\\big(\\sum_j\\sqrt{c_j}\\big)^{2}=C^{2}$，代回式 (6) 立刻得到式 (7) 的最小方差 $\\frac{1}{s}(C^{2}-\\|AB\\|_F^{2})$。柯西-施瓦茨一次给出三样东西：最优值、最优解（等号条件）、以及这确实是下界的证明，比只解驻点更强也更短；凸性负责把局部最优升级为全局最优。两者配合是这类分母含 $p$、分子固定的配比问题的标准打法。\r\n\r\n一个可以心算的验算：设三列的 $c=(4,1,1)$，则 $C=2+1+1=4$，$C^{2}=16$，$\\sum_j c_j=6$。均匀概率 $p_j=1/3$ 给出 $\\sum_j c_j/p_j=18$；最优概率 $p=(1/2,1/4,1/4)$ 给出 $4\\cdot2+1\\cdot4+1\\cdot4=16$，恰好等于 $C^{2}$。同一个无偏约束下，方差从 18 压到 16（公共因子不影响比较）。\r\n\r\n还有一点直觉值得点明：最优解不是把概率全押在最大的那一项上（那是贪心，会让其余项以极小的 $p$ 换来巨大的 $c_j/p_j$，方差反而爆炸），而是**按 $\\sqrt{c_j}$ 配平**——大的略大、小的不至于被饿死。拉格朗日乘子 $\\lambda$ 可以理解成约束 $\\sum_j p_j=1$ 的价格，度量放松这条约束能给目标带来多少好处，这正是凸优化对偶变量的经济学解释。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 61,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 61,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 61,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 61,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 61,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6525,
+            "outputTokens": 22112,
+            "cacheReadTokens": 164864,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 10,
+            "buckets": {
+              "uncachedInputTokens": 2643,
+              "outputTokens": 2967,
+              "cacheReadTokens": 25344,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 61,
+        "val": {
+          "surfaceTokens": 17091,
+          "contextWindow": 1000000,
+          "pressureTokens": 27987,
+          "sampledSurfaceTokens": 15683
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 61,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1030,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 884,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 879,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 1168,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 4490,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 1301,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 38,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 1692,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 90,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 849,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 60,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 232,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 90,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 1159,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 1408,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 15947
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 61,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 61,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 58,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 60
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 61,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 61,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 61,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 61,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 61,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 61,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

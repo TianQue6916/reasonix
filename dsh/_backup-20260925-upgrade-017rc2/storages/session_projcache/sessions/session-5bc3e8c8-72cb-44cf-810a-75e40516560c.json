@@ -1,0 +1,651 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128895121,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 246,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 246,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 被拆散的分数重建为 $F(z) = \\frac{1}{2}\\|z\\|_2^2 − 1$ 与近端算子定义中的 $\\|c-z\\|_2^2 + F(z)$（式 (27) 即 prox 的定义式）。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 本页 Problem 1 到 Problem 9 是一整条 ADMM 流水线，先讲清它要解决的设计问题：目标函数常常是光滑项 + 非光滑项，比如 $\\frac12\\|Ac-b\\|_2^2+\\gamma\\|c\\|_1$。光滑项可以直接调用线性代数（正规方程、QR、共轭梯度都行），但 $\\|c\\|_1$ 在原点没有梯度，梯度法立刻失效。ADMM 的处理是引入一个副本 $z$，把问题改写成 $\\min f(c)+g(z)$ 且 $c=z$，然后交替各解一半：$c$ 步只面对光滑的 $f$（一个线性系统），$z$ 步只面对非光滑的 $g$（往往有现成的近端公式，例如注 2 里的软阈值），最后用一个对偶变量 $u$ 把两者拉回一致。拿 Problem 1 与 Problem 2 亲自走一步：在直线 $x=1$ 上最小化 $\\frac12\\|x\\|_2^2$，答案是 $x^*=(1,0)$，因为在平面上钉住第一坐标为 1 之后只剩 $x_2^2$ 要压小；写成 Problem 2 的形式就是 $\\min\\frac12\\|z\\|_2^2+g(z)$，其中 $g$ 是这条直线的指示函数（线上取 0，线外取 $+\\infty$）。从 $x=z=u=0$ 出发，$x$ 步解 $\\min\\frac12\\|x\\|_2^2+\\frac{\\rho}{2}\\|x-z+u\\|_2^2$，求导得 $(1+\\rho)x=\\rho(z-u)$，代入零初值得到 $x_1=0$；$z$ 步是向直线做投影，得 $z_1=(1,0)$；$u$ 步累加残差，得 $u_1=u_0+x_1-z_1=(-1,0)$。再做一轮就能看到机制：$x_2=\\frac{\\rho}{1+\\rho}(z_1-u_1)=\\frac{\\rho}{1+\\rho}(2,0)$，$\\rho$ 越大越靠近真解 $(1,0)$——这解释了为什么 ADMM 里的惩罚参数 $\\rho$ 在角色上更像步长，而不只是一个约束得紧不紧的旋钮。把流程抽象出来命名：**分裂—交替—对偶三步法**，先分裂出一个副本把耦合解开，再交替求解两个各自好解的子问题，最后用对偶变量修正不一致，代价是收敛速度依赖 $\\rho$ 的取值（这正是你在 Boyd 凸优化课里会看到的对偶上升与 ADMM 收敛性讨论的内容）。这里还有一个和 Strang 线性代数直接接上的观察：指示函数的近端算子在几何上就是投影，因为 $\\operatorname{prox}_g(v)=\\arg\\min_z\\frac12\\|z-v\\|_2^2+g(z)$，当 $g$ 是某个凸集的指示函数时，那个 $+\\infty$ 的惩罚把最小值点逼到集合内距离 $v$ 最近的位置，也就是 $v$ 在该凸集上的投影——Problem 1 与 Problem 2 里的 $z_1=(1,0)$，正是 $(0,0)$ 到直线 $x=1$ 的投影。最后留意 Problem 9 的问法：$F$ 是函数，$\\operatorname{prox}_F$ 是由 $F$ 诱导出的一个映射，两者定义域与含义都不同；题目特意追问Is $F$ the proximal operator for $F$?，就是在考你有没有把函数与作用于函数的算子这两层区分开。\r\n\r\n=== ANCHOR: 积分上限 $R^2$ 由等号两边的量纲一致性确定（原文该处数字被 OCR 吞掉） ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> Problem 11 的 coarea 公式把同一个 BV 范数写成两种积分：左边沿定义域积 $|\\mathrm{grad}\\,u|$，右边沿高度 $t$ 累积水平集 $L(t)$ 的长度。为什么这两件事必然相等？推导只用了一次换元：在 $\\mathrm{grad}\\,u\\ne0$ 的地方，沿梯度方向的微小位移 $dn$ 带来的函数值变化是 $du=|\\mathrm{grad}\\,u|\\,dn$，于是 $dn=du/|\\mathrm{grad}\\,u|$；取一小段水平集，其长度为 $dL$，它扫出的面积元是 $dA=dn\\,dL$。代入左边：$\\iint|\\mathrm{grad}\\,u|\\,dA=\\int|\\mathrm{grad}\\,u|\\cdot\\frac{dt}{|\\mathrm{grad}\\,u|}\\,dL=\\int\\big(\\text{length of }L(t)\\big)\\,dt$，$|\\mathrm{grad}\\,u|$ 被干净地约掉，剩下的就是水平集长度对高度的积分。用 Problem 12 的碗形亲手验算：$u=x^2+y^2$，$\\mathrm{grad}\\,u=(2x,2y)$，$|\\mathrm{grad}\\,u|=2r$，在半径 $R$ 的圆盘内左边为 $\\int_0^R 2r\\cdot 2\\pi r\\,dr=4\\pi R^3/3$；右边水平集 $u=t$ 是半径 $\\sqrt t$ 的圆、长度为 $2\\pi\\sqrt t$，$t$ 从 0 到 $R^2$，故 $\\int_0^{R^2}2\\pi\\sqrt t\\,dt=2\\pi\\cdot\\frac{2}{3}R^3=4\\pi R^3/3$，两边分毫不差。第二个更好用的验算可以直接回答 Problem 13 后半问：单位正方形内 $u=1$、外部 $u=0$ 时，对每个 $0<t<1$，水平集恰好就是正方形的边界、长度为 4，于是右边等于 $\\int_0^1 4\\,dt=4$，也就是阶跃方块的 BV 范数 = 周长——它把注 4 里那个边缘计价器的说法升级成了一条可计算的公式。这个公式与你正在学的两门课都有精确对应。在实分析（Thomson TBB + Rudin）里，层蛋糕表示 $\\int u=\\int_0^\\infty|\\{u>t\\}|\\,dt$ 是 Lebesgue 积分从简单函数出发的标准构造步骤，coarea 只是把它加上梯度权重之后的版本，本质上仍是先按高度分层、再逐层积分的换序操作。在概率论（Bertsekas）里，对非负随机变量 $X$ 有 $\\mathbb{E}[X]=\\int_0^\\infty P(X>t)\\,dt$，把水平集长度换成尾概率、把密度 $|\\mathrm{grad}\\,u|$换成概率密度，看到的就是同一个换序思想——事实上把 $u$ 读作一个随机变量、把 $L(t)$ 的测度读作概率，两个公式逐字对应。把这套想法命名成**层蛋糕法**：把对自变量积分改写成对取值分层后的水平集积分，凡是积分里出现 $|\\mathrm{grad}\\,u|$ 或密度因子的场合都值得先试一次。作为前沿脚手架，这一步解释了你之后会遇到的 TV（total variation）去噪为什么会把图像卡通化：光滑区域只按面积 × 梯度付费，边缘只按长度 × 跳跃高度付费，于是优化结果倾向于变成若干常值色块拼起来的图像，而不是被抹成一片模糊——这正是从 coarea 公式直接读出来的几何后果。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 246,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 246,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 246,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 246,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 246,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 20080,
+            "outputTokens": 33675,
+            "cacheReadTokens": 1358592,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 47,
+            "buckets": {
+              "uncachedInputTokens": 691,
+              "outputTokens": 2651,
+              "cacheReadTokens": 48256,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 246,
+        "val": {
+          "surfaceTokens": 29739,
+          "contextWindow": 1000000,
+          "pressureTokens": 48947,
+          "sampledSurfaceTokens": 28620
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 246,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1076,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 217,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 476,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 970,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 667,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 897,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 449,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 681,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 192,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 362,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 962,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 80,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 1095,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 59,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 833,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 131,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 296,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 38,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 289,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 49,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 292,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 70,
+              "system": false
+            },
+            {
+              "seq": 79,
+              "heuristicTokens": 555,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 84,
+              "heuristicTokens": 551,
+              "system": false
+            },
+            {
+              "seq": 86,
+              "heuristicTokens": 29,
+              "system": false
+            },
+            {
+              "seq": 89,
+              "heuristicTokens": 94,
+              "system": false
+            },
+            {
+              "seq": 91,
+              "heuristicTokens": 55,
+              "system": false
+            },
+            {
+              "seq": 94,
+              "heuristicTokens": 267,
+              "system": false
+            },
+            {
+              "seq": 96,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 99,
+              "heuristicTokens": 61,
+              "system": false
+            },
+            {
+              "seq": 101,
+              "heuristicTokens": 515,
+              "system": false
+            },
+            {
+              "seq": 104,
+              "heuristicTokens": 270,
+              "system": false
+            },
+            {
+              "seq": 106,
+              "heuristicTokens": 63,
+              "system": false
+            },
+            {
+              "seq": 109,
+              "heuristicTokens": 376,
+              "system": false
+            },
+            {
+              "seq": 111,
+              "heuristicTokens": 101,
+              "system": false
+            },
+            {
+              "seq": 114,
+              "heuristicTokens": 251,
+              "system": false
+            },
+            {
+              "seq": 116,
+              "heuristicTokens": 643,
+              "system": false
+            },
+            {
+              "seq": 119,
+              "heuristicTokens": 240,
+              "system": false
+            },
+            {
+              "seq": 121,
+              "heuristicTokens": 109,
+              "system": false
+            },
+            {
+              "seq": 124,
+              "heuristicTokens": 2095,
+              "system": false
+            },
+            {
+              "seq": 126,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 129,
+              "heuristicTokens": 111,
+              "system": false
+            },
+            {
+              "seq": 131,
+              "heuristicTokens": 585,
+              "system": false
+            },
+            {
+              "seq": 134,
+              "heuristicTokens": 570,
+              "system": false
+            },
+            {
+              "seq": 136,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 139,
+              "heuristicTokens": 31,
+              "system": false
+            },
+            {
+              "seq": 141,
+              "heuristicTokens": 161,
+              "system": false
+            },
+            {
+              "seq": 144,
+              "heuristicTokens": 280,
+              "system": false
+            },
+            {
+              "seq": 146,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 149,
+              "heuristicTokens": 371,
+              "system": false
+            },
+            {
+              "seq": 151,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 154,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 156,
+              "heuristicTokens": 58,
+              "system": false
+            },
+            {
+              "seq": 159,
+              "heuristicTokens": 468,
+              "system": false
+            },
+            {
+              "seq": 161,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 164,
+              "heuristicTokens": 35,
+              "system": false
+            },
+            {
+              "seq": 166,
+              "heuristicTokens": 75,
+              "system": false
+            },
+            {
+              "seq": 169,
+              "heuristicTokens": 96,
+              "system": false
+            },
+            {
+              "seq": 171,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 174,
+              "heuristicTokens": 43,
+              "system": false
+            },
+            {
+              "seq": 176,
+              "heuristicTokens": 587,
+              "system": false
+            },
+            {
+              "seq": 179,
+              "heuristicTokens": 589,
+              "system": false
+            },
+            {
+              "seq": 181,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 184,
+              "heuristicTokens": 31,
+              "system": false
+            },
+            {
+              "seq": 186,
+              "heuristicTokens": 75,
+              "system": false
+            },
+            {
+              "seq": 189,
+              "heuristicTokens": 425,
+              "system": false
+            },
+            {
+              "seq": 191,
+              "heuristicTokens": 59,
+              "system": false
+            },
+            {
+              "seq": 194,
+              "heuristicTokens": 447,
+              "system": false
+            },
+            {
+              "seq": 196,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 199,
+              "heuristicTokens": 2228,
+              "system": false
+            },
+            {
+              "seq": 201,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 204,
+              "heuristicTokens": 33,
+              "system": false
+            },
+            {
+              "seq": 206,
+              "heuristicTokens": 48,
+              "system": false
+            },
+            {
+              "seq": 209,
+              "heuristicTokens": 488,
+              "system": false
+            },
+            {
+              "seq": 211,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 214,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 216,
+              "heuristicTokens": 128,
+              "system": false
+            },
+            {
+              "seq": 219,
+              "heuristicTokens": 116,
+              "system": false
+            },
+            {
+              "seq": 221,
+              "heuristicTokens": 578,
+              "system": false
+            },
+            {
+              "seq": 224,
+              "heuristicTokens": 441,
+              "system": false
+            },
+            {
+              "seq": 226,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 229,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 231,
+              "heuristicTokens": 87,
+              "system": false
+            },
+            {
+              "seq": 234,
+              "heuristicTokens": 258,
+              "system": false
+            },
+            {
+              "seq": 236,
+              "heuristicTokens": 158,
+              "system": false
+            },
+            {
+              "seq": 239,
+              "heuristicTokens": 111,
+              "system": false
+            },
+            {
+              "seq": 241,
+              "heuristicTokens": 261,
+              "system": false
+            },
+            {
+              "seq": 244,
+              "heuristicTokens": 1119,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 28595
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 246,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 246,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 243,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 245
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 246,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 246,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 246,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 246,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 246,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 246,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

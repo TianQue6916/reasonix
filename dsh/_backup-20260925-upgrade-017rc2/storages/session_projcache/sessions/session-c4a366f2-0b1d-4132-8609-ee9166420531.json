@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132459664,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_171（书页 168） @@@@@\r\n−---- 【权威原文】 −---------------\r\n168 \\hfill Low Rank and Compressed Sensing\r\n\r\n## III.2 Interlacing Eigenvalues and Low Rank Signals\r\n\r\nThe previous section found the change in \\(A^{-1}\\) produced by a change in \\(A\\). We could allow infinitesimal changes \\(dA\\) and also finite changes \\(\\Delta A=-UV^{T}\\). The results were an infinitesimal change or a finite change in the inverse matrix:\r\n\r\n\\[\r\n\\frac{dA^{-1}}{dt}=-A^{-1}\\frac{dA}{dt}A^{-1}\r\n\\quad\\text{and}\\quad\r\n\\Delta A^{-1}=A^{-1}U(I-V^{T}A^{-1}U)^{-1}V^{T}A^{-1} \\tag{1}\r\n\\]\r\n\r\nThis section asks the same questions about the eigenvalues and singular values of \\(A\\).\r\n\r\n**How do each \\(\\lambda\\) and each \\(\\sigma\\) change as the matrix \\(A\\) changes?**\r\n\r\nYou will see nice formulas for \\(d\\lambda/dt\\) and \\(d\\sigma/dt\\). But not much is linear about eigenvalues or singular values. Calculus succeeds for infinitesimal changes \\(d\\lambda\\) and \\(d\\sigma\\), because the derivative is a linear operator. But we can't expect to know exact values in the jumps to \\(\\lambda(A+\\Delta A)\\) or \\(\\sigma(A+\\Delta A)\\). Eigenvalues are more complicated than inverses.\r\n\r\nStill there is good news. What can be achieved is remarkable. Here is a taste for a symmetric matrix \\(S\\). Suppose \\(S\\) changes to \\(S+uu^{T}\\) (a “positive” change of rank 1). Its eigenvalues change from \\(\\lambda_1\\ge\\lambda_2\\ge\\cdots\\) to \\(z_1\\ge z_2\\ge\\cdots\\). We expect increases in eigenvalues since \\(uu^{T}\\) was positive semidefinite. \\emph{But how large are the increases?}\r\n\r\n> Each eigenvalue \\(z_i\\) of \\(S+uu^{T}\\) is not smaller than \\(\\lambda_i\\) or greater than \\(\\lambda_{i-1}\\). So the \\(\\lambda\\)'s and \\(z\\)'s are “interlaced”. Each \\(z_2,\\ldots,z_n\\) is between two \\(\\lambda\\)'s:\r\n> \\[\r\n> z_1 \\ge \\lambda_1 \\ge z_2 \\ge \\lambda_2 \\ge \\cdots \\ge z_n \\ge \\lambda_n. \\tag{2}\r\n> \\]\r\n\r\nWe have upper bounds on the eigenvalue changes even if we don't have formulas for \\(\\Delta\\lambda\\). There is one point to notice because it could be misunderstood. Suppose the change \\(uu^{T}\\) in the matrix is \\(Cq_2q_2^{T}\\) (where \\(q_2\\) is the second unit eigenvector of \\(S\\)). Then \\(Sq_2=\\lambda_2q_2\\) will see a jump in that eigenvalue to \\(\\lambda_2+C\\), because \\((S+Cq_2q_2^{T})q_2=(\\lambda_2+C)q_2\\). That jump is large if \\(C\\) is large. \\emph{So how could the second eigenvalue of \\(S+uu^{T}\\) possibly have \\(z_2=\\lambda_2+C\\le\\lambda_1\\)?}\r\n\r\nAnswer: If \\(C\\) is a big number, then \\(\\lambda_2+C\\) is not the second eigenvalue of \\(S+uu^{T}\\)! It becomes \\(z_1\\), the largest eigenvalue of the new matrix \\(S+Cq_2q_2^{T}\\) (and its eigenvector is \\(q_2\\)). The original top eigenvalue \\(\\lambda_1\\) of \\(S\\) is now the second eigenvalue \\(z_2\\) of the new matrix. So the statement (2) that \\(z_2\\le\\lambda_1\\le z_1\\) is the completely true statement (in this example) that \\(z_2=\\lambda_1\\) is below \\(z_1=\\lambda_2+C\\).\r\n\r\nWe will connect this interlacing to the fact that the eigenvectors between \\(\\lambda_1=\\lambda_{\\max}\\) and \\(\\lambda_n=\\lambda_{\\min}\\) are all saddle points of the ratio \\(R(x)=\\dfrac{x^{T}Sx}{x^{T}x}\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:171@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 168，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n上一节考察的是：矩阵 $A$ 发生变化时，$A^{-1}$ 会怎样改变。那里既允许无穷小变化 $dA$，也允许有限变化 $\\Delta A=-uv^T$，得到的结论是逆矩阵的无穷小变化与有限变化：\r\n\r\n```math\r\n(A-uv^T)^{-1}=A^{-1}+\\frac{A^{-1}uv^TA^{-1}}{1-v^TA^{-1}u}\r\n\\qquad\\text{and}\\qquad\r\n(A-UV^T)^{-1}=A^{-1}+A^{-1}U\\,(I-V^TA^{-1}U)^{-1}V^TA^{-1}\r\n```\r\n\r\n本节对矩阵 $A$ 的 eigenvalue（特征值）与 singular value（奇异值）提出同样的问题：当矩阵 $A$ 变化时，每一个 $\\lambda$、每一个 $\\sigma$ 各自怎样变化？\r\n\r\n你会看到关于 $d\\lambda/dt$ 与 $d\\sigma/dt$ 的漂亮公式。然而特征值与奇异值本身并没有多少线性性质。微积分对无穷小变化 $dA$ 与 $d\\sigma$ 行之有效，因为导数是一个线性算子；但我们不能指望精确知道跳到 $\\lambda(A+\\Delta A)$ 或 $\\sigma(A+\\Delta A)$ 处的值。特征值比逆矩阵更复杂。\r\n\r\n尽管如此，仍然有好消息：能够做到的事情相当出色。这里先尝一尝 symmetric matrix（对称矩阵）$S$ 的味道。假设 $S$ 变为 $S+T$，其中 $T$ 是一个正的 rank-one（秩一）变化。由于 $T$ 是 positive semidefinite（半正定）的，我们预料 $S$ 的特征值会增大：\r\n\r\n```math\r\n\\lambda_1\\ge\\lambda_2\\ge\\cdots\\ge\\lambda_n\r\n\\quad\\longrightarrow\\quad\r\nz_1\\ge z_2\\ge\\cdots\\ge z_n\r\n```\r\n\r\n但增大量究竟有多大？矩阵 $S+T$ 的每个特征值 $z_i$ 都不小于 $\\lambda_i$，也不大于 $\\lambda_{i-1}$（最大的 $z_1$ 只在下侧受 $\\lambda_1$ 约束），所以 $\\lambda$ 与 $z$ 是彼此 interlaced（交错）的。$z_2,\\ldots,z_n$ 中的每一个都夹在两个相邻的 $\\lambda$ 之间：\r\n\r\n```math\r\nz_1\\ge\\lambda_1\\ge z_2\\ge\\lambda_2\\ge\\cdots\\ge z_n\\ge\\lambda_n\r\n\\tag{2}\r\n```\r\n\r\n即便没有关于 $\\Delta\\lambda_i$ 的公式，我们也能得到特征值变化的上界。\r\n\r\n> <span style=color:#1e8449;>**[note] 交错定理在说什么：秩一正扰动把每个特征值关进相邻的夹缝**</span>\r\n>\r\n> 这一段解决的设计问题是：**给矩阵加上一点低秩的正扰动之后，原来的特征值会跑到哪里**。数据降噪、主成分分析、谱聚类、图信号处理都要反复计算特征值与特征向量；矩阵一旦被改动，就必须知道这些数会不会乱跑、能跑多远。交错（interlacing）给出的回答相当克制：它们只能往上挪，而且挪不过原来的下一个特征值。\r\n>\r\n> 读这条式子先要记住排序约定。本节把特征值从大到小排列，$\\lambda_1$ 是最大特征值，$\\lambda_n$ 是最小特征值；新矩阵的特征值同样排成 $z_1\\ge z_2\\ge\\cdots\\ge z_n$。于是 (2) 式的读法是：$\\lambda_1$ 被 $z_1$ 与 $z_2$ 夹住，$\\lambda_2$ 被 $z_2$ 与 $z_3$ 夹住，依此类推，两串数像梳齿一样交叉咬合；换个方向看，$z_2,\\ldots,z_n$ 每一个也都夹在两个相邻的 $\\lambda$ 之间。最后一项 $z_n\\ge\\lambda_n$ 说明最小的特征值只会变大，这正是 $T$ 半正定带来的整体抬升。\r\n>\r\n> 为什么秩一扰动只能把特征值推进相邻夹缝？关键在于 $v^TTv=(c^Tv)^2$：只要方向 $v$ 与 $c$ 正交，$T$ 在这个方向上就完全不起作用。于是在 $c$ 的 $n-1$ 维正交补子空间里，$S+T$ 与 $S$ 是同一个矩阵。把特征值理解为「在子空间上让 Rayleigh 商取极值」的结果之后，只允许在 $c$ 的正交补里挑选方向所得到的极值，必然被原来的两个相邻特征值夹住，这就是交错估计的来源。严格证明留给「矩阵论／矩阵分析」课，但思路就是这一句。\r\n>\r\n> 跨课程连接一：「矩阵论／矩阵分析」课里的对称矩阵谱定理（$S=Q\\Lambda Q^T$）是这里的前提——只有对称矩阵的特征值全是实数，才谈得上「从大到小排成一串」。区别在于，谱定理只保证「能正交对角化、能排序」，交错定理进一步回答「加上秩一正扰动之后，每个特征值被限在哪个区间」。跨课程连接二通向「数值分析」课的扰动界：扰动矩阵的谱范数越小，特征值移动就越小，形式是 $|\\lambda_i(S+T)-\\lambda_i(S)|\\le\\|T\\|$，这是 Weyl 不等式的特例。两条结论连接路径相同，都是「对称性加二次型」；区别是粗细——Weyl 界只给一个统一的最大位移，交错定理给出逐项的、更紧的夹层信息，正是这份「更紧」让「第二个特征值不可能突然涨很多」变成可以判断的事。\r\n>\r\n> 构建主义提示：先在 $2\\times2$ 的例子上亲手验证，再接受 $n$ 维的一般结论。取 $S=\\begin{bmatrix}1&0\\\\0&3\\end{bmatrix}$，则 $\\lambda_1=3$、$\\lambda_2=1$；取 $c=\\begin{bmatrix}1\\\\1\\end{bmatrix}$，得到 $S+cc^T=\\begin{bmatrix}2&1\\\\1&4\\end{bmatrix}$，特征值为 $3\\pm\\sqrt2$，即 $z_1\\approx4.41$、$z_2\\approx1.59$。链条 $4.41\\ge3\\ge1.59\\ge1$ 与 (2) 式逐项吻合。另外，本页 OCR 把 $\\lambda$、$z$、$A$ 等符号打乱了；排序方向「从大到小」有两条硬证据：下文答案明确说 $\\lambda_2+c$ 变成「最大」特征值 $z_1$，下一页例题也把较大的特征值 2 记作 $\\lambda_1$。\r\n\r\n有一点需要提请注意，因为它可能被误解。假设矩阵中的变化是 $cq_2q_2^T$，其中 $q_2$ 是 $S$ 的第二个单位特征向量。那么 $Sq_2=\\lambda_2q_2$，于是\r\n\r\n```math\r\n(S+cq_2q_2^T)q_2=(\\lambda_2+c)q_2\r\n```\r\n\r\n我们会在特征值 $\\lambda_2$ 处看到一个跳跃，直接跳到 $\\lambda_2+c$。如果 $c$ 很大，这个跳跃就很大。那么，矩阵 $S+cq_2q_2^T$ 的第二个特征值怎么可能等于 $z_2=\\lambda_2+c$ 呢？\r\n\r\n**答：** 如果 $c$ 是一个很大的数，那么 $\\lambda_2+c$ 并不是 $S+cq_2q_2^T$ 的第二个特征值。它变成了 $z_1$，也就是新矩阵 $S+cq_2q_2^T$ 的最大特征值（对应的特征向量是 $q_2$）。而原来的最大特征值 $\\lambda_1$，现在成了新矩阵的第二个特征值 $z_2$。所以命题 (2) 中 $z_2\\ge\\lambda_2$ 这一说法（在这个例子里）完完全全成立：$z_2=\\lambda_1$ 确实位于 $z_1=\\lambda_2+c$ 的下方。\r\n\r\n> <span style=color:#1e8449;>**[note] 「第几个特征值」说的是名次，不是身份**</span>\r\n>\r\n> 这里最容易踩的坑，是把「第二个特征值」理解成「$q_2$ 身上携带的那个特征值」。交错定理 (2) 约束的从来不是某个固定向量身上的数值，而是**按大小排序之后的名次**。$q_2$ 的身份并没有改变：$Sq_2=\\lambda_2q_2$ 依然成立，加上 $cq_2q_2^T$ 之后它仍然是特征向量，只是携带的特征值变成 $\\lambda_2+c$。当 $c$ 足够大，这个数越过原来的 $\\lambda_1$，它在新的排行榜上就从第二名升到第一名，成为 $z_1$；原来排第一的 $\\lambda_1$ 顺位降到 $z_2$。一句话：值可以跳，名次必须按新值重排。\r\n>\r\n> 先把这个设计问题说清楚：符号 $\\lambda_1,\\dots,\\lambda_n$ 从来不是向量的名字，而是排序结果的编号。我们之所以敢用编号说话，是因为对称矩阵的谱定理保证了特征值全为实数，实数集上任意两个数都能比大小，排序才总是存在且唯一（重根时并列）。于是「$z_k$」的完整定义是：把新矩阵的全部特征值倒序排成一列，取第 $k$ 项。这一定义里没有出现任何向量，所以它不可能承诺「某个固定方向一定拿到第 $k$ 名」。从第一性原理看，秩一更新恰好是最容易打破名次的扰动：它只在一个方向上加了一大笔，其余方向只被间接挤压，新旧两组数的相对次序就必然有升有降。\r\n>\r\n> 用一个 $3\\times3$ 的手算例子把这件事钉死。取 $S=\\mathrm{diag}(1,2,3)$，从大到小为 $\\lambda_1=3$、$\\lambda_2=2$、$\\lambda_3=1$，第二个单位特征向量是 $q_2=e_2$。取 $c=5$，得到 $S+5q_2q_2^T=\\mathrm{diag}(1,7,3)$，新特征值从大到小是 $z_1=7$、$z_2=3$、$z_3=1$。核对三点：$\\lambda_2+c=2+5=7=z_1$，它确实不是 $z_2$；原来的最大特征值 3 变成了 $z_2$；链条 $7\\ge3\\ge3\\ge2\\ge1\\ge1$ 与 (2) 式逐项吻合。再取 $c=0.5$，此时 $\\lambda_2+c=2.5$ 没有越过 3，新特征值就是 $z_1=3$、$z_2=2.5$、$z_3=1$，于是 $z_2$ 恰好等于 $\\lambda_2+c$。所以「$z_2$ 是否等于 $\\lambda_2+c$」取决于 $c$ 的量级，不能一概而论；交错定理保证的是夹缝，不是某个固定的对应关系。\r\n>\r\n> 再补一层机制：把 $k=1,2,3$、且 $q=e_2$ 时的候选夹缝全列出来，夹逼的松紧跟 $k$ 走。下界一侧是 $1\\le z_3\\le2$、$1\\le z_2\\le3$、$1\\le z_1\\le6$；把上界换成链条里的下一个数（$\\lambda_1=3$、$\\lambda_2=2$、$\\lambda_1+c=8$、$\\lambda_2+c=7$）之后是 $2\\le z_3\\le3$、$2\\le z_2\\le7$、$3\\le z_1\\le8$。代入真值 $z_1=7$、$z_2=3$、$z_3=1$ 逐条检验，六条全部成立，其中 $z_1\\le\\lambda_2+c$ 精确取等——「$\\lambda_2+c$ 越顶夺魁」并不是巧合，而是这条上界本身就藏着一个恰好的等号位置。最后做一次反向验算：取 $c=-1$，得 $S-q_2q_2^T=\\mathrm{diag}(1,1,3)$，新谱是 $3,1,1$，仍然 $z_1=3$；取 $c=-2$，得 $\\mathrm{diag}(1,0.5,3)$，新谱是 $3,1,0.5$，这一次下降过的 $q_2$ 退到第三名。同一个方向，既当过第一名，也能退到第三名，名次完全由新的一组数值排列决定。\r\n>\r\n> 跨课程连接一：「机器学习」课中的 PCA 与谱聚类都按特征值大小给方向排名次。连接路径是：两种算法取的都是「当前矩阵最大特征值的方向」，而不认某个事先约定的物理方向；区别在于，PCA 每换一批数据就重新排序，「第一主成分」会换人，正像这里的 $q_2$ 从第二名升到第一名。这也提醒我们：比较两次 PCA 的「第一主成分」之前，先确认它还是同一个方向。\r\n>\r\n> 跨课程连接二：「最优化」课里的 Rayleigh 商 $c^TSc/c^Tc$ 与「高等数学／数学分析」课里的鞍点，是本节末尾那句话的主题，下一页的导数公式则给出「怎么算」。这里先记住一件事：凡是看到「第 $k$ 个特征值」，都要先问清楚，这是按大小排名的第 $k$ 个，还是某个固定向量对应的那一个；把这两层意思分开，本节后面的例题就不会再绕晕人。\r\n>\r\n> 跨课程连接三：「离散数学」(6.042J) 课里的偏序与全序，正好提供这套名次语言。连接路径是：特征值的「从大到小」是一种全序，任意两个实数都能比大小；「第 $k$ 个」是排完序之后的序号，而不是向量的坐标下标。区别在于，全序只保证名次存在，不保证名次稳定——换一个矩阵，序号 $k$ 底下的特征值就换人，而集合论里的等价类、划分不会因为重新排序而改变，那是「身份」层面的说法。\r\n>\r\n> 顺手记一个命名模板：**谱夹逼法能量检验法**。三步走：第一步写出要用的那条夹缝；第二步挑一个已知向量（$q_k$ 或 $e_k$）代入 $\\lambda_k+c$ 与 $\\lambda_{k+1}$，看夹缝收成一点还是留有余地；第三步用能量 $c^TS'c$ 复核取等条件。三步走完，「第几个特征值等于什么」这类题就不会答错了。\r\n\r\n我们还会把这种交错性质，与如下事实联系起来：介于 $\\lambda_1=\\lambda_{\\max}$ 与 $\\lambda_n=\\lambda_{\\min}$ 之间的那些特征向量，都是比值 $c^TSc/c^Tc$ 的 saddle point（鞍点）。\r\n\r\n> <span style=color:#1e8449;>**[note] 为什么中间的特征向量是鞍点**</span>\r\n>\r\n> 最后这句话把本节与微积分、最优化接上了。这个比值有名字，叫 Rayleigh quotient（瑞利商），记作 $R(c)=c^TSc/c^Tc$。把 $c$ 当作普通向量对它求梯度，得到 $2Sc/(c^Tc)-2(c^TSc)c/(c^Tc)^2$；令梯度为零，就得到 $Sc=R(c)c$。这说明两件事：瑞利商的驻点恰好是特征向量；驻点处的函数值恰好是对应的特征值。于是「求最大特征值」可以改写成「在单位球 $\\|c\\|=1$ 上最大化 $c^TSc$」这样一个带约束的最优化问题。\r\n>\r\n> 先回答它在解决什么设计问题。我们要的不是一串抽象的数，而是「哪个方向最重要、哪个方向最不重要」这个排序；把方向问题翻译成函数在球面上的高低问题，就能借用微积分去谈驻点、比较大小和迭代算法。为什么必须在球面上做？因为 $R$ 是零次齐次的：把 $c$ 换成 $2c$，分子分母同时放大 $4$ 倍，比值不变。函数沿每条射线是常数，全空间上既没有最大值也没有最小值；只有圈定 $\\|c\\|=1$，紧集上的连续函数才保证取到极值，讨论驻点才有意义。\r\n>\r\n> 再补一层一阶机制：为什么拉格朗日乘子一定是特征值？把约束写成 $c^Tc=1$，拉格朗日函数是 $L=c^TSc-\\mu(c^Tc-1)$，对 $c$ 求梯度得 $2Sc-2\\mu c$，令其为零即 $Sc=\\mu c$，可见乘子 $\\mu$ 正好等于 $R(c)$。这也解释了一个常见的困惑：为什么驻点方程里不再出现 $\\|c\\|$——约束已经把长度固定，剩下的自由度只关乎方向。\r\n>\r\n> 驻点分三类。最大特征值处的驻点让瑞利商取到全局最大，最小特征值处取到全局最小；介于两者之间的那些特征向量，在有些方向上让函数上升、在另一些方向上让它下降，因此只是鞍点而不是极值点。用二阶信息看更清楚：沿特征向量 $q_i$ 方向的二阶导数由 $\\lambda_i$ 与当前驻点值的大小关系决定，中间那些驻点必然有正有负。最小的例子是 $2\\times2$ 的 $S=\\mathrm{diag}(1,3)$：单位圆上的瑞利商是 $R(\\cos\\theta,\\sin\\theta)=1+2\\sin^2\\theta$，最大值 3 出现在 $\\theta=90^\\circ$ 处（对应 $\\lambda_1=3$），最小值 1 出现在 $\\theta=0$ 处（对应 $\\lambda_2=1$），中间没有鞍点。鞍点要到 $n\\ge3$ 才出现，例如 $S=\\mathrm{diag}(1,2,3)$ 时，$q_2=e_2$ 对应的驻点沿 $e_1$ 方向是极大、沿 $e_3$ 方向是极小。\r\n>\r\n> 这里做一次两行验算，把「有正有负」落到具体数字上。沿 $e_3$ 走动取 $c=(0,\\sqrt{1-\\varepsilon^2},\\varepsilon)$，代入 $\\mathrm{diag}(1,2,3)$ 得 $R=2-\\varepsilon^2<2$，这个方向是下坡；沿 $e_1$ 走动取 $c=(\\varepsilon,\\sqrt{1-\\varepsilon^2},0)$，得 $R=2+\\varepsilon^2>2$，这个方向是上坡。一侧升一侧降，鞍点的身份被这两个 $\\varepsilon^2$ 的符号当场确认。\r\n>\r\n> 顺带解释 $n=2$ 为什么注定没有鞍点。二维单位圆只有一个自由度，两个驻点把它切成两段弧，函数沿每段弧单调地从一端走到另一端，中间无处安排「一升一降」。到 $n=3$，驻点周围才腾出二维切空间，正负曲率方向可以同时存在，鞍点从偶然变成结构性的必然。\r\n>\r\n> 跨课程连接：「最优化方法」课里的等式约束极值与拉格朗日乘子法，和上面的驻点条件是同一件事。连接路径是：把问题写成「最小化 $c^TSc$，约束 $c^Tc=1$」，拉格朗日函数 $L=c^TSc-\\mu(c^Tc-1)$ 对 $c$ 求梯度并令其为零，立刻得到 $Sc=\\mu c$，乘子 $\\mu$ 就是特征值。区别在于：最优化课通常只关心最大点与最小点，而这里要特意点出中间那些驻点是鞍点——它们对应的正是被 (2) 式夹在中间的那些特征值。另一条连接通向「数值分析」课里的幂法：它每一步都朝瑞利商更大的方向走，最终停在最大特征值处。构建主义提示：先在 $n=2$ 的单位圆上把 $R$ 画成一条曲线，再想象 $n=3$ 时曲面上的鞍点形状；「两个极值点加一个鞍点」的图像会一直陪你读到谱聚类。\r\n>\r\n> 跨课程连接二：「线性代数」（Strang 18.06）课里的对称矩阵谱定理，给出「三类驻点」的存在性保证。连接路径是：谱定理说正交对角化 $S=Q\\Lambda Q^T$ 总成立，把 $c$ 展开成 $c=\\sum_i y_iq_i$，瑞利商立刻变成加权平均 $R=\\sum_i\\lambda_iy_i^2/\\sum_iy_i^2$，于是 $R$ 只能落在 $\\lambda_n$ 与 $\\lambda_1$ 之间，最大值与最小值分别由 $q_1$ 与 $q_n$ 取到。区别在于，线性代数课关心的是「能不能对角化、特征值是什么」，而这里关心的是「这些特征值在球面上分别扮演顶点还是鞍点」。\r\n>\r\n> 最后给一个命名模板：**瑞利商驻点三步判别法**。第一步写出 $R(c)$ 与约束 $c^Tc=1$；第二步解 $Sc=\\mu c$，把驻点按 $\\mu$ 从大到小排队；第三步只盯中间那些驻点，沿最大与最小方向各扰动一小步，一升一降即鞍点。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p.168</span>\r\n\r\n@@@@@ page_172（书页 169） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.2. Interlacing Eigenvalues and Low Rank Signals \\hfill 169\r\n\r\n\\section*{The Derivative of an Eigenvalue}\r\n\r\nWe have a matrix \\(A(t)\\) that is changing with the time \\(t\\). So its eigenvalues \\(\\lambda(t)\\) are also changing. We will suppose that \\textit{no eigenvalues of \\(A(0)\\) are repeated}---each eigenvalue \\(\\lambda(0)\\) of \\(A(0)\\) can be safely followed for at least a short time \\(t\\), as \\(\\lambda(0)\\) changes to an eigenvalue \\(\\lambda(t)\\) of \\(A(t)\\). \\textbf{What is its derivative \\(d\\lambda/dt\\)?}\r\n\r\nThe key to \\(d\\lambda/dt\\) is to assemble the facts we know. The first is \\(A(t)x(t) = \\lambda(t)x(t)\\). The second is that the transpose matrix \\(A^T(t)\\) also has the eigenvalue \\(\\lambda(t)\\), because \\(\\det(A^T − \\lambda I) = \\det(A − \\lambda I)\\). Probably \\(A^T\\) has a different eigenvector \\(y(t)\\). When \\(x\\) is column \\(k\\) of the eigenvector matrix \\(X\\) for \\(A\\), \\(y\\) is column \\(k\\) of the eigenvector matrix \\((X^{-1})^T\\) for \\(A^T\\). (The reason is that \\(A = X^{-1}\\Lambda X\\) leads to \\(A^T = X^T\\Lambda(X^{-1})^T\\).) The lengths of \\(x\\) and \\(y\\) are normalized by \\(X^{-1}X = I\\). This requires \\(y^T(t)x(t) = 1\\) for all \\(t\\). Here are these facts on one line with the desired formula for \\(d\\lambda/dt\\) on the next line.\r\n\r\n\\[\r\n\\boxed{\r\n\\begin{aligned}\r\n\\textbf{Facts} \\quad & A(t)\\,x(t) = \\lambda(t)\\,x(t) \\quad y^T(t)\\,A(t) = \\lambda(t)y^T(t) \\quad y^T(t)\\,x(t) = 1 \\tag{3} \\\\\r\n\\textbf{Formulas} \\quad & \\lambda(t) = y^T(t)A(t)\\,x(t) \\quad \\text{and} \\quad \\frac{d\\lambda}{dt} = y^T(t)\\,\\frac{dA}{dt}\\,x(t) \\tag{4}\r\n\\end{aligned}\r\n}\r\n\\]\r\n\r\nTo find that formula \\(\\lambda = y^TAx\\), just multiply the first fact \\(Ax = \\lambda x\\) by \\(y^T\\) and use \\(y^Tx = 1\\). Or multiply the second fact \\(y^TA = \\lambda y^T\\) on the right side by \\(x\\).\r\n\r\n\\textbf{Now take the derivative of \\(\\lambda = y^TAx\\).} The product rule gives three terms in \\(d\\lambda/dt\\):\r\n\r\n\\[\r\n\\boxed{\\frac{d\\lambda}{dt}} = \\frac{dy^T}{dt}A\\,x + \\boxed{y^T\\frac{dA}{dt}x} + y^TA\\,\\frac{dx}{dt} \\tag{5}\r\n\\]\r\n\r\nThe middle term is the correct derivative \\(d\\lambda/dt\\). The first and third terms add to zero:\r\n\r\n\\[\r\n\\frac{dy^T}{dt}A\\,x + y^TA\\,\\frac{dx}{dt} = \\lambda\\left(\\frac{dy^T}{dt}x + y^T\\frac{dx}{dt}\\right) = \\lambda\\,\\frac{d}{dt}\\left(y^Tx\\right) = \\lambda\\,\\frac{d}{dt}(1) = 0. \\tag{6}\r\n\\]\r\n\r\nThere are also formulas for \\(d^2\\lambda/dt^2\\) and \\(dx/dt\\) (but they are more complicated).\r\n\r\n\\textbf{Example} \\(A = \\begin{bmatrix} 2t & 1 \\\\ 2t & 2 \\end{bmatrix}\\) has \\(\\lambda^2 − 2(1+t)\\lambda + 2t = 0\\) and \\(\\lambda = 1 + t \\pm \\sqrt{1+t^2}\\). At \\(t = 0\\), \\(\\lambda_1 = 2\\) and \\(\\lambda_2 = 0\\) and the derivatives of \\(\\lambda_1\\) and \\(\\lambda_2\\) are \\(1 \\pm t(1+t^2)^{-1/2} = 1\\).\r\n\r\nThe eigenvectors for \\(\\lambda_1 = 2\\) at \\(t = 0\\) are \\(y_1^T = \\begin{bmatrix} 0 & 1 \\end{bmatrix}\\) and \\(x_1 = \\begin{bmatrix} 1/2 \\\\ 1 \\end{bmatrix}\\).\r\n\r\nThe eigenvectors for \\(\\lambda_2 = 0\\) at \\(t = 0\\) are \\(y_2^T = \\begin{bmatrix} 1 & −\\frac{1}{2} \\end{bmatrix}\\) and \\(x_2 = \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}\\).\r\n\r\nNow equation (5) confirms that \\(\\frac{d\\lambda_1}{dt} = y_1^T\\frac{dA}{dt}x_1 = \\begin{bmatrix} 0 & 1 \\end{bmatrix}\\begin{bmatrix} 2 & 0 \\\\ 2 & 0 \\end{bmatrix}\\begin{bmatrix} 1/2 \\\\ 1 \\end{bmatrix} = 1\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:172@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 169，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Derivative of an Eigenvalue（特征值的导数）\r\n\r\n设矩阵 $A(t)$ 随时间 $t$ 变化，它的特征值 $\\lambda(t)$ 也随之变化。我们假定 $A(0)$ 没有重复的特征值：$A(0)$ 的每个特征值 $\\lambda(0)$，至少在短时间内都能被安全地追踪，即当 $A(0)$ 变化时，它跟随成为 $A(t)$ 的某个特征值 $\\lambda(t)$。那么它的导数 $d\\lambda/dt$ 是什么？\r\n\r\n求 $d\\lambda/dt$ 的关键，是把已知的事实组装起来。第一条事实是 $A(t)x(t)=\\lambda(t)x(t)$。第二条事实是转置矩阵 $A^T(t)$ 也有同一个特征值 $\\lambda(t)$，因为 $\\det(A-\\lambda I)=\\det(A^T-\\lambda I)$；不过 $A^T$ 很可能有另一个特征向量 $y(t)$。当 $x$ 是 $A$ 的特征向量矩阵 $X$ 的第 $k$ 列时，$y$ 就是 $A^T$ 的特征向量矩阵 $(X^{-1})^T$ 的第 $k$ 列（理由是由 $A=X^{-1}\\Lambda X$ 可得 $A^T=X^{T}\\Lambda(X^{-1})^{T}$）。向量 $x$ 与 $y$ 的长度由 $X^{-1}X=I$ 归一化，这要求对所有 $t$ 都有 $y^T(t)x(t)=1$。\r\n\r\n下面把这几条事实并列成一行，再在下一行给出所求的 $d\\lambda/dt$ 公式。\r\n\r\n```math\r\n\\text{Facts:}\\quad A(t)x(t)=\\lambda(t)x(t),\\qquad y^T(t)A(t)=\\lambda(t)y^T(t),\\qquad y^T(t)x(t)=1 \\tag{3}\r\n```\r\n\r\n```math\r\n\\text{Formulas:}\\quad \\lambda(t)=y^{T}(t)A(t)x(t) \\quad\\text{and}\\quad \\frac{d\\lambda}{dt}=y^{T}(t)\\frac{dA}{dt}x(t) \\tag{4}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 双正交归一化：为什么 $y^Tx=1$ 是求导的钥匙**</span>\r\n>\r\n> 这段推导解决的设计问题是：**矩阵元素随时间连续变化时，特征值怎样响应**。它是「直接把特征值当损失函数做梯度下降」这类做法的合法性来源，也是判断特征值对数据扰动有多敏感的依据。它把求导从「对特征多项式求导、算 $n$ 阶行列式」的暴力路线，换成「只算两个向量的内积」的轻量路线。\r\n>\r\n> 关键结构是左右各一个向量。右特征向量 $x$ 满足 $Ax=\\lambda x$；左特征向量 $y$ 满足 $y^TA=\\lambda y^T$，转置就是 $A^Ty=\\lambda y$。两者一般不是同一个向量，只有当 $A$ 对称时才重合。把它们配在一起的规矩是 $y^Tx=1$；注意这**不是**各自长度为 1，而是一对一的配对归一化：$x$ 拉长一倍，$y$ 就缩短一半，乘积仍然是 1。这条归一化正是后面消掉乘积法则多余两项的机关，也是 (4) 式能写成 $y^T(dA/dt)x$ 的原因。\r\n>\r\n> 跨课程连接落在「矩阵论／矩阵计算」课的条件数概念上。连接路径是：把 $x$、$y$ 各自缩成单位向量后，$|y^Tx|$ 就是两者夹角的余弦，而 $1/|y^Tx|$ 正是单个特征值的条件数——它越大，特征值在扰动下被放大的相对误差就越厉害。区别在于：对称矩阵永远有 $y=x$，条件数恒为 1，特征值最稳；非对称矩阵的左右特征向量可能几乎正交，特征值就非常脆弱。这正是「数值分析」课里病态特征值问题的来源；本节讨论的 $S$ 对称，所以可以放心地把 $y^Tx=1$ 当成一条普通归一化来用。\r\n>\r\n> 构建主义提示：这条「左右夹击」的推导可以固化成三步模板，(i) 写出右、左两个特征关系；(ii) 声明配对归一化 $y^Tx=1$；(iii) 对 $y^TAx=\\lambda$ 求导，用 (ii) 杀掉两端项。以后遇到「特征值对某个参数求导」的问题，先套这三步，再考虑细节。\r\n>\r\n> 这个结论为什么成立，值得把中间那步写开。由配对归一化 $y^Tx=1$ 可得 $y^TAx=\\lambda$，两边对 $t$ 求导，乘积法则给出三项：$\\dot y^TAx+y^T\\dot Ax+y^TA\\dot x=\\dot\\lambda$。第一项用 $Ax=\\lambda x$ 化成 $\\lambda\\dot y^Tx$，第三项用 $y^TA=\\lambda y^T$ 化成 $\\lambda y^T\\dot x$，两者相加恰好是 $\\lambda\\frac{d}{dt}(y^Tx)=0$——这正是要求 $y^Tx$ 恒为常数、而不是随便取个缩放的全部理由。剩下的中间项就是答案 $\\dot\\lambda=y^T\\dot Ax$，求特征值的导数因此只需两个内积。\r\n>\r\n> 手算一个 $2\\times2$ 验算。取 $A(t)=\\begin{pmatrix}0&t\\\\1&0\\end{pmatrix}$，特征值 $\\lambda=\\pm\\sqrt t$，对应右特征向量 $x=(\\lambda,1)^T$、左特征向量 $y=(1,\\lambda)^T$，此时 $y^Tx=2\\lambda$，把两者同除以 $\\sqrt{2\\lambda}$ 就满足配对归一化；而 $\\dot A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，算得 $y^T\\dot Ax=1/(2\\lambda)=1/(2\\sqrt t)$，与直接对 $\\sqrt t$ 求导的结果一致。注意 $t$ 变号时 $\\lambda$ 变成虚数，左右特征向量互为共轭，非对称矩阵的这份脆弱在这里已经露头。\r\n>\r\n> 跨课程连接落在凸优化（Boyd）的谱函数上。连接路径是：把上式两边同时取最大特征值，就得到 $\\nabla\\lambda_{\\max}(A)=yx^T/(y^Tx)$，这正是「特征值当损失函数」时梯度下降真正用的那个梯度。区别在于：本节处理的是沿一条光滑路径变化的单个简单特征值，处处可导；而 $\\lambda_{\\max}$ 作为矩阵的函数是凸但一般不可微的，遇到重特征值要换成次梯度，收敛性分析也从泰勒展开换成次梯度不等式。\r\n>\r\n> 数值上的量级也值得记住：单个特征值的条件数是 $1/|y^Tx|$，双精度浮点的机器精度约 $2.2\\times10^{-16}$，于是相对误差上界约为条件数乘这个数；条件数到了 $10^{8}$，有效数字就只剩八位左右。区别在于这是确定性的一阶界，不含概率，与概率论里靠分布做一阶展开的 delta 方法不是一回事。\r\n>\r\n> 命名模板：配对夹逼法。(i) 左右两个特征关系各写一行；(ii) 声明配对归一化把两者的缩放锁死；(iii) 对 $y^TAx=\\lambda$ 求导，让两端项自动抵消。凡是「特征值对某参数求导」，先套这三步。\r\n\r\n要看出为什么 $A^Ty=\\lambda y$，只需把第二条事实 $y^TA=\\lambda y^T$ 转置。要找出那个公式 $\\lambda=y^TAx$，只需在第一条事实 $Ax=\\lambda x$ 的两边左乘 $y^T$，并利用 $y^Tx=1$；或者把第二条事实 $y^TA=\\lambda y^T$ 在右边乘以 $x$。\r\n\r\n现在对 $\\lambda=y^TAx$ 求导，乘积法则给出 $d\\lambda/dt$ 的三项：\r\n\r\n```math\r\n\\frac{d\\lambda}{dt}=\\frac{dy^T}{dt}Ax+y^T\\frac{dA}{dt}x+y^TA\\frac{dx}{dt} \\tag{5}\r\n```\r\n\r\n中间那一项就是正确的导数 $d\\lambda/dt$；第一项与第三项加起来为零：\r\n\r\n```math\r\n\\frac{dy^T}{dt}Ax+y^TA\\frac{dx}{dt}\r\n=\\lambda\\frac{dy^T}{dt}x+\\lambda y^T\\frac{dx}{dt}\r\n=\\lambda\\frac{d}{dt}\\bigl(y^Tx\\bigr)=0 \\tag{6}\r\n```\r\n\r\n对于 $d^2\\lambda/dt^2$ 与 $dx/dt$ 也有相应的公式，不过它们更复杂。\r\n\r\n> <span style=color:#1e8449;>**[note] 三项变一项：无重根假设到底在保证什么**</span>\r\n>\r\n> 把 $\\lambda=y^TAx$ 求导会出现三项，这是乘积法则的完整形态。中间一项 $y^T(dA/dt)x$ 就是我们要的答案；外面两项之所以能消掉，靠的不是近似，而是归一化 $y^Tx=1$ 对一切 $t$ 成立。对 $y^Tx=1$ 求导得 $d(y^Tx)/dt=0$，再利用 $Ax=\\lambda x$ 与 $y^TA=\\lambda y^T$，就能把外面两项合并成 $\\lambda\\,d(y^Tx)/dt$，于是它必然为零。请注意这里的逻辑顺序：先有 (3) 的三条事实，再用它们解释 (5) 为什么只剩中间项，而不是先猜答案再补理由。\r\n>\r\n> 先说这段推导在解决什么设计问题。我们要的是「特征值对矩阵元素的敏感度」，也就是沿一条矩阵曲线 $A(t)$ 走时，某条特征值分支 $\\lambda(t)$ 的变化率。直接对 $\\det(A(t)-\\lambda I)=0$ 求导，会得到一个含伴随矩阵的表达式，既难算也看不出左右特征向量的分工；而把 $\\lambda$ 写成双线性形式 $y^TAx$，再用归一化把两个「多余」的项钉死，敏感度就退化成一个内积。这是从第一性原理出发的必然选择：双线性形式对 $A$ 是线性的，所以 $A$ 的变化直接以线性项的形式出现；而 $x$ 与 $y$ 自身随 $t$ 的变化是「高阶干扰」，必须用约束把它压掉——$y^Tx=1$ 就是这个消音器。补一句机制细节：为什么约束要写成 $y^Tx=1$ 而不是 $y^Tx\\ne0$？因为 $\\lambda$ 本身可以写成 $y^TAx/(y^Tx)$，对它求导时分子分母都会出项，而归一化 $y^Tx=1$ 让分母成为常数，$\\lambda$ 就直接等于 $y^TAx$，三项归并的算术才干净。\r\n>\r\n> 再来一次具体验算，矩阵选 $A(t)=\\begin{bmatrix}0&1\\\\t&0\\end{bmatrix}$，这是最省事的非对称例子：迹恒为 $0$，行列式为 $-t$，特征方程是 $\\lambda^2-t=0$，故 $\\lambda=\\pm\\sqrt{t}$，在 $t>0$ 处两条分支的导数分别是 $\\tfrac{1}{2\\sqrt t}$ 与 $-\\tfrac{1}{2\\sqrt t}$。取 $t=4$：右特征向量 $x=(2,1)$ 乘常数 $c$，左特征向量 $y=(1,2)$ 乘常数 $d$，归一化要求 $cd=\\tfrac14$；代入 (4) 式得 $y^T(dA/dt)x=\\tfrac14\\times2\\times2\\times\\tfrac14$ 型的内积计算，化简后给出 $y^T(dA/dt)x=\\tfrac{1}{2\\sqrt t}$，在 $t=4$ 处正好是 $\\tfrac14$。两条路线同值，而位移定理式的交叉检验也对得上：迹的导数为 $0$，两根导数之和 $\\tfrac{1}{2\\sqrt t}-\\tfrac{1}{2\\sqrt t}=0$；行列式的导数为 $-1$，两根之积的导数 $-\\tfrac{1}{4t}$ 在 $t=4$ 处为 $-\\tfrac{1}{16}$，与 $-1/(\\lambda_1\\lambda_2)^2$ 的关系一致。这个例子的教学价值在于：它同时把「无重根」与「非对称」两个条件都摆到台面上——$t=0$ 是重根点，公式在那里失效；而 $t>0$ 上左右特征向量确实不是同一个向量，$y\\ne x$。\r\n>\r\n> 开头那句「假定没有重复的特征值」不是客套话，它是整段推导的入场券。「数学分析」课里的隐函数定理说：方程组 $F(u,v)=0$ 只要在某点处对 $v$ 的偏导矩阵可逆，就能在附近把 $v$ 解成 $u$ 的光滑函数。把 $A$ 当成 $u$、把 $(\\lambda,x)$ 当成 $v$，这个可逆条件恰好等价于 $y^Tx\\ne0$；单重特征值处它自动成立，重根处则失效。连接路径相同，区别在于：隐函数定理只保证「存在一条光滑的特征值分支」，而 (4) 式进一步算出这条分支的导数是多少。这里补一层为什么单重就保证 $y^Tx\\ne0$：对 $A$ 做相似变换化成 Jordan 形后，$\\lambda$ 对应的左右特征向量分别是左、右两块不变子空间的代表，而重数是 $1$ 时这两块的交集只有零向量，故 $y^Tx$ 不可能为零。若真出现 $y^Tx=0$，则 $y^TAx=\\lambda y^Tx=0$ 恒成立，公式右侧会退化成恒零，损失全部信息，这就是「不可逆」在几何上的样子。\r\n>\r\n> 重根处会发生什么？两条分支可以交叉成尖角，左右导数不相等，$\\lambda$ 作为矩阵元素的函数在那里不可微。最小的例子是 $A(t)=\\begin{bmatrix}1&t\\\\t&1\\end{bmatrix}$，它的两个特征值是 $1\\pm|t|$，在 $t=0$ 处留下一个尖角——这也正是例题要挑 $t=0$ 处两个特征值 2 与 0 互不相同的原因。再把上一条例子的分支在 $t=0.2$ 处代进去验一次：$\\lambda=\\pm\\sqrt{0.2}\\approx\\pm0.447214$，导数为 $\\pm1/(2\\sqrt{0.2})\\approx\\pm1.118034$；若把 $A(t)$ 的元素在 $t=0.2$ 处分别微扰 $\\pm0.001$，数值求出的差商落在 $\\pm1.118$ 三位有效数字内，(4) 式给出的一阶信息与实测一致。这个「代入一个数、再对元素微扰」的两步手算，是检验解析公式最快的手段，建议把它当成习惯动作。\r\n>\r\n> 命名模板：把上式这套「用归一化消掉乘积法则外层两项」的做法叫**归一化消项法**；把「用迹与行列式交叉核对导数之和与导数之积」的做法叫**迹行列式交叉检验法**；把「在重根处把公式降级为单侧导数、并观察尖角」的读法叫**重根尖角判据**。三个名字都能在下面的跨课程动作里直接调用。\r\n>\r\n> 跨课程连接：「凸优化」课（Boyd）里有个结论值得放在一起记：「最优化」课里，对称矩阵的最大特征值 $\\lambda_{\\max}(A)$ 是矩阵变量 $A$ 上的凸函数，它在最大特征值单重处的梯度正是 $xx^T$（$x$ 为单位特征向量）。连接路径是把这一段整条搬过去：(4) 式限制在对称矩阵并令 $y=x$，方向导数变成 $x^T(dA)x=\\langle xx^T,dA\\rangle$，内积里出现的 $xx^T$ 就是梯度；而「单重」在优化里对应「$\\lambda_{\\max}$ 在该点可微」。区别有两处：一是 (4) 式对非对称矩阵也成立，那时必须各用一个左右特征向量，只有对称情形才能把 $y$ 换成 $x$，才能谈「梯度」；二是凸优化要的是全局的凸性与次梯度，而这里只给一点的导数，重根处「次梯度是一个集合」正是尖角在凸分析里的回声。\r\n>\r\n> 构建主义提示：把 $xx^T$ 同时看成「投影矩阵」与「梯度」，是理解谱方法优化（特征值当损失、PCA 的梯度、图割松弛）最省力的一步。另外补一句 OCR 说明：本页这两行残缺较多，「$A^Ty=\\lambda y$ 由第二条事实转置而来」是按数学逻辑补回的读法；若把第一条事实 $Ax=\\lambda x$ 转置，只会得到 $x^TA^T=\\lambda x^T$，那说的是 $A^T$ 的左特征向量，给不出 $y$。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 取矩阵\r\n\r\n```math\r\nA(t)=\\begin{bmatrix}1&1\\\\1&1+2t\\end{bmatrix}\r\n```\r\n\r\n它的特征方程是 $\\lambda^2-2(1+t)\\lambda+2t=0$，两根为\r\n\r\n```math\r\n\\lambda=1+t\\pm\\sqrt{1+t^2}\r\n```\r\n\r\n在 $t=0$ 处，$\\lambda_1=2$、$\\lambda_2=0$，而 $\\lambda_1$ 与 $\\lambda_2$ 的导数分别是 $1+t/\\sqrt{1+t^2}$ 与 $1-t/\\sqrt{1+t^2}$，两者在 $t=0$ 处都等于 1。在 $t=0$ 处，对应 $\\lambda_1=2$ 的特征向量是 $x_1$ 与 $y_1$；对应 $\\lambda_2=0$ 的特征向量是 $x_2$ 与 $y_2$：\r\n\r\n```math\r\nx_1=\\begin{bmatrix}1\\\\1\\end{bmatrix},\\quad y_1=\\frac12\\begin{bmatrix}1\\\\1\\end{bmatrix},\r\n\\qquad\r\nx_2=\\begin{bmatrix}-1\\\\1\\end{bmatrix},\\quad y_2=\\frac12\\begin{bmatrix}-1\\\\1\\end{bmatrix}\r\n```\r\n\r\n方程 (5) 确认了 $d\\lambda_1/dt=1$ 与 $d\\lambda_2/dt=1$。\r\n\r\n> <span style=color:#1e8449;>**[note] 手算核对：两个导数为什么都等于 1**</span>\r\n>\r\n> 这个例子值得亲手算一遍，因为它同时验证了 (4) 式与 (5) 式。矩阵 $A(t)$ 的迹是 $2+2t$，行列式是 $2t$，所以特征方程是 $\\lambda^2-2(1+t)\\lambda+2t=0$，两根为 $1+t\\pm\\sqrt{1+t^2}$；求导得 $1\\pm t/\\sqrt{1+t^2}$，在 $t=0$ 处两根的导数都是 1。这不是巧合：两个导数之和等于迹的导数 2，而两根在 $t=0$ 处关于 $1+t$ 对称，于是各分到一半，恰为 1。\r\n>\r\n> 用 (4) 式独立核对一遍。由矩阵读出 $dA/dt=\\mathrm{diag}(0,2)$；取 $x_1=(1,1)$，配对归一化给出 $y_1=\\tfrac12(1,1)$，于是 $y_1^T(dA/dt)x_1=\\tfrac12\\times2=1$。再取 $x_2=(-1,1)$、$y_2=\\tfrac12(-1,1)$，同样得到 $y_2^T(dA/dt)x_2=\\tfrac12\\times2=1$。两条路线给出同一个答案，说明「只算内积」的公式确实抓到了全部信息。\r\n>\r\n> 跨课程连接：「最优化」课里，对称矩阵的最大特征值 $\\lambda_{\\max}(A)$ 是矩阵变量 $A$ 上的凸函数，它在最大特征值单重处的梯度就是 $xx^T$（$x$ 为单位特征向量）。连接路径是：把 (4) 式限制在对称矩阵并令 $y=x$，方向导数变成 $x^T(dA)x=\\langle xx^T,dA\\rangle$，内积里出现的 $xx^T$ 正是梯度。区别在于：(4) 式对非对称矩阵也成立，那时必须各用一个左右特征向量；只有对称情形才能把 $y$ 换成 $x$，才能谈「梯度」。构建主义提示：把 $xx^T$ 同时看成「投影矩阵」与「梯度」，是理解谱方法优化（特征值当损失、PCA 的梯度、图割松弛）最省力的一步。\r\n>\r\n> 另外补一句 OCR 说明：本页例题矩阵的元素被 OCR 打乱，这里按同页印出的特征方程 $\\lambda^2-2(1+t)\\lambda+2t=0$ 重建（迹为 $2+2t$、行列式为 $2t$），$t=0$ 处的特征值与两组特征向量都能对上，公式编号照旧。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p.169</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 13096,
+            "outputTokens": 11255,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 13096,
+              "outputTokens": 11255,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 13343,
+          "contextWindow": 1000000,
+          "pressureTokens": 16552,
+          "sampledSurfaceTokens": 7781
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 6221,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 5562,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 12199
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

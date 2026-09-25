@@ -1,0 +1,461 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128833882,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 151,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 151,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 关键之处在于：每个二维空间 $V$ 都必然与一切形如 $(0,*,*)$ 的向量所构成的二维空间相交。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 第 174 页这段的核心不是计算而是**计数**：$\\mathbf{R}^3$ 中任意两个二维子空间必然相交，因为 $2+2>3$。这条维数相交引理 $\\dim(V\\cap W)\\ge\\dim V+\\dim W-n$ 是整个极大-极小原理的发动机。命名模板：**维数计数相交法（子空间鸽巢）**——你在 6.042J 学的鸽巢原理说「$n+1$ 个物体放进 $n$ 个盒子必有碰撞」，这里把「物体」换成「维数」：两个子空间维数之和超过整个空间维数，多出来的部分只能落进交集。证明也朴素：若 $V\\cap W=\\{0\\}$，把两者的基拼起来就得到 $\\dim V+\\dim W$ 个线性无关向量，于是 $n\\ge\\dim V+\\dim W$，与假设矛盾。有了这条引理，$\\lambda_2$ 的刻画顺理成章。对任意二维 $V$，取 $W=\\operatorname{span}(q_2,q_3)$（在 $5,3,1$ 的例子中就是 $(0,*,*)$ 那个平面），两者必有公共非零向量 $c$，而在这个 $c$ 上 $R(c)=\\frac{c^TSc}{c^Tc}\\le\\lambda_2$，因为它与 $q_1$ 正交、只用到 $\\lambda_2,\\lambda_3$ 两个方向（可具体算：$c=(0,c_2,c_3)$ 时 $R=\\frac{3c_2^2+c_3^2}{c_2^2+c_3^2}\\le3$）。既然每个 $V$ 里都有这样一个比值不超过 3 的向量，那么 $\\min_{c\\in V}R(c)\\le3$ 对一切二维 $V$ 成立；反过来取 $V=\\operatorname{span}(q_1,q_2)$ 时最小值恰为 3。两边一夹得到 $\\max_{\\dim V=2}\\min_{c\\in V}\\frac{c^TSc}{c^Tc}=\\lambda_2$。换一个 $V$ 复核：$V=\\operatorname{span}(e_1,e_3)$ 时 $R=\\frac{5c_1^2+c_3^2}{c_1^2+c_3^2}$，最小值在 $c=e_3$ 处为 $1$，确实不超过 3，这正是上界方向的保证。把 2 换成任意 $i$ 就得到 Courant-Fischer 原理（得名于 Fischer 与 Courant，20 世纪初）：$\\max_{\\dim V=i}\\min_{c\\in V}R(c)=\\lambda_i$。同一套语言直接推广到奇异值：把瑞利商换成 $\\frac{c^TA^TAc}{c^Tc}=\\frac{\\|Ac\\|^2}{\\|c\\|^2}$，就得到 $\\min_{\\dim W=i}\\max_{c\\in W}\\frac{\\|Ac\\|}{\\|c\\|}=\\sigma_i$，因为 $\\sigma_i^2$ 正是 $A^TA$ 的第 $i$ 个特征值。注意 max 与 min 的顺序不能交换，一般只有 $\\max\\min\\le\\min\\max$；中间那些特征值必须写成「先在一族子空间里取最小（安全），再在所有子空间里取最大（最优）」，才能把鞍点抓住，这与上一页「$\\lambda_2$ 到 $\\lambda_{n-1}$ 是鞍点、只能靠极大-极小刻画」是同一句话的两种说法。工程味道：$\\lambda_2$ 的这个刻画就是 PCA 的第二步——去掉第一主方向后，在剩余的正交补里再找方差最大的方向；压缩感知关心的「少数几个大奇异值能否代表整张矩阵」，靠的也是这种在子空间里取极值的比较方式。\r\n\r\n=== ANCHOR: 设 rank one matrix（秩一矩阵）为 $T=\\sigma uu^T$，它的最大特征值是 $\\lambda_1(T)=\\sigma$。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 交错定理说的是：把一个对称矩阵的最后一行与最后一列删掉，剩下的 $S_{n-1}$ 的特征值被 $S$ 的特征值「夹」在中间。它回答的是大二学生最实际的一个问题——**能不能不做完整的特征值分解，就廉价地框住一个陌生矩阵的特征值范围？** 能，而且夹得很紧。这里的操作不是「近似删除」，而是加约束：把所有向量的第 $n$ 个分量强制归零，等价于要求一切候选向量都与 $(0,\\dots,0,1)$ 正交。回忆瑞利商 $\\lambda_i(S)=\\min_{\\dim V=i}\\max_{x\\in V}x^TSx/x^Tx$ 这一类极值刻画，可行集被压小，最小值只能下降，所以 $\\alpha_i\\le\\lambda_i(S)$；反过来，因为 $S_{n-1}$ 允许在 $n-1$ 维里自由挑 $i$ 维子空间，它的第 $i$ 个最小值又不会掉到 $\\lambda_{i+1}(S)$ 下面——夹逼就是这么来的。验算一眼：$S=\\begin{bmatrix}1&2&2\\\\2&2&2\\\\2&2&3\\end{bmatrix}$ 的特征值是 $3,3,0$，删掉末行末列得到 $\\begin{bmatrix}1&2\\\\2&2\\end{bmatrix}$，特征值 $3,1$，于是 $3\\ge 3\\ge 1\\ge 0$ 严格交错。**把它接到 6.006 的分治与二分搜索**：分治是把大问题切成小问题，而这里是反着用——小问题（$n-1$ 阶）的解给出大问题（$n$ 阶）的界，上界来自大矩阵、下界来自小矩阵，两端一卡就把未知量锁住。结论：**局部信息确实能约束整体，但代价是只能给出区间而非精确值**，这正是「夹逼」类方法的共同特征。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 151,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 151,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 151,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 151,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 8622,
+            "outputTokens": 19675,
+            "cacheReadTokens": 432384,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 28,
+            "buckets": {
+              "uncachedInputTokens": 173,
+              "outputTokens": 2826,
+              "cacheReadTokens": 25216,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 151,
+        "val": {
+          "surfaceTokens": 15514,
+          "contextWindow": 1000000,
+          "pressureTokens": 25389,
+          "sampledSurfaceTokens": 14272
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 151,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 911,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 495,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 67,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 103,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 67,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 92,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 23,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 101,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 148,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 556,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 361,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 1364,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 621,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 840,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 260,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 141,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 197,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 79,
+              "heuristicTokens": 1095,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 84,
+              "heuristicTokens": 727,
+              "system": false
+            },
+            {
+              "seq": 86,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 89,
+              "heuristicTokens": 243,
+              "system": false
+            },
+            {
+              "seq": 91,
+              "heuristicTokens": 266,
+              "system": false
+            },
+            {
+              "seq": 94,
+              "heuristicTokens": 124,
+              "system": false
+            },
+            {
+              "seq": 96,
+              "heuristicTokens": 238,
+              "system": false
+            },
+            {
+              "seq": 99,
+              "heuristicTokens": 365,
+              "system": false
+            },
+            {
+              "seq": 101,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 104,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 106,
+              "heuristicTokens": 188,
+              "system": false
+            },
+            {
+              "seq": 109,
+              "heuristicTokens": 296,
+              "system": false
+            },
+            {
+              "seq": 111,
+              "heuristicTokens": 54,
+              "system": false
+            },
+            {
+              "seq": 114,
+              "heuristicTokens": 281,
+              "system": false
+            },
+            {
+              "seq": 116,
+              "heuristicTokens": 118,
+              "system": false
+            },
+            {
+              "seq": 119,
+              "heuristicTokens": 54,
+              "system": false
+            },
+            {
+              "seq": 121,
+              "heuristicTokens": 140,
+              "system": false
+            },
+            {
+              "seq": 124,
+              "heuristicTokens": 212,
+              "system": false
+            },
+            {
+              "seq": 126,
+              "heuristicTokens": 35,
+              "system": false
+            },
+            {
+              "seq": 129,
+              "heuristicTokens": 371,
+              "system": false
+            },
+            {
+              "seq": 131,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 134,
+              "heuristicTokens": 400,
+              "system": false
+            },
+            {
+              "seq": 136,
+              "heuristicTokens": 36,
+              "system": false
+            },
+            {
+              "seq": 139,
+              "heuristicTokens": 200,
+              "system": false
+            },
+            {
+              "seq": 141,
+              "heuristicTokens": 147,
+              "system": false
+            },
+            {
+              "seq": 144,
+              "heuristicTokens": 268,
+              "system": false
+            },
+            {
+              "seq": 146,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 149,
+              "heuristicTokens": 1242,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 14370
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 151,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 148,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 150
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 151,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 151,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 151,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789867033535,
+      "cwd": "C:\\Users\\27063",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 26,
+        "val": "Simple one-word greeting request"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "say hi in one word, do not call any tool"
+          },
+          "count": 2,
+          "lastSeq": 22
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 26,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 26,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 26,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 454,
+            "outputTokens": 468,
+            "cacheReadTokens": 2944,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 2,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 271,
+              "outputTokens": 456,
+              "cacheReadTokens": 1792,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 26,
+        "val": {
+          "surfaceTokens": 454,
+          "contextWindow": 1000000,
+          "pressureTokens": 2063,
+          "sampledSurfaceTokens": 81
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 26,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 16,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 13,
+              "heuristicTokens": 22,
+              "system": false
+            },
+            {
+              "seq": 22,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 373,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 16,
+            "toolsTokens": 1755,
+            "messageTokens": 438
+          }
+        }
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 21,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 25
+          },
+          "lastTurn": 2
+        }
+      },
+      "sessionStats": {
+        "ver": 1,
+        "seq": 26,
+        "val": {
+          "turns": 2,
+          "steps": 2,
+          "llmMs": 7844,
+          "toolMs": 0,
+          "ttftMs": 5115,
+          "ttftSteps": 2,
+          "decodeMs": 2729,
+          "decodeTokens": 468,
+          "lastTurn": 2,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "turnOutline": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "turns": [
+            {
+              "turn": 1,
+              "seq": 4,
+              "prompt": "say hi in one word, do not call any tool",
+              "response": "Hi"
+            },
+            {
+              "turn": 2,
+              "seq": 19,
+              "prompt": "《信号与系统（MATLAB版·微课视频版·第2版）》，汤全武主编，清华大学出版社，2024年，IS…",
+              "response": "我无法提供该书的免费下载或网盘/盗版链接。建议通过正规渠道获取： - **清华大学出版社官网**：搜索书名或 ISBN `9787302658368` - **文泉书局**（清华大学出版社旗下电子教材平台） - **京东、当当、天猫**：…"
+            }
+          ],
+          "draft": ""
+        }
+      },
+      "agentPreset": {
+        "ver": 1,
+        "seq": 26,
+        "val": "anchored-standard"
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 26,
+        "val": {}
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": true
+        }
+      },
+      "modelSelection": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "lastUsed": {
+            "provider": "commandcode-goat",
+            "model": "deepseek/deepseek-v4.1-flash",
+            "reasoningEffort": "high"
+          },
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 26,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1790132624801
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 26,
+        "val": null
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 26,
+        "val": null
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 26,
+        "val": null
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 26,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      },
+      "armor": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "running": false,
+          "verdict": "refusal",
+          "words": [
+            "我无法",
+            "无法提供"
+          ],
+          "safe": [
+            "lab"
+          ],
+          "risk": [],
+          "domain": "miniprogram",
+          "domainHits": 1
+        }
+      }
+    }
+  }
+}

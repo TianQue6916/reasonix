@@ -1,0 +1,34 @@
+﻿# dsh headless 锚定极简模式（2026-08-16 同步本机 Linux 配置）
+# 首轮锚定：Minimal 工具对（Windows: pwsh + str_replace_editor）+ Minimal persona
+# 首次持久晋升信号（tool/call 或 assistant/message）后开放全量工具目录
+# 来源：xiaobright/dsh-anchored-standard（tool-bootstrap.mjs）
+# 2026-09-18 dsh 0.1.5 升级适配：0.1.5 起 dsh-base 不再默认挂载
+#   str_replace_editor（官方改推 read/write/edit）。锚定首轮依赖它，
+#   缺失时 tool-bootstrap 会 warnOnce 并回退「全量工具目录」（锚定失效），
+#   故在此显式挂载。官方文档见 @deepseek-ai/dsh-base/README.zh.md。
+
+- id: system-prompt
+  config:
+    persona: You are a helpful software engineer assistant.
+
+- insert:
+    - id: tool-bootstrap
+      name: ../../.agent-presets/anchored-standard/tool-bootstrap.mjs
+      config:
+        bootstrapTools: [pwsh, str_replace_editor, mcp__goatquota__goat_quota]
+        promoteOn: either
+        compactionTools: [read, write, edit, glob, grep, todo_write, ask_user_question]
+
+    # 0.1.5 起必须显式挂载（见文件头说明）
+    - id: tool-str-replace-editor
+      name: '@deepseek-ai/dsh-tool-str-replace-editor'
+      config:
+        maxOutputChars: 16000
+
+    - id: mcp-goatquota
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: goatquota
+        transport: stdio
+        command: node
+        args: ['D:/Toolbox/goat-gateway/mcp-goat-quota.mjs']

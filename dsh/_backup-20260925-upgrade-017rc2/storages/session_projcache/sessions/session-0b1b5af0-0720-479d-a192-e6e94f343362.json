@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790131196876,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译者注的**扩写专家**"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**扩写专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注各自扩写到 **800-1200 个汉字**（`$...$` 公式、```math 围栏、引文不计入）。\r\n\r\n【扩写方法】\r\n− 补**机制解释**：先回答这一段/这个定理在解决什么设计问题，再从第一性原理展开为什么必须这样做\r\n− 补**一个具体例子或验算**：代入具体数值、小矩阵（如 $2\\times2$）、或两步手算，让结论可复算\r\n− 补**一条跨课程连接**：精确到「课程名 + 概念 + 连接路径 + 区别」。可用锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− 必要时给一个**命名模板**（如谱夹逼法能量检验法零空间吸收法）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 原有 `$...$`、```math 围栏、反斜杠命令**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda、把 `$A$` 写成 A\r\n2. 🚫 不得删除原有数学内容、公式、例子、跨课程连接——只做加法\r\n3. 禁止 Unicode 上下标；禁止 `$$`\r\n4. 保留 `> ` blockquote 前缀（整条注是一个引用块，续行也带 `> `）\r\n5. `@@PAGE@@` 与 `@@NOTEIDX@@` 两行必须逐字原样照抄\r\n\r\n【输出格式（🚨 结构化，逐字照此）】\r\n@@PAGE:NNN@@\r\n@@NOTEIDX@@k\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（类型）：**</span> 注的正文……（续行以 `> ` 开头）\r\n@@END@@\r\n\r\n只输出这些块，不要前言、说明、汇总、思考过程。\r\n\r\n=========================== 待扩写的注 ===========================\r\n@@PAGE:196@@\r\n@@NOTEIDX@@1\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>本页公式按 Kaczmarz 迭代的数学语境重建：`丐 = bt` 为 $a_i^{T}x = b_i$，`犭 山 equatlon` 指第 $i$ 个方程，`扣 2` 为范数平方 $\\|a_i\\|_2^2$，`凭` 为 $y$，`5` 为步长 $s$；`衍 B g 襯 “` 为 split Bregman；`沅 i w 方` 为 $\\ell_1$ minimization；`Bounded Variation ： Ll Norm` 为 Bounded Variation: L1 Norm。</span>\r\n@@END@@\r\n\r\n@@PAGE:196@@\r\n@@NOTEIDX@@2\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 译文这里说一旦新观测值到达就立刻执行 $k\\to k+1$，把 Kaczmarz 变成了在线学习算法。要理解为什么这条路线值得单独提，先把单步误差看清楚：设 $x^*$ 是满足 $Ax=b$ 的真解，令 $e_k=x_k-x^*$，则 $b_i-a_i^{T}x_k=-a_i^{T}e_k$，代入 (33) 得 $e_{k+1}=e_k-\\frac{a_i^{T}e_k}{\\|a_i\\|_2^2}a_i$，也就是从 $e_k$ 中减去它在 $a_i$ 方向上的投影。取平方得 $\\|e_{k+1}\\|_2^2=\\|e_k\\|_2^2-\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}\\le\\|e_k\\|_2^2$：误差范数单调不增，而且整个过程没有任何步长参数可调，这是 Kaczmarz 最讨人喜欢的性质。但单调不增不等于收敛快。如果 $a_i$ 反复选中那些与当前误差几乎垂直的行，损失项 $\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}$ 会很小，迭代就会原地踏步；顺序扫描遇到病态的行序时完全可能发生这种事。随机化正是为此而生：按概率 $p_i=\\|a_i\\|_2^2/\\|A\\|_F^2$ 抽取第 $i$ 行，则每步的期望损失为 $\\sum_i p_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}=\\frac{\\|Ae_k\\|_2^2}{\\|A\\|_F^2}$，再用 SVD 给出下界 $\\|Ae_k\\|_2^2\\ge\\sigma_{\\min}^2\\|e_k\\|_2^2$，便得到期望收缩 $\\mathbb{E}\\|e_{k+1}\\|_2^2\\le\\left(1-\\frac{\\sigma_{\\min}^2}{\\|A\\|_F^2}\\right)\\|e_k\\|_2^2$，收缩因子 $\\rho=\\sigma_{\\min}^2/\\|A\\|_F^2$ 只依赖于矩阵本身，不再依赖行的顺序。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1277,
+            "outputTokens": 5502,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1277,
+              "outputTokens": 5502,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 4675,
+          "contextWindow": 1000000,
+          "pressureTokens": 4733,
+          "sampledSurfaceTokens": 2151
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 591,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2524,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 3531
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

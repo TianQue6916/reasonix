@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127958825,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**译者注撰写专家**。本次为 part004（书页 147-197，Part III Low Rank and Compressed Sensing）中的 9 页译文撰写译者注。\r\n\r\n【读者画像（写注必须对齐，禁止甩未学概念）】\r\n- 大二上学期，智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n- ✅ 已学：离散数学 MIT 6.042J（等价关系、偏序集、数论、图论、概率方法、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、线性代数 Strang（收尾中）、算法 6.006（CLRS 分治/图/复杂度）\r\n- 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法（Strang）、概率论（Bertsekas）、计算机网络（CS144）、凸优化（Boyd）\r\n- ⚠️ 尚未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——**不得甩这些名词**\r\n- 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n\r\n【注的类型（每条必须是一条可独立阅读的小专题）】\r\n1. 跨课程连接——精确到**课程名 + 具体概念 + 连接路径 + 区别**（例：你在 6.042J 学的 Chernoff 界在这里就是……）\r\n2. 第一性原理洞察——追溯最基础假设，回答为什么必须这样\r\n3. 证明策略模板——抽象为可复用模板并**命名**（如谱夹逼法能量检验法零空间吸收法）\r\n4. 历史与人物——只作点缀，标明年份（不确定的年份宁可不写）\r\n5. 拓展前沿——从用户已知概念出发搭脚手架，禁止裸甩名词\r\n\r\n【硬性质量标准】\r\n- 每条注正文 **800-1200 个汉字**（配图 / 公式 / 引文不计入）；宁可少写几条，不可注水\r\n- 每条注必须有：与当前内容的直接关系 + 一个具体例子或验算 + 一条命名模板或跨课程连接\r\n- 🚫 禁止：裸甩名词、空洞赞美（精妙经典）、堆历史年表、重复正文\r\n- 🚫 LaTeX 规范：所有公式用 `$...$` 或 ```math 围栏；**严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`**（公式必须完整保留美元符号与反斜杠命令）；禁止 Unicode 上下标\r\n- 分布均匀：本批至少 6 条注，覆盖本范围内的主要概念（不要全堆在一页）\r\n\r\n【输出格式（🚨 严格遵守，主代理按 ANCHOR 精确插入）】\r\n对每一条注，输出：\r\n\r\n=== ANCHOR: <从下方译文中原样复制的连续片段，12-40 个汉字，必须在该页译文中唯一出现> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n\r\n- ANCHOR 必须**逐字**照抄译文中的一段（含标点），以便程序精确匹配；不要改写、不要加省略号\r\n- 每条注一个 ANCHOR 块；块与块之间空一行\r\n- 不要输出任何其他内容（不要前言、不要汇总、不要思考过程）\r\n\r\n【术语表（沿用，术语一致性）】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n【本批译文（9 页，书页 166-174）】\r\n<!-- page 169: 书页 166 -->\r\n<!-- page 169 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 166，属 Part III 的 §III.1 习题集（Problem Set III.1）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Problem Set III.1（习题集 III.1）\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 本页 OCR 把矩阵 $A$ 识别为 `蓋`/`鬱`/`@`，把 $U,V$ 等符号识别为 `刀`/`陶`/`田` 等噪声；公式均按 Sherman-Morrison-Woodbury（谢尔曼-莫里森-伍德伯里）恒等式的数学语境重建。本页为习题页，**题干保留英文原文**，乱码处修正为 LaTeX。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Another approach to $(A - UV^T)^{-1}$ starts with the formula for a geometric series:\r\n```math\r\nI + X + X^2 + \\cdots = (I - X)^{-1}.\r\n```\r\nApply that formula when $X = UV^T$:\r\n```math\r\n(I - UV^T)^{-1} = I + UV^T + UV^TUV^T + \\cdots\r\n```\r\nTake $U = V = u$ to see $I + uv^T + (v^Tu)\\,uv^T + \\cdots$\r\n```math\r\n(I - uv^T)^{-1} = I + \\frac{uv^T}{1 - v^Tu}.\r\n```\r\nThis is exactly equation (1) for $E = I - UV^T$:\r\n```math\r\nE^{-1} = I + U(I - V^TU)^{-1}V^T.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** $E^{-1}$ from equation (4) with $B = I - V^TA^{-1}U$, and also from equation (5):\r\n```math\r\n\\begin{bmatrix} A & U \\\\ V^T & I \\end{bmatrix}^{-1} = \\begin{bmatrix} E^{-1} & −A^{-1}UE^{-1} \\\\ −V^TA^{-1}E^{-1} & E^{-1} \\end{bmatrix}.\r\n```\r\nFind $E^{-1}$. From (4):\r\n```math\r\nE^{-1} = (I - V^TA^{-1}U)^{-1}V^TA^{-1}\r\n```\r\nFrom (5):\r\n```math\r\nE^{-1} = V^TA^{-1}(I - UV^TA^{-1})^{-1}\r\n```\r\nCompare the $1,1$ blocks to find $E^{-1} = A - UV^T$ in formula (1).\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** The final Sherman-Morrison-Woodbury formula (9) perturbs $A$ by $UV^T$ of rank $k$. Write down that formula in the important case when $k = 1$:\r\n```math\r\n(A - uv^T)^{-1} = A^{-1} + \\frac{A^{-1}uv^TA^{-1}}{1 - v^TA^{-1}u}.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** Test the formula on this small example:\r\n```math\r\nA = \\begin{bmatrix} 1 & 0 \\\\ 0 & 2 \\end{bmatrix}, \\quad U = \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}, \\quad V = \\begin{bmatrix} 0 \\\\ 1 \\end{bmatrix}.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** Problem 3 found the inverse matrix $M^{-1} = (A - UV^T)^{-1}$. In solving the equation $My = b$, we compute only the solution and not the whole inverse matrix. You can find $y$ in two easy steps:\r\n**Step 1** Solve $Aw = b$ and $AZ = U$. Compute $C = I - V^TZ$. ($Z$ is the solution to $AZ = U$.)\r\n**Step 2** Then $y = w + Zc$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Verify $(A - UV^T)y = b$. We solved two equations using $A$, no equations using $M$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Prove that the final formula (9) is correct! Multiply equation (9) by $A - UV^T$. Watch for the moment when $(I - UV^T)A^{-1}U$ becomes $U(I - V^TA^{-1}U)$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** In the foolish case $U = V = u$, equation (9) gives what formula for $(A - uu^T)^{-1}$? Can you prove it directly?\r\n\r\n<!-- page 170: 书页 167 -->\r\n<!-- page 170 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 167，为 §III.1 习题集（Problem Set III.1）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Changes in $A^{-1}$ from Changes in $A$（$A$ 的扰动对 $A^{-1}$ 的影响，续）\r\n\r\n> <span style=color:#1e8449;>**[note] OCR 修正：**</span> 本页 `蓋` 为 $A$，`丆` 为 $I$，`似@）` 为 $A(t)$，`厶` 为 $\\Delta t$，`引 d` 为 `old`，`豆 砒 e eq 况` 为 `state equation`，`r 勉 52` 为 `its own error`；公式均按上下文重建。本页同样为习题页，**题干保留英文原文**。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Problem 4 extends to a rank $k$ change $M^{-1} = (A - UV^T)^{-1}$. To solve the equation $My = b$, we compute only the solution and not the whole inverse matrix $M^{-1}$. Let $U$ and $V$ be $n$ by $k$:\r\n**Step 1** Solve $AZ = U$ and the equations $Aw = b$. ($U$ and $Z$ are $n$ by $k$.)\r\n**Step 2** Form the matrix $C = I - V^TZ$ and solve $Cw = V^Tb$. The desired $M^{-1}b$ is $y = w + Zw$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** Use (9) to verify that $(A - UV^T)y = b$. We solved $k + 1$ equations using $A$ and we multiplied $V^TZ$, but we never used $M = A - UV^T$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 9.** What is the derivative of $A(t)^{-1}$? The correct derivative is not $2A(t)\\dfrac{dA}{dt}$. You must compute $(A + \\Delta A)^{-1}$ and subtract $A^{-1}$. Divide by $\\Delta t$ and send $\\Delta t$ to $0$:\r\n```math\r\n\\frac{d}{dt}A(t)^{-1} = −A^{-1}\\frac{dA}{dt}A^{-1}.\r\n```\r\nTest formula (12) for the derivative of $A^{-1}(t)$ when\r\n```math\r\nA = \\begin{bmatrix} 2 & 1 \\\\ 0 & 1 \\end{bmatrix} \\text{ and } A(t) = \\begin{bmatrix} 2 & 1 \\\\ 0 & 1 \\end{bmatrix}.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 10.** Suppose you know the average $c_{\\text{old}}$ of $b_1, b_2, \\ldots, b_{999}$. When $b_{1000}$ arrives, check that the new average is a combination of $c_{\\text{old}}$ and the mismatch $b_{1000} - c_{\\text{old}}$:\r\n```math\r\nc_{\\text{new}} = \\frac{b_1 + \\cdots + b_{1000}}{1000} = \\frac{b_1 + \\cdots + b_{999}}{999}\\cdot\\frac{999}{1000} + \\frac{b_{1000}}{1000}\r\n```\r\n```math\r\nc_{\\text{new}} = c_{\\text{old}} + \\frac{1}{1000}\\left(b_{1000} - c_{\\text{old}}\\right).\r\n```\r\nThis is a Kalman filter（卡尔曼滤波器）$\\big(c_{\\text{new}} = c_{\\text{old}} + \\text{gain}\\cdot(b_{1000} - c_{\\text{old}})\\big)$ with gain matrix $\\dfrac{1}{1000}$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 11.** The Kalman filter includes also a state equation $c_{k+1} = Fc_k$ with its own error $r_k^2$. The dynamic least squares problem allows $c$ to drift as $k$ increases:\r\n```math\r\nF = 1, \\quad c_1 \\approx b_1, \\quad c_2 \\approx b_2 \\quad \\text{With variances}\r\n```\r\nWith $F = 1$, divide both sides of those three equations by $\\sigma$, and find $c_1$ and $c_2$ by least squares, which gives more weight to the recent $b_1$.\r\n\r\nBill Hager's paper on the Kalman filter was extremely useful in writing this section of the book: *SIAM Review* **31** (1989).\r\n\r\n<!-- page 171: 书页 168 -->\r\n<!-- page 171 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 168，属 Part III「Low Rank and Compressed Sensing（低秩与压缩感知）」正文；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声严重，`蓋`/`儿`/`风`/`Ä` 均为矩阵 $A$，`一` 为减号或 $A^{-1}$ 的一部分，`¯I` 为上标 $-1$，`山` 为 $\\lambda$，`伊` 为 $\\sigma$ 或 $u$，`№`/`丸` 为 $\\lambda$，`Z`/`之` 为交错后的特征值 $z$，`叻` 为 $\\max/\\min$ 一类运算，`山 计` 为第三项。文中被破坏的公式均已按数学语境重建，原文公式编号 (2) 予以保留。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n上一节考察的是矩阵 $A$ 的变化如何引起 $A^{-1}$ 的变化。\r\n我们既可以允许无穷小变化 $dA$，也可以允许有限变化 $\\Delta A = −uv^T$。\r\n所得到的结果，是逆矩阵的无穷小变化或有限变化：\r\n\r\n```math\r\n(A - uv^T)^{-1} = A^{-1} + \\frac{A^{-1}uv^TA^{-1}}{1 - v^TA^{-1}u}\r\n\\qquad\\text{and}\\qquad\r\n(A - UV^T)^{-1} = A^{-1} + A^{-1}U\\,(I - V^TA^{-1}U)^{-1}V^TA^{-1}\r\n```\r\n\r\n本节则针对矩阵 $A$ 的 eigenvalue（特征值）与 singular value（奇异值）提出同样的问题。\r\n当矩阵 $A$ 发生变化时，每一个 $\\lambda$ 与每一个 $\\sigma$ 各是如何变化的？\r\n\r\n你会看到关于 $d\\lambda/dt$ 与 $d\\sigma/dt$ 的漂亮公式。\r\n但特征值与奇异值都谈不上有多少线性性质。\r\n微积分对无穷小变化 $dA$ 与 $d\\sigma$ 行之有效，因为其导数是一个线性算子。\r\n可是我们不能指望精确知道跳跃量 $\\lambda(A + \\Delta A)$ 或 $\\sigma(A + \\Delta A)$ 的值。\r\n特征值比逆矩阵更复杂。\r\n\r\n尽管如此，仍然有好消息：能够做到的事情是相当出色的。\r\n这里先尝一尝对称矩阵 $S$ 的味道：假设 $S$ 变为 $S + T$，其中 $T$ 是一个正的秩一变化。\r\n\r\n我们预料 $S$ 的特征值会增大：\r\n\r\n```math\r\n\\lambda_1 \\le \\lambda_2 \\le \\cdots \\le \\lambda_n\r\n\\quad\\longrightarrow\\quad\r\nz_1 \\le z_2 \\le \\cdots \\le z_n\r\n```\r\n\r\n因为 $T$ 是 positive semidefinite（半正定）的。\r\n但增大量究竟有多大呢？\r\n\r\n$S + T$ 的每个特征值都不小于对应的 $\\lambda_i$，也不大于对应的 $\\lambda_{i+1}$，\r\n其下标在合适范围内移动。\r\n因此 $\\lambda$ 与 $z$ 是彼此 **interlaced**（交错）的。\r\n每一个 $z_1, z_2, \\ldots, z_n$ 都夹在两个相邻的 $\\lambda$ 之间：\r\n\r\n```math\r\n\\lambda_1 \\le z_1 \\le \\lambda_2 \\le z_2 \\le \\lambda_3 \\le \\cdots \\le \\lambda_n \\le z_n\r\n\\tag{2}\r\n```\r\n\r\n即便我们没有关于 $\\Delta\\lambda_i$ 的公式，我们也有特征值变化的上界。\r\n\r\n有一点需要提请注意，因为它可能被误解。\r\n假设矩阵中的变化是 $uU$ 形的 $Cq_2q_2^T$（其中 $q_2$ 是 $S$ 的第二个单位特征向量）。\r\n那么 $Sq_2 = \\lambda_2 q_2$，于是 $(S + Cq_2q_2^T)q_2 = (\\lambda_2 + C)q_2$，我们会在 $\\lambda_2$ 处看到一个跳到 $\\lambda_2 + C$ 的跳跃。\r\n如果 $C$ 很大，这个跳跃就很大。\r\n那么特征值怎么会使 $S + Cq_2q_2^T$ 仍然有 $z_2 = \\lambda_2 + C$ 呢？\r\n\r\n**答：** 如果 $C$ 是一个很大的数，那么 $\\lambda_2 + C$ 并不是 $S + Cq_2q_2^T$ 的第二个特征值。\r\n它变成了 $z_1$，即新矩阵 $S + Cq_2q_2^T$ 的最大特征值（其对应的特征向量是 $q_2$）。\r\n$S$ 原来的最大特征值现在则是新矩阵的第二个特征值 $z_2$。\r\n所以命题 (2) 中 $z_2 \\ge \\lambda_2$ 这一说法（在这个例子里）是完完全全成立的：$z_2$ 确实位于 $z_1 = \\lambda_2 + C$ 的下方。\r\n\r\n我们会把这种交错性质与如下事实联系起来：介于 $\\lambda_1 = \\lambda_{\\max}$ 与 $\\lambda_n = \\lambda_{\\min}$ 之间的那些特征向量，都是比值\r\n\r\n```math\r\n\\frac{c^TSc}{c^Tc}\r\n```\r\n\r\n的 saddle point（鞍点）。\r\n\r\n<!-- page 172: 书页 169 -->\r\n<!-- page 172 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 169，为 §III.2 正文的续页；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `羔`/`氖`/`风` 均为矩阵 $A$，`山`/`刀`/`Ä` 为 $\\lambda$，`伊` 为 $y$ 或 $\\sigma$，`衫` 为 $y$，`硨` 为 $x$，`沪` 为 $y^T$，`憑` 为 $x$，`¯I` 为上标 $-1$。公式 (3)–(6) 的片段已按特征值导数推导的标准写法重建，编号保留。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Derivative of an Eigenvalue（特征值的导数）\r\n\r\n我们有一个随时间 $t$ 变化的矩阵 $A(t)$，因此它的特征值 $\\lambda(t)$ 也在变化。\r\n我们假定没有重复的特征值——即 $A(0)$ 的每个特征值都在 $A(0)$ 中只出现一次。\r\n于是 $A(0)$ 的每个特征值 $\\lambda(0)$ 至少可以在短时间 $t$ 内被安全地追踪下去，即 $\\lambda(0)$ 连续地变为 $A(t)$ 的某个特征值 $\\lambda(t)$。\r\n那么它的导数 $d\\lambda/dt$ 是什么？\r\n\r\n求 $d\\lambda/dt$ 的关键，是把我们已知的事实组装起来。\r\n第一条事实是 $A(t)\\,x(t) = \\lambda(t)\\,x(t)$。\r\n第二条事实是转置矩阵 $A^T(t)$ 也有同一个特征值 $\\lambda(t)$，因为 $\\det(A - \\lambda I)$ 与 $\\det(A^T - \\lambda I)$ 相等。\r\n$A^T$ 很可能有另一个特征向量 $y(t)$。\r\n当 $x$ 是 $A$ 的特征向量矩阵 $X$ 的某一列时，$y$ 就是 $A^T$ 的特征向量矩阵 $(X^{-1})^T$ 的对应列。\r\n（理由是由 $A = X\\Lambda X^{-1}$ 可得 $A^T = X^{-T}\\Lambda X^T$。）\r\n向量 $x$ 与 $y$ 的长度由 $X^{-1}X = I$ 归一化，也就是对所有 $i$ 都有 $y_i^T x_i = 1$。\r\n\r\n下面用一行列出这些事实，再在下一行给出所要求的 $d\\lambda/dt$ 公式。\r\n\r\n```math\r\n\\text{Facts:}\\quad\r\nA(t)\\,x(t) = \\lambda(t)\\,x(t),\\qquad\r\ny^T(t)\\,A(t) = \\lambda(t)\\,y^T(t),\\qquad\r\ny^T(t)\\,x(t) = 1\r\n\\tag{3}\r\n```\r\n\r\n```math\r\n\\text{Formulas:}\\quad\r\n\\frac{d\\lambda}{dt} = y^T\\frac{dA}{dt}x\r\n\\tag{4}\r\n```\r\n\r\n要看出为什么有 $A^T y = \\lambda y$，只需把第一条事实转置即可。\r\n要发现那个公式，就在第一条事实的两边左乘 $y^T$，并利用 $y^Tx = 1$；\r\n或者把第二条事实 $y^TA = \\lambda y^T$ 在右边乘以 $x$。\r\n\r\n现在对 $\\lambda = y^TAx$ 求导。\r\n乘积法则给出 $d\\lambda/dt$ 的三项：\r\n\r\n```math\r\n\\frac{d\\lambda}{dt}\r\n= \\frac{dy^T}{dt}Ax + y^T\\frac{dA}{dt}x + y^TA\\frac{dx}{dt}\r\n\\tag{5}\r\n```\r\n\r\n中间那一项就是正确的导数 $d\\lambda/dt$。\r\n第一项与第三项加起来等于零：\r\n\r\n```math\r\n\\frac{dy^T}{dt}Ax + y^TA\\frac{dx}{dt}\r\n= \\lambda\\frac{dy^T}{dt}x + \\lambda\\,y^T\\frac{dx}{dt}\r\n= \\lambda\\frac{d}{dt}\\bigl(y^Tx\\bigr) = 0\r\n\\tag{6}\r\n```\r\n\r\n对于 $d^2\\lambda/dt^2$ 与 $dx/dt$ 也有相应公式（不过它们更复杂）。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 矩阵\r\n\r\n```math\r\nA = \\begin{bmatrix} 2 & 1 \\\\ 1 & 2t \\end{bmatrix}\r\n```\r\n\r\n满足 $\\lambda^2 - 2(1 + t)\\lambda + 2t = 0$，于是\r\n\r\n```math\r\n\\lambda_1 = 1 + t + \\sqrt{1 + t^2},\r\n\\qquad\r\n\\lambda_2 = 1 + t - \\sqrt{1 + t^2}\r\n```\r\n\r\n在 $t = 0$ 处，$\\lambda_1 = 2$、$\\lambda_2 = 0$，而 $\\lambda_1$ 与 $\\lambda_2$ 的导数分别为 $1 + t/\\sqrt{1 + t^2}$ 与 $1 - t/\\sqrt{1 + t^2}$，即在 $t = 0$ 处为 $1$ 与 $1$。\r\n\r\n$t = 0$ 时对应 $\\lambda_1 = 2$ 的特征向量为 $x_1 = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}$。\r\n$t = 0$ 时对应 $\\lambda_2 = 0$ 的特征向量为 $x_2 = \\begin{bmatrix} −1 \\\\ 1 \\end{bmatrix}$，其归一化形式为 $x_2 = \\frac{1}{2}\\begin{bmatrix} −1 \\\\ 1 \\end{bmatrix}$。\r\n\r\n方程 (5) 确认了\r\n\r\n```math\r\n\\frac{d\\lambda_1}{dt} = 1,\r\n\\qquad\r\n\\frac{d\\lambda_2}{dt} = 1\r\n```\r\n\r\n<!-- page 173: 书页 170 -->\r\n<!-- page_173 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 170，属 §III.2 之前的引论部分；页眉与印页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Derivative of a Singular Value（奇异值的导数）\r\n\r\n奇异值的一个简单公式（针对非重根 $\\sigma$ 的导数）来自 $u^T A v = \\sigma$。\r\n\r\n```math\r\nu^T A v = \\sigma \\tag{7}\r\n```\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 `鬱` 在本段一律为 $A$（矩阵），`伊` 为 $v$，`蓋` 为 $A$，`山 计` 为 third（第三），均按数学语境重建。\r\n\r\n左端求导时，由乘积法则（product rule）得到三项，正如式（5）那样。\r\n\r\n第一项与第三项为零，因为 $\\dot u^T A v = 0$ 且 $u^T A \\dot v = 0$——这里用了 $A v = \\sigma u$ 与 $u^T A = \\sigma v^T$，以及 $u^T u = 1$、$v^T v = 1$。\r\n\r\n左奇异向量与右奇异向量的导数项之所以为零，是因为 $u^T u$ 与 $v^T v$ 的导数为零，于是\r\n\r\n```math\r\n\\frac{du^T}{dt} A v = 0, \\qquad u^T A \\frac{dv}{dt} = 0 .\r\n```\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 `The denvatives Of and 鬱 鬱 are zero` 中的乱码按上文重建为「$u^T u$ 与 $v^T v$ 的导数为零」。\r\n\r\n乘积法则中关于 $u^T A v$ 的第三项，给出了 $d\\sigma/dt$ 的公式。\r\n\r\n```math\r\n\\frac{d\\sigma}{dt} = u^T \\frac{dA}{dt} v \\qquad \\text{(Derivative of a Singular Value)} \\tag{9}\r\n```\r\n\r\n<span style=color:#c0392b;>**Derivative of a Singular Value（奇异值的导数）**</span>\r\n\r\n当 $A(t)$ 是对称正定（symmetric positive definite）时，式（4）与式（9）中的 $v(t) = u(t)$ 且 $d\\sigma/dt = du^T A u / dt$。\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 `When 蓋@） is symmetric positive definite, 伊@） = x(t) an d = 鬱 = = in （ 4 ） and （ 9 ）` 依语境重建为：$A(t)$ 对称正定时 $v(t) = u(t)$，且式（4）与式（9）中的导数相同。\r\n\r\n**注** 特征向量的一阶导数伴随的是特征值的二阶导数——这并不容易。\r\n\r\n关于 $S$ 与 $S+T$ 的单位特征向量之间夹角 $\\theta$ 的 Davis-Kahan 界（Davis-Kahan bound）为 $\\sin\\theta \\le \\|T\\|/d$，其中 $d$ 是 $S+T$ 的某个特征值到 $S$ 其余全部特征值的最小距离。\r\n\r\n利用 $S$ 的结构可以得到更紧的界，它们对随机梯度下降（stochastic gradient descent）的应用极有价值（见 Eldridge、Belkin 与 Wang）。\r\n\r\nC. Davis and W. M. Kahan, *Some new bounds on perturbation of subspaces*, Bull. Amer. Math. Soc. 75 (1969) 863–868.\r\n\r\nJ. Eldridge, M. Belkin, and Y. Wang, *Unperturbed: Spectral analysis beyond Davis-Kahan*, arXiv: 1706.06516v1, 20 Jun 2017.\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## A Graphical Explanation of Interlacing（交错性质的图形解释）\r\n\r\n本页的一切都归功于密歇根大学的 Raj Rao Nadakuditi 教授。\r\n\r\n在他访问 MIT 期间，他为 18.065 课程讲解了这一理论及其应用。\r\n\r\n他用 OptShrink 软件寻找低秩信号的工作，见 IEEE Transactions on Information Theory 60 (May 2014) 3002–3018。\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 `IEEE 行 a act on / nn 刀 “ 60` 重建为 IEEE Transactions on Information Theory 60。\r\n\r\n把一个低秩矩阵 $\\theta u u^T$ 加到满秩对称矩阵 $S$ 上时，那些 $\\lambda$ 会发生什么变化？\r\n\r\n我们把 $S$ 视为噪声，而把 $\\theta u u^T$ 视为秩一信号（rank one signal）。\r\n\r\n加上这个信号会如何影响 $S$ 的特征值？\r\n\r\n我要说明的是：加上 $\\theta u u^T$ 可以改变 $S$ 的**所有**特征值，并不只是一两个。\r\n\r\n但我们将会看到，只有一两个特征值的变化量达到 $\\theta$ 的量级（order $\\theta$）。\r\n\r\n这使它们容易被找出来。\r\n\r\n如果我们的向量表示视频，而 $\\theta$ 表示拍摄过程中开灯或关灯（一个秩一信号），我们就会看到它对各个 $\\lambda$ 的影响。\r\n\r\n从新矩阵 $S + \\theta u u^T$ 的一个特征值 $z$ 及其特征向量 $v$ 出发。\r\n\r\n把该方程改写为\r\n\r\n```math\r\n(zI - S)v = \\theta u (u^T v) \\qquad \\text{or} \\qquad (zI - S)v = \\theta u (u^T v) \\tag{10}\r\n```\r\n\r\n<!-- page 174: 书页 171 -->\r\n<!-- page_174 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 171，是 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）正文的续页；页眉与印页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）（续）\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `鬱` 一律为 $A$ 或 $u$（依语境），`乥` 为 $\\Sigma$ 或 $\\theta$，`田 2` 为节号 §III.2，`Ä` 为 $\\lambda$，`/\\k` 为 $\\lambda_k$，`()l` 为 $(zI)$，`0uuT` 为 $\\theta u u^T$。\r\n\r\n两边同乘并消去公共因子 $u^T v$。\r\n\r\n这样就消去了 $u^T v$。\r\n\r\n然后再除以 $\\theta$。\r\n\r\n于是新特征值 $z$ 与对称矩阵 $S$ 中的改变量 $\\theta u u^T$ 被联系了起来。\r\n\r\n```math\r\n\\frac{1}{\\theta} = v^T (zI - S)^{-1} v \\qquad \\text{with } \\theta \\ne 0 \\tag{12}\r\n```\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文该式仅残留 `1`、`0` 与式号（12），依式（11）与（12）的推导脉络重建为上式。\r\n\r\n要理解这个方程，就使用 $S$ 的特征值与特征向量。\r\n\r\n若 $S q_k = \\lambda_k q_k$，则 $(zI - S) q_k = (z - \\lambda_k) q_k$，于是\r\n\r\n```math\r\n(zI - S)^{-1} q_k = \\frac{1}{z - \\lambda_k} q_k \\tag{13}\r\n```\r\n\r\n最后，式（12）让 $(zI - S)^{-1}$ 与 $u^T$ 相乘，而把 $u$ 按特征向量 $q$ 展开——结果等于 $1/\\theta$。\r\n\r\n记住这些 $q$ 是正交的单位向量：\r\n\r\n```math\r\n\\frac{1}{\\theta} = \\sum_{k=1}^{n} \\frac{(u^T q_k)^2}{z - \\lambda_k} \\qquad \\text{(Secular equation)} \\tag{14}\r\n```\r\n\r\n<span style=color:#c0392b;>**Secular equation（久期方程）**</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 `乥 q The result is 1/9` 中的 `乥` 为 $\\Sigma$（对 $k$ 求和），`1/9` 为 $1/\\theta$；`思 瞓的@` 为式（14）左端的 $1/\\theta$ 与右端求和项。\r\n\r\n我们可以把左端与右端画成图。\r\n\r\n左端是常数，右端在每个特征值 $z = \\lambda_k$ 处爆涨（blows up）。\r\n\r\n两端在点 $z_1, z_2, \\ldots, z_n$ 处相等，也就是水平的 $1/\\theta$ 直线与陡峭曲线相交之处。\r\n\r\n这些 $z$ 就是 $S + \\theta u u^T$ 的特征值。\r\n\r\n这张图表明，每个 $z_k$ 都位于 $\\lambda_k$ 的上方或下方——这正是 interlacing（交错）现象。\r\n\r\n最大的特征值 $z_1$ 最有可能位于 $\\lambda_1$ 之上。\r\n\r\n随着 $\\theta$ 增大，$z$ 会随之增大，因为 $1/\\theta$ 这条线向下移动。\r\n\r\n当然，这些 $z$ 既依赖于向量 $u$，也依赖于 $\\theta$（即信号）。\r\n\r\n如果 $u$ 恰好是 $S$ 的一个特征向量，那么它对应的特征值 $\\lambda_k$ 会恰好增加 $\\theta$。\r\n\r\n所有其他特征值都保持不变。\r\n\r\n更常见的情况是：每个特征值 $\\lambda_k$ 都略微上移到 $z_k$。\r\n\r\n这张图的要点在于，$z_k$ 不会越过 $\\lambda_{k-1}$。\r\n\r\n```math\r\n\\lambda_4 \\le z_4 \\le \\lambda_3 \\le z_3 \\le \\lambda_2 \\le z_2 \\le \\lambda_1 \\le z_1\r\n```\r\n\r\n<span style=color:#c0392b;>**Figure III.1:**</span> $S + \\theta u u^T$ 的特征值，其中 $1/\\theta$ 直线与式（14）中的曲线相交。\r\n\r\n> <span style=color:#7f8c8d;>图注原文：Figure III.1: Eigenvalues of $S + \\theta u u^T$, where the $1/\\theta$ line meets the curves in (14).（图本身无法翻译，此处保留图号与图注的完整译文。）</span>\r\n\r\nRaj Rao Nadakuditi, *When the informative components for inference are the principal components?*, arXiv: 1302.1232, 5 Feb 2013.\r\n\r\n<!-- page 175: 书页 172 -->\r\n<!-- page_175 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 172，属 §III.1 与 §III.2 之间的过渡正文；页眉「Low Rank and Compressed Sensing」与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Largest Eigenvalue of $S+T$（$S+T$ 的最大特征值）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中 `蓋`、`风`、`鬱` 均为 $A$ 或向量记号之误，`ÄS+T` 重建为 $\\lambda_{S+T}$，`Åmin`、`/\\min` 重建为 $\\lambda_{\\min}$，`/\\n` 重建为 $\\lambda_n$，`咒）` 重建为 $R(c)$，`TS / T`、`cTSc` 等重建为 $x^T S x$ 形式的二次型。所有公式均按数学语境重建。\r\n\r\n对称矩阵 $S$ 的最大特征值，就是瑞利商 $\\dfrac{x^T S x}{x^T x}$ 的最大值。\r\n\r\n这一陈述同样适用于 $T$（它依然是对称矩阵）。由此我们立刻知道 $S+T$ 的最大特征值满足什么：\r\n\r\n```math\r\n\\lambda_{\\max}(S+T) = \\max_{x\\neq 0}\\frac{x^T(S+T)x}{x^T x}\r\n```\r\n\r\n该最大值在某一个向量处达到。\r\n\r\n左端是 $\\dfrac{x^T(S+T)x}{x^T x}$ 的最大值，右端把分子拆成两项之比：\r\n\r\n```math\r\n\\lambda_{S+T} = \\max_{x\\neq 0}\\left(\\frac{x^T S x}{x^T x} + \\frac{x^T T x}{x^T x}\\right)\r\n\\;\\le\\; \\max_{x\\neq 0}\\frac{x^T S x}{x^T x} + \\max_{x\\neq 0}\\frac{x^T T x}{x^T x}\r\n= \\lambda_S + \\lambda_T .\r\n```\r\n\r\n$S+T$ 的那个使第一个比值取最大的特征向量 $x$，未必同时使最后两个比值取最大。因此 $\\lambda_S + \\lambda_T$ 只会比 $\\lambda_{S+T}$ 更大。\r\n\r\n这说明 maximum principle（最大值原理）用起来很方便。对最小的那个奇异值 $S$ 而言，minimum principle（最小值原理）同样方便。在那里我们预期 $\\lambda_{\\min}(S+T) \\ge \\lambda_{\\min}(S) + \\lambda_{\\min}(T)$。\r\n\r\n同样的推理可以证明它——把 $S$ 与 $T$ 各自的最小值原理分开使用，会把我们带到比 $\\lambda_{\\min}(S+T)$ 更低的地方。或者我们可以把最大值原理应用于 $-S$ 与 $-T$。\r\n\r\n真正的困难出现在中间那些特征值，即从 $\\lambda_2$ 一直到 $\\lambda_{n-1}$ 的那些。\r\n\r\n它们的特征向量是函数 $R(c) = \\dfrac{c^T S c}{c^T c}$ 的鞍点（saddle point）。$R(c)$ 的导数在特征向量 $q_2$ 到 $q_{n-1}$ 处全都为零。但 $R$ 的二阶导数矩阵在这些鞍点处是不定的（indefinite，特征值有正有负）。这使得这些特征值既难以估计，也难\r\n\r\n以计算。\r\n\r\n下面给出关于鞍点的一点直观感受。原因之一是它们可能出现在深度学习的算法中。我们需要对它们积累一些经验，而这要从特征值这个基本问题入手。当存在约束时，鞍点也会出现。如果可能的话，我们希望把它们与某种极小或极大联系起来。\r\n\r\n这些想法导向 $S+T$ 每个特征值的最佳可能上界：\r\n\r\n<span style=color:#c0392b;>**[theorem] Weyl upper bounds（Weyl 上界）**</span>\r\n\r\n```math\r\n\\lambda_{i+j-1}(S+T) \\le \\lambda_i(S) + \\lambda_j(T). \\tag{16}\r\n```\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Saddle Points from Lagrange Multipliers（来自拉格朗日乘子的鞍点）\r\n\r\n与鞍点相比，计算 $F(c)$ 的最大值或最小值要相对容易。当我们有一个近似解时，我们知道 $F(c)$ 不低于最小值、不高于最大值。但我们并不知道 $F(c)$ 是高于还是低于某个鞍点值。类似地，$F$ 的二阶导数矩阵 $H(c)$ 在最小值处是正定（或半正定）的，在最大值处是负定的。\r\n\r\n而在鞍点处，二阶导数矩阵 $H$ 虽然对称，却是不定的。\r\n\r\n$H$ 同时具有正特征值和负特征值——这正是鞍点更难以处理的原因。共轭梯度法（conjugate gradient method）通常无法用来求 $F$ 的鞍点。\r\n\r\n<!-- page 176: 书页 173 -->\r\n<!-- page_176 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 173，是 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）的首段正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页页眉噪声 `田 2` 重建为节号 §III.2，`入 1`、`/\\rn` 重建为 $\\lambda_1$、$\\lambda_m$，`æ` 重建为 $c$，`T 丌 苏` 依语境重建为函数记号，`忉 d 乜` 重建为 indefinite（不定），公式均按数学语境重建。\r\n\r\n拉格朗日对大量鞍点问题负有责任。我们从最小化一个正定能量 $\\frac{1}{2}c^T S c$ 出发，但解上带有 $m$ 个约束 $A c = b$。\r\n\r\n这些约束乘以新的未知量 $\\lambda_1,\\dots,\\lambda_m$（即 Lagrange multipliers，拉格朗日乘子），并被构造成 Lagrange 函数：\r\n\r\n```math\r\n\\text{Lagrangian } L(c,\\lambda) = \\tfrac{1}{2}c^T S c + \\lambda^T(Ac - b).\r\n```\r\n\r\n$m+n$ 个方程 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial \\lambda = 0$ 产生一个不定的分块矩阵：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial c} = Sc + A^T\\lambda = 0,\r\n\\qquad\r\n\\frac{\\partial L}{\\partial \\lambda} = Ac - b = 0,\r\n```\r\n\r\n```math\r\n\\begin{bmatrix} S & A^T \\\\ A & 0 \\end{bmatrix}\r\n\\begin{bmatrix} c \\\\ \\lambda \\end{bmatrix}\r\n=\r\n\\begin{bmatrix} 0 \\\\ b \\end{bmatrix},\r\n\\qquad H =\r\n\\begin{bmatrix} S & A^T \\\\ A & 0 \\end{bmatrix}. \\tag{17}\r\n```\r\n\r\n一个很小的例子是 $H = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}$，其行列式为 $-1$：它的两个特征值符号相反。习题集将证实方程（17）中这个「KKT matrix」（KKT 矩阵）是不定的。该解 $(c,\\lambda)$ 是拉格朗日函数 $L$ 的一个鞍点。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Saddle Points from Rayleigh Quotients（来自瑞利商的鞍点）\r\n\r\n瑞利商 $R(c) = \\dfrac{c^T S c}{c^T c}$ 的最大值与最小值分别是 $\\lambda_1$ 与 $\\lambda_n$：\r\n\r\n```math\r\n\\frac{q_1^T S q_1}{q_1^T q_1} = \\lambda_1 \\ \\text{(Maximum)},\r\n\\qquad\r\n\\frac{q_n^T S q_n}{q_n^T q_n} = \\lambda_n \\ \\text{(Minimum)}.\r\n```\r\n\r\n我们的问题关乎鞍点——即商 $R(c)$ 的其余那些导数为零的点。我们将确认，这些鞍点出现在 $S$ 的其余特征向量 $q_2$ 到 $q_{n-1}$ 处。我们的目标是把 $\\lambda_2$ 到 $\\lambda_{n-1}$ 看成某种极大中的极小。这一 max-min（极大-极小）视角正是交错性质的关键。\r\n\r\n请注意，向量 $c$ 与 $2c$（以及任何 $c \\neq 0$ 的倍数）都产生同一个商：\r\n\r\n```math\r\n\\frac{c^T S c}{c^T c} = \\frac{(2c)^T S (2c)}{(2c)^T (2c)}.\r\n```\r\n\r\n所以我们只需考虑长度满足 $c^T c = 1$ 的单位向量。这可以写成一个约束：\r\n\r\n```math\r\n\\max_{c\\neq 0}\\frac{c^T S c}{c^T c}\r\n\\quad\\text{与}\\quad\r\n\\max\\ c^T S c \\ \\text{subject to}\\ c^T c = 1 \\tag{18}\r\n```\r\n\r\n是同一个问题。\r\n\r\n约束 $c^T c = 1$ 可以用一个拉格朗日乘子来处理：\r\n\r\n```math\r\n\\text{Lagrangian } L(c,\\lambda) = c^T S c - \\lambda(c^T c - 1). \\tag{19}\r\n```\r\n\r\n极大、极小与鞍点都将满足 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial \\lambda = 0$（与 §I.9 一样）：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial c} = 2Sc - 2\\lambda c = 0\r\n\\qquad\\text{and}\\qquad\r\n\\frac{\\partial L}{\\partial \\lambda} = c^T c - 1 = 0 . \\tag{20}\r\n```\r\n\r\n第一个方程说明：这个单位向量是特征向量，且满足 $Sc = \\lambda c$。\r\n\r\n<!-- page 177: 书页 174 -->\r\n<!-- page 177 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 174，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `蓋`、`風`、`儿` 等字均为矩阵 $A$ 或向量记号之误，`月` 为瑞利商 $R$ 之误，`鬱` 为系数之误，`ÄB` 为 $\\approx$ 之误。公式一律按数学语境重建。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 设 $S$ 为对角矩阵，对角元依次为 $5,\\,3,\\,1$。请写出 $R(c) = c^T S c / c^T c$。\r\n此时\r\n```math\r\nR(c)=\\frac{5c_1^2+3c_2^2+c_3^2}{c_1^2+c_2^2+c_3^2}\r\n```\r\n在 $c=(1,0,0)$ 处取最大值 $5$，在 $c=(0,0,1)$ 处取最小值 $1$，而在 $c=(0,1,0)$ 处取 saddle point（鞍点）值 $3$。\r\n观察 $R$ 便可看出，它的最大值是 $5$、最小值是 $1$。\r\n在 $(1,0,0)$、$(0,0,1)$、$(0,1,0)$ 这三点处，$R(c)$ 的所有偏导数都为零。\r\n这三点正是对角矩阵 $S$ 的 eigenvector（特征向量）。\r\n$R(c)$ 在这三点处分别等于 eigenvalue（特征值）$5,\\,1,\\,3$。\r\n\r\n**Subspaces 上的极大与极小**\r\n$S$ 的中间那些特征向量 $q_2,\\dots,q_{n-1}$ 都是该商的鞍点。\r\n商 $c^T S c/c^T c$ 在这种特征向量处等于 $\\lambda_2,\\dots,\\lambda_{n-1}$。\r\n所有中间的 singular vector（奇异向量）$y_2,\\dots,y_{n-1}$ 也都满足同样的结论：商在它们处等于 $\\sigma_2,\\dots,\\sigma_{n-1}$。\r\n这些论断由下面这一事实直接联系起来：$S c = \\sigma\\, c$ 对应着 $c^T A^T A c = \\lVert A c\\rVert^2$。\r\n但鞍点比极大点或极小点更难研究。\r\n离开一个鞍点时，函数既可以上升也可以下降，两个方向都可能。\r\n而在极大点处，唯一的运动方向是下降；在极小点处，唯一的运动方向是上升。\r\n因此研究鞍点的最佳办法，是用 max-min（极大-极小）或 min-max（极小-极大）原理把它们捕捉住。\r\n\r\n**$\\lambda_2$ 的极大-极小刻画**\r\n\r\n```math\r\n\\max_{\\dim V=2}\\ \\min_{c\\ \\text{in}\\ V}\\ \\frac{c^T S c}{c^T c}=\\lambda_2 \\tag{21}\r\n```\r\n\r\n在 $5,3,1$ 这个例子中，二维子空间 $V$ 的一种取法是 $q_1$ 与 $q_2$ 的一切组合所构成的空间。\r\n这些向量都是 $q_1$ 与 $q_2$ 的线性组合。\r\n在这个 $V$ 内部，比值 $c^T S c/c^T c$ 的最小值必定是 $\\lambda_2 = 3$，而且该最小值就在 $c=q_2=(0,1,0)$ 处取到。\r\n关键之处在于：每个二维空间 $V$ 都必然与一切形如 $(0,*,*)$ 的向量所构成的二维空间相交。\r\n在 $\\mathbf{R}^3$ 中这两个二维空间一定相交，因为 $2+2>3$。\r\n于是对任一 $c=(0,c_2,c_3)$ 我们都能确定 $c^T S c/c^T c \\le \\lambda_2$。\r\n所以对每个 $V$，(21) 中的最小值都不超过 $\\lambda_2$。\r\n**结论：** (21) 与 (22) 中可能取到的最大最小值就是 $\\lambda_2$。\r\n\r\n```math\r\n\\max_{\\dim V=2}\\ \\min_{c\\ \\text{in}\\ V}\\ \\frac{c^T S c}{c^T c}=\\lambda_2,\r\n\\qquad\r\n\\min_{\\dim W=2}\\ \\max_{c\\ \\text{in}\\ W}\\ \\frac{\\lVert A c\\rVert}{\\lVert c\\rVert}=\\sigma_2 \\tag{22}\r\n```\r\n\r\n当 $i=1$ 时，空间 $V$ 与 $W$ 都是一维直线。\r\n过 $c=q_1$（第一个特征向量）的直线 $V$ 使 $c^T S c/c^T c$ 取到最大值 $\\lambda_1$。\r\n过 $c=y_1$（第一个奇异向量）的直线 $W$ 使 $\\lVert A c\\rVert/\\lVert c\\rVert$ 取到最大值 $\\sigma_1$。\r\n当 $i=2$ 时，空间 $V$ 与 $W$ 都是二维平面。\r\n使目标取最大值的 $V$ 包含特征向量 $q_1,q_2$，而使目标取最大值的 $W$ 包含奇异向量 $y_1,y_2$。\r\n在这样一个 $V$ 上取最小值得到 $\\lambda_2$，在这样一个 $W$ 上取最小值得到 $\\sigma_2$。\r\n这一模式对每个 $i$ 都继续成立。\r\n它产生了方程 (22) 中的 Courant-Fischer（柯朗-费舍尔）极小-极大原理。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 12842,
+            "outputTokens": 41207,
+            "cacheReadTokens": 5504,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 12842,
+              "outputTokens": 41207,
+              "cacheReadTokens": 5504,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 31229,
+          "contextWindow": 1000000,
+          "pressureTokens": 18346,
+          "sampledSurfaceTokens": 9220
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 7660,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 22009,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 30085
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

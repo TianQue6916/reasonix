@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790060743825,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一个 MIT 18.065（Matrix Methods"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一个 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程的专业数学助教，同时是双语教材的资深译者。\r\n\r\n【读者画像（务必贴合）】\r\n- 大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。\r\n- 已学：离散数学 MIT 6.042J（等价关系/偏序集/数论/图论）、CSAPP 全 12 章、Strang 线性代数（收尾中）。\r\n- 正在学：100B 实分析（Thomson TBB + Rudin）、6.006 算法导论（CLRS）、18.065 矩阵方法。\r\n- 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——**不得裸甩这些名词**。\r\n- 可用的脚手架（连接新概念的锚点）：等价关系、矩阵乘法分块、秩—零化度守恒、浮点表示、二分搜索、分治算法、投影矩阵、二次型与能量、配方法。\r\n\r\n【知识库先行声明（本技能铁律）】\r\n本机离线维基（ZIM）与 PocketWiki 只装机于另一台机器，本次不可达。已为你注入替代权威来源：① 教材 Linear Algebra and Learning from Data（Strang 2019）对应章节的对齐双语材料；② 教材官方 Manual for Instructors 的标准答案原文；③ 该讲官方视频字幕（英文原句 + 官方中文字幕，时间轴对齐）。凡涉及史实、年份、事实断言，若注入材料不足，请明确写不确定或⚠ 待核，**严禁凭记忆硬编**。\r\n\r\n【硬性内容要求】\r\n1. 每题给出**至少 2 种（最好 3 种）不同的方法或解读视角**，并对每种说明：它看到了别的视角看不到的什么、适用条件、优劣。\r\n2. 每个数学结论都要有**自检步骤**（代入验算、维数/形状记账、trace/det 校验、秩的上界、能量正负判定等）。\r\n3. 必须**判定常见错误**：逐条写出 ❌ 常见错误写法，并说明为什么错（错在哪一步）。错误清单要具体，不要泛泛而谈。\r\n4. 官方 Manual 给出的标准答案已注入，请**独立验证其严谨性**；若其表述不够严格或信息不全（例如只给结论不给系数、漏掉适用条件），必须指出并补足更严谨、更完整的版本。\r\n5. 每题结尾用一句话点出这道题真正在训练什么概念。\r\n6. 不确定处明确写不确定，不猜测。\r\n\r\n【输出格式（严格，逐条执行；违反任一条即返工）】\r\n- 直接输出**可交付的双语 Markdown 片段**（不要寒暄、不要说明你做了什么、不要写以下是翻译之类的话）。\r\n- **中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入**；术语**首次出现**加括号翻译，同一段落内再次出现省略括号。\r\n- 🚨 **绝对禁止英中分段对照**：不得先写完整英文句子再写中文翻译；输出中**没有任何完整英文原句**（唯一例外是每题末尾的 `Original（英文原题）` 行与 Manual 标准答案引文）。\r\n- 🚨 **每句话第一个字必须是中文**，不能以英文单词开句。\r\n- 数学一律 LaTeX：行内 `$...$`；块级用 ` ```math ` 围栏（**禁止 `$$...$$`**）。\r\n- **禁止 Unicode 上下标字符**（₀₁₂₃、⁰¹²³ 等），一律写 `$x_n$`、`$x^n$`。\r\n- 禁止 `<div>`；答案与译者注一律用 `>` blockquote 包裹（MarkText 自动虚化）。\r\n- 标题标记（`###` 等）必须在**行首**，前面不得有 `<span>` 等 HTML 标签。\r\n- 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`。\r\n\r\n【每道题的输出模板（照抄结构）】\r\n```\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem N（问题 N）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.x, p.yy-zz | Manual, Problem Set I.x 题 N</span>\r\n\r\n（中文题目：完整行内双语翻译，术语 English（中文））\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** （英文原题原文，逐字保留，含填空下划线）</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**……\r\n>\r\n> **二、方法一：**……（含验算）\r\n>\r\n> **三、方法二：**……\r\n>\r\n> **四、常见错误判定**（逐条 ❌ + 理由）\r\n>\r\n> **五、自检**（代入验算 / 维数记账 / trace-det 校验）\r\n>\r\n> **六、一句话**：这道题真正训练的是……\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（标题）** ……（见下）\r\n```\r\n- 块级公式放进 blockquote 时，每行都要加 `>` 前缀。\r\n\r\n【译者注规格】\r\n- 每题 **1-2 组**译者注；若内容较多，**按主题拆成多条**，每条正文 **800-1200 汉字**（公式、配图、字幕引文不计入）。\r\n- 每条注写成可独立阅读的小专题：① 一句话点出本注核心（设计问题/机制本质）→ ② 机制展开（第一性原理或证明思路）→ ③ 一个具体例子验证 → ④ 跨课程连接或可复用的命名模板 → ⑤ 一句话收束回正文。\r\n- 跨课程连接必须精确到**课程名 + 具体概念 + 连接路径 + 区别**（例如你在 6.042J 学过的等价类划分，在这里就是 column space 对 $\\mathbb{R}^m$ 的划分……区别是……），**不得只提高级概念名**。\r\n- 可给证明策略/计算技巧**命名模板**（如能量配方法行列式比值链trace-det 双锁校验sigma 乘积校验）。\r\n- 🎥 引用字幕素材时写成：`🎥 *Strang 在课上[教学动作]*：English original sentence（翻译：中文翻译）`——**每条引文必须附中文翻译**，一条注内多条引文每条都要翻译。\r\n- 🚫 禁止空洞赞美（精妙经典极致优雅），用事实与逻辑体现价值。\r\n- 数学符号与编号不得硬编码：引用教材/Manual 编号前先核对注入材料。\r\n\r\n【红线（违反即整份作废）】\r\n1. 所有 `$...$`、` ```math ` 围栏与全部反斜杠命令必须**一字不改原样保留**：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述、把 `\\sigma_1` 写成 `sigma1`。\r\n2. **不要输出任何给主代理/审稿人的说明**：不要写本会话待审本次难点提示⚠ 待核项汇总建议后续补充详见文末清单以下是……这类话术。\r\n3. 不要用（略）同上此处省略之类省略；不要复述本提示词。\r\n\r\n\r\n【本讲任务】Lecture 6（Singular Value Decomposition (SVD)（奇异值分解），教材 §I.8, p.56-61）第 6 题，只做这一题。\r\n\r\n【题目原文（LaTeX 已规范化，逐字保留题面信息）】\r\n题 6（教材 §I.8 习题 6，在教材的 Problem Set 1.8 里编号为 Problem 8）：\r\n求 $A=\\begin{bmatrix}3&4\\\\ 0&5\\end{bmatrix}$ 的 singular value decomposition（奇异值分解）中的 $\\sigma$'s、$v$'s 与 $u$'s。**Use equation (12)**（用方程 (12) 的做法）。\r\n\r\n⚠ 补充说明（已核实，请以它为准）：教材 §I.8 的 Example 1 处理的矩阵是 $A_{0}=\\begin{bmatrix}3&0\\\\ 4&5\\end{bmatrix}$，其完整分解就是 equation (12)：$A_0=U_0\\Sigma_0V_0^T$，其中 $\\sigma_1=3\\sqrt{5}$、$\\sigma_2=\\sqrt{5}$。本题矩阵 $\\begin{bmatrix}3&4\\\\ 0&5\\end{bmatrix}$ 恰是 $A_0$ 的 transpose（转置）$A_0^T$。教材同题（Problem Set 1.8 的 Problem 8）在后面还追加了两问：**当 $A$ 那个最大的 rank one piece（秩一部分）被去掉之后，$\\|A\\|$ 是多少？这个 reduced matrix（缩减矩阵）的奇异值与秩是什么？** 请把追加的两问也一并完整解答（OCW 的题目表未收录这两问，但教材有此问，答完可补足全貌）。\r\n\r\n\r\n【教材官方 Manual for Instructors（Problem Set I.8, page 68）标准答案原文（已核实，请独立验证其严谨性）】\r\n题 6：`Exchange u's and v's (and keep σ1 = √45 and σ2 = √5) in equation (12) = the SVD of [[3, 0], [4, 5]].`\r\n（Manual 的 σ 写作 $\\sqrt{45}$ 与 $\\sqrt{5}$，即 $3\\sqrt{5}$ 与 $\\sqrt{5}$；`Exchange u's and v's` 就是指 $A_0^T=(U_0\\Sigma_0V_0^T)^T=V_0\\Sigma_0U_0^T$，所以本题的 $U=V_0$、$V=U_0$，奇异值不变。）另注：Manual 的 Problem Set I.8 题 7 讨论了去掉最大秩一部分后的一般说法（用 $\\|A\\|=\\sigma_1$ 则剩 $\\sigma_2$；用 Frobenius 范数则剩 $(\\sigma_2^2+\\cdots+\\sigma_r^2)^{1/2}$），可用于追加两问的对照。\r\n\r\n\r\n【教材 §I.8 原文材料（本机已译双语稿节选，请以此对齐术语与推导口径；材料中方程编号 (12) 即可直接引用）】\r\n# 材料片段 p6_ex1：§I.8 Example 1 的完整 SVD 计算 = 题面所指 equation (12)\r\n> 来源：Linear Algebra and Learning from Data（Strang 2019）本机已译双语稿原文节选。\r\n\r\n### <span style=color:#2471a3;>**[section]**</span> <span style=color:#c0392b;>Highlights of Linear Algebra（线性代数要点）——§I.8 SVD 的 Example 1 完整计算</span>\r\n\r\n<span style=color:#2471a3;>**[example]**</span> **Example 1（例 1）**（完整求解 completed）求矩阵 $U, \\Sigma, V$，使得 $A = U\\Sigma V^T$，其中矩阵 $A$ 为\r\n\r\n```math\r\nA = \\begin{bmatrix}3 & 0\\\\ 4 & 5\\end{bmatrix}\r\n```\r\n\r\n矩阵 $A$ 的 rank（秩）为 2，因此它有两个正的 singular values（奇异值）$\\sigma_1$ 与 $\\sigma_2$。我们将会看到 $\\sigma_1 = 3\\sqrt{5}$ 大于 $\\sigma_2 = \\sqrt{5}$（即 $\\sigma_2$ 较小）。先从 $A^TA$ 与 $AA^T$ 入手：\r\n\r\n```math\r\nA^TA = \\begin{bmatrix}25 & 20\\\\ 20 & 25\\end{bmatrix}, \\qquad\r\nAA^T = \\begin{bmatrix}9 & 12\\\\ 12 & 41\\end{bmatrix}\r\n```\r\n\r\n这两个矩阵有相同的 trace（迹）50，以及相同的 eigenvalues（特征值）$\\lambda_1 = 45$ 与 $\\lambda_2 = 5$。开平方根得到 $\\sigma_1 = 3\\sqrt{5}$ 与 $\\sigma_2 = \\sqrt{5}$。于是 $\\sigma_1\\sigma_2 = 15$，而这正是矩阵 $A$ 的 determinant（行列式）。\r\n\r\n一个关键的步骤是求出 $A^TA$ 的 eigenvectors（特征向量）（对应特征值 45 与 5）：\r\n\r\n```math\r\n\\begin{bmatrix}25 & 20\\\\ 20 & 25\\end{bmatrix}\\begin{bmatrix}1\\\\ 1\\end{bmatrix} = 45\\begin{bmatrix}1\\\\ 1\\end{bmatrix}, \\qquad\r\n\\begin{bmatrix}25 & 20\\\\ 20 & 25\\end{bmatrix}\\begin{bmatrix}1\\\\ -1\\end{bmatrix} = 5\\begin{bmatrix}1\\\\ -1\\end{bmatrix}\r\n```\r\n\r\n于是 $v_1$ 与 $v_2$ 就是这两个相互正交（orthogonal）的特征向量重缩放（rescaled）到长度 1 后的结果——除以 $\\sqrt{2}$ 即可：\r\n\r\n**右奇异向量（Right singular vectors）**\r\n\r\n```math\r\nv_1 = \\frac{1}{\\sqrt{2}}\\begin{bmatrix}1\\\\ 1\\end{bmatrix}, \\qquad\r\nv_2 = \\frac{1}{\\sqrt{2}}\\begin{bmatrix}1\\\\ -1\\end{bmatrix}\r\n```\r\n\r\n**左奇异向量（Left singular vectors）** 现在计算 $u_1$ 与 $u_2$，它们将是 $Av_1/\\sigma_1$ 与 $Av_2/\\sigma_2$：\r\n\r\n```math\r\nu_1 = \\frac{Av_1}{\\sigma_1} = \\frac{1}{\\sqrt{10}}\\begin{bmatrix}1\\\\ 3\\end{bmatrix}, \\qquad\r\nu_2 = \\frac{Av_2}{\\sigma_2} = \\frac{1}{\\sqrt{10}}\\begin{bmatrix}3\\\\ -1\\end{bmatrix}\r\n```\r\n\r\n除以 $\\sigma_1$ 与 $\\sigma_2$ 使得 $u_1$ 与 $u_2$ 成为标准正交（orthonormal）向量。于是 $A = U\\Sigma V^T$，正如所料。矩阵 $A$ 的奇异值分解（Singular Value Decomposition, SVD）就是 $U$ 乘以 $\\Sigma$ 再乘以 $V^T$：\r\n\r\n```math\r\nA = \\begin{bmatrix}3 & 0\\\\ 4 & 5\\end{bmatrix}\r\n  = U\\Sigma V^T\r\n  = \\frac{1}{\\sqrt{10}}\\begin{bmatrix}1 & 3\\\\ 3 & -1\\end{bmatrix}\r\n    \\begin{bmatrix}3\\sqrt{5} & 0\\\\ 0 & \\sqrt{5}\\end{bmatrix}\r\n    \\frac{1}{\\sqrt{2}}\\begin{bmatrix}1 & 1\\\\ 1 & -1\\end{bmatrix}\r\n\\tag{12}\r\n```\r\n\r\n$U$ 与 $V$ 分别包含 $A$ 的 column space（列空间）与 row space（行空间）的标准正交基（这两个空间都只是 $\\mathbb{R}^2$）。真正的成就在于这两个基实现了 diagonalize（对角化）：$AV = U\\Sigma$。矩阵 $U\\Sigma V^T$ 分裂成两个 rank-one matrices（秩一矩阵）——column（列）乘以 row（行）——其中\r\n\r\n```math\r\nA = \\sigma_1 u_1 v_1^T + \\sigma_2 u_2 v_2^T\r\n  = \\frac{3}{2}\\begin{bmatrix}1 & 1\\\\ 3 & 3\\end{bmatrix}\r\n  + \\frac{1}{2}\\begin{bmatrix}3 & -3\\\\ -1 & 1\\end{bmatrix}\r\n```\r\n\r\n任何矩阵都是一系列秩一矩阵之和，其中的 $u$ 向量们相互正交，$v$ 向量们也相互正交。\r\n> <span style=color:#7f8c8d;>Strang §I.8, p.60</span>\r\n\r\n---\r\n\r\n<!-- page 066: 书页 61, §I.8（续）奇异值与奇异向量在 SVD 中——Highlights 问题与回答 -->\r\n\r\n### <span style=color:#2471a3;>**[section]**</span> <span style=color:#c0392b;>§I.8（续）奇异值与奇异向量在 SVD 中（Singular Values and Singular Vectors in the SVD）</span>\r\n\r\n本页继续上一页 Highlights of Linear Algebra（线性代数要点）中的问题与回答（Questions and Answers）。\r\n\r\n**问题 1（Question 1）** 如果 $S = Q\\Lambda Q^T$ 是对称正定（symmetric positive definite）矩阵，它的 SVD 是什么？\r\n\r\n它的 SVD 恰好就是 $U\\Sigma V^T = Q\\Lambda Q^T$。其中矩阵 $U = V = Q$ 是正交（orthogonal）矩阵，而特征值矩阵（eigenvalue matrix）$\\Lambda$ 变成了奇异值矩阵（singular value matrix）$\\Sigma$。\r\n\r\n**问题 2（Question 2）** 如果 $S = Q\\Lambda Q^T$ 含有一个负特征值（negative eigenvalue）（例如某个 $\\lambda = -a$），那么奇异值是什么？向量 $u$ 与 $v$ 又是什么？\r\n\r\n奇异值将是 $\\sigma = +a$（正值）。其中一个奇异向量（$u$ 或 $v$ 中任选其一）必须反号（reverse the sign），即取 $-v$。于是含负特征值 $-a$ 的项 $-a\\, vv^T$ 与 $\\sigma(-v)v^T = +a\\,(-v)v^T$ 完全相同——两处符号变化相互抵消（the two sign changes cancel）。\r\n\r\n**问题 3（Question 3）** 如果 $U = Q$ 是一个正交矩阵，为什么它的每一个奇异值都等于 1？\r\n\r\n因为 $A^TA = Q^TQ = I$，于是 $\\Sigma = I$。所以所有奇异值都等于 1。但是 $U = Q$、$V = I$ 只是奇异向量 $u$ 与 $v$ 的一种选择：$U\\Sigma V^T$ 可以是 $Q\\cdot I \\cdot I^T$，也可以是任意的 $(QQ_1)\\cdot I \\cdot Q_1^T$（其中 $Q_1$ 为任意正交矩阵）。\r\n\r\n**问题 4（Question 4）** 为什么方阵 $A$ 的所有特征值都小于或等于谱范数 $\\|A\\| = \\sigma_1$？\r\n\r\n因为用正交矩阵 $U$ 与 $V^T$ 去乘不会改变向量的长度（vector lengths）：\r\n\r\n```math\r\n\\|Av\\| = \\|U\\Sigma V^T v\\| = \\|\\Sigma (V^T v)\\| \\le \\sigma_1 \\|V^T v\\| = \\sigma_1 \\|v\\| \\tag{13}\r\n```\r\n\r\n上式对所有 $v$ 成立。而由特征方程 $Av = \\lambda v$ 可得 $\\|Av\\| = |\\lambda| \\, \\|v\\|$。于是 (13) 给出 $|\\lambda| \\, \\|v\\| \\le \\sigma_1 \\|v\\|$，从而 $|\\lambda| \\le \\sigma_1$。\r\n\r\n**问题 5（Question 5）** 如果 $A = uv^T$ 的秩（rank）为 1，那么 $u_1$、$v_1$ 与 $\\sigma_1$ 各是什么？验证 $\\sigma_1 u_1 v_1^T = A$。\r\n\r\n奇异向量 $u_1 = u/\\|u\\|$ 与 $v_1 = v/\\|v\\|$ 的长度均为 1。于是 $\\sigma_1 = \\|u\\| \\, \\|v\\|$ 是奇异值矩阵 $\\Sigma$ 中唯一的非零元素。这里的 SVD 是：\r\n\r\n<span style=color:#2471a3;>**[note]**</span> **秩一矩阵（Rank 1 matrix）**\r\n\r\n```math\r\nA = uv^T = \\sigma_1 u_1 v_1^T\r\n```\r\n\r\n观察（Obs.）：$A^TA = vu^T uv^T = \\|u\\|^2 vv^T$ 唯一的非零特征值是 $\\lambda = \\|u\\|^2 \\|v\\|^2 = \\sigma_1^2$，其对应的特征向量是 $v_1 = v/\\|v\\|$。\r\n\r\n于是 $\\sigma_1 u_1 v_1^T = \\|u\\| \\|v\\| \\cdot \\frac{u}{\\|u\\|} \\cdot \\frac{v^T}{\\|v\\|} = uv^T = A$（因为范数相互抵消（cancel））。\r\n\r\n关键的不等式（inequality）$|u_1^T v_1| \\le 1$ 恰好就是 Schwarz inequality（施瓦茨不等式）——即 $|u^T v| \\le \\|u\\| \\, \\|v\\|$。\r\n\r\n**问题 6（Question 6）** Karhunen-Loève 变换（Karhunen-Loève transform）是什么？它与 SVD 有什么联系？\r\n\r\n我们从某个零均值（zero-mean）随机过程的协方差矩阵（covariance matrix）$K$ 开始。$K$ 是对称且正定（positive definite）或半正定（positive semidefinite）的。一般地，$K$ 可以是无穷矩阵（infinite matrix）或协方差函数（covariance function），于是 K-L 展开（expansion）将是无穷级数。\r\n\r\n$K$ 的特征向量按特征值降序 $\\lambda_1 \\ge \\lambda_2 \\ge \\cdots$ 排列，它们就是 K-L 变换的基函数（basis functions）。任意向量 $x$ 在标准正交基（orthonormal basis）$x_1, x_2, \\ldots$ 下的展开为\r\n\r\n```math\r\nx = c_1 x_1 + c_2 x_2 + \\cdots\r\n```\r\n\r\n在这个随机（stochastic）情形下，该变换使随机过程去相关（decorrelate）：这些系数是相互独立的（independent）。不仅如此，特征值的排序意味着：只保留前 $k$ 项（在 $x_k$ 处停止）时，期望平方误差（expected square error）最小。这一事实对应于下一节 1.9 的 Eckart-Young 定理（Eckart-Young Theorem）。\r\n\r\n这个变换是主成分分析（Principal Component Analysis, PCA）的一种随机（stochastic）形式。\r\n\r\n\r\n\r\n\r\n# 材料片段 p6_gt_a：§I.8 $A^T$ 的奇异向量（$A^T$ 的 SVD 只把 $A$ 的 $u$ 与 $v$ 互换）\r\n> 来源：Linear Algebra and Learning from Data（Strang 2019）本机已译双语稿原文节选。\r\n\r\n### A^T 的奇异向量（The Singular Vectors of A^T）\r\n\r\n<span style=color:#2471a3;>**[section]**</span> 一个 SVD（奇异值分解）把 row space（行空间）中的 $v$ 与 column space（列空间）中的 $u$ 连接起来。当我们转置 $A = U\\Sigma V^T$ 时，看到 $A^T = V\\Sigma^T U^T$ 沿相反方向走，从 $u$ 到 $v$：\r\n\r\n```math\r\nAv_k = \\sigma_k u_k \\quad (k = 1, \\ldots, r)\r\n\\qquad\\text{和}\\qquad\r\nA^T u_k = \\sigma_k v_k \\quad (k = 1, \\ldots, r)\r\n\\qquad (20)\r\n```\r\n\r\n将 $Av_k = \\sigma_k u_k$ 两边乘以 $A^T$。回忆方程 (9) 中的 $A^T A v_k = \\sigma_k^2 v_k$，再除以 $\\sigma_k$ 就得到 $A^T u_k = \\sigma_k v_k$。\r\n\r\n---\r\n\r\n### 另一种产生 SVD 的对称矩阵（A Different Symmetric Matrix Also Produces the SVD）\r\n\r\n<span style=color:#2471a3;>**[section]**</span> 我们是用两个对称矩阵 $A^T A$ 与 $AA^T$ 构造出 SVD 的。另一个好办法是使用一个对称分块矩阵 S（symmetric block matrix）。这个矩阵 S 把 $u$ 与 $v$ 成对地配成特征向量，对应特征值 $\\pm \\sigma_k$。矩阵 S 的非零特征值是 $\\sigma_k$ 与 $-\\sigma_k$，它的规模（size）是 $m + n$：\r\n\r\n```math\r\nS = \\begin{bmatrix} 0 & A \\\\ A^T & 0 \\end{bmatrix}\r\n\\qquad\\text{具有特征向量}\\qquad\r\n\\begin{bmatrix} u_k \\\\ v_k \\end{bmatrix} \\ \\text{与} \\ \\begin{bmatrix} u_k \\\\ -v_k \\end{bmatrix}\r\n```\r\n\r\n我们可以直接验证这些特征向量，记住 $Av_k = \\sigma_k u_k$ 与 $A^T u_k = \\sigma_k v_k$：\r\n\r\n```math\r\n\\begin{bmatrix} 0 & A \\\\ A^T & 0 \\end{bmatrix}\\begin{bmatrix} u_k \\\\ v_k \\end{bmatrix}\r\n= \\begin{bmatrix} Av_k \\\\ A^T u_k \\end{bmatrix}\r\n= \\begin{bmatrix} \\sigma_k u_k \\\\ \\sigma_k v_k \\end{bmatrix}\r\n= \\sigma_k \\begin{bmatrix} u_k \\\\ v_k \\end{bmatrix}\r\n```\r\n\r\n以及\r\n\r\n```math\r\n\\begin{bmatrix} 0 & A \\\\ A^T & 0 \\end{bmatrix}\\begin{bmatrix} u_k \\\\ -v_k \\end{bmatrix}\r\n\r\n【本讲官方字幕教学片段（英文原句 + 官方中文字幕，时间轴对齐；供 🎥 引文使用，引用时必须附中文翻译，且只能引用其中真实存在的句子）】\r\n# lec6 字幕教学片段（MIT 18.065 官方字幕，英文原句 + 官方中文字幕对齐）\r\n- [00:02:21,920 --> 00:02:22,880] **EN**: singular values.\r\n  **ZH**: 奇异值。\r\n- [00:02:53,100 --> 00:02:59,320] **EN**: And numbers in between are not eigenvalues, but singular values.\r\n  **ZH**: 介于其中的数字并非 eigenvalues (特征值)， 而是 singular values (奇异值)。\r\n- [00:03:26,780 --> 00:03:30,500] **EN**: And they're called singular values. So it's just a different world.\r\n  **ZH**: 它们被称为 singular values (奇异值)。所以这 完全是另一个不同的世界。\r\n- （关键词「rank one」无命中）\r\n- [00:01:24,420 --> 00:01:28,000] **EN**: and then it's got a full set of eigenvalues and eigenvectors,\r\n  **ZH**: 并且它拥有 一组完整的特征值 (eigenvalues) 和特征向量 (eigenvectors)，\r\n- [00:01:35,060 --> 00:01:43,840] **EN**: either the eigenvectors are complex, eigenvalues are complex, or the eigenvectors are not orthogonal.\r\n  **ZH**: 要么特征向量是复数 (complex)，特征值 是复数，要么特征向量不正交 (not orthogonal)。\r\n- [00:07:35,140 --> 00:07:37,840] **EN**: what the SVD is going to use.\r\n  **ZH**: SVD（奇异值分解）将要使用的对象。\r\n- [00:17:21,140 --> 00:17:22,280] **EN**: established the SVD.\r\n  **ZH**: 建立了 SVD (奇异值分解)。\r\n- [00:19:08,820 --> 00:19:14,160] **EN**: are orthogonal, which I can do. And then they have to be in the SVD.\r\n  **ZH**: 是正交的，这我能做到。并且 然后它们必须位于 SVD（奇异值分解）中。\r\n\r\n\r\n======================= 格式样板（同课程已交付成品的末尾合观节） =======================\r\n以下是 Lecture 4 成品的末尾合观节，仅作**结构与语气**参照（篇幅、折叠方式、不复述题干），不要复制其中内容：\r\n\r\n## <span style=color:#c0392b;>附：三题合观——把三道题折叠成一个设计问题</span>\r\n\r\n这三道题在回答同一个设计问题：**矩阵的哪些信息可以降维成几个数，而哪些信息必须保留完整的向量？**\r\n\r\n题 2 处理可降维的那一半。$A=\\begin{bmatrix}0&2\\\\1&1\\end{bmatrix}$ 的特征值是 $2$ 与 $-1$，它们由 $\\det(A-\\lambda I)=\\lambda^2-\\lambda-2$ 一次算出，再用 $\\lambda_1+\\lambda_2=1=\\operatorname{trace}$ 独立校验；而 $A^{-1}$ 的谱只是把每个 $\\lambda$ 取倒数，特征向量一动不动。这题第一次把矩阵的幂与逆翻译成标量的乘法与除法。\r\n\r\n题 11 划出不可降维的边界。$\\det(A-\\lambda I)=\\det(A^T-\\lambda I)$ 由 $\\det M=\\det M^T$ 得到，所以**特征值**这一半信息记在行列式里、被转置完整保留；但**特征向量**这一半记在 $(A-\\lambda I)x=0$ 的解空间里，转置把行操作换成列操作，$N(A)$ 与 $N(A^T)$ 就分道扬镳了。题面要你用例子打掉特征值相同 ⇒ 特征向量相同这个想法，本质上是在提醒：**谱只记录拉伸倍数，不记录被拉伸的方向。**\r\n\r\n题 15 把两半重新装配。$A=X\\Lambda X^{-1}$ 中，$\\Lambda$ 收下可降维的所有信息（$n$ 个数），$X$ 收下不可降维的全部剩余（$n$ 个方向）；能这样装配的前提是这 $n$ 个特征向量线性无关。装配成功之后，$A^3=X\\Lambda^3X^{-1}$、$A^{-1}=X\\Lambda^{-1}X^{-1}$——计算复杂度从矩阵乘法降为对角元上的标量运算。\r\n\r\n三题合起来是本讲的操作纪律：**先把矩阵作用在特征向量上，看它是否只是被拉伸。** 若是，整台机器就能拆成方向 + 倍数两半；若特征值有重复、特征向量不够 $n$ 个（像题 15 的第二个矩阵那样秩为 $1$、含零特征值），就要单独处理——这也预告了后面为什么需要 SVD：它用两组合适的正交方向，把拆不动的矩阵也拆开。\r\n\r\n\r\n======================= 样板结束 =======================\r\n\r\n\r\n【末尾合观节要求】本题解答之后，追加一节：\r\n\r\n```\r\n## <span style=color:#c0392b;>附：2 题合观——把 2 道题折叠成一个设计问题</span>\r\n```\r\n\r\n用 800-1500 字把本讲两道题串成一个设计问题叙事：每题压住这个问题的哪一层、彼此如何咬合、合起来训练的纪律是什么。**不要复述题干**，不要给解题步骤清单。\r\n\r\n======================= 格式样板（同课程已交付成品的第 2 题：题干 + 解答 + 译者注） =======================\r\n以下片段只作**格式、密度、注写法、自检写法**的参照；**不要复制其中任何内容**，也不要提及它。\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 2（问题 2）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.6, p.37-41 | Manual, Problem Set I.6 题 2</span>\r\n\r\n请计算 $A$ 与 $A^{-1}$ 的 eigenvalues（特征值）和 eigenvectors（特征向量），并校验 trace（迹）！其中\r\n\r\n```math\r\nA=\\begin{bmatrix}0&2\\\\1&1\\end{bmatrix}\\qquad\\text{and}\\qquad A^{-1}=\\begin{bmatrix}-1/2&1\\\\1/2&0\\end{bmatrix}\r\n```\r\n\r\n矩阵 $A^{-1}$ 与 $A$ 具有 \\_\\_\\_\\_ 的 eigenvectors；当 $A$ 的特征值为 $\\lambda_1$ 与 $\\lambda_2$ 时，它的 inverse（逆矩阵）的特征值为 \\_\\_\\_\\_。\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Compute the eigenvalues and eigenvectors of $A$ and $A^{-1}$. Check the trace !\r\n```math\r\nA=\\begin{bmatrix}0&2\\\\1&1\\end{bmatrix}\\qquad\\text{and}\\qquad A^{-1}=\\begin{bmatrix}-1/2&1\\\\1/2&0\\end{bmatrix}\r\n```\r\n$A^{-1}$ has the \\_\\_\\_\\_ eigenvectors as $A$. When $A$ has eigenvalues $\\lambda_1$ and $\\lambda_2$, its inverse has eigenvalues \\_\\_\\_\\_ .</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 先给答案，再给推导与校验。两个空依次填 **same（相同）** 与 **$\\lambda_1^{-1},\\lambda_2^{-1}$（取倒数）**。\r\n>\r\n> 矩阵 $A$ 的两个特征值：$\\lambda_1=2$ 对应 eigenvector（特征向量）方向 $\\operatorname{span}\\{(1,1)\\}$；$\\lambda_2=-1$ 对应方向 $\\operatorname{span}\\{(2,-1)\\}$。\r\n>\r\n> 矩阵 $A^{-1}$ 的两个特征值：$\\mu_1=1/2$ 对应同一个方向 $\\operatorname{span}\\{(1,1)\\}$；$\\mu_2=-1$ 对应同一个方向 $\\operatorname{span}\\{(2,-1)\\}$。注意 $\\mu_2=\\lambda_2^{-1}=-1$ 与 $\\lambda_2$ 数值相同，这不是笔误，而是因为 $-1$ 是「取倒数」这个映射的 fixed point（不动点）。\r\n>\r\n> 另一个必须先说清的问题：题面给的 $A^{-1}$ 是否确实等于 $A$ 的逆？**验算通过。** 因为 $\\det A=0\\cdot1-2\\cdot1=-2\\neq0$，矩阵可逆，由 $2\\times2$ 逆矩阵公式（伴随矩阵除以行列式）得\r\n>\r\n> ```math\r\n> A^{-1}=\\frac{1}{\\det A}\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}=\\frac{1}{-2}\\begin{bmatrix}1&-2\\\\-1&0\\end{bmatrix}=\\begin{bmatrix}-1/2&1\\\\1/2&0\\end{bmatrix}\r\n> ```\r\n>\r\n> 与题面逐元素一致。这一步不可跳过：后面所有关于 $A^{-1}$ 的谱的断言，都建立在「题面矩阵确实是 $A^{-1}$」之上。\r\n>\r\n> **二、方法一：特征多项式法（定义直推，机械但普适）**\r\n>\r\n> 这一步看到的是「特征值是多项式方程的根」这一代数事实，对任何阶数、任何元素类型都成立。写出\r\n>\r\n> ```math\r\n> \\det(A-\\lambda I)=\\begin{vmatrix}-\\lambda&2\\\\1&1-\\lambda\\end{vmatrix}=(-\\lambda)(1-\\lambda)-2=\\lambda^2-\\lambda-2=(\\lambda-2)(\\lambda+1)\r\n> ```\r\n>\r\n> 所以 $\\lambda_1=2$，$\\lambda_2=-1$。对应齐次方程组 $(A-\\lambda I)x=0$ 的 null space（零空间）就是 eigenspace（特征空间）：\r\n>\r\n> ```math\r\n> \\lambda=2:\\ A-2I=\\begin{bmatrix}-2&2\\\\1&-1\\end{bmatrix}\\sim\\begin{bmatrix}1&-1\\\\0&0\\end{bmatrix}\\Rightarrow x_1=x_2\\Rightarrow v_1=\\begin{bmatrix}1\\\\1\\end{bmatrix}\r\n> ```\r\n>\r\n> ```math\r\n> \\lambda=-1:\\ A+I=\\begin{bmatrix}1&2\\\\1&2\\end{bmatrix}\\sim\\begin{bmatrix}1&2\\\\0&0\\end{bmatrix}\\Rightarrow x_1=-2x_2\\Rightarrow v_2=\\begin{bmatrix}2\\\\-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 适用条件：只需会算行列式与解线性方程组，无任何附加假设。劣势：$n$ 阶时要展开 $n$ 次行列式，计算量随阶数爆炸，且高阶展开容易错符号。\r\n>\r\n\r\n======================= 样板结束 =======================\r\n\r\n现在请直接输出上述要求的完整双语 Markdown 片段（不要寒暄）。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7546,
+            "outputTokens": 37903,
+            "cacheReadTokens": 4736,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7546,
+              "outputTokens": 37903,
+              "cacheReadTokens": 4736,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 29918,
+          "contextWindow": 1000000,
+          "pressureTokens": 12282,
+          "sampledSurfaceTokens": 5913
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4353,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 24005,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 28774
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

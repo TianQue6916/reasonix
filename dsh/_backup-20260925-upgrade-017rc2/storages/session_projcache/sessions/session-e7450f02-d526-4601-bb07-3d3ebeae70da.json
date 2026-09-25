@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127039620,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 MIT 课程讲义的专业学术"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 课程讲义的专业学术译者，服务对象是大二学生（智能科学与技术专业）。你正在翻译 Gilbert Strang《Linear Algebra and Learning From Data》part004（书页 147-197，OCR 页 151-200）。本批内容为 Part II §II.4 随机化线性代数收尾 + **Part III Low Rank and Compressed Sensing**（§III.1 扰动下的 $A^{-1}$ 变化 → §III.2 特征值交错与低秩信号 → §III.3 快速衰减奇异值 → §III.4 分裂算法（ADMM/prox/软阈值）→ §III.5 压缩感知与矩阵补全）。\r\n\r\n任务：将指定的 2 页 PDF 原文（Windows OCR 文本）翻译为行内双语 Markdown。\r\n\r\n【第一步：结构清单】翻译前先列出本页全部结构单元（节标题/定理/定义/例子/习题/图/表格）清单，再逐单元翻译。\r\n\r\n【⚠️ OCR 噪声预处理（必须先做）】输入是 Windows OCR 文本，含大量符号噪声。翻译前必须先依据数学语境修正：\r\n- `蓋`/`风`/`兒`/`儿` → $A$（矩阵）；`乥`/`Σ` → $\\Sigma$；`叻` → 运算（min/max 依语境）；`鬱` → 依语境（列/行/符号）\r\n- `田`/`田 N` → 节号 §N（页眉噪声）；`什 om`/`丘 om`/`彳 om` → from；`讠`/`忉`/`庇` 等 → 符号噪声\r\n- `¯I` → 上标 $-1$（如 `A¯I` = $A^{-1}$）；`ÄB` → $\\approx AB$；`一` → 负号或连字符；`·`/`•` → 乘法或句号（依语境）\r\n- `Fact0ting`→Factoring、`0f`→of、`t0`→to、`th e`→the、`Uc`/`Uc`→依语境（$Uc$、$U_c$）\r\n- 你**必须**凭数学知识重建被噪声破坏的公式（先例：OCR 的 `C = AS and = STB and CR = ASSTB ÄB` 正确重建为 $C = AS$、$R = S^T B$、$CR = AS\\,S^T B \\approx AB$）\r\n- 无法确定的乱码：宁可依据上下文合理重建，不得直译乱码\r\n\r\n【核心格式】（唯一正确格式）\r\n- 句子主体用中文自然叙述，关键英文术语保留原文，首次出现时用括号紧跟中文翻译：`English term（中文翻译）`\r\n- 输出中没有任何完整的英文原句。英文只以术语片段形式嵌入中文句子。\r\n- 绝对禁止「先写完整英文段 + 再写中文翻译段」的英中对照模式。\r\n\r\n【格式规范】\r\n- 行内公式用 `$...$`，块级公式用 ```math fenced block（禁止 `$$...$$`）\r\n- 每个功能模块前加蓝色标签：`<span style=color:#2471a3;>**[tag]**</span>`（tag ∈ section/theorem/proof/definition/example/note 等）\r\n- 标题标记（### 等）必须在行首，前面不能有 HTML tag\r\n- 禁止使用 `<div>`；注/答案用 `>` blockquote 包裹（虚化）\r\n- 配色：功能标签蓝 #2471a3、定理标题 #c0392b、定义核心句 #00838f、译者注 #1e8449、替代 #7d3c98\r\n- 禁止 Unicode 上下标字符（₀₁₂₃⁰¹²等），一律 LaTeX\r\n- 图/表：图片无法翻译，但图的**标题与图注**要完整翻译；公式编号（如 `(14)`）保留原编号\r\n\r\n【逐句翻译标准】（🚨 必须逐句，禁止概括压缩）\r\n- 原文每一句都对应至少一句中文翻译，不得将 3-5 句压缩为 1 句\r\n- 密度标准：每页译文 30-40 行、平均每行 6-7 个中文字——低于此密度即为伪翻译\r\n\r\n【差异化规则】\r\n- **正文页**：节标题/定理/证明/定义/例子/正文段落——完整行内双语翻译\r\n- **例题（Examples）**：必须完整行内双语翻译\r\n- **习题页/习题（Problem Set / Problem）**：按 part002/part003 先例：\r\n  1. 习题**题干保留英文原文，不翻译成中文**（铁律 9）\r\n  2. 每题前加蓝色标签行：`<span style=color:#2471a3;>**[problem]**</span> **Problem N.**`（题号与原文一致）\r\n  3. 页首加灰色说明行：`> <span style=color:#7f8c8d;>本页为 Problem Set X.Y（习题集 X.Y）…保留英文原文。</span>`\r\n  4. 习题题干中的 OCR 乱码按数学上下文修正为 LaTeX，修正处加绿色 OCR 修正译者注\r\n  5. 一页**混合**正文与习题：正文完整翻译，习题保留英文原题，两者用 `---` 分隔\r\n- 页眉/页脚（含印页码数字）**不译、不收录**\r\n\r\n【⚠️ 避坑清单（Strang 翻译实战教训，违反必返工）】\r\n1. 禁止「英文句子（中文翻译）」单行对照——英文只能以术语片段形式出现\r\n2. 禁止概括式压缩（每行仅 5-6 个中文字的伪逐句）\r\n3. OCR 乱码必须先修正再翻译\r\n4. 章节密度必须均匀（每页 30-40 行），不得某页仅 6 行\r\n5. 每句话第一个字必须是中文，不能以英文单词开句\r\n6. 定理/定义/例子/公式编号必须与原文一致（不硬编码编号）\r\n\r\n【译者注】本批**不写**译者注（跨课程注由后续专门环节统一撰写）；只允许写「OCR 修正」类的绿色简短说明（一句话以内）。\r\n\r\n【术语表】（必须沿用，术语一致性铁律）\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n【本 worker 页范围】page_161（书页 157）— page_162（书页 159）｜Part III 章首标题页\r\n\r\n【输出协议（🚨 严格，违反将导致回填失败）】\r\n- **直接输出两页的完整双语 Markdown**，不要任何前言、说明、总结、思考过程、不要文件一/文件二之类的组装标记\r\n- 每页以一行 HTML 注释开始：`<!-- page NNN -->`（NNN 为该页 OCR 页码，与下文原文标注一致）\r\n- 页与页之间用单独一行 `<!-- ===== PAGE BREAK ===== -->` 分隔\r\n- 结尾不要写任何汇报语\r\n\r\n原文内容：\r\n===== page_161 (book page 157) =====\r\nPart III\r\nLow Rank and Compressed\r\nIII.I\r\n111.2\r\n111.3\r\n111.4\r\n111,5\r\nSensing\r\nChanges in 蓋 一 1 什 om Changes № 蓋\r\nlnterlacing Eigenvalues and L ow Rank Signals\r\nRapidly D ecaying Singular Values\r\nSplit Algorithms for + 1\r\nCompressed Sensing and Matrix C ompletion\r\n\r\n===== page_162 (book page 159) =====\r\npart III ： LOW Rank and Compressed Sensing\r\nThi s part of the book looks at three types 0f low rank matnces ：\r\nI. Maffices that truly have a small rank （ 鬱 T is an ex treme case with rank = 1 ）\r\n2 · Maffices 山 at have exp onenti ally decreasing singular values 00w effective rank) ·\r\n3 · lncomplete matri ces (mssing entries) th at are completed t0 10w rank matrices.\r\nThe first type are not i nvertible (because rank < · The second type are invertible in\r\ntheory but not in practice · The matrix with entrie s @ + j 一 1 ）\r\niS a famous example ·\r\nHOW can y ou recogmze that this matnx or ano ther matrix has very 10w effective rank ？\r\nThe 山 计 d questi on—matrix completion—is appro ached in Section 111.5. We create\r\na 皿 mmization problem that applie s tO re c 0 mmender matric e s ：\r\nMinimiz e 丨 丨 蓋 《 lN ove r all possible choices of th e missing entries.\r\nThat nuclear no 皿 ” gives a well-posed problem to repl ace a nonconvex problem ：\r\n皿 nimzing rank · 况 c r 刀 0- S are conjectured be im or gradient descent.\r\nThe rank Of a mafr1X corresponds in some deep way tO the number Of nonzeros in a\r\nvector. ln that an alogy, a IOW rank matnx is 1 e a sparse vector. Again, the number\r\nOf nonzero S ln iS not a n orm ！ That numb er is sometlmes written as 日 0 ， but thi s\r\n2 《 卜 We don ， t double the number of nonzeros.\r\n0 norm ” violates the rule 目 2 叫 I\r\nlt is highly imp ortant to find sparse solutions to = b. By a seeming mracle ，\r\n= 丨 + 一 + @誄 fact\r\nsparse solutions come by minimzing the norm llclll\r\nhas led to a n ew world of compressed sensing, with applications throughout engineenng\r\nand medicine (including changes in th e machines for MagneUc Resonance lmaging) ·\r\nAlgorithms for minimization are described and compared in 111.4.\r\nT)—I and\r\nS ection III.I opens this ch ap ter with a famous formula for @ _\r\n） 一 1 · This is the Sherman-Morrison-Woodbury formula. lt shows that the\r\nch ange in the inverse matrix so has rank 1 ()f the matnX remams inveruble). Thi s\r\nfomula with its exten si o n to hi gher rank perturbations （ 一 UVT)-\r\n一 1 d /\\(t) and 0@） when “\r\ncompute the “ 咖 “ 羔@）"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1537,
+            "outputTokens": 2198,
+            "cacheReadTokens": 6144,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1537,
+              "outputTokens": 2198,
+              "cacheReadTokens": 6144,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 6077,
+          "contextWindow": 1000000,
+          "pressureTokens": 7681,
+          "sampledSurfaceTokens": 4171
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2611,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1906,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 4933
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

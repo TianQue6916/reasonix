@@ -60,4 +60,25 @@ Linux（Ubuntu 24.04.4，100.79.96.82 / LAN 192.168.0.103）长期离线（tails
 ## 5. 遗留 / 待观察
 - `/usr/bin/reasonix` 仍是 root 所有 v1.19.3（未动，作为兜底）；终端里 `which reasonix` 在非 login shell 会命中它（桌面与 `~/.profile` 的 login shell 则用 `~/.local/bin/reasonix` v1.39.0）。
 - Linux 上运行中的 `reasonix bot start --channels weixin`（pid 9143）是升级**前**启动的旧二进制进程，如需新版行为需重启该 bot。
-- `~/rx-sync-linux/` 内有 keys.json、reasonix.env（含密钥）与 600MB 中转包（courses.tar.gz / Reasonix tar）→ 用完应清理。
+- 两机 `~/rx-sync-linux/` 保留为「Linux 同步工具包」（含 rx-probe/audit/sync-home/sync-courses/clone-courses-mirror/install-reasonix/install-dsh/apply-dsh-patch/patch-config-linux/move-to-os 等脚本）；密钥副本（keys.json、reasonix.env）与 600MB 中转包已删。
+
+## 6. 磁盘收尾（用户诉求：腾空间，只做可逆转移）
+
+**诊断**：Linux `/` 147G 用 89G（剩 51G）。真凶是 **`/swap.img` 20G（占 24%）**——它不是目录，所以 `du` 首次扫描漏掉，只有 `find -size +200M` 才现形；其余：`/usr` 19G、`/var` 9.7G（snapd 7.6G）、`/opt` 5.8G、`/home` 29G。
+> 结论：磁盘紧张是长期积累（系统+snap+swap），**不是本次同步造成**（本轮净增 ~2.5G，中转包已清）。
+
+**处置（用户口径：「有影响的就算了」，因此只转移、不清理）**：
+
+| 转移项 | 大小 | 去向（均留符号链接，路径不变） |
+|---|---|---|
+| `~/课程资料` | 1.9 G | `/media/OS/linux-home/课程资料` |
+| 下载内 deb/rpm 安装包 + 2 个 reasonix 旧备份 tar.gz | 3.7 G | `/media/OS/linux-home/大文件归档` |
+| `~/桌面/{课程文件,输出文件,待处理文件夹}` | 543 M | `/media/OS/linux-home/桌面-*` |
+
+合计释放 ≈ **6 G**：`/` 89G → 83G（可用 57G）。`/media/OS` = Linux 上挂载的 Windows C 盘（ntfs3，803G，剩 426G）。
+
+**关键坑：NTFS 文件名不允许 `?`**
+`~/桌面/课程文件/其他/.reasonix/attachments/tbb010*/pages*/page_00[2,32]_book?.txt` 共 4 个文件让首次 `mv` **整体失败**（GNU mv 遇错停止；**源目录未被删，安全**）。处理：把这 4 个的 `?` 改成 `_`（与 Windows 侧同步时的改名一致）后重移成功。
+转移后计数 1995 vs 原 1999 **并非丢文件**——这 4 个与 rsync 时已存在的同名 `_` 文件是同一份 OCR 产物，改名后自然合并；各子目录抽样读取均正常。
+
+**未做（需 sudo 或属破坏性，用户选择放弃）**：缩 `/swap.img` 20G→8G（可释放 12G）、清回收站 3.9G、清 `~/.cache` 3.9G、清 snap 旧版本 2–3G。若日后需要，交换文件当前用量 0 且另有 zram 7.6G，缩容风险低。

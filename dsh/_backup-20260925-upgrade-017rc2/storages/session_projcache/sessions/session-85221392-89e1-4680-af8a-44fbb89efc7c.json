@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128173092,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 21,
+        "val": "你是 MIT 课程讲义（Strang《Linea"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 21,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 课程讲义（Strang《Linear Algebra and Learning From Data》part005，书页 198-248）的专业翻译质量审计员。工作方式为**审计 + 修复一体**（铁律 20）：通读译文、对照 OCR 原文逐项审计，然后**直接输出修订后的这 5 页完整全文**，禁止只列问题清单。\r\n\r\n【输入说明】每个 page_NNN 块给出两部分：`--- 译文（待审）---` 与 `--- OCR 原文 −--`。审计必须**以 OCR 原文为准**判断漏译/错译；OCR 本身有噪声，公式需凭数学语境判断译文是否重建正确。\r\n\r\n【审计清单（逐条执行）】\r\n1. 🔴 英中分段对照：是否存在「完整英文段 + 完整中文段」模式（英文只能以术语片段行内嵌入，术语格式 `English term（中文）`，同一术语首次出现才加括号）\r\n2. 🔴 英文句子开头：每句话第一个字必须是中文（习题题干、公式、专名除外）\r\n3. 🔴 漏译：定理 / 定义 / 例子 / 例题 / 证明 / 过渡段 / 图注 / 参考文献是否被整段跳过\r\n4. 🔴 顺序错乱：例子、公式编号、段落顺序是否与原文一致（编号必须回原文核对，绝不硬编码）\r\n5. 🟡 伪逐句（概括压缩）：每页译文应 30-40 行、约 400-1100 汉字；明显偏低即为压缩，需按原文补全\r\n6. 🟡 习题处理：习题页（Problem Set）题干**保留英文原文不译**，题号与原文一致，每题前有蓝色 `[problem]` 标签行；混排页正文完整翻译、习题保留英文、两者用 `---` 分隔\r\n7. 🟢 格式：行内公式 `$...$`，块级公式用 ```math fenced block（禁止 `$$`）；**LaTeX 环境内不得出现中文**；每个 ```math 块成对闭合、禁止嵌套；标题标记（### 等）必须在行首且前面不能有 HTML tag；禁止 `<div>`；答案用 `>` blockquote\r\n8. 🟢 标签与配色：功能标签蓝 `#2471a3`（写法 `<span style=color:#2471a3;>**[tag]**</span>`，引号不能省）；定理标题 `#c0392b`；定义核心句 `#00838f`；OCR 修正译者注 `#1e8449`；交叉引用灰行 `#7f8c8d`；禁止 Unicode 上下标字符（一律 LaTeX）\r\n9. 🟢 页眉页脚（含印页码数字）不收录；每页保留页首 `<!-- page NNN −->` 注释行\r\n\r\n【🚨 严禁输出思考过程】输出流中只允许出现译文本身：**绝对不允许**出现英文推理/自问自答/规划文本（如 Hmm…、Let me…、Final: I'll go with:、OK writing final now.、Rule 5: …），也不允许 `dsh: reasoning:` 之类前缀。规划只在内部进行。\r\n\r\n【输出协议（严格）】\r\n- 直接输出这 5 页的修订后完整全文\r\n- 每页以单独一行 `<!-- page NNN −->` 开始（NNN 与该页 OCR 页码一致）\r\n- 页与页之间用单独一行 `<!-- ===== PAGE BREAK ===== −->` 分隔\r\n- 不要任何前言、说明、总结、修改清单或汇报语（修改说明可写成每页内的绿色 `[note] 译者注（OCR 修正）：` 一句话）\r\n\r\n【术语表（必须沿用，术语一致性铁律）】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n### part004 新增术语（Part III 低秩与压缩感知：§III.1–§III.5）— 由主代理预注入\r\n- perturbation（扰动）/ changes in $A^{-1}$（$A^{-1}$ 的变化）/ sensitivity（敏感性）\r\n- interlacing eigenvalues（特征值交错）/ low rank signal（低秩信号）/ rank-one signal（秩一信号）\r\n- rapidly decaying singular values（快速衰减的奇异值）/ decay rate（衰减速率）\r\n- split algorithm（分裂算法）/ splitting（分裂）\r\n- proximal operator, prox（近端算子）/ soft thresholding（软阈值）/ hard thresholding（硬阈值）\r\n- alternating direction method of multipliers, ADMM（交替方向乘子法）\r\n- compressed sensing（压缩感知）/ matrix completion（矩阵补全）/ completing rank one matrices（补全秩一矩阵）\r\n- nuclear norm（核范数）/ trace norm（迹范数）/ sparsity（稀疏性）/ sparse vector（稀疏向量）\r\n- Netflix problem（Netflix 问题）/ recommender system（推荐系统）\r\n- semidefinite program（半定规划）/ convex relaxation（凸松弛）\r\n- biconvex（双凸）/ alternating least squares（交替最小二乘）\r\n- ridge regression（岭回归）/ weighting matrix（权重矩阵）\r\n- incoherence（不相干性）/ with high probability（以高概率）\r\n\r\n### part005 新增术语（Part IV Special Matrices：§IV.1–§IV.7）— 由主代理预注入\r\n#### §IV.1 Fourier Transforms: Discrete and Continuous\r\n- Discrete Fourier Transform, DFT（离散傅里叶变换）/ Fast Fourier Transform, FFT（快速傅里叶变换）\r\n- Fourier matrix $F$（傅里叶矩阵）/ DFT matrix $Q$（DFT 矩阵）\r\n- Fourier series（傅里叶级数）/ periodic function（周期函数）/ Fourier coefficients（傅里叶系数）\r\n- orthogonality（正交性）/ orthogonal functions（正交函数）/ eigenfunction（特征函数）\r\n- synthesis（合成）/ analysis（分析）/ inverse transform（逆变换）/ ifft（逆快速傅里叶变换）\r\n- permutation matrix $P$（置换矩阵）/ bit-reversed order（位反转顺序）/ butterfly（蝶形）\r\n- frequency response（频率响应）/ Nyquist（奈奎斯特）\r\n#### §IV.2 Shift Matrices and Circulant Matrices\r\n- shift matrix（移位矩阵）/ cyclic permutation（循环置换）/ shift invariance（平移不变性）\r\n- circulant matrix $C$（循环矩阵）/ cyclic convolution（循环卷积）/ convolution rule（卷积法则）\r\n- convolution（卷积）/ deconvolution（反卷积）\r\n- cross-correlation（互相关）/ autocorrelation（自相关）\r\n- circulant diagonalization（循环矩阵的对角化）/ eigenvalues of a circulant（循环矩阵的特征值）\r\n#### §IV.3 The Kronecker Product $A \\otimes B$\r\n- Kronecker product（克罗内克积）/ Kronecker sum（克罗内克和）\r\n- block matrix（分块矩阵）/ block multiplication（分块乘法）/ mixed product rule（混合积法则）\r\n- two-dimensional transform, 2D DFT（二维变换／二维 DFT）/ lexicographic ordering（字典序排列）\r\n- separation of variables（分离变量）/ second difference matrix（二阶差分矩阵）\r\n- Laplace's equation（拉普拉斯方程）/ discrete Laplacian（离散拉普拉斯算子）\r\n#### §IV.4 Sine and Cosine Transforms from Kronecker Sums\r\n- Discrete Sine Transform, DST（离散正弦变换）/ Discrete Cosine Transform, DCT（离散余弦变换）\r\n- sine/cosine transform（正弦／余弦变换）/ odd/even extension（奇／偶延拓）\r\n- quantization（量化）/ compression（压缩）/ JPEG（JPEG 图像压缩）\r\n- lossless/lossy（无损／有损）/ block transform（分块变换）\r\n#### §IV.5 Toeplitz Matrices and Shift Invariant Filters\r\n- Toeplitz matrix（托普利茨矩阵）/ constant diagonals（常数对角线）/ banded matrix（带状矩阵）\r\n- filter（滤波器）/ shift invariant filter（平移不变滤波器）/ lowpass filter（低通滤波器）\r\n- impulse response（冲激响应）/ moving window（滑动窗口）/ finite length（有限长）\r\n- Szegö's theorem（塞格定理）/ eigenvalues of a Toeplitz matrix（托普利茨矩阵的特征值）\r\n- zero padding（补零）/ edge effect（边缘效应）/ sharp cutoff（锐截止）\r\n#### §IV.6 Graphs and Laplacians and Kirchhoff's Laws\r\n- graph（图）/ node, vertex（节点／顶点）/ edge（边）/ degree（度）\r\n- incidence matrix $A$（关联矩阵）/ edge-node matrix（边-节点矩阵）\r\n- degree matrix $D$（度矩阵）/ adjacency matrix $B$（邻接矩阵）\r\n- graph Laplacian $L = A^{T}CA$（图拉普拉斯矩阵）/ weighted Laplacian（加权拉普拉斯矩阵）\r\n- Kirchhoff's current law（基尔霍夫电流定律）/ Kirchhoff's voltage law（基尔霍夫电压定律）\r\n- spanning tree（生成树）/ loop（回路）/ cycle（环）/ connected component（连通分量）\r\n- Euler's formula（欧拉公式）/ number of loops（回路数）/ topology（拓扑）\r\n- conductance（电导）/ resistance（电阻）/ grounded（接地）\r\n#### §IV.7 Clustering by Spectral Methods and k-means\r\n- clustering（聚类）/ cluster（簇）/ spectral clustering（谱聚类）/ spectral method（谱方法）\r\n- k-means（k-均值）/ centroid（质心）/ partition（划分）\r\n- cut（割）/ ratio cut（比例割）/ normalized cut（归一化割）/ minimum cut（最小割）\r\n- Fiedler vector（费德勒向量）/ algebraic connectivity（代数连通度）\r\n- modularity matrix（模块度矩阵）/ modularity（模块度）/ community（社群）\r\n- weighted size（加权规模）/ degree sum（度和）/ indicator vector（指示向量）\r\n\r\n【本 worker 审计页范围】page_211 — page_215\r\n\r\n【待审材料】\r\n########## page_211（书页 209）｜§IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）\r\n−-- 译文（待审）---\r\n<!-- page 211 −->\r\n> <span style=color:#7f8c8d;>本页为书页 209，属 §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）；页眉与页码为重复元素，不译。\r\n<span style=color:#2471a3;>**[section]**\r\n## One Step of the Fast Fourier Transform（快速傅里叶变换的一步）\r\n我们想把 $F$ 乘上向量 $c$，并让这个乘法尽可能快。通常情况下，矩阵乘向量要做 $N^2$ 次单独的乘法——因为矩阵有 $N^2$ 个元素。你也许会以为不可能做得更好了。\r\n（当然，如果矩阵中含有零元素，那些乘法就可以跳过去不做。但 Fourier matrix（傅里叶矩阵）里一个零也没有！）借助其元素的特殊规律——第 $j,k$ 个元素为 $w^{jk}$——我们可以把 $F$ 分解，使分解式里出现许多零。这就是 FFT（快速傅里叶变换）。\r\n问题的关键在于 $F_N$ 与两个 $F_{N/2}$ 之间的关系。假设 $N$ 是 $2$ 的幂（例如 $N = 2^{10} = 1024$）。于是 $F_{1024}$ 与 $F_{512}$ 相连。\r\n当 $N = 4$ 时，关键是 $F_4$ 与两个 $F_2$ 之间的关系：\r\n```math\r\nF_4 =\r\n\\begin{bmatrix}\r\n1 & 1 & 1 & 1\\\\\r\n1 & w & w^2 & w^3\\\\\r\n1 & w^2 & w^4 & w^6\\\\\r\n1 & w^3 & w^6 & w^9\r\n\\end{bmatrix}\r\n\\qquad\\text{and}\\qquad\r\n\\begin{bmatrix}\r\n1 & 1 & & \\\\\r\n1 & w^2 & & \\\\\r\n& & 1 & 1\\\\\r\n& & 1 & w^2\r\n\\end{bmatrix}\r\n```\r\n左边是 $F_4$，其中没有零。右边是一个一半元素为零的矩阵。工作量被砍掉了一半——但是等一等，这两个矩阵并不相等。我们还需要两个 sparse and simple（稀疏而简单）的矩阵，才能把分解式补齐。\r\nFFT 用到三个矩阵：\r\n```math\r\nF_4 =\r\n\\begin{bmatrix}\r\n1 & & 1 & \\\\\r\n& 1 & & w\\\\\r\n1 & & −1 & \\\\\r\n& 1 & & −w\r\n\\end{bmatrix}\r\n\\begin{bmatrix}\r\n1 & 1 & & \\\\\r\n1 & w^2 & & \\\\\r\n& & 1 & 1\\\\\r\n& & 1 & w^2\r\n\\end{bmatrix}\r\n\\begin{bmatrix}\r\n1 & & & \\\\\r\n& & 1 & \\\\\r\n& 1 & & \\\\\r\n& & & 1\r\n\\end{bmatrix}\r\n```\r\n最后一个矩阵是一个 permutation（置换矩阵）。它把偶数下标的 $c$（即 $c_0$ 与 $c_2$）排到奇数下标的 $c$（即 $c_1$ 与 $c_3$）前面。中间的矩阵在偶数 $c$ 与奇数 $c$ 上分别做两个半尺寸的变换 $F_2$ 与 $F_2$。最左边的矩阵把这两个半尺寸的输出合并起来——合并的方式恰好产生正确的全尺寸输出 $y = F_4 c$。\r\n当 $N = 1024$ 而 $M = \\tfrac{1}{2}N = 512$ 时，同样的想法依然适用。这里的数 $w$ 是 $w = e^{2\\pi i/1024}$。它位于单位圆上，角度为 $2\\pi/1024$。Fourier matrix（傅里叶矩阵）$F_{1024}$ 中充满了 $w$ 的幂。FFT 的第一步就是 Cooley 与 Tukey 发现的伟大分解（而 Gauss 在 1805 年已有先见）：\r\n```math\r\nF_{1024} =\r\n\\begin{bmatrix}\r\nI_{512} & D_{512}\\\\\r\nI_{512} & −D_{512}\r\n\\end{bmatrix}\r\n\\begin{bmatrix}\r\nF_{512} & \\\\\r\n& F_{512}\r\n\\end{bmatrix}\r\n\\begin{bmatrix}\r\n\\text{even-odd}\\\\\r\n\\text{permutation}\r\n\\end{bmatrix}\r\n\\tag{11}\r\n```\r\n其中 $I_{512}$ 是 identity matrix（单位矩阵）。$D_{512}$ 是对角矩阵，其对角元为 $(1, w, \\dots, w^{511})$。两个 $I_{512}$ 正是我们预期的东西。别忘了，它们用的是 $512$ 次单位根（也就是 $w^2$）。permutation matrix（置换矩阵）把输入的向量 $c$ 分成偶数部分与奇数部分 $d' = (c_0, c_2, \\dots, c_{1022})$ 与 $d'' = (c_1, c_3, \\dots, c_{1023})$。\r\n<!-- ===== PAGE BREAK ===== −->\r\n−-- OCR 原文 −--\r\n209\r\nIV. l. Founer Transforms ： Discrete and ConUnuous\r\nOne Step of the Fast Fourier Transf0 rm\r\nWe want t0 multiply F time s c as quickly as possible. Normally a matnx times a vector\r\ntakes 2 sep arate multiplications—the m atrix has N2 entries. You mi ght think it is im-\r\npossible to do b ettere ()f the matrix has zeros then multiplic ation s c an be sklpped. But the\r\nFouner maffix has no zeros ！ ） By using the special p attern s w9 and k for their entnes ，\r\nO and 尸 can be factored in a way that produces m any zero s · This is the FFT.\r\nThe e co 张 ect w the 俨 $ e Fo urier FN/2. Assume that\r\nN is a power of 2 (for example = 210\r\n1024 ） · F1024 connects to F512 ·\r\nWhen N = 4 ， the key is in the rel ation between an d two copies of\r\nF4\r\n1\r\n· 2\r\n· 3\r\n1\r\n· 2\r\n2\r\n· 4\r\n· 6\r\n1\r\n· 3\r\n· 6\r\n· 9\r\n尹 2\r\nand\r\n1 1\r\n· 2\r\nOn the left is F4, with no zeros · On th e ri ght is a matnx that is half zero · The work\r\nis cut in half, But walt ， those matrices are not the same. We need tWO sparse and simple\r\nmatnces tO complete the 艹 factonzation.\r\nThe FFT has\r\nthree matrices\r\n1\r\n1\r\n1\r\n1\r\n1\r\n· 2\r\n， 2\r\n1\r\n1\r\n1\r\n1\r\nThe last matrix is a p ermutation · lt puts the even c's @0 and C2 ） ahead Of the 0 dd c' s @1\r\nand (3). The middle matnx performs half-size transforms 馬 and on the even c ， s and\r\n0dd c ， s sep arately. Th e matrix at the le combines the two half-size outputs—in a w ay that\r\nproduces the correct full-size output = F4C.\r\nThe same idea applie s when = 1024 and M = LN = 512 · The number w is\r\n2 丌 讠 / 1024\r\n2 丌 / 1024 on the unit circle · The Fourier m atrix 虽 024 is\r\n· lt is at the angle 9\r\nfull of p owers of 僦 The first s tage of the FFT is the gre at factorization discovered by\r\nC001ey and Tukey (and foreshadowed in 1805 by Gauss):\r\n512 D512 F512\r\n1024\r\n512\r\neven-odd\r\n512 permutatlon\r\n12 is the identity matrix · 刀 512 is the diagonal matrix with e ntrie s （ 1 ， 忉 ，\r\n(11)\r\n， 511 ） · Th e\r\ntwo copies of 12 are what we expectede Don ， t forget th at they use the 512 山 root of unity\r\n(which is nothing but 2 ！ ！ ） Th e permutation matnx sep arates the incormng vector C intO\r\neven an d Odd parts d\r\n(CO, C2 ，\r\n。 ， c1022 ） an d\r\n。 ， c1023 〗\r\nCI ， C3 ， 《\r\n\r\n########## page_212（书页 210）｜§IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）\r\n−-- 译文（待审）---\r\n<!-- page 212 −->\r\n> <span style=color:#7f8c8d;>本页为书页 210，是 §IV.1 中 FFT 分解的续页；页眉与页码为重复元素，不译。\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声较多，`乥`／`忉`／`细`／`仞` 等符号均按数学语境重建：`乥` 为 $w$（旋转因子）、`忉` 为 $w$、`细` 为 $w^{2j}$、`氕` 为“把……拆分”、`什 om` 为 from、`（ 12 ）` 等为公式编号。公式均按 Strang 原文的 FFT 推导重建。\r\n<span style=color:#2471a3;>**[section]**\r\n## （续）The FFT Step from $N$ to $N/2$（从 $N$ 到 $N/2$ 的 FFT 一步）\r\n下面这些代数公式与 $F_{1024}$ 的那个分解说的是同一件事（即 FFT 的一步）。令 $M = \\tfrac{1}{2}N$。$y = F_N c$ 的前 $M$ 个分量与后 $M$ 个分量，是把两个半尺寸变换 $y' = F_M d'$ 与 $y'' = F_M d''$ 合并而成的。公式 (11) 表明，从 $N$ 到 $M = N/2$ 的这一步可写成 $y_j = y'_j + D_j\\,y''_j$ 与 $y_{j+M} = y'_j - D_j\\,y''_j$：\r\n```math\r\ny_j = y'_j + w^j\\,y''_j,\\qquad\r\ny_{j+M} = y'_j - w^j\\,y''_j ,\\qquad j = 0,1,\\dots,M-1\r\n\\tag{12}\r\n```\r\n把 $c$ 拆成 $d'$ 与 $d''$。用 $F_M$ 把它们变换成 $y'$ 与 $y''$。然后 (12) 重建出 $y$。\r\n这些公式来自把 $c_0, \\dots, c_{N-1}$ 分离成偶数下标的 $c_{2k}$ 与奇数下标的 $c_{2k+1}$，其中 $M = \\tfrac{1}{2}N$、$w = w_N$：\r\n```math\r\nc_{2k} = d'_k,\\qquad c_{2k+1} = d''_k,\\qquad k = 0,1,\\dots,M-1\r\n\\tag{13}\r\n```\r\n偶数 $c$ 进入 $c' = (c_0, c_2, \\dots)$，奇数 $c$ 进入 $c'' = (c_1, c_3, \\dots)$。接着做变换 $F_M c'$ 与 $F_M c''$。关键之处在于：偶数下标的 FF 用的是 $w_N^{2jk} = w_M^{jk}$。这就给出了变换 $F_M d'$ 与 $F_M d''$。把 (13) 改写如下：\r\n```math\r\nc_k = \\tfrac{1}{2}\\left(c_k + c_{k+M}\\right) + \\tfrac{1}{2}w_N^{-k}\\left(c_k - c_{k+M}\\right),\\qquad k = 0,1,\\dots,M-1\r\n\\tag{14}\r\n```\r\n对 $j \\ge M$，(12) 中的负号来自从 $w_N^{j}$ 中提出因子 $w_N^{-M} = −1$。\r\nMATLAB 很容易把偶数 $c$ 与奇数 $c$ 分开，并乘以相应的 $w^j$。我们用 `conj(F)`，或者等价地使用 MATLAB 的逆变换 `ifft`，来产生 $y = Fc$。请记住，它是基于 $w = e^{-2\\pi i/N}$，并用 $Q$ 从 $y$ 反算出 $c$。\r\n<span style=color:#2471a3;>**[section]**\r\n## FFT Step from $N$ to $N/2$（从 $N$ 到 $N/2$ 的 FFT 一步）\r\n```text\r\nTransform even c's\r\nTransform odd c's     % FFT step from N to N/2\r\nVector y = Fc         % MATLAB\r\nCombine y' and y''\r\nd = c(1 : N/2);       % d = c(0 : N/2 - 1) 的 MATLAB 记法\r\n```\r\n> <span style=color:#7f8c8d;>（上表为原书“FFT step from N to N/2”的 MATLAB 伪代码框；表中文字为译文说明，代码行的英文标识按原样保留。）\r\n下一页的 flow graph（流程／信号流图）展示了偶数 $c$ 与奇数 $c$ 如何经过半尺寸的变换。这些步骤因形状而被称为 “butterfly”（蝶形运算）。随后输出 $y'$ 与 $y''$ 被合并起来（乘以来自 $D$ 的 $1, w, w^2, \\dots$，也乘以来自 $-D$ 的 $-1, −w, −w^2, \\dots$），从而产生 $y = F_4 c$。\r\n这种把 $F_N$ 归约为两个 $F_M$ 的做法，几乎把工作量砍掉了一半——你从矩阵分解中就能看到那些零。$50\\%$ 的缩减虽然不错，但算不上了不起。完整的 FFT 要强大得多，它节省的时间远远超过一半。其核心思想是 recursion（递归）。\r\n而 $F$ 的这种分解同样适用于共轭矩阵 $Q = \\overline{F}$。\r\n−-- OCR 原文 −--\r\n210\r\nSpecial Matrices\r\nHere are the algebra formulas whi ch s ay the s ame thing as that factorization of F1024 ，\r\n（ 0 ne step of the FFT) Set M = LN. Th e first M an d last M components of = FNC\r\n“ = FMdl. Equati0n （ 11 ）\r\ncombine the tw 0 half-size transforms = FMd and\r\nshows th1S step from N to M = N/ 2 as ly/ + 刀 “ an d ly/ 一 DY'\r\n02 ）\r\nYj+M = 一 （ 户 屿 ，\r\nS plit c into d and cll · Transform them by FM into and “ · Then （ 12 ） reconstructs\r\n· ， c 一 1 intO even C2 k and O dd C2k+1 in （ 13 ） ·\r\nThO s e formulas come frO m separating co 。\r\n氕 2k + 1 ）\r\n乥 Ck 一 乥 2 C2k + 乥 忉\r\nC2k+1 with M =-N, = 03 ）\r\n0\r\n0\r\n0\r\n） · Then come\r\n） an d odd c ， s go into '\r\nEven C'S go intO C\r\nCI ， C3 ， ·\r\nCO ， C2 ， 。\r\n2j\r\nWM. This gives\r\nthe transforms FMCI and FMCII. The key is\r\nM ·\r\nRewrite （ 13 ） ： 乥 細 尸 + ' 乥 ' ： 可 + @'N)jy!' 04 ）\r\n一 1 from 細 N 户\r\nFor j 之 M, the minus sign in （ 12 ） comes 什 om factoring out （ 仞\r\nMATLAB easily separates even c's from odd c ， s and multiplie s by We use\r\nconj (F) or equivalently MATLAB ， s inverse transform i to produce Y = Fc. Remem-\r\n一 2 丌 讠 /\r\nand it produces c 丘 om using Q.\r\nber that is based on = ü=e\r\nTransform ev en C' S\r\nFFT step\r\nTransform 0 dd c' s\r\nfrom to N/ 2\r\nVector 1 ， ，\r\n№ MATLAB\r\nCombine y and\r\nd = ^ （ 0 ： N/ 2 一 1 丫 ；\r\nThe fl ow graph on the next page sh ow s and going through the half-size · Those\r\nsteps are c alled “ b 讹 ' 什 om their shape. Then the outputs and “ are combined\r\n(multiplying by 1 ， 什 om D an d also by 一 1 ， 一 讠 fro m (D) to produce = F4C.\r\nThi s reduc tion 什 0 m FN tO tw 0 FM'S almost cuts the work in half—you see the zer0 s\r\nthe mafrix factorization · Th at 50 ％ reduction is good but not great · The complete FF T\r\nis much more powerful. lt saves much more than half the time · The key idea is recursion ·\r\nAnd the factorization of F applies equally t0 the conjugate matrix O = F.\r\n\r\n########## page_213（书页 211）｜§IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）\r\n−-- 译文（待审）---\r\n<!-- page 213 −->\r\n<span style=color:#2471a3;>**[section]**\r\n## IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声极重：`Founer` 即 Fourier，`艹`／`丆` 均指 $F$（傅里叶矩阵），`仞`／`办` 为 $\\omega$，`沅`／`什 0 m` 为 from，`coples` 为 copies，`mvente d` 为 invented，`evens`／`odds` 为偶下标与奇下标分量，`乙` 为乘法计数，`圭` 为 $\\frac{1}{2}$，`at give s` 为 that gives，`0 一 1` 为 $0$ 至 $N-1$，`2 =` 为 $N^2$。页眉节号 `IV l.` 还原为 §IV.1。\r\n> <span style=color:#7f8c8d;>本页为书页 211，属 §IV.1 正文续页，紧接上一页的 FFT 递推讨论；左栏顶部残余的 `00 / C / 10 / 01 / evens 一 odds` 系前页分解图的碎片，不单独成句翻译。页眉与印页码为重复元素，不译。\r\n<span style=color:#c0392b;>**[theorem]**\r\n### The Full FFT by Recursion（完整的 FFT：用递推实现）\r\n读到这里的读者，大概已经猜到下一步会发生什么了。\r\n我们把 $F_N$ 约化为 $F_{N/2}$，接着由 $F_{N/2}$ 归约到 $F_{N/4}$。\r\n每一次除以 2 都把规模缩小一半：512 归到 256，256 再归到 128——这正是 recursion（递推）。\r\n递推是许多快速算法共有的基本原理。\r\n下面是第 2 步：它用四个 $F_{256}$ 的副本，再加上对角矩阵 $D$ 中 $\\omega$ 的 256 次幂，来拼出 $F_{512}$。\r\n偶下标的偶下标分量 $c_0, c_4, c_8, \\ldots$ 排在前面，接着是 $c_2, c_6, c_{10}, \\ldots$。\r\n```math\r\n\\begin{aligned}\r\n&\\text{pick } 0, 4, 8, \\ldots \\\\\r\n&\\text{pick } 2, 6, 10, \\ldots \\\\\r\n&\\text{pick } 1, 5, 9, \\ldots \\\\\r\nF \\quad &\\text{pick } 3, 7, 11, \\ldots\r\n\\end{aligned}\r\n```\r\n我们要数一数其中单个乘法的次数，看看究竟省下了多少。\r\n在 FFT 尚未被发明之前，乘法计数是通常的 $N^2 = (1024)^2$，大约是 100 万次乘法。\r\n我并不是说这些乘法本身耗时很久；真正让代价变得庞大的是我们往往要做极多、极多次的变换，而这才是常态。\r\n此时使用 $F$ 的递推所带来的节省同样庞大：规模为 $N = 2^k$ 的变换，其代价从 $N^2$ 降到 $\\frac{1}{2} N \\log_2 N$。\r\n数 $1024$ 就是 $2^{10}$，所以 $\\log_2 1024 = 10$；而原来 $(1024)^2$ 的计数被减到 $5 \\times 1024$。\r\n节省的因子是 200：100 万被压到 5000。\r\n这就是为什么 FFT 彻底改变了 signal processing（信号处理）。\r\n<span style=color:#c0392b;>**[proof]**\r\n下面就是这一计数的推理依据。\r\n共有 $k$ 层，从 $N = 2^k$ 一路向下走到 $N = 1$。\r\n每一层都从对角矩阵 $D$ 带来 $N/2$ 次乘法，用来把下一层送来的半规模输出重新组装起来。\r\n由此得到最终计数 $\\frac{1}{2} N \\log_2 N$，即每层 $N/2$ 次乘法、总共 $k = \\log_2 N$ 层。\r\n关于这个了不起的算法，最后再补一点说明。\r\n经过全部偶奇置换之后，各分量 $c_i$ 进入 FFT 的顺序遵循一条惊人的规律：把 $0$ 到 $N-1$ 这些数写成二进制（例如 $N = 4$ 时为 $00, 01, 10, 11$），再把这些数位的顺序颠倒过来，得到 $00, 10, 01, 11$。\r\n这正是 bit-reversed order（位反转顺序）$0, 2, 1, 3$，其中偶下标仍然排在奇下标之前。\r\n完整的图像展示了处于位反转顺序的各分量 $c_i$、递推的 $\\log_2 N$ 个步骤，以及最终输出 $c_0, \\ldots, c_{N-1}$，它等于 $F_N$ 乘 $c$。\r\n对 DFT 矩阵 $Q = F/\\sqrt{N}$ 而言，其 FFT 递推所用的思想完全相同。\r\n<!-- ===== PAGE BREAK ===== −->\r\n−-- OCR 原文 −--\r\nIV l. Founer Transforms ： Discrete and Continuous\r\n00\r\nC\r\n10\r\n01\r\nC\r\nevens\r\n一 odds\r\n211\r\n00\r\n1\r\n10\r\n01\r\nTh e Full FF T by Recursion\r\nIf you h ave read this far, you probably guessed what comes next. We reduced FN to\r\nF, / 2 · Keep 办 0 沅 g FN/4. Every 12 leads t0 56 · Then 256 lead s to 128 · 砒 is\r\nrecurston.\r\nRecursion is a basic principle of many fast algorithms · Here is step 2 with four coples\r\n0f 56 an d 刀 （ 256 p owers 0f 仞 512 〗 Evens 0f even s co ， C4 ， C8 ，\r\n。 come b efore C2 ， C6 ， c10 ，\r\n512\r\n512\r\npick 0 ， 4 ， 8\r\npick 2 ， 6 ， 10 ，\r\npick 1 ， 5 ， 9 ，\r\nF pick 3 ， 7 ， 11\r\nWe will count the indivi dual multiplications, t0 see how much is saved. Before the FFT\r\nwas mvente d ， the c 0 unt was the usual 2 = （ 1024 ） 2 · Th1 s is ab out a million multiplica-\r\ntions. I am not saying that they take a long time · The cost becomes large when we have\r\nmany ， many tran sforms to do—which is typic al. Then the saving by the 艹 is also large:\r\nT e 办 co “ ' size = 2 is reducedfrom N2 NL\r\nTh e number 1024 is 210 ， so\r\n10 · The original count of （ 1024 ） 2 is reduced to\r\n（ 5 ） （ 1024 ） · Th e saving is a factor of 200 · A million is reduced to five thousand. That is why\r\nth e 艹 h as revolutionized signal processing.\r\nHere is the reasoning behind There are levels, going 什 0 m N = 2 down to\r\n= 1. Each I eve 1 has / 2 multiplications 什 om the diagonal D's, to reassemble the half-\r\nsize outputs 什 0 m the I ow er level. Th i s yields th e final count 乙 which is 圭 log2 N.\r\nOne last note about this remarkable algorithm. There is an amazing rule for the order\r\nthat the c ， s enter the FFT after all the even-odd permutations, Write the nu mbers 0 to 一 1\r\nin binary （ 1 e 00 ， 01 ， 10 ， 11 for = 4 ） · Reverse th e order of those digits: 00 ， 10 ， 01 ， 11 ·\r\nat give s the bi t- reve rsed order 0 ， 2 ， 1 ， 3 with evens before odds.\r\nlog2 step s of the\r\nThe complete picture sh OW s th e c ， s in bit-reversed order ， the\r\nrecursion, an d the final output 0 ， 。 。 。 ， 一 1 which is FN times c.\r\nThe 艹 rec urs ion for the DFT matrix O = 丆 uses ex actly the same ideas.\r\n\r\n########## page_214（书页 212）｜§IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）｜Problem Set IV.1（习题页：题干保留英文原文）\r\n−-- 译文（待审）---\r\n<!-- page 214 −->\r\n<span style=color:#2471a3;>**[section]**\r\n## Special Matrices（特殊矩阵）\r\n> <span style=color:#7f8c8d;>本页为书页 212，属 Problem Set IV.1（习题集 IV.1）；页眉与印页码为重复元素，不译。按本系列先例，习题题干保留英文原文，仅对 OCR 乱码依数学语境修正为 LaTeX，并在修正处加绿色说明。\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 噪声说明：`FnON` 为 $F_N Q$ 之误（$Q$ 被读成 $O$、下标被吞），`O`／`03` 为 $Q$／$Q_3$，`丆` 为 $F$，`國`／`皿` 为 $Q$ 与 $\\bar{Q}$（共轭），`讠 关 j` 为 $i \\neq j$，`仞`／`WN` 为 $\\omega$／$\\omega_N$，`2 丌 3` 为 $2\\pi/3$，`歹` 为 $f$，`而`／`国` 为 $Q^{\\mathrm{T}}$ 与 $\\bar{Q}$，`山 at 皿 ula` 为 that formula，`0 hogonal` 为 orthogonal，`a n` 为 $a_n$，`c` 类竖线符号为复共轭，`丌` 为 $\\pi$。\r\n<span style=color:#2471a3;>**[problem]** **Problem 1.**\r\nAfter $S = 0$ in equation (5), the text says that all off-diagonal entries of $F_N Q$ are zero. Explain $(\\text{row } i \\text{ of } Q) \\cdot (\\text{column } j \\text{ of } \\bar{Q}) = \\text{complex dot product} = \\sum_{k=0}^{N-1} \\omega^{(N-1)k} \\omega^{-(N-1)j}$... Why is $(1, \\omega_N^{(N-1)i}, \\ldots)(1, \\omega_N^{-(N-1)j}, \\ldots) = 0$ if $i \\neq j$?\r\n<span style=color:#2471a3;>**[problem]** **Problem 2.**\r\nYou must use the dot product for complex vectors, not $|1| + \\cdots + |N|$.\r\n<span style=color:#2471a3;>**[problem]** **Problem 3.**\r\n$\\omega_N^M = \\omega_N^{-1}$. This is used in the FFT equation (12). If $M = \\omega_N^2$ show that $(\\omega_N^M)^2 = \\omega_N$ and $\\omega_N^{2M} = 1$.\r\n<span style=color:#2471a3;>**[problem]** **Problem 4.**\r\nWhat are the matrices $Q_2$ and $Q_3$ (using $\\omega_2 = −1$ and $\\omega_3 = e^{2\\pi i/3}$)? What $3$ by $3$ permutation matrix $P$ will connect them by $Q_2 = F P$ and $F = Q_2 P$?\r\n<span style=color:#2471a3;>**[problem]** **Problem 5.**\r\nFind the Discrete Fourier Transform $c$ of $f = (0, 1, 0, 0)$. Verify that the inverse DFT of $c$ is $f$.\r\n<span style=color:#2471a3;>**[problem]** **Problem 6.**\r\nConnect $Q_6$ to two copies of $Q_3$ by a matrix equation like (10) and (11).\r\n<span style=color:#2471a3;>**[problem]** **Problem 7.**\r\nFor $N = 6$, how do you see that $1 + \\omega + \\omega^2 + \\omega^3 + \\omega^4 + \\omega^5 = 0$?\r\n<span style=color:#2471a3;>**[problem]** **Problem 8.**\r\nSuppose $f = 1$ for $|x| \\leq \\pi/2$ and $f = 0$ for $\\pi/2 < |x| \\leq \\pi$. This function is even because $f(-x) = f(x)$. Even functions can be expanded in cosine series: $f(x) = a_0 + a_1 \\cos x + a_2 \\cos 2x + \\cdots$. Integrate both sides from $-\\pi$ to $\\pi$, to find $a_0$. Multiply both sides by $\\cos x$ and integrate from $-\\pi$ to $\\pi$, to find $a_1$.\r\n<span style=color:#2471a3;>**[problem]** **Problem 9.**\r\nEvery real matrix with $n$ columns has $A^{\\mathrm{T}}A = (Q^{\\mathrm{T}}Q) + \\cdots + a_n^{\\mathrm{T}} a_n$. If $A$ is an orthogonal matrix $Q$, what is special about those pieces?\r\n<span style=color:#2471a3;>**[problem]** **Problem 10.**\r\nFor the Fourier matrix (complex), what is changed in that formula? What vector has $Q^{\\mathrm{T}} f = (1, 0, 1, 0)$? What vector has $\\bar{Q} f = (0, 0, 0, 1)$?\r\n−-- OCR 原文 −--\r\nSpecial Matnces\r\n2\r\nProblem S et IV. 1\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\nAfter S = 0 in equation （ 5 ） ， the text says th at all off-diagonal entrie s of FnON\r\nare zero · Expl aln (row of ） 。 (column j of O) = complex dot product 一\r\n(N—1)j) = 0 if 讠 关 j ？\r\n(N—1)i)\r\nWhy is （ 1 ， ，\r\nYou must use the d0t pro duct for complex vectors, not 1 1 + 。 。 。 + N ·\r\nM = 一 1 · Thi s is used in the 艹 equ ation （ 12 ） ·\r\nIf M = show that (WN)\r\n2 丌 3 and 国\r\n而 ） ？ What 3 by 3\r\nWhat are the matnces and 03 (using 仞\r\npermutation matrix P will connect them by O = FP and F = OP ？\r\nFind the Di screte Fourier Transform c of f = （ 0 ， 1 ， 0 ， 0 ） ． Verify that the inverse\r\n皿 s 皿 of c is\r\nConnect to two copies of by a matnx equation like （ 10 ） and （ 11).\r\nFor = 6 ， how do you see that 1 + + 2 + 3 + 4 + 5 = 0 ？\r\n= 0 for 丌 / 2 < @丨 丌 · Thi s functio n\r\nSUPPOSe 歹 = 1 for 囫 孓 丌 / 2 and 歹\r\niS ' 'even ” because 歹 （ 一 ） = 歹 （ ） ． Even function S C an be exp anded in CO e series ：\r\nao + 01 COS + 02 COS +\r\n一 丌 to 丌 ， to find ao · Multiply b oth sides by cos and\r\nlntegrate both sides 什 om\r\nintegrate 什 om 一 丌 tO 丌 ， tO find\r\nEvery real matrix with “ columns has T = (0Tc) + 。 。 。 + an(anæ\r\nIf is an 0 hogonal matnx Q, what is special about those pieces ？\r\nFor the Founer matrix (complex) ， what is changed in 山 at 皿 ula ？\r\nWhat vector has = （ 1 ， 0 ， 1 ， 0 ） ？ What vector has = （ 0 ， 0 ， 0 ， 1 ） ？\r\n\r\n########## page_215（书页 213）｜§IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）\r\n−-- 译文（待审）---\r\n<!-- page 215 −->\r\n> <span style=color:#7f8c8d;>本页为书页 213，属 §IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）；页眉与印页码为重复元素，不译、不收录。\r\n<span style=color:#2471a3;>**[section]**\r\n## IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：** 本页 OCR 中 `蓋`／`风` 之类符号为 $A$ 或矩阵本体之误，`¯I` 为上标 $-1$，`尹 4`／`五`／`lt` 等为 $P^4$、$I$、it 之误；所有公式均按矩阵幂与循环卷积的数学语境重建，编号照原文保留。\r\n当这个矩阵 $P$ 乘上一个向量时，各分量都向上移位（shift upward）：\r\n```math\r\nP = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix} \\tag{1}\r\n```\r\n这个移位同时也是 cyclic permutation（循环置换）。\r\n“循环的”（cyclic）与“环形的”（circular）这两个词之所以适用于 $P$，是因为第一个分量跑到了末尾。\r\n若把 $(x_1, x_2, x_3, x_4)$ 想成排在一个圆周上的数，那么 $P$ 把它们全体挪动一个位置。\r\n而 $P^2$ 则把这个圆周转过两个位置：\r\n```math\r\nP^2 = \\begin{bmatrix} 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\end{bmatrix} \\tag{2}\r\n```\r\n每多乘一个因子 $P$，就多一次移位。\r\n于是 $P^4$ 给出完整的 $360^\\circ$ 旋转，并且 $P^4 = I$。\r\n接下来的幂 $P^5, P^6, P^7, P^8$ 重复同样的模式，再一次绕回原处。\r\n注意 $P^3$ 就是 $P$ 的逆，因为 $(P^3)(P) = P^4 = I$。\r\n下一个矩阵称为 circulant（循环矩阵）。\r\n它无非是 $P, P^2, P^3$ 与 $P^4 = I$ 的组合，其特点是每条对角线都是常数：\r\n```math\r\n\\text{Circulant matrix } C = c_0 I + c_1 P + c_2 P^2 + c_3 P^3 = \\begin{bmatrix} c_0 & c_1 & c_2 & c_3 \\\\ c_3 & c_0 & c_1 & c_2 \\\\ c_2 & c_3 & c_0 & c_1 \\\\ c_1 & c_2 & c_3 & c_0 \\end{bmatrix} \\tag{3}\r\n```\r\n该矩阵中的每一条对角线，其绕行方式与 $P$ 中那些 1 完全一样。\r\n带有 $c_1$ 的那条对角线，由底部第四个 $c_1$ 补全。\r\n重要之处在于：两个 circulant matrix（循环矩阵）$C$ 与 $D$ 相乘，其乘积 $CD = DC$ 仍是循环矩阵。\r\n当你计算 $CD$ 时，你是在把 $P$ 的幂相乘，从而得到 $P$ 的更高次幂。\r\n而 $DC$ 做的完全是同一件事。\r\n这个例子里 $N = 4$、$c = (1, 2, 3, 0)$：\r\n```math\r\n\\begin{bmatrix} 1 & 2 & 3 & 0 \\\\ 0 & 1 & 2 & 3 \\\\ 3 & 0 & 1 & 2 \\\\ 2 & 3 & 0 & 1 \\end{bmatrix} \\begin{bmatrix} 5 & 0 & 4 & 0 \\\\ 0 & 5 & 0 & 4 \\\\ 4 & 0 & 5 & 0 \\\\ 0 & 4 & 0 & 5 \\end{bmatrix} = \\begin{bmatrix} 13 & 22 & 19 & 0 \\\\ 0 & 13 & 22 & 19 \\\\ 19 & 0 & 13 & 22 \\\\ 22 & 19 & 0 & 13 \\end{bmatrix} \\tag{4}\r\n```\r\n```math\r\n(I + 2P + 3P^2)(5I + 4P^2) = (5I + 4P^2)(I + 2P + 3P^2) = 5I + 10P + (15 + 4)P^2 + 8P^3 + 12P^4 = 13I + 22P + 19P^2 \\tag{5}\r\n```\r\n<!-- ===== PAGE BREAK ===== −->\r\n−-- OCR 原文 −--\r\nIV.2. Shift Matnces and Circulant Matrices\r\nI 2 S hift Matrices and Ci rculant Matrices\r\nWhen this matnx P multiplies a vector ， th e components Of shift upward ：\r\nUpward shift\r\nCyclic permutation\r\n0 1 0 0\r\n0 0 1 0\r\n0 0 0 1\r\n1 0 0 0\r\n213\r\n(1)\r\nThe word s cyclic and circular ” apply tO P because the first component 1 moves tO\r\nthe end. If we think of numbers ， ， ， around a circle, P moves them all by one\r\nposition. And p2 turn s the circle by two positions ：\r\n2\r\n0 1 0 0\r\n0 1 0 0\r\n0 0 1 0\r\n0 0 1 0\r\n0 0 0 1\r\n0 0 0 1\r\n1 0 0 0\r\n1 0 0 0\r\n0 0 1 0\r\n0 0 0 1\r\n1 0 0 0\r\n0 1 0 0\r\n（ 2 ）\r\nEvery new factor P gives one addit10nal shift · Then p4 gives a complete 360 。 turn ：\r\nP4\r\nand 尹 4 = I. The next powers p5 p6 P7 P8 repe at the P attern and cycle\r\naround again · Notice that P3 is the inverse of P, because (P3) (P) = p4 = 五\r\nThe next matnx is c alled a circulant · lt is simply a combination of P p2 P3 and\r\nP4 = I. lt h as constant diagonals ：\r\nCO CI C2 C3\r\nC3 CO CI C2\r\nCirculant matrix C = coI + P + + C3P3 =\r\nC2 C3 CO CI\r\nCI C2 C3 CO\r\nEach diagonal in that maüix cycle s around exactly 1 e the 1 ， s in P. The diagonal with\r\n， ， C1 is completed by the fourth CI at the bottom. lmp 0 皿 t ： you multiply two\r\ncirculant matrices C and ， their product CD = DC is again a circulant matrix.\r\nWhen Y0u mulUply CD, y ou are multiplying powers of P to get more powers of P.\r\nAnd DC is doing exactly the s ame · Thi s ex ample has = 3 and P3\r\nCD =\r\n1 2 3\r\n3 1 2\r\n2 3 1\r\n5 0 4\r\n4 5 0\r\n0 4 5\r\n13 22 19\r\n19 13 22\r\n22 19 13\r\ncirculant\r\n（ 4 ）\r\n@+ 2P + 3P2 ） （ 訂 + 4P2 ）\r\n（ 5 / + 4P2 ） @ + 2P + 3P2 ）\r\n= 5 + 10P + （ 15 + 4 ） P2 + 8P3 + 12P4 = 131 + 22 尹 + 19P2"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 21,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 21,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 21,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 21,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 11168,
+            "outputTokens": 7492,
+            "cacheReadTokens": 24704,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 281,
+              "outputTokens": 7357,
+              "cacheReadTokens": 17792,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 21,
+        "val": {
+          "surfaceTokens": 14186,
+          "contextWindow": 1000000,
+          "pressureTokens": 18073,
+          "sampledSurfaceTokens": 9819
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 21,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 8014,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 117,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 128,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 4367,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 13042
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 21,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 18,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 20
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 21,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 21,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 21,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

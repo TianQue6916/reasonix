@@ -1,0 +1,246 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948929829,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 45,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 45,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 `Manual` 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>`。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、$\\det$ 与 $\\operatorname{trace}$ 校验数字不符等。请**独立重算每一处计算**，包括题面给出的矩阵是否与官方答案自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错，有没有把对的说成错的、把错的说成对的。\r\n③ 🔴 译者注**规格**：本技能规定**每条注 800–1200 字**（公式/配图/引文不计）。本次草稿的注普遍超长（部分 2000–8000 字），请处理为合规形态：优先**按主题拆分为多条注**（子标题写作 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`），每条 800–1200 字；太短或碎片化的可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——压缩对象只能是重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板），跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」，不得裸甩名词。\r\n④ 🟡 术语一致性：同一术语本段内单一译法（outer product 一律外积、rank one matrix 一律秩一矩阵、permutation matrix 一律置换矩阵、projection matrix 一律投影矩阵）。\r\n⑤ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑥ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；`Original（英文原题）` 是否与题面逐字对应。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课的一道题（含题干、解答、译者注、设计意图）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 数学一律 LaTeX；不确定处写 `⚠ 待核：<存疑点>`。\r\n- 禁止只输出意见清单而不给修订全文。\r\n\r\n======================= 待审部分开始（该课的一道题（含题干、解答、译者注、设计意图）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 11（问题 11）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.6, p.37-41 | Manual, Problem Set I.6 题 11（原书 p.41）</span>\r\n\r\n矩阵 $A$ 的 eigenvalues（特征值）等于 $A^T$（$A$ 的 transpose（转置））的特征值。理由是 $\\det(A-\\lambda I)$ 等于 $\\det(A^T-\\lambda I)$。而后者的成立是因为 \\_\\_\\_\\_ 。请用一个例子说明：$A$ 与 $A^T$ 的 eigenvectors（特征向量）并不相同。\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** The eigenvalues of $A$ equal the eigenvalues of $A^T$. This is because $\\det(A-\\lambda I)$ equals $\\det(A^T-\\lambda I)$. That is true because \\_\\_\\_\\_ . Show by an example that the eigenvectors of $A$ and $A^T$ are not the same.</span>\r\n\r\n---\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论（含填空答案）**\r\n>\r\n> 填空应写：任何一个方阵 $M$ 都满足 $\\det M=\\det M^T$（转置不改变行列式），取 $M=A-\\lambda I$，于是 $\\det(A-\\lambda I)=\\det\\big((A-\\lambda I)^T\\big)=\\det(A^T-\\lambda I)$。\r\n>\r\n> 由此，$A$ 与 $A^T$ 的 characteristic polynomial（特征多项式）逐项相同，故特征值连同 algebraic multiplicity（代数重数）完全一致；但特征向量集合一般不同。反例取\r\n>\r\n> ```math\r\n> A=\\begin{bmatrix}1&0\\\\1&0\\end{bmatrix},\\qquad A^T=\\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}\r\n> ```\r\n>\r\n> 两者唯一的特征值都是 $\\lambda=1$，而特征空间分别为 $N(A-I)=\\mathrm{span}\\{(1,0)^T\\}$ 与 $N(A^T-I)=\\mathrm{span}\\{(0,1)^T\\}$，是两个不同的子空间。\r\n>\r\n> **二、方法一：行列式恒等式直接对照（Manual 的思路，最快）**\r\n>\r\n> 关键是 $\\det M=\\det M^T$ 对任意 $n\\times n$ 的 $M$ 都成立，因此对每个标量 $\\lambda$ 都有\r\n>\r\n> ```math\r\n> p_A(\\lambda)=\\det(A-\\lambda I)=\\det\\big((A-\\lambda I)^T\\big)=\\det(A^T-\\lambda I)=p_{A^T}(\\lambda)\r\n> ```\r\n>\r\n> 中间一步用了 $(A-\\lambda I)^T=A^T-\\lambda I$（转置对减法与标量乘法都线性）。两个多项式作为 $\\lambda$ 的函数处处相等，所以特征值集合与每个特征值的重数都相同。\r\n>\r\n> 这个视角看到的是：**证明只用到一次行列式的性质，不需要知道任何特征向量的信息**；适用条件是 $A$ 为方阵（非方阵谈不上 $\\det$，也谈不上特征值），且 $\\lambda$ 取遍标量域；代价是它只给出“特征值”这一层的信息，对特征向量一字未提——这恰好是本题两问的分工。\r\n>\r\n> **三、方法二：只比较特征多项式的系数（trace（迹）—det（行列式）层面）**\r\n>\r\n> 把 $p_A(\\lambda)=\\det(\\lambda I-A)=\\lambda^n-c_1\\lambda^{n-1}+c_2\\lambda^{n-2}-\\cdots+(-1)^n c_n$ 展开，则 $c_1=\\operatorname{tr}A$、$c_n=\\det A$，中间系数 $c_k$ 是全部 $k$ 阶 principal minor（主子式）之和。对 $A^T$ 而言，每个 $k$ 阶主子式取自相同的行指标集合与列指标集合，且 $\\det M=\\det M^T$，所以 $A$ 与 $A^T$ 的每一个 $c_k$ 都相等。\r\n>\r\n> 这个视角看到的是：**特征值相同可以退化成一组更初等的等式**，其中最容易手算的是\r\n>\r\n> ```math\r\n> \\operatorname{tr}A^T=\\operatorname{tr}A,\\qquad \\det A^T=\\det A\r\n> ```\r\n>\r\n> 适用条件是任何方阵；优点是可以用两个标量快速做粗筛与验算；缺点是它只比较了系数的“对称函数”，**丢掉了方向信息**，所以无法回答第二问，也无法区分“特征值相同但矩阵不同”的矩阵（对比 §I.6 题 13：特征值与特征向量同时相同才迫使 $A=B$）。\r\n>\r\n> **四、方法三：左特征向量（left eigenvector）与秩—零化度视角（解释“为什么一般不同”）**\r\n>\r\n> 称 $y\\neq 0$ 满足 $A^Ty=\\mu y$ 为 $A$ 的**左特征向量**，因为转置后即 $y^TA=\\mu y^T$：$y$ 从左边作用于 $A$。于是本题等价于说：右特征向量与左特征向量一般是两组不同的向量。\r\n>\r\n> 结构性原因在零空间层面。$\\lambda$ 是特征值当且仅当 $A-\\lambda I$ 奇异，即 $N(A-\\lambda I)\\neq\\{0\\}$，由 rank–nullity theorem（秩—零化度定理）\r\n>\r\n> ```math\r\n> \\dim N(A-\\lambda I)=n-\\operatorname{rank}(A-\\lambda I)\r\n> ```\r\n>\r\n> 同理 $\\dim N(A^T-\\lambda I)=n-\\operatorname{rank}(A^T-\\lambda I)$。由方法二的系数比较可知两者奇异性一致，但**这并不强迫两个零空间相等**；事实上 $N(A^T)$ 是 $A$ 的 left nullspace（左零空间），它一般的身份是 $N(A^T)=C(A)^{\\perp}$（列空间的正交补），而不是 $N(A)$。本题注入材料中“$A$ 与 $A^T$ 的零空间与左零空间互换了角色”，指的正是这一层。\r\n>\r\n> 这个视角看到的是：**特征向量不是 $A$ 的“数量不变量”，而是两个不同子空间的元素**；适用条件是任何方阵，并且在讨论 geometric multiplicity（几何重数）$\\dim N(A-\\lambda I)$ 时是唯一自然的语言；缺点是它依赖零空间/正交补的语言，比前两个方法重。\r\n>\r\n> **五、反例的完整计算（把 Manual 的两行展开）**\r\n>\r\n> 取 $A=\\begin{bmatrix}1&0\\\\1&0\\end{bmatrix}$，$A^T=\\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}$。\r\n>\r\n> 对 $A$：\r\n>\r\n> ```math\r\n> A-\\lambda I=\\begin{bmatrix}1-\\lambda&0\\\\1&-\\lambda\\end{bmatrix},\\qquad p_A(\\lambda)=(1-\\lambda)(-\\lambda)-0=\\lambda(\\lambda-1)\r\n> ```\r\n>\r\n> 特征值为 $\\lambda_1=1$，$\\lambda_2=0$。对应特征向量：\r\n>\r\n> ```math\r\n> (A-I)x=\\begin{bmatrix}0&0\\\\1&-1\\end{bmatrix}\\begin{bmatrix}x_1\\\\x_2\\end{bmatrix}=0\\ \\Rightarrow\\ x_1=x_2\\ \\Rightarrow\\ x=t\\begin{bmatrix}1\\\\1\\end{bmatrix}\r\n> ```\r\n>\r\n> ```math\r\n> Ax=0\\ \\Rightarrow\\ \\begin{bmatrix}1&0\\\\1&0\\end{bmatrix}\\begin{bmatrix}x_1\\\\x_2\\end{bmatrix}=\\begin{bmatrix}x_1\\\\x_1\\end{bmatrix}=0\\ \\Rightarrow\\ x=t\\begin{bmatrix}0\\\\1\\end{bmatrix}\r\n> ```\r\n>\r\n> 对 $A^T$：\r\n>\r\n> ```math\r\n> A^T-\\lambda I=\\begin{bmatrix}1-\\lambda&1\\\\0&-\\lambda\\end{bmatrix},\\qquad p_{A^T}(\\lambda)=(1-\\lambda)(-\\lambda)=\\lambda(\\lambda-1)\r\n> ```\r\n>\r\n> 特征值同样是 $1$ 与 $0$。对应特征向量：\r\n>\r\n> ```math\r\n> (A^T-I)y=\\begin{bmatrix}0&1\\\\0&-1\\end{bmatrix}\\begin{bmatrix}y_1\\\\y_2\\end{bmatrix}=0\\ \\Rightarrow\\ y_2=0\\ \\Rightarrow\\ y=t\\begin{bmatrix}1\\\\0\\end{bmatrix}\r\n> ```\r\n>\r\n> ```math\r\n> A^Ty=0\\ \\Rightarrow\\ \\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}\\begin{bmatrix}y_1\\\\y_2\\end{bmatrix}=\\begin{bmatrix}y_1+y_2\\\\0\\end{bmatrix}=0\\ \\Rightarrow\\ y=t\\begin{bmatrix}1\\\\-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 汇总成表：\r\n>\r\n> | 特征值 | $A$ 的特征向量 | $A^T$ 的特征向量 |\r\n> |---|---|---|\r\n> | $\\lambda=1$ | $\\mathrm{span}\\{(1,1)^T\\}$ | $\\mathrm{span}\\{(1,0)^T\\}$ |\r\n> | $\\lambda=0$ | $\\mathrm{span}\\{(0,1)^T\\}$ | $\\mathrm{span}\\{(1,-1)^T\\}$ |\r\n>\r\n> 两个特征值对应的特征空间**全部不同**，故“$A$ 与 $A^T$ 的特征向量不相同”得证。（Manual 原文举的是 $\\begin{bmatrix}1&0\\\\1&0\\end{bmatrix}$ 与 $\\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}$，它们互为转置、且特征值恰为 $\\{1,0\\}$；这里把两边的特征值与特征向量各自算全。）\r\n>\r\n> **六、常见错误判定**\r\n>\r\n> ❌ 在空格处填“$A$ 与 $A^T$ 相似”或“$A$ 与 $A^T$ 有相同的列空间”——错在方向。空格要的是“为什么两个行列式相等”的原因，唯一直接的原因是 $\\det M=\\det M^T$；转置一般不保持列空间（本题反例中 $C(A)=\\mathrm{span}\\{(1,1)^T\\}$，$C(A^T)=\\mathrm{span}\\{(1,0)^T\\}$），相似性也不是这一步所使用的事实。\r\n>\r\n> ❌ 写 $\\det(A-\\lambda I)=\\det(A^T-\\lambda I)$ 的依据是“矩阵相等”——错在把标量等式与矩阵等式混为一谈。$A-\\lambda I$ 与 $A^T-\\lambda I$ 一般不相等（本题反例中前者为 $\\begin{bmatrix}1-\\lambda&0\\\\1&-\\lambda\\end{bmatrix}$，后者为 $\\begin{bmatrix}1-\\lambda&1\\\\0&-\\lambda\\end{bmatrix}$），相等的是它们的行列式这一标量。\r\n>\r\n> ❌ 写 $(A-\\lambda I)^T=A^T+\\lambda I$——错在符号，转置是线性映射，$(cM)^T=cM^T$，常数 $\\lambda$ 与 $I$ 都原样保留，故为 $A^T-\\lambda I$。\r\n>\r\n> ❌ 认为“特征多项式相同 ⇒ 特征向量相同”——错在把“数量信息”当成“方向信息”。反例已给出：两边的 $\\lambda=1$ 特征空间分别是 $\\mathrm{span}\\{(1,1)^T\\}$ 与 $\\mathrm{span}\\{(1,0)^T\\}$。这一错误正是本题第二问的靶子，也与注入材料中题 13 的结论相呼应：只有特征值与特征向量同时相同，才被迫 $A=B$。\r\n>\r\n> ❌ 举反例时取 $A=\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}$ 或任何对称矩阵——错在自毁条件。若 $A=A^T$，则两边是同一个矩阵，特征向量当然相同（见下方自检中的 $S=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$），举这种例子的方向恰好与命题相反。\r\n>\r\n> ❌ 举例时说“$A$ 的特征向量是 $(1,1)^T$，$A^T$ 的特征向量是 $(0,1)^T$，二者正交，所以不同”——错在两处：一是漏掉了第二个特征值 $0$ 对应的向量，二是把“正交”当作“不同”的理由。不同只需集合不等；本题 $2\\times2$ 反例中这两个向量恰好正交，但 $(1,1)^T$ 与 $(0,1)^T$ 只是集合 ${(1,1)^T,(0,1)^T}$ 与 ${(1,0)^T,(1,-1)^T}$ 不等的一个片段，正交不是一般机制。\r\n>\r\n> ❌ 只算 $A$ 的特征向量，然后断言“由转置显然可得”——错在没有任何计算支撑。转置会改变每个分量方程（例如 $x_1=x_2$ 变成 $y_2=0$），必须分别解两个零空间。\r\n>\r\n> ❌ 把“特征向量不同”写成“特征向量相反”或“特征值不同”——错在命题本身。特征值恰恰是相同的（这正是第一问的内容），不同的是特征空间这两个子空间。\r\n>\r\n> **七、自检（代入验算 / 维数记账 / trace-det 校验 / 秩的上界）**\r\n>\r\n> 代入验算（反例）：$A(1,1)^T=(1,1)^T$ ✔；$A(0,1)^T=(0,0)^T$ ✔；$A^T(1,0)^T=(1,0)^T$ ✔；$A^T(1,-1)^T=(0,0)^T$ ✔。四个等式逐一成立。\r\n>\r\n> trace–det 双锁校验：对 $A$，$\\operatorname{tr}A=1+0=1$ 等于特征值之和 $1+0=1$ ✔；$\\det A=1\\cdot 0-0\\cdot 1=0$ 等于特征值之积 $1\\cdot 0=0$ ✔。对 $A^T$，$\\operatorname{tr}A^T=1$、$\\det A^T=0$，与同一对特征值一致 ✔。这也顺带印证了方法二的 $\\operatorname{tr}A=\\operatorname{tr}A^T$ 与 $\\det A=\\det A^T$。\r\n>\r\n> 维数记账：$\\operatorname{rank}A=1$（两列相同且非零），$n-\\operatorname{rank}A=2-1=1=\\dim N(A)$ ✔；$\\operatorname{rank}A^T=1$（两行线性相关），$\\dim N(A^T)=1$ ✔。且 $N(A^T)=\\mathrm{span}\\{(1,-1)^T\\}$ 确实垂直于 $C(A)=\\mathrm{span}\\{(1,1)^T\\}$，验证了 $N(A^T)=C(A)^{\\perp}$ 这一关系 ✔。\r\n>\r\n> 重数记账（最容易被忽略的一条）：$\\lambda=1$ 的代数重数在两边都是 $2$（$(1-\\lambda)^2$），但几何重数都是 $1$；两个矩阵都不可对角化，而这与“特征值相同”毫无冲突。**只有代数重数被转置保留，几何重数虽然数值上也相等，理由却另需说明（$\\operatorname{rank}(A-\\lambda I)=\\operatorname{rank}(A^T-\\lambda I)$，属方法三的记账范围）。**\r\n>\r\n> 对称情形对照（说明“不同”是非对称现象）：取 $S=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$，$S=S^T$，$p_S(\\lambda)=\\lambda^2-4\\lambda+3$，特征值 $3,1$（$\\operatorname{tr}S=4$ ✔，$\\det S=3$ ✔），特征向量 $(1,1)^T$ 与 $(1,-1)^T$ 属于同一个矩阵的两个方向。把 $S$ 的行列互换即得 $S^T$，特征向量自然一字不变——可见特征向量不同只发生在 $A\\neq A^T$ 的情形。\r\n>\r\n> **八、一句话**：这道题真正训练的是把“特征值”和“特征向量”当作两种不同等级的不变量来对待——前者是转置不变的标量清单，后者是依赖方向、一般不守恒的几何对象。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——为什么特征值相同而特征向量不同：一个“信息丢在哪一步”的记账**\r\n>\r\n> 本注要回答一个具体的设计问题：把 $A$ 换成 $A^T$ 时，究竟哪一部分信息被守恒定律保护，哪一部分被丢掉？答案的位置很精确——丢在“行列式只记录对称函数”这一步。\r\n>\r\n> 从第一性原理看，特征多项式 $p_A(\\lambda)=\\det(\\lambda I-A)$ 是 $\\lambda$ 的一元多项式，它的系数是 $A$ 的所有 $k$ 阶主子式之和。主子的定义只用到“挑出相同的行指标与列指标”，对“行”和“列”这对角色完全对称，所以 $A$ 与 $A^T$ 的每个系数都相同。特征值是 $p_A$ 的根，因此根集合与每个根的重数都被保留。但**根只告诉你在哪些 $\\lambda$ 处 $A-\\lambda I$ 变奇异，不告诉你奇异的方向**。方向信息藏在零空间里，而零空间要用消元去解，消元过程对行、列并不对称——这正是信息丢失的物理位置。\r\n>\r\n> 用秩—零化度把它写成可核算的形式：$\\lambda_0$ 的几何重数是 $\\dim N(A-\\lambda_0 I)=n-\\operatorname{rank}(A-\\lambda_0 I)$，而左特征向量的空间是 $\\dim N(A^T-\\lambda_0 I)=n-\\operatorname{rank}(A^T-\\lambda_0 I)$。注意这两条式子都只用到“秩”这一个数，因此即使两个零空间完全不同，两个维数也可能相等。本题反例正是这种情形：$\\lambda=1$ 时两边秩都是 $1$、维数都是 $1$，但子空间一个是 $\\mathrm{span}\\{(1,1)^T\\}$、另一个是 $\\mathrm{span}\\{(1,0)^T\\}$。**维数相同不等于子空间相同**，这是本题最容易被跳过的一句话。\r\n>\r\n> 举一个更直观的例子验证同一机制：取投影矩阵 $P=\\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}\\begin{bmatrix}1&0\\\\1&0\\end{bmatrix}\\Big/2$ 这类秩一幂等矩阵时，特征值必定是 $1$（重数 $1$）与 $0$（重数 $1$），$1$ 的特征空间是投影方向、$0$ 的特征空间是“被压扁”的方向，两者互为补空间。把 $P$ 转置后特征值不变，但两个子空间一般各自旋转到不同位置。若你希望 $1$ 的特征空间在转置下不动，唯一省事的办法是让 $P$ 本身对称（例如对某个子空间做正交投影），此时 $A=A^T$，题目第二问的反例也随之失效。\r\n>\r\n> 跨课程连接（精确到路径）：在 6.042J 学过等价关系与划分——给定矩阵 $A$，映射 $x\\mapsto Ax$ 的核 $N(A)$ 把 $\\mathbb{R}^n$ 划分成“像相同”的等价类，$A$ 与 $A^T$ 因此给出的是**两个不同的划分**：前者划分 $\\mathbb{R}^n$、后者划分 $\\mathbb{R}^m$（在 $n=m$ 时才是同一集合上的两种划分）。区别在于：6.042J 的等价类只要求“满足关系的元素归为一类”，而这里每个类还带着一个代数标签 $\\lambda$，并且不同标签的类之间由 $A$ 的作用互相联络（$A$ 把 $\\lambda$ 的类映到 $\\lambda$ 的类）；这正是线性代数比纯组合划分多出来的结构。再往 18.065 走一步：SVD（singular value decomposition，奇异值分解）之所以要同时保留左右两组奇异向量，就是同一现象的连续版本——$A$ 与 $A^T$ 各有自己的“方向清单”，二者只能通过 $A^TA$ 与 $AA^T$ 的谱配对。\r\n>\r\n> 可复用的命名模板：**“转置守恒表——标量层守恒、方向层不守恒、维数层需另证”**。遇到任何涉及 $A$ 与 $A^T$ 的断言，先把它归到三层中的哪一层：$\\operatorname{tr}$、$\\det$、特征多项式、特征值（含重数）属标量层，守恒；特征向量、列空间、零空间属方向层，不守恒；几何重数、不可对角化性属维数层，需要额外一步秩的论证。收束回正文：本题第一问是标量层的守恒声明，第二问是方向层的不守恒反例，而自检里的重数记账正是维数层的补证。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——$\\det M=\\det M^T$ 究竟从哪里来：“转置不变量族”的洋葱模型**\r\n>\r\n> 本注要回答的设计问题是：一个看似平凡的恒等式，凭什么能撑起“特征值相同、行秩等于列秩、$A^TA$ 可逆判据”一整族结论？\r\n>\r\n> 先看机制本身。行列式的 Leibniz formula（莱布尼茨公式）写为\r\n>\r\n> ```math\r\n> \\det M=\\sum_{\\sigma\\in S_n}\\operatorname{sgn}(\\sigma)\\prod_{i=1}^{n}M_{i,\\sigma(i)}\r\n> ```\r\n>\r\n> 其中求和跑遍所有排列 $\\sigma$，$\\operatorname{sgn}$ 是排列的符号。转置把 $M_{i,\\sigma(i)}$ 换成 $M_{\\sigma(i),i}$，也就是把 $\\sigma$ 换成它的逆 $\\sigma^{-1}$（因为 $\\sigma(i)=j\\iff i=\\sigma^{-1}(j)$）。**关键的第一性原理只有一条：排列与其逆的符号相同，$\\operatorname{sgn}(\\sigma^{-1})=\\operatorname{sgn}(\\sigma)$。** 而“取逆”是全体排列上的一个双射，所以求和项被一一对应地重排，总和不变。这就得到 $\\det M=\\det M^T$。另一种等价的看法是 cofactor expansion（代数余子式展开）：按第 $i$ 行展开与按第 $i$ 列展开用的是同一个余子式集合，因此给出同一个值——注入材料中“按行展开与按列展开给出同一个值”正指此路。\r\n>\r\n> 由此可以套上一个三层洋葱模型，逐层剥离 $M$ 的结构：**最外层（行列式层）** $\\det M=\\det M^T$，它保证可逆性在转置下不变——$M$ 可逆当且仅当 $M^T$ 可逆，因为可逆等价于 $\\det\\neq 0$；**中间层（多项式层）** 取 $M=A-\\lambda I$ 得特征多项式逐项相等，于是特征值、代数重数、$\\operatorname{tr}$、$\\det$、minimal polynomial（最小多项式）在 $A$ 与 $A^T$ 之间都相同（更进一步的结论是二者 even similar（甚至相似），但那条定理的证明需要双线性形式的工具，超出本节范围，此处只作待核提示）；**最内层（子空间层）** 转置只是把左乘换成右乘，**它把“行”与“列”这两个角色互换，因此凡是不对称于行列角色的对象都不守恒**：$C(A)$ 与 $C(A^T)$ 一般不同，$N(A)$ 与 $N(A^T)$ 一般不同，而 $N(A^T)=C(A)^{\\perp}$ 这条正交补关系恰好把“不守恒”量化为“换成正交补”。\r\n>\r\n> 用一个具体例子同时验证三层：取 $M=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$，$\\det M=1\\cdot4-2\\cdot3=-2$，$\\det M^T=1\\cdot4-3\\cdot2=-2$ ✔（外层）；$\\operatorname{tr}M=\\operatorname{tr}M^T=5$，且 $p_M(\\lambda)=\\lambda^2-5\\lambda-2=p_{M^T}(\\lambda)$ ✔（中层）；而 $N(M)$ 满足 $x_1+2x_2=0,\\ 3x_1+4x_2=0$，得 $x=0$，$N(M^T)$ 满足 $x_1+3x_2=0,\\ 2x_1+4x_2=0$，也得 $x=0$——本例两边的零空间**都只有零向量**，这提醒我们“子空间不同”与“子空间都平凡”并不矛盾，真正体现差异要让矩阵奇异（如正文反例 $\\det=0$）。\r\n>\r\n> 跨课程连接（精确到路径）：在 MIT 18.06 中，“行秩等于列秩”的常用证法正是沿这条洋葱切开——先对 $A$ 做消元得到行阶梯形，主元个数既数出了独立行也数出了独立列；而这道题给出的是更省力的一条替代路径：若已知 $\\det M=\\det M^T$，则对每个 $k$ 阶子式都成立，于是所有 $k$ 阶子式的“最大非零阶数”在转置下不变，行秩与列秩作为同一批子式的两种读法必然相等。与 6.006 的连接在于计算侧面：对 $M$ 做列主元消去与对 $M^T$ 做行主元消去执行的是同一批乘加运算的转置版本，浮点误差累积路径不同（这是 CSAPP 里浮点表示与舍入的直接后果），因此**数学上 $\\det M=\\det M^T$ 严格成立，数值上两条计算路径给出的浮点结果可能相差若干 ulp（unit in the last place，末位单位）**；这解释了为什么大矩阵数值判奇异性时通常看奇异值或 $R$ 的对角元，而不是看 $\\det$。\r\n>\r\n> 可复用的命名模板：**“转置洋葱——行列式层守恒、特征多项式层守恒、子空间层转正交补”**，配合一句检查口令“先问这一层是标量还是方向”。收束回正文：题目要求填的那一格之所以只能是 $\\det M=\\det M^T$，正是因为它是这个洋葱的最外层，也是唯一能直接从“(A − λI)”推到“(A − λI) 的转置”的一步；再往里走，得到的就不再是行列式的等式，而是方向层的失效——这正是第二问要你用例子确认的事。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 45,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 45,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 45,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 45,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 78705,
+            "outputTokens": 104667,
+            "cacheReadTokens": 355200,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 6,
+            "buckets": {
+              "uncachedInputTokens": 213,
+              "outputTokens": 19441,
+              "cacheReadTokens": 96384,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 45,
+        "val": {
+          "surfaceTokens": 71287,
+          "contextWindow": 1000000,
+          "pressureTokens": 96597,
+          "sampledSurfaceTokens": 60899
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 45,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3404,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 41050,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 20,
+              "heuristicTokens": 37,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 3982,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 23,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 1875,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 55,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 7047,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 55,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 1600,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 55,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 10388,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 70143
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 45,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 42,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 44
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 45,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 45,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 45,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 45,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

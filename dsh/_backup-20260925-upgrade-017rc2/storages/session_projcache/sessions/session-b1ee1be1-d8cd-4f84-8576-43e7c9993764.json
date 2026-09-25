@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127937306,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**审计员兼修复者**（审计 + 修复一体）。服务对象是大二学生（智能科学与技术专业）。本次审计 part004（书页 147-197）中的 3 页译文。\r\n\r\n【审计清单（逐项执行；发现问题**当场改好**，不要只列意见）】\r\n1. 🔴 漏译：对照 OCR 原文逐句核对，有无句子 / 公式 / 例子 / 习题被跳过，或被压缩成一句（禁止把 3-5 句压成 1 句）\r\n2. 🔴 英中分段对照（先完整英文段再中文段）——必须改为中文主体 + 术语行内嵌入（`English term（中文翻译）`），禁止出现完整英文原句\r\n3. 🔴 公式重建正确性：OCR 乱码处的数学重建是否符合数学语境——下标 / 指标（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$、逆 $-1$、范数、权重 $s_k$ 与 $s_k^2$、系数位置必须逐个核对\r\n4. 🔴 编号一致：定理 / 公式 tag / 图号 / 节号 / 题号必须与原文一致（不硬编码）\r\n5. 🟡 段落与标签：**正文段落不得带 `[note]` 标签**；同一段内多个句子必须连续排列（不得一句一空行）；`[section]` / `[theorem]` / `[proof]` / `[definition]` / `[example]` / `[problem]` 使用位置是否正确\r\n6. 🟡 LaTeX 规范：LaTeX 环境内**不得出现中文**（含 `\\text{{}}`）；不得有 `$$`；不得有 Unicode 上下标；行内 `$...$`、块级 ```math 围栏\r\n7. 🟡 术语一致性（对照下方术语表）；关键术语首次出现必须带中文括号\r\n8. 🟡 习题页（Problem Set / Problem）：题干必须**保留英文原文**（不得译成中文），页首灰色说明行与 `[problem]` 标签齐全\r\n9. 🟢 每句首字必须是中文（不得以英文单词开句）\r\n10. 🟢 span 引号完整：必须写成 `<span style=color:#2471a3;>`\r\n11. 🟢 页内交叉引用（如见 §III.2、Problem II.2.11 on page 135）是否译出并正确\r\n\r\n【本书页映射（供交叉引用核对，已由印页码锚定）】\r\npage_187 = 书页 184\r\npage_188 = 书页 185\r\npage_189 = 书页 186\r\n\r\n【输出协议（🚨 严格）】\r\n- 直接输出**修订后的完整 3 页译文**，每页以一行 `<!-- page NNN -->` 开始，页与页之间用 `<!-- ===== PAGE BREAK ===== -->` 分隔\r\n- 不要任何前言、审计说明、总结、思考过程；不要给正文句加标签\r\n- 修订时保持中文主体 + 术语行内双语；OCR 修正说明用绿色 note\r\n- 若某页完全无问题，也要原样输出该页全文（不得省略）\r\n\r\n【术语表】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n- linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n- column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n- basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n- inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n- eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n- trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n- symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n- pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n- energy（能量）/ energy test（能量检验）\r\n- Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n- covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n- least squares（最小二乘）/ projection（投影）\r\n- factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n- singular value（奇异值）/ singular vector（奇异向量）\r\n- Singular Value Decomposition, SVD（奇异值分解）\r\n- singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n- left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n- stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n- Eckart-Young theorem（Eckart-Young 定理）\r\n- low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n- spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n- norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n- Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n- generalized SVD（广义奇异值分解）\r\n- Principal Component Analysis, PCA（主成分分析）\r\n- linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n- variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n- convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n- gradient descent（梯度下降）/ loss function（损失函数）\r\n- polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n- finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n- Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n- interlacing of eigenvalues（特征值交错性质）\r\n- condition number（条件数）\r\n- interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n- rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n- singular values in descending order（降序排列的奇异值）\r\n- vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n- LTI: Linear Time Invariance（线性时不变）\r\n- Fourier（傅里叶）/ signal processing（信号处理）\r\n- trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n- maximization problem（最大化问题）/ minimum point（最小值点）\r\n- strictly convex function（严格凸函数）\r\n- loss（损失）/ error（误差）\r\n- unsupervised learning（无监督学习）\r\n- data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n- measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n- Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n- tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n- rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n- nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n- data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n- group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n- weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n- best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n- Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n- elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n- pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n- minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n- Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n- Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n- conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n- Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n- symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n- randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n- interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n- least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n- pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n- row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n- independent columns（独立列）/ independent rows（独立行）\r\n- QR factorization（QR 分解）/ full rank（满秩）\r\n- minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n- orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n- singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n- column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n- interpolative decomposition, ID（插值分解）\r\n- well-conditioned（良态）/ safely independent（安全独立）\r\n- column exchanges（列交换）/ pivoted QR（主元 QR）\r\n- CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n- matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n- E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n===================== 待审计材料：OCR 原文 + 现有译文 =====================\r\n########## page_187（书页 184）##########\r\n--- OCR 原文 ---\r\nLOW Ran a n ompressc ensing\r\n184\r\n111.4 Split Algorithms for +\r\nThese topics are truly important. They deserve a whole book. They include basis pursuit\r\nan d LASSO optimization—plus matrix completion and compressed sensing in 111.5\r\nWh at we c an do here is to present basic ideas an d successful algorlthms.\r\nS tart with a linear system = b. Suppose has many more columns than rows\r\n(m < < · Then = 0 has many solutions （ has a 1 arg e nullspace). If = b has\r\none solution, then every + is an 0 ther solution. Which one tO choose ？\r\nTO minimize th e 2 norm Of ， we remove its nullspace component. That leaves the\r\nmini mu m norm solution + = + b coming frO m the pseudoinverse Of · This is the\r\nsolution in 11.2 th at uses th e SVD. But + will generally have many small components—\r\nit c an be very diffcult to interpret. ln MATLAB ， pinv(A) * b finds c+. BacksIash \\ b\r\nfinds a fairly sp arse solution—but probably not the optimal for basis pursuit.\r\nA solution tO = b with many zero components （ 磊 e s 况 况 五 0 ， if it exists)\r\ncomes fro m mllllmizing th e 1 norm instead Of the 2 n 0 rm ：\r\n= @1 丨 + 一 · + @湖 subj ect to = b. (1)\r\nBasiS pursuit Minimize | 1\r\nThi S iS a convex optlmization prob lem ， because th e 1 norm iS a convex function Of ·\r\nThe 忍 1 norm is piecewise linear, unlike 2 and all other norms except 丨@\r\nB asis pursuit is not solved by the S VD of ， which connects t0 the 2 norm. But\r\nhas become famous for giving sparse solutions, and fast algonthms have now been found.\r\nThe sparsest s olution Of = b mininuzes 日 日 0 = number 可 刀 0 ze CO 0 刀 e 刀\r\nB ut this is not a no 皿 ： 日 2 叫 《 0\r\n= № The vectors with 日 到 0 一\r\n1 and only\r\n（ 1 ， 0 ） and j\r\none n On zero component lie along the CO ordinate axes ， like\r\n1\r\nSO we ' 'relax ” or convexify the 0 problem tO get a tru e norm—and that norm is\r\n1 》 + 2 | 孓 1 fill the diamond with corners at 士 an d 士 丿 ·\r\nTh e vectors with 日 叫 ll\r\nA rel ated problem 10w s for 刀 in AC = b; an ex act solution is not required•\r\nNow the 1 no 皿 enters as a penalty or a c on stramt |@目 1 t ：\r\nMinimize 却 一 b113 + ÄII 到 1 or\r\nLASSO ()n stati stic s)\r\nMinimize 却 一 b113 with № 日 1 孓 t\r\nLAS S O was invented by Tib shirani t0 improve on least squares regression. lt has sp ars er\r\nsolutions 山 an ridge regression which uses 2 norms in the penalty and the constraint•\r\nGeometncally, the difference between 日 叫 《 1 1 and 丨@日 2 1 is in the shape of those\r\n0 sets ： diamond for versus sphe re for · PIease see both fi gure s in Section l.ll•\r\nA convex set 日 一 bllä = C has a good chance to hit that di amond at one of its\r\nsharp points · The a e 0 are e vectors. But the sphere has no sharp pointsø\r\nThe opUmal is almost never sparse in 2 optimizaUon. Since that round convex s et C an\r\ntouch the sphere anywhere ， the 2 solutio n has m any nonzeros.\r\n--- 现有译文 ---\r\n<!-- page_187 -->\r\n> <span style=color:#7f8c8d;>本页为书页 184，属 §III.3 之后的过渡页并开启 §III.4；页眉与印页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.4 Split Algorithms for $\\ell_1$（针对 $\\ell_1$ 的分裂算法）\r\n\r\n这些主题确实极为重要，值得用整整一本书来讲。\r\n它们包括 basis pursuit（基追踪）与 LASSO optimization（LASSO 优化）——再加上 §III.5 中的 matrix completion（矩阵补全）与 compressed sensing（压缩感知）。\r\n此处我们所能做的，是呈现其基本思想以及若干成功的算法。\r\n\r\n先从线性系统 $Ax = b$ 说起。\r\n假设 $A$ 的列数远多于行数（$m \\ll n$）。\r\n于是 $Ax = 0$ 有许多解（$A$ 有一个很大的 nullspace（零空间））。\r\n若 $Ax = b$ 有一个解，那么每个 $x + x_{\\text{null}}$ 都是另一个解。\r\n该选哪一个呢？\r\n\r\n要最小化 $x$ 的 $\\ell_2$ 范数，我们就去掉它的零空间分量。\r\n这样剩下的就是来自 $A$ 的 pseudoinverse（伪逆）的 minimum norm solution（最小范数解）$x^+ = A^+ b$。\r\n这就是 §II.2 中利用 SVD 得到的那个解。\r\n但 $x^+$ 一般会有许多很小的分量——它可能极难解释。\r\n在 MATLAB 中，`pinv(A) * b` 求出 $x^+$。\r\n反斜杠 `A \\ b` 求出一个相当稀疏的解——但很可能不是 basis pursuit 意义下的最优解。\r\n\r\n一个具有许多零分量的解 $Ax = b$（若存在，则其剩余自由度很多）来自最小化 $\\ell_1$ 范数而非 $\\ell_2$ 范数：\r\n\r\n```math\r\n\\text{Minimize } \\|x\\|_1 = |x_1| + \\cdots + |x_n| \\quad \\text{subject to } Ax = b. \\tag{1}\r\n```\r\n\r\n> 上式中的说明文字依次为「最小化」「满足约束」。\r\n\r\n<span style=color:#2471a3;>**[definition]**</span>\r\n\r\n这是一个 convex optimization problem（凸优化问题），因为 $\\ell_1$ 范数是 $x$ 的凸函数。\r\n$\\ell_1$ 范数是分段线性的，这一点与 $\\ell_2$ 以及除 $\\ell_\\infty$ 之外的所有其他范数都不同。\r\n\r\n<span style=color:#00838f;>**Basis pursuit（基追踪）** 求解的不是 $A$ 的 SVD——SVD 连接的是 $\\ell_2$ 范数。</span>\r\n但它因能给出 sparse solutions（稀疏解）而闻名，如今已找到了快速的算法。\r\n\r\n$Ax = b$ 的最稀疏解最小化 $\\|x\\|_0$，即非零分量的个数。\r\n但这并不是一个 norm（范数）：$\\|2x\\|_0$ 并不等于 $2\\|x\\|_0$。\r\n\r\n满足 $\\|x\\|_0 = 1$ 的向量只有一个非零分量，它们沿着坐标轴分布，例如 $(1, 0)$ 与 $(0, 1)$。\r\n于是我们「放松」或称凸化这个 $\\ell_0$ 问题，以得到一个真正的范数——而这个范数就是 $\\ell_1$。\r\n满足 $\\|x\\|_1 \\le 1$ 的向量填满了一个 diamond（菱形），其顶点在 $\\pm e_1$ 与 $\\pm e_2$ 处。\r\n\r\n<span style=color:#2471a3;>**[definition]**</span>\r\n\r\n一个相关的问题允许 $Ax = b$ 中有噪声；此时并不要求精确解。\r\n现在 $\\ell_1$ 范数作为惩罚项（penalty）或约束（constraint）出现：\r\n\r\n```math\r\n\\text{Minimize } \\|Ax - b\\|^2 + \\lambda \\|x\\|_1 \\qquad \\text{or} \\qquad \\text{Minimize } \\|Ax - b\\|^2 \\ \\text{ with } \\ \\|x\\|_1 \\le t\r\n```\r\n\r\n> 上式中的说明文字依次为「最小化」「或」「最小化」「满足」。\r\n\r\n<span style=color:#2471a3;>**[note]**</span>\r\n\r\n> <span style=color:#1e8449;></span>LASSO（）（统计学中的用法）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文此行 OCR 残损为 `LASSO ()n stati stics)`，按章节结构重建为 `LASSO (in statistics)`，即 LASSO（统计学中的用法）；其余公式中的 `Ä` 为 $\\lambda$、`孓` 为 $\\le$、`丨@目` 为 $\\|x\\|$，均已按语境重建。\r\n\r\nLASSO 由 Tibshirani 提出，用以改进 least squares regression（最小二乘回归）。\r\n它比 ridge regression（岭回归）得到更稀疏的解，后者在惩罚项与约束中使用的是 $\\ell_2$ 范数。\r\n\r\n从几何上看，$\\|x\\|_1 \\le 1$ 与 $\\|x\\|_2 \\le 1$ 的差别在于这两个集合的形状：前者是菱形，后者是 sphere（球面）。\r\n请参见 §I.11 中的这两幅图。\r\n\r\n一个凸集 $\\|Ax - b\\|^2 = C$ 很有机会在那个菱形的一个尖点处与之相碰。\r\n那些尖点落在坐标轴上，对应的是稀疏的 $x$ 向量。\r\n但球面没有尖点。\r\n\r\n在 $\\ell_2$ 优化中，最优解几乎从不是稀疏的。\r\n既然那个圆形的凸集 $C$ 可以在任何地方与球面相切，$\\ell_2$ 解就会有许多非零分量。\r\n\r\n########## page_188（书页 185）##########\r\n--- OCR 原文 ---\r\n田 4 split Algonthms for +\r\n185\r\nSPlit Algorithms for Optimization\r\nS parse solutions are a key reason for mimmizing in 1 norms. Th e small nonzer0S\r\nthat appear in 乏 2 will disappear in This was frustrating to kn ow, in the days when\r\nalgonthms were very slow. Now th e numerical implementation of 1 optimization\r\nhas essentially caught up wi th the th e orye\r\nHere is the picture. Many important optimization problems combine tWO te rms ：\r\nConvex 虽 and\r\nMinimize （ ） + （ ） for in a convex set K （ 3 ）\r\ninvolves 皿 E1-type norm and involves an 2 −type n orm · Their convexity is very\r\nvaluable. But they don ' t mi x well—the iterations (ordinarily fast enough) are slowed\r\ndown waiting for 乏 1 to learn which components should be nonzero.\r\nThe solution is t0 ' 'split ” th e algorithm. AI tern ate between 乏 2 s tep s and 1 steps.\r\nimportant cases, it becomes possible to solve problems explicitly by a shrinkage\r\noperaüon. The split iteration s are much fas ter and more effective th an a mixed 1 認 2 step ·\r\nAmong the leading algorithms are ADMM and split Bregman and split Kaczmarz\r\n@described below).\r\nOne way t0 start is t0 see key words that descnbe the development 0f the al g onthms ·\r\nThose word s describe forward step s th at improved on the previous method-—and made the\r\nfinal ADMM algorithm a success ：\r\nDual decomposition\r\nAugmented Lagrangi an\r\nMethod of multipliers\r\nADMM ： AIternating direction method of multipliers\r\nThi s step-by-step presentation is following th e plan established by Boyd, P ， Chu,\r\nPeleato ， and Eckstein in their excellent online book on ADMM ： D d 0 讫\r\n五 and S 吡 rn ing via the 方 ern 沅 g D c 0 Method 可 M 咖 · lt was\r\nPUblished in Foundations an d Trends in Machine Learning, 3 （ 2010 ） 1 · 122 ·\r\nThose authors include a neat hi story (with reference s ） for each of the four s tep s to ADMM 。\r\nHere is a statement of the problem ， leaving ample freedom in the convex function ·\r\nMinimize (@) subj ect to 蓋 = b ： is m by\r\nTh1s is the p p 况 e for\r\n刁 · The first step is t0 combine\r\nwith the cost functi on 煮 by introducing Lagrange multipliers ， 孬\r\nLagrangian L(c,y) = + （ 一 b) ： + −yTb\r\n（ 4 ）\r\n= b\r\n（ 5 ）\r\n--- 现有译文 ---\r\n<!-- page_188 -->\r\n> <span style=color:#7f8c8d;>本页为书页 185，是 §III.4 分裂算法的正文续页；页眉与印页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Split Algorithms for Optimization（优化的分裂算法）\r\n\r\n稀疏解是最小化 $\\ell_1$ 范数的一个关键理由。\r\n在 $\\ell_2$ 中出现的小非零量会在 $\\ell_1$ 中消失。\r\n在算法还非常缓慢的年代，知道这一点令人沮丧。\r\n如今，$\\ell_1$ 优化的数值实现本质上已经追上了理论。\r\n\r\n下面就是问题的图景。\r\n许多重要的优化问题把两项组合在一起：\r\n\r\n```math\r\n\\text{Minimize } f(x) + g(x) \\quad \\text{for } x \\text{ in a convex set } K \\tag{3}\r\n```\r\n\r\n> 上式中的说明文字依次为「最小化」「其中 $x$ 属于凸集 $K$」。\r\n\r\n<span style=color:#2471a3;>**[definition]**</span>\r\n\r\n其中 $f$ 涉及 $\\ell_1$ 型范数，而 $g$ 涉及 $\\ell_2$ 型范数。\r\n它们的凸性非常有价值。\r\n\r\n但它们并不容易混合——迭代（通常足够快）会被拖慢，因为它要等待 $\\ell_1$ 弄清哪些分量应当非零。\r\n\r\n解决办法是把算法「分裂」（split）。\r\n在 $\\ell_2$ 步骤与 $\\ell_1$ 步骤之间交替进行。\r\n在许多重要情形下，这样就可以通过一个 shrinkage operation（收缩运算）显式地求解问题。\r\n分裂迭代比混合的 $\\ell_1/\\ell_2$ 步骤快得多，也有效得多。\r\n\r\n在领先的算法中有 ADMM、split Bregman（分裂 Bregman）与 split Kaczmarz（分裂 Kaczmarz）（下文将予以描述）。\r\n\r\n一个入手方式是看看那些描述算法发展历程的关键词。\r\n这些词描述了逐步改进前一方法的 forward steps（前进步骤）——并最终使 ADMM 算法获得成功：\r\n\r\n**1.** Dual decomposition（对偶分解）\r\n**2.** Augmented Lagrangian（增广拉格朗日量）\r\n**3.** Method of multipliers（乘子法）\r\n**4.** ADMM：Alternating direction method of multipliers（交替方向乘子法）\r\n\r\n这种逐步推进的呈现方式，遵循了 Boyd、P. Chu、Peleato 与 Eckstein 在他们那本关于 ADMM 的优秀在线著作中确立的方案：*Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers*。\r\n该书发表于 *Foundations and Trends in Machine Learning*, 3 (2010) 1–122。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本段书名与期刊名在 OCR 中严重残损（如 `D d 0 讫 五 and S 吡 rn ing via the 方 ern 沅 g D c 0 Method 可 M 咖`），已按该领域标准文献信息重建为上述英文书名与期刊出处；`3 （ 2010 ） 1 · 122 ·` 重建为卷 3 (2010) 1–122。\r\n\r\n这些作者为通往 ADMM 的四个步骤中的每一步，都给出了一段简洁的历史（并附有参考文献）。\r\n\r\n下面给出该问题的陈述，并在凸函数 $f$ 上留下充分的自由度。\r\n\r\n```math\r\n\\text{Minimize } f(x) \\quad \\text{subject to } Ax = b: \\ A \\text{ is } m \\text{ by } n \\tag{4}\r\n```\r\n\r\n> 上式中的说明文字依次为「最小化」「满足约束」「$A$ 是 $m \\times n$ 的」。\r\n\r\n<span style=color:#2471a3;>**[note]**</span>\r\n\r\n> <span style=color:#1e8449;></span>This is the problem for Section III.4.（这是 §III.4 所处理的问题。）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文此行 OCR 作 `Th1s is the p p 况 e for 刁 ·`，按语境重建为 `This is the problem for III.4.`。\r\n\r\n第一步是通过引入 Lagrange multipliers（拉格朗日乘子）$y$，把约束 $Ax = b$ 与代价函数 $f$ 合并起来：\r\n\r\n```math\r\n\\text{Lagrangian } L(x, y) = f(x) + y^{T}(Ax - b) = f(x) + y^{T}Ax - y^{T}b \\tag{5}\r\n```\r\n\r\n> 上式中的标签为「拉格朗日量」。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文 `（ 一 b)` 与 `−yTb` 中的符号噪声已按数学语境重建为 $(Ax - b)$ 与 $-y^{T}b$；原文 `孬` 为乘子记号 $y$ 之误。\r\n\r\n########## page_189（书页 186）##########\r\n--- OCR 原文 ---\r\n186\r\nLow Rank and Compressed Sensing\r\nThe combined solution c*, * is a saddle of 刀 ： mm m ax L = max min L\r\nThe equations to solve are DL/0c = 0 and DL/Dy = 0 · ln fact DL/0y = 0 gives\r\nus b ack ex actly the constraint = b. This is a fundamental idea in optimization with\r\nconstramts. ln Chapter VI ， the y's are seen as th e derivatives OL/Ob at the optimal *\r\n， t0 th e\r\nNow comes the key s tep 什 om the m p 况 e 襯 for\r\n· ， (m). Minimiz e L(), ） over · The minimum occurs at a\r\nb 襯 for = @1 ，\r\npoint c* depending on Then the du al problem is to maxinuze m(y) = L （ ' ） ， ·\r\nSteepest lncrease 0f m(y)\r\nTo maximze a function m(y), we look for a point * where all the p arti al derivative s\r\n· ， 0m/0ym) = 0 ·\r\nare zero 。 ln other words ， the gradient is zero ： Vm = (Dm/DY1,\r\nThe present problem has a neat formula for those y-denvatives of m ： Vm = Ac * 一 b.\r\nHOW tO a function m(y) when we kn OW its first d envative ？ This will be\r\nthe cenfral question of C hapter VI, leading t0 the algonthm th at optimizes the weights\r\nin deep learning · There we will minimize a loss function; here we are maximzing m(y)\r\nThere we will follow the gradient downhill 叩 e 訂 旎 e ） · Here we will follow the\r\ngradient uphill （ 豆 e e 豆 a e 刀 0 · ln both cases the gradient tell s us the steepest dire ction ·\r\n+ 1 = g 而 n （ ， Yk)\r\nSteepest increase for max min L = max m\r\nFind Ck+1 and follow Vm = 蓋 k + 1\r\n（ 6 ）\r\n（ 7 ）\r\nThat number is the stepsize. lt determines how far we move in the uphill direcüon Vm.\r\nWe dO not expect tO hit the maximum Of m in one step ！ We just take careful Step S upward.\r\nlt is a common expenence that the first step s are successful and later steps give only small\r\ni ncreases in m. ln financial mathematics that du al variable Often represents pnces 。\r\nNOte that argmin in equ ation （ 6 ） is the p Oint where that function is mmimized.\r\nThi s introducti 0 n Of du ality—-mininuzing over and maxlrmzing over ， in either\r\norder—-was nOt just a wild impulse. The reason comes next.\r\nDuaI Decomposition\r\nSUPPOSe that the original function 彳 （ ） is separable ： 歹 （ ） = 荪 （ 1 ） + 一 · 十 歹 （ ） ·\r\nThose are subvectors Of\r\n， · We partition the columns 0f in the\r\n00 亞\r\nsame way ， so that = [ 1 。 一 AN], Then Lagrange ' s function （ ） splits into\r\nsimpler Lagran gi an s ， LI to LN ：\r\n1\r\n（ 8 ）\r\nNow the −minimization 0f L splits into minimizations to be solved in parallel•\r\n--- 现有译文 ---\r\n<!-- page 189 -->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 186，是 §III.4 分裂算法（Split Algorithms）正文的续页；页眉 Low Rank and Compressed Sensing 与页码均为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声密集（`什 om` = from、`m p 况 e 襯` = min-max problem、`刀` = $L$、`蓋` = $A$、`g 而 n` = argmin、`¯I` = 上标 $-1$、`ÄB` = $\\approx AB$），公式 (6)(7)(8) 已按数学语境重建，行内乱码一律还原为 LaTeX。\r\n\r\n合并后的解 $c^*$ 与 $y^*$ 是 $L$ 的一个 saddle（鞍点）：\r\n\r\n```math\r\n\\min_{c}\\max_{y} L = \\max_{y}\\min_{c} L\r\n```\r\n\r\n需要求解的方程是 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial y = 0$。\r\n事实上 $\\partial L/\\partial y = 0$ 恰好把约束 $Ac = b$ 还给我们。\r\n这是带约束优化中的一个基本思想。\r\n在第 VI 章中，这些 $y$ 被看作最优解 $c^*$ 处的导数 $\\partial L/\\partial b$。\r\n\r\n现在来到 min-max 问题的关键一步（也可以从 max-min 一侧出发）：对固定的 $y$，在 $c$ 上最小化 $L(c,y)$。\r\n最小值在某个依赖于 $y$ 的点 $c^*$ 处取到。\r\n于是 dual problem（对偶问题）就是最大化 $m(y) = L(c^*,y)$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Steepest Increase of $m(y)$（$m(y)$ 的最速上升）\r\n\r\n要最大化函数 $m(y)$，我们要找一个使所有偏导数都为零的点 $y^*$。\r\n换言之，梯度为零：$\\nabla m = (\\partial m/\\partial y_1,\\ldots,\\partial m/\\partial y_m) = 0$。\r\n本问题对 $m$ 的这些 $y$-导数有一个干净的公式：$\\nabla m = Ac^* - b$。\r\n\r\n当我们已知函数 $m(y)$ 的一阶导数时，该如何最大化它？\r\n这将是第 VI 章的核心问题，并引出 deep learning（深度学习）中优化权重的算法。\r\n在那里我们最小化一个 loss function（损失函数）；这里我们最大化 $m(y)$。\r\n在那里我们沿着梯度下坡（steepest descent，最速下降）；这里我们沿着梯度上坡（steepest ascent，最速上升）。\r\n两种情形下，梯度都告诉我们最陡的方向。\r\n\r\n先求出 $c_{k+1}$，再沿 $\\nabla m = Ac_{k+1} - b$ 前进：\r\n\r\n```math\r\nc_{k+1} = \\arg\\min_{c} L\\left(c, y_k\\right)\r\n\\tag{6}\r\n```\r\n\r\n```math\r\n\\nabla m(y_k) = Ac_{k+1} - b, \\qquad y_{k+1} = y_k + s\\,\\nabla m(y_k)\r\n\\tag{7}\r\n```\r\n\r\n> <span style=color:#7f8c8d;>标注：Steepest increase for $\\max\\min L = \\max m$（$\\max\\min L = \\max m$ 的最速上升）。</span>\r\n\r\n那个数就是 stepsize（步长）。\r\n它决定我们沿着上坡方向 $\\nabla m$ 走多远。\r\n我们并不指望一步就命中 $m$ 的最大值！我们只是小心地一步步向上走。\r\n经验表明，最初几步总是成功的，而往后的步子只带来 $m$ 的微小增加。\r\n在 financial mathematics（金融数学）中，那个对偶变量 $y$ 常常代表价格。\r\n\r\n注意，方程 (6) 中的 argmin 就是使该函数取到最小值的那个点。\r\n\r\n这里引入对偶性——在 $c$ 上最小化、在 $y$ 上最大化，两种顺序可以互换——并非一时的冲动。\r\n理由紧接着给出。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Dual Decomposition（对偶分解）\r\n\r\n假设原来的函数 $f(c)$ 是 separable（可分离）的：$f(c) = f_1(c_1) + \\cdots + f_N(c_N)$。\r\n其中 $c_1,\\ldots,c_N$ 都是 $c$ 的子向量。\r\n我们以同样的方式划分 $A$ 的列，即 $A = [A_1 \\cdots A_N]$。\r\n于是 Lagrange's function（拉格朗日函数）$L(c,y)$ 分裂为更简单的拉格朗日函数 $L_1$ 到 $L_N$：\r\n\r\n```math\r\nL(c,y) = \\sum_{i=1}^{N} L_i\\left(c_i, y\\right) - y^{T}b, \\qquad L_i\\left(c_i, y\\right) = f_i\\left(c_i\\right) + y^{T}A_i c_i\r\n\\tag{8}\r\n```\r\n\r\n现在对 $L$ 关于 $c$ 的最小化分裂为 $N$ 个可以并行求解的最小化问题。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 9102,
+            "outputTokens": 6238,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 9102,
+              "outputTokens": 6238,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11847,
+          "contextWindow": 1000000,
+          "pressureTokens": 12558,
+          "sampledSurfaceTokens": 7009
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5449,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4838,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10703
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128850706,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 96,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 96,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: (b) Why does that vector $z$ have $z^{T}Sz/z^{T}z \\le \\lambda_i$? Then explain ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 这一问的答案只有一句话，但它背后是一整类可复用的套路，我给它起名叫**谱夹逼法**（spectral sandwiching）：把特征值写成「带维数约束的极值问题」，再用维数算术把两侧夹住。第一步，把 $\\lambda_i$ 还原成瑞利商的极值：$\\lambda_i(S)=\\max_{\\dim V=i}\\min_{z\\in V,\\,z\\neq0}\\frac{z^TSz}{z^Tz}$，这就是 Courant–Fischer 极小极大原理。第二步是纯组合的维数计数：题中 $V$ 维数为 $i$，$q_i,\\dots,q_n$ 张成的 $Z$ 维数为 $n-i+1$，两者维数之和等于 $n+1>n$，所以它们的交非空——这句话在 6.042J 里是线性映射秩-零化度的直接推论，不需要任何分析学工具。任取交里的非零向量 $z$，它同时满足两条性质：既在 $Z$ 里，就必为 $q_i,\\dots,q_n$ 的组合，即 $z=\\sum_{j\\ge i}c_jq_j$；又落在 $V$ 用于取最小值的子空间中。两条合起来，$z^TSz/z^Tz=\\sum_{j\\ge i}c_j^2\\lambda_j\\big/\\sum_{j\\ge i}c_j^2\\le\\lambda_i$，因为它是若干个都不超过 $\\lambda_i$ 的数的加权平均。于是每个 $i$ 维子空间里都存在这样的 $z$，取遍 $V$ 便得到 $\\max_{\\dim V=i}\\min\\le\\lambda_i$；再令 $V=\\mathrm{span}(q_1,\\dots,q_i)$ 就取到等号。**模板的三步指纹**：特征值→带约束极值；维数相加超过 $n$ ⇒ 子空间必相交；加权平均给出不等式。以后遇到「某个未知矩阵的特征值不超过某个量」的题，先问三件事：能不能写成 min-max、能不能用维数计数造出一个好向量、这个向量能不能表示为已知特征向量的组合。\r\n\r\n=== ANCHOR: 这正是所谓 Law of Inertia（惯性定律）：$C^{T}SC$ 与 $S$ 拥有相同数目的正特征值、负特征值与零特征值。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 这里最容易混的一对概念是 congruence（合同）与 similarity（相似）：$C^TSC$ 与 $B^{-1}SB$。区别不在记号而在**什么被保持不变**：相似变换保持特征值本身，合同变换只保持特征值的正负号个数。为什么？把三个事实按顺序串起来就明白了。第一，$C=QR$ 是 Gram–Schmidt 的副产品，$Q$ 正交、$R$ 可逆；于是 $C^TSC=R^TQ^TSQR=R^T(Q^TSQ)R$，而 $Q^TSQ=Q^{-1}SQ$ 已经是相似变换，特征值一个不差。第二，同理可用 $R^{-1}$ 把 $R^T(Q^TSQ)R$ 变成 $(R^{-1})^T(Q^TSQ)R^{-1}$ 的合同形式，继续往里塞逆矩阵，特征值会被乘上正的缩放因子 $r^2$，但**正负号不会被翻转**。第三，也是关键的一步：从 $C$ 连续变形到 $Q$ 时，中间每个矩阵都保持可逆，而实对称矩阵的特征值是矩阵元素的连续函数；若某个特征值要从正变负，它必须连续地经过 $0$，即某个中间矩阵奇异——与可逆性矛盾。于是途中没有特征值穿越零点，正、负、零的个数被「锁死」。这条结论有直接的工程用途：对 $S$ 做消元得到 $S=LDL^T$，$L$ 可逆所以 $S$ 与对角阵 $D$ 合同，因此 $D$ 的对角元（主元）的正负号个数就精确等于特征值的正负号个数。**这让你不必求特征值、只做一遍消元就能数出正负惯性指数**，也正是习题 10、11 里判断 KKT 矩阵正负特征值个数的依据——那里 $S$ 正定、末尾的 Schur 补 $-AS^{-1}A^T$ 负定，主元符号直接读出来。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 96,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 96,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 96,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 96,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 96,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4693,
+            "outputTokens": 21443,
+            "cacheReadTokens": 258048,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 17,
+            "buckets": {
+              "uncachedInputTokens": 147,
+              "outputTokens": 2741,
+              "cacheReadTokens": 24192,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 96,
+        "val": {
+          "surfaceTokens": 15155,
+          "contextWindow": 1000000,
+          "pressureTokens": 24339,
+          "sampledSurfaceTokens": 13829
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 96,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 750,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1449,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 237,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 591,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 47,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 1217,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 464,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 619,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 488,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 650,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 644,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 952,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 800,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 406,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 879,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 79,
+              "heuristicTokens": 334,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 84,
+              "heuristicTokens": 986,
+              "system": false
+            },
+            {
+              "seq": 86,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 89,
+              "heuristicTokens": 436,
+              "system": false
+            },
+            {
+              "seq": 91,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 94,
+              "heuristicTokens": 1326,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 14011
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 96,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 96,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 93,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 95
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 96,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 96,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 96,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 96,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 96,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 96,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

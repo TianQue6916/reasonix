@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129994210,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_195 = 书页 192\r\npage_196 = 书页 193\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:195@@（书页 192）\r\n−-- OCR 原文 −--\r\nLow Rank and Compressed Sensing\r\n192\r\nFigure 111.3: Smooth function 歹 ） ： One tangent at each point with slope Vf. Pointed\r\n= 囫 ： Many tangents with slopes Df (the subgradient) at the sharp point.\r\nfunction 歹 国\r\nBregman D is tance\r\nThe n ame Bregman is appeanng for the first time in this book. B ut Bregman distance ”\r\nlts unusual ature is the 1 ack 0f symmetry ，\r\niS an increasingly important idea.\r\n刀 司 刀 0 And th e distance m to ． depends on a function 不\r\nWe do have 刀 0 an d also （ ， 孓 ， along a s traight line with < < 鬱 ：\r\nBregman Distance 刀 氟 司 ： 囝 一 司 一 （ v ， 一 鬱 ）\r\n（ 29 ）\r\nAlways the gradient Vf is replaced by a subgradient 3f at points where the graph 0f\r\n歹 （ ） has a corner. Then Of can be the slope of any tangent plane th at stays below the\r\nconvex function 歹 （ ） · The standard examples in one dimenslon are the ab s Olute value\r\n一@ + lcl) with corners at = 0 · The tangent\r\n叫 and the ReLU function max （ 0 ， ）\r\nplanes to @《 can have slopes @丨 between 一 1 and 1 · For O (ReLU ） the slopes are between\r\n0 and 1 · These subgradients make Df an effective (but multivalued) repl acement for Vf.\r\nSplit B regman and Split Kaczmarz\r\nFor minimizatlon with an 1 penalty term (like basis pursuit), tw O iterative algonthms\r\nneed to be seen. S tart 什 om = b ：\r\nLinearized Bregman iteration with parameter .X 0\r\n砰 1 = S(Yk+1)\r\n= sign (Yk+1) max (I 办 + 1 《 一 /\\, 0 ）\r\n（ 30 ）\r\n（ 31)\r\n（ 30 ） is a no 皿 al adjustable step to reduce 丨 一 bl 2 · lts stepsize is s > 0 · Then the $ 矽\r\n况 d g 咖 c 0 S applies t0 each component 0f the vector k + 1 · If + 1\r\nand = 2 ， the output k + 1 fro m this nonlinear function S in （ (1) will be the vector 1 ：\r\nIf = b has a solution and if sÄmax(ATA) < 1 ， the Bregman vectors Ck will converge\r\ntO the op timal vector *\r\nmmimizes ÄII 圳 1 + 一 腭 subject to =\r\n（ 32 ）\r\n\r\n−-- 现有译文（含译者注） −--\r\n@@PAGE:195@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 192，延续 §III.4（Split Algorithms for $A^+$，$A^+$ 的分裂算法）中近端算法的讨论；结构单元：图 III.3 图注、Bregman 距离定义式 (29)、次梯度（subgradient）讨论、小节「Split Bregman and Split Kaczmarz」、线性化 Bregman 迭代 (30)(31)、目标函数 (32)。页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较重：`歹`／`囫`／`国` 为 $f(x)$，`刀`／`氟` 为 $D_f$，`鬱` 为 $y$，`Ä` 为 $\\lambda$，`丨` 为范数竖线。公式 (30)(31)(32) 的原文字符严重损坏，现按 linearized Bregman iteration（线性化 Bregman 迭代）的标准形式重建。\r\n\r\n**图 III.3 图注：** 光滑函数 $f(x)$——每个点处只有一条切线，其斜率为 $\\nabla f$；有尖点的函数 $f(x)$——在尖点处有许多条切线，其斜率取自 subgradient（次梯度）$\\partial f$。\r\n\r\n> <span style=color:#7f8c8d;>（原图无法翻译：左图为光滑曲线与它在各点处唯一的切线，右图为带尖点的曲线与尖点处若干条由次梯度给出的切线。）</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 布雷格曼距离（Bregman Distance）\r\n\r\n本书中第一次出现 Bregman 这个名字。\r\n但 Bregman distance（Bregman 距离）正成为一个日益重要的概念。\r\n它不同寻常之处在于缺乏 symmetry（对称性）：$D_f(x, y) \\ne D_f(y, x)$。\r\n并且从 $x$ 到 $y$ 的这个距离，还取决于所选的函数 $f$。\r\n我们确实有 $D_f(x, x) = 0$；并且只要 $x \\ne y$，沿着一条直线就有 $D_f(x, y) > 0$：\r\n\r\n```math\r\nD_f(x, y) = f(x) − f(y) − \\langle \\nabla f(y),\\, x − y \\rangle \\tag{29}\r\n```\r\n\r\n在 $f(x)$ 的图像出现 corner（尖点）的地方，gradient（梯度）$\\nabla f$ 总是被替换为 subgradient（次梯度）$\\partial f$。\r\n此时 $\\partial f$ 可以是任何一张位于 convex function（凸函数）$f(x)$ 下方的切平面的斜率。\r\n一维情形下的标准例子是绝对值 $|x|$ 与 ReLU 函数 $\\max(0, x)$，它们的尖点都出现在 $x = 0$。\r\n对 $|x|$ 的切平面，斜率 $c$ 可以取 $-1$ 与 $1$ 之间的任何值；对 $\\max(0, x)$（ReLU），斜率则位于 $0$ 与 $1$ 之间。\r\n这些次梯度使 $D_f$ 成为 $\\nabla f$ 的一个有效（但多值）的替代物。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 分裂 Bregman 与分裂 Kaczmarz（Split Bregman and Split Kaczmarz）\r\n\r\n对于带 $\\ell_1$ penalty term（罚项）的最小化问题（例如 basis pursuit（基追踪）），有两个迭代算法必须看清楚。\r\n从 $x_0 = b$ 出发，带参数 $\\lambda > 0$ 的 linearized Bregman iteration（线性化 Bregman 迭代）如下：\r\n\r\n```math\r\ny_{k+1} = y_k + s\\, A^{T}(b − A x_k) \\tag{30}\r\n```\r\n\r\n```math\r\nx_{k+1} = S(y_{k+1}) = \\operatorname{sign}(y_{k+1}) \\max\\left(|y_{k+1}| − \\lambda,\\ 0\\right) \\tag{31}\r\n```\r\n\r\n式 (30) 是一个常规的可调节步，用来减小 $\\|A x_k − b\\|_2^2$，其步长为 $s > 0$。\r\n接着，soft threshold function（软阈值函数）逐分量地作用于向量 $y_{k+1}$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> (31) 那个看起来随手写下的分段函数，其实是 $\\ell_1$ 范数的近端算子，可以完整推出来，而推导过程本身就是一个可反复使用的模板。要解的问题是 $\\min_x\\ \\lambda|x| + \\frac{1}{2}(x-y)^{2}$（一维，然后逐分量作用于 $y_{k+1}$）。$|x|$ 在 $x=0$ 处不可微，于是按这个不可微点把实轴切成三段，每段内部用普通求导：若 $x>0$，导数为 $\\lambda + (x-y) = 0$，得 $x = y − \\lambda$，要求它真的落在 $x>0$ 内，即 $y > \\lambda$；若 $x<0$，导数为 $-\\lambda + (x-y) = 0$，得 $x = y + \\lambda$，要求 $y < −\\lambda$；剩下的中段只能取 $x=0$，检查最优性条件 $0 \\in \\partial(\\lambda|x|) + (0-y)$，即 $|y| \\le \\lambda$。三段拼起来正是 (31) 的 $\\operatorname{sign}(y)\\max(|y|-\\lambda,\\,0)$。验算两个数：$y=3,\\ \\lambda=1$ 给出 $x=2$。把三个候选代回目标函数——$x=2$ 得 $|2| + \\frac{1}{2}(2-3)^{2} = 2 + 0.5 = 2.5$，$x=3$ 得 $3 + 0 = 3$，$x=0$ 得 $0 + 4.5 = 4.5$，确实 $x=2$ 最小。再看 $y=0.5,\\ \\lambda=1$，输出 $x=0$，目标值 $0.125$，小于取 $x=-0.5$ 时的 $0.5$。这里的精髓不是「按比例缩小」而是**截断**：$|y| \\le \\lambda$ 的分量被直接压成 $0$，这才是 $\\ell_1$ 能产生稀疏解的机制，而 $\\ell_2$ 的近端算子只会整体缩小、永远不给零。把这个事实放回 (30)(31) 的组合，算法就清楚了：(30) 在原始空间做一步可调步长的梯度下降，用来减小 $\\|Ax_k-b\\|_2^{2}$；(31) 在梯度（对偶）空间做一次 $\\ell_1$ 的近端步。条件 $s\\,\\lambda_{\\max}(A^{T}A) < 1$ 就是这一步长下梯度下降不发散的标准要求，与上一条注里算过的 $a<2$ 是同一件事的不同实例。往后看一步：把绝对值换成奇异值，就得到矩阵补全里的奇异值阈值算法——先做 SVD $M = U\\Sigma V^{T}$，对 $\\Sigma$ 逐元素做同一个 $\\max(\\sigma-\\lambda,0)$，再拼回 $U\\Sigma_{\\lambda}V^{T}$。这一步之所以自然，是因为向量的 prox 逐分量做，而 SVD 正是矩阵的「分量分解」，18.065 的 SVD 在这里从分析工具变成了算法的一步。可复用的模板：**分段求导—边界拼接法**。面对「一个不可微的凸函数加一个二次项」的极小化，先按不可微点切段，在每段内用普通求导得到候选点，再检验候选点是否落在自己那一段内（这一步最容易被跳过，而它恰恰决定了截断区间的大小），最后用几个具体数值代回目标函数验算。这套动作对任意分段线性的 $F$ 都适用。\r\n\r\n若 $A = I$ 且 $s = 2$，则 (31) 中这个非线性函数 $S$ 给出的输出 $x_1$ 就是向量 $b$。\r\n若 $Ax = b$ 有解，并且 $s\\,\\lambda_{\\max}(A^{T}A) < 1$，则 Bregman 向量 $x_k$ 将收敛到最优向量 $x^*$，它最小化：\r\n\r\n```math\r\n\\lambda\\|x\\|_1 + \\tfrac{1}{2}\\|A x − b\\|_2^2 \\quad \\text{subject to } A x = b \\tag{32}\r\n```\r\n\r\n@@PAGE:196@@（书页 193）\r\n−-- OCR 原文 −--\r\nlll 4 split Alg0Lithms for 2 +\r\n193\r\nKaczmarz iteration is effective for big data with sparse vectors. The s tandard steps\r\nAæ = b. They cycle sequentially or randomly through those equations 丐 = bt\r\n（ 、 、 here is row of ） · Each s tep adj usts by a multiple cai of one column of AT\r\nsausfy th e 犭 山 equatlon k + 1 =\r\nsolves + 1 = + a\r\nT 一 Oi Ck\r\n2\r\n+ 1\r\n2\r\nThe sparse Kaczmarz s tep s combine （ 33 ） with the soft threshold in （ 31 ） ：\r\nSparse Kaczmarz + 1 = 一 and 凭 1 = S 1 ）\r\n= bi. （ 33 ）\r\n（ 34 ）\r\nThere is always freedom in th e stepsize 5 The choice\r\n一 (i) / 扣 2 is\r\nCk\r\nconsistent with Kaczmarz. Li n and Zhou have proposed an online learning al gorithm\r\nthe same problem. This means that th e s tep −+ + 1 is taken as soon as the new\r\nobservati on and th e n ew equation = bk arnve tO JOin the computation. Then the\r\nlearning alg orithm （ 34 ） immediately computes + 1 an d + 1 ·\r\n1 T. Goldstein and S. Osher, The 衍 B g 襯 “ methodfor LI reg ularized b s ，\r\nSIAM Journ al of lmaging Sciences 2 （ 2009 ） 323 一 343 ·\r\n2 We Ym, & Osher, D. Goldfarb, and J. Darbon ， Bregman 甩 五 go ms for\r\n沅 i w 方 applications CO 襯 s d $ g ， SIAM J. lmaging Sciences 1\r\n（ 2008 ） 143 · 16 &\r\n3 Y. Lei and D.-X. Zhou, Leaming e00 ” 襯 ed sparse Kaczmarz method,\r\nS IAM J. lmaging Sciences 11 （ 2018 ） 547 一 574 ·\r\nBounded Variation ： Ll Norm for the Gradient\r\n№ tu images have e · Across those edges, the defi ning function can have\r\na jumpø lts gradient Vu = @锐/0 ， Ou/Dy) c an be smooth in the edge direction, but\r\nVu has a delta function in the perpendicular direction. The energy norm of is infi nite\r\nbut bounded variation norm is 6 nite ：\r\n+ dc dy <\r\n@+ = but 和 日 BV ： 目 v 1 ：\r\n2\r\nln one dimension could be a unit 豆 叩 “ 五 “ · lts denvative is a “ ” ） ·\r\nThe integral of 2 is infinite. But the i ntegral of is 1 · We can't wo with the\r\nno 皿 of the denvative ） ， but the Ll norm of is g00de\r\nln application s to imag e denoising, that BV norm is a very successful p enalty term ·\r\nfit the data, and we use the BV norm to prevent wild oscillations. The image c an be\r\n山 Or piecewise smooth, but it can't have random speckled noise.\r\nRudin S. Osher, an d E. Fatemi ， on 五 / “ ria 刀 施 d noise m “\r\n咴 叻 ， Physica D 60 （ 1992 ） 259 · 268 · (This P ap er was fundamental in applying BV.)\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 196 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 193，是 §III.4 Split Algorithms for $A^+$ 的续页；结构单元：Kaczmarz 迭代的标准步骤 (33)、稀疏 Kaczmarz 步骤 (34)、步长与在线学习讨论、三条脚注、小节 Bounded Variation: L1 Norm for the Gradient、BV 范数公式、一维阶跃函数例子、图像去噪应用与 Rudin-Osher-Fatemi 文献。页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>本页公式按 Kaczmarz 迭代的数学语境重建：`丐 = bt` 为 $a_i^{T}x = b_i$，`犭 山 equatlon` 指第 $i$ 个方程，`扣 2` 为范数平方 $\\|a_i\\|_2^2$，`凭` 为 $y$，`5` 为步长 $s$；`衍 B g 襯 “` 为 split Bregman；`沅 i w 方` 为 $\\ell_1$ minimization；`Bounded Variation ： Ll Norm` 为 Bounded Variation: L1 Norm。</span>\r\n\r\nKaczmarz iteration（Kaczmarz 迭代）对含稀疏向量的大数据问题非常有效。它的标准步骤求解 $Ax = b$：按顺序、或者随机地循环经过这些方程 $a_i^{T}x = b_i$（其中 $a_i^{T}$ 是 $A$ 的第 $i$ 行）。每一步都用 $A^{T}$ 的某一列的一个倍数来调整 $x_k$，使第 $i$ 个方程 $a_i^{T}x_{k+1} = b_i$ 得到满足：\r\n\r\n```math\r\nx_{k+1} = x_k + \\frac{b_i − a_i^{T} x_k}{\\|a_i\\|_2^2}\\, a_i \\tag{33}\r\n```\r\n\r\nSparse Kaczmarz（稀疏 Kaczmarz）步骤把 (33) 与 (31) 中的 soft threshold（软阈值）结合起来：\r\n\r\n```math\r\ny_{k+1} = y_k + \\frac{b_i − a_i^{T} x_k}{\\|a_i\\|_2^2}\\, a_i,\r\n\\qquad\r\nx_{k+1} = S_\\lambda(y_{k+1}) \\tag{34}\r\n```\r\n\r\n步长始终有选择的自由，取 $s_i = 1/\\|a_i\\|_2^2$ 就与 Kaczmarz 迭代相互一致。Lin 与 Zhou 针对同一个问题提出了一种 online learning（在线学习）算法。这意味着，一旦新的观测值与新的方程 $a_i^{T}x = b_i$ 到达并加入计算，就立刻执行 $k \\to k+1$ 这一步。于是学习算法 (34) 立即算出 $y_{k+1}$ 与 $x_{k+1}$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 译文这里说一旦新观测值到达就立刻执行 $k\\to k+1$，把 Kaczmarz 变成了在线学习算法。要理解为什么这条路线值得单独提，先把单步误差看清楚：设 $x^*$ 是满足 $Ax=b$ 的真解，令 $e_k=x_k-x^*$，则 $b_i-a_i^{T}x_k=-a_i^{T}e_k$，代入 (33) 得 $e_{k+1}=e_k-\\frac{a_i^{T}e_k}{\\|a_i\\|_2^2}a_i$，也就是从 $e_k$ 中减去它在 $a_i$ 方向上的投影。取平方得 $\\|e_{k+1}\\|_2^2=\\|e_k\\|_2^2-\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}\\le\\|e_k\\|_2^2$：误差范数单调不增，而且整个过程没有任何步长参数可调，这是 Kaczmarz 最讨人喜欢的性质。但单调不增不等于收敛快。如果 $a_i$ 反复选中那些与当前误差几乎垂直的行，损失项 $\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}$ 会很小，迭代就会原地踏步；顺序扫描遇到病态的行序时完全可能发生这种事。随机化正是为此而生：按概率 $p_i=\\|a_i\\|_2^2/\\|A\\|_F^2$ 抽取第 $i$ 行，则每步的期望损失为 $\\sum_i p_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}=\\frac{\\|Ae_k\\|_2^2}{\\|A\\|_F^2}$，再用 SVD 给出下界 $\\|Ae_k\\|_2^2\\ge\\sigma_{\\min}^2\\|e_k\\|_2^2$，便得到期望收缩 $\\mathbb{E}\\|e_{k+1}\\|_2^2\\le\\left(1-\\frac{\\sigma_{\\min}^2}{\\|A\\|_F^2}\\right)\\|e_k\\|_2^2$，收缩因子 $\\rho=\\sigma_{\\min}^2/\\|A\\|_F^2$ 只依赖于矩阵本身，不再依赖行的顺序。不过期望变好并不是你运行一次程序时真正得到的承诺，要把期望升级为高概率，就要请出你在 6.042J 学过的那件工具。把第 $j$ 轮的收缩因子记作随机变量 $Z_j\\le1$，则 $\\|e_k\\|_2^2=\\|e_0\\|_2^2\\prod_{j<k}Z_j$；对 $\\log Z_j$ 用 Chernoff 界（其本质是对独立随机变量的和做指数矩估计），可得前 $k$ 步平均收缩没有达到 $\\log(1-\\rho)$ 太多的概率随 $k$ 指数衰减，于是为了以 $1-\\delta$ 的概率把误差压到 $\\epsilon_0$ 以下，只需 $k=O\\!\\left(\\frac{1}{\\rho}\\log\\frac{1}{\\epsilon_0\\delta}\\right)$ 步。把这个三段式固定下来，命名为**期望收缩 → 乘积形式 → 集中不等式**：先证每一步期望在缩，再把多步写成乘积，最后用集中不等式把平均意义上在缩翻译成这一次运行大概率在缩。你在 6.042J 用 Chernoff 界算过负载均衡的失败概率，这里是同一件事的数值版本；也正因为随机性是算法设计的一部分，压缩感知的定理才会反复出现以压倒性的概率这种措辞。\r\n\r\n把这段推导代入一组小数字，你会更容易感到随机化不是装饰。取 $A=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$，$b=\\begin{pmatrix}2\\\\3\\end{pmatrix}$，真解 $x^*=(2,1)^{T}$，从 $x_0=(0,0)^{T}$ 出发交替扫第 1、2 行：$x_1=(2,0)^{T}$，$x_2=(2.5,0.5)^{T}$，$x_3=(2,0.5)^{T}$，$x_4=(2.25,0.75)^{T}$，误差平方从 5 一路降到 1、0.5、0.25、0.125，每两步恰好减半；而按上面的公式，$\\|A\\|_F^2=3$、$\\sigma_{\\min}^2\\approx0.382$，给出的收缩因子 $\\rho\\approx0.127$，即期望误差平方每步乘以约 0.873，两步约 0.76——理论上界比这次实际轨迹保守，这正是集中不等式要接管的地方。再看几何上为什么必须随机：若两行几乎平行，把误差投到其中一行上几乎不改变 $e_k$；把 $A$ 改成第二行等于第一行的 1.001 倍，那么第一次修正之后误差就落在垂直于 $a_1$ 的方向附近，此后每一步都只啃掉误差的一个极小分量，误差像被夹在两条近重合直线之间来回反射。行序因此成了收敛速度的隐藏输入，而随机化把这个输入从算法使用者手里拿走。\r\n\r\n一条跨课程连接可以把这套语言钉牢：Strang 线性代数（18.06/18.065）里最小二乘是 $\\min\\|Ax-b\\|_2^2\\Rightarrow A^{T}Ax=A^{T}b$，一次性用全部行；Kaczmarz 每次只用一行，解的轨迹始终落在超平面上，$A$ 行满秩时收敛到同一个 $x^*$，病态时反而更慢；但若 $Ax=b$ 无解（不一致系统），最小二乘解是 $A^{\\dagger}b$，而 Kaczmarz 的极限点在一般情况下不等于 $A^{\\dagger}b$，走的是所谓 Kaczmarz 极限点，这是两条路线的真实区别。最后补一个 CSAPP 视角的工程权衡：随机挑行在缓存眼里是最坏访问模式，每次跳到一个新内存块；实践中常改成先随机置换行序、再顺序扫描，用一个置换保留随机性的统计保证，同时恢复顺序访问的局部性优势——这是数学保证与缓存层次之间一次非常典型的谈判。\r\n\r\n\r\n> <span style=color:#7f8c8d;>脚注 1：T. Goldstein 与 S. Osher，*The split Bregman method for L1 regularized problems*，SIAM Journal of Imaging Sciences 2 (2009) 323–343。</span>\r\n\r\n> <span style=color:#7f8c8d;>脚注 2：W. Yin、S. Osher、D. Goldfarb 与 J. Darbon，*Bregman iterative algorithms for $\\ell_1$-minimization with applications to compressed sensing*，SIAM J. Imaging Sciences 1 (2008) 143–168。</span>\r\n\r\n> <span style=color:#7f8c8d;>脚注 3：Y. Lei 与 D.-X. Zhou，*Learning theory of randomized sparse Kaczmarz method*，SIAM J. Imaging Sciences 11 (2018) 547–574。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Bounded Variation: L1 Norm for the Gradient（有界变差：梯度的 L1 范数）\r\n\r\n自然图像都有 edges（边缘）。在这些边缘的两侧，defining function（定义函数）$u(x,y)$ 会出现跳跃。它的 gradient（梯度）$\\nabla u = (\\partial u/\\partial x,\\, \\partial u/\\partial y)$ 沿边缘方向可以是光滑的，但在垂直方向上 $\\nabla u$ 含有一个 delta function（δ 函数）。$\\nabla u$ 的 energy norm（能量范数）是无穷大，而 bounded variation norm（有界变差范数，BV norm）却是有限的：\r\n\r\n```math\r\n\\|\\nabla u\\|_{L_2}^{2} = \\iint |\\nabla u|^{2}\\, dx\\, dy = \\infty,\r\n\\qquad\r\n\\|u\\|_{BV} = \\iint |\\nabla u|\\, dx\\, dy < \\infty\r\n```\r\n\r\n在一维情形下，$u(x)$ 可以取 unit step function（单位阶跃函数）。它的导数是 delta function（δ 函数）$\\delta(x)$。$|u'|^{2}$ 的积分是无穷大，而 $|u'|$ 的积分等于 $1$。我们无法用导数 $u'$ 的 $L_2$ norm（$L_2$ 范数）来工作，但 $u'$ 的 $L_1$ norm（$L_1$ 范数）很好用。在 image denoising（图像去噪）的应用中，这个 BV norm（BV 范数）是一个非常成功的 penalty term（惩罚项）。我们用它来拟合数据，并用 BV 范数来防止剧烈的振荡。图像可以是 piecewise smooth（分片光滑）的，但不能含有随机的斑点噪声。\r\n\r\n> <span style=color:#7f8c8d;>参考文献：L. Rudin、S. Osher 与 E. Fatemi，*Nonlinear total variation based noise removal algorithms*，Physica D 60 (1992) 259–268。（这篇论文是把 BV 范数应用于图像处理的奠基性工作。）</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 203,
+            "outputTokens": 11165,
+            "cacheReadTokens": 10496,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 203,
+              "outputTokens": 11165,
+              "cacheReadTokens": 10496,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 14400,
+          "contextWindow": 1000000,
+          "pressureTokens": 10699,
+          "sampledSurfaceTokens": 5203
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3643,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 9197,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 13256
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

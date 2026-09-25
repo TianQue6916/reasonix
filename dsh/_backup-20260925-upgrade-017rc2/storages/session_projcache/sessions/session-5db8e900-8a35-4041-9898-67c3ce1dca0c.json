@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147715313,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_205]\nPart IV : Special Matrices\n\nThis chapter develops two large topics : the key matrices for **Discrete Fourier Transforms** and for **graphical models**. Both topics appear in machine learning when the problem has special structure—which is reflected in the architecture of the neural net.\n\nFourier is for problems with *shift invariance*. The operations on one pixel of an image are the same as the operations on the next pixel. In that case the operation is a *convolution*. Each row of the underlying matrix is a shift of the previous row. Each column is a shift of the previous column. Convolutional nets use the same weights around each pixel.\n\nWith that shift-invariant structure, a convolution matrix (a *filter* in image processing) has constant diagonals. The \\(N\\) by \\(N\\) matrix in a 1-dimensional problem is fully determined by its first row and column. Very often the matrix is banded—the filter has finite length—the matrix has zeros outside a band of diagonals. For 2-dimensional problems with repeated one-dimensional blocks the saving is enormous.\n\nThis makes it possible to use a Convolutional Neural Net (**CNN** or **ConvNet**) when an \\(N^2\\) by \\(N^2\\) matrix full of independent weights would be impossible. A major breakthrough in the history of CNN's was this NIPS 2012 paper :\n\nAlex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton : *ImageNet Classification with Deep Convolutional Neural Networks*. Their neural net had 60 million parameters.\n\nGraphs have a different structure. They consist of \\(n\\) nodes connected by \\(m\\) edges. Those connections are expressed by the incidence matrix \\(A\\) : \\(m\\) rows for the edges and \\(n\\) columns for the nodes. Every graph is associated with four important matrices :\n\n**Incidence matrix \\(A\\)** \\(\\hspace{5.5cm}\\) \\(m\\) by \\(n\\) with \\(-1\\) and \\(1\\) in each row\n**Adjacency matrix \\(M\\)** \\(\\hspace{4.5cm}\\) \\(n\\) by \\(n\\) with \\(a_{ij} = 1\\) when nodes \\(i\\) and \\(j\\) are connected\n**Degree matrix \\(D\\)** \\(\\hspace{5.5cm}\\) \\(n\\) by \\(n\\) diagonal matrix with row sums of \\(M\\)\n**Laplacian matrix \\(L = A^{\\mathrm{T}}A = D - M\\)** \\(\\hspace{3.5cm}\\) positive semidefinite matrix\n\nFrom the viewpoint of deep learning, Fourier problems are associated with CNN's and graphical models lead to graphical nets. Graph theory has become our most valuable tool to understand discrete problems on networks.\n\n203\n\n### [原文 page_206]\n204 \\hfill Special Matrices\n\n\\section*{IV.1 \\quad Fourier Transforms : Discrete and Continuous}\n\nThe classical Fourier transforms apply to functions. The discrete Fourier transform (DFT) applies to vectors :\n\n**Real Fourier series :** real periodic functions $f(x + 2\\pi) = f(x)$\n\n**Complex Fourier series :** complex periodic functions\n\n**Fourier integral transforms :** complex functions $f(x)$ for $-\\infty < x < \\infty$\n\n**Discrete Fourier series :** complex vectors $\\boldsymbol{f} = (f_0, f_1, \\ldots, f_{N-1})$\n\nOur focus is on the last one—transforming vectors to vectors. That is achieved by an $N$ by $N$ matrix. The inverse transform uses the inverse matrix. And all these transforms share basis functions of the same type that Fourier used :\n\nReal Fourier series : cosines $\\cos nx$ and sines $\\sin nx$\n\nComplex Fourier series : complex exponentials $e^{inx}$ for $n = 0, \\pm 1, \\pm 2, \\ldots$\n\nFourier integral transforms : complex exponentials $e^{ikx}$ for $-\\infty < k < \\infty$\n\nDiscrete Fourier series : $N$ basis vectors $\\boldsymbol{b}_k$ with $(\\boldsymbol{b}_k)_j = e^{2\\pi ijk/N} = (e^{2\\pi i/N})^{jk}$.\n\nEach function and each vector is expressed as a combination of Fourier basis functions. **What is the “transform” ?** It is the rule that connects $f$ to its coefficients $a_k, b_k, c_k, \\widehat{f}(k)$ in these combinations of basis functions :\n\n\\begin{center}\n\\begin{tabular}{l l}\n\\textbf{Real series} & \\fbox{$f(x) = a_0 + a_1 \\cos x + b_1 \\sin x + a_2 \\cos 2x + b_2 \\sin 2x + \\cdots$} \\\\\n\\textbf{Complex series} & \\fbox{$f(x) = c_0 + c_1 e^{ix} + c_{-1} e^{-ix} + c_2 e^{2ix} + c_{-2} e^{-2ix} + \\cdots$} \\\\\n\\textbf{Fourier integrals} & \\fbox{$f(x) = \\int_{-\\infty}^{\\infty} \\widehat{f}(k) e^{ikx} \\, dk$} \\\\\n\\textbf{Discrete series} & \\fbox{$\\boldsymbol{f} = c_0 \\boldsymbol{b}_0 + c_1 \\boldsymbol{b}_1 + \\cdots + c_{N-1} \\boldsymbol{b}_{N-1} = \\textbf{Fourier matrix } F \\textbf{ times } \\boldsymbol{c}$}\n\\end{tabular}\n\\end{center}\n\nEach Fourier transform takes $\\boldsymbol{f}$ in “$x$-space” to its coefficients in “frequency space”. The inverse transform starts with the coefficients and reconstructs the original function. Computing coefficients is \\textit{analysis}. Reconstructing the original $\\boldsymbol{f}$ (shown in the box) is \\textit{synthesis}. For vectors the commands \\textbf{fft} and \\textbf{ifft} produce $\\boldsymbol{c}$ from $\\boldsymbol{f}$, $\\boldsymbol{f}$ from $\\boldsymbol{c}$. Those commands are executed by the \\textbf{Fast Fourier Transform}.\n\n【当前译文】\n@@PAGE:205@@\n<!-- page 205 -->\n> <span style=color:#7f8c8d;>本页为书页 203，是 Part IV（Special Matrices，特殊矩阵）的章首导言页；页眉与页脚印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## Part IV Special Matrices（特殊矩阵）\n> <span style=color:#7f8c8d;>Strang LaLFD Part IV, p.203</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声极重，按数学语境重建如下：`Founer` → Fourier（傅里叶）；`砀 “ r 忉 巳` → shift invariance（平移不变性）；`co “ 况` → convolution（卷积）；`孝 产` → filter（滤波器）；`山` → With；`0 n` → often；`fimte` → finite；`iS enormou &` → is enormous；`sto of CNN ， s` → story of CNN's；`CI “ s ca 五 0 视` → Classification；`Deep Co “ 况 Neural e ks` → Deep Convolutional Neural Networks；`蓋` → $A$（关联矩阵）；`baphlical` → graphical；`posiUve` → positive；`to 01` → tool。（原书此处 OCR 残缺）度矩阵一行 OCR 只留下 `by diagonal matrix with row sums of`，被求和的对象脱落，此处依 $L=A^{T}A=D-M$ 补为「邻接矩阵 $M$ 的行和」，请回原书确认。\n本章展开两个宏大的主题：离散傅里叶变换（Discrete Fourier Transforms）所需的关键矩阵，以及图模型（graphical models）所需的关键矩阵。\n当问题具有特殊的结构时，这两个主题都会出现在机器学习之中——而这种结构正体现在神经网络的架构（architecture）里。\n傅里叶（Fourier）对应的是具有平移不变性（shift invariance）的问题。\n对图像中某一个像素所做的运算，与对下一个像素所做的运算是同一个运算。\n在这种情形下，该运算就是一次卷积（convolution）。\n底层矩阵的每一行都是上一行的移位，每一列都是上一列的移位。\n卷积网络（Convolutional nets）在每个像素周围使用同一组权重（weights）。\n有了这种平移不变（shift-invariant）的结构，卷积矩阵（convolution matrix，在图像处理中称为滤波器，即 filter）就具有常数对角线（constant diagonals）。\n在一维问题中，$N \\times N$ 矩阵完全由它的第一行与第一列决定。\n很多时候该矩阵是带状的（banded）——因为滤波器（filter）具有有限长度（finite length）——于是它在某一条对角线带之外全为零。\n对于由重复的一维分块构成的二维问题，这种节省是巨大的。\n这使得我们能够使用卷积神经网络（Convolutional Neural Net，简称 CNN 或 ConvNet），而一个装满了相互独立权重的 $N^{2} \\times N^{2}$ 矩阵则是根本行不通的。\nCNN 的一个重大突破是这篇 NIPS 2012 论文：Alex Krizhevsky、Ilya Sutskever 与 Geoffrey Hinton 的 *ImageNet Classification with Deep Convolutional Neural Networks*（用深度卷积神经网络做 ImageNet 分类）。\n> <span style=color:#1e8449;>**[note] 译者注（文献补全）：**</span> 论文题名依原书文献信息补为英文原题 *ImageNet Classification with Deep Convolutional Neural Networks*；OCR 中该行仅存 `ImageNet CI “ s ca 五 0 视 w 氵 Deep Co “ 况 Neural e ks`。（原书此处 OCR 残缺）该题名的完整副题与出处（NIPS 2012）请回原书核对。\n他们的神经网络有 6000 万个参数。\n图（Graphs）具有另一种结构。\n它们由节点（node）以及连接这些节点的 $m$ 条边（edge）组成。\n这些连接由关联矩阵（incidence matrix）来表达：$m$ 行对应边，$n$ 列对应节点。\n每一个图都关联着四个重要矩阵：\n- 关联矩阵（incidence matrix）$A$：$m \\times n$ 矩阵，每一行中有一个 $-1$ 和一个 $1$。\n- 邻接矩阵（adjacency matrix）$M$：$n \\times n$ 矩阵，当节点 $i$ 与节点 $j$ 相连时取 $1$。\n- 度矩阵（degree matrix）$D$：$n \\times n$ 对角矩阵，对角元为该行的行和（即节点的度）。\n- 拉普拉斯矩阵（Laplacian matrix）$L = A^{T}A = D - M$：半正定（positive semidefinite）矩阵。\n从深度学习的视角看，傅里叶问题与 CNN 相关联，而图模型（graphical models）则导向图网络（graphical nets）。\n图论（Graph theory）已经成为我们理解网络上离散问题的最宝贵工具。\n\n@@PAGE:206@@\n<!-- page 206 -->\n> <span style=color:#7f8c8d;>本页为书页 204，是 §IV.1 的开篇正文页；页眉与印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.204</span>\n经典的傅里叶变换（Fourier transforms）作用于函数，而离散傅里叶变换（discrete Fourier transform，DFT）则作用于向量：\n- 实傅里叶级数（Real Fourier series）：实的周期函数 $f(x + 2\\pi) = f(x)$；\n- 复傅里叶级数（Complex Fourier series）：复的周期函数；\n- 傅里叶积分变换（Fourier integral transforms）：$\\mathbb{R}$ 上的复函数 $f(x)$；\n- 离散傅里叶级数（Discrete Fourier series）：复向量 $f = (f_0, f_1, \\ldots, f_{N-1})$。\n我们的焦点是最后一种——把向量变换为向量，而这一变换是靠矩阵来实现的，逆变换使用的则是逆矩阵。\n所有这些变换都共享同一类傅里叶所用的基函数（basis functions）：\n| 变换 | 基函数 | 指标范围 |\n| --- | --- | --- |\n| 实傅里叶级数（Real Fourier series） | 余弦（cosines）$\\cos kx$ 与正弦（sines）$\\sin kx$ | $k = 0, \\pm 1, \\pm 2, \\ldots$ |\n| 复傅里叶级数（Complex Fourier series） | 复指数（complex exponentials）$e^{inx}$ | $n = 0, \\pm 1, \\pm 2, \\ldots$ |\n| 傅里叶积分变换（Fourier integral transforms） | 复指数（complex exponentials）$e^{ikx}$ | $-\\infty < k < \\infty$ |\n| 离散傅里叶级数（Discrete Fourier series） | $N$ 个基向量 $b_k$，其分量为 $(b_k)_j = e^{2\\pi i j k / N}$ | $j, k = 0, 1, \\ldots, N-1$ |\n每一个函数、每一个向量都被表示为傅里叶基函数的线性组合。那么所谓“变换（transform）”究竟是什么呢？它就是把这些组合中的 $f$ 与它的系数 $a_k$、$b_k$、$c_k$、$\\hat f(k)$ 联系起来的规则：\n实级数（Real series）\n```math\nf(x) = a_0 + a_1\\cos x + b_1\\sin x + a_2\\cos 2x + b_2\\sin 2x + \\cdots\n```\n复级数（Complex series）\n```math\nf(x) = c_0 + c_1 e^{ix} + c_{-1} e^{-ix} + c_2 e^{2ix} + c_{-2} e^{-2ix} + \\cdots\n```\n傅里叶积分（Fourier integrals）\n```math\nf(x) = \\int_{-\\infty}^{\\infty} \\hat f(k)\\, e^{ikx}\\, dk\n```\n离散级数（Discrete series）\n```math\nf = c_0 b_0 + c_1 b_1 + \\cdots + c_{N-1} b_{N-1} = Fc\n```\n最后一行即傅里叶矩阵（Fourier matrix）$F$ 乘以系数向量 $c$。每一个傅里叶变换都把 $f$ 送进频率空间（frequency space），成为它的系数 $c$；逆变换则从系数出发，重建原来的函数。计算系数是分析（analysis），重建原来的对象（上面方框中所示）是合成（synthesis）。对向量而言，命令 `fft` 与 `ifft` 分别从 $f$ 得到 $c$、从 $c$ 得到 $f$；这些命令是由快速傅里叶变换（Fast Fourier Transform，FFT）执行的。\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声按数学语境重建如下：`app ly to functionse` → apply to functions；`0 慑 focus` → Our focus；`transformmg` → transforming；`senes` → series；`COSines`/`sines` → cosines／sines；`exponenti 引 S` → exponentials；`Di screte` → Discrete；`t and i t` → `fft` and `ifft`；`c 什 om 六 f 什 om c` → $c$ from $f$ 与 $f$ from $c$；公式中的 `彳`／`）`／`歹`／`陶` 系括号与变量被吞，已据数学常识补全。离散级数一行的 `= bo + C1b1 + …` 中 $c_0$ 被 OCR 吞掉，依同页「$F$ 乘以系数向量 $c$」与书页 207 的 $f=F_Nc$ 补回为 $c_0b_0$。（原书此处 OCR 残缺）连续变换的 $2\\pi$ 位置依全书约定（书页 208：「连续变换中的 $2\\pi$ 对应离散变换中的 $N$」）定为分析式带 $\\frac{1}{2\\pi}$、合成为 $f(x)=\\int F(k)e^{ikx}dk$，故此处 Fourier integrals 一行不含 $\\frac{1}{2\\pi}$；又 `takes in c-space to its coefficients in frequency space` 一句 OCR 不全，此处按「$f$ → 系数 $c$」的方向译出，原文措辞请回原书确认。\n\n现在输出修订后的译文全文（从 `@@PAGE:205@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4338,
+            "outputTokens": 5386,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4338,
+              "outputTokens": 5386,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 9203,
+          "contextWindow": 1000000,
+          "pressureTokens": 8178,
+          "sampledSurfaceTokens": 4560
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3000,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4643,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 8059
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

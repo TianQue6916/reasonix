@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129484406,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_163 = 书页 160\r\npage_164 = 书页 161\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:163@@（书页 160）\r\n−-- OCR 原文 −--\r\n160\r\nLow Rank and Comprcssed Scnsing\r\nIII.I Changes in 蓋 一 1 什 om Changes in\r\nSuppose we subtract a IOW rank matrix 什 0 m · The next section estimates the change\r\nin eigenvalues and th e change in singular values. This section finds an exact formula\r\nfor the change in 一 1 · Th e formula is called the matrix inversion lemma by some\r\nauthors. TO others it is better known as th e Sherman-Morrison-Woodbury formula.\r\nThose names 什 om engmeermg an d statistics correspond tO updating d dO wndating\r\nformulas in numencal analysis.\r\nThis formula is th e key t0 updating th e solution t0 a linear system = b. The change\r\ncould be in an existing row or column Of ， or in adding/removing a row or COlumn,\r\nThose would be rank one changes. We start with this simple example, when =\r\nThe inverse of M = I 一 T is M¯\r\n1 一 鬱 T\r\nThere are tWO stnking features Of thi s formula. The first is that th e correction tO 亻 一 1 is\r\nalso rank one. That is the final term T / （ 1 一 鬱 ） in th e formula. Th e second 化 ature\r\nis that this correction term c an become infinite. Then M is no t invertible ： no 亻 一 1\r\nThis occurs if the number vTu happens t0 be 1 · Equati0n （ 1 ） ends with a division by\r\nzero · ln this case the formul a il s · = 一 is not invertible because 亻 = 0\r\n（ 2 ）\r\nThe simplest proof of formula (1) is a direc t multiplication of times M¯I ．\r\nMM¯I = @一 鬱 T\r\n1 一 鬱 T\r\n1 一 鬱 T\r\n（ 3 ）\r\nYou see h OW the number T moves outside the matrix 鬱 in th at key final s tep ·\r\nNOW we have shown that formul a (l) is correct. But we haven' t shown wh ere it came\r\nfrom. One good way is tO introduce an extension ” Of tO a matrix E with a neW roW\r\nand a new column ：\r\nExtended matrix E =\r\nhas determinant = 1 一\r\nvT 1\r\nElimination gives tWO ways tO find E¯I. First, s ubtrac t vT times row 1 of E 什 om roW 2 ：\r\nI\r\n0\r\nThen E\r\n0\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 163 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 160，属 Part III 开篇正文；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>译者注（OCR 修正）：本页 OCR 噪声较密——`蓋` 与 `亻` 分别对应 $A$ 与 $A^{-1}$，`什 om` 为 from；`一 1`、`¯I`、`¯1` 一律为 $-1$；`鬱` 为 $u$，而孤立的 `T` 为 $v^{T}$（故 `鬱 T` 实为 $uv^{T}$，`T` 为 $v^T u$）；`化 ature` 为 feature，`il s` 为 fails。公式均按数学语境重建。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n**III.1 Changes in $A^{-1}$ from Changes in $A$（$A$ 的扰动对 $A^{-1}$ 的影响）**\r\n\r\n假设我们从 $A$ 中减去一个 low rank matrix（低秩矩阵）。下一节将估计特征值的变化以及奇异值的变化，本节则要找出 $A^{-1}$ 变化量的精确公式。这个公式被一些作者称为 matrix inversion lemma（矩阵求逆引理），在另一些人那里它更著名的名字是 Sherman-Morrison-Woodbury formula（谢尔曼-莫里森-伍德伯里公式）。这些来自工程与统计学的名字，在 numerical analysis（数值分析）中对应的正是 updating and downdating formulas（更新与降阶更新公式）。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 本页习题围绕同一个设计问题：$A$ 被低秩矩阵 $UV^T$ 改动之后，能不能不重新做一次 $n\\times n$ 求逆，就得到 $(A-UV^T)^{-1}b$？先给第一性原理上的答案：$n\\times n$ 求逆或 LU 分解是 $O(n^3)$，而这个代价几乎全部花在「大矩阵内部成千上万次元素对元素的消去」上；既然改动 $UV^T$ 只有 $k$ 个方向、$2nk$ 个数，那么正确的设计目标就是——把 $O(n^3)$ 的大结构一次冻结、反复复用，把变化量全部压缩到 $O(k^2)$ 的小系统里。Strang 的答案是「只解方程，不造逆矩阵」，这正是 6.006 里「先算清复杂度再动手」的又一个具体化身。复杂度账本如下：把 $M$ 直接求逆约需 $2n^3/3$ 次浮点运算，而 $U,V$ 每变一次就要重付；Problem 5 的两步法则是对 $A$ 做一次 LU 分解（约 $n^3/3$），再解 $k+1$ 个右端项（每个 $O(n^2)$），最后解一个 $k\\times k$ 的小系统 $C=I-V^TZ$（$k^3$）；$k=1$ 时那个小系统退化成一元一次方程，只剩一次标量除法，$k^3$ 项的常数近似为零。关键在于：$Z=A^{-1}U$ 与 $W=A^{-1}V$ 是在 $U,V$ 冻结时预先算好的，此后每换一个 $U$ 或 $V$，需要重算的只有 $Zb$、$V^TZ$ 和最后的线性组合，全是矩阵-向量乘法，合计约 $O(n^2)$，而不是再碰一次 $n^3$。取 $n=1000,\\,k=1$：重算求逆约 $6.7\\times10^8$ 次运算，而更新一次只要几次 $n^2$ 量级的代入（约 $4\\times10^6$），差两个数量级。代入具体数字验算：$n^2=10^6$，求 $Zb$ 约 $2n^2=2\\times10^6$，$V^TZ$ 又是约 $2n^2$，代回组合约 $2n^2$，三者相加不到 $10^7$，与 $6.7\\times10^8$ 相比确实是百倍量级的差距。CSAPP 的视角把差距说得更具体：解方程阶段做的是矩阵-向量乘法，访存是顺序流式的，缓存命中率高；LU 分解则要在 $n\\times n$ 数据上反复扫过整块（GEPP 还要选主元、跳着访问），即使分块优化后仍是访存受限（memory bound），这正是第 6 章缓存层次那套分析的直接应用。低秩更新之所以快，不只是浮点运算少，而是把「必须反复触碰全部 $n^2$ 个元素」换成了「$k+1$ 次触碰」。Problem 1 用几何级数推出 $k=1$ 的公式，这一步你在 6.042J 的生成函数里见过：$(I-X)^{-1}=I+X+X^2+\\cdots$。关键在 $X=uv^T$ 时级数塌缩成标量几何级数，因为 $(uv^T)^2=u(v^Tu)v^T=(v^Tu)\\,uv^T$，于是 $X^m=(v^Tu)^{m-1}uv^T$，求和得 $I+\\dfrac{uv^T}{1-v^Tu}$。代一组数验算：取 $u=(1,1)^T$、$v=(0.25,0.25)^T$，则 $v^Tu=0.5$，公式给出 $(I-uv^T)^{-1}=I+\\dfrac{uv^T}{0.5}$；而 $uv^T$ 是秩一矩阵，$(I-uv^T)uv^T=uv^T-(v^Tu)uv^T=0.5\\,uv^T$，两边相乘得 $(I-uv^T)(I+2uv^T)=I+2uv^T-uv^T-2\\cdot0.5\\,uv^T=I$，恒等式成立。这也标出了公式失效的边界：$v^Tu=1$ 时级数不收敛、$I-uv^T$ 奇异；数值上 $1-v^Tu$ 接近 $0$ 会发生灾难性抵消，与 CSAPP 第 2 章「相近浮点数相减丢有效位」以及你在 Strang 里反复见到的条件数是同一件事。按浮点模型的粗略估计，$v^Tu$ 由 $n$ 次乘加累积而来，本身已带约 $n\\varepsilon$ 的相对误差，因此当 $1-v^Tu$ 小到 $10^{-4}$ 量级（即 $v^Tu=0.9999$）时，相减后仅剩约 4 位有效数字，解 $x$ 的相对误差被放大约 $10^4$ 倍——这就是条件数在起作用的同一现象，也解释了为什么 Sherman-Morrison 在实践中必须配合显式的奇异性检查。跨课程连接：从 18.065 的 QR 与最小二乘出发，把「分解一次、复用多次」这条线索接到本页——$A=QR$ 时低秩更新等价于对 $R$ 做小的修正，连接路径是「固定分解 $\\to$ 预处理 $Z,W$ 并缓存 $\\to$ 每次变动只解 $k\\times k$ 系统」，区分的要点在于：QR 更新（如 Givens 旋转）的目标是保持正交因子的结构以维持数值稳定性，代价是每次更新 $O(n^2)$ 且要对因子本身动手；而 Sherman-Morrison-Woodbury 的目标是保持已算好的线性求解器不动，只在大矩阵之外挂一个小修正项，代价更低、实现更简单，但把全部数值风险集中到了分母 $1-V^TZ$ 上——这是两者的核心区别：一个修因子，一个修解，前者换稳定性，后者换速度。命名模板：**低秩更新法（不改分解，只解方程）**——凡是「大矩阵被小改动、又要反复使用」的场合，先固定大矩阵的分解，把小改动全部塞进一个 $k\\times k$ 的小系统。增量 PCA、递归最小二乘、在线学习的协方差更新都是这个模板的实例。\r\n\r\n\r\n这个公式是更新线性方程组 $Ax = b$ 之解的关键：改动可能发生在 $A$ 已有的某一行或某一列上，也可能来自增加或删除一行、一列，而这些都属于 rank one changes（秩一改变）。我们先从这个最简单的例子开始，此时 $A = I$。矩阵 $M = I − uv^{T}$ 的逆为\r\n\r\n```math\r\nM^{-1} = I + \\frac{uv^{T}}{1 − v^{T}u}. \\tag{1}\r\n```\r\n\r\n这个公式有两个引人注目的特点。第一个特点是对 $A^{-1}$ 的修正项同样是秩一的，也就是公式中最后那一项 $uv^{T}/(1 − v^{T}u)$。第二个特点是这个修正项可能变为无穷大，此时 $M$ 不可逆：不存在 $M^{-1}$。当数 $v^{T}u$ 恰好等于 $1$ 时就会出现这种情况，公式 (1) 以除以零收场。在这种情形下公式失效：$M = I − uv^{T}$ 不可逆，因为它的行列式为零：\r\n\r\n```math\r\n\\det M = 1 − v^{T}u. \\tag{2}\r\n```\r\n\r\n公式 (1) 最简单的证明是把 $M$ 与 $M^{-1}$ 直接相乘：\r\n\r\n```math\r\nMM^{-1} = \\left(I − uv^{T}\\right)\\left(I + \\frac{uv^{T}}{1 − v^{T}u}\\right)\r\n= I − uv^{T} + \\frac{uv^{T} − u\\,(v^{T}u)\\,v^{T}}{1 − v^{T}u}\r\n= I. \\tag{3}\r\n```\r\n\r\n你可以看到那个数 $v^{T}u$ 是如何在关键的最后一步中从矩阵 $uv^{T}$ 里移出来的。\r\n\r\n现在我们已证明公式 (1) 是正确的，却还没有说明它从何而来。一个好办法是把 $I$ 扩展为一个带新行和新列的矩阵 $E$：\r\n\r\n```math\r\nE = \\begin{bmatrix} I & u \\\\ v^{T} & 1 \\end{bmatrix}\r\n\\quad\\text{has determinant}\\quad\r\n\\det E = 1 − v^{T}u .\r\n```\r\n\r\n消元给出了求 $E^{-1}$ 的两种途径。第一种是把 $E$ 的第 1 行乘以 $v^{T}$ 后从第 2 行中减去：\r\n\r\n```math\r\n\\begin{bmatrix} I & 0 \\\\ −v^{T} & 1 \\end{bmatrix}\r\n\\begin{bmatrix} I & u \\\\ v^{T} & 1 \\end{bmatrix}\r\n= \\begin{bmatrix} I & u \\\\ 0 & 1 − v^{T}u \\end{bmatrix}.\r\n```\r\n\r\n于是\r\n\r\n```math\r\nE^{-1} = \\begin{bmatrix} I & u \\\\ 0 & 1 − v^{T}u \\end{bmatrix}^{-1}\r\n\\begin{bmatrix} I & 0 \\\\ −v^{T} & 1 \\end{bmatrix}.\r\n```\r\n\r\n@@PAGE:164@@（书页 161）\r\n−-- OCR 原文 −--\r\n1111. Changes in A¯I 什 om Changes in\r\n161\r\nThe second w ay subtracts u times the second row of E fro m its first row ：\r\n1\r\n0\r\n0\r\nThen E¯I\r\n1\r\n0\r\n1\r\n0\r\n1\r\n（ 5 ）\r\nNow compare those tW0 formulas for the same E¯I\r\nProb le m 2 does th e algebra ：\r\nI + D 一 1 鬱 T\r\n0 forms\r\n一 D 一 1\r\nof E\r\n一 刀 一 1 鬱 T\r\n（ 6 ）\r\n一 亻 一 1 1 十 鬱 T 入 亻 一 1\r\nThe 1 ， 1 blocks s ay that 亻 一 1\r\nI + D 一 1 鬱 T · This isformula (l), with D = 1 一 鬱 T ·\r\nTh e lnverse of M = I 一 UVT\r\nWe can take a big s tep with no effort. lnstead of a perturbation of rank 1 ， SUPPOSe we\r\nhave a perturb ation UVT of rank The matrix U is by and th e matrix VT is k by ·\r\nSO we have columns and rows ex actly as we had one column an d one row 鬱\r\nThe 皿 ul a for M¯ stays exactly the same ！ But there are two sizes an d ：\r\n： + U()k 一 VTU)—1vT （ 7 ）\r\nThe inverse of M = In 一 UVT is M¯\r\n1\r\nThis bring s out an imp ortant p Oint about these inverse formulas. We are exchanging\r\nan inverse Of size for an inverse Of size · Since = 1 at the beginning Of this section,\r\nwe had inverse 0f size 1 which was Just an ordinary division by the number 1 一 鬱 ·\r\nNow VT U is × × 陶 · We have a by matrix 一 VTU to invert, not “ by 让\r\nThe fast proof of formula （ 7 ） is again a direct check that M 垄 一 1 = ：\r\n‰ 一 U 产 ） ‰ + 叭 一 vT 刃 一 地 T ） = 一 U 产 + （ 一 uvT)U(1k-VTU)-1VT\r\nRepl ace ()n 一 UVT)U in that equation by U()k 一 VTU). This is a neat i de n ti ty ！\r\nThe right side reduces to 一 UVT + UVT which is · Th1 s proves formula （ 7 ） ·\r\nAgain there is an extended matrix ,E 0f size + th at holds the key ：\r\nhas determinant = det()n 一 UVT) = det()k 一 VTU). （ 8 ）\r\nln U\r\nIf < < the right hand side of （ 7 ） is probably easier and faster th an a direct att ack\r\n0n the 1 eft hand side. The matrix VTU of size 丸 is smaller than UVT of size 讹 ·\r\n1 1 1\r\n1 1 1 ？ ln this =\r\nExample 1 What is the inverse 0f = / 一\r\n1 1 1\r\n1\r\n1\r\n1\r\nSo M¯l equ al s I 一\r\nS01u Here T = 3 and 亻 一 1 = / +\r\n2\r\n1\r\n鬱\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n1\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 164 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 161，是 §III.1 的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>译者注（OCR 修正）：本页 `什 om` 为 from，`¯I`/`¯1`/`一 1` 为 $-1$；`刀`、`鬱` 皆为 $u$，`T` 为 $v^{T}$；`皿 ul a` 为 formula，`i de n ti ty` 为 identity，`垄` 为 $M^{-1}$ 记号之误，`产` 为 $(I_k − V^{T}U)^{-1}$ 之残迹，`叭` 为 $U$。公式按数学语境重建。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n**III.1 Changes in $A^{-1}$ from Changes in $A$（续）**\r\n\r\n第二种途径是把 $E$ 的第 2 行乘以 $u$ 后从它的第 1 行中减去：\r\n\r\n```math\r\n\\begin{bmatrix} I & −u \\\\ 0 & 1 \\end{bmatrix}\r\n\\begin{bmatrix} I & u \\\\ v^{T} & 1 \\end{bmatrix}\r\n= \\begin{bmatrix} I − uv^{T} & 0 \\\\ v^{T} & 1 \\end{bmatrix}.\r\n```\r\n\r\n于是\r\n\r\n```math\r\nE^{-1} = \\begin{bmatrix} I & −u \\\\ 0 & 1 \\end{bmatrix}\r\n\\begin{bmatrix} I − uv^{T} & 0 \\\\ v^{T} & 1 \\end{bmatrix}^{-1}. \\tag{5}\r\n```\r\n\r\n现在把同一个 $E^{-1}$ 的这两个公式作比较，其代数运算留给 Problem 2：\r\n\r\n```math\r\nE^{-1} = \\begin{bmatrix} I + uD^{-1}v^{T} & −uD^{-1} \\\\ D^{-1}v^{T} & D^{-1} \\end{bmatrix}\r\n= \\begin{bmatrix} I & −u \\\\ 0 & 1 \\end{bmatrix}\r\n\\begin{bmatrix} M^{-1} & 0 \\\\ −D^{-1}v^{T} & D^{-1} \\end{bmatrix}. \\tag{6}\r\n```\r\n\r\n其中 $D = 1 − v^{T}u$。左上的 $(1,1)$ 块告诉我们\r\n\r\n```math\r\nM^{-1} = I + uD^{-1}v^{T}.\r\n```\r\n\r\n这正是公式 (1)，其中 $D = 1 − v^{T}u$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n**The Inverse of $M = I − UV^{T}$（$M = I − UV^{T}$ 的逆）**\r\n\r\n我们可以毫不费力地迈出一大步。假设扰动不再是秩一的，而是秩 $k$ 的 $UV^{T}$：矩阵 $U$ 是 $n \\times k$ 的，矩阵 $V^{T}$ 是 $k \\times n$ 的。于是我们有 $k$ 列和 $k$ 行，正如先前只有一列 $u$ 和一行 $v^{T}$ 一样。$M^{-1}$ 的公式保持完全相同的形状！只不过现在涉及两个尺寸 $n$ 与 $k$：\r\n\r\n```math\r\nM = I_n − UV^{T}\r\n\\quad\\text{is}\\quad\r\nM^{-1} = I_n + U\\left(I_k − V^{T}U\\right)^{-1}V^{T}. \\tag{7}\r\n```\r\n\r\n这就带出了关于这类逆公式的一个重要观点：我们用一个尺寸为 $k$ 的逆，换掉了一个尺寸为 $n$ 的逆。由于本节开头 $k = 1$，我们当时的逆是尺寸 1 的，也就是对那个数 $1 − v^{T}u$ 做普通的除法。现在 $V^{T}U$ 是 $(k \\times n)$ 乘 $(n \\times k)$，即 $k \\times k$。我们要去求逆的是一个 $k \\times k$ 的矩阵 $I_k − V^{T}U$，而不是 $n \\times n$ 的。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这一句是整节的成本账本，值得把它算成具体数字。先问它解决什么设计问题：扰动只有 $k$ 列，答案却住在 $n$ 维空间里，若每来一次扰动就重建整个逆，就是把 $n-k$ 个本来没动的方向也重新消一遍元，白花力气。用 6.006 的复杂度语言：求 $I_n-UV^{T}$ 的逆若从零开始做消元约需 $\\frac{2}{3}n^{3}$ 次乘加；而按公式 (7)，只需对 $k\\times k$ 的 $I_k-V^{T}U$ 求逆（$O(k^{3})$），再加上两次 $n\\times k$ 与 $k\\times n$ 的乘法形成修正项（$O(n^{2}k)$），总计 $O(n^{2}k+k^{3})$。取 $n=1000$、$k=10$：直接求逆约 $6.7\\times10^{8}$ 次运算，走公式只要约 $10^{7}$ 次，快了两个数量级。内存这一侧同样有账可算：$n\\times n$ 的逆按 8 字节双精度存是 8 MB，$k\\times k$ 的小逆只有 800 字节，正好落进 CSAPP 讲的一级数据缓存那一档；而公式真正要花的 $O(n^{2}k)$ 是两次瘦长矩阵乘法，按行分块后顺序扫描，命中率远高于对 8 MB 大矩阵反复随机访问。先做一个能一行验算完的数值例子：取 $k=1$、$n=2$，$U=(1,3)^{T}$、$V=(2,4)^{T}$，则 $UV^{T}$ 是 $\\begin{pmatrix}2&4\\\\6&12\\end{pmatrix}$，于是 $U(I_1-V^{T}U)=U(1-2\\cdot1-4\\cdot3)=U(1-14)=-13U=(-13,-39)^{T}$；而 $(I_2-UV^{T})U=\\begin{pmatrix}-1&-4\\\\-6&-11\\end{pmatrix}\\begin{pmatrix}1\\\\3\\end{pmatrix}=\\begin{pmatrix}-13\\\\-39\\end{pmatrix}$，逐项相等。注意两边的算术成本：左边要先造出 $n\\times n$ 的外积再乘向量（$O(n^{2})$），右边先做 $k$ 次内积再乘 $U$（$O(nk)$），答案一样而路径短得多——这就是把 $V^{T}U$ 从矩阵内部搬到外面的现金价值。但注意这不是免费的午餐——它要求你**已经持有** $A^{-1}$（或某个已有分解）；若从零开始，一步也省不下来。这正是卡尔曼滤波与递归最小二乘存在的理由：每步都保留上一步的逆，于是新数据到来时只花 $O(n^{2})$。公式 (7) 的证明核心是一条搬运恒等式 $(I_n-UV^{T})U=U(I_k-V^{T}U)$：左端展开是 $U-UV^{T}U$，右端展开是 $U-UV^{T}U$，逐项相同，但它把 $V^{T}$ 从 $U$ 的左边搬到了右边，从而让 $U$ 可以被提到括号外，$MM^{-1}$ 的四个交叉项随即两两抵消。同一个搬运精神也解释了式 (8) 的行列式恒等式 $\\det(I_n-UV^{T})=\\det(I_k-V^{T}U)$：两个乘积的非零特征值相同，差的只是 $|n-k|$ 个零（下面的注解会给出证明）。用 CSAPP 的缓存视角看这件事会更清楚：$k\\ll n$ 时，$I_k-V^{T}U$ 小到可以整块放进缓存甚至寄存器，而 $n\\times n$ 的大矩阵在内存里来回搬运的代价本身就不可忽略；用小块替换大块既是复杂度上的胜利，也是访存局部性上的胜利。跨课程再连一条算法侧的路：这个 $O(n^{2}k+k^{3})$ 的配方本身就是分治 + 合并的形状，和 6.006 里 Strassen 矩阵乘法、以及分治求逆那种把大对象切成小块再拼回来的思路同源，区别在于低秩更新只切出薄薄一条 $n\\times k$ 的边，不需要递归掰成四块，所以常数更小、实现更短。再连一条实分析侧的路：$\\frac{2}{3}n^{3}$ 这个常数不是拍脑袋，它来自对消元乘加次数 $\\Sigma_{i=1}^{n}(n-i)^{2}$ 的估值，而这类求和正是 100B 里用积分 $\\int_{0}^{n}(n-x)^{2}dx$ 夹逼求上下界的日常练习，和算法课用 Chernoff 界给随机化算法估成功率是同一套先界定再取阶的手感，区别在于实分析给出的是确定性的上下界，Chernoff 给的是概率意义上的尾部界。还有一个容易被忽略的数值细节：上面那个 $k=1$ 的例子里分母是 $v_{1}$，一旦 $v_{1}$ 接近 $1$（对应 $I_k-V^{T}U$ 接近奇异、条件数爆炸），小逆就会把误差放大到修正项里，此时低秩捷径反而不如老老实实重建。所以推荐一个命名模板，把这条检查固化成动作：**低秩更新成本检验法**——第一步写出两个方向的乘积并验算相等，第二步检查小块 $I_k-V^{T}U$ 是否病态或奇异，第三步比较 $O(n^{3})$ 与 $O(n^{2}k+k^{3})$ 的总账，第四步确认旧逆确实已在手上。四问都过，才允许走捷径。扩展到本节的用途：只要扰动是低秩的（新增一行测量、删掉一列、状态按 $x\\mapsto Ax$ 演化），都应当维护旧逆 + 修改记录，而不是每步重建整个矩阵。\r\n\r\n\r\n公式 (7) 的快速证明同样是直接验证 $MM^{-1} = I$：\r\n\r\n```math\r\n\\left(I_n − UV^{T}\\right)\\left[I_n + U\\left(I_k − V^{T}U\\right)^{-1}V^{T}\\right]\r\n= I_n − UV^{T} + U\\left(I_k − V^{T}U\\right)^{-1}V^{T} − UV^{T}U\\left(I_k − V^{T}U\\right)^{-1}V^{T}.\r\n```\r\n\r\n把该式中的 $\\left(I_n − UV^{T}\\right)U$ 换成 $U\\left(I_k − V^{T}U\\right)$。这是一个漂亮的小恒等式！右端随即化简为 $I_n − UV^{T} + UV^{T}$，也就是 $I_n$。这就证明了公式 (7)。\r\n\r\n同样存在一个尺寸为 $n + k$ 的扩展矩阵 $E$，它掌握着钥匙：\r\n\r\n```math\r\nE = \\begin{bmatrix} I_n & U \\\\ V^{T} & I_k \\end{bmatrix}\r\n\\quad\\text{has determinant}\\quad\r\n\\det E = \\det\\left(I_n − UV^{T}\\right) = \\det\\left(I_k − V^{T}U\\right). \\tag{8}\r\n```\r\n\r\n若 $k \\ll n$，则 (7) 的右端很可能比直接攻击左端更容易也更快：尺寸为 $k$ 的矩阵 $V^{T}U$ 比尺寸为 $n$ 的 $UV^{T}$ 更小。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**Example 1（例 1）**\r\n\r\n问：矩阵 $M = I − \\frac{1}{3}\\mathbf{1}\\mathbf{1}^{T}$ 的逆是什么？本例中 $\\mathbf{1} = (1, 1, 1)$，于是\r\n\r\n```math\r\nM = \\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 1 \\\\ 1 & 1 & 1 \\end{bmatrix}\r\n```\r\n\r\n的逆是什么？此例中 $u = v = \\mathbf{1}/\\sqrt{3}$。\r\n\r\n**Sol（解）** 这里 $v^{T}u = 1$，所以 $M$ 不可逆，公式 (1) 失效。把这个例子稍微改动一下，令 $v^{T}u = −1$（即 $M = I + \\frac{1}{3}\\mathbf{1}\\mathbf{1}^{T}$），则 $M^{-1}$ 等于\r\n\r\n```math\r\nM^{-1} = I + \\frac{uv^{T}}{1 − v^{T}u}\r\n= I + \\frac{1}{2}\\cdot\\frac{1}{3}\\mathbf{1}\\mathbf{1}^{T}\r\n= I + \\frac{1}{6}\\mathbf{1}\\mathbf{1}^{T}\r\n= \\begin{bmatrix} \\frac{3}{2} & \\frac{1}{2} & \\frac{1}{2} \\\\[2pt] \\frac{1}{2} & \\frac{3}{2} & \\frac{1}{2} \\\\[2pt] \\frac{1}{2} & \\frac{1}{2} & \\frac{3}{2} \\end{bmatrix}.\r\n```"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 8031,
+            "outputTokens": 11036,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 8031,
+              "outputTokens": 11036,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 14044,
+          "contextWindow": 1000000,
+          "pressureTokens": 11487,
+          "sampledSurfaceTokens": 5352
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3792,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 8692,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 12900
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

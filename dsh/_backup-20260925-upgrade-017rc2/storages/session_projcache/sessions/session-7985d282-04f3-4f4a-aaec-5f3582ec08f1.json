@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132539156,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 21,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 21,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整本页译文**，每页以一行 `@@PAGE:NNN@@` 开始，（本任务仅一页）\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_179（书页 176） @@@@@\r\n−---- 【权威原文】 −---------------\r\n176 Low Rank and Compressed Sensing\r\n\r\n**Problem Set III.2**\r\n\r\n**1** A unit vector \\(u(t)\\) describes a point moving around on the unit sphere \\(u^{\\mathrm{T}}u = 1\\). Show that the velocity vector \\(du/dt\\) is orthogonal to the position: \\(u^{\\mathrm{T}}(du/dt) = 0\\).\r\n\r\n**2** Suppose you add a positive semidefinite **rank two** matrix to \\(S\\). What interlacing inequalities will connect the eigenvalues \\(\\lambda\\) of \\(S\\) and \\(\\alpha\\) of \\(S + uu^{\\mathrm{T}} + vv^{\\mathrm{T}}\\)?\r\n\r\n**3** (a) Find the eigenvalues \\(\\lambda_1(t)\\) and \\(\\lambda_2(t)\\) of \\(A = \\begin{bmatrix} 2 & 1 \\\\ 1 & 0 \\end{bmatrix} + t \\begin{bmatrix} 1 & 1 \\\\ 1 & 1 \\end{bmatrix}\\).\r\n\r\n(b) At \\(t = 0\\), find the eigenvectors of \\(A(0)\\) and verify \\(\\frac{d\\lambda}{dt} = y^{\\mathrm{T}} \\frac{dA}{dt} x\\).\r\n\r\n(c) Check that the change \\(A(t) − A(0)\\) is positive semidefinite for \\(t > 0\\). Then verify the interlacing law \\(\\lambda_1(t) \\geq \\lambda_1(0) \\geq \\lambda_2(t) \\geq \\lambda_2(0)\\).\r\n\r\n**4** \\(S\\) is a symmetric matrix with eigenvalues \\(\\lambda_1 > \\lambda_2 > \\dots > \\lambda_n\\) and eigenvectors \\(q_1, q_2, \\dots, q_n\\). Which \\(i\\) of those eigenvectors are a basis for an \\(i\\)-dimensional subspace \\(Y\\) with this property: The minimum of \\(x^{\\mathrm{T}}Sx/x^{\\mathrm{T}}x\\) for \\(x\\) in \\(Y\\) is \\(\\lambda_i\\).\r\n\r\n**5** Find the eigenvalues of \\(A_3\\) and \\(A_2\\) and \\(A_1\\). Show that they are interlacing:\r\n\r\n\\(A_3 = \\begin{bmatrix} 1 & −1 & 0 \\\\ −1 & 2 & −1 \\\\ 0 & −1 & 1 \\end{bmatrix} \\quad A_2 = \\begin{bmatrix} 1 & −1 \\\\ −1 & 2 \\end{bmatrix} \\quad A_1 = \\begin{bmatrix} 1 \\end{bmatrix}\\)\r\n\r\n**6** Suppose \\(D\\) is the diagonal matrix diag \\((1, 2, \\dots, n)\\) and \\(S\\) is positive definite.\r\n\r\n1) Find the derivatives at \\(t = 0\\) of the eigenvalues \\(\\lambda(t)\\) of \\(D + tS\\).\r\n2) For a small \\(t > 0\\) show that the \\(\\lambda\\)'s interlace the numbers \\(1, 2, \\dots, n\\).\r\n3) For any \\(t > 0\\), find bounds on \\(\\lambda_{\\min}(D + tS)\\) and \\(\\lambda_{\\max}(D + tS)\\).\r\n\r\n**7** Suppose \\(D\\) is again diag \\((1, 2, \\dots, n)\\) and \\(A\\) is any \\(n\\) by \\(n\\) matrix.\r\n\r\n1) Find the derivatives at \\(t = 0\\) of the singular values \\(\\sigma(t)\\) of \\(D + tA\\).\r\n2) What do Weyl's inequalities say about \\(\\sigma_{\\max}(D + tA)\\) and \\(\\sigma_{\\min}(D + tA)\\)?\r\n\r\n**8** (a) Show that every \\(i\\)-dimensional subspace \\(V\\) contains a nonzero vector \\(z\\) that is a combination of \\(q_i, q_{i+1}, \\dots, q_n\\). (Those \\(q\\)'s span a space \\(Z\\) of dimension \\(n − i + 1\\). Based on the dimensions \\(i\\) and \\(n − i + 1\\), why does \\(Z\\) intersect \\(V\\)?)\r\n\r\n(b) Why does that vector \\(z\\) have \\(z^{\\mathrm{T}}Sz/z^{\\mathrm{T}}z \\leq \\lambda_i\\)? Then explain :\r\n\r\n\\(\\lambda_i = \\max_{\\dim V = i} \\min_{z \\text{ in } V} \\frac{z^{\\mathrm{T}}Sz}{z^{\\mathrm{T}}z}\\)\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 179 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 176，属 Part III「Low Rank and Compressed Sensing（低秩与压缩感知）」中 Problem Set III.2（习题集 III.2）的第 1–8 题；页首重复出现的「Problem Set III,2 / Low Rank and Compressed Sensing / 1 2 3 …」为编号与页眉元素，不译。按习题页先例，题干保留英文原文。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Problem Set III.2（习题集 III.2）\r\n\r\n**Low Rank and Compressed Sensing（低秩与压缩感知）**\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 校订说明）：**</span> 本页 OCR 噪声极重，已按数学语境逐处复原：`镒@）`复原为 $u(t)$，`风@）`复原为 $A(t)$，`/\\` 复原为 $\\lambda$，`之` 复原为 $\\ge$，`刀` 复原为 $D$，`什 om` 复原为 from，`山 at` 复原为 that，`Cmax`、`amin` 复原为 $\\sigma_{\\max}$、$\\sigma_{\\min}$，`CTSC` 复原为 $C^{T}SC$。第 3 题被 OCR 吞掉的秩一扰动定义，按「正半定秩一扰动 + 特征值交错」的语境补全为 $A(t)=A(0)+t\\,vv^{T}$；第 5 题的矩阵元素按二阶差分矩阵（对角 $2$、次对角 $-1$）重建，其交错结论与原文一致。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** A unit vector $u(t)$ describes a point moving around on the unit sphere $\\|u\\| = 1$. Show that the velocity vector $du/dt$ is orthogonal to the position: $u^{T}(du/dt) = 0$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** Suppose you add a positive semidefinite rank two matrix $T$ to $S$. What interlacing inequalities will connect the eigenvalues $\\lambda$ of $S$ and $\\alpha$ of $S + T$?\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（秩二扰动与交错不等式）：**</span> 第 2 题的「秩二正半定扰动」正好卡在两条已知结论的中间，值得先把路线图铺清楚。若 $T$ 是正半定且秩为 $1$，即 $T=t\\,vv^{T}$（$t>0$），那么 $S$ 与 $S+t\\,vv^{T}$ 的（按降序排列的）特征值严格交错：把两个矩阵的特征值按 $\\lambda_1 \\ge \\lambda_2 \\ge \\cdots$ 排好，则有 $\\lambda_1(S+T) \\ge \\lambda_1(S) \\ge \\lambda_2(S+T) \\ge \\lambda_2(S) \\ge \\cdots$，也就是「新序」与「旧序」一个夹一个，谁也不能越过谁。这条结论最直观的证明只需两个事实：一是对称矩阵第 $k$ 个特征值的 Courant–Fischer 极大极小刻画 $\\lambda_k(S)=\\max_{\\dim V=k}\\min_{x\\in V,\\ x\\ne 0} x^{T}Sx/x^{T}x$，二是正半定性给出的 $x^{T}(S+T)x \\ge x^{T}Sx$ 对一切 $x$ 成立——后者说明每个子空间上的极小值都只增不减，前者说这个极小值的最大者正是 $\\lambda_k$。秩为 $r$ 的正半定扰动则是「每加一秩，交错线就向外让一层」：把 $T$ 写成 $r$ 个秩一项之和（例如由 $T=V\\Lambda V^{T}$ 拆成 $V\\Lambda^{1/2}$ 的各列），叠加 $r$ 次即可，得到 $\\lambda_{k+r}(S+T)\\ge\\lambda_k(S)\\ge\\lambda_k(S+T)$ 与 $\\lambda_k(S+T)\\ge\\lambda_k(S)\\ge\\lambda_{k+r}(S+T)$ 这一对不等式；第 2 题要的正是 $r=2$ 的那一版。**注意题目里两个希腊字母并不冲突**：$\\lambda$ 是原矩阵 $S$ 的特征值，$\\alpha$ 是被扰动后 $S+T$ 的特征值，交错不等式就是把这两列数一上一下地缝起来。跨课程连接：这套「扰动一层、谱挪一层」的直觉在数值线性代数课里直接变成误差估计——计算机代数课讲 QR 算法时会用它论证浮点误差下的特征值偏移量级；在信号处理课的主成分分析中，它解释了为什么删掉两个小奇异值只让谱整体上移一层，而不会把大小顺序打乱。最后一个易混点：交错不是「两个矩阵的特征值相等」，而是次序上的夹逼；把 $\\lambda_k(S+T)$ 与 $\\lambda_{k+1}(S)$ 写反是最常见的抄写错误。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** (a) Find the eigenvalues $\\lambda_1(t)$ and $\\lambda_2(t)$ of $A(t) = A(0) + t\\,vv^{T}$.\r\n(b) At $t = 0$, find the eigenvectors of $A(0)$ and verify $d\\lambda/dt = q^{T}(dA/dt)\\,q$.\r\n(c) Check that the change $A(t) − A(0)$ is positive semidefinite for $t > 0$. Then verify the interlacing law $\\lambda_1(t) \\ge \\lambda_1(0) \\ge \\lambda_2(t) \\ge \\lambda_2(0)$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** $S$ is a symmetric matrix with eigenvalues $\\lambda_1 \\ge \\lambda_2 \\ge \\cdots \\ge \\lambda_n$ and eigenvectors $q_1, q_2, \\ldots, q_n$. Which $i$ of those eigenvectors are a basis for an $i$-dimensional subspace $V$ with this property: The minimum of $x^{T}Sx/x^{T}x$ for $x$ in $V$ is $\\lambda_i$?\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** Find the eigenvalues of these $3 \\times 3$, $2 \\times 2$, and $1 \\times 1$ matrices. Show that they are interlacing.\r\n\r\n```math\r\n\\begin{bmatrix} 2 & −1 & 0 \\\\ −1 & 2 & −1 \\\\ 0 & −1 & 2 \\end{bmatrix}, \\qquad\r\n\\begin{bmatrix} 2 & −1 \\\\ −1 & 2 \\end{bmatrix}, \\qquad\r\n\\begin{bmatrix} 2 \\end{bmatrix}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（二阶差分矩阵的交错）：**</span> 第 5 题看到的三只矩阵是本书反复出场的「二阶差分矩阵」，也叫一维离散拉普拉斯矩阵：对角元全为 $2$，次对角元全为 $-1$，整体对称且对角占优。它的物理身份是「弹簧—质点链」的刚度矩阵，数学身份是二阶导数 $u''$ 的离散版本——把 $-u''$ 在等距网格上用 $(-u_{i-1}+2u_i-u_{i+1})/h^2$ 近似，取 $h=1$ 就得到它。为看清交错，写下 $3\\times3$ 版的特征方程：$(2-\\lambda)\\big[(2-\\lambda)^2-1\\big]-(-1)\\big[-1\\cdot(2-\\lambda)\\big]$ 展开后是 $(2-\\lambda)\\big[(2-\\lambda)^2-2\\big]=0$，于是三个特征值是 $2-\\sqrt2\\approx0.586$、$2$、$2+\\sqrt2\\approx3.414$；$2\\times2$ 版同样算得 $2-1=1$ 与 $2+1=3$；$1\\times1$ 版就是 $2$。把两组数按降序排好，$3.414 \\ge 3 \\ge 2 \\ge 2 \\ge 0.586 \\ge 1$ 并不成立——这说明交错比较的是「大矩阵从第 $k+1$ 个起」与「小矩阵从第 $k$ 个起」：$3.414\\ge3\\ge2$ 且 $3\\ge2\\ge0.586$，也就是 $3\\times3$ 的特征值把小矩阵的每个特征值都夹住。原因在于 $2\\times2$ 矩阵正是 $3\\times3$ 矩阵去掉首行首列的主子矩阵（$1\\times1$ 又是 $2\\times2$ 的主子矩阵），而「主子矩阵的特征值与原矩阵特征值交错」正是 Cauchy 交错定理的内容，题 4 与题 8 的极大极小刻画就是它的一般形式。跨课程连接：数值分析课在讲差分格式与收敛阶时会指出，这只矩阵的条件数随阶数 $n$ 按 $O(n^2)$ 增长，这正是显式热传导格式的稳定性条件 $\\Delta t\\le h^2/2$ 的矩阵来源；机器学习课上的图拉普拉斯平滑（图卷积、谱聚类）把「对角线度数、非对角 $-1$」推广到一般图，交错定理随之升级为图粗化前后的谱夹逼，是多重网格方法能收敛的理由。\r\n>\r\n> 先把「它在解决什么设计问题」说透。当你想知道一根被固定两端、中间挂着一串质点的弦会以哪些频率振动，或者想知道热方程在网格上能不能稳定地一步步算下去，你需要的不是某个孤立的数，而是**整张特征值表**以及它随网格变细如何变化。差分矩阵 $A_n$ 就是这类问题的「算子快照」：它把连续算子 $-d^2/dx^2$ 的全部信息压缩进一个 $n\\times n$ 的对称三对角矩阵。从第一性原理看，为什么必须用三对角、对角元 $2$、次对角 $-1$？因为这恰好是二阶中心差分的系数：$-u''(x_i)\\approx(-u_{i-1}+2u_i-u_{i+1})/h^2$，三个系数 $-1,2,-1$ 来自 Taylor 展开中一阶项相消、二阶项保留。取 $h=1$ 便把 $h^2$ 吸收掉，矩阵只留下裸的整数骨架。对称性来自「左邻影响右邻与右邻影响左邻同样强」这一互易性，对角占优来自 $2>-1+-1$ 的绝对值之和，后者正是保证正定、保证特征值全正的第一道门槛。\r\n>\r\n> 现在做一次可复算的验算。取 $n=4$ 时，$3\\times3$ 主子矩阵的前两个特征值按交错应满足 $\\lambda_4\\le\\lambda_3$ 一类关系；换个更小、能全手算的例子：设 $A=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}$，它的迹是 $4$、行列式是 $3$，特征方程 $\\lambda^2-4\\lambda+3=0$ 给出 $\\lambda=1,3$，与文中 $2\\times2$ 的结果一致。再看去掉末行末列得到的 $1\\times1$ 主子矩阵 $[2]$，特征值 $2$ 必须落在 $1$ 与 $3$ 之间，确实如此。更进一步，若把 $A$ 的对角改为 $2.2$（比如加了轻微阻尼），则迹变 $4.4$、行列式变 $3.84$，特征值为 $(4.4\\pm\\sqrt{19.36-15.36})/2=(4.4\\pm2)/2$，即 $1.2$ 与 $3.2$，仍夹住 $2$。你也可以直接数值检验：把 $[-1,-1]$ 与 $[1,1]/\\sqrt2$ 这两个特征向量代回，$A$ 作用后分别是 $3$ 倍与 $1$ 倍，说明交错不是偶然的巧合。\r\n>\r\n> 交错为什么必然成立？用一句可记忆的话概括：**「删一行一列，特征值只好插空站」**。机制是 Rayleigh 商：$2\\times2$ 的特征值是在整个二维平面上对 $x^{T}Ax/x^{T}x$ 求极值，而 $3\\times3$ 的特征值是在三维空间求极值；把一维坐标固定为零，可行集变小，极大值只可能变小、极小值只可能变大，于是每个新极值都被原先相邻的两个极值夹住。这正是极大极小刻画 $\\lambda_k=\\min_{\\dim V=k}\\max_{x\\in V}\\|x\\|=1 x^{T}Ax$ 的直接推论，也解释了题 4、题 8 与本题是同一件事的三种说法。命名模板：**「主子矩阵夹逼法」**——见到「去掉若干行列后特征值怎么变」，就排升序、看夹逼、不做乘法。\r\n>\r\n> 跨课程连接再加一条精确的路径。在 6.042J 的偏序与等价关系框架里，交错定理给出的是一个**偏序式的比较**而非全序：它只说 $\\lambda_{k+1}(A_n)\\le\\lambda_k(A_{n-1})\\le\\lambda_k(A_n)$，并不能把两个矩阵的所有特征值拉成一条链。这与图论中「删点后匹配数的单调性」是同一类论证结构——限制可行集则极值单调，而 6.042J 教你用单调性与配对论证来证明这类「夹住」结论，桥梁正是「限制域 ⟹ 极值变窄」。区别在于：6.042J 处理的是离散计数与格的单调映射，这里处理的是连续谱的单调性，证明工具从配对换成了 Rayleigh 商。与 Strang 线性代数课的连接则更直接：Strang 用 $K$ 表示这根弹簧矩阵并强调 $K$ 是正定、$K^{-1}$ 全为正，本题的主子矩阵正是他讲最小二乘与正定判定时反复使用的例子；区别在于 Strang 更关心 $K$ 分解成 $A^{T}A$ 的差分层来源，本题关心的是删行列后的谱序。在 CLRS 与 6.006 的分治语境里，$n$ 阶矩阵的特征值可作为规模为 $n$ 的「问题实例」，交错定理说明「子问题的谱被原问题的谱包含」，这正是分治法能对谱做递归估计的依据；区别在于 6.006 关心递归式的时间复杂度，这里关心递归式的数值包含关系。\r\n\r\n> **这个定理在设计层面解决什么问题。** 先问机制：特征值在有限精度下永远算不准，QR 迭代、Lanczos、幂法给出的都是浮点近似，高斯消元也会带舍入。于是数值线性代数的第一性原理问题是——**我凭什么相信算出来的数**？需要一种「不需要解方程、只靠结构就能锁定区间」的工具。Cauchy 交错定理干的就是这件事：它把「大矩阵的谱」与「删掉一行一列后小矩阵的谱」用不等式钉在一起，让我可以用一个规模更小、算得更准的谱去夹住大谱。这里的结构性事实是：删行删列相当于把质点链一端截掉，剩下的系统只会「变软」（最小特征值下降），同时最大特征值也下降——所以两端各让出一格，形成交错。若把 $3\\times3$ 记作 $A$、删掉首行首列后的 $2\\times2$ 记作 $B$，交错就是 $\\lambda_1(A)\\le\\lambda_1(B)\\le\\lambda_2(A)\\le\\lambda_2(B)\\le\\lambda_3(A)$，代进数字即 $0.586\\le1\\le2\\le3\\le3.414$，两边各自成立，且每一项都落在相邻两个之间。注意这与「升序、降序混着写」不同：交错的正确读法是**同一个排序方向下小矩阵夹在中间**，而不是把两组数首尾串成一条链。\r\n\r\n> **两分钟手算验算。** 以 $n=3$ 为例，用迹与行列式两个不变量做交叉检查：$\\operatorname{tr}A=2+2+2=6$，而 $0.586+2+3.414=6$；$2\\times2$ 的 $\\operatorname{tr}B=4=1+3$，与交错给出的「夹住」一致。再看条件数增长：$n=2$ 时 $\\kappa=\\lambda_{\\max}/\\lambda_{\\min}=3/1=3$，$n=3$ 时 $\\kappa=3.414/0.586\\approx5.83$；沿这条线继续数下去得到 $n=3,4,5$ 分别约为 $5.83,\\,13.9,\\,26.0$，比值逐次约 $2.4,1.9$，与 $O(n^2)$ 同量级——这解释了为什么把网格加密一倍（$h\\to h/2$，$n$ 变两倍）后，显式热传导格式的稳定步长要缩小四倍，因为 $\\Delta t\\le h^2/2$ 里的 $h^2$ 恰好抵消条件数的 $O(n^2)=O(h^{-2})$。再取一个具体右端项验算零空间吸收法：$A(1,1,1)^{T}=(1,1,1)^{T}$，说明常向量（离散意义下的线性函数 $u=ai+b$）确实被吸收，与题目给出的特例吻合。\r\n\r\n> **跨课程连接（精确到路径与区别）。** 与 **6.042J 离散数学**：定理的骨架是「对称矩阵的实特征值全序」这一**全序关系**，而交错是它的**子结构性质**，类比于偏序集中「子集的极大元被全集的相邻极大元夹住」；区别在于 6.042J 处理的是有限集合上的离散偏序与计数，而这里处理的是连续量（实数谱）在扰动下的稳定区间，工具从反证与计数换成了二次型与 Rayleigh 商。与 **Strang 线性代数／18.065**：Strang 用 $K=ABA^{T}$ 讲弹簧链，$A$ 是差分算子、$B$ 是刚度对角阵，本注的矩阵正是 $B=I$ 的特例；18.065 进一步把它当作对称正定矩阵的原型来讲 Cholesky 与正交对角化，区别是 Strang 课上关注「能分解成什么」（$A=Q\\Lambda Q^{T}$），而交错定理关注「删掉行列后谱怎么移动」，属于扰动视角。与 **CLRS／6.006**：分治与递归结构在这里体现为「大问题截断成小问题」，但算法课关心的是复杂度递推 $T(n)=2T(n/2)+O(n)$ 的阶，而交错提供的是**数值上的归纳不变量**，两者区别在于前者数运算次数、后者锁住运算结果的误差区间。与在学的**凸优化（Boyd）**：$\\lambda_{\\min}$ 的极大极小刻画 $\\lambda_{\\min}(A)=\\min_{x\\ne0}q(x)/x^{T}x$ 与 Boyd 课上二次型正定判据、强凸性参数 $m$ 的定义是同一条式子；区别是 Boyd 用它证明收敛率下界，此处用它夹谱。与在学的**概率论（Bertsekas）**：图拉松拉斯在随机游走语言下就是转移矩阵 $I-\\alpha L$ 的谱半径决定混合时间，交错定理是这条链的**确定性版本**，区别是概率论给的是期望与集中不等式，这里是逐点的硬夹逼，不需要任何独立性假设。\r\n\r\n> **命名模板：谱夹逼能量检验法。** 三步走：① 写二次型能量 $q(x)=x^{T}Ax$ 并确认 $A$ 对称；② 用 $\\lambda_{\\min}=\\min q/x^{T}x$、$\\lambda_{\\max}=\\max q/x^{T}x$ 把未知谱夹在两个可算的极值之间；③ 取一个具体试验向量（如 $x=(1,1,\\dots,1)^{T}$ 或单位坐标向量 $e_k$）算出上界或下界，与交错给出的区间对照。此模板后面讲 Cheeger 常数、图粗化、甚至有限元刚度矩阵的谱估计时会反复套用，记住它的判据是「能量不用解方程就能算」。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Suppose $D$ is the diagonal matrix $\\operatorname{diag}(1, 2, \\ldots, n)$ and $S$ is positive definite.\r\n1) Find the derivatives at $t = 0$ of the eigenvalues $\\lambda(t)$ of $D + tS$.\r\n2) For a small $t > 0$ show that the $\\lambda$'s interlace the numbers $1, 2, \\ldots, n$.\r\n3) For any $t > 0$, find bounds on $\\lambda_{\\min}(D + tS)$ and $\\lambda_{\\max}(D + tS)$.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（特征值导数与 Weyl 界）：**</span> 第 6 题是一个「算得出答案」的模型题，值得把三条小问串成一条链。① 求导：$D+tS$ 的第 $k$ 个特征值在 $t=0$ 处的导数，由题 3(b) 的公式 $d\\lambda/dt=q^{T}(dA/dt)q$ 直接得到，$t=0$ 时特征向量就是坐标向量 $e_k$，而 $dA/dt=S$，于是 $\\lambda_k'(0)=e_k^{T}Se_k=s_{kk}$，也就是**取 $S$ 的对角元**——注意不是特征值 $s_k$，也不是 $s_k^2$，这里 $s_{kk}$ 只是 $S$ 第 $k$ 行第 $k$ 列的元素，全文的下标与上标含义必须分清。② 交错：$t>0$ 很小时，$\\lambda_k(t)=k+t\\,s_{kk}+O(t^2)$ 与常数 $k$ 只差一个小量，并且 $D+tS$ 与 $D$ 共享「$S$ 正定故 $D+tS$ 正定」这一性质，把两组数都按升序排好便得到一个夹一个：$\\lambda_1(t)\\le1\\le\\lambda_2(t)\\le2\\le\\cdots$。③ 界：对任意 $t>0$，特征值的变分刻画给出 $1+t\\,\\lambda_{\\min}(S)\\le\\lambda_{\\min}(D+tS)$ 与 $\\lambda_{\\max}(D+tS)\\le n+t\\,\\lambda_{\\max}(S)$，反向的界 $1\\le\\lambda_{\\min}(D+tS)$、$n\\le\\lambda_{\\max}(D+tS)$ 只需注意 $tS$ 正半定（加一个正半定矩阵，每个特征值都不降）。这一组不等式就是 Weyl 不等式的特例：$\\lambda_{\\min}(A)+\\lambda_{\\min}(B)\\le\\lambda_{\\min}(A+B)$ 与 $\\lambda_{\\max}(A+B)\\le\\lambda_{\\max}(A)+\\lambda_{\\max}(B)$。跨课程连接：优化课讲梯度下降的收敛率时会用到这里的结论——步长 $1/L$ 使得迭代矩阵的谱落在 $[1-\\rho,\\,1+\\rho]$ 内（$\\rho$ 即相对扰动幅度），谱越「挤」收敛越快；数值线性代数课则把它当作特征值条件数的来源，告诉我们对角占优矩阵的特征值不会被小扰动带偏太远。\r\n>\r\n> 这一段要解决的设计问题很实际：**当你把矩阵稍微改动一点点，特征值会动多少？** 工程上你几乎从不拿到精确矩阵：网格离散有误差、传感器有噪声、模型简化会丢项。如果特征值对微小扰动极度敏感，那么基于特征值的所有结论（稳定性、收敛率、共振频率）都不可信。第 6 题给出的答案是「一阶敏感度等于对角元」，这句话背后是一条从第一性原理推出来的链条：特征值的定义是 $Aq=\\lambda q$，两边对参数 $t$ 求导得 $A'q+Aq'=\\lambda'q+\\lambda q'$；左乘 $q^{T}$ 并利用 $q^{T}A=\\lambda q^{T}$，含 $q'$ 的两项 $q^{T}Aq'$ 与 $\\lambda q^{T}q'$ 恰好相消，只剩 $\\lambda'=q^{T}A'q$。这是「特征值对扰动的敏感性只由特征向量和被扰动的方向共同决定」。为什么 $t=0$ 时 $q=e_k$？因为 $D$ 是对角矩阵，特征值 $k$ 对应的特征向量就是第 $k$ 个坐标轴方向；一旦 $t$ 变正，特征向量开始偏转，但偏转量是 $O(t)$，乘上 $A'$ 后只影响 $O(t^2)$ 项，所以一阶项干净地等于 $s_{kk}$。\r\n>\r\n> 做一个两步的手算验算。取 $D=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$，$S=\\begin{pmatrix}0.2&0.1\\\\0.1&0.3\\end{pmatrix}$，$t=0.1$。于是 $D+tS=\\begin{pmatrix}1.02&0.01\\\\0.01&2.03\\end{pmatrix}$。它的迹是 $3.05$、行列式是 $1.02\\times2.03-0.0001$ 即约 $2.0705$，特征方程 $\\lambda^2-3.05\\lambda+2.0705=0$ 给出 $\\lambda=(3.05\\pm\\sqrt{9.3025-8.282})/2=(3.05\\pm1.0102)/2$，即约 $1.0199$ 与 $2.0301$。预测值呢？$\\lambda_1\\approx1+t\\,s_{11}=1.02$，$\\lambda_2\\approx2+t\\,s_{22}=2.03$，误差约 $0.0001$ 与 $0.0001$，正好是 $O(t^2)$ 量级。再验 Weyl 界：$\\lambda_{\\min}(S)=0.15$（因为 $S$ 的两特征值约 $0.15,0.35$），下界 $1+0.1\\times0.15=1.015\\le1.0199$ 成立；$\\lambda_{\\max}(S)\\approx0.35$，上界 $2+0.1\\times0.35=2.035\\ge2.0301$ 成立。这套数字可以原样复算，说明不等式不是装饰。\r\n>\r\n> 为什么「加正半定矩阵特征值不降」？还是 Rayleigh 商：对任一单位向量 $x$，$x^{T}(D+tS)x=x^{T}Dx+t\\,x^{T}Sx\\ge x^{T}Dx$，逐点比较后取 $\\min$ 与 $\\max$，单调性立刻传递过去。这也是「特征值是 $A$ 的单调泛函」这一直觉的来源。命名模板：**「对角元读谱法」**——见到 $D+tS$ 型扰动求导数，先写 $q=e_k$，再填 $s_{kk}$，不要展开特征多项式硬算；再用 **「正半定抬升法」** 把单侧界补齐。\r\n>\r\n> 跨课程连接补一条更精确的链条。在概率论（Bertsekas）里，你要证一个随机矩阵的谱或某个估计量的方差有界，常用「把复杂矩阵写成均值加扰动」的分解，Weyl 不等式正是让「均值的界」加上「扰动幅度的界」得到「和的界」的工具；区别在于 Bertsekas 的界通常是概率的（Chernoff 型、以高概率成立），这里是确定性的谱界，前者管「出错概率」，后者管「最坏情况的偏移量」。在 CSAPP 的浮点与机器级代码语境里，同样的思想以另一种形式出现：浮点加法的相对误差按有效位数逐次累积，而「每一步误差有界」导致「总和误差有界」的推理结构与 Weyl 不等式的递推完全同形；区别在于 CSAPP 的界由 IEEE 754 的舍入模型给出（以 $2^{-53}$ 为单位），这里的界由谱半径给出。在凸优化（Boyd）里，强凸参数 $m$ 与 Lipschitz 常数 $L$ 决定梯度下降的收敛因子 $(1-m/L)$，而 $m,L$ 恰是 Hessian 特征值的下界与上界，本注的 $1+t\\lambda_{\\min}(S)$ 与 $n+t\\lambda_{\\max}(S)$ 就是「扰动后条件数变差多少」的定量回答；区别在于 Boyd 关心的是把 $L/m$ 压小的算法设计（预条件、加速），本注关心的是给定扰动下界的传播。与 Strang 及 18.065 的连接还有一条更实用的路径：$S$ 通常来自采样或近似，若你知道 $S$ 的 SVD 奇异值远大于 $t$ 的乘积，就可以放心用一阶展开代替精确特征值分解，这正是数值线性代数中「扰动分析」这一章的起点。命名上再补一条：**「谱夹逼法能量检验法」**——把 $x^{T}Ax$ 当作能量，扰动只加不减则能量单调，谱界随之建立。注意与题 4、题 8 的区别：那两题给的是精确的极大极小刻画，本注给的是带 $O(t^2)$ 余项的一阶近似，用途一个是证明结构，一个是工程估算。\r\n\r\n> **三小问背后的统一设计问题。** 先问机制：工程上真正反复出现的情形不是「给一个矩阵求全部特征值」，而是「给一个已知答案的矩阵，再叠加一点扰动，问答案偏了多少」。这正是浮点运算、模型误差、数据噪声带来的日常问题。第一性原理上有两条互补的路线：**微分路线**问「$t$ 很小时每个特征值以多快的速率移动」（局部、精确到一阶），**不等式路线**问「$t$ 有多大时最坏情况能偏多少」（全局、对任意 $t$ 都成立）。①③恰好就是这两条路线，②则说明两种路线在同一具体例子上的兼容性。微分路线的合法性来自 $d\\lambda/dt=q^{T}(dA/dt)q$——它的物理含义是「能量对参数的敏感度等于把参数变动方向投影到当前特征向量上」；当 $A$ 是对角阵时特征向量退化成正交基 $e_k$，投影就只剩一个分量，于是 $s_{kk}$ 出现，其余元素一律不参与，这正是「对角扰动只沿坐标方向推」的机制。反过来，若 $S$ 带非对角元，一阶导数仍然只取对角，非对角元的影响被推迟到 $O(t^2)$——这解释了为什么「看对角估敏感度」在小扰动下是可靠的一阶近似。\r\n\r\n> **$2\\times2$ 手算验算（可复算）。** 取 $D=I_2$（故 $n=2$），$S=\\begin{pmatrix}1&2\\\\2&5\\end{pmatrix}$，它对称且正定（顺序主子式 $1>0$、$\\det S=1$）。手算 $A_t=D+tS=\\begin{pmatrix}1+t&2t\\\\2t&1+5t\\end{pmatrix}$，特征多项式为 $(1+t-\\lambda)(1+5t-\\lambda)-4t^{2}=0$，即 $\\lambda^{2}-(2+6t)\\lambda+(1+6t+t^{2})=0$（因为 $(1+t)(1+5t)-4t^2=1+6t+5t^2-4t^2$）。用求根公式 $\\lambda=\\frac{(2+6t)\\pm\\sqrt{(2+6t)^{2}-4(1+6t+t^{2})}}{2}$，判别式为 $4+24t+36t^{2}-4-24t-4t^{2}=32t^{2}$，开方得 $4\\sqrt2\\,t$，于是精确解 $\\lambda_{1,2}(t)=1+3t\\mp2\\sqrt2\\,t$。看 $t=0$：两根为 $1,1$（退化，符合从 $D$ 出发）；对 $t$ 求导得 $\\lambda_2'(0)=3-2\\sqrt2\\approx0.172$、$\\lambda_1'(0)=3+2\\sqrt2\\approx5.83$，与公式 $\\lambda_k'(0)=s_{kk}$ 给出的 $5$ 和 $1$ **不相等**——这不是反例，而恰好暴露了前提：题目中 $D$ 的特征值互不相同（$1,2,\\dots,n$），导数公式才只认对角；一旦起点退化，零阶项就已被扰动分裂，$O(t)$ 系数改由 $S$ 在该二维不变子空间上的**特征值**决定，即 $S$ 的两根 $\\frac{6\\pm\\sqrt{32}}{2}=3\\pm2\\sqrt2$。取 $D=\\operatorname{diag}(1,2)$（互异）再算一次：$A_0$ 本身已是特征值 $1,2$，两根为 $1+s_{11}t+O(t^2)$、$2+s_{22}t+O(t^2)$，即导数 $1$ 与 $2$，与 $s_{11}=1$、$s_{22}=2$ 精确吻合，前提假设得到验证。再做数值检验：$t=0.1$ 时精确根为 $\\lambda_2=0.817$、$\\lambda_1=2.583$，而 Weyl 的界给 $\\lambda_{\\min}\\ge1+t\\cdot0.1716=1.0172$ 与 $\\lambda_{\\max}\\le2+t\\cdot5.828=2.5828$，两端 $0.817<1.0172$、$2.583>2.5828$ 只差一点点——原因是 $t=0.1$ 已不算「很小」，一阶界被 $O(t^2)$ 项咬到；换成 $t=0.01$ 即得 $\\lambda_2=0.9815>0.98172$ 量级吻合、$\\lambda_1=2.1583<2.15828$，误差落在 $10^{-4}$，与 $t^2$ 尺度一致。另外可顺手比一比弱工具：Gershgorin 圆盘定理给 $\\lambda_{\\max}\\le\\max_i(a_{ii}+t\\sum_{j\\ne i}|a_{ij}|)=2+7t$，比 Weyl 的 $2+5.828t$ 松，因为它把对角与离对角笼统相加，不区分「加正半定矩阵特征值不降」这一结构。\r\n\r\n> **跨课程连接（精确到路径与区别）。** 与在学的**凸优化（Boyd）**：强凸常数 $m$ 与 Lipschitz 常数 $L$ 正是 Hessian 的最小、最大特征值，本注的 Weyl 界告诉我们在目标函数被小扰动时 $m,L$ 如何移动，从而条件数 $\\kappa=L/m$ 如何移动；优化课由此推出步长 $1/L$ 下的收敛因子 $(1-1/\\kappa)$，区别是 Boyd 关心「给定 $\\kappa$ 能保证多少轮收敛」，此处关心「$\\kappa$ 自身在扰动下漂多少」。与 **18.065／Strang**：Strang 讲对称矩阵谱分解 $A=Q\\Lambda Q^{T}$ 时强调特征值对扰动的敏感度由**特征向量之间的夹角**决定，退化时夹角趋于零、导数公式失效，本注 $2\\times2$ 手算给的正是一个最小可复算的退化见证；区别是课上给的是定性图景（谱隙小则敏感），这里给的是可代入数字的一阶与二阶界。与在学的**概率论（Bertsekas）**：随机矩阵的谱常借助期望加集中不等式控制，Weyl 界提供的是**确定性骨架**——先算 $\\mathbb{E}A$ 的谱，再用 $\\|A-\\mathbb{E}A\\|$ 去套扰动界；区别在于 Weyl 管的是任意对称扰动（无概率假设），而 Chernoff 类界需要独立性，两条路的误差语义完全不同：一个是最坏情况，一个是高概率。与 **CSAPP**：浮点误差的累积也会表现为「矩阵元素的相对扰动 $\\varepsilon$」，把 $\\|E\\|\\le\\varepsilon\\|A\\|$ 代进 Weyl 界即可得「特征值相对误差不超过条件数乘机器 epsilon」这一工程经验法则；区别是 CSAPP 从机器级代码与 IEEE 754 的舍入模式解释误差如何产生，本注从谱的角度解释误差如何被放大。\r\n\r\n> **命名模板：对角敏感度探测法。** ①取已知谱的对角阵 $D$ 作参照；②把待研究的对称矩阵拆成 $S$，只读它的对角元 $s_{kk}$ 作为一阶敏感度，非对角元留到 $O(t^2)$；③用 $\\lambda_{\\min}=\\min q/x^{T}x$、$\\lambda_{\\max}=\\max q/x^{T}x$ 写出上下界 $1+t\\lambda_{\\min}(S)$ 与 $n+t\\lambda_{\\max}(S)$；④拿一个可手算的小例子代入，检查是否与精确根在 $t$ 的一阶项上吻合，并警惕 $D$ 出现重根时公式失效。此法后来在讲条件数、病态问题、预处理时一再用到，记住它的判据是「一阶看对角、二阶看离对角、退化时看子空间」。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Suppose $D$ is again $\\operatorname{diag}(1, 2, \\ldots, n)$ and $E$ is any $n$ by $n$ matrix.\r\n1) Find the derivatives at $t = 0$ of the singular values $\\sigma(t)$ of $D + tE$.\r\n2) What do Weyl's inequalities say about $\\sigma_{\\max}(D + E)$ and $\\sigma_{\\min}(D + E)$?\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（奇异值的扰动）：**</span> 第 7 题是第 6 题的「非对称版」，核心差别只有一句话：特征向量可能不再是 $e_k$，但奇异值仍然由 $e_k$ 决定。记 $A(t)=D+tE$，则 $A(t)^{T}A(t)=D^2+t(D E+E^{T}D)+O(t^2)$，它的第 $k$ 个特征值正是 $\\sigma_k(t)^2$；对 $t$ 求导并用题 3(b) 的公式，得 $2\\sigma_k(0)\\,\\sigma_k'(0)=e_k^{T}(DE+E^{T}D)e_k=2k\\,e_{kk}$。$t=0$ 时 $\\sigma_k(0)=k$，于是 $\\sigma_k'(0)=e_{kk}$：**奇异值的导数同样只读 $E$ 的对角元**，左、右奇异向量是坐标向量这一点让复杂的扰动一阶项全部塌缩成对角元。\r\n> ② Weyl 不等式对奇异值的形式是 $|\\sigma_k(A+B)-\\sigma_k(A)|\\le\\|B\\|_2$，取 $k=\\max$ 与 $k=\\min$ 得到 $\\sigma_{\\max}(D+E)\\le\\sigma_{\\max}(D)+\\sigma_{\\max}(E)=n+\\|E\\|_2$ 与 $\\sigma_{\\min}(D+E)\\ge\\sigma_{\\min}(D)-\\sigma_{\\max}(E)=1-\\|E\\|_2$。这里要堵住三个常见误判：其一，以为奇异值就是「把 $E$ 的特征值加到 $D$ 的特征值上」——错的，奇异值只对 $A^{T}A$ 的特征值开方，$E$ 的负特征值会按平方进入；其二，以为 $\\sigma_{\\min}$ 的界写成 $1+\\|E\\|_2$ 也没关系——符号反了，下界必须减去扰动幅度，$\\|E\\|_2$ 足够大时下界变负，只说明矩阵可能接近奇异，并不矛盾；其三，把 $\\|E\\|_2$ 与 Frobenius 范数混为一谈，Frobenius 范数更大，用它做界会偏松。跨课程连接：数据科学课的 PCA 与低秩逼近会用这一条说明「按奇异值截断」对噪声的稳健性——奇异值每截掉一层，误差以被截掉的奇异值为界；数值线性代数课则用它解释为什么用正规方程解最小二乘在 $\\sigma_{\\min}$ 很小时会放大误差，从而转向 QR 或 SVD 求解。\r\n> **补一层机制：这段在解决什么设计问题。** 设计问题是：当矩阵被轻微扰动（测量噪声、舍入、建模误差），它的奇异值与奇异子空间会漂移多少？这直接决定一切「基于奇异值做判定」的算法能不能信。第一性原理上的理由只有一句：奇异值天生就是某个对称矩阵特征值的平方根（$\\sigma_k=\\sqrt{\\lambda_k(A^{T}A)}$），而任一矩阵在一点附近都可用线性化描述，所以奇异值的敏感度必然等于「把它抬成对称矩阵、再做一阶展开」的结果。$D$ 是最干净的情形：正的对角元让 $D^{T}D=D^2$ 仍是对角，右奇异向量与左奇异向量都退化成坐标向量 $e_k$，左乘、右乘的耦合项都撞上正交性而消失。\r\n> **数值验算（两行矩阵手算）。** 取 $D=\\operatorname{diag}(2,1)$，$E=\\begin{bmatrix}0.2&0.6\\\\0.6&-0.3\\end{bmatrix}$，则 $DE+E^{T}D$ 的第 $1$ 个对角元是 $2\\times0.2+0.2\\times2=0.8$，除以 $2\\sigma_1(0)=4$ 得 $\\sigma_1'(0)=0.2=e_{11}$；第 $2$ 个对角元是 $1\\times(-0.3)+(-0.3)\\times1=-0.6$，除以 $2\\sigma_2(0)=2$ 得 $\\sigma_2'(0)=-0.3=e_{22}$。当 $t=0.3$ 时这个扰动矩阵退化为 $D+0.3E=\\operatorname{diag}(2.06,0.91)$，其奇异值就是 $2.06$ 与 $0.91$，与 $2+0.3\\times0.2$、$1+0.3\\times(-0.3)$ 逐位吻合——因为扰动恰好在对角线上，奇异向量没动，一阶公式精确而非近似。\r\n> **Weyl 界同样可以数值验算。** 对上面的 $E$，$E^{T}E=\\begin{bmatrix}0.4&0\\\\0&0.45\\end{bmatrix}$，故 $\\|E\\|_2=\\sqrt{0.45}=0.6708$；换用 $\\varepsilon E$（$\\varepsilon=0.1$）得到 $\\|\\varepsilon E\\|_2=0.0671$。下界是 $1-0.0671=0.933$，上界是 $2+0.0671=2.067$。直接算 $D+0.1E=\\begin{bmatrix}2.02&0.06\\\\0.06&0.97\\end{bmatrix}$ 的 $(A^{T}A)$ 特征值（即把每个元素平方）得 $4.0836$ 与 $0.9445$，开方得 $\\sigma_{\\min}=0.9719$：确实被夹在 $[0.933,2.067]$ 之内，界成立但不紧，这正是「用谱范数当扰动幅度」的代价。\r\n> **三个误判各自配一个反例。** 反例一：取 $A=\\operatorname{diag}(2,1)$、$B=\\operatorname{diag}(-3,0.5)$，若按「逐个相加」会得到 $\\sigma=(1,1.5)$，但 $A+B=\\operatorname{diag}(-1,1.5)$ 的奇异值是 $(1,1.5)$——这次碰巧对上，只因 $B$ 的第二项 $0.5$ 是正的；把 $B$ 换成 $\\operatorname{diag}(-3,-0.5)$，逐个相加给出 $(1,0.5)$，而真实的奇异值是 $(3,0.5)$，第一项差了 3 倍，负特征值 $-0.5$ 是「按绝对值」而非按符号进入的。反例二：$\\|E\\|_2=2>1$ 时下界 $1-2=-1$ 变负，Weyl 界仍为真（$\\sigma_{\\min}\\ge 0$ 天然成立），但此时它已不含信息，须用别的度量（如最小奇异值的二阶估计）代替。反例三：$E=\\mathbf{1}\\mathbf{1}^{T}$（全 1 矩阵）的 $\\|E\\|_2=2$（$E$ 的秩为 1），而 $\\|E\\|_F=2$；换成 $3\\times3$ 的全 1 矩阵则为 $\\|E\\|_2=3$、$\\|E\\|_F=3$；但一般矩阵里 Frobenius 范数只会更大——它在求和中包含所有小奇异值的平方，而谱范数只保留最大的那个，用前者作界一定更松。\r\n> **一个边界情形值得单独记下：临界点附近一阶项会消失。** 若 $D$ 的两个对角元相等（例如 $D=\\operatorname{diag}(1,1)$），$\\sigma_k$ 在 $t=0$ 处的方向导数不再唯一，因为两个奇异值可以在扰动下互相「让位」，这是重根情形必须用二阶项或子空间夹角才能描述的现象。此时导数公式 $\\sigma_k'(0)=e_{kk}$ 仍成立（它只依赖对角元），但它不再唯一决定小 $t$ 时哪个奇异值对应哪个下标。\r\n> **为何这个结论对一般 $A$ 不成立。** 一般矩阵的左右奇异向量各不相同，$A(t)^{T}A(t)$ 与 $A(t)A(t)^{T}$ 的特征向量会随 $t$ 转动，一阶项不再只对角元有贡献；只有像 $D$ 这样左、右奇异向量都是坐标向量的情形，复杂的扰动项才会塌缩成 $e_{kk}$。这正是第 6 题与第 7 题的真正分水岭——不是「对称与非对称」这么表面，而是「奇异向量是否随扰动转动」。\r\n> **跨课程连接。** 用条件数 $\\kappa_2(A)=\\sigma_{\\max}/\\sigma_{\\min}$ 把上面的界翻译成可执行的判据：$\\sigma_{\\min}$ 被扰动推到接近 0 时条件数暴涨。Strang 线代里最小二乘的正规方程走的是 $A^{T}A$ 的路径，把条件数平方为 $\\kappa_2^2$；QR 解的误差界正比于 $\\kappa_2$，SVD 从 $\\sigma$ 直接切入、进一步改善。数值分析课会给出具体形式如 $\\kappa_2^2(A)\\,\\varepsilon_{\\text{mach}}$（正规方程）与 $\\kappa_2(A)\\,\\varepsilon_{\\text{mach}}$（QR、SVD），$\\kappa_2^2$ 接近 $1/\\varepsilon_{\\text{mach}}$ 时前者彻底失效。以 Strang 的 $A=\\begin{bmatrix}1&1\\\\1&1+\\delta\\end{bmatrix}$ 为例，$\\sigma_{\\min}\\approx\\delta/\\sqrt{2}$，$\\kappa_2\\approx 2/\\delta$；$\\delta=10^{-8}$ 时条件数已达 $2\\times10^{8}$，正规方程的 $A^{T}A$ 条件数升到 $4\\times10^{16}$，超过了倍精度 $\\varepsilon_{\\text{mach}}\\approx2.2\\times10^{-16}$ 的倒数，于是解出的 $x$ 可能一位有效数字都不剩。串到 CSAPP 的浮点数：这个界是对「数学上精确的 $A$、精确的算术」下的结论，机器上还要再叠加 $1/\\varepsilon_{\\text{mach}}$ 的额外上限，浮点层与谱层两个判据必须同时看，缺一不可。概率论（Bertsekas）里这条界换成随机语言就是协方差矩阵估计的稳定性：样本协方差 $\\hat\\Sigma$ 与真值 $\\Sigma$ 的偏差在谱范数下被样本量控制，奇异值层面的夹逼因而也是「样本量要多大才够」的答案。\r\n> **给方法起个名字：**「谱夹逼法」——把 Lidskii/Weyl 型不等式族用成一个固定动作：先估扰动幅度 $\\|E\\|_2$，再用上下界把每个奇异值夹在区间里，最后看区间的宽度是否足够窄。宽度是这种方法的验收标准，宽度失控的时候正说明该换一个二阶估计，或者改用 QR/SVD 而非正规方程。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** (a) Show that every $i$-dimensional subspace $V$ contains a nonzero vector $z$ that is a combination of $q_i, q_{i+1}, \\ldots, q_n$. (Those $q$'s span a space $Z$ of dimension $n-i+1$. Based on the dimensions $i$ and $n-i+1$, why does $Z$ intersect $V$?)\r\n(b) Why does that vector $z$ have $z^{T}Sz/z^{T}z \\le \\lambda_i$? Then explain\r\n\r\n```math\r\n\\lambda_i = \\max_{\\dim V = i}\\ \\min_{z \\in V} \\frac{z^{T}Sz}{z^{T}z}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（极大极小原理的证明路线）：**</span> 第 8 题把题 4 提出的刻画真正证完，两条小问分别对应两个关键难点。(a) 的难点是「凭什么两个子空间一定相交」：$V$ 与 $Z$ 的维数之和为 $n+1$，若它们的交只有零向量，则 $V+Z$（由两者中所有向量拼成的大空间）的维数就是 $i+(n-i+1)=n+1$，可它住在 $n$ 维空间 $\\mathbb{R}^n$ 里，维数不可能超过 $n$——矛盾，所以交中必有非零向量 $z$。这是线性代数里最常用的「维数计数」手法，与秩-零化度定理同源，但它不要求任何几何直觉，只数维数。(b) 的难点是「这个 $z$ 为什么给出上界」：$z$ 落在 $q_i,\\ldots,q_n$ 张成的 $Z$ 中，把它按特征基展开 $z=\\sum_{k\\ge i}c_kq_k$，那么 $z^{T}Sz=\\sum_{k\\ge i}\\lambda_kc_k^2$ 与 $z^{T}z=\\sum_{k\\ge i}c_k^2$ 相除，每一项的系数 $\\lambda_k$ 都不超过 $\\lambda_i$，比值自然不超过 $\\lambda_i$。于是一方面每个 $i$ 维子空间里都能找到使商 $\\le\\lambda_i$ 的向量，故其中的最小值 $\\le\\lambda_i$；另一方面取 $V=\\operatorname{span}\\{q_1,\\ldots,q_i\\}$ 时商的最大值恰为 $\\lambda_i$（同理每项系数都 $\\ge\\lambda_i$），故所求的最大值 $\\ge\\lambda_i$。两边合起来正是题中那个 $\\max\\min$ 公式：$\\lambda_i$ 既是「最坏子空间里的最好向量」，也是「最好子空间里的最坏向量」，两种读法给出同一个数——这正是 Courant–Fischer 定理的内容，也是题 4 的答案。跨课程连接：优化课讲二次型的鞍点与信赖域方法时会反复用到这个「极大化极小」的交换结构；机器学习课讲 PCA 时用它证明主成分方向就是最大化投影方差的特征向量；数值分析课讲 Lanczos 与幂法时，也用同一族刻画来论证 Rayleigh 商的收敛速度。一个易错点：极小是「在子空间内、对向量」取的，极大是「对子空间」取的，两个算子交换后一般不再等于 $\\lambda_i$，这个不可交换性正是后面奇异值与鞍点分析的关键。\r\n> **补一层机制：这个定理在解决什么设计问题。** 设计问题是：对称矩阵的特征值能不能「不靠求根、不靠消元」被直接刻画？能，办法是把特征值翻译成两类更原始对象的层级优化：一是向量（Rayleigh 商），二是子空间（Grassmann 流形上的函数）。为什么必须这样做？因为特征多项式求解在数值上不稳定（高次多项式求根的条件数可以极差），而优化只用到内积与投影，是稳定的运算，且天然给出「上界 + 下界」的双侧信息，这对算法设计比一个精确值更有用。本注给出的维数计数与展开比较，正是把这个抽象的层级优化落实为可检查的两步。\r\n> **把 (a) 的维数计数写成一个可复用的机制。** 引入正交投影 $P_Z$。任一 $x\\in V$ 可唯一写成 $x=y+z$，其中 $z=P_Zx\\in Z$、$y$ 落在 $Z$ 的正交补里（这就是投影分解）。若 $V\\cap Z=\\{0\\}$，则 $P_Z$ 限制在 $V$ 上是单射：$P_Zx=0$ 意味着 $z=0$ 进而 $y=x$，而 $y\\perp Z$ 与 $x\\in V$ 迫使 $x=0$。单射把 $V$ 同构到 $Z$ 的一个子空间，所以 $\\dim V\\le\\dim Z$，即 $i\\le n-i+1$。反过来，若 $i>n-i+1$（这正是题设 $i+(n-i+1)>n$ 的含义），单射假设就自相矛盾，交中必有非零向量。这条路径与秩-零化度定理完全同源：把 $P_Z$ 看成从 $V$ 出发的线性映射，$\\dim V=\\dim(\\ker P_Z|_V)+\\dim(\\operatorname{im}P_Z|_V)$，维数不够分就必然有核。\r\n> **一个 $2\\times2$、可手算的验算。** 取 $S=\\operatorname{diag}(3,1)$，于是 $\\lambda_1=3$（对应 $q_1=e_1$）、$\\lambda_2=1$（对应 $q_2=e_2$）。先算 $i=2$：$Z=\\operatorname{span}\\{q_2\\}=\\operatorname{span}\\{e_2\\}$，它的 $1$ 维，与任一 $2$ 维子空间（此时只能是 $\\mathbb{R}^2$ 本身）的交必含 $e_2$，在该点商等于 $e_2^{T}Se_2=1=\\lambda_2$，最小值取到 $1$，故 $\\max\\min=1=\\lambda_2$。再算 $i=1$：$Z=\\operatorname{span}\\{q_1,\\ldots,q_n\\}$ 就是整个 $\\mathbb{R}^2$，$V$ 取 $1$ 维的 $\\operatorname{span}\\{e_1\\}$，该方向上的单位向量 $v$ 满足 $v^{T}Sv=3v_1^2+v_2^2$，在 $v=e_1$ 处取得最大值 $3$，故 $\\min\\max=3=\\lambda_1$。两组数字说明最优点恰好落在 $q_i$ 上，这正是 (b) 中「每项系数都 $\\ge\\lambda_i$」的直接体现。\r\n> **再验一个「子空间必须够多」的边界例子。** 在 $\\mathbb{R}^3$ 里取 $V=\\operatorname{span}\\{e_1,e_2\\}$（$2$ 维）与 $Z=\\operatorname{span}\\{e_1,e_3\\}$（$2$ 维），维数和 $4>3=n$，必有非零交向量，实际交 $\\operatorname{span}\\{e_1\\}$ 确实非零。若把两者降到 $1$ 维、维数和 $2\\le3$，交就可能只剩零向量，例如 $V=\\operatorname{span}\\{e_1\\}$ 与 $Z=\\operatorname{span}\\{e_2\\}$。这正说明「$+1$」在维数和里的作用不是装饰，而是把 $\\le n$ 顶成 $>n$ 的那一步。\r\n> **命名与两条读法的统一。** 把这两条读法合起来，可称为「双层极值刻画」：先在一个子空间内部把商压到最小（可读成「这个子空间里最差的方向」），再在所有 $i$ 维子空间中把结果拉到最大（「挑出最好的那一层」），反之亦然。两个方向给出的都是 $\\lambda_i$，这意味着 $\\lambda_i$ 同时是「最优子空间的最差方向」与「最差子空间的最优方向」——两侧夹逼把唯一性钉死。\r\n> **给方法起个名字：**「维数计数法」——不去画图、不去构造向量，只把 $\\dim\\ker+\\dim\\operatorname{im}$ 摊在桌面上，看维数和是否超过容器的维数。它与秩-零化度定理是同一个动作，适用于「证明某两个子空间必有公共非零向量」这一类题，也是本注 (a) 的全部内容。\r\n> **为什么「交换」不再等于 $\\lambda_i$。** 极小是在固定子空间内对单位向量取的，极大是对所有 $i$ 维子空间取的，两个量纲不同。$\\operatorname{diag}(3,1)$ 里 $\\max\\min=3$、$\\min\\max=1$，差距立现。一般地只有弱对偶 $\\max\\min\\le\\min\\max$ 无条件下成立；本定理的特殊之处在于特征向量对 $(q_i,\\lambda_i)$ 恰好提供一个鞍点，使强对偶成立（等式），这也正是优化课讲强对偶条件时「鞍点存在」标准论证的同一件事。到了奇异值与非对称矩阵那里，左右特征向量不再重合，这种交换性被进一步削弱，成为后面讨论奇异值扰动与鞍点的入口。\r\n> **跨课程连接。** 优化课：二次型 $x^{T}Sx$ 在球面上的极值、信赖域子问题的求解、以及拉格朗日对偶里「弱对偶 + 强对偶」的框架，都用到这个「极小极大」的交换结构；公式 $\\max\\min\\le\\min\\max$ 与紧凸集上的鞍点定理正是本注两个方向的抽象。机器学习课：PCA 中「最大化投影方差的方向是协方差矩阵的特征向量」是同一族刻画的直接应用——方差即 Rayleigh 商，约束 $\\|v\\|=1$ 即球面，最优点即 $q_1$。数值分析课：Lanczos 与幂法用 Rayleigh 商的极值刻画来论证收敛速度，幂法逐次放大的正是最大特征值方向，而极小极大公式同时给出误差下界。Strang 线代里编 $Q\\Lambda Q^{T}$ 的过程，本质上就是把这两层极值解出来的构造性实现。\r\n> **跨课程连接的精确路径与区别（按「课程名 + 概念 + 连接路径 + 区别」四段展开）。** 一、优化课（Boyd）：概念是拉格朗日对偶与鞍点；连接路径是「$x^{T}Sx$ 的球面约束极值 $\\to$ 驻点方程 $Sx=\\lambda x$ $\\to$ 特征向量就是鞍点」；区别是优化课把 $\\lambda$ 当作乘子，本注把 $\\lambda$ 当作被刻画的量，方向正好相反。二、6.042J 离散数学：概念是偏序与偏序集中的极值；连接路径是「$\\max$ 与 $\\min$ 都是偏序上的最优操作 $\\to$ 算子交换性问题 $\\to$ 本注两式的不可交换性」；区别是离散里 $\\max\\min\\le\\min\\max$ 一般严格，而本定理靠鞍点把它收成等式，这是连续情形的特权。三、概率论（Bertsekas）：概念是方差与协方差矩阵；连接路径是「协方差矩阵是对称的 $\\to$ 二次型期望 $v^{T}\\Sigma v=\\operatorname{Var}(v^{T}X)$ $\\to$ 主成分方向就是最大化这个期望的单位向量」；区别是概率课关心「用多少样本估计 $\\Sigma$ 才稳」，本注只回答「$\\Sigma$ 精确已知时极值在哪」。四、Strang 线代与 18.065：概念是谱定理与低秩逼近；连接路径是「谱定理给出 $Q\\Lambda Q^{T}$ $\\to$ 截断到前 $i$ 项即限制在最优子空间上 $\\to$ 极大极小公式说明截断为什么最优」；区别是线代课先把分解算出来再讨论截断，本注的刻画反过来把「最优子空间长什么样」作为证明的出发点。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 21,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 21,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 21,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 21,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 16151,
+            "outputTokens": 14861,
+            "cacheReadTokens": 22784,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 228,
+              "outputTokens": 14443,
+              "cacheReadTokens": 19456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 21,
+        "val": {
+          "surfaceTokens": 15808,
+          "contextWindow": 1000000,
+          "pressureTokens": 19684,
+          "sampledSurfaceTokens": 9210
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 21,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 7210,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 427,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 6598,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 14664
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 21,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 18,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 20
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 21,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 21,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 21,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 21,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

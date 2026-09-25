@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129898104,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 24,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 24,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_187 = 书页 184\r\npage_188 = 书页 185\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:187@@（书页 184）\r\n−-- OCR 原文 −--\r\nLOW Ran a n ompressc ensing\r\n184\r\n111.4 Split Algorithms for +\r\nThese topics are truly important. They deserve a whole book. They include basis pursuit\r\nan d LASSO optimization—plus matrix completion and compressed sensing in 111.5\r\nWh at we c an do here is to present basic ideas an d successful algorlthms.\r\nS tart with a linear system = b. Suppose has many more columns than rows\r\n(m < < · Then = 0 has many solutions （ has a 1 arg e nullspace). If = b has\r\none solution, then every + is an 0 ther solution. Which one tO choose ？\r\nTO minimize th e 2 norm Of ， we remove its nullspace component. That leaves the\r\nmini mu m norm solution + = + b coming frO m the pseudoinverse Of · This is the\r\nsolution in 11.2 th at uses th e SVD. But + will generally have many small components—\r\nit c an be very diffcult to interpret. ln MATLAB ， pinv(A) * b finds c+. BacksIash \\ b\r\nfinds a fairly sp arse solution—but probably not the optimal for basis pursuit.\r\nA solution tO = b with many zero components （ 磊 e s 况 况 五 0 ， if it exists)\r\ncomes fro m mllllmizing th e 1 norm instead Of the 2 n 0 rm ：\r\n= @1 丨 + 一 · + @湖 subj ect to = b. (1)\r\nBasiS pursuit Minimize | 1\r\nThi S iS a convex optlmization prob lem ， because th e 1 norm iS a convex function Of ·\r\nThe 忍 1 norm is piecewise linear, unlike 2 and all other norms except 丨@\r\nB asis pursuit is not solved by the S VD of ， which connects t0 the 2 norm. But\r\nhas become famous for giving sparse solutions, and fast algonthms have now been found.\r\nThe sparsest s olution Of = b mininuzes 日 日 0 = number 可 刀 0 ze CO 0 刀 e 刀\r\nB ut this is not a no 皿 ： 日 2 叫 《 0\r\n= № The vectors with 日 到 0 一\r\n1 and only\r\n（ 1 ， 0 ） and j\r\none n On zero component lie along the CO ordinate axes ， like\r\n1\r\nSO we ' 'relax ” or convexify the 0 problem tO get a tru e norm—and that norm is\r\n1 》 + 2 | 孓 1 fill the diamond with corners at 士 an d 士 丿 ·\r\nTh e vectors with 日 叫 ll\r\nA rel ated problem 10w s for 刀 in AC = b; an ex act solution is not required•\r\nNow the 1 no 皿 enters as a penalty or a c on stramt |@目 1 t ：\r\nMinimize 却 一 b113 + ÄII 到 1 or\r\nLASSO ()n stati stic s)\r\nMinimize 却 一 b113 with № 日 1 孓 t\r\nLAS S O was invented by Tib shirani t0 improve on least squares regression. lt has sp ars er\r\nsolutions 山 an ridge regression which uses 2 norms in the penalty and the constraint•\r\nGeometncally, the difference between 日 叫 《 1 1 and 丨@日 2 1 is in the shape of those\r\n0 sets ： diamond for versus sphe re for · PIease see both fi gure s in Section l.ll•\r\nA convex set 日 一 bllä = C has a good chance to hit that di amond at one of its\r\nsharp points · The a e 0 are e vectors. But the sphere has no sharp pointsø\r\nThe opUmal is almost never sparse in 2 optimizaUon. Since that round convex s et C an\r\ntouch the sphere anywhere ， the 2 solutio n has m any nonzeros.\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 187 −->\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.4 Split Algorithms for $\\ell_1$（针对 $\\ell_1$ 的分裂算法）\r\n\r\n这些主题确实极为重要，值得专门写一整本书。它们包括 basis pursuit（基追踪）与 LASSO optimization（LASSO 优化）——再加上 §III.5 中的 matrix completion（矩阵补全）与 compressed sensing（压缩感知）。我们在此处所能做的，是介绍其基本思想以及若干成功的算法。\r\n\r\n先从线性系统 $Ax = b$ 说起。假设 $A$ 的列数远多于行数（$m \\ll n$）。于是 $Ax = 0$ 有许多解（$A$ 有一个很大的 nullspace（零空间））。若 $Ax = b$ 有一个解，那么每个 $x + x_{\\text{null}}$ 都是另一个解。该选哪一个呢？\r\n\r\n要最小化 $x$ 的 $\\ell_2$ 范数，我们就去掉它的零空间分量。这样留下的就是来自 $A$ 的 pseudoinverse（伪逆）的 minimum norm solution（最小范数解）$x^+ = A^+ b$。这就是 §II.2 中利用 SVD 得到的那个解。但 $x^+$ 一般会有许多很小的分量——它可能极难解释。在 MATLAB 中，`pinv(A) * b` 求出 $x^+$。反斜杠 `A \\ b` 求出一个相当 sparse（稀疏）的解——但很可能不是 basis pursuit 意义下的最优解。\r\n\r\n一个具有许多零分量的解 $Ax = b$（若存在，则其剩余自由度很多）来自最小化 $\\ell_1$ 范数而非 $\\ell_2$ 范数：\r\n\r\n```math\r\n\\text{Minimize } \\|x\\|_1 = |x_1| + \\cdots + |x_n| \\quad \\text{subject to } Ax = b. \\tag{1}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 公式 (1) 前的说明行 OCR 作 `BasiS pursuit Minimize | 1`，按语境还原为「basis pursuit（基追踪）：最小化 $\\ell_1$ 范数」。\r\n\r\n这是一个 convex optimization problem（凸优化问题），因为 $\\ell_1$ 范数是 $x$ 的凸函数。$\\ell_1$ 范数是分段线性的，这一点与 $\\ell_2$ 以及除 $\\ell_\\infty$ 之外的所有其他范数都不同。Basis pursuit（基追踪）不是靠 $A$ 的 SVD 求解的——SVD 连接的是 $\\ell_2$ 范数。但它因能给出 sparse solutions（稀疏解）而闻名，如今已找到了快速的算法。\r\n\r\n$Ax = b$ 的最稀疏解最小化 $\\|x\\|_0$，即非零分量的个数。但这并不是一个 norm（范数）：$\\|2x\\|_0$ 并不等于 $2\\|x\\|_0$。满足 $\\|x\\|_0 = 1$ 的向量只有一个非零分量，它们沿着坐标轴分布，例如平面中的 $(1, 0)$ 与 $(0, 1)$。于是我们「放松」或称凸化这个 $\\ell_0$ 问题，以得到一个真正的范数——而这个范数就是 $\\ell_1$。满足 $\\|x\\|_1 \\le 1$ 的向量填满一个 diamond（菱形），其顶点在 $\\pm e_1$ 与 $\\pm e_2$ 处。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 你在 MIT 6.042J 学过概率方法，也在 6.006 学过用随机化来换取效率；压缩感知（compressed sensing）里有一个几乎同构的概率换信息的交易，值得在这里提前埋下伏笔，因为 §III.5 会正式用到。\r\n\r\n先看机制，再看数字。问题设定是这样的：$A$ 是 $m\\times n$ 的，$m\\ll n$，$x$ 有 $k$ 个非零分量（$k$ 称为稀疏度）。我们要问的是——要恢复这个 $x$，$m$ 至少要多小？直觉上你需要 $m\\ge k$ 个方程来解 $k$ 个未知数，但真正的答案弱得多：$m\\approx Ck\\log(n/k)$ 就足够，而这个把戏的秘密全在$\\log$上。\r\n\r\n第一步先问：为什么会出现 $\\log$？因为证明的骨架和你 6.042J 里用过的 Chernoff 界如出一辙：先假设一个坏随机测量矩阵会让稀疏向量落在 $\\ell_1$ 球的某个坏点上，对单个坏点算出一个指数小的概率，再用 union bound 把 $O(n^k)$ 量级的坏点全加起来——$\\binom{n}{k}$ 个组合乘上 $e^{-cm}$，要让总和小于 1，就得有 $m=\\Omega(k\\log(n/k))$。这和 Chernoff 界处理抛 $m$ 次硬币偏差累加的手法在结构上完全一样：都是想让**多个弱约束联合失败的概率**被压制到可忽略，代价是约束个数要乘以一个对数因子。\r\n\r\n第二步把量级代进去验算。取 $k=10$、$n=10^4$，则 $\\binom{n}{k}$ 的量级约为 $10^{33}$，取自然对数约 $76$；于是 $m$ 只要约 $C\\cdot10\\cdot76\\approx760C$，而不是 $m\\ge k=10$ 那种线性下界，也不是 $m=n=10^4$ 那种暴力满采样。换句话说，对数因子买下的正是「用随机性代替逐条确定性约束」的折扣：单点失败概率已经被压到 $e^{-cm}$，你只需再付一个 $\\log\\binom{n}{k}$ 的代价把所有坏点覆盖住。这也解释了为什么压缩感知的采样率随 $n$ 增长得如此缓慢，实际成像系统因此才可能把测量次数降到远低于奈奎斯特的规模。\r\n\r\n区别也要说清楚，否则容易套错公式：(1) 6.042J 里随机变量的独立性来自独立地抛硬币，这里则需要矩阵的高斯/伯努利条目独立来提供 concentration；(2) Chernoff 界本身给的是尾部概率上界，而压缩感知需要的是一个带常数、非渐近的界，因此要用到更精细的版本（如伯努利矩阵的 restricted isometry 论证）；(3) 最重要的是结论方向不同——概率方法通常只告诉你存在，这里必须给出**可计算**的恢复算法，而承担这个算法的正是 §III.4 的分裂迭代。\r\n\r\n跨课程连接精确到路径：Boyd 凸优化里「用凸代理替代非凸目标」的取舍，与你在线性代数中熟悉的「$\\ell_2$ 最小二乘唯一可解」形成对照——最小二乘靠严格凸性换唯一性，压缩感知靠 $\\ell_1$ 的角点换稀疏性，两者都在解一个凸问题，但几何来源完全不同，前者的解光滑依赖 $b$，后者的解在支撑集层面可能跳变。\r\n\r\n最后给你一个命名模板：**联合失败压制法（union-failure suppression）**——凡是遇到「$N$ 个坏事件各自概率指数小」，先写 $N\\cdot e^{-cm}<1$，再解出 $m>\\frac{1}{c}\\log N$，把 $N$ 的组合数换成 $\\log$ 之后剩下的就是这个方法给出的资源下界。对 $\\binom{n}{k}$ 代入即可复现 $m=\\Omega(k\\log(n/k))$，同一模板可直接搬运到 Chernoff 界的多约束版本与受限等距性论证。\r\n\r\n\r\n一个相关的问题允许 $Ax = b$ 中有噪声；此时并不要求精确解。现在 $\\ell_1$ 范数作为 penalty（惩罚项）或 constraint（约束）出现：\r\n\r\n```math\r\n\\text{Minimize } \\|Ax − b\\|^2 + \\lambda \\|x\\|_1 \\qquad \\text{or} \\qquad \\text{Minimize } \\|Ax − b\\|^2 \\ \\text{ with } \\ \\|x\\|_1 \\le t \\tag{2}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 公式 (2) 的说明文字依次为「最小化」「或」「最小化」「满足约束」。原 OCR 行 `LASSO ()n stati stics)` 按章节语境重建为 `LASSO (in statistics)`，即 LASSO（统计学中的用法）；`Ä` 为 $\\lambda$、`孓` 为 $\\le$、`丨@目` 为 $\\|x\\|$，均已按数学语境重建。\r\n\r\nLASSO 由 Tibshirani 提出，用以改进 least squares regression（最小二乘回归）。它比 ridge regression（岭回归）得到更稀疏的解，后者在惩罚项与约束中使用的是 $\\ell_2$ 范数。\r\n\r\n从几何上看，$\\|x\\|_1 \\le 1$ 与 $\\|x\\|_2 \\le 1$ 的差别在于这两个集合的形状：前者是菱形，后者是 sphere（球面）。请参见 §I.11 中的这两幅图。\r\n\r\n一个凸集 $\\|Ax − b\\|^2 = C$ 很有机会在那个菱形的一个尖点处与之相碰。那些尖点落在坐标轴上，对应的是稀疏的 $x$ 向量。但球面没有尖点。在 $\\ell_2$ 优化中，最优解几乎从不是稀疏的。既然那个圆形的凸集 $C$ 可以在任何地方与球面相切，$\\ell_2$ 解就会有许多非零分量。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 这条注专治我知道 $\\ell_1$ 会稀疏，但为什么几何上一眼就能看出来的疑惑。请把两件事分开看：**可行/惩罚集合的形状** 与 **水平集的形状**。\r\n\r\n在二维情形（$n=2$，$x=(x_1,x_2)$）手算一遍：$\\|x\\|_1\\le 1$ 是四个不等式 $x_1+x_2\\le 1$、$x_1-x_2\\le 1$、$-x_1+x_2\\le 1$、$-x_1-x_2\\le 1$ 的交集，画出来就是一个顶点在 $(\\pm1,0)$、$(0,\\pm1)$ 的菱形；而 $\\|x\\|_2\\le1$ 是圆。现在把 $\\|Ax-b\\|^2=C$ 的等值面（在 $x$ 空间里是一个椭圆）从原点向外膨胀，直到它第一次碰到可行集。这个第一次相碰的点就是解。\r\n\r\n关键就在于：**膨胀的椭圆碰到菱形时，为什么偏爱碰顶点？** 因为顶点是菱形上远离原点程度相对最大的位置——用数学语言说，顶点是菱形的极值点（不能写成集合内两点的严格凸组合），它所在的局部区域曲率是无穷（一个角），而圆的每一点曲率都有限且相同。一个光滑的椭圆去切一个光滑的圆，切点可以落在任意方向，完全由椭圆的朝向决定；去切一个菱形，角是天然的应力集中点，多数朝向下椭圆会先咬住角。而菱形的角恰好落在坐标轴上，对应的解就是 $x_2=0$ 或 $x_1=0$——稀疏。\r\n\r\n这也顺手解释了另一个现象：**解对噪声过敏**。既然最优解常常是那个角，那么椭圆稍微转一点点、或者常数 $C$ 稍微变一点点，切点就可能从角上滑走、跳到棱边上，$\\ell_1$ 解因此容易在支撑集层面突变（支撑集不稳定）。这与 $\\ell_2$ 解的光滑依赖形成鲜明对照：$\\ell_2$ 解是 $b$ 的连续甚至 Lipschitz 函数，但代价是永不稀疏。\r\n\r\n命名一个可复用的检验模板：**角点引力法（corner-attraction test）**——给定一个凸惩罚 $p(x)$ 与线性约束，先画出 $p$ 的单位球，数一数它的极值点落在哪些坐标子空间上；极值点落在坐标轴/坐标面上，惩罚就会诱导稀疏。把 $p$ 换成 $\\|x\\|_0$，单位球退化成 $2n$ 个孤立点，稀疏性满格，但不再是凸集——这正是放松的取舍所在。\r\n\r\n@@PAGE:188@@（书页 185）\r\n−-- OCR 原文 −--\r\n田 4 split Algonthms for +\r\n185\r\nSPlit Algorithms for Optimization\r\nS parse solutions are a key reason for mimmizing in 1 norms. Th e small nonzer0S\r\nthat appear in 乏 2 will disappear in This was frustrating to kn ow, in the days when\r\nalgonthms were very slow. Now th e numerical implementation of 1 optimization\r\nhas essentially caught up wi th the th e orye\r\nHere is the picture. Many important optimization problems combine tWO te rms ：\r\nConvex 虽 and\r\nMinimize （ ） + （ ） for in a convex set K （ 3 ）\r\ninvolves 皿 E1-type norm and involves an 2 −type n orm · Their convexity is very\r\nvaluable. But they don ' t mi x well—the iterations (ordinarily fast enough) are slowed\r\ndown waiting for 乏 1 to learn which components should be nonzero.\r\nThe solution is t0 ' 'split ” th e algorithm. AI tern ate between 乏 2 s tep s and 1 steps.\r\nimportant cases, it becomes possible to solve problems explicitly by a shrinkage\r\noperaüon. The split iteration s are much fas ter and more effective th an a mixed 1 認 2 step ·\r\nAmong the leading algorithms are ADMM and split Bregman and split Kaczmarz\r\n@described below).\r\nOne way t0 start is t0 see key words that descnbe the development 0f the al g onthms ·\r\nThose word s describe forward step s th at improved on the previous method-—and made the\r\nfinal ADMM algorithm a success ：\r\nDual decomposition\r\nAugmented Lagrangi an\r\nMethod of multipliers\r\nADMM ： AIternating direction method of multipliers\r\nThi s step-by-step presentation is following th e plan established by Boyd, P ， Chu,\r\nPeleato ， and Eckstein in their excellent online book on ADMM ： D d 0 讫\r\n五 and S 吡 rn ing via the 方 ern 沅 g D c 0 Method 可 M 咖 · lt was\r\nPUblished in Foundations an d Trends in Machine Learning, 3 （ 2010 ） 1 · 122 ·\r\nThose authors include a neat hi story (with reference s ） for each of the four s tep s to ADMM 。\r\nHere is a statement of the problem ， leaving ample freedom in the convex function ·\r\nMinimize (@) subj ect to 蓋 = b ： is m by\r\nTh1s is the p p 况 e for\r\n刁 · The first step is t0 combine\r\nwith the cost functi on 煮 by introducing Lagrange multipliers ， 孬\r\nLagrangian L(c,y) = + （ 一 b) ： + −yTb\r\n（ 4 ）\r\n= b\r\n（ 5 ）\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 188 −->\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Split Algorithms for Optimization（优化的分裂算法）\r\n\r\n稀疏解是最小化 $\\ell_1$ 范数的一个关键理由。在 $\\ell_2$ 中出现的小非零量会在 $\\ell_1$ 中消失。在算法还非常缓慢的年代，知道这一点令人沮丧。如今，$\\ell_1$ 优化的数值实现本质上已经追上了理论。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 为什么稀疏这件事只能交给 $\\ell_1$ 来办，而不能交给 $\\ell_2$？先回到最基础的问题：我们真正想要的解是什么？是 $\\|x\\|_0$ 最小，也就是非零分量个数最少。但正文已经点破，$\\|x\\|_0$ 不是范数：范数定义里必须有齐次性 $\\|cx\\|=|c|\\|x\\|$，而 $\\|2x\\|_0=\\|x\\|_0\\ne 2\\|x\\|_0$。齐次性一旦崩掉，单位球这个概念就无从谈起，凸性也随之瓦解——而没有凸性，你在凸优化课（Boyd）里学的整套对偶理论、KKT 条件、梯度类算法全部失效。这里的设计动机要从构造主义角度读：范数的三条公理不是装饰，它们是「单位球是凸集」这条几何性质的充要来源，而凸集保证「局部最优即全局最优」。$\\ell_0$ 把这条保证弄丢了，于是我们不是「想用」$\\ell_1$，而是被逼着去找一个凸的替身。\r\n\r\n于是问题变成：找一个凸的替代品，越接近数非零个数越好。把 $\\|x\\|_0$ 放松成 $\\sum_i |x_i|^p$，你会看到一件几何上很直观的事：$\\ell_p$ 单位球在坐标轴方向上有尖角，而尖锐程度只由 $p$ 决定。验算一下：$p=2$ 时，想让 $x_1^2+x_2^2$ 变小，最优做法是把每个分量都按比例缩小一点点，结果是大分量变小、小分量更小，但没有任何一个分量被逼到恰好为零；$p=1$ 时，总预算分摊到各分量上，最容易的做法是让一部分分量干脆取零，把全部预算留给剩下的那几个。看单位球的形状就更清楚了：$\\ell_1$ 球是菱形，顶点恰好落在坐标轴上；$\\ell_2$ 球是圆，边界处处光滑、没有任何一个点是尖的。这就是正文那句话的真正含义——$\\ell_2$ 里的小非零量（比如 $10^{-3}$）在 $\\ell_1$ 里会被直接砍掉，因为保留它的边际代价和保留一个大分量完全一样，不划算。\r\n\r\n把上面的预算竞赛代成数字验一遍。只考虑两个坐标，约束 $x_1+x_2=1$（即 $\\ell_1$ 预算为 1）。方案 A 把预算全押在一个坐标上：$x_1=1,x_2=0$，惩罚是 $|1|+|0|=1$，而平方惩罚是 $1^2+0^2=1$。方案 B 平均分配：$x_1=x_2=0.5$，惩罚是 $0.5+0.5=1$，平方惩罚却是 $0.25+0.25=0.5$。结论一眼可见：在同样的预算下，$\\ell_1$ 对「集中」和「分散」打分完全相同，而 $\\ell_2$ 明确给分散方案打了对折。反过来在约束 $x_1+x_2=0.5$ 下更极端：集中方案 $\\ell_1$ 得 $0.5$、$\\ell_2$ 得 $0.25$；分散方案 $\\ell_1$ 得 $0.5$、$\\ell_2$ 得 $0.125$。$\\ell_2$ 又一次偏爱分散。这就把正文那句话翻译成了可验算的算术：平方惩罚对大分量罚得重（边际惩罚 $2|x_i|$ 随分量增长），所以它宁可把能量摊薄成许多小非零量；线性惩罚的边际代价恒为 1，对大小分量一视同仁，所以它宁愿少而精。\r\n\r\n注意这里有个反直觉点：$\\ell_2$ 惩罚对大分量格外苛刻（平方惩罚），所以它均匀地惩罚一切；$\\ell_1$ 惩罚对所有非零分量一视同仁，所以它宁愿少而精。你可以把这理解成一种离散化的代价结构：$\\ell_1$ 的目标函数在零点不可导（尖点），正是这个不可导点充当了吸尘器，把解吸向坐标轴。把这句话说得更操作一点：在零点处 $\\ell_1$ 的次梯度是整个区间 $[-1,1]$，只要正则化系数对应的阈值落在该区间内，把分量设成零就是合法的一阶最优条件；而 $\\ell_2$ 在零点梯度恰为 $0$，任何非零分量都能靠微调把目标再降一点，所以零点永远不是「吸得住」的驻点。可导性在这里不是分析课的装饰，它直接决定了「零」这个取值在优化问题里是可达还是不可达。\r\n\r\n**跨课程连接**：这条连接可以精确到 6.042J 与 Boyd 的联手上——先把 $\\ell_0$ 松弛为 $\\ell_1$，得到的 $\\min\\|x\\|_1$ 是一个线性目标配线性约束的线性规划，它的最优解必在可行多面体的顶点取到；而顶点正是那些大量坐标取零的「基本可行解」，于是稀疏性不是被优化器「压」出来的，而是被多面体的几何结构强制出来的；再用 6.042J 的计数论证看维数：$n$ 维中满足 $m$ 个等式的顶点至少要让 $n-m$ 个坐标为零，这给出了稀疏度的定量下界。区别在于：6.042J 关心的是解的存在性与计数，Boyd 关心的是怎么用内点法真正算出来，两者一个管「为什么有」，一个管「怎么求」。这也解释了为什么 basis pursuit 求解的不是 $A$ 的 SVD——SVD 天然对应 $\\ell_2$，它的最小范数解 $x^+=A^+b$ 会把解均匀地铺满整个行空间，几乎不会给出零分量。换个角度说，SVD 是「能量按奇异值大小分摊」的解，$\\ell_1$ 是「能量按坐标轴集中」的解，两者在解集里位于完全不同的角落；你如果手上有 $A$ 的 SVD，可以用它快速算 $x^+$，但千万不要指望它顺手给你稀疏解，它就是被设计成不稀疏的。\r\n\r\n最后留一个可复用的检验模板，名字就叫**能量预算检验法**：遇到「$\\ell_p$ 会不会把某个分量压到零」的问题，固定预算 $R$（取 $x_1+x_2=R$ 这样的简单约束），分别算出「全部预算堆在一个坐标上」和「平均分给所有坐标」两种极端方案的目标值，谁的惩罚小，解就朝谁靠。上文的 $R=1$ 一组数字就是这个模板的一次完整演算：$\\ell_1$ 两方案打平（都是 1），$\\ell_2$ 平均方案胜出（$0.5<1$），所以 $\\ell_1$ 允许稀疏、$\\ell_2$ 拒绝稀疏。以后每遇到一次 $\\ell_1$ 与 $\\ell_2$ 的对比题，先跑一遍这个两步预算表，再动手算完整解，可以省掉大量方向性错误。\r\n\r\n\r\n下面就是问题的图景。许多重要的优化问题把两项组合在一起：\r\n\r\n```math\r\n\\text{Minimize } f(x) + g(x) \\quad \\text{for } x \\text{ in a convex set } K \\tag{3}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 公式 (3) 的说明文字依次为「最小化」「其中 $x$ 属于凸集 $K$」；其前的说明行 OCR 作 `Convex 虽 and`，按语境还原为凸的 $f$ 与 $g$。\r\n\r\n其中 $f$ 涉及 $\\ell_1$ 型范数，而 $g$ 涉及 $\\ell_2$ 型范数。它们的凸性非常有价值。但它们并不容易混合——迭代（通常足够快）会被拖慢，因为它要等待 $\\ell_1$ 弄清哪些分量应当非零。\r\n\r\n解决办法是把算法「分裂」（split）。在 $\\ell_2$ 步骤与 $\\ell_1$ 步骤之间交替进行。在许多重要情形下，这样就可以通过一个 shrinkage operation（收缩运算）显式地求解问题。分裂迭代比混合的 $\\ell_1/\\ell_2$ 步骤快得多，也有效得多。在领先的算法中有 ADMM、split Bregman（分裂 Bregman）与 split Kaczmarz（分裂 Kaczmarz）（下文将予以描述）。\r\n\r\n一个入手方式是看看那些描述算法发展历程的关键词。这些词描述了逐步改进前一方法的 forward steps（前进步骤）——并最终使 ADMM 算法获得成功：Dual decomposition（对偶分解）、Augmented Lagrangian（增广拉格朗日量）、Method of multipliers（乘子法）、ADMM：Alternating direction method of multipliers（交替方向乘子法）。\r\n\r\n这种逐步推进的呈现方式，遵循了 Boyd、P. Chu、Peleato 与 Eckstein 在他们那本关于 ADMM 的优秀在线著作中确立的方案：*Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers*。该书发表于 *Foundations and Trends in Machine Learning*, 3 (2010) 1–122。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本段书名与期刊名在 OCR 中严重残损（如 `D d 0 讫 五 and S 吡 rn ing via the 方 ern 沅 g D c 0 Method 可 M 咖`），已按该领域标准文献信息重建为上述英文书名与期刊出处；`3 （ 2010 ） 1 · 122 ·` 重建为卷 3 (2010) 1–122。\r\n\r\n这些作者为通往 ADMM 的四个步骤中的每一步，都给出了一段简洁的历史（并附有参考文献）。\r\n\r\n下面给出该问题的陈述，并在凸函数 $f$ 上留下充分的自由度：\r\n\r\n```math\r\n\\text{Minimize } f(x) \\quad \\text{subject to } Ax = b: \\ A \\text{ is } m \\text{ by } n \\tag{4}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 公式 (4) 的说明文字依次为「最小化」「满足约束」「$A$ 是 $m \\times n$ 的」；其后的说明行 OCR 作 `Th1s is the p p 况 e for 刁 ·`，按语境重建为 `This is the problem for III.4.`，即这是 §III.4 所处理的问题。\r\n\r\n第一步是通过引入 Lagrange multipliers（拉格朗日乘子）$y$，把约束 $Ax = b$ 与代价函数 $f$ 合并起来：\r\n\r\n```math\r\n\\text{Lagrangian } L(x, y) = f(x) + y^{T}(Ax − b) = f(x) + y^{T}Ax − y^{T}b \\tag{5}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 公式 (5) 的标签为「拉格朗日量」；原文 `（ 一 b)` 与 `−yTb` 中的符号噪声已按数学语境重建为 $(Ax − b)$ 与 $-y^{T}b$；原文 `孬` 为乘子记号 $y$ 之误，且 $y$ 是 $m$ 维的。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 24,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 24,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 24,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 24,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 16449,
+            "outputTokens": 51828,
+            "cacheReadTokens": 45184,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 16271,
+              "outputTokens": 13472,
+              "cacheReadTokens": 33792,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 24,
+        "val": {
+          "surfaceTokens": 40268,
+          "contextWindow": 1000000,
+          "pressureTokens": 50063,
+          "sampledSurfaceTokens": 33515
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 24,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4073,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 27726,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 22,
+              "heuristicTokens": 6753,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 39124
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 24,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 21,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 23
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 24,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 24,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 24,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

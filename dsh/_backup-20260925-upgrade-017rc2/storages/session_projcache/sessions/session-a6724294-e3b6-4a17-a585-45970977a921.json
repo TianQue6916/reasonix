@@ -1,0 +1,231 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790061029730,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 35,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 35,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 Manual 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy-zz | Manual, Problem Set I.x 题 N</span>`。\r\n6. 🚨 所有 `$...$`、```math 围栏与全部反斜杠命令必须原样保留：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、行列式与迹校验数字不符等。请**独立重算每一处计算**，并核对题面矩阵与结论是否自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错（有没有把对的说成错的）。\r\n③ 🔴 译者注**规格**：每条注 **800–1200 汉字**（公式/配图/引文不计）。超长的请**按主题拆分为多条**（子标题写作 `**Note（译者注）——（其一）……**`、`（其二）……`），每条落在区间内；过短可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——只能压缩重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板）。\r\n④ 🔴 **数学编号不得硬编码**：稿中若引用教材公式编号（如(9) 式、(12)、(13)）、章节号、页码，必须与下面给出的校对基准一致；无法确认的编号改成不带编号的表述（如教材 §I.8 中由 $A^TA$ 求 $v$ 的构造），不得保留可疑编号。\r\n⑤ 🟡 术语一致性：同一术语全段单一译法（singular value 一律奇异值、rank-one 一律秩一、positive definite 一律正定）。\r\n⑥ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑦ 🟡 **`Original（英文原题）` 必须与校对基准中给出的 OCW 英文原题逐字一致**（可修正明显的 OCR/转写差异，但不得改写句式、不得替换为自己重写的英文句子）。\r\n⑧ 🟡 **🎥 引文**：每条 🎥 引文必须（a）能在校对基准的字幕摘录（或你确知出自该讲字幕的内容）中找到依据；（b）**附中文翻译**。凡无依据或没收中文翻译的，删去该引文或补上翻译；无法确认的依据标 `⚠ 待核：<存疑点>`。\r\n⑨ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；标题层级无跳级。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课最后一题（含该课的末尾合观节）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 禁止只输出意见清单而不给修订全文。禁止输出给主代理的说明待核项汇总之类的话术（`⚠ 待核：…` 就地标注即可）。\r\n\r\n【终审校对基准（主代理提供，权威）】\r\n### OCW 英文原题（逐字）\r\n6 Find the σ's and v's and u's in the SVD for A = [[3, 4], [0, 5]] . Use equation (12).\r\n\r\n### 教材同题（Problem Set 1.8 的 Problem 8）追加两问（逐字）\r\nWhat is the norm ||A|| when that largest rank one piece of A is removed? What are the singular values of this reduced matrix, and its rank?\r\n\r\n### 教材官方 Manual 标准答案（Problem Set I.8, page 68 题 6，逐字）\r\n6 Exchange u's and v's (and keep σ = √45 and σ = √5) in equation (12) = the SVD of [[3, 0], [4, 5]].\r\n（同页题 7 的相关说法：若用 ||A|| = σ1 则去掉 σ1u1v1^T 后范数为 σ2；若用 Frobenius 范数则剩 (σ2²+···+σr²)^{1/2}。）\r\n\r\n### equation (12) 的完整内容（教材 §I.8, p.60 Example 1，逐字核对基准）\r\nA_0 = [[3,0],[4,5]] = U_0 Σ_0 V_0^T\r\n   = (1/√10)[[1,3],[3,−1]] · diag(3√5, √5) · (1/√2)[[1,1],[1,−1]]\r\n其中 v1 = (1/√2)(1,1), v2 = (1/√2)(1,−1)；u1 = (1/√10)(1,3), u2 = (1/√10)(3,−1)。\r\n秩一分解：A_0 = σ1u1v1^T + σ2u2v2^T = (3/2)[[1,1],[3,3]] + (1/2)[[3,−3],[−1,1]]。\r\n\r\n### 正确结论（供核对）\r\nA = A_0^T = [[3,4],[0,5]] 的 SVD 为 U = (1/√2)[[1,1],[1,−1]]、Σ = diag(3√5,√5)、V = (1/√10)[[1,3],[3,−1]]；\r\n即 v 与 u 互换。σ1=3√5≈6.708，σ2=√5≈2.236；σ1σ2=15=|det A|。\r\n去掉最大秩一部分后 A1 = (1/2)[[3,−1],[−3,1]]，秩 1，奇异值只有 √5；||A1||₂=√5，||A1||_F=√5。\r\n（注意：教材 Example 1 的秩一分解式中 (3/2)[[1,1],[3,3]] 等矩阵元素方向必须与 A_0 的列一致；转置后对应项也须转置。）\r\n\r\n### 合观节要求\r\n本课末尾合观节标题为 `## <span style=color:#c0392b;>附：两题合观——把两道题折叠成一个设计问题</span>`，800-1500 字：题 1 压坐标系（正交基下的长度与二次型展开），题 6 压计算与验证（从 $A^TA$ 出发把分解算到手，并看清 $A$ 与 $A^T$ 互换 $u,v$），不复述题干。\r\n\r\n### 本讲官方字幕摘录（供 🎥 引文核对）\r\n# lec6 字幕教学片段（MIT 18.065 官方字幕，英文原句 + 官方中文字幕对齐）\r\n- [00:02:21,920 --> 00:02:22,880] **EN**: singular values.\r\n  **ZH**: 奇异值。\r\n- [00:02:53,100 --> 00:02:59,320] **EN**: And numbers in between are not eigenvalues, but singular values.\r\n  **ZH**: 介于其中的数字并非 eigenvalues (特征值)， 而是 singular values (奇异值)。\r\n- [00:03:26,780 --> 00:03:30,500] **EN**: And they're called singular values. So it's just a different world.\r\n  **ZH**: 它们被称为 singular values (奇异值)。所以这 完全是另一个不同的世界。\r\n- （关键词「rank one」无命中）\r\n- [00:01:24,420 --> 00:01:28,000] **EN**: and then it's got a full set of eigenvalues and eigenvectors,\r\n  **ZH**: 并且它拥有 一组完整的特征值 (eigenvalues) 和特征向量 (eigenvectors)，\r\n- [00:01:35,060 --> 00:01:43,840] **EN**: either the eigenvectors are complex, eigenvalues are complex, or the eigenvectors are not orthogonal.\r\n  **ZH**: 要么特征向量是复数 (complex)，特征值 是复数，要么特征向量不正交 (not orthogonal)。\r\n- [00:07:35,140 --> 00:07:37,840] **EN**: what the SVD is going to use.\r\n  **ZH**: SVD（奇异值分解）将要使用的对象。\r\n- [00:17:21,140 --> 00:17:22,280] **EN**: established the SVD.\r\n  **ZH**: 建立了 SVD (奇异值分解)。\r\n- [00:19:08,820 --> 00:19:14,160] **EN**: are orthogonal, which I can do. And then they have to be in the SVD.\r\n  **ZH**: 是正交的，这我能做到。并且 然后它们必须位于 SVD（奇异值分解）中。\r\n\r\n======================= 待审部分开始（该课最后一题（含该课的末尾合观节）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 6（问题 6）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.8, p.56-61 | Manual, Problem Set I.8 题 8（本讲题 6）</span>\r\n\r\n求矩阵 $A=\\begin{bmatrix}3&4\\\\0&5\\end{bmatrix}$ 的 singular value decomposition（奇异值分解，SVD）中的 $\\sigma$'s、$v$'s 与 $u$'s，按 equation (12)（方程 (12)）的做法计算。追加两问：把 $A$ 中最大的 rank one piece（秩一部分）去掉之后，reduced matrix（缩减矩阵）的 norm（范数）$\\|A\\|$ 是多少？这个缩减矩阵的 singular values（奇异值）与 rank（秩）各是什么？\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Find the $\\sigma$'s and $v$'s and $u$'s for $A=\\begin{bmatrix}3&4\\\\0&5\\end{bmatrix}$. Use equation (12). ⚠ 追加两问的英文表述由题面信息回译，逐字原文待核。</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 先给全部答案。矩阵 $A$ 与例 1 中的 $A_0=\\begin{bmatrix}3&0\\\\4&5\\end{bmatrix}$ 互为 transpose（转置）：$A=A_0^T$，因此奇异值不变，而左、右奇异向量互换角色。\r\n>\r\n> ```math\r\n> A=\\begin{bmatrix}3&4\\\\0&5\\end{bmatrix}=U\\Sigma V^T,\\qquad\r\n> U=\\frac{1}{\\sqrt2}\\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix},\\qquad\r\n> \\Sigma=\\begin{bmatrix}3\\sqrt5&0\\\\0&\\sqrt5\\end{bmatrix},\\qquad\r\n> V=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1&3\\\\3&-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 逐个列出题目点名要的三组量：\r\n>\r\n> ```math\r\n> \\sigma_1=3\\sqrt5=\\sqrt{45},\\quad \\sigma_2=\\sqrt5;\\qquad\r\n> v_1=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1\\\\3\\end{bmatrix},\\quad v_2=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}3\\\\-1\\end{bmatrix};\\qquad\r\n> u_1=\\frac{1}{\\sqrt2}\\begin{bmatrix}1\\\\1\\end{bmatrix},\\quad u_2=\\frac{1}{\\sqrt2}\\begin{bmatrix}1\\\\-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 拆成两个秩一项（rank-one term）的写法是\r\n>\r\n> ```math\r\n> A=\\sigma_1u_1v_1^T+\\sigma_2u_2v_2^T\r\n> =\\frac{3}{2}\\begin{bmatrix}1&3\\\\1&3\\end{bmatrix}\r\n> +\\frac{1}{2}\\begin{bmatrix}3&-1\\\\-3&1\\end{bmatrix}\r\n> ```\r\n>\r\n> 注意这两块正是例 1 中 $A_0$ 的两块各自转置后的结果，这不是巧合，而是 $A=A_0^T$ 强制出来的。\r\n>\r\n> 追加两问的答案：去掉最大秩一部分 $\\sigma_1u_1v_1^T$ 后，\r\n>\r\n> ```math\r\n> A_1=A-\\sigma_1u_1v_1^T=\\frac{1}{2}\\begin{bmatrix}3&-1\\\\-3&1\\end{bmatrix}\r\n> ```\r\n>\r\n> 该缩减矩阵的谱范数（spectral norm，即 $\\|\\cdot\\|_2$）为 $\\|A_1\\|_2=\\sigma_2=\\sqrt5$，Frobenius norm（Frobenius 范数）为 $\\|A_1\\|_F=\\sqrt{\\sigma_2^2}=\\sqrt5$，秩为 $1$。作为对照，原矩阵 $\\|A\\|_2=\\sigma_1=3\\sqrt5\\approx6.708$，$\\|A\\|_F=\\sqrt{45+5}=5\\sqrt2\\approx7.071$。本题中缩减矩阵只剩一个非零奇异值，所以两种范数数值恰好相同，这个巧合不能推广到 $r\\ge3$ 的情形。\r\n>\r\n> <span style=color:#00838f;>定义核心句：奇异值分解把线性映射拆成标量序列 $\\sigma_k$ 加两组标准正交方向 $u_k,v_k$，其中 $\\sigma_k$ 记拉伸倍率，$u_k$ 记输出方向，$v_k$ 记输入方向。</span>\r\n>\r\n> **二、方法一：走 equation (12) 的原路，从 $A^TA$ 出发**\r\n>\r\n> 这条路看到的是分解可以被算出来这一构造性事实：右奇异向量是 $A^TA$ 的特征向量，左奇异向量由 $u_k=Av_k/\\sigma_k$ 免费获得。它对任意 $m\\times n$ 实矩阵都成立，不需要任何附加假设。\r\n>\r\n> 先算两个对称矩阵（本节 (9) 式的口径）：\r\n>\r\n> ```math\r\n> A^TA=\\begin{bmatrix}3&0\\\\4&5\\end{bmatrix}\\begin{bmatrix}3&4\\\\0&5\\end{bmatrix}\r\n> =\\begin{bmatrix}9&12\\\\12&41\\end{bmatrix},\\qquad\r\n> AA^T=\\begin{bmatrix}3&4\\\\0&5\\end{bmatrix}\\begin{bmatrix}3&0\\\\4&5\\end{bmatrix}\r\n> =\\begin{bmatrix}25&20\\\\20&25\\end{bmatrix}\r\n> ```\r\n>\r\n> 矩阵 $A^TA$ 的 trace（迹）为 $9+41=50$，determinant（行列式）为 $9\\cdot41-12^2=369-144=225$。于是特征值（eigenvalue）满足 $\\lambda^2-50\\lambda+225=0$，即 $(\\lambda-45)(\\lambda-5)=0$，得 $\\lambda_1=45,\\lambda_2=5$，开平方得 $\\sigma_1=3\\sqrt5,\\sigma_2=\\sqrt5$。\r\n>\r\n> 再解齐次方程组求特征向量（eigenvector）：\r\n>\r\n> ```math\r\n> \\lambda=45:\\ \\begin{bmatrix}-36&12\\\\12&-4\\end{bmatrix}\\sim\\begin{bmatrix}3&-1\\\\0&0\\end{bmatrix}\r\n> \\Rightarrow 3x_1=x_2\\Rightarrow v_1=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1\\\\3\\end{bmatrix}\r\n> ```\r\n>\r\n> ```math\r\n> \\lambda=5:\\ \\begin{bmatrix}4&12\\\\12&36\\end{bmatrix}\\sim\\begin{bmatrix}1&3\\\\0&0\\end{bmatrix}\r\n> \\Rightarrow x_1=-3x_2\\Rightarrow v_2=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}3\\\\-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 归一化因子来自 $\\|(1,3)\\|=\\|(3,-1)\\|=\\sqrt{10}$，而正交性来自 $(1,3)\\cdot(3,-1)=3-3=0$。\r\n>\r\n> 第三步，用 $u_k=Av_k/\\sigma_k$ 求左奇异向量：\r\n>\r\n> ```math\r\n> u_1=\\frac{Av_1}{\\sigma_1}=\\frac{1}{3\\sqrt5}\\cdot\\frac{1}{\\sqrt{10}}\\begin{bmatrix}15\\\\15\\end{bmatrix}\r\n> =\\frac{1}{\\sqrt2}\\begin{bmatrix}1\\\\1\\end{bmatrix},\\qquad\r\n> u_2=\\frac{Av_2}{\\sigma_2}=\\frac{1}{\\sqrt5}\\cdot\\frac{1}{\\sqrt{10}}\\begin{bmatrix}5\\\\-5\\end{bmatrix}\r\n> =\\frac{1}{\\sqrt2}\\begin{bmatrix}1\\\\-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 这一步的合法性需要证明，而不是当技巧接受：设 $A^TAv_j=\\sigma_j^2v_j$，则\r\n>\r\n> ```math\r\n> u_i^Tu_j=\\frac{v_i^TA^TAv_j}{\\sigma_i\\sigma_j}\r\n> =\\frac{\\sigma_j^2\\,v_i^Tv_j}{\\sigma_i\\sigma_j}\r\n> =\\frac{\\sigma_j}{\\sigma_i}\\delta_{ij}=\\delta_{ij}\r\n> ```\r\n>\r\n> 所以只要 $v$ 们标准正交（orthonormal），$u$ 们自动标准正交，除 $\\sigma_k$ 这个动作恰好把长度调成 $1$。适用条件：$\\sigma_k>0$，即只对 $k\\le r$ 使用。优劣：这是最有教学价值、最可复现的路线，代价是显式形成 $A^TA$ 会放大误差（见译者注一）。\r\n>\r\n> **三、方法二：转置对偶——把例 1 的整体结果翻过来**\r\n>\r\n> 这条路看到的是转置不改变奇异值、只交换左右向量这一结构对称性。它给出的是 Manual 的那句答案，也因为如此，它最省算力：例 1 已经做过的特征值计算可以整块复用。\r\n>\r\n> 从 $A=A_0^T$ 出发，对 equation (12) 两边取转置：\r\n>\r\n> ```math\r\n> A=A_0^T=\\left(U_0\\Sigma_0V_0^T\\right)^T=V_0\\Sigma_0^TU_0^T\r\n> ```\r\n>\r\n> 矩阵 $\\Sigma_0$ 是 $2\\times2$ 对角矩阵，故 $\\Sigma_0^T=\\Sigma_0$，于是本题取\r\n>\r\n> ```math\r\n> U=V_0=\\frac{1}{\\sqrt2}\\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix},\\qquad\r\n> V=U_0=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1&3\\\\3&-1\\end{bmatrix},\\qquad\r\n> \\Sigma=\\Sigma_0\r\n> ```\r\n>\r\n> 与方法一逐元素一致。适用条件：需要已知 $A^T$ 的完整 SVD，或 $A$ 本身就是某个已解矩阵的转置。劣势：它把为什么外包给了例 1，且矩形情形必须小心形状记账。\r\n>\r\n> 奇异值为何对转置不变，这里给出一个不依赖任何定理的证明：若 $A^TAv=\\lambda v$ 且 $\\lambda\\ne0$，则 $\\|Av\\|^2=v^TA^TAv=\\lambda\\|v\\|^2\\ne0$，故 $Av\\ne0$，并且\r\n>\r\n> ```math\r\n> AA^T(Av)=A(A^TAv)=\\lambda(Av)\r\n> ```\r\n>\r\n> 所以 $\\lambda$ 同时是 $A^TA$ 与 $AA^T$ 的特征值，对应的左奇异向量就是归一化的 $Av$。对 $A^T$ 重复同一论证即得两边非零谱完全一致。\r\n>\r\n> **Manual 标准答案原文与严谨性核验。** Manual 的 PS I.8 题 8 写作：`Exchange u's and v's (and keep $\\sigma_1=\\sqrt{45}$ and $\\sigma_2=\\sqrt{5}$) in equation (12) = the SVD of $\\begin{bmatrix}3&0\\\\4&5\\end{bmatrix}$.`\r\n>\r\n> 独立核验结论：这句话的数学内容是**正确**的，且与本文方法二完全同源。但它作为标准答案有三处不够严格或信息不全，须补足：\r\n>\r\n> 其一，它只给了操作指令，没给任何向量或矩阵的显式值，读者无法用它自检；至少要补上 $U=\\frac{1}{\\sqrt2}\\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix}$、$V=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1&3\\\\3&-1\\end{bmatrix}$。其二，交换 $u$ 与 $v$这条规则在矩形情形下会变形：一般地 $(U\\Sigma V^T)^T=V\\Sigma^TU^T$，其中 $\\Sigma^T$ 是 $n\\times m$ 的对角矩阵，形状从 $m\\times n$ 变成 $n\\times m$，只有方阵时才可以直接写 $\\Sigma^T=\\Sigma$；本题恰是方阵，指令才成立。其三，它没有交代唯一性：SVD 从来不是唯一的，允许同时翻转一对 $(u_k,v_k)$ 的符号，也允许在奇异值重复时在对应特征空间内做正交旋转。本题 $\\sigma_1\\ne\\sigma_2$，所以只剩四种成对翻号的自由，Manual 给出的只是其中一种。\r\n>\r\n> **四、方法三：对称分块矩阵 $S=\\begin{bmatrix}0&A\\\\A^T&0\\end{bmatrix}$ 的特征向量**\r\n>\r\n> 这条路看到的是任意矩阵的 SVD 就是某个对称矩阵的谱分解这一几何统一，并且它把两套正交基这一结论从附加证明变成自动推论。\r\n>\r\n> ```math\r\n> S=\\begin{bmatrix}0&A\\\\A^T&0\\end{bmatrix}\\in\\mathbb{R}^{4\\times4},\\qquad\r\n> S\\begin{bmatrix}u_k\\\\v_k\\end{bmatrix}\r\n> =\\begin{bmatrix}Av_k\\\\A^Tu_k\\end{bmatrix}\r\n> =\\begin{bmatrix}\\sigma_ku_k\\\\\\sigma_kv_k\\end{bmatrix}\r\n> =\\sigma_k\\begin{bmatrix}u_k\\\\v_k\\end{bmatrix},\\qquad\r\n> S\\begin{bmatrix}u_k\\\\-v_k\\end{bmatrix}=-\\sigma_k\\begin{bmatrix}u_k\\\\-v_k\\end{bmatrix}\r\n> ```\r\n>\r\n> 代入本题的数值验证一组：取 $u_1=\\frac{1}{\\sqrt2}\\begin{bmatrix}1\\\\1\\end{bmatrix}$、$v_1=\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1\\\\3\\end{bmatrix}$，则 $Av_1=\\frac{15}{\\sqrt{10}}\\begin{bmatrix}1\\\\1\\end{bmatrix}=\\frac{3\\sqrt5}{\\sqrt2}\\begin{bmatrix}1\\\\1\\end{bmatrix}=\\sigma_1u_1$，同时 $A^Tu_1=\\frac{1}{\\sqrt2}\\begin{bmatrix}3\\\\9\\end{bmatrix}=\\frac{3}{\\sqrt2}\\begin{bmatrix}1\\\\3\\end{bmatrix}=\\sigma_1v_1$，两边都对上。矩阵 $S$ 的 trace 为 $0$，与它的四个特征值 $3\\sqrt5,\\sqrt5,-\\sqrt5,-3\\sqrt5$ 成对反号、和为 $0$ 一致。\r\n>\r\n> 这条路的独有收益有两项：第一，$S$ 对称，而对称矩阵不同特征值的特征向量自动正交，因此 $u$ 之间、$v$ 之间的正交性无需再算；第二，它解释了剥掉最大项后剩 $\\sigma_2$为什么自然——剥掉的部分正是 $S$ 的最大特征对，剩下的极值就是次大特征值。适用条件：任何 $m\\times n$ 矩阵都行，不要求方阵。劣势：把问题规模从 $m\\times n$ 抬到 $(m+n)\\times(m+n)$，是概念工具而非高效算法。\r\n>\r\n> **五、追加两问：剥掉最大秩一部分之后**\r\n>\r\n> 先算被剥掉的那一块：\r\n>\r\n> ```math\r\n> \\sigma_1u_1v_1^T=3\\sqrt5\\cdot\\frac{1}{\\sqrt2}\\begin{bmatrix}1\\\\1\\end{bmatrix}\\cdot\\frac{1}{\\sqrt{10}}\\begin{bmatrix}1&3\\end{bmatrix}\r\n> =\\frac{3\\sqrt5}{2\\sqrt5}\\begin{bmatrix}1&3\\\\1&3\\end{bmatrix}\r\n> =\\frac{3}{2}\\begin{bmatrix}1&3\\\\1&3\\end{bmatrix}\r\n> ```\r\n>\r\n> 相减得缩减矩阵\r\n>\r\n> ```math\r\n> A_1=A-\\sigma_1u_1v_1^T=\\frac{1}{2}\\begin{bmatrix}3&-1\\\\-3&1\\end{bmatrix}=\\sigma_2u_2v_2^T\r\n> ```\r\n>\r\n> 其奇异值为 $\\sqrt5$ 与 $0$，秩为 $1$（第二行等于第一行的相反数，行空间只有一维）。范数上，$\\|A_1\\|_2=\\sigma_2=\\sqrt5\\approx2.236$，$\\|A_1\\|_F=\\sqrt{(\\sqrt5)^2}=\\sqrt5$。\r\n>\r\n> 这一问的完整理论依据是 Eckart–Young 定理（教材下一节 §I.9 的内容），这里给出两个范数版本的完整证明骨架，比 Manual 只列结论要更严谨。\r\n>\r\n> 谱范数版本（下界）：设 $B$ 是任意秩不超过 $k$ 的矩阵，$A=\\sum_{i=1}^{r}\\sigma_iu_iv_i^T$。由 rank–nullity（秩—零化度守恒），$\\dim N(B)=n-\\operatorname{rank}(B)\\ge n-k$；而 $\\operatorname{span}\\{v_1,\\ldots,v_{k+1}\\}$ 的维数是 $k+1$。两者维数之和超过 $n$，故交集中存在单位向量 $w$，它同时满足 $Bw=0$ 与 $w=\\sum_{i\\le k+1}c_iv_i$。于是\r\n>\r\n> ```math\r\n> \\|A-B\\|_2\\ge\\|(A-B)w\\|=\\|Aw\\|\r\n> =\\Big\\|\\sum_{i\\le k+1}\\sigma_ic_iu_i\\Big\\|\r\n> =\\Big(\\sum_{i\\le k+1}\\sigma_i^2c_i^2\\Big)^{1/2}\r\n> \\ge\\sigma_{k+1}\\Big(\\sum_{i\\le k+1}c_i^2\\Big)^{1/2}=\\sigma_{k+1}\r\n> ```\r\n>\r\n> 上界由 $B^\\ast=\\sum_{i\\le k}\\sigma_iu_iv_i^T$ 达到：此时 $A-B^\\ast=\\sum_{i>k}\\sigma_iu_iv_i^T$，其最大奇异值就是 $\\sigma_{k+1}$。取 $k=1$ 即得 $\\min_{\\operatorname{rank}B\\le1}\\|A-B\\|_2=\\sigma_2=\\sqrt5$，所以剥掉最大块之后不能再剥得更好。\r\n>\r\n> Frobenius 范数版本：由正交不变性 $\\|A-B\\|_F=\\|\\Sigma-P\\|_F$，其中 $P=U^TBV$ 仍满足 $\\operatorname{rank}(P)\\le k$。取 $N(P)$ 的一组标准正交基做成矩阵 $W\\in\\mathbb{R}^{n\\times(n-k)}$，则 $PW=0$，于是\r\n>\r\n> ```math\r\n> \\|\\Sigma-P\\|_F^2\\ge\\|(\\Sigma-P)W\\|_F^2=\\|\\Sigma W\\|_F^2=\\sum_i\\sigma_i^2s_i,\\qquad s_i=\\sum_j w_{ij}^2\r\n> ```\r\n>\r\n> 权重满足 $0\\le s_i\\le1$ 与 $\\sum_is_i=\\operatorname{trace}(W^TW)=n-k$。在这个可行域上最小化 $\\sum_i\\sigma_i^2s_i$，把单位权重优先分给最小的那些 $\\sigma_i^2$ 最优，得下界 $\\sum_{i>k}\\sigma_i^2$；上界同样由 $\\sum_{i\\le k}\\sigma_iu_iv_i^T$ 达到。取 $k=1$、$r=2$ 即 $\\|A_1\\|_F=\\sqrt{\\sigma_2^2}=\\sqrt5$。\r\n>\r\n> 需要点明 Manual PS I.8 题 7 的一般说法（用 $\\|A\\|=\\sigma_1$ 则剩 $\\sigma_2$；用 Frobenius 则剩 $(\\sigma_2^2+\\cdots+\\sigma_r^2)^{1/2}$）正确但留了三个缺口：它没有说明最大秩一部分指的是 $\\sigma_1u_1v_1^T$ 而不是任意秩一矩阵；没有说明本书默认的 $\\|A\\|$ 就是谱范数 $\\sigma_1$，因此两种范数答案只有在 $r=2$ 时才数值重合；也没有说明缩减矩阵的秩一般是 $r-1$，本题即 $1$。\r\n>\r\n> **六、常见错误判定**\r\n>\r\n> ❌ **把 $A^TA$ 的特征向量当 $u$、把 $AA^T$ 的特征向量当 $v$（左右颠倒）。** 错在把 $Av_k=\\sigma_ku_k$ 的方向读反了：定义域一侧的向量必须来自 $A^TA$。数值反证：按错的取法装配 $U\\Sigma V^T$ 得到 $\\begin{bmatrix}3&0\\\\4&5\\end{bmatrix}$，那是 $A^T$ 而不是 $A$。\r\n>\r\n> ❌ **忘记归一化，取 $v_1=\\begin{bmatrix}1\\\\3\\end{bmatrix}$。** 错在把特征向量这一等价类（任意非零倍数都满足 $A^TAv=\\lambda v$）当成了唯一的向量；$V^TV=I$ 只能靠长度 $1$ 来兑现。数值反证：若只让 $V$ 的列不归一化而 $U$ 保持正确，装配结果是 $\\sqrt{10}A\\approx\\begin{bmatrix}9.49&12.65\\\\0&15.81\\end{bmatrix}$；若 $u$ 也由同一个未归一化的 $v$ 生成，误差还会自乘，装配结果变成 $10A=\\begin{bmatrix}30&40\\\\0&50\\end{bmatrix}$。\r\n>\r\n> ❌ **把 $A$ 的 eigenvalues（特征值）$3$ 与 $5$ 当成奇异值。** 错在混淆了两个不同的谱问题：$A$ 是三角矩阵，$\\det(A-\\lambda I)$ 的根确实是对角元 $3,5$，但奇异值是 $A^TA$ 的特征值的平方根。数值反证：$3^2+5^2=34$，而 $\\|A\\|_F^2=9+16+0+25=50=45+5$，只有后者对得上；且 $|\\lambda|_{\\max}=5\\le\\sigma_1=3\\sqrt5$ 与本节 (13) 式的结论一致。\r\n>\r\n> ❌ **忘记开方，写 $\\sigma_1=45,\\sigma_2=5$。** 错在把 $A^TA$ 的谱直接搬进 $\\Sigma$。数值反证：$\\sigma_1^2+\\sigma_2^2$ 应等于 $\\|A\\|_F^2=50$，而 $45^2+5^2=2050$。\r\n>\r\n> ❌ **只翻一个符号，例如只取 $u_1\\to-u_1$ 而 $v_1$ 不动。** 错在每个秩一项 $\\sigma_ku_kv_k^T$ 是一个不可分割的乘积，符号必须成对翻转。数值反证：只翻 $u_1$ 得到 $\\begin{bmatrix}-3&-4\\\\0&5\\end{bmatrix}\\ne A$；而 $(U,V)\\to(-U,V)$ 或同时翻某一对的符号都不改变乘积。\r\n>\r\n> ❌ **按升序排列奇异值。** 错在 $\\|A\\|_2=\\sigma_1$、剥掉最大块、Eckart–Young 的全部表述都以 $\\sigma_1\\ge\\sigma_2\\ge\\cdots$ 为前提。数值反证：若把 $\\sqrt5$ 排在首位，被剥掉的最大块会变成 $\\frac12\\begin{bmatrix}3&-1\\\\-3&1\\end{bmatrix}$，剥完剩下的范数将是 $3\\sqrt5$，与题目意图正好相反。\r\n>\r\n> ❌ **在追加问里用 $\\|A\\|-\\sigma_1$ 或 $3\\sqrt5-\\sqrt5$ 当剩余范数。** 错在把范数当成了可减的长度量，而范数只满足三角不等式。数值反证：$3\\sqrt5-\\sqrt5=2\\sqrt5\\approx4.472$，而正确答案是 $\\sqrt5\\approx2.236$。\r\n>\r\n> ❌ **说缩减矩阵的秩是 $0$（最大块一去就空了）。** 错在把去掉一项读成去掉全部。数值反证：$\\frac12\\begin{bmatrix}3&-1\\\\-3&1\\end{bmatrix}$ 的第二行是第一行的相反数，非零，秩恰为 $1=r-1$。\r\n>\r\n> ❌ **断言 SVD 唯一，或断言答案必须与 Manual 逐字相同。** 错在忽略了符号自由度：本题 $\\sigma_1\\ne\\sigma_2$ 时有四种成对翻号的选择，四种都满足 $A=U\\Sigma V^T$；Manual 的交换只锁定了其中一种。\r\n>\r\n> **七、自检**\r\n>\r\n> 代入验算：直接做乘法 $U\\Sigma V^T$，\r\n>\r\n> ```math\r\n> \\frac{1}{\\sqrt2}\\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix}\r\n> \\begin{bmatrix}3\\sqrt5&9\\sqrt5\\\\3\\sqrt5&-\\sqrt5\\end{bmatrix}\\frac{1}{\\sqrt{10}}\r\n> =\\frac{1}{2\\sqrt5}\\begin{bmatrix}6\\sqrt5&8\\sqrt5\\\\0&10\\sqrt5\\end{bmatrix}\r\n> =\\begin{bmatrix}3&4\\\\0&5\\end{bmatrix}\r\n> ```\r\n>\r\n> 逐元素复原，通过。另外 $Av_1=\\sigma_1u_1$、$A^Tu_1=\\sigma_1v_1$ 均已单独验算。\r\n>\r\n> 形状与维数记账：$U$ 是 $m\\times m=2\\times2$，$\\Sigma$ 是 $m\\times n=2\\times2$，$V^T$ 是 $n\\times n=2\\times2$，乘积回到 $2\\times2$；$u_k\\in\\mathbb{R}^2$ 取 $m$ 维，$v_k\\in\\mathbb{R}^2$ 取 $n$ 维；非零奇异值的个数等于秩 $r=2$。\r\n>\r\n> trace 与 det 双锁：$\\operatorname{trace}(A^TA)=\\operatorname{trace}(AA^T)=50=\\sigma_1^2+\\sigma_2^2=45+5$；$\\det(AA^T)=25\\cdot25-20^2=225=(\\sigma_1\\sigma_2)^2$，故 $\\sigma_1\\sigma_2=15=|\\det A|$。符号也对得上：$\\det U=\\frac{1}{2}(-1-1)=-1$，$\\det V=\\frac{1}{10}(-1-9)=-1$，于是 $\\det U\\det\\Sigma\\det V^T=(-1)(15)(-1)=15=\\det A$。\r\n>\r\n> 配方法与能量校验：$x^TA^TAx=9x_1^2+24x_1x_2+41x_2^2=9\\!\\left(x_1+\\frac{4}{3}x_2\\right)^2+25x_2^2$，两个主元 $9,25$ 均为正，说明 $A^TA$ 是 positive definite（正定）的（等价于 $\\det A\\ne0$），且主元之积 $9\\cdot25=225$ 再次给出上面用到的行列式。代入两个单位方向：$v_1$ 方向给出 $9\\cdot\\frac{1}{10}+24\\cdot\\frac{3}{10}+41\\cdot\\frac{9}{10}=0.9+7.2+36.9=45$，$v_2$ 方向给出 $8.1-7.2+4.1=5$，与特征值 45 与 5 对得上。\r\n>\r\n> 秩与范数的上界校验：$6.708=\\sigma_1\\le\\|A\\|_F=7.071\\le\\sqrt2\\,\\sigma_1=9.487$；缩减矩阵 $\\|A_1\\|_F^2=5$ 与 $\\sigma_2^2=5$ 一致。\r\n>\r\n> 数值条件数旁注：$\\kappa_2(A)=\\sigma_1/\\sigma_2=3$，本题极其良态，手工计算不会暴露误差问题；这说明上一条显式形成 $A^TA$的风险在本题里被掩盖了，见译者注一。\r\n>\r\n> **八、一句话**\r\n>\r\n> 这道题真正训练的是：把矩阵在单位球上的最大拉伸这一几何事实，翻译成对称矩阵 $A^TA$ 的谱问题，并用转置对偶与秩一剥离这两把尺子检查自己对 $U,\\Sigma,V$ 三者分工的理解。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——为什么要绕道 $A^TA$：能量、配方法与 trace-det 双锁**\r\n>\r\n> 本注要回答一个设计问题：既然奇异值是 $A$ 自身的几何量（拉伸倍率），为什么所有教材都先造一个 $A^TA$ 再取它的特征值？核心在于最大化 $\\|Ax\\|$这句话本身不可直接计算，而 $A^TA$ 把它翻译成了一个二次型（quadratic form）的极值问题，翻译的代价是引入了 $A$ 的平方，收益是问题变成对称矩阵的谱问题，从而可以正交对角化。\r\n>\r\n> 机制展开只有三行代数。第一行是能量恒等式：$\\|Ax\\|^2=(Ax)^T(Ax)=x^TA^TAx$，把输出长度搬成输入的二次型。第二行是非负性：对一切 $x$ 有 $x^TA^TAx=\\|Ax\\|^2\\ge0$，所以 $A^TA$ 是 positive semidefinite（半正定），它的特征值必然非负实数、特征向量可以选成正交的——这正是 $\\sigma=\\sqrt{\\lambda}$ 有意义的唯一理由。第三行是极值的刻画：在单位球上最大化 $x^TA^TAx$ 得到的最大值就是 $\\lambda_1=\\sigma_1^2$，取到最大值的方向就是 $v_1$。把 $x$ 用 $V$ 的列展开，$x=\\sum c_kv_k$，则 $\\|Ax\\|^2=\\sum\\sigma_k^2c_k^2$ 而 $\\|x\\|^2=\\sum c_k^2$，于是最大化退化成把全部权重压到最大的系数上，这也顺手证明了全部 $\\sigma_k$ 都是驻值。\r\n>\r\n> 具体到本题，$A^TA=\\begin{bmatrix}9&12\\\\12&41\\end{bmatrix}$ 对应的二次型是 $9x_1^2+24x_1x_2+41x_2^2$，用配方法（completing the square）写成\r\n>\r\n> ```math\r\n> 9x_1^2+24x_1x_2+41x_2^2=9\\left(x_1+\\frac{4}{3}x_2\\right)^2+25x_2^2\r\n> ```\r\n>\r\n> 右边两个系数 $9$ 与 $25$ 正是 $A^TA$ 做 $LDL^T$ 分解的两个主元，都为正，这既是正定性的 Sylvester 判据，也给出 $\\det(A^TA)=9\\cdot25=225$ 这条独立校验。取两组单位方向代入：$(1,3)/\\sqrt{10}$ 得 $45$，$(3,-1)/\\sqrt{10}$ 得 $5$。此时再用 trace 与 det 双锁：$\\lambda_1+\\lambda_2=50$ 与 $\\lambda_1\\lambda_2=225$ 同时成立，$45$ 与 $5$ 是唯一解，无需展开特征多项式就完成了闭环。\r\n>\r\n> 跨课程连接有两条。其一，你在 100B 实分析（Thomson 的 *A Course of Pure Mathematics* 体系或 Rudin 前两章）里学过：$\\mathbb{R}^n$ 中的有界闭集是紧集，紧集上的连续函数取到最大值。单位球 $\\{x:\\|x\\|=1\\}$ 正是有界闭集，$x\\mapsto\\|Ax\\|$ 连续，所以 $\\sup_{\\|x\\|=1}\\|Ax\\|$ 其实是 $\\max$，最大值点真实存在——这就是 $v_1$ 存在的根据，也是 $\\|A\\|_2=\\sigma_1$ 这句定义能落地的前提。区别在于：实分析只保证存在一个取到最值的方向，不告诉你它在哪、也不保证唯一；而 SVD 的构造性内容（$A^TA$ 的特征向量、排序、正交性）把这份存在性升级为一张可计算、可排序的完整清单，还顺带给出了次大值、第三大值。其二，你在 CSAPP 里学过的 floating point（浮点）表示提供了一个现实警告：显式形成 $A^TA$ 会把条件数（condition number）平方，$\\kappa_2(A^TA)=\\kappa_2(A)^2$，于是计算 $\\lambda_k=\\sigma_k^2$ 的相对误差被放大到约 $\\epsilon_{\\text{mach}}\\kappa_2(A)^2$ 的量级；当 $\\sigma_2/\\sigma_1$ 小到 $\\sigma_2^2$ 与 $\\sigma_1^2$ 在浮点里挤在同一个数量级时，$\\sigma_2$ 会被完全吞掉。本题 $\\kappa_2(A)=3$，所以手算舒服；工程实现因此不显式造 $A^TA$，而是走双对角化路线（Golub–Kahan 型算法；具体软件例程名 ⚠ 待核）。请把这条经验命名成模板：**能量配方法 → 主元定号 → trace-det 双锁**，它适用于任何求对称矩阵谱但不想展开高阶行列式的场合。\r\n>\r\n> 🎥 *Strang 在课上[讲解]*：And numbers in between are not eigenvalues, but singular values.（翻译：介于其中的数字并非 eigenvalues（特征值），而是 singular values（奇异值）。）\r\n>\r\n> 回到正文：方法一之所以成立，不是因为它算得快，而是因为 $\\|Ax\\|$ 这个几何量在 $A^TA$ 里被写成了可正交对角化的能量形式。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——转置对偶与剥秩一：贪心为什么在这里天然最优**\r\n>\r\n> 本注要回答另一个设计问题：把最大的一块剥掉之后，为什么剩下的范数恰好是 $\\sigma_2$，而不是某个需要重新计算的复杂表达式？核心在于两项秩一矩阵在 Frobenius 内积下互相正交，于是误差能量可以像勾股定理那样逐项相加，贪心剥离不需要任何交换论证（exchange argument）就被迫最优。\r\n>\r\n> 先看代数机制。正交性的计算只用到一个恒等式：$\\operatorname{trace}(v_1u_1^Tu_2v_2^T)=(u_1^Tu_2)(v_1^Tv_2)$，因为 $u$ 之间正交、$v$ 之间正交，两个因子都是 $0$，所以 $\\langle u_1v_1^T,u_2v_2^T\\rangle=0$。于是 $\\|A\\|_F^2=\\|\\sigma_1u_1v_1^T\\|_F^2+\\|\\sigma_2u_2v_2^T\\|_F^2=\\sigma_1^2+\\sigma_2^2$，剥掉第一项后剩下 $\\sigma_2^2$ 开根号。谱范数的下界则需要一步维数论证：秩不超过 $1$ 的矩阵 $B$ 的零空间至少一维，而 $\\operatorname{span}\\{v_1,v_2\\}$ 已经是整个 $\\mathbb{R}^2$，两者必有非零交向量 $w$，沿 $w$ 方向 $B$ 完全不起作用，于是 $\\|A-B\\|_2\\ge\\|Aw\\|\\ge\\sigma_2$。这个两个子空间维数之和超过 $n$ 则必有交的论证，正是你在机 6.042J 里用过的数数法（鸽笼原理的线性代数版本），而至少一维这一句就是 rank–nullity 守恒 $\\dim N(B)=n-\\operatorname{rank}(B)$。\r\n>\r\n> 具体数值验证：本题 $A_1=\\frac12\\begin{bmatrix}3&-1\\\\-3&1\\end{bmatrix}$，它的 Frobenius 范数平方是 $\\frac14(9+1+9+1)=5$，谱范数平方同样来自 $A_1^TA_1=\\frac12\\begin{bmatrix}9&-3\\\\-3&1\\end{bmatrix}$ 的最大特征值 $5$（迹为 $5$、行列式为 $0$，故特征值是 $5$ 与 $0$）。顺带一个漂亮的配方法观察：$A_1$ 的二次型是 $\\frac{(3x_1-x_2)^2}{2}$，完全平方，这正是它秩为 $1$ 的解析证据——半正定二次型若是一个完全平方，对应的矩阵秩就是 $1$。\r\n>\r\n> 跨课程连接有两条。其一，6.006（CLRS 教材）里的贪心算法：区间调度按结束时间最早贪心、Huffman 编码按频率最低合并，这些贪心都需要交换论证或拟阵结构才能证明最优，而且贪心在一般问题里经常不是最优的。这里每次剥掉当前最大奇异值项的贪心天然最优，区别在于正交性把问题解耦（decoupled）：每个坐标 $c_k$ 的贡献 $\\sigma_k^2c_k^2$ 只与 $\\sigma_k$ 有关，互不干扰，误差能量可加，因此把最大的一项拿走就是把可控误差压到最低的唯一选择，交换论证退化为恒等式。其二，6.042J 的等价关系与划分：矩阵 $A$ 的每根纤维 $A^{-1}(b)=\\{x:Ax=b\\}$ 正是零空间 $N(A)$ 的一个陪集，也就是像相同这个等价关系下的等价类；SVD 的 $V$ 给整个输入空间配了一组适配这个划分的标准正交基，而 pseudoinverse（伪逆）$x^+=V\\Sigma^{-1}U^Tb$ 在每个等价类里挑出最小范数的那一个代表元。区别在于：6.042J 的等价类是离散、无结构的集合，计数就是全部内容；这里的纤维是仿射子空间（陪集），维数由 rank–nullity 守恒固定为 $n-r$，选代表元要用到正交投影，而投影矩阵 $UU^T$ 与 $VV^T$ 恰好由 SVD 提供。把这条经验命名为模板：**转置对偶交换律 + 剥秩一能量勾股**——前者处理换个方向看同一个映射，后者处理删掉哪些方向代价最小。\r\n>\r\n> 🎥 *Strang 在课上[讲解]*：are orthogonal, which I can do. And then they have to be in the SVD.（翻译：是正交的，这我能做到。并且然后它们必须位于 SVD（奇异值分解）中。）\r\n>\r\n> 回到正文：转置对偶解释了本题为什么可以零成本复用例 1 的结果，剥秩一逻辑则解释了追加两问的答案为什么必须落在 $\\sigma_2$ 上。\r\n\r\n---\r\n\r\n---\r\n\r\n---\r\n\r\n## <span style=color:#c0392b;>附：2 题合观——把 2 道题折叠成一个设计问题</span>\r\n\r\n这两问在回答同一个设计问题：**一个矩阵的信息里，哪些可以被压缩成几个标量，哪些必须以向量的形式整个人保留下来？**\r\n\r\n前半段（完整 SVD）压住的是可压缩性这一层。它给出的答案是：沿两组特定方向看过去，矩阵的作用完全由标量序列 $\\sigma_1\\ge\\sigma_2\\ge\\cdots\\ge\\sigma_r>0$ 描述，其余全部信息都装在两组方向 $U$ 与 $V$ 里。真正值得琢磨的不是这个结论，而是哪些量可以脱离方向单独存活：$\\operatorname{trace}$、$\\det$、秩、Frobenius 范数都只依赖 $\\sigma$，它们是矩阵的**谱不变量**，换任何一组正交基都不变；而具体的 $u_k$、$v_k$ 依赖于你选哪组基。前半段同时暴露了一个结构性事实：可压缩的那一半在求转置时一动不动（奇异值集合不变），不可压缩的那一半却被整个交换（左向量变成右向量）。这说明 $\\Sigma$ 记的是这台机器有多大力量，$U$ 与 $V$ 记的是力量作用在哪两个方向上。\r\n\r\n后半段（剥掉最大秩一部分）压住的是压缩的代价由谁记账这一层。删掉一个方向对，$\\Sigma$ 少一个数，误差的账目却要由范数来结：谱范数只报最大的那笔账，Frobenius 范数把所有剩下的账加起来。二者在只剩一个非零奇异值时重合，一旦秩大于二就立刻分道扬镳——这正是同一件事，两种记账口径的教科书式示例。\r\n\r\n两段咬合的关键在于前半段提供的**正交性**。如果没有 $u$ 之间、$v$ 之间的正交，后半段的截断误差就不能写成 $\\sigma_2^2$ 这样一个干净的数，能量会在方向之间串味，贪心剥离也就不再自动最优。换言之，前半段真正的产出不是三个矩阵，而是把矩阵分解成互不干扰的独立通道这一权利；后半段则是行使这项权利后立刻兑现的第一个好处。两者合起来训练的纪律是：**先问这个线性映射在哪些方向上只是被拉伸，再按拉伸倍率排序，最后才谈舍弃。** 顺序不能颠倒——先想舍弃再找方向，会得到一个只能近似、无法解释的分解。\r\n\r\n把这道题放进本讲的坐标系里看：它用 $2\\times2$ 的最小规模，把 SVD 的全部结构（两套正交基、降序奇异值、转置对偶、秩一剥离）一次性演示完，并且所有数字都能手算复核。它相对于特征值分解的位置也很清楚：特征值分解要求矩阵有足够多的线性无关特征向量，而且这些方向一般不正交；SVD 用两套正交基换来了对任意矩阵的普适性，并额外获得了截断最优这一特征值分解不具备的性质。你在 Strang 线性代数收尾阶段反复使用的投影矩阵、二次型、配方法三件工具，在这里第一次被同时用上：$UU^T$ 与 $VV^T$ 是两组投影，$A^TA$ 是二次型，配方法负责给它的主元定号。\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 35,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 35,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 35,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 35,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 12652,
+            "outputTokens": 59900,
+            "cacheReadTokens": 173568,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 4,
+            "buckets": {
+              "uncachedInputTokens": 220,
+              "outputTokens": 15856,
+              "cacheReadTokens": 60032,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 35,
+        "val": {
+          "surfaceTokens": 41641,
+          "contextWindow": 1000000,
+          "pressureTokens": 60252,
+          "sampledSurfaceTokens": 33817
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 35,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5759,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 23018,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 1025,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 21,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 2360,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 7824,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 40497
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 35,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 32,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 34
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 35,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 35,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 35,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

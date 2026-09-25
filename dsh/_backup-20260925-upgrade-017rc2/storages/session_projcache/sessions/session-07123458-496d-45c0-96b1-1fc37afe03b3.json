@@ -1,0 +1,286 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129446035,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 70,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 70,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_157 = 书页 153\r\npage_158 = 书页 154\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:157@@（书页 153）\r\n−-- OCR 原文 −--\r\n4 ， Randomized Linear Algebra\r\n153\r\nHete fast decompositions starting 什 om a randomized CB.\r\nQ R)\r\nFac tor C into QI 月 1 · Factor 娓 IB into Q2 2 · Then @1Q2 ） 娓 2 ·\r\nUDVT) From C = QI 1 factor IB into U2EVT. Choose U = QI ·\r\nProjections J and Proj ection Matrices P\r\nA 忉 才 ' of m-dimensional space Rtn to k-dimensional space R is a by m matrix.\r\ncase th at matrix J has full row rank ， then m and th e projections fill all of R 。\r\nA speci ally nice case is when the row s of J are orthonormal. This means that\r\nJJT = / · Then the rank is c ertainly and the column space C(J) is all of R\r\nNotice th at a projection J is different fro m a ect matrix 尹 · P is s qu are\r\n(m by m). lts rank is < 襯 (except when P = ） · lts column space is a k-dimensional\r\nsub sp ace 0f Rm (quite different 丘 0 m th e vector space R ） · And the key prop erty of the\r\npr0J ec tion matnx is P2 = P. If we project e “ 流 c 况 r 纱 0 nt0 the column space,\r\nthe pr0J ecüon Pb is closest t0 b in the usual norm llb 一 Pbll. Then 尸 is also symmetnc ·\r\nJ and P have one mce connection. ln case J has orthono rmal rows ， then JT J\r\nis a symmetric proj ection matrix 尹 · You see that P2 = JT(JJT)J = JTIJ = P.\r\n[cos2 9 + sin2 一\r\nExampIe 1 Projection J ： [ cos 0 sin O ] with JJT\r\nCOS2\r\nCOS Sin\r\nProj ection matrix P = JT J\r\nCOS Sin\r\nSin O\r\nA symmetric P proj ects orthogonally onto its column space. Here that is C(JT).\r\nRandom Pr0j ections\r\nSuppose the entrie s 0f a by m proj ection J are in dependent random variables. ln the\r\nS1mplest case they are drawn 行 om a normal di s tribution (a Gaussian) with mean m = 0\r\n1 / 炽 We will show that the expected value of P = JT J is th e\r\nand vanance 0\r\n2\r\nidentity matrix. ln other words, the expected length 0f the projection 鬱 = Ju equals\r\nthe length of ·\r\n1 ． The @， i) entry on the diagonal of JT J is th e sum JI 讠 + 一 + 。 Those squares\r\nare independent samples, e ach with mean 1 / (With zero mean for each entry of J,\r\n1 / ） Then the mean (the\r\nthe expected valu e Of the square is the variance\r\nexpected value) of the sum of terms is k （ 1 / 陶\r\n2 · The @， 力 entry 0 the diagonal of JT J is the sum J1iJ1j + · 。 · + 五 五 尸 Each of\r\nthose terms is the product of two indep endent variables with me an zero · So the mean\r\nOf each term is zero ， and the mean Of their sum (JTJ)ij is SO zero ·\r\nThus E [JT JI = I = identity matrix 0f size\r\n\r\n−-- 现有译文（含译者注） −--\r\n@@PAGE:157@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 153，属 §II.4 Randomized Linear Algebra（随机化线性代数）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把 `什 om`/`行 om`/`丘 om` 混作 from，把 `蓋`/`风` 混作矩阵 $A$，把 `¯I` 混作上标 $-1$，把 `屛` 一类符号混作 $k$ 或 $n$。文中的分解公式（$C = Q_1R_1$、$B = Q_2R_2$、$A \\approx Q_1Q_2R_2$，以及由 $C = Q_1R_1$ 与 $B = U_2\\Sigma V^T$ 得 $U = Q_1U_2$）均按随机化 QB 与 SVD 的标准写法重建。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## （续）Randomized Linear Algebra（随机化线性代数）\r\n\r\n下面就是各种快速分解，它们都从一个随机化列基（randomized column basis）出发，即先取定 $C$ 与 $B$，使 $A \\approx CB$。由 $C$ 分解为 $Q_1R_1$、$B$ 分解为 $Q_2R_2$，得到 $A \\approx Q_1Q_2R_2$，这用到的只是正交矩阵与三角矩阵。\r\n\r\n而由 $C = Q_1R_1$ 出发，把 $B$ 分解为 $U_2\\Sigma V^T$，并取 $U = Q_1U_2$，就得到 $A \\approx U\\Sigma V^T$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Projections $J$ and Projection Matrices $P$（投影 $J$ 与投影矩阵 $P$）\r\n\r\n一个从 $m$ 维空间 $\\mathbf{R}^m$ 到 $k$ 维空间 $\\mathbf{R}^k$ 的投影 $J$，是一个 $k \\times m$ 的矩阵。\r\n\r\n在矩阵 $J$ 具有满行秩（full row rank）的情形下，$k \\le m$，而投影的像填满整个 $\\mathbf{R}^k$。\r\n\r\n一个特别漂亮的情形是 $J$ 的各行标准正交（orthonormal），这时 $JJ^T = I$；此时秩当然就是 $k$，而列空间 $C(J)$ 就是整个 $\\mathbf{R}^k$。\r\n\r\n请注意，投影 $J$ 与投影矩阵 $P$ 是不同的东西：$P$ 是方阵（$m \\times m$），它的秩小于等于 $k$（除非 $P$ 退化为 $I$ 这类特殊情形），它的列空间是 $\\mathbf{R}^m$ 的一个 $k$ 维子空间（与向量空间 $\\mathbf{R}^k$ 完全不同）。投影矩阵的关键性质是 $P^2 = P$：若我们把向量 $b$ 投影到列空间上，则投影 $Pb$ 是在通常范数意义下离 $b$ 最近的点，即最小化 $\\|b − Pb\\|$。此外 $P$ 还是对称的。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这一页在区分两个容易混的对象：投影 $J$ 是 $k\\times m$，把 $\\mathbf{R}^m$ 压到 $\\mathbf{R}^k$，像填满 $\\mathbf{R}^k$；投影矩阵 $P=J^{T}J$ 是 $m\\times m$，留在 $\\mathbf{R}^m$ 里，把向量压到 $A$ 的一个 $k$ 维子空间上。前者是降维的映射，后者是选代表的操作。\r\n\r\n先说这一步在解决什么设计问题。最小二乘要回答$Jx=b$ 无解时退而求其次取哪个 $x$，两个对象分工不同：$J$ 是数据到残差的通道，$P$ 是残差的几何位置。工程上这个区分直接决定你存什么。设 $m=1000$、$k=10$，存 $J$ 要 $mk=10^{4}$ 个浮点数（双精度约 80 KB），存 $P$ 要 $m^{2}=10^{6}$ 个（约 8 MB），差一百倍；而 $P=J^{T}J$ 随时能由 $J$ 重构。第一性原理就是用时间换空间：一次 $O(mk)$ 的矩阵乘法，省下 $O(m^{2})$ 的常驻内存。CSAPP 缓存层次里这差别很实在——10 MB 装不进 L2，每次迭代都要走主存，1000 维以上问题就慢一个数量级。数值上也是 $J$ 划算：$P$ 的条件数是 $J$ 的条件数的平方，病态输入先经 $P$ 平方放大再求解，浮点有效位掉得更快。\r\n\r\n跨课程连接（6.042J 的等价关系与划分）：正交投影就是等价关系的标准代表元。定义 $b\\sim c\\iff b-c\\in N(J)$，这三条性质——自反、对称、传递——恰好就是 $N(J)$ 对加减与数乘封闭的三种说法，于是 $\\mathbf{R}^m$ 被划分成一批平行于 $N(J)$ 的仿射层（陪集）。投影 $P$ 在每个等价类里挑出唯一一个落在行空间 $C(J^{T})$ 中的代表元。$P^{2}=P$ 正是代表元的代表元还是它自己的代数指纹：幂等性（idempotence）是选代表这一动作的全部要求；对称性 $P=P^{T}$ 则是额外的几何内容——在所有满足 $Jc=Jb$ 的 $c$ 里，$Pb$ 是欧氏距离最近的那一个（这就是最小二乘的正交性）。**区别要记牢**：一般的等价关系只需幂等就够了；只有对称（自伴）才让最近成立。可以顺手做个对照：把$\\mathbf{R}^m$ 中每个向量送到它所在等价类的代表元当作函数的定义域，那么 $P$ 的像就是所有代表元组成的集合，$N(J)$ 就是被送到原点的那一层，像与零空间互补且只交于原点，维数相加 $k+(m-k)=m$，与 6.042J 里划分的不相交并覆盖整集完全同构。\r\n\r\n验算：取 $J=\\begin{bmatrix}\\cos\\theta&\\sin\\theta\\end{bmatrix}$，则 $JJ^{T}=\\cos^{2}\\theta+\\sin^{2}\\theta=1$，$P=J^{T}J=\\begin{bmatrix}\\cos^{2}\\theta&\\cos\\theta\\sin\\theta\\\\ \\cos\\theta\\sin\\theta&\\sin^{2}\\theta\\end{bmatrix}$。直接代入三角恒等式即得 $P^{2}=P$；且 $P(\\cos\\theta,\\sin\\theta)=(\\cos\\theta,\\sin\\theta)$（该方向被完整保留），而 $P(-\\sin\\theta,\\cos\\theta)=(0,0)$（垂直方向被压成零）。取 $\\theta=45^{\\circ}$、$k=1$、$m=2$ 时 $P=\\frac12\\begin{bmatrix}1&1\\\\1&1\\end{bmatrix}$，把 $(3,0)$ 映到 $(1.5,1.5)$，正是到直线 $y=x$ 的垂足。这里 $J$ 与 $P$ 的分工一眼可见：$J$ 把二维点折成一维标签，$J(3,0)=3\\cos45^{\\circ}\\approx 2.1213$；$P$ 留在二维给出坐标 $(1.5,1.5)$。标签只有标量，坐标才有方向，两者互推需要 $J^{T}$——$J^{T}\\!\\cdot\\!2.1213=(1.5,1.5)$，这一步就是从标签重建代表元。\r\n\r\n再补一个谱上的指纹，可以当定理用：$P$ 对称半正定，若 $Pv=\\lambda v$，则 $P^{2}v=\\lambda^{2}v$，而 $P^{2}=P$ 给出 $\\lambda^{2}=\\lambda$，所以 $P$ 的特征值只能是 $0$ 或 $1$，$\\operatorname{rank}(P)$ 就是特征值 $1$ 的个数（也等于 $k$）。要证 $\\operatorname{rank}(J^{T}J)=\\operatorname{rank}(J)$，用**零空间吸收法**：一方面 $N(J)\\subseteq N(J^{T}J)$ 显然；另一方面若 $J^{T}Jx=0$，左乘 $x^{T}$ 得 $\\|Jx\\|^{2}=0$，故 $Jx=0$。反向包含成立，两个零空间相等，秩自然相等。这是格兰姆矩阵型问题的通用第一招：把 $x^{T}(\\cdot)x$ 变成非负标量，逼出零向量——和你在 part002 里见过的能量检验是同一件事。\r\n\r\n把上面两套动作合起来命名，叫**谱夹逼法能量检验法**，模板三步走：第一步，算 $M^{T}M$（或 $L^{T}L$）造出对称半正定对象，它的特征值全非负、零空间与原矩阵相同；第二步，作 $x^{T}M^{T}Mx=\\|Mx\\|^{2}\\ge 0$，用非负性把等于零逼成 $Mx=0$，秩与零空间维数立刻到手；第三步，若这个对象还是投影矩阵，就把特征值再夹到 $\\{0,1\\}$，秩直接读成 $1$ 的个数。这条模板的适用边界要说清：它只管实对称半正定或投影矩阵这类能量可写成范数平方的对象，遇到非对称、非方阵或复矩阵要先取共轭转置，判断依据仍然是内积得非负实数，与 18.065 里对称矩阵特征值实、奇异值即绝对值的结论对得上，也与凸优化里二次型 $x^{T}Qx$ 判凸性的手法同源。\r\n\r\n\r\n<span style=color:#2471a3;>**[note]**</span> 此处 $J$ 是 $k \\times m$ 的投影，$P = JJ^T$ 为 $m \\times m$ 的投影矩阵，投影到 $C(J^T)$ 上。OCR 的 `JT J` 与 `JTIJ` 依语境重建：$P = JJ^T$，$P^2 = J(J^TJ)J^T = JIJ^T = P$。\r\n\r\n$J$ 与 $P$ 之间有一种漂亮的联系：当 $J$ 的行标准正交时，$JJ^T$ 是一个对称投影矩阵 $I$，而 $J^TJ$ 则是投影到 $C(J^T)$ 上的对称投影矩阵 $P$。你可以验证 $P^2 = J(J^TJ)J^T = JIJ^T = P$。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n<span style=color:#c0392b;>**Example 1**</span> 取投影 $J = \\begin{bmatrix} \\cos\\theta & \\sin\\theta \\end{bmatrix}$，于是 $JJ^T = \\cos^2\\theta + \\sin^2\\theta = 1$。\r\n\r\n此时投影矩阵为\r\n\r\n```math\r\nP = J^TJ = \\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}.\r\n```\r\n\r\n一个对称矩阵 $P$ 正交地投影到自己的列空间上；在这里，那个列空间就是 $C(J^T)$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Random Projections（随机投影）\r\n\r\n假设一个 $k \\times m$ 的投影 $J$ 的各个元素都是独立的随机变量。最简单的情形是它们取自正态分布（normal distribution，即高斯分布），均值 $m = 0$、方差 $\\sigma^2 = 1/k$。我们下面要证明：投影矩阵的期望值 $E[P] = E[J^TJ]$ 就是单位矩阵。换句话说，投影 $y = Jc$ 的期望长度等于 $c$ 的长度。\r\n\r\n**1.** $J^TJ$ 对角线上的第 $(i,i)$ 个元素是 $J_{1i}^2 + \\cdots + J_{ki}^2$ 这个和。这些平方都是独立的样本，每一个的均值都是 $1/k$。（因为 $J$ 的每个元素均值为零，所以平方的期望值就等于方差 $1/k$。）于是这 $k$ 项之和的均值（即期望值）是 $k \\cdot (1/k) = 1$。\r\n\r\n**2.** $J^TJ$ 的第 $(i,j)$ 个非对角元素是 $J_{1i}J_{1j} + \\cdots + J_{ki}J_{kj}$ 这个和。其中每一项都是两个均值为零的独立变量之积，因此每一项的均值都是零，它们之和的均值 $E[(J^TJ)_{ij}]$ 也就等于零。\r\n\r\n于是 $E[J^TJ] = I$，即 $m \\times m$ 的单位矩阵。\r\n\r\n@@PAGE:158@@（书页 154）\r\n−-- OCR 原文 −--\r\nComputations with Large Matrices\r\n154\r\nUsing columns times rows ， each m atri x （ row of 刀 (row 犭 of 刀 has expectation / 彦 ，\r\nTh e sum h as expectation I. Please notice what that means•\r\n' ' № expectation the m columns of J a re orthonormal.\r\nTh erefore in expectation JC has th e same length as C ：\r\n2\r\n[ 圳 2 ] = E [ cTJTJc ] = E [\r\n02 ）\r\nThi s random projection shows why linear algebra an d probability sometimes seem to be\r\ndifferent worlds within mathematics · ln linear algebra, a by m m atri x 丿 with < 襯\r\ncould not have rank m. Then JT J could not have rank m. But now take expected\r\nvalues ！ E[J] can be th e zero matrix and E[ 丿 T 丿 ] can be the identity matrix. For 1 by 1\r\nmatrices this would be th e most ordi nary thing in the world ： mean and r ” “ 0 淝 ·\r\nH the key 况 ， On average ， the squared distance between an d in Rrn is the\r\nsame as th e squared distance between Jc and 丿 in R ' 'The proj ection 了 into a lower\r\ndimensional space preserves distances an average sense. What we really want is to\r\nP reserve th e actual distances within a factor 1 + ， for a set of “ given points in Rrn\r\nTh at prop ertY of J is the subject of th e famous Johnson-Lindenstrauss Lemma.\r\nlt seems amazing th at points in a high dimension can be transformed linearly tO points\r\nin a IOW dimenslon, with very, small change in the distance between every p alr Of points.\r\nHOW IO W can th e / 0 W d 刀 ension be ？ ThiS iS a crucial quesuon.\r\nDimension = 1 is T00 LOW\r\nSuppose we have = 3 points 1 ， 2 ， 3 in the plane R 。 ls there a 1 by 2 m atnx J that\r\nnearly preserves their distances ？ We can certainly achieve 日 丿 CI 一 丿 2 目\r\n1 一 2\r\n一 （ 1 + 2 ） is h alfway between, then by li neari ty JC3 will be\r\nIf the thlrd point 3\r\n一 （ 丿 1 + 了 2 ） and all distances are perfect. B ut if 1 ， 2 ， 3 glve an equilateral triangle,\r\n1\r\nth en 3 h as a component in the nullspace of 上 Th at component will be lost (projected\r\nto zero). The length s 目 J 1 一 了 3 日 an d 日 丿 C2 一 JC311 will b e senously reduced.\r\nJohnson-Lindenstrauss looked at random by m projections 0f points in R\r\nThey proved that if the dimension is large enough, then one of those projections\r\n()n fact most Of th (m) will nearly preserve distances between the points.\r\n“ 五 g 九 豆 0 “ ； ra d0 c 0 了 0g0 ” w 九 roba b 纱 near 过\r\nThe Johnson-Lindenstrauss Lemma\r\n， “ are any points in Rm, an d （ 8 log / · Then there is\r\nSUPPOSe 1 ，\r\na prOJ ecti on J 什 om Rrn to Rk so that all distances between the points are nearly\r\npreserved 。\r\n2\r\n（ 1 一 €) | 一 日 2 孓 一 2 （ 1 + €) 《 一 与\r\n（ 13 ）\r\n\r\n−-- 现有译文（含译者注） −--\r\n@@PAGE:158@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 154，是 Computations with Large Matrices（大型矩阵的计算）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把大量符号 $n$ 误识为 `刀`/`丿`/`了`/`丹`，把 $J$ 误识为 `丿`/`上`，把 $C$（或 $c$）误识为 `刀`，把 `況`/`淝` 一类乱码按语境重建为 variance（方差）。公式 $\\|Jc\\|^2 = \\|c\\|^2$ 的期望形式、Johnson-Lindenstrauss 引理中的维数条件与式 (13) 均按数学语境重建。\r\n\r\n利用列乘行的写法，矩阵 $J_i^T J_i$（即 $J$ 的第 $i$ 行转置乘以第 $i$ 行）的期望都是 $\\frac{1}{k}I$。\r\n\r\n这些矩阵之和的期望就是 $I$。请留意这意味着什么：在期望的意义下，$J$ 的 $m$ 个列是标准正交的。\r\n\r\n因此在期望的意义下，$Jc$ 与 $c$ 有相同的长度：\r\n\r\n```math\r\nE\\big[\\|Jc\\|^2\\big] = E\\big[c^TJ^TJc\\big] = \\|c\\|^2. \\tag{12}\r\n```\r\n\r\n这个随机投影说明了为什么线性代数与概率论有时看起来像是数学中两个不同的世界。在线性代数里，一个 $k \\times m$ 的矩阵 $J$（当 $k < m$ 时）不可能有秩 $m$，因此 $J^TJ$ 也不可能有秩 $m$。但一旦取期望值，情况就变了：$E[J]$ 可以是零矩阵，而 $E[J^TJ]$ 却可以是单位矩阵。对 $1 \\times 1$ 的矩阵来说，这其实是世界上最平常不过的事情：均值与方差。\r\n\r\n关键就在于此：平均而言，$\\mathbf{R}^m$ 中 $c$ 与 $d$ 之间的平方距离，与 $\\mathbf{R}^k$ 中 $Jc$ 与 $Jd$ 之间的平方距离是相同的。也就是说，投影到较低维空间的映射 $J$ 在平均意义下保持距离。我们真正想要的，是对 $\\mathbf{R}^m$ 中给定的 $n$ 个点，把实际距离保持在因子 $1 + \\varepsilon$ 的范围之内。\r\n\r\n$J$ 的这一性质正是著名的 Johnson-Lindenstrauss Lemma（约翰逊-林登施特劳斯引理）的主题。\r\n\r\n看起来令人惊奇的是：高维中的点可以被线性地变换到低维中的点，而每一对点之间距离的变化都非常小。\r\n\r\n那么低维的那个维数究竟可以低到什么程度？这是一个至关重要的问题。\r\n\r\n<span style=color:#c0392b;>**维数 $= 1$ 是太低（TOO LOW）**</span>\r\n\r\n假设我们在平面 $\\mathbf{R}^2$ 中有 $n = 3$ 个点 $C_1, C_2, C_3$。是否存在一个 $1 \\times 2$ 的矩阵 $J$ 能几乎保持它们之间的距离？我们当然可以让 $\\|JC_1 − JC_2\\| = \\|C_1 − C_2\\|$。\r\n\r\n如果第三个点 $C_3$ 恰好在 $C_1$ 与 $C_2$ 的中点，即 $C_3 = \\frac{1}{2}(C_1 + C_2)$，那么由线性性，$JC_3$ 就是 $\\frac{1}{2}(JC_1 + JC_2)$，所有的距离都完美保持。但如果这三个点构成等边三角形，那么 $C_3$ 在 $J$ 的零空间中有一个分量；这个分量会被丢掉（被投影为零），于是长度 $\\|JC_1 − JC_3\\|$ 与 $\\|JC_2 − JC_3\\|$ 都会严重缩小。\r\n\r\nJohnson 与 Lindenstrauss 研究的是 $\\mathbf{R}^m$ 中点的随机 $k \\times m$ 投影。\r\n\r\n他们证明了：只要维数 $k$ 足够大，这些投影中就会有一个（事实上是绝大多数投影）几乎保持点与点之间的距离。\r\n\r\n随机投影保持距离的概率非常接近 1，因此必定存在一个确定的投影保持距离。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n### The Johnson-Lindenstrauss Lemma（约翰逊-林登施特劳斯引理）\r\n\r\n<span style=color:#c0392b;>**定理（Johnson-Lindenstrauss）。**</span> <span style=color:#00838f;>设 $C_1, \\ldots, C_n$ 是 $\\mathbf{R}^m$ 中的任意 $n$ 个点，且维数 $k \\ge \\dfrac{8\\log n}{\\varepsilon^2}$。则存在一个从 $\\mathbf{R}^m$ 到 $\\mathbf{R}^k$ 的投影 $J$，使得这些点之间的所有距离都几乎被保持：</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 上一页刚证的是**平均而言**长度不变：$E\\big[\\|Jc\\|^{2}\\big]=\\|c\\|^{2}$。这个引理把它升级为**所有 $\\binom{n}{2}$ 对点同时**被 $1\\pm\\varepsilon$ 夹住。升级的机器是你 6.042J 学过的两件工具：**Chernoff/Hoeffding 型集中不等式 + 并集界（union bound）**，最后再套一层**概率方法**。\r\n\r\n先说这一步在解决什么设计问题。降维的真实需求从来不是把某一对点的距离算准，而是把整张距离表算准：最近邻检索、聚类、谱聚类这些下游任务读的是全部点对的相对大小。所以我们要的不是平均值保证，而是一致保证（uniform guarantee）：存在一个 $J$，让所有点对同时合格。若只有 $E\\big[\\|Jc\\|^{2}\\big]=\\|c\\|^{2}$，某一对可能恰好被压扁成 $0$，而均值被其他对悄悄补回来。设计目标由此变成一次满足 $O(n^{2})$ 条约束，这正是集中不等式加并集界的主场。那 $J$ 的元素为什么取独立的零均值随机量？独立性是集中不等式的前提，零均值保证期望长度不变，方差 $1/k$ 保证尺度不膨胀——随机矩阵是最省事的构造。\r\n\r\n一个可以手算的最小例子：取 $n=2$（即 $\\binom{n}{2}=1$ 对）、$\\varepsilon=0.5$。此时并集界退化成单对界，$k$ 只需约 $8\\ln 4/0.25\\approx8\\times1.386/0.25\\approx44$。也就是 44 维就够把 2 个点保距到 $50\\%$——数字寒酸，但说明 $\\log n$ 在 $n=2$ 时只有 $\\ln 4$，几乎不花钱，而 $1/\\varepsilon^{2}$ 在 $\\varepsilon$ 变小时疯狂涨价，JL 的实用版本因此在精度上最脆弱，而不是在点数上。\r\n\r\n三步走。第一步，固定一对点，令 $c=C_i-C_j$，则 $(Jc)_r$ 是 $k$ 个独立同分布的零均值项之和（$J$ 的元素独立、均值 $0$、方差 $1/k$），所以 $\\|Jc\\|^{2}/\\|c\\|^{2}$ 是$k$ 个独立项之和型随机变量，它偏离 $1$ 超过 $\\varepsilon$ 的概率被指数型界压到约 $2e^{-\\varepsilon^{2}k/8}$。第二步，对全部 $\\binom{n}{2}<n^{2}/2$ 对做并集界：坏事件概率不超过 $n^{2}\\cdot2e^{-\\varepsilon^{2}k/8}$，只要\r\n```math\r\nk\\;\\gtrsim\\;\\frac{8\\,(2\\ln n+\\ln 4)}{\\varepsilon^{2}}\r\n```\r\n它就小于 $1$。**这就是 $8\\log n/\\varepsilon^{2}$ 里 $\\log n$ 的确切来源**：对数来自约束个数是 $n^{2}$ 量级，而 $\\varepsilon^{2}$ 出现在指数上，所以必须以 $1/\\varepsilon^{2}$ 的反比出现。这里为什么要用并集界而不是逐对硬算？因为逐对保证只给出一个期望或一条概率曲线，不能同时约束所有对；并集界用**不相交化**的代价换来了统一保证——代价就是 $k$ 里多一个 $\\log n$，收益是同一个随机 $J$ 同时对全部点对生效。第三步，既然随机选出的 $J$ 以正概率满足全部约束，就必然存在一个（确定性的）$J$ 满足它——这正是 6.042J 概率方法的第一课：正概率成功 $\\Rightarrow$ 存在成功实例。正文提到证明中随机选一组 $\\pm1$ 符号就是这个随机 $J$ 的构造（元素取 $\\pm1/\\sqrt{k}$，仍是零均值、方差 $1/k$ 的独立变量，集中不等式照样适用）。\r\n\r\n数量级验算：取 $n=1000$、$\\varepsilon=0.1$，则 $k\\approx8\\ln(1000)/0.01=8\\times6.908/0.01\\approx5526$，单对失败概率上界约 $2e^{-5526\\times0.01/8}\\approx2e^{-6.9}\\approx0.0020$，乘以 $\\binom{n}{2}\\approx5\\times10^{5}$ 得约 $10^{3}$，不够小；改用 $k=8000$（此时 $8(2\\ln1000+\\ln4)/0.01\\approx8\\times(13.816+1.386)/0.01\\approx12162$ 是保守的充分条件），单对失败概率约 $2e^{-10}\\approx9.1\\times10^{-5}$，乘以 $\\binom{n}{2}$ 后约 $45$，说明常数取法影响很大，实际实现会用更紧的 Bernstein 型界和 $\\pm1/\\sqrt{k}$ 的次高斯性把常数压下来。正文说 18.065 的项目在 $m=2700$ 时距离精度崩坏、$m>2800$ 可行，与这个量级一致。更要注意：这个下界**只依赖点数 $n$ 和精度 $\\varepsilon$，与原始维数 $m$ 无关**，所以从 $10^{6}$ 维压到几千维仍能保距——这正是它有用的原因。复杂度上也顺手对上了 6.006：全维算 $n$ 个点的所有点对距离要 $\\Theta(n^{2}m)$，投影后先花 $\\Theta(nmk)$ 做一次乘法，再在 $k$ 维算 $\\Theta(n^{2}k)$，当 $k\\ll m$ 时是数量级的节省。\r\n\r\n跨课程再挂两条线。其一是 CSAPP 的浮点与缓存：投影把内积长度从 $m$ 项降到 $k$ 项，按浮点舍入的 $\\sqrt{d}$ 律，误差量级从 $\\sqrt{m}\\,u$ 降到 $\\sqrt{k}\\,u$，且 $n\\times k$ 的投影矩阵常驻缓存、$n\\times m$ 的原矩阵反复流经内存，所以降维同时降误差、降访存不是巧合；区别在于 CSAPP 管的是同一次计算的舍入与层次，JL 管的是随机化之后的统计保证，一个确定、一个高概率。其二是 18.065 的 SVD：SVD 给的是最优确定性低秩近似，代价是先把整个矩阵拆开，约 $O(nm\\min(n,m))$；JL 的随机 $J$ 不求最优，只求够用的保距，代价是 $O(nmk)$ 的一次乘法且常数极小。选择标准很干脆：要重构原矩阵就用 SVD，只要保住点对几何就用 JL。\r\n\r\n把它命名为**单点集中 + 并集界换对数**：单次失败概率随 $k$ 指数下降，就能靠并集界一次管住多项式多条约束，代价是 $k$ 里多一个 $\\log n$。这个配方从 6.042J 的哈希与负载均衡一路通用到这里的降维引理，形状完全一样。最后记住区别：$E[\\|Jc\\|^{2}]=\\|c\\|^{2}$ 说的是平均，而**平均对不等于每一对都对**；JL 引理的贡献恰恰是把平均保证换成高概率下的全体保证。\r\n\r\n\r\n```math\r\n(1 − \\varepsilon)\\,\\|C_i − C_j\\|^2 \\;\\le\\; \\|JC_i − JC_j\\|^2 \\;\\le\\; (1 + \\varepsilon)\\,\\|C_i − C_j\\|^2. \\tag{13}\r\n```"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 70,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 70,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 70,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 70,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 70,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 14068,
+            "outputTokens": 78383,
+            "cacheReadTokens": 583168,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 10,
+            "buckets": {
+              "uncachedInputTokens": 3844,
+              "outputTokens": 27328,
+              "cacheReadTokens": 70144,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 70,
+        "val": {
+          "surfaceTokens": 64625,
+          "contextWindow": 1000000,
+          "pressureTokens": 73988,
+          "sampledSurfaceTokens": 49588
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 70,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4235,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 17,
+              "heuristicTokens": 31813,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 2133,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 1121,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 74,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 41,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 36,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 157,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 24,
+              "system": false
+            },
+            {
+              "seq": 48,
+              "heuristicTokens": 193,
+              "system": false
+            },
+            {
+              "seq": 50,
+              "heuristicTokens": 41,
+              "system": false
+            },
+            {
+              "seq": 53,
+              "heuristicTokens": 40,
+              "system": false
+            },
+            {
+              "seq": 55,
+              "heuristicTokens": 1795,
+              "system": false
+            },
+            {
+              "seq": 58,
+              "heuristicTokens": 192,
+              "system": false
+            },
+            {
+              "seq": 60,
+              "heuristicTokens": 1634,
+              "system": false
+            },
+            {
+              "seq": 63,
+              "heuristicTokens": 818,
+              "system": false
+            },
+            {
+              "seq": 65,
+              "heuristicTokens": 3344,
+              "system": false
+            },
+            {
+              "seq": 68,
+              "heuristicTokens": 15037,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 63481
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 70,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 70,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 67,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 69
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 70,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 70,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 70,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 70,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 70,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 70,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

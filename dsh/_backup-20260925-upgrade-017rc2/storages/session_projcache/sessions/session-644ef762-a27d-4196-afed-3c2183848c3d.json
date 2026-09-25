@@ -1,0 +1,471 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948919149,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 160,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 160,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 `Manual` 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>`。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、$\\det$ 与 $\\operatorname{trace}$ 校验数字不符等。请**独立重算每一处计算**，包括题面给出的矩阵是否与官方答案自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错，有没有把对的说成错的、把错的说成对的。\r\n③ 🔴 译者注**规格**：本技能规定**每条注 800–1200 字**（公式/配图/引文不计）。本次草稿的注普遍超长（部分 2000–8000 字），请处理为合规形态：优先**按主题拆分为多条注**（子标题写作 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`），每条 800–1200 字；太短或碎片化的可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——压缩对象只能是重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板），跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」，不得裸甩名词。\r\n④ 🟡 术语一致性：同一术语本段内单一译法（outer product 一律外积、rank one matrix 一律秩一矩阵、permutation matrix 一律置换矩阵、projection matrix 一律投影矩阵）。\r\n⑤ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑥ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；`Original（英文原题）` 是否与题面逐字对应。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课的一道题（含题干、解答、译者注、设计意图）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 数学一律 LaTeX；不确定处写 `⚠ 待核：<存疑点>`。\r\n- 禁止只输出意见清单而不给修订全文。\r\n\r\n======================= 待审部分开始（该课的一道题（含题干、解答、译者注、设计意图）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 2（问题 2）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.2, p.9–13 | Manual, Problem Set I.2 题 2</span>\r\n\r\n设 $a$ 与 $b$ 是列向量（column vector），分量分别为 $a_1,\\dots,a_m$ 与 $b_1,\\dots,b_p$。你能否把 $a$ 乘以 $b^T$（能或不能）？乘积 $ab^T$ 的形状（shape）是什么？$ab^T$ 的第 $i$ 行、第 $j$ 列上是什么数？关于 $aa^T$ 你能说什么？\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Suppose $a$ and $b$ are column vectors with components $a_1,\\dots,a_m$ and $b_1,\\dots,b_p$. Can you multiply $a$ times $b^T$ (yes or no)? What is the shape of the answer $ab^T$? What number is in row $i$, column $j$ of $ab^T$? What can you say about $aa^T$?</span>\r\n\r\n---\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 能乘。因为 $a$ 是 $m\\times 1$，$b^T$ 是 $1\\times p$，内维（inner dimension）同为 $1$，内维相消、外维留下，故\r\n>\r\n> ```math\r\n> ab^T \\in \\mathbb{F}^{m\\times p},\\qquad (ab^T)_{ij}=a_i b_j\r\n> ```\r\n>\r\n> 其中 $\\mathbb{F}$ 是标量域，本课程中取 $\\mathbb{F}=\\mathbb{R}$。也就是说第 $j$ 列整列是 $b_j a$，第 $i$ 行整行是 $a_i b^T$。当 $b=a$ 时 $aa^T$ 是对称矩阵（symmetric matrix），此外它在 $a\\neq 0$ 时还是秩一矩阵（rank one matrix），迹（trace）为 $\\lVert a\\rVert^2$，唯一非零特征值（eigenvalue）也是 $\\lVert a\\rVert^2$。\r\n>\r\n> **二、方法一：逐元素定义（坐标视角）**\r\n>\r\n> 矩阵乘积的原始定义是「左矩阵第 $i$ 行与右矩阵第 $j$ 列做点积」。此处左矩阵 $a$ 的第 $i$ 行只有一个数 $a_i$（它退化成 $1\\times 1$），右矩阵 $b^T$ 的第 $j$ 列也只有一个数 $b_j$，于是这个「点积」就是一元乘积：\r\n>\r\n> ```math\r\n> (ab^T)_{ij}=\\sum_{k=1}^{1} a_{ik}\\,(b^T)_{kj}=a_i b_j\r\n> ```\r\n>\r\n> 这个视角唯一看到的东西是**每个格子的来历**：$ab^T$ 是一张乘法表，$a$ 提供行标量，$b$ 提供列标量。适用条件是任意域上的任意非零维数，不需要任何几何假设。劣势是它看不到整体结构，逐元素算完之后你仍然不知道这个矩阵「长什么样」。\r\n>\r\n> **三、方法二：列乘行（column times row）与秩一结构**\r\n>\r\n> 把 $ab^T$ 整块看成 $m\\times 1$ 乘 $1\\times p$。由于 $b^T$ 只有一行，按「列视角」$AB$ 的第 $j$ 列等于 $A$ 乘以 $B$ 的第 $j$ 列，而 $B$ 的第 $j$ 列是标量 $b_j$，故第 $j$ 列 $=b_j a$。于是所有列都落在 $\\mathrm{span}\\{a\\}$ 这条直线上；对称地，所有行都落在 $\\mathrm{span}\\{b^T\\}$ 这条直线上。因此当 $a\\neq 0$ 且 $b\\neq 0$ 时\r\n>\r\n> ```math\r\n> \\operatorname{rank}(ab^T)=1,\\qquad C(ab^T)=\\mathrm{span}\\{a\\},\\qquad C\\big((ab^T)^T\\big)=\\mathrm{span}\\{b\\}\r\n> ```\r\n>\r\n> 这个视角看到的是**信息量的真相**：一个 $mp$ 个数的矩阵，其实只由 $m+p$ 个数生成，压缩比是 $(m+p)/mp$。适用条件是 $a,b$ 均非零；若其中一个为零向量，$ab^T$ 是零矩阵，秩为 $0$，上面的等式要换成 $\\operatorname{rank}=0$。劣势是它默认你在实数域上谈「直线」，换到有限域时「秩」仍然成立，但「几何直线」的说法要打折扣。\r\n>\r\n> **四、方法三：算子视角（$ab^T$ 对向量做了什么）**\r\n>\r\n> 对任意 $x\\in\\mathbb{F}^p$，\r\n>\r\n> ```math\r\n> (ab^T)x=a\\,(b^T x)=(b^T x)\\,a\r\n> ```\r\n>\r\n> 即：先用 $b^T$ 把 $x$ 压成一个标量（测量 $x$ 在 $b$ 方向上的投影长度），再用这个标量去缩放 $a$。所以 $ab^T$ 是一个从 $\\mathbb{F}^p$ 到 $\\mathbb{F}^m$ 的线性映射（linear map），其像（image）至多一维。由秩—零化度定理（rank–nullity theorem），对 $b\\neq 0$，\r\n>\r\n> ```math\r\n> \\dim N(ab^T)=p-\\operatorname{rank}(ab^T)=p-1,\\qquad N(ab^T)=\\{x: b^T x=0\\}\r\n> ```\r\n>\r\n> 这个视角看到的是**零空间**：$ab^T$ 抹掉了与 $b$ 正交的整个 $p-1$ 维超平面，只保留一个方向的信息。适用条件：讨论维数与正交性时要求 $\\mathbb{F}=\\mathbb{R}$（$\\mathbb{C}$ 上换成共轭转置）。劣势是它不直接告诉你格子的数值，要回到方法一才能写具体元素。\r\n>\r\n> **五、方法四：转置对偶与最简奇异值分解（singular value decomposition, SVD）**\r\n>\r\n> 转置把外积翻面：$(ab^T)^T=ba^T$。因此 $ab^T$ 的列空间与行空间互为转置对象。进一步，当 $a\\neq 0,b\\neq 0$ 时，秩一矩阵的 SVD 只有一项：\r\n>\r\n> ```math\r\n> ab^T=\\sigma_1 u_1 v_1^T,\\qquad \\sigma_1=\\lVert a\\rVert\\,\\lVert b\\rVert,\\quad u_1=\\frac{a}{\\lVert a\\rVert},\\quad v_1=\\frac{b}{\\lVert b\\rVert}\r\n> ```\r\n>\r\n> 这个视角看到的是**低秩近似（low-rank approximation）的地基**：教材 §I.2 把 $AB=\\sum_k a_kb_k^T$ 列为五种乘法视角之一，而每一个外积项就是一个秩一芯片；整个 SVD 就是把矩阵拆成若干个这样的芯片按奇异值大小排队。适用条件是实数域且 $\\lVert a\\rVert,\\lVert b\\rVert\\neq 0$，符号约定取 $\\sigma_1>0$（若允许负奇异值，$\\sigma_1$ 的符号可以吸收进 $u_1$ 或 $v_1$）。劣势是对秩一情形显得小题大做——它的价值要到秩大于一时才显现。\r\n>\r\n> **六、常见错误判定**\r\n>\r\n> - ❌ 写成「$ab^T$ 是 $m\\times n$ 矩阵」。错在把题目给的维数符号 $p$ 私自换成 $n$。矩阵本身没错，记号错了：题目用 $p$ 命名 $b$ 的分量个数，答案就必须用 $p$。\r\n> - ❌ 写成「$ab^T$ 是对称矩阵」。错在把 $b=a$ 这个附加条件丢了。反例：$a=(1,2)^T,b=(3,4)^T$，则 $ab^T=\\begin{pmatrix}3&4\\\\6&8\\end{pmatrix}$，其转置是 $\\begin{pmatrix}3&6\\\\4&8\\end{pmatrix}\\neq ab^T$。\r\n> - ❌ 写成「$ab^T$ 的 $(i,j)$ 元素是 $a_j b_i$」。错在行列索引互换。检验：$(1,2)$ 元素应为 $a_1b_2$，若写成 $a_2b_1$，在 $a=(1,2)^T,b=(3,4)^T$ 下会得到 $6$，而真值是 $4$。\r\n> - ❌ 把内积（inner product）与外积（outer product）混为一谈，写成「$ab^T=a^Tb$」。错在两者形状根本不同：$a^Tb$ 是 $1\\times 1$ 标量、数值为 $\\sum_i a_ib_i$（仅当 $m=p$ 时有定义），而 $ab^T$ 是 $m\\times p$ 矩阵。在 $a=(1,2,3)^T,b=(4,5)^T$ 下 $a^Tb$ 甚至无定义。\r\n> - ❌ 写成「所有列都是 $b$ 的倍数」。错在把行、列的角色对调了。正确说法是**列是 $a$ 的倍数、行是 $b^T$ 的倍数**，倍数系数分别是 $b_j$ 与 $a_i$。\r\n> - ❌ 声称「$b=a$ 是 $ab^T$ 对称的充要条件」。错在把充分条件说成充要条件。正确刻画是：$ab^T$ 对称 $\\iff a_ib_j=a_jb_i$ 对一切 $i,j$ 成立 $\\iff b=\\lambda a$ 对某个标量 $\\lambda$ 成立（在 $a\\neq 0$ 时），$\\lambda=1$ 只是其中一个特例。\r\n> - ❌ 对 $aa^T$ 只说「对称」就收笔。错在漏掉了题目真正想引出的性质：$a\\neq 0$ 时它是秩一对称矩阵，$\\operatorname{tr}(aa^T)=\\lVert a\\rVert^2$，$\\det(aa^T)=0$（当 $m\\ge 2$）。只说对称等于没答完。\r\n>\r\n> **七、Manual 标准答案的独立验证**\r\n>\r\n> Manual 原文为：`Yes, abT is an m by n matrix. The number ai bj is in row i, column j of abT. If b = a then aaT is a symmetric matrix.` 逐句核验：\r\n>\r\n> 1. 「Yes」正确：内维为 $1$，乘法合法，与 $m,p$ 的具体大小无关（$m=p$ 或 $m\\neq p$ 都可以）。\r\n> 2. 「$m$ by $n$」判定为**记号笔误（notational slip）**，不是实质性错误。题面把 $b$ 的分量个数命名为 $p$，Manual 却改用了 $n$。若全文约定 $n:=p$，则陈述为真；但在一道独立题目内无故换名，会让读者以为存在第三个维数 $n$。严格表述应为：$ab^T$ 是 $m\\times p$ 矩阵。这一点必须补足。\r\n> 3. 「$a_i b_j$ 在 $ab^T$ 的第 $i$ 行第 $j$ 列」完全正确，且行列顺序无误。\r\n> 4. 「若 $b=a$ 则 $aa^T$ 对称」是真命题但**不完整**：它只给出一个充分条件（实际上 $b=\\lambda a$ 即可），且对题目末问「关于 $aa^T$ 你能说什么」只答了对称性。题目问的是开放式的「能说什么」，完备答案至少应包含：对称、秩为 $1$（$a\\neq 0$ 时）、迹 $=\\lVert a\\rVert^2$、零空间 $=\\{x:a^Tx=0\\}$、唯一非零特征值 $\\lVert a\\rVert^2$（对应特征向量 $a$）。\r\n> 5. 另需指出 Manual 未提及的边界情形：$a=0$ 或 $b=0$ 时 $ab^T$ 是零矩阵，秩为 $0$，此时「秩一」的说法不成立。\r\n>\r\n> **八、自检（代入验算 + 维数记账 + 秩与迹校验）**\r\n>\r\n> 取 $a=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$（$m=3$），$b=\\begin{pmatrix}4\\\\5\\end{pmatrix}$（$p=2$）。\r\n>\r\n> 维数记账：$(m\\times 1)(1\\times p)=(3\\times 1)(1\\times 2)=3\\times 2$。列出乘法表：\r\n>\r\n> ```math\r\n> ab^T=\\begin{pmatrix}1\\cdot4&1\\cdot5\\\\2\\cdot4&2\\cdot5\\\\3\\cdot4&3\\cdot5\\end{pmatrix}\r\n> =\\begin{pmatrix}4&5\\\\8&10\\\\12&15\\end{pmatrix}\r\n> ```\r\n>\r\n> 列检查：第 $1$ 列 $=(4,8,12)^T=4a$，系数 $b_1=4$；第 $2$ 列 $=(5,10,15)^T=5a$，系数 $b_2=5$。行检查：第 $2$ 行 $=(8,10)=2\\,(4,5)=a_2b^T$。两条都符合。\r\n>\r\n> 秩的上界校验：$3\\times 2$ 矩阵的秩至多 $2$；又因两列成比例，秩恰为 $1$，与公式一致。零空间校验：解 $b^Tx=4x_1+5x_2=0$ 得 $N=\\mathrm{span}\\{(5,-4)^T\\}$，维数 $2-1=1$，与秩—零化度 $p-r=2-1=1$ 吻合。\r\n>\r\n> 迹—内积双锁校验（转 $aa^T$）：$\\operatorname{tr}(aa^T)=1+4+9=14=\\lVert a\\rVert^2=a^Ta$，两侧独立算出同一个数。特征值校验：$aa^Ta=14a$，故 $a$ 是特征向量、特征值 $14$；其余 $m-1=2$ 个特征值为 $0$（因为秩为 $1$），特征值之和 $14+0+0=14=\\operatorname{tr}(aa^T)$，闭合。行列式校验：$m=3\\ge2$ 故 $\\det(aa^T)=0$，与秩亏一致。\r\n>\r\n> Frobenius 范数校验：$\\lVert ab^T\\rVert_F^2=16+25+64+100+144+225=574$，而 $\\lVert a\\rVert^2\\lVert b\\rVert^2=14\\times41=574$，两侧吻合，说明「外积的 Frobenius 范数等于两向量长度之积」这条恒等式在此例中成立。\r\n>\r\n> **九、一句话**：这道题真正训练的是把矩阵乘法还原成「列乘行」这个最小零件，并用形状记账、秩的上界与转置对偶三条线索同时锁定 $ab^T$ 与 $aa^T$ 的结构。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——秩一矩阵是这门课的「原子」，以及 $m+p$ 个数如何装下 $mp$ 个数**\r\n>\r\n> 本注要回答一个具体的设计问题：既然 $ab^T$ 里躺着 $mp$ 个格子，凭什么说它的全部信息只由 $a$ 和 $b$ 这 $m+p$ 个数决定？把这个问题答清楚，后面 $A=CR$、SVD、低秩近似才有立足点。\r\n>\r\n> 机制从「列视角」展开，不需要任何新工具。设 $b\\neq0$，取 $b$ 的某个非零分量 $b_{j_0}$。由方法二，$ab^T$ 的第 $j_0$ 列是 $b_{j_0}a$；而任意第 $j$ 列是 $b_ja$，于是\r\n>\r\n> ```math\r\n> \\text{第 }j\\text{ 列}=\\frac{b_j}{b_{j_0}}\\times\\text{第 }j_0\\text{ 列}\r\n> ```\r\n>\r\n> 这句话就是全部秘密：**只要知道一列和一组倍数，整张矩阵就确定了**。同理，只要知道一行和一组倍数，也确定了。这说明 $ab^T$ 的列空间维数不超过 $1$，即秩不超过 $1$；又因 $a\\neq0$ 时第一列 $b_1a$ 非零（若 $b_1=0$ 就换一个非零的 $b_j$），故秩恰为 $1$。这就是「秩一」的完整证明，只用到了「列是 $a$ 的倍数」这一条观察，没有动用行列式或消元。\r\n>\r\n> 用前面 $a=(1,2,3)^T$、$b=(4,5)^T$ 的例子验证：$j_0=1$，比值 $b_2/b_1=5/4$，第 $2$ 列 $(5,10,15)^T$ 确实等于 $\\frac54\\times(4,8,12)^T$。再取一个非平凡的例子：$a=(1,-1)^T$，$b=(2,2)^T$，此时 $b=2a$？不，$2a=(2,-2)^T\\neq b$，两列分别是 $2a$ 与 $2a$，比值 $1$，矩阵为 $\\begin{pmatrix}2&2\\\\-2&-2\\end{pmatrix}$，秩仍为 $1$。可见「秩一」与 $a,b$ 是否同向无关，只与「只有一列信息」有关。\r\n>\r\n> 把 $m+p$ 与 $mp$ 的关系写成压缩比：\r\n>\r\n> ```math\r\n> \\frac{m+p}{mp}=\\frac1m+\\frac1p\r\n> ```\r\n>\r\n> $m,p$ 越大，这个比值越小。这就是低秩近似能省存储的根本原因：一个 $1000\\times1000$ 的秩一矩阵，理论上只需存 $2000$ 个数，而不是一百万个数。教材 §I.2 把 $AB=\\sum_k a_kb_k^T$ 列为五种乘法视角之一，正是为了让「矩阵 = 若干张量积芯片之和」这条直觉先于 SVD 出现。\r\n>\r\n> 跨课程连接给出两条，都要精确到路径。第一条，你在 6.042J 学过的等价关系（equivalence relation）与等价类划分（partition into equivalence classes），在这里的对应物是把 $\\mathbb{R}^p$ 按「$b^Tx$ 的取值」划分：所有让 $b^Tx=c$ 的 $x$ 构成一个集合，$c$ 取遍实数时这些集合两两不交、并起来是整个 $\\mathbb{R}^p$，其中 $c=0$ 那一类正是 $N(ab^T)$，是一个 $p-1$ 维子空间。区别在于：6.042J 里等价类只要求「自反、对称、传递」这三条纯逻辑性质，类之间没有大小可比；而这里每一类是一个仿射子空间（平移过的子空间），$c\\neq0$ 的类都不是子空间（不含零向量），只有 $c=0$ 那类是。也就是说，等价类划分在这里长出了线性结构，是可度量的。\r\n>\r\n> 第二条，6.006 的分治（divide and conquer）思路在这里的对应物是「按秩分解」：把一个大矩阵拆成若干个秩一矩阵之和，每一步处理一个方向，这就是 SVD 的算法骨架（每提取一个奇异三元组，剩下的是新的残差矩阵，规模的信息量递减）。区别在于：分治的代价函数通常是子问题规模之和，而这里每一步剥离的是一个奇异值 $\\sigma_k$，剥离顺序按 $\\sigma_k$ 从大到小排，代价的度量从「规模」换成了「能量」。\r\n>\r\n> 可复用的命名模板：**「列生成—倍数读取—秩封顶」三步行秩判定法**。第一步找生成列（此处是 $a$），第二步把所有列写成它的倍数，第三步数出独立倍数的个数即为秩。三步走完，任何「看起来很大」的矩阵的秩都跑不掉。收束回正文：本题问的四个小问，其实是在让你亲手拆开这台机器最小的那一颗螺丝，看清秩一矩阵的输入只有两个向量。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——$aa^T$ 为什么配得上单独一问：从对称性到投影矩阵**\r\n>\r\n> 本注要回答的设计问题是：题目为什么在问完一般的 $ab^T$ 之后，还要专门追问 $aa^T$？如果 $aa^T$ 只是 $b=a$ 的特例，它不值得单列。它值得，是因为 $b=a$ 这一步同时把「对称」和「秩一」两个性质焊在了同一个矩阵上，而这个组合恰好是投影（projection）的代数核心。\r\n>\r\n> 先做机制展开，全部只用手边的工具。$aa^T$ 的 $(i,j)$ 元素是 $a_ia_j$，交换 $i,j$ 数值不变，故转置等于自身，这是对称性最直接的证明。再看它作用在 $a$ 上：\r\n>\r\n> ```math\r\n> (aa^T)a=a(a^Ta)=\\lVert a\\rVert^2 a\r\n> ```\r\n>\r\n> 所以 $a$ 是特征向量，特征值是 $\\lVert a\\rVert^2$。若把 $a$ 单位化，令 $u=a/\\lVert a\\rVert$，则 $uu^T$ 满足\r\n>\r\n> ```math\r\n> (uu^T)^2=u(u^Tu)u^T=uu^T,\\qquad (uu^T)^T=uu^T\r\n> ```\r\n>\r\n> 幂等（idempotent）加对称，这正是正交投影矩阵（orthogonal projection matrix）的定义。它把任意 $x$ 映到 $\\mathrm{span}\\{u\\}$ 上：$uu^Tx=(u^Tx)u$。你在 Strang 线性代数里学过的投影公式 $P=A(A^TA)^{-1}A^T$，当 $A$ 退化成单列 $a$ 时就是 $(aa^T)/\\lVert a\\rVert^2$——本题的 $aa^T$ 正是它的分子。这就是为什么 $aa^T$ 值得单独一问：它是所有投影公式里唯一能徒手写全的那一个。\r\n>\r\n> 用具体数字验证一遍。取 $a=(1,2,3)^T$，则\r\n>\r\n> ```math\r\n> aa^T=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix},\\qquad\r\n> \\operatorname{tr}(aa^T)=1+4+9=14=\\lVert a\\rVert^2\r\n> ```\r\n>\r\n> 特征值校验：$aa^Ta=14a$ 已核对；秩为 $1$ 故其余 $m-1=2$ 个特征值全为 $0$；三者之和 $14$ 等于迹，闭合。零空间校验：$aa^Tx=0$ 等价于 $a^Tx=0$，即 $x_1+2x_2+3x_3=0$，是一个二维平面，维数 $3-1=2$，与秩—零化度一致。注意一个容易错过的细节：$aa^T$ 的对角元 $a_i^2$ 全非负，且只要 $a\\neq0$ 迹就严格为正，所以 $aa^T$ 永远不可能是零矩阵，这与「迹等于特征值之和，而唯一的非零特征值是 $\\lVert a\\rVert^2$」互为印证。\r\n>\r\n> 再看对称性这一条到底有多强。$aa^T$ 与 $a^Ta$ 是两个极端：前者是 $m\\times m$ 矩阵、秩一、对称；后者是 $1\\times1$ 标量、数值等于 $\\lVert a\\rVert^2$，而它正是前者的唯一非零特征值。一条恒等式同时给出两件事——$(aa^T)a=a(a^Ta)$——这就是把「特征向量是 $a$」和「特征值是 $a^Ta$」一次算完的技巧。可复用的命名模板：**「先作用再读系数」特征值速判法**：不去解 $\\det(S-\\lambda I)=0$，而是直接把 $S$ 作用在它的生成向量上，若结果恰好是原向量的倍数，倍数就是特征值。\r\n>\r\n> 跨课程连接给两条。第一条，你在 6.042J 学过的偏序集（poset）与偏序关系，在这里的对应物是把 $\\mathbb{R}^m$ 中所有非零向量按「方向相同」分组（即 $b=\\lambda a,\\lambda>0$），每一组对应唯一的投影矩阵 $uu^T$，且 $P^2=P$、$P^T=P$ 这两条性质就像偏序里的自反性与反对称性，把「投影算子」这一族对象组织成一个有结构的集合。区别在于：偏序关系里的可比对是离散的组合对象，而这里的每个元素本身是一个线性算子，可以相加、可以复合，运算结构远比偏序丰富；也正因如此，$P_1+P_2$ 一般不再是投影，而偏序中两条关系的「并」在满足条件时仍是关系。\r\n>\r\n> 第二条，CSAPP 里你熟悉的浮点表示（floating-point representation）在这里有一个具体的数值后果：$aa^T$ 的对角元是 $a_i^2$，若 $a_i$ 的量级跨度大（比如 $10^{20}$ 与 $10^{-20}$ 并存），$a_i^2$ 会先溢出到 $\\infty$ 或下溢到 $0$，于是 $\\operatorname{tr}(aa^T)=\\lVert a\\rVert^2$ 这个代数恒等式在浮点下不再可靠。区别在于：代数上迹与内积恒等，浮点下两者可能给出不同的舍入结果，因为一条路径先平方后求和，另一条路径走的是 BLAS 内部不同的累加顺序。这也解释了为什么实际计算 $\\lVert a\\rVert$ 要用规范化的范数例程而不是手写 $\\sqrt{\\sum a_i^2}$。\r\n>\r\n> 收束回正文：$aa^T$ 之所以被单独追问，是因为它是「对称 + 秩一」唯一能徒手算全的样本，往前一步是投影公式，往后一步是 SVD 的第一项，本题把它放在这里，是为了让你在还没有任何特征值工具时，就先用一次乘法把它看穿。\r\n> **十、这道题的设计意图（把小问折叠成一个设计问题）**\r\n>\r\n> 本讲只有一道题，但这一道题内部折叠了四个小问，它们不是四件小事，而是同一个设计问题的四层剖面：**一个线性映射最少需要多少数据才能被完整确定，而这些数据又藏在矩阵的什么位置上？**\r\n>\r\n> 第一层由「能乘吗」压住：它问的是矩阵乘法的合法性判据。$(m\\times1)(1\\times p)$ 之所以合法，只因为内维都是 $1$。这一层看似琐碎，却确立了后面所有形状推理的语法——内维相消、外维留存，这条规则不依赖任何几何直觉，纯记账。\r\n>\r\n> 第二层由「形状是什么」压住：它把答案的形式从「一串数」升级为「一块有尺寸的对象」。秩—零化度守恒之所以能在后面反复使用，前提是你清楚 $ab^T$ 是 $m\\times p$ 而不是别的，因为 $p-r$ 里的 $p$ 正是这里的 $p$。Manual 把 $p$ 写成 $n$，恰好说明这一层容易松：形状记号的稳定不是装饰，它是后续所有维数恒等式的索引系统。\r\n>\r\n> 第三层由「第 $i$ 行第 $j$ 列是什么数」压住：它逼你从整块视角下沉到格子视角，问出矩阵的坐标表示。答案 $a_ib_j$ 让「列是 $a$ 的倍数、行是 $b^T$ 的倍数」这句结构断言有了可逐格核对的证据。没有这一层，秩一只是一个名词；有了这一层，秩一是一个能在一分钟内用比值验证的事实。\r\n>\r\n> 第四层由「$aa^T$ 能说什么」压住：这是唯一一层要求你主动扩展、而不是回答封闭问题的地方。题面没有给任何提示，但前面的三层已经把工具递到手上——对称性来自 $a_ia_j=a_ja_i$，秩一来自列成比例，迹来自对角元平方和，特征值来自把矩阵作用在 $a$ 上。第四层是整道题的出口：它把「外积」这个零件接到投影公式、接到低秩近似、接到 SVD 的第一项。整门 18.065 后面反复出现的 $A=CR$、$A=\\sum\\sigma_ku_kv_k^T$，都是在这一层上继续加项。\r\n>\r\n> 把四层折叠起来看，这道题的设计意图就很清楚：它不要求你会任何新工具，只要求你在没有任何工具的情况下，用形状、倍数、转置这三条最原始的线索，把一个矩阵的全部结构说清楚。这是一次能力校准——如果你能独立完成第四层，说明你已经准备好接受「矩阵分解就是把矩阵拆成若干外积之和」这个贯穿全课的主命题；如果卡在第二、三层，说明问题不在概念难度，而在记账习惯，需要立刻补上维数核对这一环。这也是为什么这道题被放在 §I.2 的最前面：它是整章的地基词汇表，而不是一道需要技巧的练习。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 160,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 160,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 160,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 160,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 160,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 41297,
+            "outputTokens": 96551,
+            "cacheReadTokens": 1893120,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 27,
+            "buckets": {
+              "uncachedInputTokens": 1381,
+              "outputTokens": 13069,
+              "cacheReadTokens": 115200,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 160,
+        "val": {
+          "surfaceTokens": 78048,
+          "contextWindow": 1000000,
+          "pressureTokens": 116581,
+          "sampledSurfaceTokens": 72423
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 160,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3444,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 16769,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 27,
+              "heuristicTokens": 273,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 4382,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 1121,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 313,
+              "system": false
+            },
+            {
+              "seq": 37,
+              "heuristicTokens": 41,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 41,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 62,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 48,
+              "heuristicTokens": 354,
+              "system": false
+            },
+            {
+              "seq": 50,
+              "heuristicTokens": 95,
+              "system": false
+            },
+            {
+              "seq": 53,
+              "heuristicTokens": 332,
+              "system": false
+            },
+            {
+              "seq": 55,
+              "heuristicTokens": 47,
+              "system": false
+            },
+            {
+              "seq": 58,
+              "heuristicTokens": 83,
+              "system": false
+            },
+            {
+              "seq": 60,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 63,
+              "heuristicTokens": 50,
+              "system": false
+            },
+            {
+              "seq": 65,
+              "heuristicTokens": 3935,
+              "system": false
+            },
+            {
+              "seq": 68,
+              "heuristicTokens": 633,
+              "system": false
+            },
+            {
+              "seq": 70,
+              "heuristicTokens": 572,
+              "system": false
+            },
+            {
+              "seq": 73,
+              "heuristicTokens": 395,
+              "system": false
+            },
+            {
+              "seq": 75,
+              "heuristicTokens": 344,
+              "system": false
+            },
+            {
+              "seq": 78,
+              "heuristicTokens": 8308,
+              "system": false
+            },
+            {
+              "seq": 80,
+              "heuristicTokens": 23,
+              "system": false
+            },
+            {
+              "seq": 83,
+              "heuristicTokens": 117,
+              "system": false
+            },
+            {
+              "seq": 85,
+              "heuristicTokens": 99,
+              "system": false
+            },
+            {
+              "seq": 88,
+              "heuristicTokens": 3698,
+              "system": false
+            },
+            {
+              "seq": 90,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 93,
+              "heuristicTokens": 449,
+              "system": false
+            },
+            {
+              "seq": 95,
+              "heuristicTokens": 65,
+              "system": false
+            },
+            {
+              "seq": 98,
+              "heuristicTokens": 490,
+              "system": false
+            },
+            {
+              "seq": 100,
+              "heuristicTokens": 65,
+              "system": false
+            },
+            {
+              "seq": 103,
+              "heuristicTokens": 6568,
+              "system": false
+            },
+            {
+              "seq": 105,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 108,
+              "heuristicTokens": 2595,
+              "system": false
+            },
+            {
+              "seq": 110,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 113,
+              "heuristicTokens": 853,
+              "system": false
+            },
+            {
+              "seq": 115,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 118,
+              "heuristicTokens": 1191,
+              "system": false
+            },
+            {
+              "seq": 120,
+              "heuristicTokens": 83,
+              "system": false
+            },
+            {
+              "seq": 123,
+              "heuristicTokens": 2387,
+              "system": false
+            },
+            {
+              "seq": 125,
+              "heuristicTokens": 93,
+              "system": false
+            },
+            {
+              "seq": 128,
+              "heuristicTokens": 557,
+              "system": false
+            },
+            {
+              "seq": 130,
+              "heuristicTokens": 378,
+              "system": false
+            },
+            {
+              "seq": 133,
+              "heuristicTokens": 469,
+              "system": false
+            },
+            {
+              "seq": 135,
+              "heuristicTokens": 169,
+              "system": false
+            },
+            {
+              "seq": 138,
+              "heuristicTokens": 444,
+              "system": false
+            },
+            {
+              "seq": 140,
+              "heuristicTokens": 2423,
+              "system": false
+            },
+            {
+              "seq": 143,
+              "heuristicTokens": 2908,
+              "system": false
+            },
+            {
+              "seq": 145,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 148,
+              "heuristicTokens": 1651,
+              "system": false
+            },
+            {
+              "seq": 150,
+              "heuristicTokens": 72,
+              "system": false
+            },
+            {
+              "seq": 153,
+              "heuristicTokens": 259,
+              "system": false
+            },
+            {
+              "seq": 155,
+              "heuristicTokens": 561,
+              "system": false
+            },
+            {
+              "seq": 158,
+              "heuristicTokens": 5625,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 76904
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 160,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 160,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 157,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 159
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 160,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 160,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 160,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 160,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 160,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 160,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148581446,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 23,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 23,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_227]\nIV.3. The Kronecker Product \\(A \\otimes B\\) \\hfill 225\n\n### Separation of Variables\n\nThe last page was very formal. But the idea is simple and important. It is the matrix equivalent of the most useful trick for eigenfunctions of Laplace's equation—and all similar equations that have \\(x\\)-derivatives added to \\(y\\)-derivatives.\n\n**Eigenvalues \\(\\alpha\\) of the Laplacian**\n\\[\n\\frac{\\partial^2 u}{\\partial x^2} + \\frac{\\partial^2 u}{\\partial y^2} = \\alpha\\, u(x,y). \\tag{14}\n\\]\n\nThe trick is to look for \\(u\\) in the separated form \\(u(x,y) = v(x)\\, w(y)\\). Substitute \\(vw\\) for \\(u\\) in Laplace's eigenvalue equation (14):\n\n**Separation of variables \\(x\\) and \\(y\\)**\n\\[\n\\left(\\frac{d^2 v}{dx^2}\\right) w(y) + v(x) \\frac{d^2 w}{dy^2} = \\alpha\\, v(x)\\, w(y). \\tag{15}\n\\]\n\nOrdinary derivatives instead of partials, \\(v\\) depends only on \\(x\\) and \\(w\\) depends only on \\(y\\).\n**Divide equation (15) by \\(v\\) times \\(w\\).** The result on the left side is a function only of \\(x\\) plus a function only of \\(y\\).\n\\[\n\\frac{d^2 v/dx^2}{v(x)} + \\frac{d^2 w/dy^2}{w(y)} = \\alpha = \\text{constant}. \\tag{16}\n\\]\n\nIf this is true for every \\(x\\) and \\(y\\) then each term is a constant (*think about this!*):\n\n> **Separated equations**\n> \\[\n> \\frac{d^2 v}{dx^2} = \\lambda\\, v \\quad \\text{and} \\quad \\frac{d^2 w}{dy^2} = \\mu\\, w \\quad \\text{with} \\quad \\lambda + \\mu = \\alpha. \\tag{17}\n> \\]\n\nSo \\(\\lambda + \\mu\\) is an eigenvalue of Laplace's equation (14). The Laplacian on the left side of (14) is just the **Kronecker sum** of \\(A = \\partial^2/\\partial x^2\\) and \\(B = \\partial^2/\\partial y^2\\). The key point is that the eigenfunction \\(u(x,y)\\) is the product of two 1D eigenfunctions \\(v(x)\\) and \\(w(y)\\). This is continuous instead of discrete, with derivatives instead of difference matrices and eigenfunctions instead of eigenvectors.\nThe partial differential equation is reduced to two ordinary differential equations (17).\n\n### The Matrix to Vector Operation \\(\\text{vec}(A)\\)\n\nWe often want to *vectorize a matrix*. Starting with an \\(m\\) by \\(n\\) matrix \\(A\\), we stack its \\(n\\) columns to get one column vector \\(\\text{vec}(A)\\) of length \\(mn\\):\n\\[\n\\text{vec}(A) = \\begin{bmatrix} \\text{column 1} \\\\ \\vdots \\\\ \\text{column } n \\end{bmatrix} \n\\qquad \n\\text{vec}\\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) = \\begin{bmatrix} a \\\\ c \\\\ b \\\\ d \\end{bmatrix}. \\tag{18}\n\\]\n\n### [原文 page_228]\n226 \\hfill Special Matrices\n\nThis vector of length \\(N^2\\) is multiplied by the \\(2D\\) Fourier matrix (a Kronecker product of size \\(N^2\\)) to produce the vector of \\(N^2\\) Fourier coefficients. And this vector of length \\((N+1)^2\\) is multiplied by the graph Laplacian matrix (a Kronecker sum) in the finite difference approximation to Laplace's equation on a square.\n\nSo we need to see how this simple **vec** operation interacts with matrix multiplication. Here is the key identity, when a matrix \\(B\\) is multiplied on the left by a matrix \\(A\\) and on the right by a matrix \\(C\\):\n\n\\[\n\\boxed{\\textbf{vec}(ABC) = (C^{\\mathrm{T}} \\otimes A) \\textbf{vec}(B).} \\tag{19}\n\\]\n\nFirst check dimensions when all three matrices \\(A, B, C\\) are \\(n\\) by \\(n\\). Then \\(ABC\\) is \\(n\\) by \\(n\\) and **vec** makes it \\(n^2\\) by \\(1\\). The Kronecker product is \\(n^2\\) by \\(n^2\\) and it multiplies the \\(n^2\\) by \\(1\\) vector \\(\\textbf{vec}(B)\\). So the right hand side of (19) also has length \\(n^2\\). And if \\(ABC\\) is \\(m\\) by \\(p\\) then the matrix \\(C^{\\mathrm{T}} \\otimes A\\) has \\(mp\\) rows as it should. *Good.*\n\nBut notice a big difference in the operation count. In the \\(n\\) by \\(n\\) case, the two multiplications in \\(ABC\\) need \\(2n^3\\) separate multiply-adds. The Kronecker product on the right has \\(n^4\\) entries ! So if we don't notice that it is a Kronecker product, this matrix-vector multiplication needs \\(n^4\\) multiply-adds. Reshaping is essential to take advantage of the Kronecker structure :\n\n\\(A\\) is \\(m \\times n\\) and \\(mn = MN\\) \\quad \\(B = \\textbf{reshape}(A, M, N)\\) is \\(M \\times N\\) \\quad \\(\\textbf{vec}(B) = \\textbf{vec}(A)\\)\n\nIf \\(A\\) is \\(3 \\times 2\\) then \\(B = \\textbf{reshape}(A, 1, 6)\\) produces \\(B = \\begin{bmatrix} a_{11} & a_{21} & a_{31} & a_{12} & a_{22} & a_{32} \\end{bmatrix}\\).\n\nWe need to understand the **vec** identity (19). Start with the case when \\(B = \\begin{bmatrix} x_1 & x_2 \\end{bmatrix}\\) has 2 columns and \\(C\\) is 2 by 2. The right side of (19) is simply a matrix-vector multiplication \\(Kx\\) where \\(x = \\textbf{vec}(B)\\) and we have recognized that \\(K\\) is a Kronecker product \\(C^{\\mathrm{T}} \\otimes A\\). That multiplication produces a vector \\(y\\) :\n\n\\[\ny = Kx = (C^{\\mathrm{T}} \\otimes A) \\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix} = \\begin{bmatrix} c_{11}A & c_{21}A \\\\ c_{12}A & c_{22}A \\end{bmatrix} \\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix} = \\begin{bmatrix} c_{11}Ax_1 + c_{21}Ax_2 \\\\ c_{12}Ax_1 + c_{22}Ax_2 \\end{bmatrix} \\tag{20}\n\\]\n\nThis vector \\(y\\) is exactly the left side of the identity (19) : \\(\\textbf{vec}(ABC)\\) with \\(B = \\begin{bmatrix} x_1 & x_2 \\end{bmatrix}\\) is\n\n\\[\n\\textbf{vec}\\left( \\begin{bmatrix} Ax_1 & Ax_2 \\end{bmatrix} \\begin{bmatrix} c_{11} & c_{12} \\\\ c_{21} & c_{22} \\end{bmatrix} \\right) = \\textbf{vec} \\begin{bmatrix} c_{11}Ax_1 + c_{21}Ax_2 & c_{12}Ax_1 + c_{22}Ax_2 \\end{bmatrix}\n\\]\n\nSo if we have a linear system \\(Kx = b\\) with a Kronecker matrix \\(K\\), (19) will reduce its size.\n\nThe pixel values in a \\(2D\\) image (\\(n\\) by \\(n\\)) are stacked by **vec** into a column vector (length \\(n^2\\) or \\(3n^2\\) with RGB color). A video with \\(T\\) frames has a sequence of images at \\(T\\) different times. Then **vec** stacks the video into a column vector of length \\(Tn^2\\).\n\n**Reference**\n\nC. Van Loan, *The ubiquitous Kronecker product*, J. Comp. Appl. Math. **123** (2000) 85–100.\nAlso *The Kronecker Product*, https://www.cs.cornell.edu/cv/ResearchPDF/KPhist.pdf\n\n【当前译文】\n@@PAGE:227@@\n<!-- page 227 -->\n> <span style=color:#7f8c8d;>本页为书页 225，属 §IV.3 The Kronecker Product（克罗内克积）；页眉「§IV.3 The Kronecker Product $A \\otimes B$」与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较重：`刊 1 e` 为 The，`lt is` 为 it is，`e qu atio n` 为 equation，`c-derivatives`、`Dc2`、`D2/Dc2` 分别为 $x$-derivatives、$\\partial x^2$、$\\partial^2/\\partial x^2$，`锐`、`鬱`、`屿 处` 为 $u$，`仞`、`忉` 为 $w$，`04` 为编号 $(14)$，`襯` 为 $m$，`刀` 为 $n$；公式均按数学语境重建。\n<span style=color:#2471a3;>**[section]**</span>\n### Separation of Variables（分离变量法）\n上一页的讨论非常形式化。\n但其思想既简单又重要。\n它是 Laplace's equation（拉普拉斯方程）——以及所有把 $x$ 方向导数与 $y$ 方向导数相加的同类方程——对特征函数最有用技巧的矩阵版本：\n```math\n\\text{Eigenvalues } \\alpha \\text{ of the Laplacian}\\qquad \\frac{\\partial^2 u}{\\partial x^2} + \\frac{\\partial^2 u}{\\partial y^2} = \\alpha\\,u(x,y) . \\tag{14}\n```\n这里的技巧是把 $u$ 写成分离形式 $u(x,y) = v(x)\\,w(y)$。\n把它代入 Laplace 特征值方程 $(14)$：\n```math\n\\text{Separation of variables } x \\text{ and } y\\qquad \\left( \\frac{d^2 v}{dx^2} \\right) w(y) + v(x)\\frac{d^2 w}{dy^2} = \\alpha\\, v(x) w(y) . \\tag{15}\n```\n此时出现的是 ordinary derivatives（常导数）而非 partials（偏导数）：$v$ 只依赖于 $x$，而 $w$ 只依赖于 $y$。\n把方程 $(15)$ 除以 $v$ 乘 $w$。\n左端的结果是一个只含 $x$ 的函数加一个只含 $y$ 的函数：\n```math\n\\frac{d^2 v / dx^2}{v(x)} + \\frac{d^2 w / dy^2}{w(y)} = \\alpha = \\text{constant}. \\tag{16}\n```\n如果这对每个 $x$ 与每个 $y$ 都成立，那么每一项本身就必须是常数：\n```math\n\\text{Separated equations}\\qquad \\frac{d^2 v}{dx^2} = \\lambda v \\quad \\text{and} \\quad \\frac{d^2 w}{dy^2} = \\mu w \\quad \\text{with } \\lambda + \\mu = \\alpha . \\tag{17}\n```\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）OCR 在此处只剩 `（ k about is ！ ）` 一枚括号残片，「（这一步是关键的一步）」是按语气重建；另 OCR 的 $(16)$、$(17)$ 两个编号连排，此处按后文「化归为两个常微分方程 $(17)$」把 $(17)$ 判给「Separated equations」、把「= constant」判给 $(16)$。两点均如需精确核对，请对照原书相应页。\n<span style=color:#2471a3;>**[note]**</span>\n> <span style=color:#1e8449;>**[note] 译者注 ｜ 分离变量法：把一个二维特征值问题拆成两个一维问题：**</span> 本页的技巧只有一个动作：把 $u$ 写成乘积 $u(x,y)=v(x)w(y)$，代进拉普拉斯特征值方程，然后左右除以 $vw$，于是左边变成「一个只含 $x$ 的东西 + 一个只含 $y$ 的东西 = 常数」。这一步为什么能推出「每一项各自是常数」，值得说透，因为它是全书最常被「跳过去」的一步。\n>\n> <span style=color:#1e8449;>**关键那一步的机制。** 设 $f(x)+g(y)=C$ 对所有 $x,y$ 成立。固定 $y_0$，则对一切 $x$ 有 $f(x)=C-g(y_0)$——右端与 $x$ 无关，所以 $f$ 必为常数；$g$ 同理。这里唯一用到的事实是「$x$ 与 $y$ 可以各自独立取值」，也就是你在 100B 里练过的那种「把变元看成独立自由度」的论证方式：只要两个变元互不牵连，恒等式就能被「钉」在其中一个变元上。换来的是什么？一个二元方程变成了两个一元方程 $d^2v/dx^2=\\beta v$、$d^2w/dy^2=\\gamma w$，并且 $\\lambda=\\beta+\\gamma$。**特征值相加**——这句话在离散情形就是 page_226 的 $(A\\oplus B)(x\\otimes y)=(\\lambda+\\mu)(x\\otimes y)$。</span>\n>\n> <span style=color:#1e8449;>**离散与连续是同一件事的两种写法。** 连续：拉普拉斯算子是 $\\partial^2/\\partial x^2$ 与 $\\partial^2/\\partial y^2$ 的「和」，特征函数是 $(\\sin j\\pi x)(\\sin k\\pi y)$。离散：$K=I\\otimes D+D\\otimes I$，特征向量是 $u_j\\otimes u_k$，也就是两个一维特征向量的外积（分量逐一相乘）。所以 §IV.3 与 §IV.4 讲的是同一条定理：**「两个方向的算子相加」对应「特征值相加、特征向量取外积」**。看到「两个方向的导数相加」就在心里读成克罗内克和；看到「两个方向的算子嵌套」就读成克罗内克积。</span>\n>\n> <span style=color:#1e8449;>**连接 6.006 的分治形状。** 分离变量法本质是「把一个二维问题拆成两个互相不耦合的一维问题」，形状与分治的「拆—解—合」完全一致：拆（$u=vw$）→ 解（两个一维特征值问题）→ 合（把一维解相乘）。差别在于分治会递归地把规模变成一半再调用自己，而分离变量只拆一次就停在了一维上——因为拆完之后两个方向已经互不干扰，没有继续拆的必要。这个「拆到什么程度算拆够」的判断，就是「变量已经分离」的判断。</span>\n>\n> <span style=color:#1e8449;>**连接 6.431。** 这也是概率论里独立性那条性质的同一个姿势：当两个方向互不影响时，联合对象写成乘积，二维问题降维成一维。你在 6.431 里用 $p_{XY}(x,y)=p_X(x)p_Y(y)$ 把二维求和拆成一维求和，机制完全平行——「独立性」在概率里对应「算子可分离」在这里。</span>\n>\n> <span style=color:#1e8449;>**边界条件决定特征函数族。** 由 $\\beta,\\gamma$ 必须为负（否则解是指数增长，在边界上无法满足 $u=0$），特征函数只能是 $\\sin$ 或 $\\cos$ 这类振荡函数，而不是任意指数。离散版本里这个选择被写在矩阵的边界行上：$D_{\\text{fixed}}$ 的特征向量给出正弦向量，$D_{\\text{free}}$ 的给出余弦向量——这正是 §IV.4 的 DST 与 DCT 的出处，也是 JPEG 用余弦基的原因（它对应「自由/自然」边界条件）。</span>\n>\n> <span style=color:#1e8449;>**可迁移的结论**：判断一个偏微分方程能不能用分离变量法，只需看算子能不能写成「只在 $x$ 上作用的算子 + 只在 $y$ 上作用的算子」。能写成加法（$\\partial_{xx}+\\partial_{yy}$）就得到「特征值相加」的克罗内克和；能写成乘法结构就得到「特征值相乘」的克罗内克积。这一条判据在热传导、波动方程、薛定谔方程里都通用。</span>\n于是 $\\lambda + \\mu$ 就是 Laplace 方程 $(14)$ 的一个 eigenvalue（特征值）。\n$(14)$ 左端的 Laplacian（拉普拉斯算子）正是 $A = \\partial^2/\\partial x^2$ 与 $B = \\partial^2/\\partial y^2$ 的 Kronecker sum（克罗内克和）。\n关键点在于：特征函数 $u(x,y) = v(x)\\,w(y)$ 是两个一维特征函数 $v(x)$ 与 $w(y)$ 的乘积。\n这里讨论的是连续情形而非离散情形，用的是导数而不是差分矩阵，用的是特征函数而不是特征向量。\n这个 partial differential equation（偏微分方程）被化归为两个 ordinary differential equations（常微分方程）$(17)$。\n<span style=color:#2471a3;>**[section]**</span>\n### The Matrix to Vector Operation $\\mathrm{vec}(A)$（矩阵到向量的运算 $\\mathrm{vec}(A)$）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.3, p.225</span>\n我们常常想要把矩阵「拉直」。\n从一个 $m \\times n$ 矩阵出发，把它的各列依次堆叠起来，就得到一个长度为 $mn$ 的列向量 $\\mathrm{vec}(A)$：\n```math\n\\mathrm{vec}(A) = \\begin{bmatrix} \\text{column 1} \\\\ \\vdots \\\\ \\text{column } n \\end{bmatrix}\n\\qquad\n\\mathrm{vec}\\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) = \\begin{bmatrix} a \\\\ c \\\\ b \\\\ d \\end{bmatrix} . \\tag{18}\n```\n\n@@PAGE:228@@\n<!-- page 228 -->\n> <span style=color:#7f8c8d;>本页为书页 226，属 §IV.3 The Kronecker Product（克罗内克积）的续页，含 Reference（参考文献）；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `2 6` 为印页码 226，`2 刀 Fourier matnx` 依上下文读作 2D Fourier matrix（二维傅里叶矩阵，即 $\\Omega_N \\otimes \\Omega_N$），`0f 2 Fourier coefficients` 为 $N^2$ 个 Fourier coefficients，`mafrix` 为 matrix，`Kro necker` 为 Kronecker，`G00 法` 为 Good，`operati 0 n`、`multiplicaüon` 分别为 operation、multiplication，`p d 张`、`张 q Kmnecker p d` 为 product，`A is m × “ and rnn = MN` 依上下文读作 $A$ 是 $m \\times n$ 且 $mn = MN$。\n这个长度为 $N^2$ 的向量，被二维 Fourier matrix——一个规模为 $N^2 \\times N^2$ 的 Kronecker product $\\Omega_N \\otimes \\Omega_N$——相乘，从而产生由 $N^2$ 个 Fourier coefficients 构成的向量。\n而这个长度为 $(N+1)^2$ 的向量，则在正方形区域上 Laplace's equation（拉普拉斯方程）的 finite difference approximation（有限差分近似）中，被 graph Laplacian matrix（图拉普拉斯矩阵）——一个 Kronecker sum——相乘。\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）原译把此句读作「被 $2N$ 阶 Fourier matrix 相乘、产生 $2N$ 个系数」，与上下文不符——句首明说该向量长度为 $N^2$（$N \\times N$ 图像），故只能是二维 Fourier matrix $\\Omega_N\\otimes \\Omega_N$（$N^2 \\times N^2$）、输出 $N^2$ 个系数；OCR 的 `2 刀` 应为 `2D`。如需精确核对，请对照原书相应页。\n因此我们需要看清这个简单的 $\\mathrm{vec}$ 运算如何与矩阵乘法相互作用。\n下面就是关键恒等式：当矩阵 $B$ 左乘矩阵 $A$、右乘矩阵 $C$ 时：\n```math\n\\mathrm{vec}(ABC) = (C^{T} \\otimes A)\\, \\mathrm{vec}(B). \\tag{19}\n```\n先核对维数：当 $A, B, C$ 都是 $n \\times n$ 时，$ABC$ 是 $n \\times n$，而 $\\mathrm{vec}$ 把它变成 $n^2 \\times 1$。\nKronecker product 是 $n^2 \\times n^2$，它乘上 $n^2 \\times 1$ 的向量 $\\mathrm{vec}(B)$，所以 $(19)$ 的右端长度也是 $n^2$。\n而若 $ABC$ 是 $m \\times p$，则矩阵 $C^{T} \\otimes A$ 应有 $mp$ 行，事实正是如此。\n很好。\n但请注意运算次数上的巨大差别。\n在 $n \\times n$ 的情形中，$ABC$ 里的两次乘法需要 $2n^3$ 次单独的乘加运算。\n右端的 Kronecker product 有 $n^4$ 个元素！\n所以如果我们没有察觉它是一个 Kronecker product，这次矩阵-向量乘法就需要 $n^4$ 次乘加运算。\n要想利用 Kronecker 结构，reshape（重塑）是必不可少的：\n```math\nA \\text{ is } m \\times n \\text{ and } mn = MN; \\qquad B = \\text{reshape}(A,\\, M,\\, N) \\text{ is } M \\times N;\n\\qquad \\mathrm{vec}(B) = \\mathrm{vec}(A).\n```\n若 $A$ 是 $3 \\times 2$，则 $B = \\mathrm{reshape}(A, 1, 6)$ 产生 $B = [\\,a_{11}\\ a_{21}\\ a_{31}\\ a_{12}\\ a_{22}\\ a_{32}\\,]$。（续） 的各分量依次为 $a_{11}\\ a_{21}\\ a_{31}\\ a_{12}\\ a_{22}\\ a_{32}$——与 $\\mathrm{vec}(A)$ 完全相同。\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）OCR 此处为 `B = （ ， 1 ， 6 ）`，$M,N$ 两个参数不可辨；已按「$A$ 是 $3\\times2$、$MN=6$、$B$ 与 $A$ 形状不同才说明问题」取 $\\mathrm{reshape}(A,2,3)$。如需精确核对，请对照原书相应页。\n我们需要理解 $\\mathrm{vec}$ 恒等式 $(19)$。\n先从 $B = [\\,x_1\\ x_2\\,]$ 有两列、而 $C$ 是 $2 \\times 2$ 的情形入手。\n$(19)$ 的右端不过是一次矩阵-向量乘法，其中 $x = \\mathrm{vec}(B)$，而我们已经认出 $K$ 是一个 Kronecker product $C^{\\mathrm{T}} \\otimes A$。\n该乘法产生一个向量 $y$：\n```math\ny = Kx = (C^{\\mathrm{T}} \\otimes A)\\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix}\n= \\begin{bmatrix} c_{11}A & c_{21}A \\\\ c_{12}A & c_{22}A \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix}\n= \\begin{bmatrix} c_{11}Ax_1 + c_{21}Ax_2 \\\\ c_{12}Ax_1 + c_{22}Ax_2 \\end{bmatrix} \\tag{20}\n```\n这个向量 $y$ 恰好就是恒等式 $(19)$ 的左端：当 $B = [\\,x_1\\ x_2\\,]$ 时，$\\mathrm{vec}(ABC)$ 为\n```math\n\\mathrm{vec}\\left( \\begin{bmatrix} Ax_1 & Ax_2 \\end{bmatrix}\\begin{bmatrix} c_{11} & c_{12} \\\\ c_{21} & c_{22} \\end{bmatrix} \\right)\n= \\mathrm{vec}\\begin{bmatrix} c_{11}Ax_1 + c_{21}Ax_2 & c_{12}Ax_1 + c_{22}Ax_2 \\end{bmatrix}\n```\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）原译把左端写成 $\\mathrm{vec}\\bigl(C[b_1\\ b_2]\\bigr)$，但 $C$ 是 $2\\times2$、$[b_1\\ b_2]$ 是 $n\\times2$，该乘积在维数上不成立；恒等式左端是 $\\mathrm{vec}(ABC)$，此处 $A = I$，故应为 $\\mathrm{vec}\\bigl([b_1\\ b_2]\\,C\\bigr)$，其两列正是 $c_{11}b_1+c_{21}b_2$ 与 $c_{12}b_1+c_{22}b_2$，与 $(20)$ 右端严格吻合。如需精确核对，请对照原书相应页。\n所以若我们面对一个系数矩阵 $K$ 为 Kronecker 矩阵的线性方程组 $Kx = b$，$(19)$ 就能把它的规模降下来。\n二维图像（$n \\times n$ 的像素值）由 $\\mathrm{vec}$ 堆叠成一个列向量（长度为 $n^2$，若带 RGB 颜色则为 $3n^2$）。\n一段含 $T$ 帧（frame）的视频则是在 $T$ 个不同时刻上的一串图像。\n此时 $\\mathrm{vec}$ 把整段视频堆叠成一个长度为 $Tn^2$ 的列向量。\n<span style=color:#2471a3;>**[section]**</span>\n### Reference（参考文献）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.3, p.226</span>\nC. Van Loan, The ubiquitous Kronecker product（无处不在的克罗内克积）, J. Comp. Appl. Math. 123 (2000) 85–100.\nAlso The Kronecker Product（克罗内克积）, https://www.cs.cornell.edu/cv/ResearchPDF/KPhist.pdf\n\n现在输出修订后的译文全文（从 `@@PAGE:227@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 23,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 23,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 23,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 23,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 14401,
+            "outputTokens": 6052,
+            "cacheReadTokens": 16128,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 7657,
+              "outputTokens": 4272,
+              "cacheReadTokens": 12288,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 23,
+        "val": {
+          "surfaceTokens": 22277,
+          "contextWindow": 1000000,
+          "pressureTokens": 19945,
+          "sampledSurfaceTokens": 20093
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 23,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4114,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1781,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 12512,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 2184,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 21133
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 23,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 20,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 22
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 23,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 23,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 23,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

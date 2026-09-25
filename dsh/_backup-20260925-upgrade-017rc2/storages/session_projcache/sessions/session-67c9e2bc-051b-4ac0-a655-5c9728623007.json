@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790060743536,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一个 MIT 18.065（Matrix Methods"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一个 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程的专业数学助教，同时是双语教材的资深译者。\r\n\r\n【读者画像（务必贴合）】\r\n- 大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。\r\n- 已学：离散数学 MIT 6.042J（等价关系/偏序集/数论/图论）、CSAPP 全 12 章、Strang 线性代数（收尾中）。\r\n- 正在学：100B 实分析（Thomson TBB + Rudin）、6.006 算法导论（CLRS）、18.065 矩阵方法。\r\n- 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——**不得裸甩这些名词**。\r\n- 可用的脚手架（连接新概念的锚点）：等价关系、矩阵乘法分块、秩—零化度守恒、浮点表示、二分搜索、分治算法、投影矩阵、二次型与能量、配方法。\r\n\r\n【知识库先行声明（本技能铁律）】\r\n本机离线维基（ZIM）与 PocketWiki 只装机于另一台机器，本次不可达。已为你注入替代权威来源：① 教材 Linear Algebra and Learning from Data（Strang 2019）对应章节的对齐双语材料；② 教材官方 Manual for Instructors 的标准答案原文；③ 该讲官方视频字幕（英文原句 + 官方中文字幕，时间轴对齐）。凡涉及史实、年份、事实断言，若注入材料不足，请明确写不确定或⚠ 待核，**严禁凭记忆硬编**。\r\n\r\n【硬性内容要求】\r\n1. 每题给出**至少 2 种（最好 3 种）不同的方法或解读视角**，并对每种说明：它看到了别的视角看不到的什么、适用条件、优劣。\r\n2. 每个数学结论都要有**自检步骤**（代入验算、维数/形状记账、trace/det 校验、秩的上界、能量正负判定等）。\r\n3. 必须**判定常见错误**：逐条写出 ❌ 常见错误写法，并说明为什么错（错在哪一步）。错误清单要具体，不要泛泛而谈。\r\n4. 官方 Manual 给出的标准答案已注入，请**独立验证其严谨性**；若其表述不够严格或信息不全（例如只给结论不给系数、漏掉适用条件），必须指出并补足更严谨、更完整的版本。\r\n5. 每题结尾用一句话点出这道题真正在训练什么概念。\r\n6. 不确定处明确写不确定，不猜测。\r\n\r\n【输出格式（严格，逐条执行；违反任一条即返工）】\r\n- 直接输出**可交付的双语 Markdown 片段**（不要寒暄、不要说明你做了什么、不要写以下是翻译之类的话）。\r\n- **中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入**；术语**首次出现**加括号翻译，同一段落内再次出现省略括号。\r\n- 🚨 **绝对禁止英中分段对照**：不得先写完整英文句子再写中文翻译；输出中**没有任何完整英文原句**（唯一例外是每题末尾的 `Original（英文原题）` 行与 Manual 标准答案引文）。\r\n- 🚨 **每句话第一个字必须是中文**，不能以英文单词开句。\r\n- 数学一律 LaTeX：行内 `$...$`；块级用 ` ```math ` 围栏（**禁止 `$$...$$`**）。\r\n- **禁止 Unicode 上下标字符**（₀₁₂₃、⁰¹²³ 等），一律写 `$x_n$`、`$x^n$`。\r\n- 禁止 `<div>`；答案与译者注一律用 `>` blockquote 包裹（MarkText 自动虚化）。\r\n- 标题标记（`###` 等）必须在**行首**，前面不得有 `<span>` 等 HTML 标签。\r\n- 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`。\r\n\r\n【每道题的输出模板（照抄结构）】\r\n```\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem N（问题 N）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.x, p.yy-zz | Manual, Problem Set I.x 题 N</span>\r\n\r\n（中文题目：完整行内双语翻译，术语 English（中文））\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** （英文原题原文，逐字保留，含填空下划线）</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**……\r\n>\r\n> **二、方法一：**……（含验算）\r\n>\r\n> **三、方法二：**……\r\n>\r\n> **四、常见错误判定**（逐条 ❌ + 理由）\r\n>\r\n> **五、自检**（代入验算 / 维数记账 / trace-det 校验）\r\n>\r\n> **六、一句话**：这道题真正训练的是……\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（标题）** ……（见下）\r\n```\r\n- 块级公式放进 blockquote 时，每行都要加 `>` 前缀。\r\n\r\n【译者注规格】\r\n- 每题 **1-2 组**译者注；若内容较多，**按主题拆成多条**，每条正文 **800-1200 汉字**（公式、配图、字幕引文不计入）。\r\n- 每条注写成可独立阅读的小专题：① 一句话点出本注核心（设计问题/机制本质）→ ② 机制展开（第一性原理或证明思路）→ ③ 一个具体例子验证 → ④ 跨课程连接或可复用的命名模板 → ⑤ 一句话收束回正文。\r\n- 跨课程连接必须精确到**课程名 + 具体概念 + 连接路径 + 区别**（例如你在 6.042J 学过的等价类划分，在这里就是 column space 对 $\\mathbb{R}^m$ 的划分……区别是……），**不得只提高级概念名**。\r\n- 可给证明策略/计算技巧**命名模板**（如能量配方法行列式比值链trace-det 双锁校验sigma 乘积校验）。\r\n- 🎥 引用字幕素材时写成：`🎥 *Strang 在课上[教学动作]*：English original sentence（翻译：中文翻译）`——**每条引文必须附中文翻译**，一条注内多条引文每条都要翻译。\r\n- 🚫 禁止空洞赞美（精妙经典极致优雅），用事实与逻辑体现价值。\r\n- 数学符号与编号不得硬编码：引用教材/Manual 编号前先核对注入材料。\r\n\r\n【红线（违反即整份作废）】\r\n1. 所有 `$...$`、` ```math ` 围栏与全部反斜杠命令必须**一字不改原样保留**：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述、把 `\\sigma_1` 写成 `sigma1`。\r\n2. **不要输出任何给主代理/审稿人的说明**：不要写本会话待审本次难点提示⚠ 待核项汇总建议后续补充详见文末清单以下是……这类话术。\r\n3. 不要用（略）同上此处省略之类省略；不要复述本提示词。\r\n\r\n\r\n【本讲任务】Lecture 5（Positive Definite and Semidefinite Matrices（正定矩阵与半正定矩阵），教材 §I.I.7, p.46-55）第 3 题，只做这一题。\r\n\r\n【题目原文（LaTeX 已规范化，逐字保留题面信息）】\r\n题 3（教材 §I.7 习题 3）：\r\n对哪些数 $b$ 与 $c$，以下矩阵是 positive definite（正定）的？\r\n\r\n```math\r\nS=\\begin{bmatrix}1&b\\\\ b&9\\end{bmatrix}\\qquad\r\nS=\\begin{bmatrix}2&4\\\\ 4&c\\end{bmatrix}\\qquad\r\nS=\\begin{bmatrix}c&b\\\\ b&c\\end{bmatrix}\r\n```\r\n\r\n请把每个 $S$ 按 $LDL^T$ 分解（$D$ 装 pivots（主元）、$L$ 装 multipliers（乘数））。\r\n\r\n\r\n【教材官方 Manual for Instructors（Problem Set I.I.7, page 46-55）标准答案原文（已核实，请独立验证其严谨性）】\r\n题 3：`Positive definite for −3 < b < 3`（$L=\\begin{bmatrix}1&0\\\\ b&1\\end{bmatrix}$，$D=\\operatorname{diag}(1,\\ 9-b^2)$，$U=L^T=\\begin{bmatrix}1&b\\\\ 0&1\\end{bmatrix}$）；\r\n`Positive definite for c > 8`（$L=\\begin{bmatrix}1&0\\\\ 2&1\\end{bmatrix}$，$D=\\operatorname{diag}(2,\\ c-8)$，$U=\\begin{bmatrix}1&2\\\\ 0&1\\end{bmatrix}$）；\r\n`Positive definite for c^2 > b^2`（$L=\\begin{bmatrix}1&0\\\\ -b/c&1\\end{bmatrix}$，$D=\\operatorname{diag}(c,\\ c-b^2/c)$，$S=LDL^T$）。\r\n⚠ 提示：Manual 给的第一个分解里，中间对角矩阵写作 $\\operatorname{diag}(1,\\ 9-b^2)$，而 $L$ 的第二行乘数是 $b$；第二个分解的乘数是 $2$。请逐元素乘开验算 Manual 是否写全（尤其第三个 $S$ 的适用条件 `c^2 > b^2` 是否应补上 $c>0$）。\r\n\r\n\r\n【教材 §I.I.7 原文材料（本机已译双语稿节选，请以此对齐术语与推导口径；材料中的公式编号可直接引用）】\r\n# 材料片段 p5_energy_a：§I.7 基于能量的定义（正定的定义式 c^TSc>0）\r\n> 来源：Linear Algebra and Learning from Data（Strang 2019）本机已译双语稿原文节选。\r\n\r\n### <span style=color:#2471a3;>**[section]**</span> **The Energy-based Definition（基于能量的定义）**\r\n\r\n这里提出关于 positive definite matrices（正定矩阵）最重要的一个 idea（思想）。\r\n这个新 approach（方法）并不直接涉及 eigenvalues（特征值），但它被证明是对 $\\lambda > 0$ 的一个 perfect test（完美检验）。\r\n这是 positive definite matrices（正定矩阵）的一个好 definition（定义）：energy test（能量检验）。\r\n\r\n<span style=color:#2471a3;>**[definition]**</span> <span style=color:#00838f;>$S$ 是 positive definite（正定）的，如果对所有非零向量 $c$，energy（能量）$c^T S c$ 都是正的。</span>\r\n\r\n```math\r\nc^T S c > 0 \\quad \\text{对每个向量 } c \\neq 0 \\tag{1}\r\n```\r\n\r\n当然 $S = I$ 是 positive definite（正定）的：所有 $\\lambda_i = 1$。\r\n该 energy（能量）$c^T I c = c_1^2 + \\cdots + c_n^2$ 在 $c \\neq 0$ 时为正。\r\n让我在一个 $2 \\times 2$ 矩阵中演示这个 energy（能量），它依赖于 $c_1$ 和 $c_2$：\r\n\r\n```math\r\n\\text{Energy } c^T S c = 2c_1^2 + 8c_1c_2 + 9c_2^2\r\n```\r\n\r\n这个 energy（能量）对每一对 $(c_1, c_2) \\neq (0, 0)$ 都是正的吗？是的，因为它是 squares（平方）之和：\r\n\r\n```math\r\nc^T S c = 2c_1^2 + 8c_1c_2 + 9c_2^2 = 2(c_1 + 2c_2)^2 + c_2^2 > 0\r\n```\r\n\r\n我们必须把 positive energy（正能量）$c^T S c > 0$ 与 positive eigenvalues（正特征值）$\\lambda > 0$ 联系起来。\r\n若 $Sc = \\lambda c$，则 $c^T S c = \\lambda c^T c$，所以 $\\lambda > 0$ 蕴含 $c^T S c > 0$。\r\n上式只在每个单独的 eigenvector（特征向量）上检验了 energy（能量）。\r\n但定理（theorem）说的是：如果每个 eigenvector（特征向量）都有 positive energy（正能量），那么所有非零向量都有 positive energy（正能量）。\r\n若对 $S$ 的 eigenvectors（特征向量）成立 $c^T S c > 0$，则对每个非零向量 $c$ 都成立 $c^T S c > 0$。\r\n理由如下：每个向量 $c$ 都是 eigenvectors（特征向量）的一个 combination（组合）$c = c_1x_1 + \\cdots + c_nx_n$。\r\n由于 $S$ 是 symmetric（对称）的，eigenvectors（特征向量）可以选择为 orthogonal（正交）的。\r\n我们现在要证明：$c^T S c$ 是各 eigenvector（特征向量）中 energies（能量）$\\lambda_i > 0$ 的一个 positive combination（正组合）。\r\n> <span style=color:#7f8c8d;>Strang §I.7, p.46</span>\r\n\r\n\r\n\r\n## 注 1 — 能量定义为何是「最好的」定义\r\n\r\n> <span style=color:#1e8449;>**[note] Note（译者注）:**</span>\r\n>\r\n> 作者称 energy test $c^T S c > 0$ 是正定矩阵「最好的定义」，这句话值得从设计角度追问：为什么是 $c^T S c$，而不是别的二次型？答案的第一层是，这个量在物理系统中天然出现——弹簧系统的弹性势能 $\\frac{1}{2}x^T K x$、电路中的功率耗散 $I^T R I$、统计中的 Mahalanobis 距离平方 $(x-\\mu)^T \\Sigma^{-1}(x-\\mu)$，都是同一个形式。它不是为了考试而发明的判定式，而是系统自身携带的能量量纲的量。第二层更关键：这个定义不需要对称性之外的任何假设。不必先求特征值，不必算行列式，不必做消元；对任意向量 $c$ 做一次矩阵乘法、再做一次内积即可检验。一个定义越少依赖中间工具，就越适合充当根定义。\r\n> 从第一性原理看，energy test 的可靠性可以拆成两步。第一步：任何形如 $A^T A$（$A$ 列独立）的矩阵自动满足 $c^T S c = c^T A^T A c = \\|Ac\\|^2 \\ge 0$，且等号只在 $Ac = 0$ 即 $c = 0$ 时成立；这里只用到了内积与范数，没有引入任何新机器。第二步：正定矩阵总能写成 $A^T A$（Cholesky 分解），所以这个检验不是碰巧成立的抽样，而是等价刻画。于是 §I.7 的五种检验中，energy test 扮演根定义的角色：当 $Sc = \\lambda c$ 时 $c^T S c = \\lambda c^T c$，能量的符号直接翻译成特征值的符号；其余四种检验则可以看作由这个能量判断派生出的计算接口，分别服务手算、消元、最小二乘等不同场景。\r\n> 思想实验：想象一组由弹簧连接的质点，$K$ 是刚度矩阵。正定问题等价于问：是否存在非零位移模式 $c$，使系统总势能 $\\frac{1}{2}c^T K c$ 为零或为负？若存在，说明系统在某个位移模式下不储存能量甚至释放能量，平衡态就不稳定。energy test 的物理含义因此是：任何非零位移都必须给系统注入正能量。这个实验也解释了为什么只检查特征向量不够——特征向量只是少数特殊位移模式，而稳定性要求所有可能的位移模式能量都为正；对称矩阵的正交特征基恰好保证了「特殊方向上的正性」能扩张成「所有方向上的正性」。\r\n> 一个费曼式画面可以帮助记忆：把 $S$ 想成给空间施加的变换，$c^T S c$ 是「沿 $c$ 方向迈一步，再看这一步在 $S$ 作用后的影子是否还朝前」。若每个方向都朝前，投影为正，矩阵就是正定；若存在一个方向被推到反向，投影为负，正定就被击穿。定义因此可以被复述为一句话：$S$ 和单位矩阵共享同一种「方向感」。\r\n> 跨课程连接：与 CSAPP 第 2 章浮点表示对照，$c^T S c$ 在机器上是有限精度求和。当 $S$ 条件数大时，两个大数相减可能因舍入产生虚假负值，让数学上正定的矩阵在数值上被误判为不定；这是 §I.9 条件数讨论的伏笔——「最好的定义」在数学上是根，在浮点硬件上却需要数值警惕。另外，当 $S = A^T A$ 时 $c^T S c = \\|Ac\\|^2$，正定性等价于 $A$ 的零空间只含零向量，这与你熟悉的范数非负性同源。\r\n> 一句话收束：energy test 把「正定」还原成最原始的问题——在所有非零方向上，系统是否都在抗拒偏离零点。\r\n---\r\n\r\n---\r\n\r\n<!-- page 052: 书页 47, §I.7 Symmetric Positive Definite Matrices（对称正定矩阵） -->\r\n\r\n把 $c = c_1x_1 + \\cdots + c_nx_n$ 代入 energy（能量），并利用 $Sx_i = \\lambda_ix_i$，就完成了上一页的证明：\r\n\r\n```math\r\n\\begin{aligned}\r\nc^T S c &= (c_1x_1 + \\cdots + c_nx_n)^T S(c_1x_1 + \\cdots + c_nx_n) \\\\\r\n&= (c_1x_1 + \\cdots + c_nx_n)^T (c_1\\lambda_1x_1 + \\cdots + c_n\\lambda_nx_n) \\\\\r\n&= \\lambda_1c_1^2 + \\cdots + \\lambda_nc_n^2 > 0 \\qquad \\text{如果每个 } \\lambda_i > 0\r\n\\end{aligned}\r\n```\r\n\r\n从第 2 行到第 3 行，我们使用了 $S$ 的 eigenvectors（特征向量）的 orthogonality（正交性）：$x_i^T x_j = 0$。\r\n\r\n这里给出 energy test（能量检验）的一个典型应用，不需要知道任何 eigenvalues（特征值）或 eigenvectors（特征向量）。\r\n如果 $S_1$ 和 $S_2$ 都是 symmetric positive definite（对称正定）的，那么 $S_1 + S_2$ 也是。\r\n\r\n```math\r\nc^T(S_1 + S_2)c = c^TS_1c + c^TS_2c > 0 + 0\r\n```\r\n\r\n# 材料片段 p5_pivot：§I.7 行列式检验与主元检验 + Cholesky 分解 + 半正定\r\n> 来源：Linear Algebra and Learning from Data（Strang 2019）本机已译双语稿原文节选。\r\n\r\n### <span style=color:#2471a3;>**[section]**</span> **Determinant Test and Pivot Test（行列式检验与主元检验）**\r\n\r\n对于小型矩阵，determinant test（行列式检验）是最快的。\r\n我将在下面这个 $4 \\times 4$ 的 symmetric second difference matrix（对称二阶差分矩阵）中标出四个 leading determinants（前导行列式）$D_1, D_2, D_3, D_4$。\r\n\r\n> <span style=color:#1e8449;>**译者注：** 这个 $4 \\times 4$ 二阶差分矩阵及其 leading determinants（前导行列式）的具体数值将在下一页（第 48 页）继续展开。</span>\r\n\r\n---\r\n\r\n<!-- page 053: 书页 48, §I.7 Symmetric Positive Definite Matrices -->\r\n\r\n# Strang LaLFD Part I（线性代数与从数据中学习）\r\n\r\n### <span style=color:#2471a3;>**[section]**</span> <span style=color:#c0392b;>§I.7 对称正定矩阵（Symmetric Positive Definite Matrices）（续）</span>\r\n\r\n### 行列式检验与主元检验（Determinant Test and Pivot Test）\r\n\r\n这个 $4\\times4$ 对称二阶差分矩阵的四个 leading determinants（前导行列式）分别是：\r\n\r\n```math\r\nD_1 = 2, \\qquad D_2 = 3, \\qquad D_3 = 4, \\qquad D_4 = 5\r\n```\r\n\r\n行列式检验（determinant test）在这里通过了！\r\n\r\n能量（energy）$c^TSc$ 也必须是正的。\r\n\r\n前导行列式与 pivots（主元）密切相关——主元就是消元（elimination）后留在主对角线上的那些数。\r\n\r\n这里第一个主元是 2。\r\n\r\n第二个主元出现在把 row 1（行 1）加到 row 2（行 2）上之后。\r\n\r\n第三个主元出现在把 new row 2（新行 2）加到 row 3（行 3）上之后。\r\n\r\n那些分数 $2,\\ \\tfrac{3}{2},\\ \\tfrac{4}{3}$ 都是行列式之比！\r\n\r\n最后一个主元是 $\\Delta_4/\\Delta_3 = 5/4$。\r\n\r\n第 $k$ 个主元等于比值 $\\Delta_k/\\Delta_{k-1}$。\r\n\r\n因此当所有前导行列式都为正时，所有主元也都为正。\r\n\r\n我可以很快地把这两个检验（4 和 5）与第三个检验 $S = A^TA$ 联系起来。\r\n\r\n事实上，对 $S$ 做消元就会产生一个重要的 $A$ 的选择。\r\n\r\n回想一下，早先的消元产生的是 $S = LU$（$L$ 的对角线上是 1，$U$ 中装着主元）。\r\n\r\n但对于 symmetric matrices（对称矩阵），我们可以把 $S$ 均衡地写成 $S = LDL^T$：把主元抽出来放进 $D$，再把这些平方根（square roots）在 $L$ 与 $L^T$ 之间平分。\r\n\r\n```math\r\n\\begin{aligned}\r\nS &= LU \\tag{3} \\\\\r\n  &= LDL^T \\tag{4} \\\\\r\n  &= A^TA \\tag{5}\r\n\\end{aligned}\r\n```\r\n\r\n我对那些平方根有点不放心——但 $S = A^TA$ 这个模式是漂亮的：取 $A = \\sqrt{D}\\,L^T$。\r\n\r\n消元把每一个 positive definite（正定）的 $S$ 分解成 $A^TA$（其中 $A$ 是上三角矩阵）。\r\n\r\n这就是 Cholesky factorization（乔列斯基分解）$S = A^TA$，主元位于 $A$ 的主对角线上。\r\n\r\n> <span style=color:#1e8449;>译者注：更精确地说，$A = \\sqrt{D}\\,L^T$ 的主对角线上的元素是主元的平方根 $\\sqrt{d_1}, \\dots, \\sqrt{d_n}$；这正对应标准 Cholesky 形式 $S = LL^T$ 中 $L$ 的对角线元素。</span>\r\n\r\n\r\n\r\n## 注 2 — Cholesky 分解：对称版的 LU\r\n\r\n> <span style=color:#1e8449;>**[note] Note（译者注）:**</span>\r\n>\r\n> >\r\n> 第 053 页 的三行等式 $S = LU = LDL^T = A^T A$ 值得逐行品味。第一行是标准 LU 消元（Strang Part I 前半已详述）；第二行关键：当 $S$ 对称时，$U$ 的对角线恰好是 pivots $d_1, \\dots, d_n$，把每个 pivot 抽出来放进对角矩阵 $D$，剩下的因子自然变成 $L^T$——因为对称性保证 $U = D L^T$。这正是 Gauss 消元对对称矩阵的「免费午餐」：存储量减半，计算量减半。第三行 $S = A^T A$ 更进一步：取 $A = \\sqrt{D} L^T$（上三角），pivot 的平方根出现在 $A$ 的对角线上。这与标准 Cholesky 形式 $S = L L^T$（$L$ 下三角，对角元为 $\\sqrt{d_i}$）是转置关系。\r\n> 为什么对称性会自动给出 $U = D L^T$？这里的证明模板可以命名为「唯一分解夹逼法」。把对称矩阵写成 $S = L D U$，其中 $L$ 是单位下三角、$U$ 是单位上三角、$D$ 是对角；两边取转置得 $S = S^T = U^T D L^T$。由于「单位下三角、对角、单位上三角」这种分解在非零主元时是唯一的，比较两式就得到 $U^T = L$，即 $U = L^T$，于是 $S = L D L^T$。核心工具只有两个：转置不改变 $S$，以及分解的唯一性；没有任何一个新概念。对称性在这里做的事情是：把本需要单独存储的 $U$ 变成 $L^T$，也就是把上三角因子的信息全部编码进下三角因子。\r\n> 具体例子：$S = \\begin{bmatrix} 2 & 4 \\\\ 4 & 9 \\end{bmatrix}$。消元一步得到乘数 $2$、主元 $d_1 = 2$、$d_2 = 9 - 2 \\cdot 4 = 1$，于是 $L = \\begin{bmatrix} 1 & 0 \\\\ 2 & 1 \\end{bmatrix}$、$U = \\begin{bmatrix} 2 & 4 \\\\ 0 & 1 \\end{bmatrix}$，而 $L^T = \\begin{bmatrix} 1 & 2 \\\\ 0 & 1 \\end{bmatrix}$ 恰好与 $U$ 只差一个对角因子 $D = \\operatorname{diag}(2, 1)$。取平方根得 $A = \\sqrt{D} L^T$，能量变成 $c^T S c = \\|A^T c\\|^2$。关于作者「对平方根不放心」的直觉，数值上确实有对应：若某个主元 $d_k$ 非常小，$\\sqrt{d_k}$ 作为除数会把绝对舍入误差放大；这直接回到条件数问题。\r\n> 把这个例子乘回去验证：$D L^T = \\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}\\begin{bmatrix}1&2\\\\0&1\\end{bmatrix} = \\begin{bmatrix}2&4\\\\0&1\\end{bmatrix} = U$，再左乘 $L$ 即恢复 $S$。唯一性也可以从第一列直接读出：$S$ 的第一列必须等于 $L$ 的第一列乘以 $d_1$，故 $d_1 = a_{11}$、$L$ 的第一列就是 $S$ 第一列除以 $d_1$；剥掉第一行第一列后对余下的 $(n-1)\\times(n-1)$ 矩阵递归，这正是 6.042J 结构归纳的线性代数版——分解的存在性与唯一性由同一次递归一并证明。\r\n> 一个可迁移的分治视角：消元求解 $S x = b$ 的流程是，先分解一次 $S$，再用前代与回代解两个三角方程组。对称性让分解阶段只需处理一个三角因子，前代与回代变成彼此转置的同一份代码；从 CSAPP 第 6 章缓存的角度看，一个三角因子占用的缓存行约为两个三角因子的一半，局部性更好，这正是「存储量减半」在硬件上的实际收益。\r\n> 一个边界情形把适用范围钉死：若某个 pivot 为负，$LDL^T$ 仍然成立（$D$ 允许负对角元），但 $\\sqrt{D}$ 会变成复数，实 Cholesky 不再存在。例如 $S = \\operatorname{diag}(1,-1)$ 满足对称，却没有任何实矩阵 $A$ 使 $S = A^T A$。所以 Cholesky 的适用范围从「对称」收窄到「对称正定」，收窄换来的正是每个 pivot 都可安全开方；这也把注 3 的检验 (5)（正 pivots）与这里的第三行 $S = A^T A$ 接成一个回路。\r\n> 跨课程连接：Cholesky 是「对称正定版的 LU」，是数值线性代数中求解 $S x = b$ 的首选算法，因为主元恒为正、不需要选主元（行交换会破坏对称性，且正定性保证不会出现零主元），计算量约为普通 LU 的一半。在凸优化与 18.065 的 Newton 法中，每次迭代要解 $H \\Delta x = -g$，$H$ 的 Cholesky 因子是核心计算步骤；在 CSAPP 第 2 章浮点视角下，这一步涉及有限精度下的 $\\sqrt{d_k}$ 与除法，病态 Hessian 会让 Newton 步长不可靠，正好接上后文条件数的讨论。\r\n> 一句话收束：Cholesky 不是新算法，而是对称性帮你把 LU 里的 $U$ 免费换成了 $L^T$。\r\n---\r\n\r\n---\r\n\r\n<!-- page 054: 书页 49, §I.7 Symmetric Positive Definite Matrices -->\r\n\r\n\r\n【本讲官方字幕教学片段（英文原句 + 官方中文字幕，时间轴对齐；供 🎥 引文使用，引用时必须附中文翻译，且只能引用其中真实存在的句子）】\r\n# lec5 字幕教学片段（MIT 18.065 官方字幕，英文原句 + 官方中文字幕对齐）\r\n- [00:01:03,760 --> 00:01:07,140] **EN**: Each one gives a test for positive definite matrices.\r\n  **ZH**: 每一个都提供了正定矩阵的检验方法。\r\n- [00:03:11,220 --> 00:03:12,900] **EN**: Positive definite matrices.\r\n  **ZH**: Positive definite matrices (正定矩阵)。\r\n- [00:03:23,640 --> 00:03:26,780] **EN**: positive definite matrices, they have positive eigenvalues.\r\n  **ZH**: positive definite matrices (正定矩阵) 具有 positive eigenvalues (正特征值)。\r\n- [00:00:54,980 --> 00:00:55,760] **EN**: energy,\r\n  **ZH**: energy (能量),\r\n- [00:04:13,400 --> 00:04:21,279] **EN**: OK. So you could compute its eigenvalues since it's 2 by 2. It's energy. I'll come back to that because that's the most important one.\r\n  **ZH**: 好的。既然它是2x2矩阵，你可以计算它的特征值（eigenvalues）。这是 能量（energy）。我会回到这一点，因为这是最重要的问题。\r\n- [00:09:42,460 --> 00:09:43,380] **EN**: Let me do the energy.\r\n  **ZH**: 让我来负责能量部分。\r\n- [00:00:58,840 --> 00:01:00,240] **EN**: determinants, pivots,\r\n  **ZH**: determinants (行列式), pivots (主元),\r\n- [00:04:52,100 --> 00:04:53,800] **EN**: positive determinants. Positive pivots.\r\n  **ZH**: 正行列式。 正主元。\r\n- [00:07:22,680 --> 00:07:25,080] **EN**: And have you noticed the connection to pivots?\r\n  **ZH**: 并且 你是否注意到了与 pivot (枢轴) 之间的联系？\r\n- [00:04:59,100 --> 00:05:07,900] **EN**: Which is the easy test to see that it fails? Negative determinant. Determinant. The determinant is 15 minus 16,\r\n  **ZH**: 哪个简单测试可以看出它不成立？负行列式。行列式。行列式为15减16，\r\n- [00:05:11,940 --> 00:05:15,040] **EN**: that's what's so how is the determinant connected to the eigenvalues?\r\n  **ZH**: 这就是问题所在：那么 行列式（determinant）与特征值（eigenvalues）是如何联系起来的？\r\n\r\n======================= 格式样板（同课程已交付成品的第 2 题：题干 + 解答 + 译者注） =======================\r\n以下片段只作**格式、密度、注写法、自检写法**的参照；**不要复制其中任何内容**，也不要提及它。\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 2（问题 2）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.6, p.37-41 | Manual, Problem Set I.6 题 2</span>\r\n\r\n请计算 $A$ 与 $A^{-1}$ 的 eigenvalues（特征值）和 eigenvectors（特征向量），并校验 trace（迹）！其中\r\n\r\n```math\r\nA=\\begin{bmatrix}0&2\\\\1&1\\end{bmatrix}\\qquad\\text{and}\\qquad A^{-1}=\\begin{bmatrix}-1/2&1\\\\1/2&0\\end{bmatrix}\r\n```\r\n\r\n矩阵 $A^{-1}$ 与 $A$ 具有 \\_\\_\\_\\_ 的 eigenvectors；当 $A$ 的特征值为 $\\lambda_1$ 与 $\\lambda_2$ 时，它的 inverse（逆矩阵）的特征值为 \\_\\_\\_\\_。\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Compute the eigenvalues and eigenvectors of $A$ and $A^{-1}$. Check the trace !\r\n```math\r\nA=\\begin{bmatrix}0&2\\\\1&1\\end{bmatrix}\\qquad\\text{and}\\qquad A^{-1}=\\begin{bmatrix}-1/2&1\\\\1/2&0\\end{bmatrix}\r\n```\r\n$A^{-1}$ has the \\_\\_\\_\\_ eigenvectors as $A$. When $A$ has eigenvalues $\\lambda_1$ and $\\lambda_2$, its inverse has eigenvalues \\_\\_\\_\\_ .</span>\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 先给答案，再给推导与校验。两个空依次填 **same（相同）** 与 **$\\lambda_1^{-1},\\lambda_2^{-1}$（取倒数）**。\r\n>\r\n> 矩阵 $A$ 的两个特征值：$\\lambda_1=2$ 对应 eigenvector（特征向量）方向 $\\operatorname{span}\\{(1,1)\\}$；$\\lambda_2=-1$ 对应方向 $\\operatorname{span}\\{(2,-1)\\}$。\r\n>\r\n> 矩阵 $A^{-1}$ 的两个特征值：$\\mu_1=1/2$ 对应同一个方向 $\\operatorname{span}\\{(1,1)\\}$；$\\mu_2=-1$ 对应同一个方向 $\\operatorname{span}\\{(2,-1)\\}$。注意 $\\mu_2=\\lambda_2^{-1}=-1$ 与 $\\lambda_2$ 数值相同，这不是笔误，而是因为 $-1$ 是「取倒数」这个映射的 fixed point（不动点）。\r\n>\r\n> 另一个必须先说清的问题：题面给的 $A^{-1}$ 是否确实等于 $A$ 的逆？**验算通过。** 因为 $\\det A=0\\cdot1-2\\cdot1=-2\\neq0$，矩阵可逆，由 $2\\times2$ 逆矩阵公式（伴随矩阵除以行列式）得\r\n>\r\n> ```math\r\n> A^{-1}=\\frac{1}{\\det A}\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}=\\frac{1}{-2}\\begin{bmatrix}1&-2\\\\-1&0\\end{bmatrix}=\\begin{bmatrix}-1/2&1\\\\1/2&0\\end{bmatrix}\r\n> ```\r\n>\r\n> 与题面逐元素一致。这一步不可跳过：后面所有关于 $A^{-1}$ 的谱的断言，都建立在「题面矩阵确实是 $A^{-1}$」之上。\r\n>\r\n> **二、方法一：特征多项式法（定义直推，机械但普适）**\r\n>\r\n> 这一步看到的是「特征值是多项式方程的根」这一代数事实，对任何阶数、任何元素类型都成立。写出\r\n>\r\n> ```math\r\n> \\det(A-\\lambda I)=\\begin{vmatrix}-\\lambda&2\\\\1&1-\\lambda\\end{vmatrix}=(-\\lambda)(1-\\lambda)-2=\\lambda^2-\\lambda-2=(\\lambda-2)(\\lambda+1)\r\n> ```\r\n>\r\n> 所以 $\\lambda_1=2$，$\\lambda_2=-1$。对应齐次方程组 $(A-\\lambda I)x=0$ 的 null space（零空间）就是 eigenspace（特征空间）：\r\n>\r\n> ```math\r\n> \\lambda=2:\\ A-2I=\\begin{bmatrix}-2&2\\\\1&-1\\end{bmatrix}\\sim\\begin{bmatrix}1&-1\\\\0&0\\end{bmatrix}\\Rightarrow x_1=x_2\\Rightarrow v_1=\\begin{bmatrix}1\\\\1\\end{bmatrix}\r\n> ```\r\n>\r\n> ```math\r\n> \\lambda=-1:\\ A+I=\\begin{bmatrix}1&2\\\\1&2\\end{bmatrix}\\sim\\begin{bmatrix}1&2\\\\0&0\\end{bmatrix}\\Rightarrow x_1=-2x_2\\Rightarrow v_2=\\begin{bmatrix}2\\\\-1\\end{bmatrix}\r\n> ```\r\n>\r\n> 适用条件：只需会算行列式与解线性方程组，无任何附加假设。劣势：$n$ 阶时要展开 $n$ 次行列式，计算量随阶数爆炸，且高阶展开容易错符号。\r\n>\r\n\r\n======================= 样板结束 =======================\r\n\r\n现在请直接输出上述要求的完整双语 Markdown 片段（不要寒暄）。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7858,
+            "outputTokens": 12590,
+            "cacheReadTokens": 4736,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7858,
+              "outputTokens": 12590,
+              "cacheReadTokens": 4736,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 12735,
+          "contextWindow": 1000000,
+          "pressureTokens": 12594,
+          "sampledSurfaceTokens": 5913
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4353,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 6822,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11591
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

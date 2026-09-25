@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790131378955,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**逐字校对修"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**逐字校对修复专家**。下面是 Strang《Linear Algebra and Learning From Data》§III.5「Matrix Completion in the Nuclear Norm（核范数下的矩阵补全）」（书页 197）的译稿。\r\n\r\n【已用视觉逐字核对原书页确认的事实（权威）】\r\n1. 原文给出的三个例子矩阵是 $A_0$、$B_0$、$C_0$（分别是对角元素为 1,2 / 1,4 / 1,2,3 的三个 $2\\times2$ 矩阵），原文对应句为：\r\n   > $A_0$ allows any multiple of $(1,2)$ in the second row. $B_0$ allows any numbers $b$ and $c$ with $bc = 4$. $C_0$ allows only 6 in its last entry.\r\n2. 原文在讨论0-范数与放松时，向量一律用记号 $v$：\r\n   > Just as the number of nonzeros is a 0-norm for vectors, the rank is a 0-norm for matrices. But $\\|v\\|_0$ and $\\|A\\|_0$ are not true vector and matrix norms, because $\\|v\\|_0 = \\|2v\\|_0$ and $\\operatorname{rank}(A) = \\operatorname{rank}(2A)$.\r\n   > With vectors, we relaxed the sparsity norm $\\|v\\|_0$ to the $\\ell^1$ norm $\\|v\\|_1$.\r\n\r\n【任务】按上述事实修正本页译稿，其他内容一字不改：\r\n1. 译文中把三个例子矩阵写成 $A_{11}$、$A_{12}$、$A_{13}$ 的地方 → 全部改回原文记号 $A_0$、$B_0$、$C_0$（对应关系：$A_{11}\\to A_0$、$A_{12}\\to B_0$、$A_{13}\\to C_0$）；若注中也提到这三个矩阵名字，一并统一\r\n2. 译文把向量记号写成 $x$ 而原文为 $v$ 的地方（「0-范数」那段与「把稀疏性范数放松为 $\\ell_1$ 范数」那句，以及含 $\\|x\\|_0$、$\\|2x\\|_0$、$\\|x\\|_1$ 的对应处）→ 改为 $v$（$\\|v\\|_0$、$\\|2v\\|_0$、$\\|v\\|_1$）\r\n3. 检查公式 (5)（Minimize $\\|A\\|_N$ subject to $A_{ij} = (A_0)_{ij}$ in the known entries）是否被正确包在 ```math 围栏内；若它是裸的 LaTeX 行，改为 ```math 围栏；公式内容不改\r\n\r\n【🚨 红线】\r\n− 除上述修正外一字不改：其他公式、数字、例子、跨课程连接、译者注全部原样保留\r\n− 所有 `$...$`、```math 围栏、反斜杠命令完整保留；禁止 `$$`；禁止 Unicode 上下标\r\n− 保留 `> ` blockquote 前缀与配色 span\r\n− 输出**修订后的完整本页**，以 `@@PAGE:200@@` 开头；不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待修订的本页译稿 ===========================\r\n@@PAGE:200@@\r\n> <span style=color:#7f8c8d;>本页为书页 197，属 §III.5 的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Matrix Completion in the Nuclear Norm（核范数下的矩阵补全）\r\n\r\n矩阵的秩就像向量中非零元的个数。在某种意义上，秩度量的是稀疏性。对于低秩情形，由奇异值构成的矩阵 $\\Sigma$ 确实是稀疏的（有 $r$ 个非零元）。正如非零元个数是向量的“$0$-范数”，秩就是矩阵的“$0$-范数”。但 $\\|x\\|_0$ 与 $\\|A\\|_0$ 并不是真正的向量范数与矩阵范数，因为 $\\|2x\\|_0 = \\|x\\|_0$ 而 $\\operatorname{rank}(A) = \\operatorname{rank}(2A)$。乘以 2 并不改变非零元的个数或秩——但它总会把任何真正的范数加倍。\r\n\r\n尽管如此，我们常常希望向量稀疏、矩阵低秩。矩阵补全问题从一个含有缺失元素的矩阵 $A_0$ 开始。我们希望把 $A_0$ 补全为 $A$，并让秩尽可能低。我们是在引入最少量的无法解释的数据。这种数据缺失的问题在观测科学的各个领域都广泛存在。为了填补空白，需要对补全后的 $A$ 作某种假设，而低秩是一个自然的选择。看看下面这些例子：\r\n\r\n```math\r\nA_{11} = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}, \\qquad\r\nA_{12} = \\begin{bmatrix} 1 & 2 \\\\ 2 & ? \\end{bmatrix}, \\qquad\r\nA_{13} = \\begin{bmatrix} 1 & 2 & ? \\\\ 2 & 4 & 8 \\\\ ? & 8 & 6 \\end{bmatrix}\r\n```\r\n\r\n这三个例子都能以秩 1 补全。$A_{11}$ 本身就是秩 1 的。$A_{12}$ 允许第二行取 $(1,\\,2)$ 的任意倍数，即 $b$ 与 $c$ 可取任意满足 $bc = 4$ 的数。$A_{13}$ 的最后一个元素只允许取 6。\r\n\r\n对于向量，我们把稀疏性范数 $\\|x\\|_0$ 放松为 $\\ell_1$ 范数 $\\|x\\|_1$。对于矩阵，我们现在把秩范数 $\\|A\\|_0$ 放松为 nuclear norm（核范数）$\\|A\\|_N$。这个核范数就是 $\\Sigma$ 的对角线的 $\\ell_1$ 范数，也就是说，我们在最小化奇异值之和。\r\n\r\n```math\r\n\\text{Nuclear norm } \\|A\\|_N = \\sigma_1 + \\sigma_2 + \\cdots + \\sigma_r \\tag{4}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（拓展前沿）：**</span> 式 (4) 定义 $\\|A\\|_N = \\sigma_1 + \\sigma_2 + \\cdots + \\sigma_r$，它就是奇异值之和。先说译文那句容易被跳过的提醒：$\\|x\\|_0$ 与 $\\|A\\|_0$（也就是秩）都不是真正的范数，因为范数要求齐次性 $\\|cX\\| = |c|\\|X\\|$，而 $\\operatorname{rank}(2A) = \\operatorname{rank}(A)$：乘以 2 不改变非零元个数或秩，却会把任何真范数加倍。这不是学究式的挑剔：齐次性正是凸性与连续性的来源，缺少它的量极难优化，最小化秩或最小化 $\\ell_0$ 是 NP 难的组合问题。于是需要一个凸替代品。向量情形的答案你已经见过：$\\ell_1$ 范数在 $\\ell_\\infty$ 单位球上的对偶表示是 $\\|x\\|_1 = \\max\\{y^{T}x : \\|y\\|_\\infty \\le 1\\}$，而它正是 $\\ell_0$ 的最小凸放松（在 $\\ell_\\infty$ 球这个尺度下把计数函数从下方顶住的最好凸函数）。矩阵情形逐字平行：把 $\\ell_\\infty$ 球换成谱范数单位球 $\\|B\\|_2 \\le 1$（谱范数就是最大奇异值），就得到 $\\|A\\|_N = \\max\\{\\operatorname{trace}(A^{T}B) : \\|B\\|_2 \\le 1\\}$，而秩的最小凸放松就是核范数。用 SVD 看这个最大化问题：令 $A = \\sum_i \\sigma_i u_i v_i^{T}$，取 $B = \\sum_i u_i v_i^{T}$ 时 $\\operatorname{trace}(A^{T}B) = \\sum_i \\sigma_i$，而 $\\|B\\|_2 = 1$ 这条约束恰好意味着每个方向的系数不超过 1——所以能塞进去的最大能量就是奇异值之和。亲手验算译文里的 $A_{11} = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}$：第二行是第一行的 2 倍，所以秩为 1，可写成 $A = uv^{T}$，其中 $u = (1,\\,2)^{T}$、$v = (1,\\,2)^{T}$，唯一非零奇异值是 $\\sigma_1 = \\|u\\|_2\\|v\\|_2 = \\sqrt5 \\cdot \\sqrt5 = 5$，故 $\\|A\\|_N = 5$；同时 $\\|A\\|_F = \\sqrt{1+4+4+16} = 5$ 也等于 5（秩 1 时 Frobenius 范数与核范数都等于那个唯一非零奇异值）；又因为 $A$ 对称半正定，奇异值就是特征值，$\\|A\\|_N = \\operatorname{trace}(A) = 1 + 4 = 5$——这正是译文里那个半正定的 $B$ 的核范数始终等于 5 的计算依据。再补一个非严格凸的具体证据，对应译文提到的三角不等式取等号：取 $B_1 = \\operatorname{diag}(1,\\,0)$、$B_2 = \\operatorname{diag}(0,\\,1)$，两者核范数都是 1，而 $B_1 + B_2 = I$ 的核范数为 2，等号成立；更说明问题的是整条线段 $tB_1 + (1-t)B_2 = \\operatorname{diag}(t,\\,1-t)$，对任意 $0 \\le t \\le 1$ 核范数恒为 $t + (1-t) = 1$——从一个秩 1 矩阵走到另一个秩 1 矩阵，中途全是秩 2 矩阵，核范数却一点都不变。也就是说核范数在秩 1 集合连线的内部是平的，它只保证最优解处出现低秩，既不保证唯一，也不保证路径上低秩，这与译文讨论 $A_{12}$ 时解可以是一整条满足 $bc = 4$ 的曲线完全呼应。把方法固定下来，命名**范数放松三步法**：①写出真正想要的组合量（$\\ell_0$ 或秩）；②在合适的单位球上取它的凸包（向量得 $\\ell_1$，矩阵以谱范数充当 $\\ell_\\infty$ 得核范数）；③解这个凸问题，再论证最优解确实落在原来的稀疏／低秩集合上。第三步最容易翻车，这也是矩阵补全必须额外假设采样位置随机且与左奇异向量不相干的原因。最后是应用脚手架：Netflix Prize 从 2006 年办到 2009 年，奖金一百万美元，获胜方案并非纯用核范数，而是把它当组件之一——这恰好印证译文那句还需要针对人的心理作调整；而译文提到的协方差估计也值得算一算规模：365 只股票的完整协方差有 $\\binom{365}{2} \\approx 66000$ 个条目，$10^4$ 个海面位置更是 $\\binom{10^4}{2} \\approx 5\\times10^7$ 个条目，只测其中一部分再用低秩补全，就是把测量成本从 $O(n^2)$ 压到 $O(nr\\log n)$ 量级的典型做法。\r\n\r\n现在我们有了一个凸范数，但它不是严格凸的：$\\|B_1 + B_2\\|_N = \\|B_1\\|_N + \\|B_2\\|_N$ 在三角不等式取等号时是可能的。事实上，例子中的矩阵 $B_0$ 可以由介于 $-2$ 与 $2$ 之间的任意 $b$（或对称地由任意对应的 $c$）补全，而核范数 $\\|B\\|_N$ 始终等于 5（其奇异值等于特征值，且对这个半正定的 $B$ 有 $\\|B\\|_N = \\operatorname{trace}(B)$）。\r\n\r\n秩一矩阵大致类比于 $\\ell_1$ 球（菱形）$\\|x\\|_1 = 1$ 上的尖点。\r\n\r\n矩阵补全的一个著名例子是 Netflix Prize 竞赛。观众对 $m$ 部电影的评分进入矩阵 $A_0$，但顾客并没有看过全部电影，许多评分是缺失的。这些缺失值必须由 recommender system（推荐系统）来预测。核范数给出了一个好的解，但它还需要针对人的心理作调整——Netflix 并不是一场纯粹数学的竞赛。\r\n\r\n另一个应用是从大量采样数据出发计算 covariance matrix（协方差矩阵）。求出全部协方差可能代价高昂（典型情形：365 天里所有股票之间的协方差）。我们可以只计算其中一部分，再用矩阵补全估计其余的。一个科学上的例子：在 $10^4$ 个位置上测量海面时涉及的全部协方差。下面是把秩最小化凸松弛为核范数最小化的形式：\r\n\r\n```math\r\n\\text{Matrix completion} \\qquad \\text{Minimize } \\|A\\|_N \\ \\text{ subject to } \\ A_{ij} = (A_0)_{ij} \\ \\text{ in the known entries} \\tag{5}\r\n```"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 3658,
+            "outputTokens": 2507,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 3658,
+              "outputTokens": 2507,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 4194,
+          "contextWindow": 1000000,
+          "pressureTokens": 6474,
+          "sampledSurfaceTokens": 2971
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1411,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1223,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 3050
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

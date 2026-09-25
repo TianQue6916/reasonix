@@ -1,0 +1,268 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132040884,
+      "cwd": "C:\\Users\\27063",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 18,
+        "val": "你的系统提示词来自哪些插件"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你的系统提示词来自哪些插件？只列插件名，不要解释。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 18,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 18,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 18,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 529,
+            "outputTokens": 83,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 529,
+              "outputTokens": 83,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 18,
+        "val": {
+          "surfaceTokens": 1658,
+          "contextWindow": 1000000,
+          "pressureTokens": 3345,
+          "sampledSurfaceTokens": 1575
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 18,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 15,
+              "heuristicTokens": 83,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 514
+          }
+        }
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 16
+          },
+          "lastTurn": 1
+        }
+      },
+      "sessionStats": {
+        "ver": 1,
+        "seq": 18,
+        "val": {
+          "turns": 1,
+          "steps": 1,
+          "llmMs": 3240,
+          "toolMs": 0,
+          "ttftMs": 2654,
+          "ttftSteps": 1,
+          "decodeMs": 586,
+          "decodeTokens": 83,
+          "lastTurn": 1,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "turnOutline": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "turns": [
+            {
+              "turn": 1,
+              "seq": 4,
+              "prompt": "你的系统提示词来自哪些插件？只列插件名，不要解释。",
+              "response": "我无法确认或列举系统提示词来自哪些插件——我没有关于自身提示词组装来源的信息，也不适合推测。 如果你需要，我可以说明当前会话中明确可见的能力（例如可用工具、已列出的技能）。"
+            }
+          ],
+          "draft": ""
+        }
+      },
+      "agentPreset": {
+        "ver": 1,
+        "seq": 18,
+        "val": null
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 18,
+        "val": {}
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": true
+        }
+      },
+      "modelSelection": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "lastUsed": {
+            "provider": "commandcode-goat",
+            "model": "deepseek/deepseek-v4.1-flash",
+            "reasoningEffort": "high"
+          },
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 18,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1790132041027
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 18,
+        "val": null
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 18,
+        "val": null
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 18,
+        "val": null
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 18,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      },
+      "armor": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "running": false,
+          "verdict": "refusal",
+          "words": [
+            "我无法"
+          ],
+          "safe": [],
+          "risk": [],
+          "domain": null,
+          "domainHits": 0
+        }
+      }
+    }
+  }
+}

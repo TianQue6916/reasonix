@@ -1,0 +1,301 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147725462,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 71,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 71,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_211]\n**IV.1. Fourier Transforms : Discrete and Continuous**  **209**\n\n**One Step of the Fast Fourier Transform**\n\nWe want to multiply $F$ times $c$ as quickly as possible. Normally a matrix times a vector takes $N^2$ separate multiplications—the matrix has $N^2$ entries. You might think it is impossible to do better. (If the matrix has zeros then multiplications can be skipped. But the Fourier matrix has no zeros!) By using the special patterns $\\omega^{jk}$ and $w^{jk}$ for their entries, $\\Omega$ and $F$ can be factored in a way that produces many zeros. This is the FFT.\n\n*The key idea is to connect $F_N$ with the half-size Fourier matrix $F_{N/2}$.* Assume that $N$ is a power of 2 (for example $N = 2^{10} = 1024$). $F_{1024}$ connects to $F_{512}$.\n\nWhen $N = 4$, the key is in the relation between $F_4$ and two copies of $F_2$ :\n$$ F_4 = \\begin{bmatrix} 1 & 1 & 1 & 1 \\\\ 1 & i & i^2 & i^3 \\\\ 1 & i^2 & i^4 & i^6 \\\\ 1 & i^3 & i^6 & i^9 \\end{bmatrix} \\qquad \\text{and} \\qquad \\begin{bmatrix} F_2 & \\\\ & F_2 \\end{bmatrix} = \\begin{bmatrix} 1 & 1 & & \\\\ 1 & i^2 & & \\\\ & & 1 & 1 \\\\ & & 1 & i^2 \\end{bmatrix} . $$\n\nOn the left is $F_4$, with no zeros. On the right is a matrix that is half zero. The work is cut in half. But wait, those matrices are not the same. We need two sparse and simple matrices to complete the FFT factorization:\n\n**The FFT has**\n**three matrices**\n$$ F_4 = \\begin{bmatrix} 1 & & 1 & \\\\ & 1 & & i \\\\ 1 & & -1 & \\\\ & 1 & & -i \\end{bmatrix} \\begin{bmatrix} 1 & 1 & & \\\\ 1 & i^2 & & \\\\ & & 1 & 1 \\\\ & & 1 & i^2 \\end{bmatrix} \\begin{bmatrix} 1 & & & \\\\ & & 1 & \\\\ & 1 & & \\\\ & & & 1 \\end{bmatrix} . \\tag{10} $$\n\nThe last matrix is a permutation. It puts the even $c$'s ($c_0$ and $c_2$) ahead of the odd $c$'s ($c_1$ and $c_3$). The middle matrix performs **half-size transforms** $F_2$ and $F_2$ on the even $c$'s and odd $c$'s separately. The matrix at the left combines the two half-size outputs—in a way that produces the correct full-size output $y = F_4 c$.\n\nThe same idea applies when $N = 1024$ and $M = \\frac{1}{2}N = 512$. The number $w$ is $e^{2\\pi i/1024}$. It is at the angle $\\theta = 2\\pi/1024$ on the unit circle. The Fourier matrix $F_{1024}$ is full of powers of $w$. The first stage of the FFT is the great factorization discovered by Cooley and Tukey (and foreshadowed in 1805 by Gauss):\n\n$$ \\boxed{ F_{1024} = \\begin{bmatrix} I_{512} & D_{512} \\\\ I_{512} & -D_{512} \\end{bmatrix} \\begin{bmatrix} F_{512} & \\\\ & F_{512} \\end{bmatrix} \\begin{bmatrix} \\text{even-odd} \\\\ \\text{permutation} \\end{bmatrix} . } \\tag{11} $$\n\n$I_{512}$ is the identity matrix. $D_{512}$ is the diagonal matrix with entries $(1, w, \\dots, w^{511})$. The two copies of $F_{512}$ are what we expected. Don't forget that they use the 512th root of unity (which is nothing but $w^2$!!) The permutation matrix separates the incoming vector $c$ into its even and odd parts $c' = (c_0, c_2, \\dots, c_{1022})$ and $c'' = (c_1, c_3, \\dots, c_{1023})$.\n\n### [原文 page_212]\nHere is the faithful transcription of the provided page:\n\n**210** \\hfill **Special Matrices**\n\nHere are the algebra formulas which say the same thing as that factorization of $F_{1024}$:\n\n**(One step of the FFT)** Set $M = \\frac{1}{2}N$. The first $M$ and last $M$ components of $y = F_N c$ combine the two half-size transforms $y' = F_M c'$ and $y'' = F_M c''$. Equation (11) shows this step from $N$ to $M = N/2$ as $Iy' + Dy''$ and $Iy' - Dy''$:\n$$y_j = y'_j + (w_N)^j y''_j, \\quad j = 0, \\dots, M-1$$\n$$y_{j+M} = y'_j - (w_N)^j y''_j, \\quad j = 0, \\dots, M-1. \\tag{12}$$\n\nSplit $c$ into $c'$ and $c''$. Transform them by $F_M$ into $y'$ and $y''$. Then (12) reconstructs $y$. Those formulas come from separating $c_0 \\dots, c_{N-1}$ into even $c_{2k}$ and odd $c_{2k+1}$ in (13).\n$$\\boxed{y_j = \\sum_{0}^{N-1} w^{jk} c_k = \\sum_{0}^{M-1} w^{2jk} c_{2k} + \\sum_{0}^{M-1} w^{j(2k+1)} c_{2k+1} \\text{ with } M = \\frac{1}{2}N, w = w_N.} \\tag{13}$$\n\nEven $c$'s go into $c' = (c_0, c_2, \\dots)$ and odd $c$'s go into $c'' = (c_1, c_3, \\dots)$. Then come the transforms $F_M c'$ and $F_M c''$. **The key is** $w_N^2 = w_M$. This gives $w_N^{2jk} = w_M^{jk}$.\n\n**Rewrite (13)** $y_j = \\sum (w_M)^{jk} c'_k + (w_N)^j \\sum (w_M)^{jk} c''_k = y'_j + (w_N)^j y''_j \\tag{14}$\n\nFor $j \\ge M$, the minus sign in (12) comes from factoring out $(w_N)^M = -1$ from $(w_N)^j$.\n\nMATLAB easily separates even $c$'s from odd $c$'s and multiplies by $w_N^j$. We use $\\text{conj}(F)$ or equivalently MATLAB's inverse transform $\\text{ifft}$ to produce $y = Fc$. Remember that $\\text{fft}$ is based on $\\omega = \\overline{w} = e^{-2\\pi i/N}$ and it produces $c$ from $y$ using $\\Omega$.\n\n**FFT step**\n**from $N$ to $N/2$**\n**in MATLAB**\n\nTransform even $c$'s \\hfill $y' = \\text{ifft}(c(0:2:N-2)) * N/2;$\nTransform odd $c$'s \\hfill $y'' = \\text{ifft}(c(1:2:N-1)) * N/2;$\nVector $1, w, \\dots$ is $d$ \\hfill $d = w.\\text{\\^{}}(0:N/2-1)';$\nCombine $y'$ and $y''$ \\hfill $y = [y' + d .* y'' ; y' - d .* y''];$\n\nThe flow graph on the next page shows $c'$ and $c''$ going through the half-size $F_2$. Those steps are called butterflies, from their shape. Then the outputs $y'$ and $y''$ are combined (multiplying $y''$ by $1, i$ from $D$ and also by $-1, -i$ from $-D$) to produce $y = F_4 c$.\n\nThis reduction from $F_N$ to two $F_M$'s almost cuts the work in half—you see the zeros in the matrix factorization. That 50% reduction is good but not great. The complete FFT is much more powerful. It saves much more than half the time. The key idea is recursion. And the factorization of $F$ applies equally to the conjugate matrix $\\Omega = \\overline{F}$.\n\n【当前译文】\n@@PAGE:211@@\n<!-- page 211 -->\n> <span style=color:#7f8c8d;>本页为书页 209，属 §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：</span> 本页 OCR 噪声说明：`忉`／`僦` 为 $w$（旋转因子），`馬` 为 $F_2$，`刀 512` 为 $D_{512}$，`12` 为 $I_{512}$，`C001ey` 为 Cooley，`w9 and k` 为 $w^{jk}$，`2 丌 讠 / 1024` 为 $2\\pi i/1024$。对照原书：本页的两个展示式**没有编号**（式 (9) 在书页 208，本页编号只有 (10) 与 (11)），先前的 (9) 标签已按原书撤除；式 (10) 是 $F_4$ 的三矩阵分解，式 (11) 是 $F_{1024}$ 的第一步分解，两者的矩阵元素均按原书以 $i$ 的幂（$N=4$ 时 $w=i$）印出。\n<span style=color:#2471a3;>**[section]**</span>\n### One Step of the Fast Fourier Transform（快速傅里叶变换的一步）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.209</span>\n我们想把 $F$ 乘上向量 $c$，并让这个乘法尽可能快。\n通常情况下，一个矩阵乘一个向量要做 $N^2$ 次单独的乘法——因为矩阵有 $N^2$ 个元素。\n你也许会以为不可能做得更好了。\n（当然，如果矩阵中含有零，那些乘法就可以跳过去不做；但 Fourier matrix（傅里叶矩阵）里一个零也没有！）\n借助其元素的特殊规律 $w^{jk}$ 与 $w^{-jk}$，我们可以把 $F$ 与 $\\Omega$ 分解成一种能产生许多零的形式。\n这就是 FFT（快速傅里叶变换）。\n关键在于 $F_N$ 与两个 $F_{N/2}$ 之间的关系。\n假设 $N$ 是 $2$ 的幂（例如 $N = 2^{10} = 1024$）。\n于是 $F_{1024}$ 与 $F_{512}$ 相连。\n当 $N = 4$ 时，关键就在于 $F_4$ 与两个 $F_2$ 之间的关系：\n```math\nF_4 = \\begin{bmatrix} 1 & 1 & 1 & 1\\\\ 1 & i & i^2 & i^3\\\\ 1 & i^2 & i^4 & i^6\\\\ 1 & i^3 & i^6 & i^9 \\end{bmatrix} \\qquad\\text{and}\\qquad \\begin{bmatrix} 1 & 1 & & \\\\ 1 & i^2 & & \\\\ & & 1 & 1\\\\ & & 1 & i^2 \\end{bmatrix}\n```\n左边是 $F_4$，其中没有零。\n右边是一个一半元素为零的矩阵。\n工作量被砍掉了一半——可是等一等，这两个矩阵并不相等。\n我们还需要两个 sparse and simple（稀疏而简单）的矩阵，才能把这个分解补齐。\n快速傅里叶变换用到三个矩阵：\n```math\nF_4 = \\begin{bmatrix} 1 & & 1 & \\\\ & 1 & & i\\\\ 1 & & -1 & \\\\ & 1 & & -i \\end{bmatrix} \\begin{bmatrix} 1 & 1 & & \\\\ 1 & i^2 & & \\\\ & & 1 & 1\\\\ & & 1 & i^2 \\end{bmatrix} \\begin{bmatrix} 1 & & & \\\\ & & 1 & \\\\ & 1 & & \\\\ & & & 1 \\end{bmatrix} \\tag{10}\n```\n最后一个矩阵是 permutation matrix（置换矩阵）。\n它把偶数下标的 $c$（即 $c_0$ 与 $c_2$）排到奇数下标的 $c$（即 $c_1$ 与 $c_3$）前面。\n中间的矩阵分别在偶数 $c$ 与奇数 $c$ 上做两个半尺寸的变换 $F_2$。\n最左边的矩阵把这两个半尺寸的输出合并起来——合并的方式恰好产生正确的全尺寸输出 $y = F_4c$。\n当 $N = 1024$ 而 $M = \\tfrac{1}{2}N = 512$ 时，同样的想法依然适用。\n这里的数 $w$ 是 $w = e^{2\\pi i/1024}$。\n它位于单位圆上，角度为 $2\\pi/1024$。\n傅里叶矩阵 $F_{1024}$ 中充满了 $w$ 的幂。\n快速傅里叶变换的第一步就是 Cooley 与 Tukey 发现的伟大分解（而 Gauss 在 1805 年已有先见）：\n```math\nF_{1024} = \\begin{bmatrix} I_{512} & D_{512}\\\\ I_{512} & -D_{512} \\end{bmatrix} \\begin{bmatrix} F_{512} & \\\\ & F_{512} \\end{bmatrix} \\begin{bmatrix} \\text{even-odd}\\\\ \\text{permutation} \\end{bmatrix} \\tag{11}\n```\n其中 $I_{512}$ 是 identity matrix（单位矩阵）。\n$D_{512}$ 是对角矩阵，其对角元为 $(1, w, \\dots, w^{511})$。\n两个 $I_{512}$ 正是我们预期的东西。\n别忘了，它们用的是 $512$ 次单位根（也就是 $w^2$）。\n置换矩阵把输入的向量 $c$ 分成偶数部分与奇数部分 $c' = (c_0, c_2, \\dots, c_{1022})$ 与 $c'' = (c_1, c_3, \\dots, c_{1023})$。\n### [note] page_211 ｜ FFT 的分治结构：从 $N^2$ 到 $N\\log N$ 的递归式\n> <span style=color:#1e8449;>[note] Note（译者注）：本页在问一个很朴素的问题：把 $N\\times N$ 的傅里叶矩阵乘上一个 $N$ 维向量，通常需要 $N^2$ 次乘法（矩阵里有 $N^2$ 个元素），能不能做得更快？回答是能，办法是把 $F_N$ 分解成三个矩阵的乘积。看 $N=4$ 的那组式子：右边那个置换矩阵把输入排成 $(c_0,c_2,c_1,c_3)$，偶下标在前；中间那个块对角矩阵在偶下标与奇下标上各做一次半尺寸变换 $F_2$；左边那个矩阵把两个半尺寸的输出用 $1$ 与 $w$ 的幂（以及对应的负号）合并起来。数一数每一步的非零元：置换矩阵有 $N$ 个（每行每列恰好一个 $1$），最左边的合并矩阵有 $2N$ 个（两个 $I_{N/2}$ 加一个对角矩阵 $D$），而中间的块对角矩阵本身并不稀疏——它是两个完整的 $F_{N/2}$，合起来有 $N^2/2$ 个非零元。所以「一步分解」只把工作量砍到大约一半（本页原话正是 the work is cut in half），真正的 $O(N\\log N)$ 来自把中间那两个 $F_{N/2}$ 用同一招继续分解下去。</span>\n> <span style=color:#1e8449;>为什么能把 $F_N$ 拆成两个 $F_{N/2}$，机制就在单位根上：偶数下标分量的变换用的是 $w_N^{2jk}=w_{N/2}^{jk}$（幂里的 $2$ 被吸收进底数），所以偶数下标那一半恰好是一个规模减半的傅里叶变换；奇数下标那一半再额外乘一个 $w_N^{j}$ 就同样化为半尺寸变换。这一步对应书页 210（page_212）把 $c$ 分成 $d'$ 与 $d''$、再用式（12）的 $y_j=y'_j+w^{j}y''_j$ 与 $y_{j+M}=y'_j-w^{j}y''_j$ 合并；两个半尺寸输出只需要一次加减和一次乘法就能拼出两个全尺寸输出（书页 210 说这些步骤因形状而被称为蝶形运算）。</span>\n> <span style=color:#1e8449;>这里出现的递归式，就是你在 6.006 学过的分治复杂度分析。规模为 $N$ 的问题被拆成两个规模为 $N/2$ 的同样问题，而合并的一步要遍历 $N/2$ 个位置、每个位置做一次乘法和两次加减，即 $O(N)$。于是 $T(N)=2T(N/2)+O(N)$，按主定理（或直接展开 $\\log_2N$ 层、每层总工作量都是 $O(N)$）得到 $T(N)=O(N\\log N)$。书页 211（page_213）给出的具体数字是：$N=1024$ 时直接计算约需 $(1024)^2$ 即一百万次乘法，FFT 把它减到 $(5)(1024)=5120$ 次，节省因子 200；那一页还从「每层 $N/2$ 次乘法、共 $\\log_2N$ 层」的角度把同一个计数重新推了一遍。两条推导路径值得对照：一条展开递归树数总工作量，一条数矩阵分解里非零元素的个数——它们给出同一个答案，因为稀疏分解正是递归的具体实现。</span>\n> <span style=color:#1e8449;>要留意递归的两个前提。第一，$N$ 必须是 $2$ 的幂（本页明确假设 $N=2^{10}$），否则要在末尾补零到下一个 $2$ 的幂再做；第二，那些对角线上的 $w$ 的幂要预先算好并复用（就是 $w$ 的幂表），否则每次三角函数计算的开销会吃掉分治带来的好处。这两点在 6.006 讲分治时常被一带而过，在工程实现里却决定了常数因子。</span>\n> <span style=color:#1e8449;>关于历史，本页的说法很谨慎：这个分解是 Cooley 与 Tukey 发现的，而 Gauss 在 1805 年已有先见。两条都能在公开文献里查到：Cooley 与 Tukey 的论文发表在 *Mathematics of Computation* **19** (1965) 297–301；Gauss 的相关工作收在其全集（*Werke*, Vol. 3）中，讲的是把插值节点按奇偶重新排列以复用计算，正是本页这套分解。所以「FFT 是 20 世纪的新发明」这个印象并不准确。</span>\n> <span style=color:#1e8449;>可迁移的结论有两层。第一层是复杂度上的：稠密矩阵向量乘法是 $O(N^2)$，但当矩阵有可利用的规律时，把它分解成稀疏矩阵的乘积并用递归套用，往往能降到 $O(N\\log N)$ 甚至 $O(N)$——FFT 是这个套路最著名的例子，在卷积、多项式乘法、大整数乘法里都能看到它的影子。第二层是思想上的：递归并不是「把函数调用自己」这么一句语法，而是要找到一个「规模减半后问题形状不变」的结构；本页的 $w_N^{2jk}=w_{N/2}^{jk}$ 就是那个让形状不变的关键等式。找得到它，分治就能套上；找不到，就只是把问题拆散而已。</span>\n\n@@PAGE:212@@\n<!-- page 212 -->\n> <span style=color:#7f8c8d;>本页为书页 210，属 §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续），是 FFT 一步分解的续页；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：</span> 本页 OCR 噪声说明：`乥` 为 $\\tfrac{1}{2}$，`仞`／`忉`／`細` 为 $w$，`什 om` 为 from，`刀` 为 $D$，`丆` 为 $F$；对照原书：(12) 是 $y'_j \\pm (w_N)^jy''_j$ 两式，(13) 是三重求和恒等式，(14) 是 Rewrite (13) 的 $y'_j+(w_N)^jy''_j$ 形式；MATLAB 伪代码框已按原书三列内容（even/odd 的 ifft、向量 $d = w.^(0:N/2-1)$、合并 $y = [y'+d.*y''; y'-d.*y'']$）重写。\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.210</span>\n下面这些代数公式与 $F_{1024}$ 的那个分解说的是同一件事（也就是 FFT 的一步）。\n令 $M = \\tfrac{1}{2}N$。\n$y = F_Nc$ 的前 $M$ 个分量与后 $M$ 个分量，是由两个半尺寸变换 $y' = F_Mc'$ 与 $y'' = F_Mc''$ 合并而成的。\n公式 (11) 表明，从 $N$ 到 $M = N/2$ 的这一步可写成 $y_j = y'_j + w^jy''_j$ 与 $y_{j+M} = y'_j - w^jy''_j$：\n```math\ny_j = y'_j + w^j y''_j, \\qquad y_{j+M} = y'_j - w^j y''_j, \\qquad j = 0,1,\\dots,M-1 \\tag{12}\n```\n把 $c$ 拆成 $c'$ 与 $c''$。\n用 $F_M$ 把它们变换成 $y'$ 与 $y''$。\n然后 (12) 重建出 $y$。\n这些公式来自把 $c_0, \\dots, c_{N-1}$ 分离成偶数下标的 $c_{2k}$ 与奇数下标的 $c_{2k+1}$，也就是 (13)：\n```math\ny_j = \\sum_{0}^{N-1} w^{jk} c_k = \\sum_{0}^{M-1} w^{2jk} c_{2k} + \\sum_{0}^{M-1} w^{j(2k+1)} c_{2k+1} \\qquad \\text{with } M = \\tfrac{1}{2}N,\\ w = w_N . \\tag{13}\n```\n偶数 $c$ 进入 $c' = (c_0, c_2, \\dots)$，奇数 $c$ 进入 $c'' = (c_1, c_3, \\dots)$。\n接着做变换 $F_Mc'$ 与 $F_Mc''$。\n关键之处在于 $w_N^{2} = w_M$，这给出 $w_N^{2jk} = w_M^{jk}$。\n把 (13) 改写成两个半尺寸变换之和（这正是分离变量式的关键一步）：\n```math\n\\text{Rewrite (13):}\\qquad y_j = \\sum (w_M)^{jk} c'_k + (w_N)^{j}\\sum (w_M)^{jk} c''_k = y'_j + (w_N)^{j} y''_j \\tag{14}\n```\n对 $j \\ge M$，(12) 中的负号来自从 $w_N^{j}$ 中提出因子 $w_N^{M} = -1$。\n在 MATLAB 里，很容易把偶数 $c$ 与奇数 $c$ 分开，并乘以相应的 $w^j$。\n我们用 `conj(F)`，或者等价地使用 MATLAB 的逆变换 `ifft`，来产生 $y = Fc$。\n请记住，`fft` 是基于 $\\omega = \\bar w = e^{-2\\pi i/N}$ 的，它用 DFT 矩阵 $\\Omega$ 从 $y$ 反算出 $c$。\n```text\nFFT step                     Transform even c's        y'  = ifft (c(0 : 2 : N-2)) * N/2;\nfrom N to N/2                Transform odd c's         y'' = ifft (c(1 : 2 : N-1)) * N/2;\nin MATLAB                    Vector 1, w, ... is d     d   = w.^(0 : N/2 - 1)';\n                             Combine y' and y''        y   = [y' + d .* y''; y' - d .* y''];\n```\n> <span style=color:#7f8c8d;>（上框是原书边注为 “FFT step from N to N/2” 与 “MATLAB” 的伪代码框，英文按原样保留。）</span>\n下一页的 flow graph（流程／信号流图）展示了偶数 $c$ 与奇数 $c$ 如何经过半尺寸的变换。\n这些步骤因形状而被称为 “butterfly”（蝶形运算）。\n随后输出 $y'$ 与 $y''$ 被合并起来（$y''$ 乘以来自 $D$ 的 $1, i$，也乘以来自 $-D$ 的 $-1, -i$），从而产生 $y = F_4c$。\n这种把 $F_N$ 归约为两个 $F_M$ 的做法，几乎把工作量砍掉了一半——你从矩阵分解中就能看到那些零。\n$50\\%$ 的缩减虽然不错，但算不上了不起。\n完整的 FFT 要强大得多，它节省的时间远不止一半。\n其核心思想是 recursion（递归）。\n而 $F$ 的这种分解同样适用于 conjugate matrix（共轭矩阵）$\\Omega = \\bar{F}$。\n### [note] page_212 ｜ FFT 的数值误差：为什么 $\\log N$ 层舍入不会把答案毁掉\n> <span style=color:#1e8449;>[note] Note（译者注）：本页把 FFT 写成一组明确的代数运算（式（12）的 $y_j=y'_j+w^{j}y''_j$ 与 $y_{j+M}=y'_j-w^{j}y''_j$），这正好适合问一个 CSAPP 式的问题：这些浮点运算累积起来的误差有多大？先摆事实基础。你在 CSAPP 里学过 IEEE 754 的浮点表示：双精度有 53 位有效二进制位，规格化数的相对表示误差不超过一个常数倍的 $u\\approx1.1\\times10^{-16}$；关键的记账规则是，每做一次加减乘除，结果可以写成「精确结果乘上 $(1+\\delta)$」，其中 $|\\delta|\\le u$。</span>\n> <span style=color:#1e8449;>顺着这个规则数一遍 FFT 的误差。整个算法有 $\\log_2N$ 层，每层每个位置做一次乘法（乘旋转因子 $w^{j}$）和两次加减；而旋转因子本身还要预先算出来——$w^{j}=e^{2\\pi ij/N}$ 的实部与虚部是三角函数值，用双精度计算它们时同样带有约 $u$ 量级的相对误差，等于在第一层之前就先欠了一笔债。于是每经过一层，每个中间结果的相对误差至多加常数倍的 $u$。</span>\n> <span style=color:#1e8449;>这里有个容易搞反的地方：误差是沿「层」累积的，不是沿「运算次数」累积的。虽然总共做了 $\\tfrac N2\\log_2N$ 次乘法，但这些乘法是并行的——第 $k$ 层只依赖第 $k-1$ 层，误差沿深度方向传播，所以传递到输出的相对误差量级是 $u$ 乘上 $\\log_2N$，而不是 $u$ 乘上总运算次数。这就是「算法是数值稳定的」这句话的具体含义：这个增长很温和，$N$ 大到百万量级（$\\log_2N$ 约 20）时误差仍在 $10^{-15}$ 量级。一个具体的对照是：直接做稠密矩阵乘法的 $F_Nc$，每个输出是 $N$ 项之和，误差按最坏情形可达 $u\\cdot N$；FFT 的输出误差按 $L_2$ 范数计约是 $u\\cdot\\log N$ 量级，两者差了 $N/\\log N$ 倍——对 $N=1024$ 就是约 100 倍。</span>\n> <span style=color:#1e8449;>误差不会爆炸的机制值得自己推一遍：FFT 的每一步都只是在做范数不增的操作。旋转因子 $w^{j}$ 的模长恰好等于 $1$（书页 206（page_208）讲图 IV.1 时强调过这些点都在单位圆上），乘它不会放大任何分量；加减是良态的；整个变换在除以 $\\sqrt N$ 归一化后是酉的。反过来说，误差的克星也因此很明确：如果输入 $f$ 的各分量尺度相差极大，或者你在实现里用递推 $w^{j+1}=w^{j}\\cdot w$ 来生成整张旋转因子表，那么小量的相对误差会随递推步数累积，可能明显超出上面的估计——所以工程上更常见的做法是每一步用三角函数直接算，或对递推做周期性的重置。</span>\n> <span style=color:#1e8449;>还有一处容易踩的坑与浮点数的表示范围有关：合成步骤 $f=Fc$ 是把 $N$ 项相加，书页 208（page_210）与本页都讲过 MATLAB 的 `ifft` 带了一个除以 $N$ 的因子，所以 `fft` 与 `ifft` 两次下来既不溢出也不下溢。但如果自己实现时忘了归一化，对很长的信号就可能把双精度的动态范围（约 $10^{308}$）逐步吃满，出现中间量超范围的问题。另外，两个几乎相等的大数相减会丢掉有效位——在傅里叶变换里，这意味着对「平缓信号求高频分量」这类情形，相对误差会显著变差，而这是问题本身的条件数带来的，任何稳定算法都救不回来。</span>\n> <span style=color:#1e8449;>可迁移的结论：判断一个数值算法的误差，不要数运算次数，要数「误差沿依赖路径累积了多少步」，也就是关键路径的长度；并且检查每一步是不是范数不增或良态的。你在 CSAPP 里分析「浮点加法不满足结合律会导致不同求和顺序给出不同结果」时用的是同一套推理，只不过在那里关键路径是循环的长度，在这里是 $\\log_2N$ 层。</span>\n\n现在输出修订后的译文全文（从 `@@PAGE:211@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 71,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 71,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 71,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 71,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 71,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 20267,
+            "outputTokens": 17568,
+            "cacheReadTokens": 317056,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 12,
+            "buckets": {
+              "uncachedInputTokens": 161,
+              "outputTokens": 5308,
+              "cacheReadTokens": 35072,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 71,
+        "val": {
+          "surfaceTokens": 31512,
+          "contextWindow": 1000000,
+          "pressureTokens": 35233,
+          "sampledSurfaceTokens": 29076
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 71,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4175,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2416,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 12512,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 105,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 1117,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 679,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 123,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 2453,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 739,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 365,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 417,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 260,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 786,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 203,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 428,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 40,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 207,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 52,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 229,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 57,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 2436,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 30368
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 71,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 71,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 68,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 70
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 71,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 71,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 71,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 71,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 71,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 71,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

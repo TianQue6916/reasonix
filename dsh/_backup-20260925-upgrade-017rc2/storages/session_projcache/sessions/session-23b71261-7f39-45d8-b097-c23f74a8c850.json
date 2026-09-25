@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132488988,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_181（书页 178） @@@@@\r\n−---- 【权威原文】 −---------------\r\n178 \\hfill Low Rank and Compressed Sensing\r\n\r\n\\section*{III.3 \\quad Rapidly Decaying Singular Values}\r\n\r\nThere are important matrices whose singular values have \\(\\sigma_k \\leq C e^{-ak}\\). Those numbers decay quickly. Often the matrices are invertible (their inverses are incredibly large). And often we have a \\textit{family} of matrices of all sizes---Hilbert and Vandermonde matrices, Hankel and Cauchy and Krylov and spectral difference matrices and more.\r\n\r\nThese matrices are at the same time easy and also hard to work with. Easy because only a few singular values are significant. Not easy when the inverse has a giant norm, increasing exponentially with the matrix size \\(N\\). We will focus on two of many examples:\r\n\r\n1 The \\textit{nonuniform} discrete Fourier transform (NUDFT) has \\(U = A .* F\\) in place of \\(F\\).\r\n\r\n2 The \\textit{Vandermonde matrix} \\(V\\) fits a polynomial of degree \\(N − 1\\) to \\(N\\) data points.\r\n\r\nActually those examples are connected. A standard DFT fits \\(N\\) values \\(f_0\\) to \\(f_{N-1}\\) at the \\(N\\) points \\(\\omega^k = e^{-2\\pi i k/N}\\). The Fourier matrix is a Vandermonde matrix ! But instead of real points between \\(-1\\) and \\(1\\), the DFT is interpolating at \\textit{complex points}---equally spaced around the unit circle \\(|e^{i\\theta}| = 1\\). The real case produces terrible Vandermonde matrices (virtually singular). The complex case produces a beautiful Fourier matrix (orthogonal).\r\n\r\nWe start with that complex Fourier matrix \\(F\\) (equal spacing as usual). Multiplying by \\(F\\) is superfast with the Fast Fourier Transform in Section IV.1 : \\(\\frac{1}{2} N \\log_2 N\\) operations. \\textbf{For nonuniform spacing \\(x_j \\neq j/N\\), the special identities behind the FFT are gone.} But Ruiz-Antolin and Townsend showed how you can recover almost all of the speed: Write the nonuniform \\(U\\) as \\(A_{jk}F_{jk}\\) where \\(A\\) is \\textbf{near a low rank matrix} :\r\n\r\n\\[\r\nF_{jk} = e^{-2\\pi i jk/N} \\text{ and } U_{jk} = e^{-2\\pi i k x_j} = A_{jk}F_{jk}\r\n\\]\r\n\r\nWhen \\(U = F\\) is the DFT with equal spacing, every \\(A_{jk} = 1\\). \\(A\\) \\textbf{has rank one}. With unequal spacing, a low rank matrix virtually agrees with \\(A\\), and fast transforms are possible. Here are symbols for element by element multiplication \\(A_{jk}F_{jk}\\) and division \\(U_{jk}/F_{jk}\\) :\r\n\r\n\\[\r\n\\textbf{Multiplication} \\quad U = A .* F = A \\bigcirc F \\qquad \\textbf{Division} \\quad A = U \\oslash F. \\tag{1}\r\n\\]\r\n\r\nThe operation to execute quickly is the NUDFT : \\(U\\) times \\(c\\). The Fast Fourier Transform computes \\(F\\) times \\(c\\). The ratios \\(U_{jk}/F_{jk}\\) give a matrix \\(A\\) that is \\textbf{nearly low rank}. \\textbf{So the nonuniform transform \\(U\\) comes from a correction \\(A\\) to the Fourier matrix \\(F\\)} :\r\n\r\n\\[\r\n\\boxed{A \\approx y_1 z_1^{\\mathrm{T}} + \\cdots + y_r z_r^{\\mathrm{T}} \\quad \\text{and} \\quad Uc \\approx Y_1 F Z_1 c + \\cdots + Y_r F Z_r c.} \\tag{2}\r\n\\]\r\n\r\n\\(Y_i\\) and \\(Z_i\\) are diagonal \\(N\\) by \\(N\\) matrices with \\(y_i\\) and \\(z_i\\) along their main diagonals. Equal spacing has \\(U = F\\) and \\(A = \\textbf{ones}\\) and \\(y_1 = z_1 = (1, \\ldots, 1)\\) and \\(Y_1 = Z_1 = I\\). For unequal spacing, \\(r\\) is determined by the nonuniformity of the sampling points \\(x_i\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 181 −->\r\n\r\n<span style=color:#7f8c8d;>本页为书页 178，属 Part III 中 §III.3 的开篇页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声密集，以下字符按上下文重建：`蓋`、`风`、`尹`、`Fø` 均为 Fourier 矩阵的记号 $F$（或其非均匀版本）之误；`¯ak Th0se numbers` 重建为 There are important matrices whose singular values have those numbers（存在一些重要矩阵，其奇异值正是这些数）；`和 纱` 系 family（族）之误；`0 咖 rm` 重建为 nonuniform；`皿 s № 皿` 重建为 algorithm is superfast；`仆`、`伙` 等残字分别对应 with、work；被切碎的上标按 $2\\pi k/N$、$2\\pi i c_j k$ 与 $e^{-2\\pi i jk/N}$ 重建；公式 (1) 的两行按「逐元素乘」与「逐元素除」的对称结构重建。下面正文中出现的 $A$ 是**修正矩阵**（比值矩阵），不是线性方程组里的系数矩阵，请勿与 $A\\boldsymbol{x}=\\boldsymbol{b}$ 中的 $A$ 混同。\r\n\r\n存在一些重要的矩阵，其 singular values（奇异值）具有快速衰减的性质。它们往往还是可逆的（只不过其逆矩阵大得惊人）。而且我们遇到的常常不是单个矩阵，而是一整个族（family）、涵盖各种尺寸的矩阵——Hilbert matrix（希尔伯特矩阵）与 Vandermonde matrix（范德蒙矩阵）、Hankel matrix（汉克尔矩阵）与 Cauchy matrix（柯西矩阵），以及 Toeplitz matrix（托普利茨矩阵）、谱差分矩阵等等。\r\n\r\n这些矩阵同时既好对付、又难对付。说好对付，是因为其中只有少数几个奇异值是显著的；说难对付，是因为它的逆矩阵具有巨大的 norm（范数），并随矩阵尺寸呈指数增长。我们从众多例子中挑出两个重点讨论：\r\n\r\n**1.** nonuniform discrete Fourier transform（非均匀离散傅里叶变换，NUDFT）用 $U = A .* F$ 取代 $F$，其中 $A$ 起修正作用。\r\n\r\n**2.** Vandermonde matrix（范德蒙矩阵）$V$ 把一个 $n-1$ 次多项式拟合到数据点上。\r\n\r\n其实这两个例子是相通的。标准 DFT 在等间距的点 $2\\pi k/N$ 上拟合数值 $y_0$ 到 $y_{N-1}$，而 Fourier matrix（傅里叶矩阵）本身就是一个 Vandermonde matrix！区别在于：DFT 在单位圆上等间距的**复数**点处作 interpolation（插值），而实的情形是在 $-1$ 与 $1$ 之间的**实数**点处插值。实的情形产生极其糟糕的 Vandermonde matrix（实质上是奇异的），复的情形则产生优美的 Fourier matrix（正交的）。\r\n\r\n我们就从那个复的 Fourier matrix $F$（照例等间距）开始。乘以 $F$ 借助 §IV.1 中的 Fast Fourier Transform（快速傅里叶变换）可以超快完成：只需 $\\log_2 N$ 量级的运算。对于非均匀间距 $c_j \\ne j/N$ 的情形，支撑 FFT 的那些特殊恒等式不复存在。但 Ruiz-Antolin 与 Townsend 指出，你几乎可以恢复全部速度：把非均匀的 $U$ 写成 $A .* F$，其中 $A$ 接近一个低秩矩阵：\r\n\r\n```math\r\nU_{jk} = e^{-2\\pi i c_j k} \\qquad\\text{and}\\qquad A_{jk} = \\frac{e^{-2\\pi i c_j k}}{e^{-2\\pi i j k/N}}\r\n```\r\n\r\n当 $U = F$ 是等间距的 DFT 时，每个 $A_{jk} = 1$，$A$ 就是全 1 矩阵，秩为 1。在非均匀间距下，一个低秩矩阵已与 $A$ 几乎一致，快速变换因而成为可能。下面给出逐元素乘法 $\\circ$ 与逐元素除法 $\\oslash$ 的记号：乘法 $U = A .* F$，除法 $A = U ./ F$。\r\n\r\n```math\r\nU = A .* F = A \\circ F \\qquad A = U ./ F \\tag{1}\r\n```\r\n\r\n需要快速执行的运算是 NUDFT：$U$ 乘以 $c$。而快速 Fourier algorithm（算法）计算的只是 $F$ 乘以 $c$。那些比值 $U ./ F$ 给出一个矩阵 $A$，它几乎是低秩的。于是非均匀变换 $U$ 来自对 Fourier matrix $F$ 的一个修正 $A$：把 $A$ 写成 $A = Y_1 Z_1^T + \\cdots + Y_r Z_r^T$，就有\r\n\r\n```math\r\nU c \\approx A \\circ F c = Y_1 F Z_1 c + \\cdots + Y_r F Z_r c\r\n```\r\n\r\n等间距的情形有 $U = F$、$A$ 全为 1，并且 $r = 1$、$Y_1 = Z_1 = I$。对于不等间距的情形，$r$ 由采样点的非均匀程度决定。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这一页的设计问题是：**结构化快速乘法一旦被扰动破坏，能不能把它修回来而只付很小的额外代价。** 先看被破坏的是什么。等间距时 $F$ 乘向量能在 $O(N\\log N)$ 内完成，靠的是旋转因子 $e^{-2\\pi i jk/N}$ 对 $j$ 与 $k$ 的周期性，它让 $N$ 点问题拆成两个 $N/2$ 点问题——这正是 6.006（算法导论）里的分治模板，递归式 $T(N)=2T(N/2)+O(N)$ 给出 $O(N\\log N)$。非均匀采样把 $c_j$ 取代 $j/N$ 之后，$U_{jk}=e^{-2\\pi i c_jk}$ 不再是 $j$ 与 $k$ 的乘积型相位，周期性消失，分治的合并步骤立刻失效：你没法再把偶数项和奇数项拼回原问题。这就是「$U$ 看起来像 $F$，却算不快」的全部原因。\r\n>\r\n> 先把被破坏的到底是什么讲透。分治能成立的前提是子问题与原问题同型：$c_j=j/N$ 时相位关于 $j$ 与 $k$ 是双线性的，把 $j$ 按奇偶拆开，$e^{-2\\pi i(2r)k/N}=e^{-2\\pi i rk/(N/2)}$，于是 $N$ 点问题变成两个 $N/2$ 点问题，归纳假设原样成立。一旦 $c_j$ 只由采样点决定、与 $j$ 不成比例，$U_{jk}$ 就不再是行指标乘列指标的函数，奇偶拆分后的子块既不是 $F$ 也不是 $U$，没有可用的归纳假设，递归式 $T(N)=2T(N/2)+O(N)$ 从第一步就崩了。\r\n>\r\n> 那还能不能救？能，但要换一个归纳假设：不再要求子块同型，而要求子块数值低秩。把 $U$ 按行、按列各分成大小相当的块，远场块（那一批 $c_j$ 与那一批 $k$ 相距较远）里，核 $e^{-2\\pi i c_jk}$ 作为二元函数是光滑的，可以用少数几项插值或展开逼近，于是该块的数值秩 $r$ 远小于块尺寸，一次块乘向量只花 $O(r\\cdot\\text{块尺寸})$。这就是 6.006 版分治之外的第二条路：分治靠结构精确重复，低秩压缩靠结构近似重复。\r\n>\r\n> 还有一条更实用的修复路径，它不追求精确，只追求可控近似：先把非均匀数据扩散到过采样的均匀网格上，用一次均匀 FFT 做卷积，再插值回原采样点并做去卷积校正，这就是 NUFFT 的三步。代价仍是 $O(N\\log N)$，但多出一个精度旋钮：过采样因子 $s$ 与核宽 $w$ 共同决定误差 $\\varepsilon$，付的额外代价是常数倍数与若干次 FFT，而不是阶的上升。所以这一页的答案是：能修，但修回来的不再是那个精确的 $U$，而是一个误差可证的近似。\r\n>\r\n> 给一个小验算，把修回来要付多少代价算成具体数字。设 $c_j=j/N+\\delta_j$，拆开相位得 $U_{jk}=e^{-2\\pi i jk/N}e^{-2\\pi i\\delta_jk}$，对第二个因子做 Taylor 展开，$U\\approx\\sum_{p=0}^{P}a_p\\,D_p F D'_p$，其中 $D_p=\\operatorname{diag}(\\delta_j^{p})$、$D'_p=\\operatorname{diag}(k^{p})$，每一项是两次对角缩放夹一次 $F$，也就是一次 $O(N\\log N)$。取 $N=2$、$\\delta_1=0.01$ 且只保留 $P=1$ 项：均匀时 $U$ 的第二行是 $[1,-1]$，扰动后是 $[1,\\,-e^{-0.02\\pi i}]\\approx[1,\\,-0.998+0.0628i]$，绝对误差的量级是 $\\frac{(2\\pi\\delta_1k)^{2}}{2}=\\frac{0.0628^{2}}{2}\\approx2\\times10^{-3}$。误差随 $2\\pi\\delta_jk$ 二阶增长，所以只有 $2\\pi\\delta_{\\max}N\\ll1$ 时全局展开才便宜，否则必须按 $k$ 分块、在每块内重新展开，这正是分层低秩（butterfly）算法存在的原因。\r\n>\r\n> 命名模板：**扰动相位展开修复法**——拆相位、Taylor 展开、写成若干个「对角—$F$—对角」项之和；它的粗糙版本叫 **远场分块低秩法**——块内数值秩小，逐块压缩。\r\n>\r\n> 跨课程连接再补两条。Strang 线性代数与 18.065：概念是 SVD 与低秩近似；连接路径是把 $U$ 的远场块拿出来做 SVD，Eckart–Young 定理保证截断到前 $r$ 个奇异值就是该块在 Frobenius 范数下的最优低秩逼近；区别是 SVD 给的是任意矩阵的最优低秩近似，但要 $O(N^{3})$ 构造、必须显式存矩阵，而这里用核函数的解析展开直接生成低秩因子，构造只要 $O(N\\log N)$，连矩阵都不必写出来。CSAPP：概念是缓存与访存模式；连接路径是均匀 $F$ 的访存规则可预测，非均匀情形要先把数据扩散到均匀网格上再 FFT，这一步是散列式随机写，缓存不命中率上升、常数因子变大；区别是 CSAPP 解释的是这类算法为什么在实际机器上比渐进阶更慢，而算法课只保证阶。\r\n\r\n> 本书的修补办法是一个通用模板，我把它叫做**结构化基底加低秩修正模板**：把难算的矩阵写成 $U=A\\circ F$，让 $A$ 独自承担全部非均匀性，而 $F$ 保留可快速乘法的能力；只要 $A$ 近似低秩，$A\\approx\\sum_{i=1}^{r}Y_iZ_i^T$，就有 $Uc\\approx\\sum_{i=1}^{r}Y_iFZ_ic$，其中 $Y_i$、$Z_i$ 是对角矩阵，因此每一项只花一次 FFT 加 $O(N)$ 的逐元素缩放。这与 6.006 讲的「预处理＋快速查询」同构（预处理时把难结构压成低秩表，查询时只查表加修正），也与 18.065 里把矩阵拆成「结构化部分＋低秩部分」的分解哲学一致。要注意区别：6.006 关心的是**最坏情形**的渐进复杂度，这里关心的是**误差可控前提下的实际常数**——低秩一旦不成立，速度立刻退回 $O(N^2)$，所以「秩有多大」才是真正的命门。（把 A 近似成低秩，最小可能误差由第 $r+1$ 个奇异值 $\\sigma_{r+1}$ 给出。）\r\n\r\n> 给个具体量级。$N=1024$ 时，直接算 NUDFT 需 $N^2\\approx 1.05\\times 10^{6}$ 次复数乘法；一次 FFT 需要约 $\\frac{N}{2}\\log_2 N=512\\times 10=5120$ 个蝶形（一次蝶形等于一次复数乘加），取秩 $r=10$ 的修正共约 $5.1\\times 10^{4}$ 个蝶形，比直接算法快约 $20$ 倍。$N=4096$ 时直接算法约 $1.68\\times 10^{7}$，$r=10$ 的修正约 $2.46\\times 10^{5}$，快约 $68$ 倍。这个对比说明的是「几乎恢复全部速度」的确切含义：额外的开销只是一个与 $r$ 成正比的常数因子；在固定 $r$ 下，加速比大致按 $N/\\log_2 N$ 增长。但 $r$ 并非与 $N$ 无关的常数——本节的结论是小误差只需 $r$ 按 $\\log N$ 增长，所以总代价是 $O(N\\log^{2}N)$ 量级，而不是把 $O(N\\log N)$ 打回 $O(N^2)$。\r\n\r\n> 最后看低秩的来源，这是全页最值得记的一步。逐元素除法 $A=U./F$ 给出 $A_{jk}=\\exp\\bigl(-2\\pi ik(c_j-j/N)\\bigr)$，记偏差 $\\delta_j=c_j-j/N$，则 $A_{jk}=\\exp(-2\\pi ik\\delta_j)$。每个元素都是「只含 $j$ 的因子」与「只含 $k$ 的因子」之积 $r_js_k$，这正是一个秩 1 矩阵的形状；等间距时 $\\delta_j\\equiv 0$，$A$ 恰为全 1 矩阵、秩为 1，这就是正文那句「$r=1$、$Y_1=Z_1=I$」。当采样点轻微偏离 $j/N$ 时 $\\delta_j$ 很小，$A$ 仍是「近似秩 1」；$\\delta_j$ 的幅度分布越宽，把它压到小误差所需的秩 $r$ 就越高。于是这一页实际上给出了把「采样点有多不听话」翻译成「秩有多高」的桥梁：$r$ 的大小直接由非均匀程度决定。这也解释了为什么轻微非均匀才能既准又快——非均匀性是输入数据给的，而代价随它增长。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（术语校准）：**</span> 第 179 页会出现的 low effective rank 应译作**低有效秩**，它和「低秩」不是同一句话，区别值得单独说清。低秩是精确的结构断言：$\\operatorname{rank}(A)\\le r$，即 $A$ 恰能写成 $r$ 个秩 1 矩阵之和。低有效秩是数值断言：$A$ 的秩可能仍是满的 $N$，但它的奇异值 $\\sigma_1\\ge\\sigma_2\\ge\\cdots$ 衰减极快，于是前 $r$ 个奇异值之外的尾部能量 $\\sum_{k>r}\\sigma_k^2$ 小到可以忽略，截断 $A_r=\\sum_{k\\le r}\\sigma_ku_kv_k^T$ 就是一个足够好的近似。判据是比值而非秩本身：若 $\\sigma_{r+1}/\\sigma_1\\le\\varepsilon$，则在谱范数下 $\\lVert A-A_r\\rVert_2=\\sigma_{r+1}$，相对误差不超过 $\\varepsilon$。这正是「几乎一致」（virtually agrees）一词的确切含义，也是后面数值线性代数课程里 numerical rank（数值秩）与条件数 $\\sigma_1/\\sigma_N$ 的入口。\r\n>\r\n> **补机制：这两句话为什么必须分开。** 先问它在解决什么设计问题。把 $A$ 看成从输入空间到输出空间的线性算子：它把单位球映成一个椭球，第 $k$ 个奇异值就是这个椭球第 $k$ 根主轴的半轴长。于是 $\\sigma_k$ 的物理含义是「第 $k$ 个方向被放大多少倍」。低秩说的是「椭球在第 $r$ 根轴之后直接塌成零」，是精确的；低有效秩说的是「轴还在，但半轴短到量不出来」。为什么不能只看秩？因为秩是代数上的计数，它对扰动不连续：把 $A$ 的一个零奇异值扰动成 $10^{-14}$，代数秩立刻从 $r$ 跳到 $N$，可算子的实际行为几乎没变。低有效秩正是为了修复这个不连续性而引入的：它带一个容限 $\\varepsilon$，而 $\\varepsilon$ 来自浮点精度或测量噪声，不是矩阵自身的属性。所以 $\\operatorname{rank}(A)$ 是一个与精度无关的整数，有效秩是一个依赖精度的函数 $r_\\varepsilon$。工程上取阈值 $n\\varepsilon\\lVert A\\rVert_2$ 是有理由的：浮点 SVD 的向后误差约为 $n\\varepsilon\\lVert A\\rVert_2$ 量级，小于它的奇异值与舍入噪声不可区分，硬把它当信号去求逆，就等于把噪声放大 $1/\\sigma_N$ 倍。这也解释了为什么第 179 页敢用「几乎一致」这种措辞：那里的近似不是猜的，而是有范数界兜底的。\r\n>\r\n> **补一个可复算的小矩阵。** 取 $A=\\begin{pmatrix}1&1\\\\0&10^{-6}\\end{pmatrix}$。它的代数秩是 $2$（两个列向量线性无关），但 $\\sigma_1\\approx1$、$\\sigma_2\\approx10^{-6}$，于是对 $\\varepsilon=10^{-5}$ 有 $r_\\varepsilon=1$。验算：$A^TA=\\begin{pmatrix}1&1\\\\1&1+10^{-12}\\end{pmatrix}$，特征值为 $2+10^{-12}$ 与约 $5\\times10^{-13}$，开方得 $\\sigma_1\\approx1$、$\\sigma_2\\approx10^{-6}$，与断言一致。再算截断：$A_1$ 由第一奇异对给出，作差后 $A-A_1$ 的谱范数恰好是 $\\sigma_2=10^{-6}$，相对误差 $10^{-6}$，满足上面那条界。最后看能量：$\\sigma_1^2+\\sigma_2^2\\approx2+10^{-12}$，被丢掉的尾部占比约 $2\\times10^{-13}$，确实可以忽略。三步手算把「秩是 2、有效秩是 1」这两个看似矛盾的结论同时坐实了。\r\n>\r\n> **命名模板：「谱衰减能量检验法」。** 先用奇异值比 $\\sigma_{r+1}/\\sigma_1\\le\\varepsilon$ 定数值秩，再用尾部能量占比 $\\sum_{k>r}\\sigma_k^2/\\sum_k\\sigma_k^2$ 确认丢掉的确实可丢，两步都过才敢截断。\r\n>\r\n> **跨课程连接。** 入口在 Strang 线性代数与 18.065：Strang 讲 $A=U\\Sigma V^T$ 时读作「把球映成椭球，奇异值是各半轴长」，18.065 直接拿截断 SVD 做低秩近似与 PCA，与本注的区别在于——那两门课先假定你已经接受「小奇异值可以丢」，本注补的正是「凭什么可丢」的前置判据。在 CLRS 与 6.006 里，同类推理以「按主项截断复杂度」出现：都是先定误差预算、再决定保留几项，区别是那里截断的是渐近阶，这里截断的是谱。在学的概率论（Bertsekas）中，协方差矩阵的特征值衰减对应主成分降维，是同一件事的统计版本。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.3, p.178</span>\r\n\r\n@@@@@ page_182（书页 179） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.3.  Rapidly Decaying Singular Values\r\n\r\n179\r\n\r\nSample Points $x_j$ near $j/N$\r\n\r\nIn this “lightly perturbed” case, we can match the unequally spaced $x_j$ with the equally spaced fractions $j/N$ for $0 \\le j < N$. For each entry of $U$, $A_{jk}$ is a correction to $F_{jk}$:\r\n\r\n$$U_{jk} = A_{jk} F_{jk} \\text{ is } e^{-2\\pi i k x_j} = e^{-2\\pi i k (x_j − j/N)} e^{-2\\pi i k j/N} \\tag{3}$$\r\n\r\nThen the key step for a fast algorithm is to find a close approximation to this matrix $A$ (we know $F$ is fast). The Eckart-Young theorem would suggest to use the SVD of $A$. But the SVD is a more expensive step than the rest of the fast unequally spaced transform.\r\n\r\n$A$ is an interesting matrix. All its entries in equation (3) have the form $e^{i\\theta}$. If we replace $A_{jk} = e^{-i\\theta}$ by its power series $1 − i\\theta + \\cdots$ then $A$ will begin with the all-ones matrix.\r\n\r\nThe rest of this section finds low rank approximations by working with the Sylvester equation. Here Townsend takes a different route: *Approximate the function* $e^{-ixy}$.\r\n\r\nThe key idea is to replace the Taylor series for each of those matrix entries by a Chebyshev expansion. This reflects a rule of great importance for numerical analysis:\r\n**Fourier series are good for periodic functions on an interval like** $|\\theta| \\le \\pi$.\r\n**Chebyshev series are good for nonperiodic functions on an interval like** $|x| \\le 1$.\r\n\r\nThe connection between Fourier and Chebyshev is $\\cos \\theta = x$. The Fourier basis function $\\cos n\\theta$ becomes the Chebyshev polynomial $T_n(x) = \\cos(n \\text{ arc cos } x)$. The Chebyshev basis starts with $T_0 = 1$ and $T_1 = x$ and $T_2 = 2x^2 − 1$ because $\\cos 2\\theta = 2 \\cos^2 \\theta − 1$. All those basis functions have max $|T_n(x)| = \\max |\\cos n\\theta| = 1$ from $x = −1$ to $x = 1$.\r\n\r\nAn important point is that the $n$ solutions of $T_n(x) = 0$ are *not* equally spaced. The zeros of $\\cos n\\theta$ are equally spaced, but in the $x$-variable those points come close together near the boundaries $-1$ and $1$. Interpolation at these $x = \\cos(\\pi(2k − 1)/2n)$ is far more stable than equally spaced interpolation.\r\n\r\nThe highly developed computational system at **chebfun.org** is based on Chebyshev polynomials (for functions in one or more dimensions). It computes a polynomial very close to $f(x)$. Then all operations on functions produce new polynomials as finite Chebyshev series. The degree needed for high accuracy is chosen by the **chebfun** code.\r\n\r\nThis approach to the matrix $A$ leads Ruiz-Antolin and Townsend to a proof of low effective rank (close approximation to $A$ by a low rank matrix). Their paper provides a very efficient code for the nonuniform Fourier transform.\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 182 −->\r\n\r\n<span style=color:#7f8c8d;>本页为书页 179，是 §III.3 的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Sample Points near $j/N$（靠近 $j/N$ 的采样点）\r\n\r\n在这种轻微扰动的情形下，我们可以把不等间距的采样点 $c_j$ 与等间距的分数 $j/N$（$0 \\le j < N$）一一对应起来。对于 $U$ 的每个元素，$A_{jk}$ 都是对 $F_{jk}$ 的一个修正：\r\n\r\n```math\r\nU_{jk} = A_{jk} F_{jk} \\qquad\\text{with}\\qquad A_{jk} = \\frac{e^{-2\\pi i k c_j}}{e^{-2\\pi i j k/N}} \\tag{3}\r\n```\r\n\r\n于是快速算法的关键一步，就是为这个矩阵 $A$ 找到足够接近的近似（一旦有了 $A$，乘以 $F$ 就很快）。Eckart-Young theorem（Eckart-Young 定理）会建议使用 $A$ 的 SVD。但 SVD 这一步比非均匀间距快速变换的其余部分都要昂贵得多。\r\n\r\n$A$ 是个有意思的矩阵：方程 (3) 中它的所有元素都具有 $e^{i\\theta}$ 的形式。若把 $e^{i\\theta}$ 用它自己的 power series（幂级数）$1 − i\\theta + \\cdots$ 替换，那么 $A$ 将从一个全 1 矩阵开始。本节其余部分通过处理 Sylvester equation（西尔维斯特方程）来寻找低秩近似；而这里 Townsend 走了一条不同的路线：直接去近似那些指数函数 $e^{-2\\pi i k c_j}$。\r\n\r\n关键想法是把这些矩阵元素各自的 Taylor series（泰勒级数）替换为 Chebyshev expansion（切比雪夫展开）。这反映了数值分析中一条极其重要的规则：Fourier series（傅里叶级数）适用于区间（如 $[-\\pi, \\pi]$）上的周期函数，Chebyshev series（切比雪夫级数）则适用于区间（如 $[-1, 1]$）上的非周期函数。\r\n\r\nFourier 与 Chebyshev 之间的联系是 $\\cos n\\theta = T_n(\\cos\\theta)$。于是 Fourier basis function（傅里叶基函数）$\\cos n\\theta$ 变成了 Chebyshev polynomial（切比雪夫多项式）$T_n(c)$。Chebyshev 基从 $T_0(c) = 1$ 与 $T_1(c) = c$ 开始，而 $T_2(c) = 2c^2 − 1$，因为 $\\cos 2\\theta = 2\\cos^2\\theta − 1$。所有这些 basis function（基函数）在 $[-1, 1]$ 上都有 $\\max |T_n(c)| = 1$，从 $c = −1$ 到 $c = 1$。\r\n\r\n重要的一点是，$T_n(c) = 0$ 的解（即 $T_n$ 的根）并不等间距。$\\cos n\\theta$ 的零点等间距，但换到 $c$ 变量中，这些点在边界 $-1$ 与 $1$ 附近变得彼此靠近。在这些点 $c = \\cos\\bigl(\\pi(k-\\tfrac{1}{2})/n\\bigr)$ 上作插值，远比等间距插值稳定。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理）：**</span> 这页回答了插值里一个反直觉的事实：**把点放得越均匀，插值反而越不稳定。** 它的第一性原理是一次变量替换 $c=\\cos\\theta$。等间距的 $\\theta$ 在单位圆上均匀，投影到直径 $c=\\cos\\theta$ 上时被导数 $dc/d\\theta=-\\sin\\theta$ 压缩；当 $\\theta$ 趋近 $0$ 或 $\\pi$ 时 $\\sin\\theta\\to 0$，同样的角度间隔在 $c$ 轴上被压成很窄的间距。于是节点密度正比于 $1/\\sqrt{1-c^2}$——这是反正弦分布，中间稀、两端密。它是几何的产物，不是经验法则，所以 $T_n$ 的根（也叫 Chebyshev-Gauss 节点）天然就带这个密度。\r\n>\r\n> **补机制：密度只决定「候选」，稳定性由 Lebesgue 常数裁决。** 插值算子 $\\Pi_n$ 把 $f$ 映成它在节点上的插值多项式。$\\Pi_n$ 在最大范数下是有界线性算子，它的算子范数就是 Lebesgue 常数 $\\Lambda_n=\\max_{c\\in[-1,1]}\\sum_{k=0}^{n}\\lvert l_k(c)\\rvert$，$l_k$ 是 Lagrange 基函数。它精确度量了「节点上的误差被放大多少倍」。由此得到误差界 $\\lVert f-\\Pi_nf\\rVert_\\infty\\le(1+\\Lambda_n)\\min_{p\\in\\mathcal{P}_n}\\lVert f-p\\rVert_\\infty$：即使最佳逼近误差趋于零，只要 $\\Lambda_n$ 发散，插值误差照样爆炸。关键点是 $\\Lambda_n$ 只由节点位置决定，与 $f$ 无关——这就是为什么「节点放哪儿」是一个必须从第一性原理解决的问题，而不能靠试。等距节点的 $\\Lambda_n$ 随 $n$ 指数增长，Chebyshev 节点只按 $\\ln n$ 增长，所以「越均匀越不稳定」不是巧合，而是 $\\Lambda_n$ 的增长率被换掉了。\r\n>\r\n> **补验算：$n=5$ 的两组数。** 先看节点。$T_5$ 的根为 $c_k=\\cos\\frac{(2k+1)\\pi}{10}$，即约 $\\pm0.9511,\\ \\pm0.5878,\\ 0$。端点间距 $1-0.9511\\approx0.049$，中心间距 $0.5878-0\\approx0.588$，相差约 $12$ 倍——正好与权重 $1/\\sqrt{1-c^2}$（端点为 $3.2$，中心为 $1$）同向，密度公式不是口号。再看稳定性的两个端点：等距节点的 $\\Lambda_n$ 大致按 $2^n/(n\\ln n)$ 量级增长，$n=20$ 时约 $10^4$，意味着节点值上 $10^{-16}$ 的舍入会被放大成 $10^{-12}$；而 Chebyshev 节点在 $n=5$ 时 $\\Lambda_5\\approx1.4$（在节点间取最大，如 $c\\approx0.77$ 处 $\\sum_k\\lvert l_k\\rvert$ 约为 $1.4$），$n$ 增大也只是缓慢上升。同一个 $n=5$，一边 $1.4$、一边随 $n$ 指数翻倍，差距就是这条注要讲的全部内容。\r\n>\r\n> **为什么是 Chebyshev，而不是「好用的启发式」。** 有一个干净的等价：使 $\\sum_k\\lvert l_k(c)\\rvert$ 的最大值最小的节点，恰好是使首一多项式 $\\prod_k(c-c_k)$ 的最大模最小的节点；而后者由 Chebyshev 多项式取到极小值 $2^{-n}$。所以 $T_n$ 的根不是被挑中的，而是被最优化问题解出来的，与上面那条压缩几何互为印证。这是 Chebyshev 交错定理的同族结果：极值问题的最优解由等波纹条件刻画。\r\n>\r\n> **命名模板：「几何压缩加最坏放大检验法」。** 先用 $c=\\cos\\theta$ 把均匀角间隔压缩成端点密的反正弦密度，得到候选节点；再用 $\\Lambda_n=\\max_c\\sum_k\\lvert l_k(c)\\rvert$ 检验这一布局的最坏放大，两者都过才收下节点分布。\r\n>\r\n> **跨课程连接。** 6.042J 离散数学里「最坏情况界由结构性参数决定」的推理与这里同构：那里的尾部概率由 Chernoff 界控制，这里的放大由 $\\Lambda_n$ 控制，连接路径都是「先把算子范数或矩母函数算出来，再代入误差预算」，区别在于 6.042J 的对象是带概率测度的随机变量，给出的是尾部概率，而这里用的是最大范数、给出的是确定性最坏放大，没有任何概率假设。CSAPP 那边补上落地一环：数学上 $n$ 增大可使最佳逼近误差减小，但节点矩阵（Vandermonde）在等距节点下条件数也指数增长，双精度只有约 $16$ 位有效数字，于是「范数下可忽略的量」在浮点下未必可忽略；这正是要用上溢/舍入与有效位来读同一现象的地方。在学的凸优化（Boyd）里，$A^TA$ 的谱条件数决定了求解精度的上界，与 $\\Lambda_n$ 一样属于「问题本身的病态度」，区别是那里谈的是线性方程组解的条件数，这里谈的是插值算子本身的条件数。\r\n\r\n> 用 $n=10$ 验算实际间距。节点 $c_k=\\cos\\bigl(\\pi(k-\\frac{1}{2})/10\\bigr)$：靠右端，$c_1=\\cos(0.15708)\\approx 0.98769$、$c_2=\\cos(0.47124)\\approx 0.89101$，间距约 $0.0967$；靠中央，$c_5=\\cos(1.41372)\\approx 0.15643$、$c_6=\\cos(1.72788)\\approx −0.15643$，间距约 $0.3129$。两端间距只有中央的三分之一左右，且 $n$ 越大差距越悬殊（局部间距约为 $\\frac{\\pi}{n}\\sin\\theta$）。边界附近被分配了更多节点，用来抵抗端点处最容易发散的多项式振荡（Runge 现象的爆发点恰在端点附近）。\r\n\r\n> 代价与收益要对读。收益是稳定的插值算子；代价是插值误差里多出 $\\max|T_n|=1$ 这个因子——所有基函数在 $[-1,1]$ 上的幅度都被压到不超过 $1$，系数因此不会像单项式基 $1,c,c^2,\\dots$ 那样在端点爆炸，这正是「等波动」的字面含义：$T_n$ 在区间内取到 $\\pm1$ 共 $n+1$ 次，把误差均匀摊开而不是挤在一处。一个可对照的量化指标是 Lebesgue 常数 $\\Lambda_n$：等间距节点的 $\\Lambda_n$ 随 $n$ 指数增长（这就是 Runge 现象与龙格函数的定量根源），Chebyshev 节点只按 $\\frac{2}{\\pi}\\ln n+O(1)$ 增长（$n=10$ 时约 $1.47$）。插值误差大致被 $\\Lambda_n$ 乘以最佳逼近误差控制，所以「指数对对数」就是「不能用对能用」的分界，也解释了 chebfun.org 为什么敢把一个函数直接表示成高次切比雪夫级数并默认返回：它的稳定性预算够，次数由代码自动选取。\r\n\r\n> 与实分析的连接点在收敛模式。切比雪夫展开与傅里叶级数的字典是 $\\cos n\\theta=T_n(\\cos\\theta)$，于是区间 $[-1,1]$ 上非周期函数的逼近问题，被精确翻译成 $[-\\pi,\\pi]$ 上**偶**周期函数的逼近问题——不是任意周期函数，必须是偶函数，因为 $c=\\cos\\theta$ 只覆盖 $\\theta$ 的偶对称部分。实分析课上关于逐点收敛与一致收敛的区分在这里是可用的：切比雪夫系数 $a_n$ 由 $f$ 在复平面上包含 $[-1,1]$ 的某个 Bernstein 椭圆内的解析性决定，椭圆越大衰减越快，$L^{\\infty}$ 误差由 $|a_{n+1}|+|a_{n+2}|+\\cdots$ 控制，而误差要在整段区间上一致地小，靠的是 $\\max|T_n|=1$ 提供的等波动性，而不是某一点的表现。一句话总结：**傅里叶级数是换到角度坐标后看周期函数，切比雪夫展开是同一个换元落到实轴区间后的形式**——先有变量替换，后有基函数。\r\n\r\n高度发达的计算系统 chebfun.org 就建立在 Chebyshev polynomials（切比雪夫多项式）之上（适用于一维或多维的函数）。它算出一个非常接近 $f(c)$ 的多项式；随后对函数的一切运算，都以有限 Chebyshev series（切比雪夫级数）的形式产生新的多项式。达到高精度所需的次数由 chebfun 的代码自动选择。\r\n\r\nTownsend 对矩阵的这种处理方式，使 Ruiz-Antolin 与 Townsend 证明了 $A$ 具有 low effective rank（低有效秩）——即它能被一个低秩矩阵很好地逼近（这里「有效」二字指前 $r$ 个奇异值之外的能量小到可忽略，而 $A$ 的精确秩仍可能是满的）。他们的论文为 nonuniform Fourier transform（非均匀傅里叶变换）提供了非常高效的代码。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.3, p.179</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 10296,
+            "outputTokens": 9608,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 10296,
+              "outputTokens": 9608,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 12475,
+          "contextWindow": 1000000,
+          "pressureTokens": 13752,
+          "sampledSurfaceTokens": 6832
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5272,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 5643,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11331
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148177007,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_221]\nIV.2. Shift Matrices and Circulant Matrices                                219\n\n**Multiplication and Convolution of Functions**\n\n**If** \\(f(x) = \\sum c_k e^{ikx}\\) **and** \\(g(x) = \\sum d_m e^{imx}\\), **what are the Fourier coefficients of** \\(f(x)g(x)\\)? We are multiplying the \\(2\\pi\\)-periodic functions \\(f\\) and \\(g\\).\n\nThe multiplication \\(fg\\) is in \\(x\\)-space. By the convolution rule, we expect to convolve \\(c*d\\) in frequency space. These are periodic functions \\(f\\) and \\(g\\) (\\(-\\pi \\le x \\le \\pi\\)) and their Fourier series are infinite (\\(k = 0, \\pm 1, \\pm 2, \\dots\\)). So cyclic convolution is gone and we are multiplying two infinite Fourier series :\n\n\\[\nf(x)g(x) = \\left( \\sum_{k=-\\infty}^{\\infty} c_k e^{ikx} \\right) \\left( \\sum_{m=-\\infty}^{\\infty} d_m e^{imx} \\right) = \\sum_{n=-\\infty}^{\\infty} h_n e^{inx}. \\tag{19}\n\\]\n\nWhen does \\(e^{ikx}\\) times \\(e^{imx}\\) produce \\(e^{inx}\\)? The requirement is \\(k+m=n\\).\n\n> The coefficient \\(h_n\\) combines all products \\(c_k d_m\\) with \\(k+m=n\\). Then \\(m = n - k\\):\n> \\[\n> h_n = \\sum_{k=-\\infty}^{\\infty} c_k d_{n-k} \\text{ is convolution } h = c*d \\text{ for infinite vectors.} \\tag{20}\n> \\]\n\nNext we multiply coefficients \\(c_k d_k\\) in \\(k\\)-space. So we convolve \\(f*g\\) in \\(x\\)-space !\n\n> **Convolution of**\n> **\\(2\\pi\\)-periodic functions** \\quad \\((f*g)(x) = \\int_{t=-\\pi}^{\\pi} f(t)g(x-t)dt\\) \\tag{21}\n>\n> **Convolution rule**\n> **for periodic functions** \\quad The Fourier coefficients of \\(f*g\\) are \\(2\\pi c_k d_k\\) \\tag{22}\n\nTo see that \\(f*g = g*f\\) in equation (21), change variables to \\(T = x - t\\) and \\(t = x - T\\).\n\n**The delta function** \\(\\delta(x)\\) **is the identity for convolution—like** \\(I\\) **for multiplication:**\n\\[\n(\\delta * g)(x) = \\int \\delta(t)g(x-t)dt = g(x) \\quad \\text{and} \\quad (1, 0, 0) \\circledast (a, b, c) = (a, b, c).\n\\]\n\n**Cross-correlation and Autocorrelation**\n\nCross-correlation is like convolution, but an important difference is indicated here by \\(**\\)\n\n\\[\n\\text{[Not } n-k\\text{]} \\quad h_n = \\sum_k c_k d_{n+k} \\text{ is cross-correlation } h = c**d \\text{ for vectors} \\tag{23}\n\\]\n\n\\[\n(f**g)(x) = \\int f(t)g(x+t)dt = f(x)*g(-x) \\text{ is cross-correlation for functions} \\tag{24}\n\\]\n\nWe are shifting the vector \\(d\\) and taking its dot products with \\(c\\). We are sliding the function \\(g\\) along the \\(x\\)-axis and taking its inner products with \\(f\\). These dot products will be largest when the vectors \\(c, d\\) and the functions \\(f, g\\) are best aligned.\nIt is valuable to have this simple way to find the best alignment.\n\n### [原文 page_222]\n**220** \\hfill **Special Matrices**\n\nThe special cases \\(c = d\\) and \\(f = g\\) are the most important and certainly the best aligned. In those cases, the cross-correlations \\(c * * c\\) and \\(f * * f\\) are called **autocorrelations**.\nConvolution and cross-correlation correspond perfectly to matrix multiplications !\n\\(c * d\\) gives the entries in \\(CD\\) (infinite constant-diagonal matrices)\n\\(c \\circledast d\\) gives the entries in \\(CD\\) (finite circulant matrices)\n\\(c * * d\\) gives the entries in \\(C^T D\\) and \\(a * * a\\) gives the entries in \\(A^T A\\)\n\n**Problem Set IV.2**\n\n**1** Find \\(c * d\\) and \\(c \\circledast d\\) for \\(c = (2, 1, 3)\\) and \\(d = (3, 1, 2)\\).\n\n**2** Prove the convolution rule for \\(N = 3\\): The \\(k\\)th component of \\(F(c \\circledast d)\\) equals \\((Fc)_k\\) times \\((Fd)_k\\). Start from \\((c \\circledast d)_p = c_0d_p + c_1d_{p-1} + c_2d_{p-2}\\).\n\\[\n\\text{Prove} \\quad \\sum_{p=0}^{2} w^{kp}(c \\circledast d)_p = \\left( \\sum_{m=0}^{2} w^{km}c_m \\right) \\left( \\sum_{n=0}^{2} w^{kn}d_n \\right) \\quad \\text{with } w^3 = 1\n\\]\n\n**3** If \\(c * d = e\\), why is \\((\\sum c_i)(\\sum d_i) = (\\sum e_i)\\)? Why was our check successful?\n\\((1 + 2 + 3)(5 + 0 + 4) = (6)(9) = 54 = 5 + 10 + 19 + 8 + 12\\).\n\n**4** Any two circulant matrices of the same size commute: \\(CD = DC\\). They have the same eigenvectors \\(q_k\\) (the columns of the Fourier matrix \\(F\\)). Show that the eigenvalues \\(\\lambda_k(CD)\\) are equal to \\(\\lambda_k(C)\\) times \\(\\lambda_k(D)\\).\n\n**5** What are the eigenvalues of the 4 by 4 circulant \\(C = I + P + P^2 + P^3\\)? Connect those eigenvalues to the discrete transform \\(Fc\\) for \\(c = (1, 1, 1, 1)\\). For which three real or complex numbers \\(z\\) is \\(1 + z + z^2 + z^3 = 0\\)?\n\n**6** A circulant matrix \\(C\\) is invertible when the vector \\(Fc\\) has no zeros. Connect that true statement to this test on the frequency response:\n\\[\nC(e^{i\\theta}) = \\sum_{0}^{N-1} c_j e^{ij\\theta} \\neq 0 \\quad \\text{at the } N \\text{ points } \\theta = 2\\pi/N, 4\\pi/N, \\ldots, 2\\pi.\n\\]\n\n**7** How would you solve for \\(d\\) in a convolution equation \\(c * d = e\\) or \\(c \\circledast d = e\\)? With matrices this is \\(CD = E\\) and then \\(D = C^{-1}E\\). But deconvolution is often faster using the convolution rule \\((Fc).*(Fd) = (Fe)\\). Then \\(Fd = ??\\)\n\n**8** The \\(n\\)th component of the autocorrelation \\(c * * c\\) is the dot product of the vectors \\(c\\) and \\(S^n c\\) (the vector \\(c\\) shifted by \\(n\\) places). Why is \\(c^T S^n c \\le c^T c\\)? Then the largest component of \\(c * * c\\) is the zeroth component \\(c^T c\\) (with no shift).\n\n【当前译文】\n@@PAGE:221@@\n<!-- page 221 -->\n> <span style=color:#7f8c8d;>本页为书页 219，属 §IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）的正文收尾（函数相乘、卷积、互相关与自相关）；页眉与印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.2, p.219</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中的 `歹`、`9` 均为函数 $f$ 或 $g$ 之误，`乥` 为求和号 $\\Sigma$，`儿`、`九` 为 Fourier 系数 $f_n$，`丌` 为 $\\pi$，`一` 为减号或上划线；各公式已按数学语境重建，函数记号统一为 $f$、$g$。\n### Multiplication and Convolution of Functions（函数相乘与卷积）\n若 $f(c) = \\sum_k c_k e^{ikc}$、$g(c) = \\sum_m d_m e^{imc}$，那么 $f(c)\\,g(c)$ 的 Fourier coefficients（傅里叶系数）是什么？\n这里我们是在把两个 $2\\pi$-periodic functions（以 $2\\pi$ 为周期的函数）$f$ 与 $g$ 相乘。\n乘法 $fg$ 发生在 $x$-space（$x$ 空间）之中。\n按照 convolution rule（卷积法则），我们预期要在 frequency space（频率空间）中对 $c \\ast d$ 做卷积。\n$f$ 与 $g$ 都是周期函数（$-\\pi \\le x \\le \\pi$），它们的 Fourier series（傅里叶级数）都是无穷的（$k = 0, \\pm 1, \\pm 2, \\ldots$）。\n于是 cyclic convolution（循环卷积）不再出现，我们是在把两条无穷 Fourier series 相乘：\n```math\nf(x)\\,g(x) = \\left(\\sum_{k=-\\infty}^{\\infty} c_k e^{ikx}\\right)\\left(\\sum_{m=-\\infty}^{\\infty} d_m e^{imx}\\right) = \\sum_{n=-\\infty}^{\\infty} h_n e^{inx} .ht)\n```\n当 $e^{ikx}$ 乘以 $e^{imx}$ 时，何时产生 $e^{inx}$？\n要求是 $k + m = n$。\n```math\nk + m = n \\tag{19}\n```\n系数 $h_n$ 把满足 $k + m = n$ 的那些乘积 $c_k d_m$ 组合起来：于是 $m = n - k$：\n```math\nh_n = \\sum_{k=-\\infty}^{\\infty} c_k d_{n-k} \\tag{20}\n```\n其中 $c_k d_{n-k}$ 正是无穷向量 $c$、$d$ 的 convolution（卷积）$h = c \\ast d$。\n接下来，我们在 $k$-space（$k$ 空间）中相乘系数 $c_k d_k$。\n所以反过来看，我们是在 $x$-space 中对 $f \\ast g$ 做卷积！\n两个 $2\\pi$ 周期函数的 convolution（卷积）：\n```math\n(f \\ast g)(x) = \\int_{t=-\\pi}^{\\pi} f(t)\\,g(x-t)\\,dt \\tag{21}\n```\n周期函数的 convolution rule（卷积法则）：$f \\ast g$ 的 Fourier coefficients 等于 $2\\pi c_k d_k$。\n```math\n\\widehat{(f \\ast g)}_k = 2\\pi\\, c_k d_k \\tag{22}\n```\n要在 (21) 式中看出 $f \\ast g = g \\ast f$，只需作变量替换 $T = x - t$（即 $t = x - T$）。\ndelta function（$\\delta$ 函数）是卷积的恒等元——就像乘法中的 $I$：\n```math\n(\\delta \\ast g)(x) = \\int \\delta(t)\\,g(x-t)\\,dt = g(x) \\qquad \\text{and} \\qquad (1,0,0) \\circledast (a,b,c) = (a,b,c) .\n```\n### Cross-correlation and Autocorrelation（互相关与自相关）\n这里，cross-correlation（互相关）与 convolution（卷积）很相似，但一个重要的差别被记号 $\\ast\\ast$ 标了出来。\n对向量而言\n```math\n[\\text{Not } n-k]\\qquad h_n = \\sum_k c_k d_{n+k} \\tag{23}\n```\n这给出向量的 cross-correlation（互相关）$h = c \\ast\\ast d$。\n对函数而言\n```math\n(f \\ast\\ast g)(x) = \\int f(t)\\,g(x+t)\\,dt = f(x) \\ast g(-x) \\tag{24}\n```\n我们是在平移向量 $d$，再把它与 $c$ 逐项做内积。\n我们是在把函数 $g$ 沿 $c$ 轴滑动，再把它与 $f$ 做内积。\n当向量 $c$、$d$（以及函数 $f$、$g$）彼此对齐时，这些内积取到最大值。\n拥有这样一个找出最佳对齐方式的简单办法，是很有价值的。\n\n@@PAGE:222@@\n<!-- page 222 -->\n> <span style=color:#7f8c8d;>本页为书页 220，属 §IV.2 正文收尾与 Problem Set IV.2（习题集 IV.2）；页眉「Special Matrices」与印页码为重复元素，不译、不收录。</span>\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `CTD`、`AT`、`Sn`、`C¯IE` 分别按语境重建为 $C^{T} d$、$A^{T} g$、$S_n$、$C^{-1}e$，`c ． d` 为循环卷积 $c \\cdot d$；页边题号的 OCR 输出夹带 `0`、`9` 噪声，题号依正文顺序排定。\n特例 $c = d$ 与 $f = g$ 最为重要，而且无疑是对齐得最好的。\n在这两种情形下，cross-correlation（互相关）$c \\ast\\ast c$ 与 $f \\ast\\ast f$ 就称为 autocorrelation（自相关）。\nconvolution（卷积）与 cross-correlation（互相关）与矩阵乘法完全对应！\n- $c \\ast d$ 给出 $Cd$ 中的各个元素（infinite constant-diagonal matrices，无穷常数对角矩阵）\n- $c \\circledast d$ 给出 $CD$ 中的各个元素（finite circulant matrices，有限循环矩阵）\n- $c \\ast\\ast d$ 给出 $C^{T}D$ 中的各个元素，而 $a \\ast\\ast a$ 给出 $A^{T}A$ 中的各个元素\n---\n\n> <span style=color:#7f8c8d;>本页（书页见页首说明）原书为 Problem Set IV.2，共 8 道习题。按技能**铁律 9**（非必要习题不收录），此处不保留习题原文；仅保留被正文引用的第 1 题的英文原题。</span>\n\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Find $c \\ast d$ and $c \\cdot d$ for $c = (2,1,3)$ and $d = (3,1,2)$.\n\n现在输出修订后的译文全文（从 `@@PAGE:221@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4005,
+            "outputTokens": 3639,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4005,
+              "outputTokens": 3639,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 7340,
+          "contextWindow": 1000000,
+          "pressureTokens": 7845,
+          "sampledSurfaceTokens": 4202
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2642,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3138,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6196
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

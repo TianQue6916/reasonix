@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@local/dsh-plugin-goat-panel':
+        specifier: file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel
+        version: file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel
+
+packages:
+
+  '@local/dsh-plugin-goat-panel@file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel':
+    resolution: {directory: D:/Toolbox/goat-gateway/dsh-plugin-goat-panel, type: directory}
+
+snapshots:
+
+  '@local/dsh-plugin-goat-panel@file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel': {}

@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790130586129,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 18,
+        "val": "扩写译者注为学术长文"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**扩写专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注各自扩写到 **800-1200 个汉字**（`$...$` 公式、```math 围栏、引用不计入）。\r\n\r\n【扩写方法（照此补足）】\r\n− 补**机制解释**：先回答这一段/这个定理在解决什么设计问题，再从第一性原理展开为什么必须这样做\r\n− 补**一个具体例子或验算**：代入具体数值、小矩阵（如 $2\\times2$）、或两步手算，让结论可复算\r\n− 补**一条跨课程连接**：精确到「课程名 + 概念 + 连接路径 + 区别」，可用锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− 必要时给一个**命名模板**（如谱夹逼法能量检验法零空间吸收法）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 原有 `$...$`、```math 围栏、反斜杠命令**一字不改原样保留**；严禁把 `$\\lambda$` 写成 lambda、把 `$A$` 写成 A\r\n2. 🚫 不得删除原有数学内容、公式、例子、跨课程连接——你只做加法\r\n3. 禁止 Unicode 上下标；禁止 `$$`\r\n4. 保留 `> ` blockquote 前缀（每条注整体是一个引用块，续行也要带 `> `）\r\n5. `@@LOC@@` 行必须逐字原样保留\r\n\r\n【输出格式（🚨 结构化，逐字照此）】\r\n@@NOTE@@\r\n@@LOC@@<逐字原样保留>\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（类型）：**</span> 注的正文……（续行以 `> ` 开头）\r\n@@END@@\r\n\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待扩写的注 ===========================\r\n@@NOTE@@\r\n@@LOC@@译者注（为什么“一列乘一行”能还原整个矩阵乘积）： 这一段的\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（为什么“一列乘一行”能还原整个矩阵乘积）：**</span> 这一段的全部内容其实只是矩阵乘法的一种写法，但它值得慢慢拆开，因为整章的低秩思想都从这里长出来。设 $A$ 是 $m\\times n$ 矩阵，$B$ 是 $n\\times p$ 矩阵，把 $A$ 按列分块写成 $A=[a_1\\ \\cdots\\ a_n]$，把 $B$ 按行分块写成 $B=[b_1^{T};\\ \\cdots;\\ b_n^{T}]$（这里 $b_k^{T}$ 表示 $B$ 的第 $k$ 行，写成行向量）。标准定义 $(AB)_{ij}=\\sum_{k}A_{ik}B_{kj}$ 可以逐项重排为\r\n@@END@@\r\n\r\n@@NOTE@@\r\n@@LOC@@译者注（“选择列”与“混合列”是两种不同的随机化）： 这一节\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（“选择列”与“混合列”是两种不同的随机化）：**</span> 这一节只有两段话，却包含一个容易被跳过的重要对照。第 1 小节的 $S$ 每列只有一个非零元，$AS$ 做的事情是**挑出**若干整列，列空间 $C(AS)$ 是 $C(A)$ 的一个**子空间**——它能张成的方向绝不会超出 $A$ 原有的列方向。第 2 小节的 $S$ 每列允许有多个非零元（例如各元素独立取 $\\pm1$ 再除以 $\\sqrt{s}$ 的随机矩阵），$AS$ 做的事情是**线性组合**原有的列：$AS$ 的每一列都是 $A$ 若干列的混合，于是 $C(AS)$ 一般**不再是** $C(A)$ 的子空间，而是一个“旋转”过的低维子空间，它把 $A$ 的列空间压缩到更低维度，同时尽量不丢掉任何方向的能量。这个区别就是“随机采样（random sampling）”与“随机投影（random projections）”的分水岭，也是本页标题从“1.”过渡到“2.”的原因。\r\n@@END@@"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 18,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 18,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 18,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 1700,
+            "outputTokens": 4176,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 1700,
+              "outputTokens": 4176,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 18,
+        "val": {
+          "surfaceTokens": 4217,
+          "contextWindow": 1000000,
+          "pressureTokens": 4516,
+          "sampledSurfaceTokens": 2055
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 18,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 495,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 2162,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 3073
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 18,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 17
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 18,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 18,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 18,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

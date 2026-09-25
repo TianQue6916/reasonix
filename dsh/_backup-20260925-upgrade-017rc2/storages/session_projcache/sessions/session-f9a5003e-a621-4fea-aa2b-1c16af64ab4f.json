@@ -1,0 +1,231 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128827882,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 36,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 36,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 换言之，$-1$ 不是 $AB$ 的特征值，恰好当 $-1$ 不是 $BA$ 的特征值。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 这个$AB$ 与 $BA$ 拥有相同非零特征值的结论，证明只有一行，但里面的每句话都不能省。设 $BAx=\\lambda x$，$x\\neq0$，$\\lambda\\neq0$；两边左乘 $A$ 得 $A(BAx)=(AB)(Ax)=\\lambda(Ax)$。要宣称 $Ax$ 是 $AB$ 关于 $\\lambda$ 的特征向量，必须补一句 $Ax\\neq0$：若 $Ax=0$，则 $\\lambda x=BAx=B0=0$，与 $\\lambda\\neq0$、$x\\neq0$ 矛盾。于是映射 $x\\mapsto Ax$ 把 $BA$ 的每个非零特征向量显式搬到 $AB$ 上，反向用 $x\\mapsto Bx$，两边一一配对，非零谱完全相同。维度差用零补上：$AB$ 是 $m\\times m$、$BA$ 是 $k\\times k$，$BA$ 比 $AB$ 多出（或少掉）$|m-k|$ 个零特征值。为什么非零三个字必须写？反例：$A=[\\,1\\ \\ 0\\,]$（$1\\times2$）、$B=\\binom{1}{0}$（$2\\times1$），则 $AB=[\\,1\\,]$ 的特征值是 $\\{1\\}$，而 $BA=\\begin{bmatrix}1&0\\\\0&0\\end{bmatrix}$ 的特征值是 $\\{1,0\\}$——非零部分都是 $\\{1\\}$，零的个数不同。把它命名为**谱搬运法**：证明两个不同尺寸的矩阵谱相同时，不要去展开 $\\det(AB-\\lambda I)$（那会把问题变复杂），而应显式构造一个把特征向量互相搬运的映射，并检查它不会把非零向量映成零（这一步就是零空间吸收法的对偶用法：零空间里不能有非零的 $x$ 被 $\\lambda\\neq0$ 的方程吸收）。跨课程连接（18.065 / part002 的 SVD）：取 $B=A^{T}$，$A^{T}A$ 与 $AA^{T}$ 的非零特征值同为 $\\sigma_i^{2}$，这就是 SVD 中左右奇异向量能共享同一组 $\\Sigma$ 的原因；也解释了 PCA 为什么既可以在协方差矩阵 $X^{T}X$（$n\\times n$，$n$ 为特征数）上做、也可以在 Gram 矩阵 $XX^{T}$（$m\\times m$，$m$ 为样本数）上做——两者非零谱相同，多出的那些零不携带信息，所以应当挑尺寸更小的那个来算。同一个事实还给出条件数的一个对称性：$\\kappa(A^{T}A)=\\sigma_1^{2}/\\sigma_n^{2}=\\kappa(AA^{T})$。本页对 (15) 式的推广（$AB$ 与 $BA$ 的非零特征值相同）在 §I.6 已经出现过一次雏形：由 $(I+B)Ax=0$ 推出 $(I+A)Bx=0$，靠的完全是同一种搬运。\r\n\r\n=== ANCHOR: 对一个 $1 \\times 1$ 矩阵 $A = t$，且 $dA/dt = 1$，我们就得到 $1/t$ 的导数为 $-1/t^2$。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 为什么导数公式是 $-A^{-1}\\dot A A^{-1}$ 而不是看似更自然的 $-\\dot A A^{-2}$？最快的推导不是套式 (11)，而是对恒等式 $AA^{-1}=I$ 两边直接求 $t$ 的导数（乘积法则对矩阵同样成立，但顺序不能乱）：$\\dot A A^{-1}+A\\,\\dot{A^{-1}}=0$，于是 $A\\dot{A^{-1}}=-\\dot A A^{-1}$，再左乘 $A^{-1}$ 得 $\\dot{A^{-1}}=-A^{-1}\\dot A A^{-1}$。这个推导顺便回答了为什么 $\\dot A$ 被夹在中间：一个 $A^{-1}$ 是从右边乘进来解出 $\\dot{A^{-1}}$ 的，另一个是从左边乘进来的，位置由矩阵乘法不可交换决定。三个验算：$n=1$、$A=t$ 时 $-\\frac1t\\cdot1\\cdot\\frac1t=-\\frac1{t^{2}}$；对角情形 $A=\\begin{bmatrix}t&0\\\\0&t^{2}\\end{bmatrix}$ 给出 $\\begin{bmatrix}-1/t^{2}&0\\\\0&-2/t^{3}\\end{bmatrix}$，与逐元素求导一致；非交换情形 $A=\\begin{bmatrix}1&t\\\\0&2\\end{bmatrix}$，$\\dot A=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$，$A^{-1}=\\begin{bmatrix}1&-t/2\\\\0&1/2\\end{bmatrix}$，正确的导数 $\\dot{A^{-1}}=\\begin{bmatrix}0&-1/2\\\\0&0\\end{bmatrix}$；而错误写法 $-\\dot A A^{-2}$ 会给出 $\\begin{bmatrix}0&-1/4\\\\0&0\\end{bmatrix}$——差了整整一倍，因为这里 $A\\dot A=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$ 而 $\\dot A A=\\begin{bmatrix}0&2\\\\0&0\\end{bmatrix}$，确实不可交换。模板命名为**首阶展开法**：要算 $f(A)$ 的导数，不必记公式，把 $f(A+\\Delta A)$ 展开到一阶、读出那个线性映射 $L(\\Delta A)$ 即可；对 $A^{-1}$ 用 $A+\\Delta A=A(I+A^{-1}\\Delta A)$ 得 $(I+A^{-1}\\Delta A)^{-1}A^{-1}\\approx(I-A^{-1}\\Delta A)A^{-1}$，一阶项立即现形。这个提逆、再用 $(I+X)^{-1}\\approx I-X$的手法在拟牛顿与卡尔曼增益的推导中会反复使用。与 part002 的条件数连起来：由 $\\|\\Delta A^{-1}\\|\\le\\|A^{-1}\\|^{2}\\|\\Delta A\\|$ 得 $\\frac{\\|\\Delta A^{-1}\\|}{\\|A^{-1}\\|}\\le\\kappa(A)\\frac{\\|\\Delta A\\|}{\\|A\\|}$，逆的导数算子范数恰好就是 $\\|A^{-1}\\|^{2}$，这就是条件数的来历。用 CSAPP 的浮点视角收尾：$1-v^{T}u$ 是一次**灾难性抵消**——若 $v^{T}u=1-10^{-8}$，double 约 16 位十进制有效位相减后只剩 8 位，$M^{-1}$ 的相对误差被放大到 $10^{8}$ 量级；奇异（$v^{T}u=1$）不是突变，而是这条误差放大曲线的极限。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 36,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 36,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 36,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 36,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 9823,
+            "outputTokens": 25039,
+            "cacheReadTokens": 60672,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 5,
+            "buckets": {
+              "uncachedInputTokens": 198,
+              "outputTokens": 5929,
+              "cacheReadTokens": 24832,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 36,
+        "val": {
+          "surfaceTokens": 17592,
+          "contextWindow": 1000000,
+          "pressureTokens": 25030,
+          "sampledSurfaceTokens": 14396
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 36,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1034,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1470,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 24,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 710,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 86,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 8262,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 1222,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 3196,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 16448
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 36,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 33,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 35
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 36,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 36,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 36,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 36,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

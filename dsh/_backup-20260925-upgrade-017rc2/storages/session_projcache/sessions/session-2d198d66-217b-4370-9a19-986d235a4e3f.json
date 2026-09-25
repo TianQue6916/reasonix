@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148584391,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_229]\nIV.3. The Kronecker Product $A \\otimes B$                                            227\n\n**Problem Set IV.3**\n\n**1**       A matrix person might prefer to see all $n$ eigenvectors of $A$ in an eigenvector matrix :\n$AX = X\\Lambda_A$. Similarly $BY = Y\\Lambda_B$. Then the Kronecker product $X \\otimes Y$ of size\n$nN$ is the eigenvector matrix for both $A \\otimes B$ and $A \\oplus B$ :\n\n$$(A \\otimes B)(X \\otimes Y) = (X \\otimes Y)(\\Lambda_A \\otimes \\Lambda_B) \\text{ and } (A \\oplus B)(X \\otimes Y) = (X \\otimes Y)(\\Lambda_A \\oplus \\Lambda_B).$$\n\nThe eigenvalues of $A \\otimes B$ are the $nN$ products $\\lambda_i\\mu_j$ (every $\\lambda$ *times* every $\\mu$).\nThe eigenvalues of $A \\oplus B$ are the $nN$ sums $\\lambda_i + \\mu_j$ (every $\\lambda$ *plus* every $\\mu$).\nIf $A$ and $B$ are $n$ by $n$, when is $A \\oplus B$ invertible ? What if (eigenvalue of $A$) =\n$-$ (eigenvalue of $B$) ? Find $2 \\times 2$ matrices so that $A \\oplus B$ has rank 3 and not rank 4.\n\n**2**       Prove : If $A$ and $B$ are symmetric positive definite, so are $A \\otimes B$ and $A \\oplus B$.\n\n**3**       Describe a permutation $P$ so that $P(A \\otimes B) = (B \\otimes A)P$. Do $A \\otimes B$ and $B \\otimes A$\nhave the same eigenvalues ?\n\n**4**       Suppose we want to compute $y = (F \\otimes G) x$ where $x = \\text{vec}(X)$. The matrix $F$ is\n$m$ by $n$ and $G$ is $p$ by $q$. The matrix $F \\otimes G$ is $mp$ by $nq$, the matrix $X$ is $q$ by $n$,\nthe vector $x$ is $nq$ by 1. Show that this code finds the correct $y = (F \\otimes G) x$ :\n\n$$Y = B \\otimes X \\otimes A^{\\mathrm{T}}$$\n$$y = \\text{reshape}(Y, mp, 1)$$\n\n**5**       Suppose we want to solve $(F \\otimes G) x = b$ when $F$ and $G$ are invertible matrices\n($n$ by $n$). Then $b$ and $x$ are $n^2$ by 1. Show that this is equivalent to computing\n\n$$X = G^{-1}B(F^{-1})^{\\mathrm{T}} \\text{ with } x = \\text{vec}(X) \\text{ and } b = \\text{vec}(B).$$\n\nIn reality those inverse matrices are never computed. Instead we solve two systems :\n\n$$\\text{Find } Z \\text{ from } GZ = B$$\n$$\\text{Find } X \\text{ from } XF^{\\mathrm{T}} = Z \\text{ or } FX^{\\mathrm{T}} = Z^{\\mathrm{T}}$$\n\nShow that the cost is now $O(n^3)$. The larger system $(F \\otimes G) x = b$ costs $O(n^6)$.\n\n**6**       What would an image look like if its pixels produced a Kronecker product $A \\otimes B$ ?\n\n**7**       How would you create a two-dimensional FFT ? For an $n$ by $n$ image, how many\noperations will your 2D Fast Fourier Transform need ?\n\n### [原文 page_230]\n**228**                                                                                           Special Matrices\n\n**IV.4  Sine and Cosine Transforms from Kronecker Sums**\n\nThis section of the book presents an outstanding example of a Kronecker sum $K = I \\otimes D + D \\otimes I$. The $1, -2, 1$ matrix $D$ approximates the second derivative $d^2/dx^2$ in one dimension (along a line). The Kronecker sum raises it to two dimensions (in a square). This big matrix $K$ of size $N^2$ approximates the Laplacian $\\partial^2/\\partial x^2 + \\partial^2/\\partial y^2$.\n\nFor Kronecker, all is normal—a very convenient way to create an important matrix $K$. The next steps make it practical to work with this large matrix. We are approximating Laplace's partial differential equation by $N^2$ difference equations:\n\n$$ \\text{Laplace} \\quad \\frac{\\partial^2 u}{\\partial x^2} + \\frac{\\partial^2 u}{\\partial y^2} = f(x, y) \\qquad \\text{Discrete Laplace} \\quad \\frac{1}{h^2} K U = F \\tag{1} $$\n\nThe $N^2$ components of $U$ will be close to the true $u(x, y)$ at the $N^2$ points $x = ph$, $y = qh$ inside a square grid. Here $p = 1$ to $N$ along a row of the grid and $q = 1$ to $N$ up a column, with $h = \\Delta x = \\Delta y =$ meshwidth of the grid.\n\nThe difficulty is the size of the matrix $K$. The solution to this difficulty is to know and use the $N^2$ eigenvectors of this matrix.\n\nIt is exceptional that we know those eigenvectors. It is even more exceptional (this is virtually the only important example we have seen) that linear equations $KU = h^2 F$ are quickly solved by writing $h^2 F$ and $U$ as combinations of the eigenvectors $v_i$ of $K$ :\n\n$$ h^2 F = b_1 v_1 + b_2 v_2 + \\cdots \\qquad U = \\frac{b_1}{\\lambda_1} v_1 + \\frac{b_2}{\\lambda_2} v_2 + \\cdots \\quad \\text{Then } KU = h^2 F. \\tag{2} $$\n\nWhen $K$ multiplies $U$, the $\\lambda$'s cancel because each $K v_i = \\lambda_i v_i$. So $KU$ matches $h^2 F$.\n\nThe eigenvectors $u_j$ of the one-dimensional $1, -2, 1$ matrix $D$ happen to be discrete sine vectors. They are sample points taken from the eigenfunctions $\\sin j\\pi x$ of $d^2/dx^2$ :\n\n$$ \\begin{matrix} \\textbf{Continuous} \\\\ \\textbf{and} \\\\ \\textbf{Discrete} \\end{matrix} \\qquad \\frac{d^2}{dx^2} \\sin j\\pi x = -j^2\\pi^2 \\sin j\\pi x \\qquad D u_j = D \\begin{bmatrix} \\sin j\\pi h/(N + 1) \\\\ \\vdots \\\\ \\sin j\\pi N h/(N + 1) \\end{bmatrix} = \\Lambda_j u_j \\tag{3} $$\n\nEigenvectors $v$ of the large matrix $K = I \\otimes D + D \\otimes I$ were found in the Kronecker section IV.3. Eigenvectors of $K$ are Kronecker products $v_{jk} = u_j \\otimes u_k$ of the sine eigenvectors of $D$. This is true in the continuous case (for eigenfunctions). It remains true in the discrete case (for eigenvectors). The components of $v_{jk}$ are components of $u_j$ times components of $u_k$ :\n\n$$ \\begin{matrix} \\textbf{Continuous} \\\\ \\textbf{eigenfunctions} \\end{matrix} \\quad v_{jk}(x, y) = (\\sin j\\pi x)(\\sin k\\pi y) \\qquad \\begin{matrix} \\textbf{Discrete} \\\\ \\textbf{eigenvectors} \\end{matrix} \\quad v_{jk}(p, q) = \\left(\\sin\\frac{\\pi jp}{N + 1}\\right)\\left(\\sin\\frac{\\pi kq}{N + 1}\\right) $$\n\nThe final step to success is the most crucial of all. We can compute with these eigenvectors using the Fast Fourier Transform. The Fourier matrix in Section IV.1 had complex exponentials. Its real part has cosines (which enter the Discrete Cosine Transform).\n\n【当前译文】\n@@PAGE:229@@\n<!-- page 229 -->\n> <span style=color:#7f8c8d;>本页为书页 227，属 §IV.3 The Kronecker Product（克罗内克积）的习题页 Problem Set IV.3；题干保留英文原文，题号与原文一致，OCR 乱码按数学语境修正为 LaTeX；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `蓋`、`月`、`风` 均为矩阵 $A$，`．`（原 OCR 读作 `@`）为 Kronecker product（克罗内克积）记号 $\\otimes$，`丫` 为 $Y$，`入` 为 $\\lambda$，`闺` 为 $\\mu$，`什 om`、`0 “` 分别为 from、of，`（ 尹 ． G)` 中的 `尹` 为 $F$，`皿` 为 $N$，`0 3 ）`、`0 6 ）` 为 $O(m^3+n^3)$、$O((mn)^3)$ 的残缺写法；代码行中混入的噪声记号按 MATLAB 语境重建。\n\n> <span style=color:#7f8c8d;>本页（书页见页首说明）原书为 Problem Set IV.3，共 8 道习题。按技能**铁律 9**（非必要习题不收录），此处不保留习题原文；仅保留被正文引用的第 6 题的英文原题。</span>\n\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Suppose we want to compute $y = (F \\otimes G)x$ where $x = \\mathrm{vec}(X)$. The matrix $F$ is $m$ by $m$ and $G$ is $n$ by $n$. The matrix $F \\otimes G$ is $mn$ by $mn$, the matrix $X$ is $n$ by $m$ (so $x$ is $mn$ by 1). Show that this code finds the correct $y = (F \\otimes G)x$:\n```math\nY = G\\, X\\, F^{\\mathrm{T}}\n\\qquad\ny = \\mathrm{reshape}(Y,\\ mp,\\ 1)\n```\n\n@@PAGE:230@@\n<!-- page 230 -->\n> <span style=color:#7f8c8d;>本页为书页 228，属 §IV.4 Sine and Cosine Transforms from Kronecker Sums（由克罗内克和得到的正弦与余弦变换）的开篇；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `．` 为 Kronecker 积记号 $\\otimes$，`刀` 为二阶差分矩阵 $D$（有时为维数 $N$），`IC` 为大矩阵 $K$，`鬱`、`屿 处` 为特征向量 $\\varphi$ 与 $\\varphi_{jk}$，`尹` 为右端项 $F$，`什 om` 为 from，`0 “` 为 of，`九`、`力` 为 $h$，`山 culty` 为 difficulty，`OW` 为 know，`Ä`、`入` 为特征值 $\\lambda$，`Un` 为 in，`rnafrix`、`rna }` 为 matrix；方程 $(4)$ 的编号依上下文补齐。\n<span style=color:#2471a3;>**[section]**</span>\n## （首节）Sine and Cosine Transforms from Kronecker Sums（由克罗内克和得到的正弦与余弦变换）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.4, p.228</span>\n本节展示了本书中一个关于 Kronecker sum（克罗内克和）$K = I \\otimes D + D \\otimes I$ 的极佳例子。\n这里的 $1, -2, 1$ 矩阵 $D$ 在一维情形（沿一条直线）逼近二阶导数 $d^2/dx^2$。\n而 Kronecker 和把它提升到二维（在一个正方形上）。\n这个大小为 $N^2$ 的大矩阵 $K$ 逼近 Laplacian（拉普拉斯算子）$\\partial^2/\\partial x^2 + \\partial^2/\\partial y^2$。\n对于 Kronecker 而言，一切都规整自然——这是一种构造重要矩阵 $K$ 的极为方便的途径。\n接下来的几步使这个大型矩阵变得便于实际使用。\n我们正在用 $N^2$ 个差分方程来逼近 Laplace's partial differential equation（拉普拉斯偏微分方程）：\n```math\n\\begin{aligned}\n&\\text{Laplace}\\qquad \\frac{\\partial^2 u}{\\partial x^2} + \\frac{\\partial^2 u}{\\partial y^2} = f(x,y) \\qquad\\qquad \\text{Discrete Laplace}\\qquad \\frac{1}{h^2}KU = F\n\\end{aligned} \\tag{1}\n```\n$U$ 的 $N^2$ 个分量将接近真实的 $u(x,y)$ 在正方形网格内部 $N^2$ 个点 $x = ph$、$y = qh$ 处的值。\n这里 $p = 1$ 到 $N$ 沿网格的一行取值，$q = 1$ 到 $N$ 沿网格的一列取值，而 $h = \\Delta x = \\Delta y$ 是网格的 meshwidth（网格步长）。\n困难之处在于矩阵的大小。\n解决这一困难的办法，是知道并使用这个矩阵的 $N^2$ 个 eigenvector（特征向量）。\n我们能知道这些特征向量，这本身已属例外。\n更为例外的是（这几乎是我们所见过的唯一一个重要例子），线性方程组 $KU = h^2 F$ 可以通过把 $h^2 F$ 和 $U$ 写成 $K$ 的 eigenvector 的组合而迅速求解：\n```math\nh^2 F = b_1 v_1 + b_2 v_2 + \\cdots \\qquad\nU = \\frac{b_1}{\\lambda_1}v_1 + \\frac{b_2}{\\lambda_2}v_2 + \\cdots\n\\quad\\text{Then } KU = h^2 F . \\tag{2}\n```\n当 $K$ 乘以 $U$ 时，各个 $\\lambda$ 相互抵消，因为每个 $Kv_i = \\lambda_i v_i$，所以 $KU$ 与 $h^2 F$ 恰好吻合。\n一维 $1, -2, 1$ 矩阵 $D$ 的 eigenvector 恰好是 discrete sine vectors（离散正弦向量）。\n它们是从 $d^2/dx^2$ 的 eigenfunctions（特征函数）$\\sin j\\pi x$ 上取得的 sample points（采样点）：\n```math\n\\text{Continuous: } \\frac{d^2}{dx^2}\\left(\\sin j\\pi x\\right) = -j^2\\pi^2\\left(\\sin j\\pi x\\right)\n```\n```math\nDu_j = D\\begin{bmatrix} \\sin j\\pi h/(N+1) \\\\ \\vdots \\\\ \\sin j\\pi Nh/(N+1) \\end{bmatrix} = \\lambda_j u_j . \\tag{3}\n```\n大矩阵 $K = I \\otimes D + D \\otimes I$ 的 eigenvector 已在 Kronecker 那一节 §IV.3 中找到。\n$K$ 的 eigenvector 是 $D$ 的正弦特征向量的 Kronecker products（克罗内克积）$v_{jk} = u_j \\otimes u_k$。\n这在连续情形下成立（对特征函数而言）。\n它在离散情形下同样成立（对特征向量而言）。\n$v_{jk}$ 的分量等于 $u_j$ 的分量乘以 $u_k$ 的分量。\n```math\n\\text{Continuous eigenfunctions}\\qquad v_{jk}(x,y) = (\\sin j\\pi x)(\\sin k\\pi y)\n```\n```math\n\\text{Discrete eigenvectors}\\qquad v_{jk}(p,q) = \\left( \\sin\\frac{\\pi jp}{N+1} \\right)\\left( \\sin\\frac{\\pi kq}{N+1} \\right) \\tag{4}\n```\n走向成功的最后一步是最为关键的一步。\n我们可以借助 Fast Fourier Transform（快速傅里叶变换）用这些特征向量进行计算。\n§IV.1 中的 Fourier matrix（傅里叶矩阵）含有 complex exponentials（复指数）。\n它的 real part（实部）含有 cosines（余弦），而余弦正是进入 Discrete Cosine Transform（离散余弦变换）的东西。\n\n现在输出修订后的译文全文（从 `@@PAGE:229@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4371,
+            "outputTokens": 6609,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4371,
+              "outputTokens": 6609,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 10498,
+          "contextWindow": 1000000,
+          "pressureTokens": 8211,
+          "sampledSurfaceTokens": 4497
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2937,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 6001,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9354
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

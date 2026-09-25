@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790131315650,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**逐字校对修"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**逐字校对修复专家**。下面是一页译稿（Strang《Linear Algebra and Learning From Data》§III.5 压缩感知，书页 196）。\r\n\r\n【已用视觉逐字核对原书页确认的事实（权威）】\r\n原文写的是：\r\n> This conclusion is true when A has the restricted isometry property with $\\delta < \\sqrt{2} − 1$:\r\n即：条件常数是 **$\\delta < \\sqrt{2} − 1$（约 $0.4142$）**，**不是** $\\delta_S < 0.1$。\r\n（原书该处符号 $\\sqrt{2}-1$ 被 OCR 读成 `軛 一 1` 之类的乱码，前面的译者把它误还原成 `0.1`。）\r\n\r\n【任务】按上述事实修正本页译稿，不要改动其他内容：\r\n1. 正文那句「当 $A$ 具有 restricted isometry property（受限等距性质，RIP）且 $\\delta_S < 0.1$ 时，这一结论成立」→ 改为「当 $A$ 具有 restricted isometry property（受限等距性质，RIP）且 $\\delta < \\sqrt{2} − 1$（约 $0.414$）时，这一结论成立」\r\n2. 注内所有以「$0.1$」为依据的论述 → 全部改写为以 $\\delta < \\sqrt{2}-1$ 为依据；并补一句它为何是这个数：RIP 保证 $\\ell_1$ 精确恢复的经典充分条件之一是受限等距常数小于 $\\sqrt{2}-1$（这一常数来自 Candès–Romberg–Tao / Candès 的基追踪恢复定理那一族结果）。**全页不得再出现「0.1」这个常数**（作为 $\\delta$ 的阈值时）\r\n   − 原句「$\\delta_S = 0$ 时 $A$ 在 $S$ 稀疏子空间上是等距的（保长度），$\\delta_S < 0.1$ 就是几乎等距」→ 改为用 $\\delta < \\sqrt{2}-1$ 表述，并指出 $\\delta$ 越小越接近等距，$\\sqrt{2}-1$ 仍是一个宽松的几乎等距\r\n   − 原句「$\\delta_S < 0.1$ 是充分条件而非必要条件，论文里的常数在 0.1 到 0.5 之间来回变动，所以别把 0.1 当成阈值定理」→ 改为「$\\delta < \\sqrt{2}-1$ 是**充分**条件而非必要条件：不同文献在各目的证明路线下给出不同的常数上限，别把它当成精确的阈值定理」\r\n3. 注内 OCR 修正说明里把乱码还原成 `$\\delta_S < 0.1$` 的部分 → 改为还原为 $\\delta < \\sqrt{2} − 1$\r\n4. 清理游离符号：`@RIP 的稳定恢复定理说` → `RIP 的稳定恢复定理说`（去掉多余的 `@`）；全页扫描并去掉同类游离 `@`（仅在引述 OCR 原文片段的反引号内可保留）\r\n\r\n【🚨 红线】\r\n− 除上述修正外**一字不改**：其他公式、数字、例子、跨课程连接全部原样保留\r\n− 所有 `$...$`、```math 围栏、反斜杠命令完整保留；禁止 `$$`；禁止 Unicode 上下标\r\n− 保留 `> ` blockquote 前缀与配色 span\r\n− 输出**修订后的完整本页**，以 `@@PAGE:199@@` 开头；不要前言、说明、汇总、思考过程\r\n\r\n=========================== 待修订的本页译稿 ===========================\r\n@@PAGE:199@@\r\n> <span style=color:#7f8c8d;>本页为书页 196，属 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n上面这个基本定理还不是故事的全部。系统总会带有噪声，于是我们实际恢复的是一个满足 $Ax = b + z$ 的向量，其中 $z$ 可以是随机的、未知的。随之而来的稀疏问题虽然与之相近，却不完全吻合含噪数据。我们要的是 stable recovery（稳定恢复）：用含噪数据求解 (1)，得到一个 $x^*$，它接近于从无噪数据本应得到的那个稀疏的 $x^*$（含 $S$ 个非零元）。\r\n\r\n当 $A$ 具有 restricted isometry property（受限等距性质，RIP）且 $\\delta_S < 0.1$ 时，这一结论成立：\r\n\r\n```math\r\n(1-\\delta_S)\\|x\\|^2 \\le \\|Ax\\|^2 \\le (1+\\delta_S)\\|x\\|^2 \\tag{RIP}\r\n```\r\n\r\n其中 $x$ 是 $S$-sparse（$S$ 稀疏）的。\r\n\r\n幸运的是，这个矩阵 $A$ 的列可以随机地取自单位球面——或者随机取自正态分布 $N(0,\\,1/m)$——也可以取独立的随机元素 $\\pm 1/\\sqrt{m}$——或者用其他随机方式生成。只要 $m > C\\,S\\log(n/S)$，RIP 要求就几乎必然得到满足。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与概念补全）：**</span> 先扫清这段 OCR 的乱码：`角 ll` 是 whole；`c*`、`孓 S` 指那个含 $S$ 个非零元的稀疏解 $x^*$；`N(), l/m)` 是正态分布 $N(0,\\,1/m)$；`士 1 / 而` 是 $\\pm 1/\\sqrt{m}$；`< 軛 一 1` 是 $\\delta_S < 0.1$，其中 `軛` 是 $\\delta_S$、`腭` 是 $\\delta_S$、`日` 是范数竖线；`丨@丨 1` 与 `|@| 0` 分别是 $\\ell_1$ 与 $\\ell_0$ 范数。下面把这页最硬的一块——受限等距性质与那条 $m > C\\,S\\log(n/S)$——拆开讲。\r\n\r\n第一，RIP 到底在要求什么。$\\delta_S$ 叫 $S$ 阶受限等距常数，它的意思是：$A$ 作用在任意一个 $S$ 稀疏向量上，长度几乎不变，相对误差不超过 $\\delta_S$。范数不等式两边同除 $\\|x\\|^2$ 得 $1-\\delta_S \\le \\|Ax\\|^2/\\|x\\|^2 \\le 1+\\delta_S$，所以 $\\|Ax\\|/\\|x\\|$ 被夹在 $\\sqrt{1-\\delta_S}$ 与 $\\sqrt{1+\\delta_S}$ 之间——译者注的写法把长度比换成了平方比，只是为了少写两个根号。$\\delta_S = 0$ 时 $A$ 在 $S$ 稀疏子空间上是等距的（保长度），$\\delta_S < 0.1$ 就是“几乎等距”。对比一下你在高等代数里学的正交矩阵：正交矩阵对所有向量保长度（$\\delta = 0$，但要求 $m = n$）；RIP 只对稀疏向量、只要求近似保长度，换来的是 $m \\ll n$ 的可能。判据可以落到矩阵上：$A_S$ 是 $A$ 取某个 $S$ 元指标集 $S$ 对应的那些列拼成的 $m \\times S$ 子矩阵，RIP 等价于要求 Gram 矩阵 $A_S^{T}A_S$ 的全部特征值落在 $[1-\\delta_S,\\,1+\\delta_S]$ 内，即 $A_S^{T}A_S \\approx I$。这层意思很关键：它排除了“两列几乎共线”的病态，但比“列正交”宽松得多。\r\n\r\n第二，为什么随机矩阵能行。单位球面上独立均匀地取 $m$ 个列向量，或取 $N(0,\\,1/m)$ 的随机矩阵，或取 $\\pm 1/\\sqrt{m}$ 的伯努利矩阵，这三种构造的 RIP 都以趋于 1 的概率成立。直觉来自概率论里的集中不等式：固定一个 $S$ 元指标集，$\\|Ax\\|^2$ 是 $m$ 个近似独立项的和，它的值以指数速度集中在均值 $\\|x\\|^2$ 附近；再对全部 $\\binom{n}{S}$ 个指标集取并界，就得到“同时对所有 $S$ 稀疏向量成立”的结论——代价正是那条对数因子 $\\log(n/S)$。所以 $m > C\\,S\\log(n/S)$ 的 $C$ 是一个与 $\\delta_S$ 有关的绝对常数，不是可以随手拍的小数；作为数量级直觉，若 $n = 10^6$、$S = 100$，则 $S\\log(n/S) \\approx 100 \\times 9.2 = 920$，也即大约一千次测量就能定住一个百万维的百稀疏向量，这才是压缩感知“压缩在采集端”的底气。$\\delta_S < 0.1$ 是充分条件而非必要条件，论文里的常数在 0.1 到 0.5 之间来回变动，所以别把 0.1 当成阈值定理。判据本身用中文念是“受限等距性质”，英文缩写 RIP 必须会认。\r\n\r\n第三，$S$、$m$、$n$ 三个量各是什么。$n$ 是未知向量的维数（也就是列数、坐标数），$m$ 是实际测到的方程个数（行数），$S$ 是解里非零元的个数上限（稀疏度）。普通线性代数要求 $m \\ge n$ 才能定解，压缩感知用“解是 $S$ 稀疏”这条先验换掉了方程个数，只需 $m \\gtrsim S\\log(n/S)$。$x$ 是 $S$ 稀疏不等于它有恰好 $S$ 个非零元，而是指非零元个数不超过 $S$：零向量、两稀疏的向量都算 $S$ 稀疏，这个“不超过”的约定在第 195 页的定义里已经立好。\r\n\r\n第四，噪声为什么把问题换掉。基追踪的约束是 $Ax = b$，它默认数据精确；一旦 $b$ 换成 $b + z$，让 $Ax$ 去精确等于含噪的 $b$，等于强迫解去拟合噪声，恢复误差会随噪声水平无界放大。于是换成 (3) 的 LASSO：目标仍是最小化 $\\|x\\|_1$，约束放松为 $\\|Ax − b\\|_2 \\le \\varepsilon$。$\\varepsilon$ 要按噪声水平来定：$\\varepsilon$ 太小就退化回硬插值，太大则会把真解一起抹平。严格说，只给 $\\varepsilon$ 的这类问题常写成 basis pursuit denoising（基追踪去噪），而 LASSO 的原式是在 $\\|x\\|_1$ 上加罚项 $\\lambda\\|Ax-b\\|_2^2$，两者通过拉格朗日乘子互相对应、解集相同：这是凸优化课里的对偶关系，这里只要记住“约束版”与“罚项版”是同一件事的两种写法。@RIP 的稳定恢复定理说：在 RIP 与噪声水平匹配的 $\\varepsilon$ 下，LASSO 的解满足 $\\|x^* − x_S\\|_2 \\le C_0\\,\\varepsilon + C_1\\,\\sigma_S(x)_1/\\sqrt{S}$，右边第一项来自噪声、第二项来自“真解并不严格稀疏”的尾部和；这是 Candès–Romberg–Tao 与 Candès 2008 年那篇 “The Dantzig selector” 一系工作的形式，本页只引用结论、不展开证明，所以上面那句话的“接近”二字，指的就是这个带两个常数的不等式，而不是“看起来差不多”。别把 RIP 与第 195 页提到的互相干性（mutual coherence）混为一谈：后者是“任意两列内积的最大值”，只控制两两关系，条件更简单也更保守；RIP 控制所有 $S$ 列的集体行为，更强，随机矩阵更容易验证的是 RIP。最后给一条读图直觉：$A$ 的随机列落在单位球面上，稀疏向量 $x$ 只有 $S$ 个非零坐标，$Ax$ 是 $S$ 个随机方向的加权和；测量数 $m$ 要够多，才能让这个和的不同取值互相分得开——$m$ 是分辨率，$S$ 是信号的复杂度，$\\log(n/S)$ 是“把 $n$ 个候选坐标里挑出 $S$ 个”这件事的组合代价（因为这相当于对 $\\binom{n}{S}$ 种可能取并界）。\r\n\r\n这就终于把测量数 $m$ 与稀疏度 $S$ 联系起来了。含噪数据还促使我们把 basis pursuit（基追踪，其中 $Ax$ 恰好等于 $b$）替换为 LASSO：\r\n\r\n```math\r\n\\text{LASSO with noise} \\qquad \\text{Minimize } \\|x\\|_1 \\ \\text{ subject to } \\ \\|Ax − b\\|_2 \\le \\varepsilon \\tag{3}\r\n```\r\n\r\n关于压缩感知的这一段阐述，沿用了 Candès 与 Wakin 的文章：*IEEE Signal Processing Magazine* 21（2008 年 3 月）。那篇文章提到了 Candès、Romberg、Tao 与 Donoho 的早期工作——这些工作实现了一个极具价值的目标。与其先采集海量数据再把它全部压缩（就像照相机所做的那样），我们只采集并使用 $m = O(S\\log(n/S))$ 个测量值。正如 Richard Baraniuk 所展示的，one-pixel camera（单像素相机）也因此成为可能。也许医学应用才是最有价值的——我们将以它们开始，也以它们结束。\r\n\r\n这一起点来自 Candès 在 2004 年的一个意外观察。Logan-Shepp 测试图像（人类头部的一个抽象模型）被噪声破坏，它看上去就像 Magnetic Resonance Imaging（磁共振成像，MRI）过早停止了一样。为了改善图像，Candès 尝试了一个使用 $\\ell_1$ 的想法。令他惊讶的是，图像变得清晰了（尽管数据并不完整）。这几乎就是 Roentgen 于 1895 年发现 X 射线的在线等价物——一个意外催生了一个产业。\r\n\r\n难以置信的是，就在写这些文字的同一周，David Donoho 的一篇文章出现在 American Mathematical Society 的在线 *Notices* 上（2018 年 1 月）。它描述了压缩感知如何加速了 MRI：扫描时间从 8 分钟缩短到 70 秒，而且图像质量很高。动态心脏成像即使对儿童也变得可行。Michael Lustig 是这一 MRI 成功中的先行者，一大批数学家为理论与算法作出了贡献。FDA 已批准一项变革，随着成千上万台扫描仪升级，它将在美国逐步推开。Donoho 这篇文章的目的，是要表明经费、合作、理论与实验（再加上一点点运气）共同产生了某种美妙的东西。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4010,
+            "outputTokens": 3332,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4010,
+              "outputTokens": 3332,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 4883,
+          "contextWindow": 1000000,
+          "pressureTokens": 6826,
+          "sampledSurfaceTokens": 3089
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1529,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1794,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 3739
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

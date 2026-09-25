@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132540239,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整本页译文**，每页以一行 `@@PAGE:NNN@@` 开始，（本任务仅一页）\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_180（书页 177） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.2. Interlacing Eigenvalues and Low Rank Signals   177\r\n\r\n**The Law of Inertia**\r\n\r\n**Definition** If \\(S\\) is symmetric and \\(C\\) is invertible, then the matrix \\(C^{\\mathrm{T}}SC\\) is “congruent to \\(S\\)”. This is not similarity \\(B^{-1}SB\\)! Eigenvalues of \\(C^{\\mathrm{T}}SC\\) can change from eigenvalues of \\(S\\), but they can’t change sign. That is called the “Law of Inertia”:\r\n\\(C^{\\mathrm{T}}SC\\) has the same number of (positive) (negative) (zero) eigenvalues as \\(S\\).\r\nMy favorite proof starts with \\(C = QR\\) (by Gram-Schmidt). As \\(R\\) changes gradually to \\(I\\), \\(C^{\\mathrm{T}}SC\\) changes gradually to \\(Q^{\\mathrm{T}}SQ = Q^{-1}SQ\\). Now we do have similarity (\\(Q^{-1}SQ\\) has the same eigenvalues as \\(S\\)). If \\(R\\) is invertible all the way to \\(I\\), then no eigenvalues can cross zero on the way. *Their signs are the same for* \\(C^{\\mathrm{T}}SC\\) *and* \\(Q^{-1}SQ\\) *and* \\(S\\).\r\nThe max-min principles also prove the Law of Inertia.\r\n\r\n**9** If \\(S = LDL^{\\mathrm{T}}\\) has \\(n\\) nonzero pivots in elimination, show that **the signs of the pivots of \\(S\\) (in \\(D\\)) match the signs of the eigenvalues of \\(S\\).** Apply the Law to \\(S\\) and \\(D\\).\r\n\r\n**10** Show that this \\(2n \\times 2n\\) KKT matrix \\(H\\) has \\(n\\) positive and \\(n\\) negative eigenvalues:\r\n\\[\r\n\\begin{matrix}\r\nS \\text{ positive definite} \\\\\r\nC \\text{ invertible}\r\n\\end{matrix}\r\n\\qquad\r\nH = \\begin{bmatrix} S & C \\\\ C^{\\mathrm{T}} & 0 \\end{bmatrix}\r\n\\]\r\nThe first \\(n\\) pivots from \\(S\\) are positive. The last \\(n\\) pivots come from \\(-C^{\\mathrm{T}}S^{-1}C\\).\r\n\r\n**11** The KKT matrix \\(H\\) is symmetric and indefinite—this problem counts eigenvalues:\r\n\\[\r\nH = \\begin{bmatrix} S & A^{\\mathrm{T}} \\\\ A & 0 \\end{bmatrix}\r\n\\begin{matrix} n \\\\ m \\end{matrix}\r\n\\quad \\text{as in equation (17)}\r\n\\]\r\n\\[\r\n\\begin{matrix} n & m \\end{matrix}\r\n\\]\r\n\\(H\\) comes from minimizing \\(\\frac{1}{2}x^{\\mathrm{T}}Sx\\) (positive definite) with \\(m\\) constraints \\(Ax = b\\). Elimination on \\(H\\) begins with \\(S\\). We know its \\(n\\) pivots are all positive.\r\nThen elimination multiplies \\(AS^{-1}\\) times \\([ \\ S \\ \\ A^{\\mathrm{T}} \\ ]\\) and subtracts from \\([ \\ A \\ \\ 0 \\ ]\\) to get \\([ \\ 0 \\ \\ −AS^{-1}A^{\\mathrm{T}} \\ ]\\). That Schur complement \\(-AS^{-1}A^{\\mathrm{T}}\\) is negative definite. Why? Then the last \\(m\\) pivots of \\(H\\) (coming from \\(-AS^{-1}A^{\\mathrm{T}}\\)) are negative.\r\n\r\n**12** If \\(x^{\\mathrm{T}}Sx > 0\\) for all \\(x \\neq 0\\) and \\(C\\) is invertible, why is \\((Cy)^{\\mathrm{T}}S(Cy)\\) also positive? This shows again that if \\(S\\) has all positive eigenvalues, so does \\(C^{\\mathrm{T}}SC\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n<!-- page 180 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 177，前半为 §III.2 正文「The Law of Inertia（惯性定律）」的定义与证明思路，后半为 Problem Set III.2 的第 9–12 题（保留英文原题）；页眉「Interlacing Eigenvalues and Low Rank Signals」与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### The Law of Inertia（惯性定律）\r\n\r\n<span style=color:#2471a3;>**[definition]**</span>\r\n\r\n**Definition（定义）** 若 $S$ 对称（symmetric）而 $C$ 可逆（invertible），则矩阵 $C^{T}SC$ 与 $S$ congruent（合同）。这**不是** similarity（相似）$B^{-1}SB$！$C^{T}SC$ 的特征值可以与 $S$ 的特征值不同，但它们相对于零的位置、也就是正负号不会改变。这正是所谓 Law of Inertia（惯性定律）：$C^{T}SC$ 拥有与 $S$ 相同数目的正特征值、负特征值与零特征值。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（合同变换为什么只保符号）：**</span> 这里最该分清的一对概念是 congruence（合同）$C^{T}SC$ 与 similarity（相似）$B^{-1}SB$。区别不在记号，而在**什么被保持不变**：相似保持特征值本身，合同只保持正、负、零特征值的个数（这就是「惯性指数」）。为什么？把三个事实按顺序串起来就明白了。第一，对 $C$ 作 Gram–Schmidt 分解 $C=QR$，其中 $Q$ 正交（$Q^{T}Q=I$）、$R$ 可逆，于是 $C^{T}SC=R^{T}(Q^{T}SQ)R$。第二，$Q^{T}SQ=Q^{-1}SQ$ 是相似变换，特征值与 $S$ 一个不差，所以先看 $Q^{T}SQ$ 就等于先看 $S$。第三，$R^{T}(Q^{T}SQ)R$ 是在 $Q^{T}SQ$ 左右各乘一个可逆三角阵，把 $M=Q^{T}SQ$ 写成这种「三明治」形式 $R^{T}MR$：它的特征值各被一个**正的**缩放因子拉走，符号绝不会翻转，这一点也可由 $R$ 的奇异值全为正直接看出。于是 $C^{T}SC$ 与 $Q^{T}SQ$ 的惯性指数相同，进而与 $S$ 相同。原始的连续性证明更朴素：让 $C$ 连续地变到 $Q$，若途中每个中间矩阵都可逆，则对称矩阵 $C(t)^{T}SC(t)$ 的特征值是 $t$ 的连续函数，要从正变负必须连续地经过零，而经过零就意味着中途某个矩阵奇异——与可逆性矛盾，所以途中没有任何特征值穿越零点，三类的个数被锁死。抽象地说，这条定理说的是「合同变换保持对称矩阵的惯性指数」，它把「求特征值」这件难事降级为「数符号」这件易事：对 $S$ 作消元得 $S=LDL^{T}$，$L$ 可逆即 $S$ 与对角阵 $D$ 合同，于是 $D$ 的对角元（主元）的正负号个数，就精确等于特征值的正负号个数。这让你**不必求特征值、只做一遍消元就能数出正负惯性指数**，也正是习题 10、11 中判断 KKT 矩阵正负特征值个数的依据：那里 $S$ 正定、Schur 补 $-AS^{-1}A^{T}$ 负定，$H$ 的主元符号一眼可读。几何上，「惯性」取的正是二次型 $x^{T}Sx=1$ 的形状之意：符号组合一变，等高线就从椭圆变为双曲线，单纯缩放只是把同一张图拉伸。一个常见误判要堵住：既然符号被保住，只看行列式的正负够不够？不够，$n\\ge3$ 时行列式只反映零特征值个数的奇偶性，例如两个负特征值配一个正特征值同样使行列式为正，而惯性指数把三类个数分别报出来，信息严格更多。跨课程连接：这里「数维数」的直觉与 6.042J 的秩-零化度定理同源，但惯性指数数的不是「有几个维度」而是「特征值落在正半轴、负半轴、零点上的个数」；CSAPP 浮点一节则解释了这条判据为何值得记住：求特征值要走迭代的 QR 算法，代价与舍入误差都更高，而做一遍消元只需约 $n^3/3$ 次乘加且向后稳定，主元符号在浮点下也不容易错。\r\n\r\n我最喜欢的证明从 $C = QR$ 出发，这一步由 Gram-Schmidt（格拉姆-施密特）给出。当 $C$ 逐渐变到 $Q$ 时，$C^{T}SC$ 也逐渐变到 $Q^{T}SQ = Q^{-1}SQ$，此时我们确实拥有了 similarity（相似性）——$Q^{-1}SQ$ 与 $S$ 有相同的特征值。如果从 $C$ 一路到 $Q$ 的每个中间矩阵都可逆，那么途中不可能有特征值穿过零。于是正的、负的、零的特征值个数，对 $C^{T}SC$、$Q^{-1}SQ$ 与 $S$ 三者完全相同。\r\n\r\nmax-min principles（极大极小原理）同样能证明 Law of Inertia（惯性定律）。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 9.** If $S = LDL^{T}$ has nonzero pivots in elimination, show that the signs of the pivots of $S$ (on $D$) match the signs of the eigenvalues of $S$. Apply the Law [of Inertia] to $S$ and $D$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 10.** Show that this $2 \\times 2$ KKT matrix $H$ has positive and negative eigenvalues:\r\n\r\n```math\r\nH = \\begin{bmatrix} S & C^{T} \\\\ C & 0 \\end{bmatrix}\r\n\\qquad S \\text{ positive definite},\\ C \\text{ invertible}\r\n```\r\n\r\nThe first pivots from $S$ are positive. The last pivots come from $-CS^{-1}C^{T}$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 11.** The KKT matrix $H$ is symmetric and indefinite—this problem counts eigenvalues as in equation (17):\r\n\r\n```math\r\nH = \\begin{bmatrix} S & A^{T} \\\\ A & 0 \\end{bmatrix}\r\n\\qquad (n+m) \\text{ by } (n+m)\r\n```\r\n\r\n$H$ comes from minimizing $\\frac{1}{2}x^{T}Sx − x^{T}b$ (positive definite) with $m$ constraints $Ax = b$. Elimination on $H$ begins with $S$. We know its pivots are all positive. Then elimination multiplies $S^{-1}$ times $[\\,S\\ \\ A^{T}\\,]$ and subtracts from $[\\,A\\ \\ 0\\,]$ to get $[\\,0\\ \\ −AS^{-1}A^{T}\\,]$. That Schur complement $-AS^{-1}A^{T}$ is negative definite. Why? Then the last $m$ pivots of $H$ (coming from $-AS^{-1}A^{T}$) are negative.\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（Schur 补为什么负定）：**</span> 第 11 题的核心是那个「Why?」，答案就藏在 $A$ 的行满秩里。设 $A$ 是 $m\\times n$ 且 $m<n$（$m$ 个独立约束），对任意非零 $y\\in\\mathbb{R}^m$ 考察二次型 $y^{T}(AS^{-1}A^{T})y$：令 $w=A^{T}y$，则它等于 $w^{T}S^{-1}w$。因为 $S$ 正定，$S^{-1}$ 也正定，所以这个数 $\\ge0$；又因为 $A^{T}$ 列满秩，$y\\ne0$ 时 $w=A^{T}y\\ne0$，于是 $w^{T}S^{-1}w>0$ 严格成立。这就证明了 $AS^{-1}A^{T}$ 正定，取负号后 $-AS^{-1}A^{T}$ 负定——所以它贡献的 $m$ 个主元全为负，加上 $S$ 贡献的 $n$ 个正主元，$H$ 恰有 $n$ 个正特征值与 $m$ 个负特征值（由题 9 的惯性定律，主元符号即特征值符号）。这里要分清两个矩阵的身份：$S$ 是**正定**的，出现在 KKT 系统的左上块；$-AS^{-1}A^{T}$ 是**负定**的，出现在消元后的右下块，二者符号相反正是 $H$ 被称为 indefinite（不定）的原因。一个常见误判是把「消元得到 $-AS^{-1}A^{T}$」读成「$H$ 与 $-AS^{-1}A^{T}$ 合同」——不对，整个 $H$ 合同于分块对角阵 $\\operatorname{diag}(S,\\,-AS^{-1}A^{T})$，惯性指数是两块之和，不能只留一块。跨课程连接：约束优化课用这套推导说明为什么拉格朗日乘子法与 KKT 条件给出的鞍点系统会有负特征值，从而需要「鞍点求解器」而不是普通共轭梯度法；数据科学课讲带约束最小二乘与正则化（如等式约束的岭回归）时，同样的分块矩阵决定了解的稳定性。\r\n>\r\n> 补一层机制：上面的二次型只回答了「符号对不对」，没有回答「消元之后为什么只剩下这两块」。把 KKT 系统写成 $\\begin{bmatrix} S & A^{T}\\\\ A & 0\\end{bmatrix}\\begin{bmatrix} x\\\\ \\lambda\\end{bmatrix}=\\begin{bmatrix} b\\\\ c\\end{bmatrix}$，第一行给出 $x=S^{-1}(b-A^{T}\\lambda)$，代进第二行 $Ax=c$，就得到 $\\lambda$ 必须满足的 $m\\times m$ 方程，其系数矩阵正是 $-AS^{-1}A^{T}$。所以 Schur 补不是凭空出现的符号，而是「把 $x$ 消掉之后 $\\lambda$ 自己必须服从的方程」：原始变量 $x$ 有 $n$ 个自由度，由 $S$ 提供 $n$ 个正主元；对偶变量 $\\lambda$ 有 $m$ 个自由度，由这个负定块提供 $m$ 个负主元。\r\n>\r\n> 再看「合同」这一步为什么合法。取 $E=\\begin{bmatrix} I & 0\\\\ −AS^{-1} & I\\end{bmatrix}$，可验证 $EHE^{T}=\\operatorname{diag}(S,\\,-AS^{-1}A^{T})$，而 $E$ 可逆，所以这是合同而非相似；Sylvester 惯性定律说合同保持惯性，于是惯性是两块之和，不能只留一块。顺手可用的自检：$\\det(H)=(-1)^{m}\\det(S)\\det(AS^{-1}A^{T})$。\r\n>\r\n> 把设计问题补全：为什么要在这道题上追问「为什么」。因为 KKT 系统的惯性直接决定能用哪种求解器——左上块 $S$ 正定，单看它会以为可以上 Cholesky 或共轭梯度；但整个 $H$ 不定，这两种方法的前提（正定性带来的能量范数下降方向）就不成立，必须换成 MINRES 这类允许负曲率的 Krylov 方法，或者干脆消到 Schur 补上，在一个 $m\\times m$ 的稠密负定系统里做文章。$m<n$ 这个条件也不是装饰：它保证约束数少于变量数，可行域才有 $n-m$ 维自由度，两块的惯性才能像上面那样干净相加。\r\n>\r\n> 代入具体数字验算。取 $S=I_{2}$、$A=\\begin{bmatrix}1 & 1\\end{bmatrix}$，满足 $m=1<n=2$ 且 $A$ 行满秩。先走注里的二次型：$y$ 是标量，$A^{T}y=\\begin{bmatrix}y\\\\ y\\end{bmatrix}$，于是 $y^{T}AS^{-1}A^{T}y=y^{2}+y^{2}=2y^{2}>0$，Schur 补为 $-2<0$，与负定结论一致。再直接算 $H=\\begin{bmatrix}1&0&1\\\\0&1&1\\\\1&1&0\\end{bmatrix}$：特征多项式 $\\det(\\lambda I-H)=\\lambda^{3}-2\\lambda^{2}-\\lambda+2=(\\lambda-2)(\\lambda-1)(\\lambda+1)$，特征值是 $2,1,-1$，两个正一个负，正好是 $n=2$ 个正加 $m=1$ 个负；行列式自检 $2\\cdot1\\cdot(-1)=-2$，与 $(-1)^{1}\\det(S)\\det(AS^{-1}A^{T})=-2$ 对上。还能显式看到负特征向量 $v=\\frac{1}{\\sqrt{6}}(1,1,-2)^{T}$：它满足 $Av=0$，也就是约束零空间方向上的曲率为负，这正是 $H$ 不定性的几何来源。\r\n>\r\n> 再补一个数值上的坑：主元符号等于特征值符号的前提是消元过程中不做行交换；一旦为了数值稳定选主元换了行，读出来的主元符号就不再直接是惯性，这时应改用对称主元分解或直接算行列式序列来复核。\r\n>\r\n> 命名模板：**Schur 消元惯性计数法**——写出 Schur 补、用可逆合同把 $H$ 化成 $\\operatorname{diag}(S,\\,-AS^{-1}A^{T})$、分别数两块的符号，三步定惯性。\r\n>\r\n> 跨课程连接再补两条。Strang 线性代数与 18.065：概念是 LU/Cholesky 消元与分块求逆；连接路径是对 $S$ 做消元时 Schur 补本来就是消元过程的副产品，18.065 用它推导正规方程与分块求逆公式；区别在于那里关心怎么把解算出来，这里关心矩阵的惯性长什么样，同一公式承担两种任务。在学概率论（Bertsekas）：概念是多元高斯与条件分布；连接路径是协方差矩阵分块后，条件协方差 $\\Sigma_{11}-\\Sigma_{12}\\Sigma_{22}^{-1}\\Sigma_{21}$ 与 Schur 补是同一个表达式；区别在于那里右下块是正定的协方差块，得到的是仍然正定的条件方差，而 KKT 矩阵右下块是 $0$，于是 Schur 补翻成负定，惯性从全正变成 $n$ 正 $m$ 负。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 12.** If $x^{T}Sx > 0$ for all $x$ and $C$ is invertible, why is $(Cy)^{T}S(Cy)$ also positive? This shows again that if $S$ has all positive eigenvalues, so does $C^{T}SC$.\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p. 177</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 5040,
+            "outputTokens": 5096,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 5040,
+              "outputTokens": 5096,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 7712,
+          "contextWindow": 1000000,
+          "pressureTokens": 8496,
+          "sampledSurfaceTokens": 4220
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2660,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3492,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6568
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

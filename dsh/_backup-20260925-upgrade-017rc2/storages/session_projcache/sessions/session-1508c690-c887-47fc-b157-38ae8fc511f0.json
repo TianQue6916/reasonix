@@ -1,0 +1,466 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790127964752,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 151,
+        "val": "你是交叉引用核对专家。任务"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 151,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是交叉引用核对专家。任务：核对 Gilbert Strang《Linear Algebra and Learning From Data》part004（书页 147-197）译稿中的**交叉引用与编号**是否正确，并给出可直接替换的修正。\r\n\r\n【本书页映射（印页码锚定，权威）】\r\npage_176 = 书页 173\r\npage_177 = 书页 174\r\npage_178 = 书页 175\r\npage_179 = 书页 176\r\npage_180 = 书页 177\r\npage_181 = 书页 178\r\npage_182 = 书页 179\r\npage_183 = 书页 180\r\npage_184 = 书页 181\r\npage_185 = 书页 182\r\npage_186 = 书页 183\r\npage_187 = 书页 184\r\npage_188 = 书页 185\r\npage_189 = 书页 186\r\npage_190 = 书页 187\r\npage_191 = 书页 188\r\npage_192 = 书页 189\r\npage_193 = 书页 190\r\npage_194 = 书页 191\r\npage_195 = 书页 192\r\npage_196 = 书页 193\r\npage_197 = 书页 194\r\npage_198 = 书页 195\r\npage_199 = 书页 196\r\npage_200 = 书页 197\r\n\r\n【核对对象】下方每一条是译文中含引用 / 编号的句子（附页码与上下文）。对每条判断：\r\n1. 引用的节号是否存在且正确（如 §III.2、§II.4、§II.1）——对照映射表与上下文\r\n2. 引用的页码是否与书页映射一致（如 on page 135 指的是书页 135）\r\n3. 公式编号 / 图号 / 定理号是否与上下文自洽（同一编号是否指同一对象）\r\n4. 若译文把引用译错或漏译（原文有引用但译文没写），指出并给出修正后的整句译文\r\n\r\n【输出格式（🚨）】\r\n逐条输出：\r\n\r\n### 条目 N（page_XXX / 书页 YYY）\r\n- 判定：✅ 正确 / ⚠️ 存疑 / ❌ 错误\r\n- 说明：一句话（错在哪、依据是什么）\r\n- 修正译文（若需修正；不需要则写无需修正）：`……修正后的整句中文译文……`\r\n\r\n不要输出其他内容（不要前言、不要总结）。\r\n\r\n===================================== 待核对条目 =====================================\r\n<!-- page 176: 书页 173 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 173，是 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）的首段正文；页眉与页码为重复元素，不译。</span>\r\n  L7: ## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n  L9: > <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页页眉噪声 `田 2` 重建为节号 §III.2，`入 1`、`/\\rn` 重建为 $\\lambda_1$、$\\lambda_m$，`æ` 重建为 $c$，`T 丌 苏` 依语境重建为函数记号，`忉 d 乜` 重建为 indefinite（不定），公式均按数学语境重建。\r\n  L74: 极大、极小与鞍点都将满足 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial \\lambda = 0$（与 §I.9 一样）：\r\n\r\n<!-- page 177: 书页 174 -->\r\n  L1: <!-- page 177 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 174，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 178: 书页 175 -->\r\n  L1: <!-- page 178 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 175，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n  L20: 我们在图 III.1 中看到的那些 $\\lambda_i$ 的交错性质，也可以由方程 (23) 证明。\r\n\r\n<!-- page 179: 书页 176 -->\r\n  L1: <!-- page 179 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 176，属 Part III「Low Rank and Compressed Sensing（低秩与压缩感知）」中 Problem Set III.2（习题集 III.2）的第 1–8 题；页眉与页码为重复元素，不译。按习题页先例，题干保留英文原文，OCR 乱码一律按数学语境重建为 LaTeX。</span>\r\n  L7: ### Problem Set III.2（习题集 III.2）\r\n  L11: <span style=color:#2471a3;>**[problem]**</span> **Problem 1.** A unit vector $u(t)$ describes a point moving around on the unit sphere $\\|u\\| = 1$. Show that the velocity vector $du/dt$ is orthogonal to the position: $u^{T}(du/dt) = 0$.\r\n  L13: <span style=color:#2471a3;>**[problem]**</span> **Problem 2.** Suppose you add a positive semidefinite rank two matrix $T$ to $S$. What interlacing inequalities will connect the eigenvalues of $S$ and of $S + T$?\r\n  L15: <span style=color:#2471a3;>**[problem]**</span> **Problem 3.** (a) Find the eigenvalues $\\lambda_1(t)$ and $\\lambda_2(t)$ of $A(t) = A(0) + t\\,vv^{T}$.\r\n  L19: <span style=color:#2471a3;>**[problem]**</span> **Problem 4.** $S$ is a symmetric matrix with eigenvalues $\\lambda_1 \\ge \\lambda_2 \\ge \\cdots \\ge \\lambda_n$ and eigenvectors $q_1, q_2, \\ldots, q_n$. Which $i$ of those eigenvectors are a basis for an $i$-dimensional subspace $V$ with this property:\r\n  L21: <span style=color:#2471a3;>**[problem]**</span> **Problem 5.** Find the eigenvalues of these $3 \\times 3$, $2 \\times 2$, and $1 \\times 1$ matrices. Show that they are interlacing.\r\n  L29: <span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Suppose $D$ is the diagonal matrix $\\operatorname{diag}(1, 2, \\ldots, n)$ and $S$ is positive definite.\r\n  L34: <span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Suppose $D$ is again $\\operatorname{diag}(1, 2, \\ldots, n)$ and $E$ is any $n$ by $n$ matrix.\r\n  L38: <span style=color:#2471a3;>**[problem]**</span> **Problem 8.** (a) Show that every $i$-dimensional subspace $V$ contains a nonzero vector $z$ that is a combination of $q_i, q_{i+1}, \\ldots, q_n$. (Those $q$'s span a space $Z$ of dimension $n-i+1$. Based on the dimensions $i$ and $n-i+1$, why does \r\n\r\n<!-- page 180: 书页 177 -->\r\n  L1: <!-- page 180 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 177，前半为 §III.2 正文「The Law of Inertia（惯性定律）」的定义与证明思路（完整行内双语翻译），后半为 Problem Set III.2 的第 9–12 题（保留英文原题）；页眉与页码为重复元素，不译。</span>\r\n  L26: <span style=color:#2471a3;>**[problem]**</span> **Problem 9.** If $S = LDL^{T}$ has nonzero pivots in elimination, show that the signs of the pivots of $S$ (on $D$) match the signs of the eigenvalues of $S$. Apply the Law [of Inertia] to $S$ and $D$.\r\n  L28: <span style=color:#2471a3;>**[problem]**</span> **Problem 10.** Show that this $2 \\times 2$ KKT matrix $H$ has positive and negative eigenvalues:\r\n  L37: <span style=color:#2471a3;>**[problem]**</span> **Problem 11.** The KKT matrix $H$ is symmetric and indefinite—this problem counts eigenvalues as in equation (17):\r\n  L50: <span style=color:#2471a3;>**[problem]**</span> **Problem 12.** If $x^{T}Sx > 0$ for all $x \\ne 0$ and $C$ is invertible, why is $(Cy)^{T}S(Cy)$ also positive? This shows again that if $S$ has all positive eigenvalues, so does $C^{T}SC$.\r\n\r\n<!-- page 181: 书页 178 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 178，是 Part III 中 §III.3 的开篇页；页眉与页码为重复元素，不译。</span>\r\n  L7: ## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n  L29: 乘以 $F$ 借助 §IV.1 中的 Fast Fourier Transform（快速傅里叶变换）可以超快完成：需 $\\log_2 N$ 次运算。\r\n\r\n<!-- page 182: 书页 179 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 179，是 §III.3 的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 183: 书页 180 -->\r\n  L1: <!-- page 183 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 180，属 §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 184: 书页 181 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 181，是 §III.3 的续页，含 Figure III.2、An Improved Sylvester Test 小节、log-rank 的定义与 Example 1；页眉与页码为重复元素，不译。</span>\r\n  L6: ## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值，续）\r\n  L14: > <span style=color:#7f8c8d;>**Figure III.2:** 当 $n = 25$ 时 Vandermonde 矩阵与 Krylov 矩阵 $K = [\\,b\\;\\;Ab\\;\\;\\cdots\\;\\;A^{n-1}b\\,]$ 的奇异值。此处 $b$ 为全 $1$ 向量，而 $A = \\mathrm{diag}(1/2,\\,2/2,\\,\\ldots,\\,n/2)$ 为随机数（标准正态）时，$K$ 与 $V$ 相同。图中上、下两条曲线分别对应 Vandermonde 与 Krylov，横轴为 $n = 5, 10, 15, 50$，纵轴为奇异值的对数尺度（$10^\r\n  L35: 对一组特征向量（feature vectors）而言，这产生一个核矩阵 $K$，其元素满足 $0 < K_{ij} \\le 1$。把它们全部计算出来是不可能的。借助良好的近似，我们用 kernel trick（核技巧）求解非线性分类问题，见 §VII.5。这个矩阵具有低有效秩。\r\n\r\n<!-- page 185: 书页 182 -->\r\n  L1: <!-- page 185 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 182，属 §III.3 之前的引言正文，讨论 Sylvester 方程与位移结构矩阵奇异值快速衰减的两个来源；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 186: 书页 183 -->\r\n  L1: <!-- page 186 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为 Problem Set III.3（习题集 III.3），属 §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）之后；按系列先例，页首给出本节标题的中文翻译，习题题干保留英文原文，仅将 OCR 乱码按数学语境修正为 LaTeX。页眉与页码为重复元素，不译。</span>\r\n  L7: ## §III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n  L9: <span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Show that a Krylov matrix $K = [\\,b\\ \\ Ab\\ \\ \\cdots\\ \\ A^{n-1}b\\,]$ satisfies a Sylvester equation $AK - KB = C$, with $B$ as in equation (6). Find the matrix $C$.\r\n  L13: <span style=color:#2471a3;>**[problem]**</span> **Problem 2.** Show that the evil Hilbert matrix $H$ passes the Sylvester test $AH - HB = C$ with $A = −\\operatorname{diag}(1, 3, \\dots, 2n-1)$, $B = −A$, $C = −\\text{ones}$.\r\n  L17: <span style=color:#2471a3;>**[problem]**</span> **Problem 3.** A Toeplitz matrix has constant diagonals (§I.5). Compute $A - A^T = C$:\r\n  L33: <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 题干中 `(IV.5)` 按节号引用语境修正为 (§I.5)；`一 AT = C` 重建为 $A - A^T = C$；`to 一 1 / 0 0 0 / 1 0 0 0 / 0 1 0 0` 为 Toeplitz 矩阵元素的错位噪声，现按常数对角线定义重建为上方两式。\r\n  L35: <span style=color:#2471a3;>**[problem]**</span> **Problem 4.** A Hankel matrix $H$ has constant antidiagonals, like the Hilbert matrix. Then $H_{jk}$ depends only on $j+k$. When $H$ is symmetric positive definite, Beckermann and Townsend show that $H = K^T K$ for a Krylov matrix $K$ (as in Problem\r\n  L39: <span style=color:#2471a3;>**[problem]**</span> **Problem 5.** A Pick matrix has entries $P_{jk} = (x_j + x_k)/(y_j + y_k)$, where $x_j = (z_j,\\,1)$ and $y_j = (z_j^2,\\,z_j)$, and $z_j$ can be complex. Show that $AP - P(-A) = s\\,\\mathbf{1}^T + \\mathbf{1}\\,s^T$, where $\\mathbf{1}^T = [\\,1\\ \\ 1\\ \\ \\\r\n  L43: <span style=color:#2471a3;>**[problem]**</span> **Problem 6.** If an invertible matrix $X$ satisfies the Sylvester equation $AX - XB = C$, find a Sylvester equation for $X^{-1}$.\r\n  L47: <span style=color:#2471a3;>**[problem]**</span> **Problem 7.** $A = Q\\Lambda Q^T$ has complex eigenvalues $\\theta_1,\\dots,\\theta_n$ in the columns $q_1,\\dots,q_n$ of $Q$. Show that $Q^T Q = I$ is normal. The eigenvalues can be complex.\r\n  L51: <span style=color:#2471a3;>**[problem]**</span> **Problem 8.** If $S^T = S$ and $Z^T = −Z$ and $SZ = ZS$, verify that $N = S + Z$ is normal. Since $S$ has real eigenvalues and $Z$ has imaginary eigenvalues, $N = S + Z$ probably has complex eigenvalues.\r\n  L55: <span style=color:#2471a3;>**[problem]**</span> **Problem 9.** Show that equation (3) for $U_c$ follows from equation (2) for $U$.\r\n\r\n<!-- page 187: 书页 184 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 184，属 §III.3 之后的过渡页并开启 §III.4；页眉与印页码为重复元素，不译、不收录。</span>\r\n  L6: ## §III.4 Split Algorithms for $\\ell_1$（针对 $\\ell_1$ 的分裂算法）\r\n  L9: 它们包括 basis pursuit（基追踪）与 LASSO optimization（LASSO 优化）——再加上 §III.5 中的 matrix completion（矩阵补全）与 compressed sensing（压缩感知）。\r\n  L20: 这就是 §II.2 中利用 SVD 得到的那个解。\r\n  L69: 请参见 §I.11 中的这两幅图。\r\n\r\n<!-- page 188: 书页 185 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 185，是 §III.4 分裂算法的正文续页；页眉与印页码为重复元素，不译、不收录。</span>\r\n  L61: > <span style=color:#1e8449;></span>This is the problem for Section III.4.（这是 §III.4 所处理的问题。）\r\n\r\n<!-- page 189: 书页 186 -->\r\n  L1: <!-- page 189 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 186，是 §III.4 分裂算法（Split Algorithms）正文的续页；页眉 Low Rank and Compressed Sensing 与页码均为重复元素，不译。</span>\r\n  L5: > <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声密集（`什 om` = from、`m p 况 e 襯` = min-max problem、`刀` = $L$、`蓋` = $A$、`g 而 n` = argmin、`¯I` = 上标 $-1$、`ÄB` = $\\approx AB$），公式 (6)(7)(8) 已按数学语境重建，行内乱码一律还原为 LaTeX。\r\n\r\n<!-- page 190: 书页 187 -->\r\n  L1: <!-- page 190 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 187，是 §III.4 分裂算法（Split Algorithms）正文的续页；页眉 Split Algorithms for $A^+$ 与页码均为重复元素，不译。</span>\r\n  L5: > <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 严重破损（`叼` = $c_i$、`什 0 m` = from、`g 甩 g` = augmented Lagrangian、`目 2` = 范数平方、`把 rn` 依语境重建为“分开处理”），公式 (9)(10)(11)(12) 已按 ADMM 的标准推导重建；变量记号依原文在 $c$、$x$、$z$ 之间混用，此处统一按 OCR 保留的 $x,z$ 书写。\r\n\r\n<!-- page 191: 书页 188 -->\r\n  L1: <!-- page 191 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 188，属 Part III Low Rank and Compressed Sensing（低秩与压缩感知）中 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）的续页；页眉与印页码为重复元素，不译。</span>\r\n  L69: 即使 $f$ 与 $g$ 不是 strictly convex（严格凸）的，收敛性仍然成立（见 Hajinezhad 最近的论文）。\r\n\r\n<!-- page 192: 书页 189 -->\r\n  L1: <!-- page 192 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 189，属 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）；页眉与印页码为重复元素，不译。</span>\r\n\r\n<!-- page 193: 书页 190 -->\r\n  L1: <!-- page 193 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 190，是 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）的正文页；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 194: 书页 191 -->\r\n  L1: <!-- page 194 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 191，是 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 195: 书页 192 -->\r\n  L1: <!-- page 195 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 192，属 §III.4 之前的收尾正文；结构单元清单：图 III.3 图注、Bregman 距离的定义式 (29)、次梯度（subgradient）讨论、小节「Split Bregman and Split Kaczmarz」、线性化 Bregman 迭代 (30)(31)、收敛性与目标函数 (32)。页眉与页码为重复元素，不译。</span>\r\n  L5: <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较重：`歹`／`囫` 为 $f(x)$，`刀`／`氟` 为 $D_f$，`鬱` 为 $y$，`Ä` 为 $\\lambda$，`丨` 为范数竖线。公式 (30)(31)(32) 的原文字符严重损坏，现按 linearized Bregman iteration（线性化 Bregman 迭代）的标准形式重建。\r\n  L7: **图 III.3 图注：** 光滑函数 $f(x)$——每个点处只有一条切线，其斜率为 $\\nabla f$；有尖点的函数 $f(x)$——在尖点处有许多条切线，其斜率取自次梯度（subgradient）$\\partial f$。\r\n  L41: 式 (30) 是一个普通的可调步长，用来减小 $\\|A x_k - b\\|_2^2$，其步长为 $s > 0$。\r\n\r\n<!-- page 196: 书页 193 -->\r\n  L1: <!-- page 196 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 193，是 §III.4 的续页；结构单元清单：Kaczmarz 迭代的标准步骤 (33)、稀疏 Kaczmarz 步骤 (34)、步长与在线学习讨论、三条脚注、小节「Bounded Variation: L1 Norm for the Gradient」、BV 范数公式、一维阶跃函数例子、图像去噪应用与 Rudin–Osher–Fatemi 文献。页眉（§III.4 标题）与页码为重复元素，不译。</span>\r\n\r\n<!-- page 197: 书页 194 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为 Problem Set III.4（习题集 III.4），属 §III.4 Split Algorithms for $A^+$（$A^+$ 的分裂算法）的配套习题页。按本系列惯例，习题题干保留英文原文、不译为中文；题干中的 OCR 乱码按数学语境重建为 LaTeX，并在每题前加绿色 OCR 修正说明。页眉（Low Rank and Compressed Sensing）、印页码 194 与左侧题号竖排噪声不译、不收录。</span>\r\n  L7: ## Problem Set III.4（习题集 III.4）\r\n  L9: > <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页由 Windows OCR 输出，噪声极重：`歹`/`鼠` 多为函数名与积分号之误，`什 om`/`丘 om` 为 from，`mnimize`/`mmimize`/`nuzeS` 为 minimize，`丨`/`ll` 为 $\\ell$ 或 $\\|\\cdot\\|$，`訓` 为 $\\|Ac-b\\|_1$ 之误，`@`/`日` 为系数与 $\\gamma$ 之误，`= 0` 与 `一` 常为下标或负号之误。以下每题的重建均依据本页数学语境与所在节（§III.4 的例 1—\r\n  L15: **Problem 1.** On the line $x = 1$, what vector $c$ minimizes the function $F(c) = \\frac{1}{2}\\|c\\|_2^2$ ?\r\n  L21: **Problem 2.** Following Example 1 in this section, write Problem 1 as a minimization of $\\frac{1}{2}\\|z\\|_2^2 + g(z)$, where $g(z)$ is the $0$-$1$ indicator function of the line; describe that indicator function $g(z)$, and take one ADMM step starting from $x = 0$, $z = 0$, $u = 0$.\r\n  L27: **Problem 3.** Which vector $x$ minimizes $F(x) = \\frac{1}{2}\\|x - a\\|_2^2$ on the line $x = 1$ if $a = (2, 3)$ ?\r\n  L29: > <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Whi h $/\\II$ 到 $1$ on the linec $= 1$ if $= （ 2 ， 3 ）$ ？ 中 `/\\II` 为 vector $x$ 的误读，缺失的目标函数依题 1—题 2 的形式重建为 $\\frac{1}{2}\\|x-a\\|_2^2$，on the line $c = 1$ 统一记为直线约束 $x = 1$，$a = (2,3)$ 依括号内数值保留。\r\n  L33: **Problem 4.** Following Example 2, take one ADMM step in Problem 3 from $c = (1, 1)$.\r\n  L35: > <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 Foll owing Example 2 ， take one ADMM step in Problem 3 丘 om $c = （ 1 ， 1 ）$ 中 `丘 om` 为 from，起点 $c = (1,1)$ 依原文保留（此处变量记号与题 3 的 $x$ 混用，仍按原文写作 $c$）。\r\n  L39: **Problem 5.** What $c \\ge 0$ and $y \\ge 0$ minimize $c + y$ if $cy = 1$ ?\r\n  L45: **Problem 6.** Following Example 3 in this section, take one ADMM step in Problem 5: compute $x_1$, $c_1$, $z_1$.\r\n  L47: > <span style=color:#1e8449;>**[note] OCR 修正：**</span> 原文 take one ADMM step in Problem 5 ： $9$ compute XI ， CI ， $1$ ， · 中 `9` 为行首噪声，`XI ， CI ， 1` 重建为 ADMM 第一步的三个迭代量 $x_1$、$c_1$、$z_1$（例 3 的三变量更新次序）。\r\n  L51: **Problem 7.** Find the LASSO solution that minimizes $\\|Ac - b\\|_1 + \\gamma\\|c\\|_1$, with $A c = b$ given by the pair of numbers shown in the text and $\\gamma = 1$.\r\n  L57: **Problem 8.** Following Example 4, take one ADMM step in Problem 7 from $x^0 = 0$, with $P = 2I$.\r\n\r\n<!-- page 198: 书页 195 -->\r\n  L3: > <span style=color:#7f8c8d;>本页为书页 195，是 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的开篇正文页；页眉（含节号 `田 5` = §III.5）与印页码 195 为重复元素，不译。</span>\r\n  L7: ## §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\n<!-- page 199: 书页 196 -->\r\n  L1: <!-- page 199 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 196，属 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的正文续页；页眉与页码为重复元素，不译。</span>\r\n\r\n<!-- page 200: 书页 197 -->\r\n  L1: <!-- page 200 -->\r\n  L2: > <span style=color:#7f8c8d;>本页为书页 197，属 §III.5 的正文续页；页眉与页码为重复元素，不译。</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 151,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 151,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 151,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 151,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 44169,
+            "outputTokens": 19657,
+            "cacheReadTokens": 830208,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 24,
+            "buckets": {
+              "uncachedInputTokens": 171,
+              "outputTokens": 9652,
+              "cacheReadTokens": 54912,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 151,
+        "val": {
+          "surfaceTokens": 58060,
+          "contextWindow": 1000000,
+          "pressureTokens": 55083,
+          "sampledSurfaceTokens": 51224
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 151,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3874,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 219,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 12512,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 160,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 103,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 64,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 66,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 3196,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 2481,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 42,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 797,
+              "system": false
+            },
+            {
+              "seq": 47,
+              "heuristicTokens": 117,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 1331,
+              "system": false
+            },
+            {
+              "seq": 52,
+              "heuristicTokens": 101,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 872,
+              "system": false
+            },
+            {
+              "seq": 57,
+              "heuristicTokens": 255,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 456,
+              "system": false
+            },
+            {
+              "seq": 62,
+              "heuristicTokens": 160,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 52,
+              "system": false
+            },
+            {
+              "seq": 67,
+              "heuristicTokens": 120,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 34,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 158,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 188,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 80,
+              "system": false
+            },
+            {
+              "seq": 78,
+              "heuristicTokens": 1719,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 185,
+              "system": false
+            },
+            {
+              "seq": 83,
+              "heuristicTokens": 4661,
+              "system": false
+            },
+            {
+              "seq": 86,
+              "heuristicTokens": 145,
+              "system": false
+            },
+            {
+              "seq": 88,
+              "heuristicTokens": 902,
+              "system": false
+            },
+            {
+              "seq": 91,
+              "heuristicTokens": 136,
+              "system": false
+            },
+            {
+              "seq": 93,
+              "heuristicTokens": 398,
+              "system": false
+            },
+            {
+              "seq": 96,
+              "heuristicTokens": 304,
+              "system": false
+            },
+            {
+              "seq": 98,
+              "heuristicTokens": 278,
+              "system": false
+            },
+            {
+              "seq": 100,
+              "heuristicTokens": 886,
+              "system": false
+            },
+            {
+              "seq": 103,
+              "heuristicTokens": 427,
+              "system": false
+            },
+            {
+              "seq": 105,
+              "heuristicTokens": 362,
+              "system": false
+            },
+            {
+              "seq": 107,
+              "heuristicTokens": 269,
+              "system": false
+            },
+            {
+              "seq": 110,
+              "heuristicTokens": 220,
+              "system": false
+            },
+            {
+              "seq": 112,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 115,
+              "heuristicTokens": 36,
+              "system": false
+            },
+            {
+              "seq": 117,
+              "heuristicTokens": 979,
+              "system": false
+            },
+            {
+              "seq": 120,
+              "heuristicTokens": 1257,
+              "system": false
+            },
+            {
+              "seq": 122,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 124,
+              "heuristicTokens": 326,
+              "system": false
+            },
+            {
+              "seq": 127,
+              "heuristicTokens": 488,
+              "system": false
+            },
+            {
+              "seq": 129,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 132,
+              "heuristicTokens": 434,
+              "system": false
+            },
+            {
+              "seq": 134,
+              "heuristicTokens": 395,
+              "system": false
+            },
+            {
+              "seq": 137,
+              "heuristicTokens": 834,
+              "system": false
+            },
+            {
+              "seq": 139,
+              "heuristicTokens": 5838,
+              "system": false
+            },
+            {
+              "seq": 142,
+              "heuristicTokens": 235,
+              "system": false
+            },
+            {
+              "seq": 144,
+              "heuristicTokens": 130,
+              "system": false
+            },
+            {
+              "seq": 146,
+              "heuristicTokens": 13,
+              "system": false
+            },
+            {
+              "seq": 149,
+              "heuristicTokens": 6836,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 56916
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 151,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 148,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 150
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 151,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 151,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 151,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 151,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

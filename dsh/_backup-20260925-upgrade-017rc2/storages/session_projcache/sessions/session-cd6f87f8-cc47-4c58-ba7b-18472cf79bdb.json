@@ -1,0 +1,431 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789950619159,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 135,
+        "val": "你是 MIT 18.065（Strang）双语详"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 135,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Strang）双语详解稿的**译者注规格编辑**。下面给出第三课一道题的**全部译者注**（一个「注块」）。读者是大二上学期、智能科学与技术专业的构建主义学习者（要求第一性原理、逻辑链完整、反感空洞赞美与甩名词）；已学 6.042J 离散数学、CSAPP、Strang 线性代数，**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【任务】把这一注块调整到合规规格：**每一条 `[note]` 800–1200 字**（汉字计，公式、配图、引文不计入）。\r\n- 偏长的注（>1200 字）→ **按主题拆分为多条**，子标题写成 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`。\r\n- 偏短的注（<800 字）→ 与**同题内相邻的注合并**（并成一条或同一子标题下的两段），或**补足**机制展开/例子/跨课程连接，使每条达到 800 字以上。\r\n- 🚫 **不得为凑字数或压字数删除数学内容、例子、跨课程连接**；压缩对象只能是重复论证与修辞铺陈；补足对象必须是实质内容（机制、例子、可复用模板），不得注水。\r\n- 每条注仍须独立可读：① 一句话核心 → ② 机制展开 → ③ 具体例子 → ④ 跨课程连接或命名模板 → ⑤ 收束回正文；跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」。\r\n\r\n【格式铁律（必须保持）】\r\n- 中文为主体，英文术语 `English term（中文翻译）`；**每句话第一个字必须是中文**。\r\n- 行内 `$...$`；块级用 ` ```math ` 围栏；**零 `$$`**；禁止 Unicode 上下标（₀₁₂₃）。\r\n- 每条注以 `> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——……**` 开头；正文每一行以 `> ` 前缀（段间空行写 `>`）；`<span style=color:...>` 一律带双引号。\r\n\r\n【输出协议（严格遵守）】只输出一个槽位块，标记原样保留：\r\n```\r\n<<<SLOT 1>>>\r\n（调整后的注块全文，全部行以 > 前缀）\r\n<<<END SLOT 1>>>\r\n```\r\n不要输出修改清单、不要输出说明性文字、不要复述原文之外的内容。\r\n\r\n======================= 待调整注块开始 =======================\r\n\r\n<<<SLOT 1>>>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其一）双射、不重叠、单位长度：置换矩阵正交的三个条件**\r\n>\r\n> 本注只回答一个问题：为什么「把标准基重排」这件事必定产生正交矩阵，以及这个论证里哪一条都不能省。机制可以压成三个条件：**双射保证不重叠，不重叠保证两两正交，单一非零元保证单位长度**；三者合起来给出 $P^TP=I$，而 $P^TP=I$ 的对角线说的正是单位长度、非对角线说的正是两两正交，账目刚好对上。\r\n>\r\n> 先把「重排标准基」翻译成矩阵语言。设基向量 $e_1,\\dots,e_n$ 被送到 $e_{\\sigma(1)},\\dots,e_{\\sigma(n)}$，矩阵的第 $j$ 列就定义为后者，即 $p_j=e_{\\sigma(j)}$。这一步把「置换」这个组合对象变成了一张 $0/1$ 表，而且这张表的信息量恰好等于 $\\sigma$：看第 $j$ 列的 $1$ 落在第几行，就知道 $\\sigma(j)$。约定要全篇统一：列的编号是出发点，$1$ 所在的行号是到达点；这条约定不统一，后面比较 $P$ 与 $P^T$ 时就会把循环方向弄反。顺着这条约定还能读出一件常被忽略的事：列读出 $\\sigma$，则行读出的就是 $\\sigma^{-1}$，因为第 $j$ 列的唯一非零元在第 $\\sigma(j)$ 行，转置之后它变成第 $j$ 行的非零元、落在第 $k=\\sigma^{-1}(j)$ 列——这正是「$P^{-1}=P^T$ 就是逆置换」的机制来源。反过来，任意一个每列每行各恰有一个 $1$ 的 $n\\times n$ 表格都来自唯一一个 $\\sigma$，所以「$n$ 元置换」与「置换矩阵」之间是一一对应的，两个方向都不丢失信息。\r\n>\r\n> 再看三个条件各自管什么。第一，$p_j^Tp_j$ 等于该列非零元的平方和；该列只有一个 $1$，所以和为 $1$，这就是单位长度。第二，$p_i^Tp_j$（$i\\neq j$）是两个标准基向量的内积：$e_a^Te_b$ 在 $a\\neq b$ 时为 $0$，因为两个向量没有任何一个坐标同时非零。于是问题全部归结为：$\\sigma(i)$ 与 $\\sigma(j)$ 会不会相等？双射的单射性直接排除相等，所以每一对都是 $0$。第三，$n$ 列互不相同，故矩阵列满秩、可逆，$P^{-1}=P^T$ 才有资格写出来；顺便，满射性还保证每一行也恰好有一个 $1$，所以 $P^T$ 同样是置换矩阵。**如果 $\\sigma$ 只是映射而非双射**，比如 $n=3$ 时 $1\\mapsto1,\\,2\\mapsto1,\\,3\\mapsto2$，那么第 $1$、$2$ 列都是 $e_1$，内积为 $1$ 而不是 $0$，矩阵第 $3$ 行还全为零、根本不可逆——正交性当场崩塌。可见「正交」在这里不是运气，而是双射性在矩阵上的影子。这里还要点明「单一非零元」与 $0/1$ 取值是配套的：若允许某列取 $2$，即使非零位置互不重叠，内积也会从 $1$ 变成 $4$，单位长度立刻失守（正文第六节的错误 7 讲的就是这一条）。\r\n>\r\n> 用一个最小例子把账算完。$n=2$ 时取交换 $\\sigma=(1\\,2)$，$P=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$。列内积：$p_1^Tp_2=0\\cdot1+1\\cdot0=0$，$p_1^Tp_1=1$，$p_2^Tp_2=1$，故 $P^TP=I_2$；又 $P$ 对称且 $P^2=I_2$，于是 $P^{-1}=P=P^T$，与「转置就是逆置换」吻合（交换的逆就是它自己）。注意这里的 $P$ 同时还是对称矩阵，但这只是二阶交换的偶然，不是置换矩阵的普遍性质——四阶的题目矩阵就不对称。回到题目的 $4\\times4$ 矩阵：把四列读出来是 $e_4,e_1,e_2,e_3$，四个标号 $4,1,2,3$ 恰好是 $1,2,3,4$ 的一个排列，没有重复也没有遗漏——这就是双射性在具体数字上的样子。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其二）封闭世界：与 6.042J 的双射视角对接**\r\n>\r\n> 本注把上一注的三个条件推到「一整个封闭世界」，并与你在 6.042J 学过的置换对接。\r\n>\r\n> 第一个收益是：正交性不依赖你**怎么**重排。$n!$ 个置换矩阵各自正交，而且任意两个的乘积仍是置换矩阵——复合两个双射还是双射，乘积矩阵的每一列仍是某个标准基向量，并且互不重复；同理每个置换矩阵的逆也在集合里（$P^{-1}=P^T$，而 $P^T$ 也是置换矩阵）。最小样本还是 $n=2$：两个置换矩阵 $\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}$ 与 $\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ 相乘，结果仍在这两个之中。把封闭性的三条逐一兑现，可以看到它们分别对应置换运算的三条性质：单位矩阵对应恒等置换，逆矩阵对应 $\\sigma^{-1}$，乘积对应先后复合两个置换。于是这批矩阵对乘法封闭、包含单位矩阵、每个元素都有逆，这就是「保内积的可逆变换构成一个封闭世界」的最干净实例。封闭性还能直接复用：$P^2,P^3,\\dots$ 全是置换矩阵，所以 $\\|P^kx\\|=\\|x\\|$ 对一切整数 $k$ 成立，重复搬运多少次都不会累积长度误差。还要注意这个封闭世界不等于「所有正交矩阵」：旋转与反射也保内积，但它们的元素一般不是 $0/1$，乘积也不会停在置换矩阵里；置换矩阵是这个大家庭里唯一「只搬位置、不混合坐标」的一支。\r\n>\r\n> 连接锚点在 6.042J：那门课把「$n$ 个元素的重排」定义为一个双射 $\\sigma:\\{1,\\dots,n\\}\\to\\{1,\\dots,n\\}$，关心的是计数（共 $n!$ 个）与结构（拆成不相交循环的乘积），例如 $n=3$ 时六个置换分成三个偶置换与三个奇置换。18.065 把同一个 $\\sigma$ 写成矩阵，关心的是这张表作用在 $\\mathbb{R}^n$ 上是否保长度保夹角、它的转置为什么正好是逆、它的奇异值为什么全是 $1$。两门课在「单射导致位置不重叠」这一点上接上：6.042J 的双射性，在这里就是 $P^TP=I$ 证明里最关键的那一行。区别在于结论的类型：前者给你组合结构（循环分解、计数、奇偶性），后者给你数值与几何性质（条件数为 $1$，误差不被放大）；同一个对象在两门课里被问的问题不同，答案自然也不同。\r\n>\r\n> 可复用的命名模板：**双射—不重叠—单位长度三条件**。以后见到任何「由基向量重排生成的矩阵」（置换矩阵、某些稀疏编码矩阵、特殊图的邻接矩阵），按这三条逐项核对，就能在不动笔算乘法的情况下判定正交性。算法一侧还有同一套对象的另一种表示：6.006 里把置换存成长度 $n$ 的数组、沿循环跟踪下标做原地重排，占用 $O(n)$ 空间而不是 $n^2$；把它升格成矩阵，为的是让它能直接与任意矩阵相乘，从而在不损失长度和夹角的前提下搬运数据。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其三）题面末句的压力测试：$P$ 在实数域上凑不出正交特征向量**\r\n>\r\n> 本注用题目里的 $P$ 对题面末句做一次压力测试。那句话是：「当一个矩阵是对称的或正交的时，它会有正交特征向量。」结论是：对**正交矩阵**，这句话只有在 $\\mathbb{C}$ 上、按带共轭的内积理解时才成立；按字面在 $\\mathbb{R}$ 上理解，本题就是反例。\r\n>\r\n> 压力测试的做法是直接把 $P$ 的谱算出来。$P$ 对应的置换是 $4$-cycle，故 $P^4=I_4$，特征值只能是 $4$ 次单位根，也就是 $1,i,-1,-i$ 这四个数。其中实特征值只有 $1$ 与 $-1$：因为 $P(x_1,x_2,x_3,x_4)^T=(x_2,x_3,x_4,x_1)^T$，解 $Px=x$ 得特征向量 $(1,1,1,1)^T$（不动的向量必须四个分量相等），解 $Px=-x$ 得 $(1,-1,1,-1)^T$，两者内积为 $1-1+1-1=0$，确实正交。这两个实特征向量正交并非巧合：由下一注的正规性论证，正交矩阵在任何数域上都保证**不同特征值**的特征空间相互正交，缺的只是「凑满 $n$ 个」。剩下两个特征值 $\\pm i$ 在 $\\mathbb{R}$ 上**没有**非零实特征向量：若 $Px=ix$ 而 $x$ 是实向量，左边 $Px$ 是实向量、右边 $ix$ 是纯虚向量，只能两边同时为零向量，即 $x=0$，与特征向量非零矛盾。所以实数域里 $P$ 一共只有两个线性无关的实特征向量，凑不出四个，更谈不上四个实正交特征向量。末句若按字面在 $\\mathbb{R}$ 上读，对正交矩阵**不成立**。读题面的正确方式，是把它当成「正交特征向量有两个来源」的预告，而不是一条无条件的定理：见到正交矩阵，先问在哪个数域上取特征向量，再问「凑满 $n$ 个」这一步是否有着落。\r\n>\r\n> 同样的现象不依赖 $4$ 这个尺寸。平面上的旋转 $\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}$ 把每个非零向量都转 $90^\\circ$，没有任何实向量方向被保持，它的特征值是一对共轭的 $\\pm i$，实特征向量同样一个也没有。缺的实特征向量个数总是偶数，最多可以占满全部 $n$ 个（例如 $4$ 维空间里绕两个互相垂直的平面各转 $90^\\circ$，就一个实特征值也没有），原因就是下一注要讲的共轭配对。\r\n>\r\n> 要补的限定有两条：一是在 $\\mathbb{C}$ 上讨论，二是把「正交」理解成按 Hermitian inner product（埃尔米特内积，即带共轭的内积）正交，此时正交矩阵升级为 unitary matrix（酉矩阵），条件写成 $Q^*Q=I$，其中 $Q^*=\\overline{Q}^T$ 是共轭转置。补上以后这句话对正交矩阵是真的，而且机制完整（下一注展开）。对比之下，对称矩阵不需要这两条限定：实对称矩阵的特征值全为实数，因为 $x^*Ax$ 与它的共轭相等，只能等于自己的共轭即实数；特征向量也能取成实向量，且不同特征值的特征空间同样正交。所以「对称」与「正交」是两条平行通道，共同出口是「存在一组正交特征向量」，入口条件却不同，不能把两者的谱性质互相搬运；题面把两者并列写在一句话里，读者若不留心数域，就会得到一个在 $\\mathbb{R}$ 上错误的结论。可操作的习惯是把「数域」当成提问的第一项：任何关于特征值与特征向量的断言，都先补上「在 $\\mathbb{R}$ 上还是在 $\\mathbb{C}$ 上」，再谈别的。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其四）正交矩阵的复谱：模长、共轭配对与正交性**\r\n>\r\n> 本注把上一注的限定补成一条完整的机制链：在 $\\mathbb{C}$ 上，正交矩阵为什么必然拥有正交特征向量，以及每一步各自用到什么。约定内积 $\\langle x,y\\rangle=\\overline{x}^Ty$（共轭取在第一个位置），于是 $\\langle Qu,v\\rangle=\\langle u,Q^*v\\rangle$，其中 $Q^*=\\overline{Q}^T$ 是共轭转置；实正交矩阵满足 $Q^TQ=I$，自然满足 $Q^*Q=QQ^*=I$，所以它是 normal matrix（正规矩阵，即满足 $Q^*Q=QQ^*$ 的矩阵）。内积里那条等式 $\\langle Qu,v\\rangle=\\langle u,Q^*v\\rangle$ 是复内积下的「转置搬运规则」：把 $Q$ 从内积的第一个位置搬到第二个位置时，它必须换成共轭转置 $Q^*$，实数情形下就退化成熟悉的转置 $Q^T$；下面所有关于正交性的计算，都只是这条搬运规则的重复使用。\r\n>\r\n> 先解释为什么非换成带共轭的内积不可。在 $\\mathbb{C}$ 上若沿用不带共轭的 $x^Ty$，向量的「长度平方」$x^Tx$ 可能为 $0$ 而向量本身不为零向量，取 $x=(1,i)^T$ 就有 $x^Tx=1+i^2=0$；这样一来「正交」的说法会退化，特征值在单位圆上的结论也失去依据。换成 $\\langle x,y\\rangle=\\overline{x}^Ty$ 之后，$\\langle x,x\\rangle=\\sum|x_k|^2$ 只有在 $x=0$ 时才为零，长度、夹角、正交性才恢复成实数的样子。\r\n>\r\n> 第一步，锁模长。设 $Qx=\\lambda x$ 且 $x\\neq0$。正交矩阵保长度，$\\|Qx\\|=\\|x\\|$，而 $\\|Qx\\|=|\\lambda|\\,\\|x\\|$，两边约去 $\\|x\\|$ 得 $|\\lambda|=1$：整个谱落在单位圆上。用一句话记住这一步的作用，就是「保长度把特征值逼上单位圆」；与实对称矩阵对照，那边特征值被逼上实轴，这边被逼上单位圆，两把锁的机制相同，都是从「保结构」的等式里直接读出来的；这也是上一注里 $\\pm i$ 出现的原因，又是「正交矩阵的奇异值全为 $1$」的近亲。\r\n>\r\n> 第二步，处理共轭配对。$Q$ 是实矩阵，特征多项式是实系数多项式，非实根必成共轭对出现：若 $Qx=\\lambda x$，取共轭得 $Q\\overline{x}=\\overline{\\lambda}\\,\\overline{x}$，所以 $\\overline{x}$ 自动是 $\\overline{\\lambda}$ 的特征向量，不必重新求解。这一步解释了上一注的现象：实正交矩阵缺少的实特征向量总是成对缺席，缺的个数必为偶数；也解释了为什么在 $\\mathbb{R}$ 上「凑满 $n$ 个」这件事必然失败。\r\n>\r\n> 第三步，造正交性。正规性给出一个关键等式：$Qx=\\lambda x$ 时必有 $Q^*x=\\overline{\\lambda}x$，也就是说 $Q$ 与 $Q^*$ 共享同一批特征向量，只是特征值互为共轭。理由是一行平方和，$\\|Q^*x-\\overline{\\lambda}x\\|^2=\\|Q^*x\\|^2-\\overline{\\lambda}\\langle Q^*x,x\\rangle-\\lambda\\langle x,Q^*x\\rangle+|\\lambda|^2\\|x\\|^2$，其中 $\\|Q^*x\\|^2=\\langle QQ^*x,x\\rangle=\\langle Q^*Qx,x\\rangle=\\|Qx\\|^2=|\\lambda|^2\\|x\\|^2$、$\\langle Q^*x,x\\rangle=\\langle x,Qx\\rangle=\\lambda\\|x\\|^2$、$\\langle x,Q^*x\\rangle=\\overline{\\lambda}\\|x\\|^2$，代回得 $0$。有了它，设 $Qx=\\lambda x$、$Qy=\\mu y$、$\\lambda\\neq\\mu$，则 $\\mu\\langle x,y\\rangle=\\langle x,Qy\\rangle=\\langle Q^*x,y\\rangle=\\langle\\overline{\\lambda}x,y\\rangle=\\lambda\\langle x,y\\rangle$，于是 $(\\mu-\\lambda)\\langle x,y\\rangle=0$，不同特征值的特征向量必然正交。这一步的共轭要步步对账：在 $\\langle x,y\\rangle=\\overline{x}^Ty$ 的约定下，$\\langle Qx,y\\rangle=\\overline{\\lambda}\\langle x,y\\rangle$，而 $\\langle x,Q^*y\\rangle=\\overline{\\mu}\\langle x,y\\rangle$，两侧一致才给出 $(\\overline{\\lambda}-\\overline{\\mu})\\langle x,y\\rangle=0$；若在某一侧漏掉共轭，就会写成把 $\\lambda$ 与 $\\overline{\\mu}$ 相比的等式，而在 $\\mu=\\overline{\\lambda}$ 的共轭对上（本题的 $i$ 与 $-i$）这个等式两边恒等，什么也推不出来——这是复内积里最容易踩的坑。\r\n>\r\n> 本题的具体账目：四个特征向量可取 $(1,1,1,1)^T$（$\\lambda=1$）、$(1,i,-1,-i)^T$（$\\lambda=i$）、$(1,-1,1,-1)^T$（$\\lambda=-1$）、$(1,-i,-1,i)^T$（$\\lambda=-i$），两两按 $\\langle x,y\\rangle=\\overline{x}^Ty$ 为零，例如 $\\langle(1,1,1,1),(1,i,-1,-i)\\rangle=1+i-1-i=0$。把这四个向量读成信号，$4$ 点循环移位作用上去只会乘一个相位 $i^k$，模长不变，所以移位既不改变能量也不改变两个模态之间的夹角。这四个向量正是 $4$ 点离散傅里叶变换（DFT）矩阵的四列，在本课程讲频率与傅里叶的章节里还会再出现一次。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（其五）从「正交」到「凑满 $n$ 个」：不变补空间与 SVD**\r\n>\r\n> 上一注证明了不同特征值的特征向量正交，但还差最后一块：凭什么一定能凑满 $n$ 个正交特征向量？本注补上这一块，并说明它与 SVD 的关系。工具只有一条：**特征向量的正交补仍是不变子空间**。设 $Q$ 正规、$Qx=\\lambda x$、$x\\neq0$，任取 $y\\perp x$，则 $\\langle Qy,x\\rangle=\\langle y,Q^*x\\rangle=\\langle y,\\overline{\\lambda}x\\rangle=\\lambda\\langle y,x\\rangle=0$，所以 $Qy$ 仍与 $x$ 正交。也就是说，$x^\\perp$ 在 $Q$ 下封闭，$Q$ 可以被限制到 $x^\\perp$ 上继续做同一件事；又因为 $Q^*x=\\overline{\\lambda}x$，$x^\\perp$ 对 $Q^*$ 同样封闭，限制之后的伴随就是 $Q^*$ 的限制，正规性被完整继承下来。\r\n>\r\n> 于是归纳法可以落地，而且每一步都不循环论证：$\\mathbb{C}$ 上特征多项式必有根，先取一个特征向量 $x_1$；把 $Q$ 限制到 $x_1^\\perp$（维数严格降 $1$，限制仍正规），在更低维的空间里重复同样的取法，得到 $x_2\\perp x_1$；如此重复 $n$ 次，维数降到零时正好取满 $n$ 个两两正交的特征向量 $x_1,\\dots,x_n$。顺便说明为什么不能只说「特征多项式有 $n$ 个根，所以有 $n$ 个特征向量」：根可能重复，重复的根未必给出同样多的线性无关特征向量，而正规性恰好保证这种缺口不会出现。它们自动线性无关，构成 $\\mathbb{C}^n$ 的一组基；把每个向量除以自己的长度，就得到标准正交特征向量基。这正是「对称矩阵的谱定理」在正交矩阵上的复数版本，两者的差别只在特征值的位置：对称矩阵的特征值全在实轴上，正交矩阵的特征值全在单位圆上。本题的 $P$ 就是这条路线的最小样本，它的四个特征向量已在上注列出。\r\n>\r\n> 这条通道在课程主线上被用尽，就是 SVD（singular value decomposition，奇异值分解）。对任意矩阵 $A$，$A^TA$ 是实对称矩阵，把它的一组标准正交特征向量 $v_i$ 取出来；$AA^T$ 也是实对称矩阵，把它的标准正交特征向量 $u_i$ 取出来；两组之间由 $Av_i=\\sigma_iu_i$ 连接，其中 $\\sigma_i$ 是 $A^TA$ 特征值的平方根，也就是 $A$ 的奇异值。也就是说，SVD 两侧的两套正交向量不是凭空出现的，而是「对称矩阵必给正交特征向量」这条通道批量生产的。它们为什么值得花力气去求？因为正交基让系数逐个读出（$u_i^TAv_i$ 或 $v_i^TA^Tu_i$ 这类内积一算就是 $\\sigma_i$，不必解方程组），也让条件数直接等于 $\\sigma_1/\\sigma_n$；正交矩阵的奇异值全为 $1$，条件数就是 $1$，是这个尺度上最不放大误差的一类矩阵。\r\n>\r\n> 最后看两个退化的极端，它们说明 SVD 的普适性。一般矩阵的两组基不同，$U$ 与 $V$ 各管一侧；对称矩阵的两组基可以取成同一组，$A=U\\Sigma V^T$ 就退回成 $S=Q\\Lambda Q^T$；正交矩阵连 $\\Sigma$ 也退化成单位矩阵，把 $Q=QI$ 的右边看成 $U\\Sigma V^T$ 就得到最简的一组 SVD，$U=Q$，$\\Sigma=I$，$V=I$。命名模板：**模长锁（$|\\lambda|=1$）→ 共轭配对（$\\lambda$ 与 $\\overline{\\lambda}$ 同时出现）→ 不变补空间（$x^\\perp$ 封闭，归纳凑满 $n$ 个）**。判定「正交矩阵的正交特征向量」时按这三步走，每一步都能在纸面上复现；只有在实数域内做对称矩阵时，才可以跳过数域那两步，直接调用「特征值全为实」。\r\n<<<END SLOT 1>>>\r\n\r\n======================= 待调整注块结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 135,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 135,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 135,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 135,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 135,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 19880,
+            "outputTokens": 29275,
+            "cacheReadTokens": 509824,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 24,
+            "buckets": {
+              "uncachedInputTokens": 234,
+              "outputTokens": 6993,
+              "cacheReadTokens": 40320,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 135,
+        "val": {
+          "surfaceTokens": 26612,
+          "contextWindow": 1000000,
+          "pressureTokens": 40554,
+          "sampledSurfaceTokens": 23425
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 135,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2579,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2669,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 141,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 224,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 127,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 96,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 529,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 48,
+              "heuristicTokens": 333,
+              "system": false
+            },
+            {
+              "seq": 50,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 53,
+              "heuristicTokens": 331,
+              "system": false
+            },
+            {
+              "seq": 55,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 58,
+              "heuristicTokens": 217,
+              "system": false
+            },
+            {
+              "seq": 60,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 63,
+              "heuristicTokens": 1384,
+              "system": false
+            },
+            {
+              "seq": 65,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 68,
+              "heuristicTokens": 1113,
+              "system": false
+            },
+            {
+              "seq": 70,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 73,
+              "heuristicTokens": 309,
+              "system": false
+            },
+            {
+              "seq": 75,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 78,
+              "heuristicTokens": 1676,
+              "system": false
+            },
+            {
+              "seq": 80,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 83,
+              "heuristicTokens": 1570,
+              "system": false
+            },
+            {
+              "seq": 85,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 88,
+              "heuristicTokens": 588,
+              "system": false
+            },
+            {
+              "seq": 90,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 93,
+              "heuristicTokens": 1074,
+              "system": false
+            },
+            {
+              "seq": 95,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 98,
+              "heuristicTokens": 583,
+              "system": false
+            },
+            {
+              "seq": 100,
+              "heuristicTokens": 38,
+              "system": false
+            },
+            {
+              "seq": 103,
+              "heuristicTokens": 347,
+              "system": false
+            },
+            {
+              "seq": 105,
+              "heuristicTokens": 113,
+              "system": false
+            },
+            {
+              "seq": 108,
+              "heuristicTokens": 436,
+              "system": false
+            },
+            {
+              "seq": 110,
+              "heuristicTokens": 172,
+              "system": false
+            },
+            {
+              "seq": 113,
+              "heuristicTokens": 726,
+              "system": false
+            },
+            {
+              "seq": 115,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 118,
+              "heuristicTokens": 304,
+              "system": false
+            },
+            {
+              "seq": 120,
+              "heuristicTokens": 107,
+              "system": false
+            },
+            {
+              "seq": 123,
+              "heuristicTokens": 130,
+              "system": false
+            },
+            {
+              "seq": 125,
+              "heuristicTokens": 2973,
+              "system": false
+            },
+            {
+              "seq": 128,
+              "heuristicTokens": 448,
+              "system": false
+            },
+            {
+              "seq": 130,
+              "heuristicTokens": 31,
+              "system": false
+            },
+            {
+              "seq": 133,
+              "heuristicTokens": 3187,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 25468
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 135,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 135,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 132,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 134
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 135,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 135,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 135,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 135,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 135,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 135,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

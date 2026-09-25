@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148588289,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 40,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 40,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_231]\nIV.4. Sine and Cosine Transforms from Kronecker Sums\n\n229\n\nThe imaginary part of $F$ produces the Discrete Sine Transform. That DST matrix contains the eigenvectors $u_j$ of $D$. The two-dimensional DST matrix contains the eigenvectors $v_{jk}$ of the Laplace difference matrix $K$.\n\nThe FFT executes the computational steps of equation (2) in $O(N^2 \\log_2 N)$ operations:\n\n(1) A fast 2D transform FFT $\\otimes$ FFT to find the sine coefficients $b_{jk}$ of $h^2 F$\n\n(2) A division of each $b_{jk}$ by the eigenvalue $\\lambda_{jk} = \\lambda_j(D) \\lambda_k(D)$\n\n(3) A fast 2D inverse transform to find $U$ from its sine coefficients $b_{jk}/\\lambda_{jk}$.\n\nThis algorithm solves Laplace's equation in a square. Boundary values are given on the four edges. It is coded in FISHPACK. That name is a terrible pun on the translation of Poisson—who added a source term to Laplace's equation: $\\partial^2 u/\\partial x^2 + \\partial^2 u/\\partial y^2 = f(x, y)$. FISHPACK also allows the free or natural or Neumann boundary condition $\\partial u/\\partial n = 0$ with cosine eigenvectors, as well as the fixed or essential or Dirichlet boundary condition $u = u_0$ with sine eigenvectors.\n\nThe difference between fixed and free appears in the first and last rows of $D$ in one dimension—and then in all the boundary rows of the Kronecker sum $K = D \\oplus D$ in two dimensions:\n\n$$\nD_{\\text{fixed}} = \\begin{bmatrix} -2 & 1 & & \\\\ 1 & -2 & 1 & \\\\ & \\cdot & \\cdot & \\cdot \\\\ & & 1 & -2 \\end{bmatrix} \\qquad D_{\\text{free}} = \\begin{bmatrix} -1 & 1 & & \\\\ 1 & -2 & 1 & \\\\ & \\cdot & \\cdot & \\cdot \\\\ & & 1 & -1 \\end{bmatrix} \\tag{4}\n$$\n\nThe eigenvectors of $D_{\\text{fixed}}$ led us to the Discrete Sine Transform. The eigenvectors of $D_{\\text{free}}$ would lead us to the Discrete Cosine Transform. But a different application is too interesting to miss. Instead of solving Laplace's difference equation with free boundary conditions, we will apply the two-dimensional Discrete Cosine Transform to image compression.\n\nIn that world the DCT-based algorithm is known as JPEG (jaypeg).\n\nThe Discrete Cosine Transform in JPEG\n\nThe letters JPEG stand for Joint Photographic Experts Group. This group established a family of algorithms that start with pixel values (grayscale numbers from 0 to 255, or the Red-Blue-Green intensities for each pixel). The code produces a compressed image file in the .jpg format. The algorithm can be seen in two stages:\n\nStep 1 is a linear transformation of the matrix of pixel values. At the start, grayscale values are highly correlated—nearby pixels tend to have nearby values. The transform produces numbers with more independent information.\n\nExample: Take the average and difference of two neighboring values. When the difference is small, we can transmit fewer bits and the human visual system will never know.\n\n### [原文 page_232]\n\\textbf{230}\\hfill \\textsc{Special Matrices}\n\nStep 2 is a nonlinear compression and quantization of the transformed signal. The compression keeps only numbers that are visually significant. The quantization converts the compressed signal into a sequence of bits—to get ready for fast transmission. Then the receiver uses those bits to reconstruct an image that is very close to the original.\n\nStep 1 most often uses a Discrete Cosine Transform. It acts separately on $8 \\times 8$ blocks of the image. (JPEG2000 offers a wavelet transform but this option has not been widely adopted.) Each block of 64 grayscale values leads to a block of 64 cosine coefficients—a lossless transform. The inverse transform will recover the original blocks of the image. But before inverting we will compress and quantize those 64 numbers. This step loses information that our eyes can't see anyway.\n\nDiscrete Cosine Transforms are described in \\textit{SIAM Review} for 1999 (volume 41, pages 135--147). They differ in their boundary conditions. The most popular choice is DCT-2 with these 8 orthogonal basis vectors in each dimension:\n\n\\textbf{DCT-2}\\quad The $j$th component of the $k$th vector is \\(\\cos\\left(j+\\frac12\\right)k\\frac{\\pi}{8}\\quad j,k=1,\\ldots,8\\)\n\nThose 64 numbers go into an 8 by 8 matrix $C$. Then the matrix for the $2D$ cosine transform is the Kronecker product $C \\otimes C$ of size $8^2$. Its columns are orthogonal. It acts on each $8 \\times 8$ block of the image to give an $8 \\times 8$ block of Fourier cosine coefficients—which tell us the right combination of cosine basis vectors to reconstruct the original block in the image.\n\nBut we don't aim for perfect reconstruction. Step 2 discards information that we don't need. Step 1 has produced cosine coefficients $c_{jk}$ of very different sizes—usually smaller numbers $c$ for higher frequencies $j,k$. The file \\texttt{https://cs.stanford.edu/people/eroberts/courses/soco/projects/data-compression/lossy/jpeg/dct.htm} shows a typical $8 \\times 8$ block before and after the DCT step. The cosine coefficients are ready for Step 2, which is compression and quantization.\n\nFirst, each block of 64 coefficients goes into a $64 \\times 1$ vector—but not by the \\texttt{vec} command. A zig-zag sequence is better at keeping larger coefficients first. If we end with a run of near-zeros, they can be compressed to zero (and we only transmit the length of the run: the number of zeros). Here is the start of the zig-zag order for the 64 coefficients:\n\n\\[\n\\begin{array}{cccc}\n1 & 2 & 6 & 7\\\\\n3 & 5 & 8 & \\\\\n4 & 9 & & \\\\\n10 & & &\n\\end{array}\n\\]\n\nHigher frequencies come later in the zig-zag order and usually with smaller coefficients. Often we can safely rescale those numbers before the rounding step gives $q_{jk}$:\n\n\\textbf{Quantization example}\\quad\n\\[\nq_{jk}=\\frac{c_{jk}}{j+k+3}\\quad \\text{rounded to nearest integer}\n\\]\n\n【当前译文】\n@@PAGE:231@@\n<!-- page 231 -->\n> <span style=color:#1e8449;>[note] 本页为书页 229，是 §IV.4 Sine and Cosine Transforms from Kronecker Sums（由克罗内克和得到的正弦与余弦变换）的续页；书眉（重复的节标题）不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 噪声较多：`Th e` → the、`P art` → part、`2 log2 阅` → $O(N^2\\log_2 N)$、`九 2F` → $h^2F$、`入` → $\\lambda$、`tran s 皿`／`皿 s 皿`／`transmlt` → transform／transmit、`U 什 0 m` → from、`Pois s on` → Poisson、`Dinchlet` → Dirichlet、`K = 刀 刀` → 克罗内克和 $K = D \\oplus D$、`E嵬0@冈e` → Example、`JPg`／`61e` → JPG／file、`intere s 卜 mg` → interesting。其中 “That DST matrix contains” 之后的宾语被 OCR 吞掉，`Th e 艹` 一词亦残缺，此处按上一页“用 FFT 计算这些特征向量”的上下文重建为「$D_{\\text{fixed}}$ 的特征向量（离散正弦向量）」；源项一式的 $\\partial$ 亦按同一页（书页 228）的 Laplacian 记号统一还原。（原书此处 OCR 残缺）`That DST matrix contains` 的宾语在纸书上究竟是“离散正弦向量”还是别的对象，请复核。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## （续）Sine and Cosine Transforms from Kronecker Sums（由克罗内克和得到的正弦与余弦变换）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.4, p.229</span>\n矩阵 $F$ 的虚部产生 Discrete Sine Transform（离散正弦变换，DST）。\n这个 DST 矩阵所包含的，正是那些离散的正弦向量，也就是 $D_{\\text{fixed}}$ 的 eigenvector（特征向量）；而 FFT 用 $O(N^2\\log_2 N)$ 次运算执行方程（2）的那些计算步骤：\n**（1）** 一次快速的 2D transform $\\mathrm{FFT}\\otimes\\mathrm{FFT}$（二维快速变换），用来求出 $h^2F$ 的正弦系数 $b_{jk}$。\n**（2）** 把每个 $b_{jk}$ 除以对应的 eigenvalue（特征值）$\\lambda_{jk} = \\lambda_j(D)\\,\\lambda_k(D)$。\n**（3）** 一次快速的 2D inverse transform（二维逆变换），用来由正弦系数 $b_{jk}/\\lambda_{jk}$ 求回 $U$。\n这一算法求解的是正方形区域上的 Laplace's equation（拉普拉斯方程）。\n边界值在四条边上给定，它被编入 FISHPACK 这一软件包中。\n这个名字是一个糟糕的双关语，调侃的是 Poisson（泊松）的译名——Poisson 在法语中正是“鱼”的意思；而正是 Poisson 给拉普拉斯方程加上了一个 source term（源项）：$\\partial^2u/\\partial x^2 + \\partial^2u/\\partial y^2 = f(x,y)$。\n这个软件包还允许 “free（自由）”、“natural（自然）” 或 “Neumann（诺伊曼）” 的 boundary condition（边界条件）$\\partial u/\\partial n = 0$（配合余弦特征向量），以及 “fixed（固定）”、“essential（本质）” 或 “Dirichlet（狄利克雷）” 的 boundary condition $u = u_0$（配合正弦特征向量）。（续）特征向量使用；它也允许 “fixed（固定）” 或 “essential（本质）” 的 Dirichlet boundary condition（狄利克雷边界条件）$u = 0$，配合正弦特征向量使用。\n固定与自由之间的差别，在一维情形中出现在 $D$ 的第一行与最后一行——而在二维情形中，就出现在 Kronecker sum（克罗内克和）$K = D \\oplus D$ 的所有边界行里：\n```math\nD_{\\text{fixed}} = \\begin{bmatrix} -2 & 1 & & \\\\ 1 & -2 & 1 & \\\\ & \\cdot & \\cdot & \\cdot \\\\ & & 1 & -2 \\end{bmatrix}\\qquad D_{\\text{free}} = \\begin{bmatrix} -1 & 1 & & \\\\ 1 & -2 & 1 & \\\\ & \\cdot & \\cdot & \\cdot \\\\ & & 1 & -1 \\end{bmatrix} \\tag{4}\n```\n而 $D_{\\text{fixed}}$ 的特征向量把我们引向离散正弦变换。\n$D_{\\text{free}}$ 的特征向量则会把我们引向 Discrete Cosine Transform（离散余弦变换，DCT）。\n但另有一个应用更令人感兴趣：我们不去用自由边界条件求解拉普拉斯的差分方程，而是把二维离散余弦变换应用到图像压缩上。\n在那个领域里，基于 DCT 的算法被称为 JPEG（读作 jaypeg）。\n<span style=color:#2471a3;>**[section]**</span>\n## The Discrete Cosine Transform in JPEG（JPEG 中的离散余弦变换）\n这几个字母 JPEG 代表 Joint Photographic Experts Group（联合图像专家组）。\n这个专家组确立了一族算法，它们以像素值为起点（取 $0$ 到 $255$ 的灰度数值，或者每个像素的红-蓝-绿强度值）。\n这些代码生成出 `.jpg` 格式的压缩图像文件。\n这个算法可以分成两个阶段来看：\n第 1 步是对像素值矩阵作一次 linear transformation（线性变换）。\n在起点处，灰度值之间的相关性很强——邻近的像素往往具有相近的数值。\n而变换生成的数值则带有更多彼此独立的信息。\n<span style=color:#2471a3;>**[example]**</span> **Example（例）**：取两个相邻数值的平均值与差值。\n当差值很小时，我们就能少传几个 bit（比特），而人的视觉系统对此永远不会察觉。\n\n@@PAGE:232@@\n<!-- page 232 -->\n> <span style=color:#1e8449;>[note] 本页为书页 230，是 §IV.4 的续页；书眉（重复的节标题）不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 噪声：`compressron` → compression、`山 at` → that、`inverung` → inverting、`quanUze` → quantize、`竹 sforms` → Transforms、`0 直 hogonal` → orthogonal、`0f` → of、`pro duct` → product、`coeffcients` → coefficients、`e rob erts` → eroberts、`0 n` → Now、`JPEG2000`（OCR 作 `EG2000`）；示例网址中的空格与字符噪声按 URL 路径结构还原。zig-zag 顺序图 OCR 只识别出开头的 `1 2 6 7 3`，其余编号按 JPEG 标准的 zig-zag 顺序补全为完整的 $8 \\times 8$ 编号表。（原书此处 OCR 残缺）还原后的完整网址（本译文作 https://cs.stanford.edu/people/eroberts/courses/soco/projects/data-compression/lossy/jpeg）请与纸书核对。（原书此处 OCR 残缺）补全后的编号表请与纸书插图逐一对照（本译文采用的是标准 zig-zag 扫描次序）。</span>\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.4, p.230</span>\n第 2 步是对变换后的信号作非线性的 compression（压缩）与 quantization（量化）。\n压缩只保留那些在视觉上重要的数值。\n量化则把压缩后的信号转换成一串 bit（比特）——以便为快速传输做好准备。\n随后接收端就用这些比特重建出一幅与原图非常接近的图像。\n第 1 步最常用的是一次离散余弦变换。\n它分别作用在图像的 $8 \\times 8$ 的 blocks（小块）上。\n（较新的 JPEG2000 提供了 wavelet transform（小波变换），但这一选项并未被广泛采用。）\n每个由 $64$ 个灰度值组成的小块都会产生一个由 $64$ 个余弦系数组成的块——这是一次 lossless（无损）的变换。\n逆变换将恢复图像原来的那些小块。\n但在作逆变换之前，我们会先压缩并量化那 $64$ 个数值。\n这一步丢掉的是我们的眼睛无论如何也看不到的信息。\n在 SIAM Review 1999 年那一卷中，有文章详细描述了 discrete cosine transforms（第 41 卷，第 135–147 页）。\n它们彼此的区别在于 boundary conditions（边界条件）。\n最流行的选择是 DCT-2，它在每个维度上使用下面这 $8$ 个 orthogonal basis vectors（正交基向量）：\n<span style=color:#2471a3;>**[definition]**</span> <span style=color:#c0392b;>**DCT-2**</span>\n<span style=color:#00838f;>第 $k$ 个向量的第 $j$ 个分量是 $\\cos\\left(\\left(j+\\tfrac{1}{2}\\right)\\dfrac{k\\pi}{8}\\right)$。</span>\n这 $64$ 个数值构成一个 $8 \\times 8$ 的矩阵 $C$。\n于是二维余弦变换的矩阵就是 Kronecker product（克罗内克积）$C \\otimes C$，其大小为 $8^2 \\times 8^2$。\n它的各列是正交的。\n它作用在图像的每一个 $8 \\times 8$ 小块上，给出一个 $8 \\times 8$ 的傅里叶余弦系数块——这些系数告诉我们，应当用余弦基向量怎样组合，才能重建出图像中原来的那个小块。\n但我们并不追求完美的重建。\n第 2 步会丢弃我们并不需要的信息。\n第 1 步已经产生了大小差别极大的余弦系数 $c_{jk}$——通常频率越高，系数就越小。\n文件 https://cs.stanford.edu/people/eroberts/courses/soco/projects/data-compression/lossy/jpeg 展示了一个典型的 $8 \\times 8$ 小块在 DCT 步骤之前与之后的样子。\n这些余弦系数已经准备好进入第 2 步，也就是压缩与量化。\n首先，每个由 $64$ 个系数组成的小块被装进一个 $64 \\times 1$ 的向量——但不是用 `vec` 命令来装。\n按 zig-zag（之字形）顺序排列，则更善于把较大的系数排在前面。\n如果我们末尾遇到一整段接近零的数值，它们就可以被压缩成零（而我们只需传输这段的长度，也就是零的个数）。\n下面是这 $64$ 个系数的 zig-zag 顺序的开头部分（图中数字给出该系数在 zig-zag 序列中的位置）：\n```math\n\\begin{matrix}\n1 & 2 & 6 & 7 & 15 & 16 & 28 & 29 \\\\\n3 & 5 & 8 & 14 & 17 & 27 & 30 & 43 \\\\\n4 & 9 & 13 & 18 & 26 & 31 & 42 & 44 \\\\\n10 & 12 & 19 & 25 & 32 & 41 & 45 & 54 \\\\\n11 & 20 & 24 & 33 & 40 & 46 & 53 & 55 \\\\\n21 & 23 & 34 & 39 & 47 & 52 & 56 & 61 \\\\\n22 & 35 & 38 & 48 & 51 & 57 & 60 & 62 \\\\\n36 & 37 & 49 & 50 & 58 & 59 & 63 & 64\n\\end{matrix}\n```\n在 zig-zag 顺序中，更高的频率排在更后面，通常对应的系数也更小。\n现在，在 rounding（舍入）步骤给出 $q_{jk}$ 之前，我们可以放心地把那些数值重新缩放：\n<span style=color:#2471a3;>**[example]**</span> **Quantization example（量化示例）**：把每个系数 $c_{jk}$ 除以 $j+k+3$，再四舍五入到最接近的整数，就得到 $q_{jk}$。\n```math\nq_{jk} = \\operatorname{round}\\!\\left(\\frac{c_{jk}}{j+k+3}\\right)\n```\n> <span style=color:#1e8449;>[note] 译者注：**为什么“有损”还能像——DCT 交到量化器手里的是什么。** 本页把 JPEG 拆成两步，第 1 步（DCT）是无损的，损失全部发生在第 2 步的量化 $q_{jk}=\\operatorname{round}\\!\\left(c_{jk}/(j+k+3)\\right)$。这个分工很容易被含糊过去，但用你在 Cover 信息论前 6 章学的东西可以把话说得很精确：**可逆变换不改变熵，所以变换本身从来不产生压缩；熵只能靠量化来降。**</span>\n>\n> <span style=color:#1e8449;>**为什么正交变换“不减少信息”却仍然有用。** 矩阵 $C$（DCT 矩阵）的各列正交，$8\\times 8$ 块的二维变换是 $C\\otimes C$，是一个可逆变换；而熵只依赖概率分布，可逆映射只是把每个结果一对一改名，概率不变，所以 $H(T(X))=H(X)$。因此“DCT 减少了熵”是错的。DCT 真正做的是**去相关**：相邻像素的灰度高度相关，输入块落在高维空间里一个很“扁”的区域内；变换后能量集中到少数低频坐标上，其余系数很小。压缩率的来源是这种能量集中（更准确地说是系数方差的分布），不是变换本身。</span>\n>\n> <span style=color:#1e8449;>**量化才是真正丢熵的那一步。** 除以 $j+k+3$ 再四舍五入，把幅值小的系数直接压成 $0$，只留下少数几个非零整数和一长串零。此时系数的分布变得极度集中，熵真的下降了——也只有到这一步，“可压缩”才成立。所以有损与无损的分界线就在量化器上：**熵只能由量化来降，编码器只能逼近剩下那个熵**。</span>\n>\n> <span style=color:#1e8449;>**连接 Cover 信息论的具体两处。** ① 上面用到的“可逆变换下熵不变”，是 AEP 与熵的基本性质那一章的推论；② 最后一步（zig-zag 扫描 + 游程编码 + 熵编码）是在**兑现**已经降下来的熵：无损压缩的极限就是熵，你算过 Huffman 编码满足 $H(X)\\le L<H(X)+1$，而信源编码定理说把 $N$ 个符号一起编码可以逼近 $NH(X)$。这也解释了为什么量化之后还要做熵编码——零变多了，熵已经小了，但要把“小熵”变成“少比特”，必须靠编码器去逼近它。顺带说清一个常见误解：如果量化后系数之间还残留相关性，一阶熵编码就达不到最优，所以前面的去相关（DCT）是必要的预处理，而不是可有可无的装饰。</span>\n>\n> <span style=color:#1e8449;>**之字形扫描（zig-zag）是一次“为下游算法重排输入”的设计。** 按频率从低到高“之”字形扫描 $8\\times 8$ 块，把二维的“右下角成片为零”变成一维的“末尾一长串零”，于是游程编码可以直接吃掉它。注意这与 page_227（书页 225）定义的 $\\mathrm{vec}$（按列堆叠）目的完全不同：$\\mathrm{vec}$ 是为矩阵运算服务的重排，zig-zag 是为压缩服务的重排——同一批 64 个数，按两种目的各排一遍。这是算法设计里很典型的一招：**改变数据的排列顺序，让后续算法变得更简单。**</span>\n>\n> <span style=color:#1e8449;>**为什么量化步长随频率增大。** 人的视觉对高频细节不敏感，而高频系数的能量本来也小，除以大数不会引入可见误差。真实 JPEG 用的是一张固定的 $8\\times 8$ 整数量化表（ISO 通过大量测试定出的一套标准值；本书这一页（书页 230）引的斯坦福那份资料里给了表以及量化前后的对照示例，更详细的 DCT 讨论见本书列出的 SIAM Review 1999, 41(1), 135–147）。Strang 用的 $j+k+3$ 只是这张表的简化替身。这里可以接上你在 Strang 教材里学的 PCA：如果基是从数据协方差矩阵的特征向量里选出来的（PCA 的做法），对给定的相关结构是最优的去相关；但 JPEG 面对的是任意图像，没有“每张图训练一套基”的预算，所以改用一组固定的、对典型自然图像已经很接近最优的余弦基。**用固定基换掉训练开销，是工程上极常见的一笔交易。**</span>\n>\n> <span style=color:#1e8449;>顺带说一句你还没学到的部分：如果要把“损失多少”与“需要多少比特”的关系写成定量理论，那是率失真的问题——它问的是“允许失真 $D$ 时最少需要多少比特 $R(D)$”，在 Cover 书里比你现在读到的地方更靠后。它的结论形状与我们这里的做法一致：方差大的系数多分配比特、方差小的多丢一点。你已经学的这套（熵 + 量化 + 熵编码）足以看懂 JPEG 的骨架。</span>\n>\n> <span style=color:#1e8449;>**可迁移的结论**：任何“变换 + 量化 + 熵编码”的压缩系统都是这三拍的组合（音频、视频的变换编码也是这个形状）。分析一个压缩算法时问三句：变换可逆吗（它不产生压缩）？量化步长按什么准则分配（**损失只发生在这里**）？剩下的熵用什么编码器兑现（这决定了压缩率的上限）？</span>\n\n现在输出修订后的译文全文（从 `@@PAGE:231@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 40,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 40,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 40,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 40,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 218,
+            "outputTokens": 5894,
+            "cacheReadTokens": 9728,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 218,
+              "outputTokens": 5894,
+              "cacheReadTokens": 9728,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 40,
+        "val": {
+          "surfaceTokens": 8566,
+          "contextWindow": 1000000,
+          "pressureTokens": 9946,
+          "sampledSurfaceTokens": 5499
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 40,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3939,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 3067,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7422
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 40,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 39
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 40,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 40,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 40,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 40,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789960146114,
+      "cwd": "C:\\Users\\27063",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "armor": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "running": false,
+          "verdict": "fallback",
+          "words": [
+            "购买授权"
+          ],
+          "safe": [
+            "授权",
+            "授权",
+            "合法"
+          ],
+          "risk": [],
+          "domain": null,
+          "domainHits": 0
+        }
+      },
+      "title": {
+        "ver": 1,
+        "seq": 17,
+        "val": "下载信号与系统教材PDF"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "first": {
+            "seq": 9,
+            "text": "《信号与系统（MATLAB版·微课视频版·第2版）》，汤全武主编，清华大学出版社，2024年，ISBN 9787302658368。下载一下pdf"
+          },
+          "count": 1,
+          "lastSeq": 9
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 17,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 17,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 17,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 214,
+            "outputTokens": 889,
+            "cacheReadTokens": 1152,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 214,
+              "outputTokens": 889,
+              "cacheReadTokens": 1152,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 17,
+        "val": {
+          "surfaceTokens": 657,
+          "contextWindow": 1000000,
+          "pressureTokens": 1366,
+          "sampledSurfaceTokens": 43
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 17,
+        "val": {
+          "nodes": [
+            {
+              "seq": 8,
+              "heuristicTokens": 16,
+              "system": true
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 15,
+              "heuristicTokens": 614,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 16,
+            "toolsTokens": 1063,
+            "messageTokens": 641
+          }
+        }
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 7,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 16
+          },
+          "lastTurn": 1
+        }
+      },
+      "sessionStats": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "turns": 1,
+          "steps": 1,
+          "llmMs": 7278,
+          "toolMs": 0,
+          "ttftMs": 2407,
+          "ttftSteps": 1,
+          "decodeMs": 4871,
+          "decodeTokens": 889,
+          "lastTurn": 1,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "turnOutline": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "turns": [
+            {
+              "turn": 1,
+              "seq": 5,
+              "prompt": "《信号与系统（MATLAB版·微课视频版·第2版）》，汤全武主编，清华大学出版社，2024年，IS…",
+              "response": "这本书是清华大学出版社 2024 年新出的教材，受版权保护，网上所谓\"PDF 下载\"基本都来自盗版渠道，我不能帮你找或下载这类资源。不过下面这些正规途径通常都能看到或拿到它，另外还有一些可合法免费使用的替代教材，可能对你有用。 ## 拿到…"
+            }
+          ],
+          "draft": ""
+        }
+      },
+      "agentPreset": {
+        "ver": 1,
+        "seq": 17,
+        "val": "anchored-standard"
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 17,
+        "val": {}
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": true
+        }
+      },
+      "modelSelection": {
+        "ver": 2,
+        "seq": 17,
+        "val": {
+          "lastUsed": {
+            "provider": "commandcode-goat",
+            "model": "deepseek/deepseek-v4.1-flash",
+            "reasoningEffort": "high"
+          },
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1790132316561
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 17,
+        "val": null
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 17,
+        "val": null
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 17,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 17,
+        "val": null
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 17,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

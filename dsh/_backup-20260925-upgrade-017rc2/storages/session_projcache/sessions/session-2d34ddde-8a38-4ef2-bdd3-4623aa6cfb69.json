@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148173701,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_219]\nIV.2. Shift Matrices and Circulant Matrices                                 217\n\n**Eigenvalues and Eigenvectors of a Circulant \\(C\\)**\n\nThe eigenvectors of a circulant matrix \\(C\\) are especially easy. Those eigenvectors are the same as the eigenvectors of the permutation \\(P\\). So they are the columns \\(q_0, q_1, \\ldots, q_{N-1}\\) of the same Fourier matrix \\(F\\). Here is \\(Cq_k = \\lambda q_k\\) for the \\(k\\)th eigenvector and eigenvalue:\n\n\\[\n(c_0I + c_1P + \\cdots + c_{N-1}P^{N-1}) q_k = (c_0 + c_1\\lambda_k + \\cdots + c_{N-1}\\lambda_k^{N-1}) q_k. \\tag{13}\n\\]\n\nRemember that \\(\\lambda_k = w^k = e^{2\\pi ik/N}\\) is the \\(k\\)th eigenvalue of \\(P\\). Those numbers are in the Fourier matrix \\(F\\). Then the eigenvalues of \\(C\\) in equation (13) have an almost magical formula: **Multiply \\(F\\) times the vector \\(c\\) in the top row of \\(C\\) to find the eigenvalues.**\n\n\\[\n\\begin{bmatrix}\n\\lambda_0(C) \\\\\n\\lambda_1(C) \\\\\n\\lambda_2(C) \\\\\n\\cdot \\\\\n\\lambda_{N-1}(C)\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nc_0 + c_1 + \\cdots + c_{N-1} \\\\\nc_0 + c_1w + \\cdots + c_{N-1}w^{N-1} \\\\\nc_0 + c_1w^2 + \\cdots + c_{N-1}w^{2(N-1)} \\\\\n\\cdot \\cdot \\cdot \\\\\nc_0 + c_1w^{N-1} + \\cdots + c_{N-1}w^{(N-1)(N-1)}\n\\end{bmatrix}\n= F\n\\begin{bmatrix}\nc_0 \\\\\nc_1 \\\\\nc_2 \\\\\n\\cdot \\\\\nc_{N-1}\n\\end{bmatrix}\n= Fc. \\tag{14}\n\\]\n\nThe \\(N\\) eigenvalues of \\(C\\) are the components of \\(Fc\\) = inverse Fourier transform of \\(c\\).\n\nExample for \\(N = 2\\) with \\(w = e^{2\\pi i/2} = -1\\) in the Fourier matrix \\(F\\)\n\n\\[\nP = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix} \\quad \\text{and} \\quad C = \\begin{bmatrix} c_0 & c_1 \\\\ c_1 & c_0 \\end{bmatrix} \\quad \\text{and} \\quad c = \\begin{bmatrix} c_0 \\\\ c_1 \\end{bmatrix} \\quad \\text{and} \\quad F = \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}\n\\]\n\nThe eigenvectors of \\(P\\) and also \\(C\\) are the columns of \\(F\\). The eigenvalues of \\(P\\) are \\(\\pm 1\\). The eigenvalues of \\(C = c_0I + c_1P\\) are \\(c_0 + c_1\\) and \\(c_0 - c_1\\). These eigenvalues of \\(C\\) are the components of \\(F\\) times \\(c\\):\n\n\\[\n\\textbf{Eigenvalues of } C \\qquad Fc = \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix} \\begin{bmatrix} c_0 \\\\ c_1 \\end{bmatrix} = \\begin{bmatrix} c_0 + c_1 \\\\ c_0 - c_1 \\end{bmatrix}. \\tag{15}\n\\]\n\nFor any \\(N\\), the permutation \\(P\\) is a circulant matrix \\(C\\) with \\(c = (0, 1, 0, \\ldots, 0)\\). The eigenvalues of \\(P\\) are in the column vector \\(Fc\\) with this \\(c\\). That is the column \\((1, w, w^2, \\ldots, w^{N-1})\\) of the Fourier matrix \\(F\\). This agrees with the eigenvalues \\(1, i, i^2, i^3\\) of \\(P\\) in equation (8), for \\(N = 4\\).\n\n### [原文 page_220]\n218 \\hfill \\textbf{Special Matrices}\n\n\\begin{center}\n\\textbf{The Convolution Rule}\n\\end{center}\n\nThis rule compares convolution with \\textbf{multiplication}. Please understand that they are quite different. But they are beautifully connected by the Fourier matrix \\(F\\).\n\nI will start with two circulant matrices \\(C\\) and \\(D\\). Their top rows are the vectors \\(c\\) and \\(d\\). Equation (4) at the start of this section showed an example of the top row of \\(CD\\):\n\\begin{equation}\n\\text{Top row of } CD = \\text{cyclic convolution} = c\\otimes d. \\tag{16}\n\\end{equation}\nThen the eigenvalues of \\(CD\\) according to equation (14) are in the vector \\(F(c\\otimes d)\\).\n\nNow find those eigenvalues of \\(CD\\) in another way. The eigenvalues \\(\\lambda(C)\\) are in the vector \\(Fc\\). The eigenvalues \\(\\lambda(D)\\) are in the vector \\(Fd\\). The eigenvectors \\(q_k\\) are the same for \\(C\\) and \\(D\\)! They are the columns of \\(F\\). So each eigenvalue \\(\\lambda_k(CD)\\) is just \\(\\lambda_k(C)\\) times \\(\\lambda_k(D)\\). This term by term ``Hadamard product'' is denoted in MATLAB by .*\n\\begin{equation*}\n\\begin{bmatrix}\n\\lambda_0(CD)\\\\\n\\vdots\\\\\n\\lambda_{N-1}(CD)\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n\\lambda_0(C)\\lambda_0(D)\\\\\n\\vdots\n\n【当前译文】\n@@PAGE:219@@\n<!-- page 219 -->\n> <span style=color:#7f8c8d;>本页为书页 217，属 §IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）的续页；页眉与印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### Eigenvalues and Eigenvectors of a Circulant $C$（循环矩阵 $C$ 的特征值与特征向量）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.2, p.217</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 中的 `尹`、`尸` 均为置换矩阵 $P$，`Ä`、`/\\` 为特征值 $\\lambda$，`仞` 为 $w$，`@`、`。` 为卷积记号，`士` 为 $\\pm$，`ls` 为 It；公式均按循环矩阵的数学语境重建。</span>\n循环矩阵 $C$ 的特征向量尤其容易求：它与置换矩阵 $P$ 的特征向量完全相同。因此它们就是同一个 Fourier matrix（傅里叶矩阵）$F$ 的各列 $q_0, q_1, \\dots, q_{N-1}$。下面写出第 $k$ 个特征向量与特征值所满足的 $C q_k = \\lambda_k q_k$：\n```math\nC q_k = \\bigl(c_0 I + c_1 P + \\cdots + c_{N-1} P^{\\,N-1}\\bigr) q_k\n= \\bigl(c_0 + c_1 w^k + \\cdots + c_{N-1} w^{\\,k(N-1)}\\bigr) q_k \\tag{13}\n```\n请记住 $w^k = e^{\\,2\\pi i k/N}$ 正是 $P$ 的第 $k$ 个特征值，而这些数就藏在傅里叶矩阵 $F$ 之中。于是方程 $(13)$ 中 $C$ 的特征值具有一个近乎神奇的公式：把 $F$ 乘上 $C$ 顶行中的向量 $c$，就得到了全部特征值。\n```math\n\\begin{bmatrix}\n\\lambda_0(C)\\\\\n\\lambda_1(C)\\\\\n\\lambda_2(C)\\\\\n\\cdot\\\\\n\\lambda_{N-1}(C)\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nc_0 + c_1 + \\cdots + c_{N-1}\\\\\nc_0 + c_1 w + \\cdots + c_{N-1} w^{\\,N-1}\\\\\nc_0 + c_1 w^2 + \\cdots + c_{N-1} w^{\\,2(N-1)}\\\\\n\\cdot\\cdot\\cdot\\\\\nc_0 + c_1 w^{\\,N-1} + \\cdots + c_{N-1} w^{(N-1)(N-1)}\n\\end{bmatrix}\n= F\\begin{bmatrix} c_0\\\\ c_1\\\\ c_2\\\\ \\cdot\\\\ c_{N-1} \\end{bmatrix} = Fc \\tag{14}\n```\n$C$ 的特征值就是 $Fc$ 的各个分量，也就是 $c$ 的 inverse Fourier transform（逆傅里叶变换）。\n### [note] page_219 ｜ 一个 $F$ 为什么能同时对角化所有循环矩阵\n> <span style=color:#1e8449;>[note] Note（译者注）：把 $(13)$ 式读慢一点，会看到一个相当强的事实——对**所有**循环矩阵 $C$，同一组向量 $q_0,\\dots,q_{N-1}$ 都是特征向量，区别只在特征值。用矩阵的语言说，傅里叶矩阵 $F$ 同时对角化了整个循环矩阵族：$F^{-1}CF=\\Lambda(C)$，$\\Lambda(C)$ 就是把 $Fc$ 放上对角线。一个 $F$ 凭什么一次管完无穷多个矩阵？</span>\n> <span style=color:#1e8449;>**机制一：每个循环矩阵都是 $P$ 的多项式。** 循环矩阵的定义式本身就是 $C=c_0I+c_1P+\\dots+c_{N-1}P^{N-1}$，也就是 $C=p(P)$。于是只要 $Pq=\\lambda q$，就有 $P^2q=\\lambda^2q$，一般地 $P^kq=\\lambda^kq$（对 $k$ 归纳一步）。把它线性组合起来：$Cq=(c_0+c_1\\lambda+\\dots+c_{N-1}\\lambda^{N-1})q=p(\\lambda)q$。这就是 $(13)$ 式的全部内容——循环矩阵不重新解特征方程，它**继承** $P$ 的特征向量，只把特征值换成多项式在 $\\lambda$ 处的取值。令 $\\lambda=w^k$ 就得到 $(14)$：$C$ 的特征值向量正是 $Fc$。</span>\n> <span style=color:#1e8449;>**机制二：为什么这些特征向量“够用”。** 共享特征向量本身不稀奇（单位矩阵跟谁都共享）；关键是这 $N$ 个向量必须张满整个空间，同时对角化才有意义，否则 $F$ 不可逆，$F^{-1}CF$ 根本写不出来。这里靠的是 $\\lambda^N=1$ 的 $N$ 个根互不相同，于是 $P$ 有 $N$ 个不同的特征值，而 $N\\times N$ 矩阵最多也只有 $N$ 个独立特征向量——数量正好用满，$F$ 必可逆。这是一个值得记住的“数个数”论证：$N$ 维空间里的算子若有 $N$ 个互异特征值，其特征向量自动构成一组基，不必再单独验证线性无关。</span>\n> <span style=color:#1e8449;>**和你在线性代数里学的判据接起来。** 有一条定理说：若 $AB=BA$，则两个矩阵共享特征向量。循环矩阵族是这条定理的最大号实例——它们全都是同一个 $P$ 的多项式，而 $P$ 的各次幂互相交换，所以任意两个循环矩阵可交换。反过来看更值钱：**可交换 ⇔ 存在一组公共坐标同时把它们变成对角**。所以以后见到“两个算子可交换”，第一反应不该是“代进去硬算”，而应该是“能不能找到一组基，让这两个算子在这组基下都只做伸缩、不做混合”。</span>\n> <span style=color:#1e8449;>**工程含义。** $F^{-1}CF=\\Lambda(C)$ 是一次换坐标，而这次换坐标的代价由 FFT 决定，是 $O(N\\log N)$，不是稠密矩阵乘法的 $O(N^3)$。$(14)$ 还说明“求循环矩阵的 $N$ 个特征值”与“做一次 DFT”是同一件事：长度为 $N$ 的向量 $c$ 和 $N\\times N$ 的循环矩阵一一对应，$F$ 只是这两套坐标之间的翻译。这正是 6.042J 里常见的那种“同一个对象、两套描述”：在空间（系数）里看是卷积，在频率（特征值）里看是逐点乘法。</span>\n> <span style=color:#1e8449;>**可迁移的结论**：对角化 = 换一组坐标，让算子只管伸缩不管混合。“能不能把 $N$ 个耦合的方程拆成 $N$ 个独立的一元方程”，等价于“能不能找到同时对角化这组算子的基”。下一节 §IV.3 的 Kronecker sum（克罗内克和，特征值 $\\lambda+\\mu$）与 §IV.5 的 Toeplitz matrix（托普利茨矩阵，找不到这样的基，只能拿循环矩阵当近似）都在这条主线上：**找到基，问题就散了；找不到，就留下边界那条尾巴。**</span>\n<span style=color:#2471a3;>**[example]**</span>\n例：取 $N = 2$，此时 $w = e^{2\\pi i/2} = -1$。此时置换矩阵、循环矩阵、系数向量与傅里叶矩阵依次为\n```math\nP = \\begin{bmatrix} 0 & 1\\\\ 1 & 0\\end{bmatrix}\n\\quad\\text{and}\\quad\nC = \\begin{bmatrix} c_0 & c_1\\\\ c_1 & c_0\\end{bmatrix}\n\\quad\\text{and}\\quad\nc = \\begin{bmatrix} c_0\\\\ c_1\\end{bmatrix}\n\\quad\\text{and}\\quad\nF = \\begin{bmatrix} 1 & 1\\\\ 1 & -1\\end{bmatrix}\n```\n$P$ 的特征向量同时也是 $C$ 的特征向量，它们都是 $F$ 的各列。$P$ 的特征值为 $\\pm 1$，而 $C = c_0 I + c_1 P$ 的特征值则是 $c_0 + c_1$ 与 $c_0 - c_1$。这些 $C$ 的特征值正是 $F$ 乘以 $c$ 的各个分量：\n```math\n\\text{Eigenvalues of } C = Fc =\n\\begin{bmatrix} 1 & 1\\\\ 1 & -1\\end{bmatrix}\n\\begin{bmatrix} c_0\\\\ c_1\\end{bmatrix}\n=\n\\begin{bmatrix} c_0 + c_1\\\\ c_0 - c_1\\end{bmatrix} \\tag{15}\n```\n对任意的 $N$，只要取 $c = (0, 1, 0, \\dots, 0)$，置换矩阵 $P$ 本身就是一个循环矩阵 $C$：\n```math\nP =\n\\begin{bmatrix}\n0 & 1 & & & \\\\\n & 0 & 1 & & \\\\\n & & \\ddots & \\ddots & \\\\\n & & & 0 & 1\\\\\n1 & & & & 0\n\\end{bmatrix}\n```\n$P$ 的特征值就在列向量 $Fc$ 之中，而 $Fc$ 正是傅里叶矩阵 $F$ 中的 $(1, w, w^2, \\dots, w^{\\,N-1})$ 这一向量，也就是 $F$ 的第二列。这与式（8）中 $N = 4$ 时 $P$ 的特征值 $1, i, i^2, i^3$ 一致。与方程 $(8)$ 中 $P$ 的特征值 $w^p$ 完全一致，取 $N = 4$ 即可验证。\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：原 OCR 把移位矩阵 $P$ 误作 `尸`，把 $w$ 的各次幂写成 `（1, w^0, w^1, …）` 一类的残缺串；此处按 $c = (0,1,0,\\dots,0)$ 时 $Fc = (1, w, w^2, \\dots, w^{N-1})$ 这一事实重建。</span>\n\n@@PAGE:220@@\n<!-- page 220 -->\n> <span style=color:#7f8c8d;>本页为书页 218，属 §IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）的续页；页眉与印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[section]**</span>\n### The Convolution Rule（卷积法则）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.2, p.218</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 中的 `刀` 为循环矩阵 $D$，`Ä`、`/\\` 为特征值 $\\lambda$，`南` 为 $c_0$，`@` 为卷积记号 $\\ast$，`厂` 为 $F^{-1}$，`A(c)`、`A(D)` 为对角矩阵 $\\Lambda(C)$、$\\Lambda(D)$，`。*`、`·*` 为逐分量乘法记号 `.*`，`朊 旎`、`豆`、`R` 为原文两条标注行的残迹；公式均按数学语境重建。</span>\n这条法则把卷积与乘法作比较。请务必明白，二者是相当不同的两件事，但它们被傅里叶矩阵 $F$ 优美地联系在了一起。\n我从两个循环矩阵 $C$ 与 $D$ 出发，它们的顶行分别是向量 $c$ 与 $d$。本节开头的方程 $(4)$ 已经给出了 $CD$ 顶行的一个例子。\n```math\n\\text{Top row of } CD = \\text{cyclic convolution} = c \\ast d \\tag{16}\n```\n于是根据方程 $(14)$，$CD$ 的特征值都装在向量 $F(c \\circledast d)$ 之中。现在我们用另一种方式求 $CD$ 的这些特征值。特征值 $\\lambda(C)$ 装在向量 $Fc$ 中，特征值 $\\lambda(D)$ 装在向量 $Fd$ 中。而特征向量 $q_k$ 对 $C$ 与 $D$ **是同一组**——它们都是 $F$ 的各列。所以每个特征值 $\\lambda_k(CD)$ 恰好等于 $\\lambda_k(C)$ 乘以 $\\lambda_k(D)$。这种逐项相乘称为 Hadamard product（哈达玛积），在 MATLAB 中记作 `.*`：\n```math\n\\begin{bmatrix}\n\\lambda_0(CD)\\\\ \\vdots\\\\ \\lambda_{N-1}(CD)\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n\\lambda_0(C)\\lambda_0(D)\\\\ \\vdots\\\\ \\lambda_{N-1}(C)\\lambda_{N-1}(D)\n\\end{bmatrix}\n= \\begin{bmatrix} \\lambda_0(C) \\\\ \\vdots \\\\ \\lambda_{N-1}(C) \\end{bmatrix} \\mathbin{.*} \\begin{bmatrix} \\lambda_0(D) \\\\ \\vdots \\\\ \\lambda_{N-1}(D) \\end{bmatrix} = Fc \\mathbin{.*} Fd\n```\n记号 `.*` 表示两个向量按分量逐个相乘。convolution rule（卷积法则）把我们对 $CD$ 特征值写出的两个公式作了比较：\n```math\n\\text{Convolution Rule}\\qquad F(c \\ast d) = (Fc) \\mathbin{.*} (Fd) \\tag{17}\n```\n> <span style=color:#7f8c8d;>（式 (17) 旁的边注：Convolve vectors（先卷积向量）／Multiply transforms（再相乘变换）。）</span>\n先卷积向量：先把 $c$ 与 $d$ 卷积起来，再用 $F$ 作变换。\n再相乘变换：先用 $F$ 作变换，再把 $Fc$ 与 $Fd$ 按分量逐个相乘。\n### [note] page_220 ｜ 循环卷积就是多项式乘法在模 $x^N-1$ 下做\n> <span style=color:#1e8449;>[note] Note（译者注）：卷积法则是这一部分的枢纽，但“绕回”（wraparound）这个动作在数学上究竟是什么，值得单独讲清楚：**循环卷积就是多项式乘法在模 $x^N-1$ 意义下的结果**。看清这一点，$(17)$ 式就不再是“神奇的公式”，而是一件必然的事。</span>\n> <span style=color:#1e8449;>**先把两个对象对上。** 给向量 $c=(c_0,\\dots,c_{N-1})$ 配一个多项式 $c(x)=c_0+c_1x+\\dots+c_{N-1}x^{N-1}$。两个多项式普通相乘得到的是非循环卷积：$e_n=\\sum_k c_kd_{n-k}$，$n$ 从 $0$ 取到 $2N-2$——这正是 §IV.5 里 Toeplitz matrix（托普利茨矩阵）做的事（先补零，再把结果投影回前 $N$ 项）。循环卷积多了一个动作：把所有下标 $\\ge N$ 的项搬回前面，即认定 $x^{N}=1$、$x^{N+m}=x^{m}$。于是“$CD$ 的顶行是 $c\\ast d$”翻译过来就是“$c\\ast d$ 是 $c(x)d(x)$ 在模 $x^N-1$ 下的系数向量”。</span>\n> <span style=color:#1e8449;>**这正是你在 6.042J 学过的模运算，只换了一层皮。** 6.042J 里 $a\\equiv b\\pmod N$ 说的是“两者相差 $N$ 的倍数，可以当成同一个东西”；等价关系一旦定好，加减乘都必须验证“良定义”（$a\\equiv a'$、$b\\equiv b'\\Rightarrow ab\\equiv a'b'$）。这里完全一样：等价关系是“$x^{N+m}\\sim x^{m}$”，乘法同样良定义。你在 6.042J 里算 $3^{100}\\bmod 7$ 时用的“把指数折叠”技巧，和这里把 $x^{13}$ 折成 $x$ 是同一招；唯一的差别是整数取模时“商”是数，多项式取模时“商”是多项式，所以“余数唯一”要靠多项式除法来保证。</span>\n> <span style=color:#1e8449;>**为什么在 $w$ 上求值就对了（6.006 的分治视角）。** 6.006 讲多项式乘法时给的方案是“求值—逐点相乘—插值”：在两个多项式上取若干点求值，点乘，再插回系数。选点有讲究：要选那些让“折叠”在求值这一步看不见的点。$N$ 次单位根 $w^{k}$ 恰好满足 $(w^{k})^N=1$，于是 $x^{N+m}$ 与 $x^{m}$ 在它们上面取值相同，模 $x^N-1$ 的折叠消失了。所以 $(Fc)\\cdot(Fd)$ 就是 $c\\ast d$ 在这 $N$ 个点上的值，也就是 $F(c\\ast d)$——$(17)$ 得证。分治把它降到 $O(N\\log N)$：$T(N)=2T(N/2)+O(N)$，6.006 里最标准的一条递推。</span>\n> <span style=color:#1e8449;>**三件事，一件事。** 到这里应该能把下面三句话当成同一句话来读：① 与循环矩阵相乘；② 做循环卷积；③ 在模 $x^{N}-1$ 下做多项式乘法。它们的共同点是“常数对角线 + 绕回”，而绕回正是 §IV.5 要单独拆开讨论的那个额外条件。</span>\n> <span style=color:#1e8449;>**可迁移的结论**：遇到环状结构（周期边界、环形拓扑、圆上的差分方程）就把问题读成“模 $x^{N}-1$”，再用“在单位根上求值”把乘法降级成逐点乘法。这是“把卷积对角化”的通用配方，也是 FFT 存在的根本理由。反过来，一旦边界不再绕回（真实图像只有有限大小、信号有起点和终点），配方就失效，“逐点相除”求解也要打折扣——那正是 Toeplitz matrix（托普利茨矩阵）那一节的麻烦。</span>\n这正是信号处理中最基本的恒等式！有了 FFT（快速傅里叶变换），变换本身是很快的。\n理解卷积法则的另一条途径，是去乘那些装着 $C$ 与 $D$ 特征值的对角矩阵 $\\Lambda(C)$ 与 $\\Lambda(D)$。$C$ 由 $F$ 对角化，即 $F^{-1}CF = \\Lambda(C)$：\n```math\n(F^{-1}CF)(F^{-1}DF) = F^{-1}CDF = \\Lambda(C)\\,\\Lambda(D) = \\Lambda(CD) \\tag{18}\n```\n这一步之所以成立，是因为所有循环矩阵都拥有同一组特征向量，也就是 $F$ 的各列。卷积法则可以直接验证（见习题 1）。取 $N = 2$ 看一看是很有好处的：\n```math\nF = \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}\n\\qquad\nc \\circledast d = \\begin{bmatrix} c_0 d_0 + c_1 d_1 \\\\ c_0 d_1 + c_1 d_0 \\end{bmatrix}\n\\qquad\nFc = \\begin{bmatrix} c_0 + c_1 \\\\ c_0 - c_1 \\end{bmatrix}\n\\qquad\nFd = \\begin{bmatrix} d_0 + d_1 \\\\ d_0 - d_1 \\end{bmatrix}\n```\n卷积法则 $(17)$ 说的就是：$F(c \\ast d)$ 等于按分量逐个相乘所得的向量\n```math\nF(c \\circledast d) = \\begin{bmatrix}\nc_0 d_0 + c_1 d_1 + c_0 d_1 + c_1 d_0\\\\\nc_0 d_0 + c_1 d_1 - c_0 d_1 - c_1 d_0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n(c_0 + c_1)(d_0 + d_1)\\\\\n(c_0 - c_1)(d_0 - d_1)\n\\end{bmatrix} = (Fc).*(Fd)\n```\n```math\n\n\\begin{bmatrix}\nc_0 d_0 + c_1 d_1 + c_0 d_1 + c_1 d_0\\\\\nc_0 d_0 + c_1 d_1 - c_0 d_1 - c_1 d_0\n\\end{bmatrix}\n```\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：原 OCR 把卷积结果写成 `南 + C1d1` 与 `dl + C1do`，`南` 为 $c_0$ 之误，已按 $c \\ast d$ 的矩阵乘法结果改正；末尾「按分量相乘所得向量」的两个分量依 $(c_0 \\pm c_1)(d_0 \\pm d_1)$ 展开补全。</span>\n\n现在输出修订后的译文全文（从 `@@PAGE:219@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6789,
+            "outputTokens": 5818,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6789,
+              "outputTokens": 5818,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8706,
+          "contextWindow": 1000000,
+          "pressureTokens": 10629,
+          "sampledSurfaceTokens": 5281
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3721,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3425,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7562
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

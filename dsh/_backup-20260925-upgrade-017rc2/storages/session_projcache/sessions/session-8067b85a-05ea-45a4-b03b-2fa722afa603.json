@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148592257,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_233]\nIV.4. Sine and Cosine Transforms from Kronecker Sums\t231\n\nNow each block is represented by 64 integers \\(q_{jk}\\). We transmit those numbers after encoding for efficiency. The receiver reconstructs each block of the image—approximately.\nIn a color image, 64 becomes 192. Every pixel combines three colors. But Red-Green-Blue are probably not the best coordinates. A better first coordinate tells us the brightness. The other two coordinates tell us “chrominance”. The goal is to have three statistically independent numbers.\nWhen the blocks are assembled, the full reconstruction often shows two unwanted artifacts. One is blocking: the blocks don’t meet smoothly. (You may have seen this in an overcompressed printed image.) The second artifact is ringing: fast oscillations along edges inside the image. These oscillations are famous in the “Gibbs phenomenon” when eight cosines approximate a step function.\nFor a high quality picture after DCT compression, we can mostly cancel those blocking and ringing artifacts. For high definition TV, compression is essential (too many bits to keep up).\nThe DCT standard was set by the JPEG experts group. Then equipment was built and software was created to make image processing into an effective system.\n\nProblem Set IV.4\n\n1\tWhat are the eigenvalues \\(\\Lambda_j\\) of \\(D\\) in equation (3) ?\n\n2\tWhat are the eigenvalues \\(\\lambda_i\\) and eigenvectors \\(v_i\\) of \\(K = I \\otimes D + D \\otimes I = I \\oplus D\\) ?\n\n3\tWhat would be the Laplace operator \\(K3\\) on a cubic grid in 3D ?\n\n4\tWhat would be the \\(N^3\\) by \\(N^3\\) Fourier matrix \\(F3\\) in 3D ? In 2D it was \\(F \\otimes F\\).\n\n### [原文 page_234]\n**232** \\hfill **Special Matrices**\n\n**IV.5 Toeplitz Matrices and Shift Invariant Filters**\n\n**A Toeplitz matrix has constant diagonals.** The first row and column tell you the rest of the matrix, because they contain the first entry of every diagonal. Circulant matrices are Toeplitz matrices that satisfy the extra “wraparound” condition that makes them periodic. Effectively \\(c_{-3}\\) is the same as \\(c_1\\) (for \\(4 \\times 4\\) circulants) :\n\n\\[\n\\textbf{Toeplitz matrix} \\quad A = \\begin{bmatrix} a_0 & a_{-1} & a_{-2} & a_{-3} \\\\ a_1 & a_0 & a_{-1} & a_{-2} \\\\ a_2 & a_1 & a_0 & a_{-1} \\\\ a_3 & a_2 & a_1 & a_0 \\end{bmatrix} \\qquad \\textbf{Circulant matrix} \\quad C = \\begin{bmatrix} c_0 & c_3 & c_2 & c_1 \\\\ c_1 & c_0 & c_3 & c_2 \\\\ c_2 & c_1 & c_0 & c_3 \\\\ c_3 & c_2 & c_1 & c_0 \\end{bmatrix}\n\\]\n\nCirculant matrices are perfect for the Discrete Fourier Transform. Always \\(CD = DC\\). Their eigenvectors are *exactly* the columns of the Fourier matrix in Section IV.2. Their eigenvalues are exactly the values of \\(C(\\theta) = \\sum c_k e^{ik\\theta}\\) at the \\(n\\) equally spaced angles \\(\\theta = 0, 2\\pi/n, 4\\pi/n, \\dots\\) (where \\(e^{in\\theta} = e^{2\\pi i} = 1\\)).\n\nToeplitz matrices are nearly perfect. They are the matrices we use in signal processing and in convolutional neural nets (CNNs). They don't wrap around, so the analysis of \\(A\\) is based on the two-sided polynomial \\(A(\\theta)\\) with coefficients \\(a_{1-n} \\cdots a_0 \\cdots a_{n-1}\\) :\n\n\\[\n\\fbox{\n\\begin{minipage}{0.9\\textwidth}\n\\textbf{Frequency response = symbol of } A \\qquad A(\\theta) = \\sum a_k e^{ik\\theta} \\\\\nA(\\theta) \\textbf{ is real when } A \\textbf{ is symmetric} \\qquad a_k e^{ik\\theta} + a_k e^{-ik\\theta} = 2a_k \\cos k\\theta \\\\\nC(\\theta) \\textbf{ is nonzero when } C \\textbf{ is invertible} \\qquad \\text{The symbol for } C^{-1} \\text{ is } 1/C(\\theta)\n\\end{minipage}\n}\n\\]\n\n\\(A(\\theta) \\neq 0\\) is not correct as a test for the invertibility of \\(A\\) ! And \\(A^{-1}\\) is not Toeplitz (triangular matrices are the exception). Circulants \\(C\\) are cyclic convolutions. But Toeplitz matrices are noncyclic convolutions with \\(\\boldsymbol{a} = (a_{1-n} \\cdots a_{n-1})\\) followed by projections:\n\\[\n\\begin{aligned}\n\\boldsymbol{x}\\textbf{--space} \\qquad & A\\boldsymbol{x} &&= \\text{convolve } \\boldsymbol{a} * \\boldsymbol{x}, \\text{ then keep components } 0 \\text{ to } n - 1 \\\\\n\\theta\\textbf{--space} \\qquad & \\widehat{A\\boldsymbol{x}}(\\theta) &&= \\text{multiply } A(\\theta)\\widehat{\\boldsymbol{x}}(\\theta), \\text{ then project back to } n \\text{ coefficients}\n\\end{aligned}\n\\]\n\nWe want to use the simple polynomial \\(A(\\theta)\\) to learn about the Toeplitz matrix \\(A\\).\n\nIn many problems the Toeplitz matrix is banded. The matrix only has \\(w\\) diagonals above and below the main diagonal. Only the coefficients from \\(a_{-w}\\) to \\(a_w\\) can be nonzero. Then the “bandwidth” is \\(w\\), with a total of \\(2w + 1\\) nonzero diagonals :\n\n\\[\n\\textbf{Tridiagonal Toeplitz} \\\\\n\\textbf{Bandwidth } w = 1 \\qquad A = \\begin{bmatrix} a_0 & a_{-1} & & \\\\ a_1 & a_0 & a_{-1} & \\\\ & a_1 & a_0 & a_{-1} \\\\ & & a_1 & a_0 \\end{bmatrix}\n\\]\n\nWe understand tridiagonal Toeplitz matrices (and their eigenvalues) for large size \\(n\\) by studying the symbol \\(A(\\theta) = a_{-1}e^{-i\\theta} + a_0 + a_1e^{i\\theta}\\). It is built from \\(a_{-1}, a_0, a_1\\).\n\n【当前译文】\n@@PAGE:233@@\n<!-- page 233 -->\n> <span style=color:#1e8449;>[note] 本页为书页 231：上半页是 §IV.4 Sine and Cosine Transforms from Kronecker Sums（由克罗内克和得到的正弦与余弦变换）的收尾，下半页是 Problem Set IV.4（习题集 IV.4）；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 `Th e`／`tO`／`arti fac t`／`blockmg`／`nnging`／`compresslon` 等均为字符切分噪声，已按词义还原；`64 i ntegers qjkø` 中的 `ø` 为句点噪声，还原为 $q_{jk}$ 之后的句号。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## （续）Sine and Cosine Transforms from Kronecker Sums（由克罗内克和得到的正弦与余弦变换）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.4, p.231</span>\n现在每一个 block 都由 $64$ 个整数 $q_{jk}$ 表示。\n为效率起见，我们是把这些数编码之后再传输出去的。\n接收端把图像的每一个分块重建出来——是近似的重建。\n在彩色图像中，$64$ 变成 $192$。\n因为每个像素都组合了三种颜色。\n但是 Red-Green-Blue（红-绿-蓝）很可能并不是最好的坐标。\n一个更好的第一坐标告诉我们 brightness（亮度）。\n另外两个坐标则告诉我们 “chrominance（色度）”。\n目标是得到三个在统计上相互独立的数。\n当各分块被拼装起来时，完整的重建往往显示出两种不受欢迎的 artifact（伪影）。\n其一是 blocking（块效应）：各分块衔接得不平滑。\n（你在过度压缩的印刷图像中或许见过这种现象。）\n第二种伪影是 ringing（振铃）：沿着图像内部的边缘出现快速振荡。\n当八条余弦去逼近一个 step function（阶跃函数）时，这些振荡就是著名的 Gibbs phenomenon（吉布斯现象）。\n对于 DCT 压缩之后的高质量图像，我们大体上可以抵消那些块效应与振铃伪影。\n对于 high definition TV（高清晰度电视），压缩是必不可少的（要处理的位数太多，来不及跟上）。\n这套 DCT 标准是由 JPEG experts group（JPEG 专家组）制定的。\n随后人们造出硬件设备、写出软件，把图像处理变成一个真正有效的系统。\n---\n\n> <span style=color:#7f8c8d;>本页（书页见页首说明）原书为 Problem Set IV.4，共 4 道习题。按技能**铁律 9**（非必要习题不收录），此处不保留习题原文。</span>\n\n@@PAGE:234@@\n<!-- page 234 -->\n> <span style=color:#1e8449;>[note] 本页为书页 232，是 §IV.5 Toeplitz Matrices and Shift Invariant Filters（托普利茨矩阵与平移不变滤波器）的开篇页；书眉与页码为重复元素，不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：本页 OCR 噪声：`Matnces` → Matrices、`penodic` → periodic、`Effectrvely` → Effectively、`Founer` → Fourier、`polynomal` → polynomial、`coeffcients` → coefficients、`symmetnc` → symmetric、`tnangular` → triangular、`s ep arate` → separate、`O`／`0` 混用；`a—l`／`01` → $a_{-1}$／$a_1$，矩阵记号 `蓋` → $T$／$C$。句中 `Section 2` 按本书内部引用体例补全为 §IV.2；`(where` 之后 OCR 截断，等距角度公式中的矩阵阶数 $N$ 按上下文补出。（原书此处 OCR 残缺）等距角度公式中被截断的收尾语与节号 §IV.2 的还原是否与纸书一致，请复核。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## IV.5 Toeplitz Matrices and Shift Invariant Filters（托普利茨矩阵与平移不变滤波器）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.5, p.232</span>\n一个 Toeplitz matrix（托普利茨矩阵）具有 constant diagonals（常数对角线）。\n第一行与第一列就告诉你矩阵的其余部分，因为这两者包含了每一条对角线的第一个元素。\n还有一类 Circulant matrices（循环矩阵），它们是满足额外 wraparound condition（绕回条件）的 Toeplitz 矩阵，正是这个条件使它们成为周期的。\n对 $4 \\times 4$ 的 circulant 而言，$c_{-3}$ 实际上与 $c_1$ 是同一个。\n```math\n\\text{Toeplitz matrix}\\qquad A =\n\\begin{bmatrix}\na_0 & a_{-1} & a_{-2} & a_{-3}\\\\\na_1 & a_0 & a_{-1} & a_{-2}\\\\\na_2 & a_1 & a_0 & a_{-1}\\\\\na_3 & a_2 & a_1 & a_0\n\\end{bmatrix}\n\\qquad\n\\text{Circulant matrix}\\qquad C =\n\\begin{bmatrix}\nc_0 & c_3 & c_2 & c_1\\\\\nc_1 & c_0 & c_3 & c_2\\\\\nc_2 & c_1 & c_0 & c_3\\\\\nc_3 & c_2 & c_1 & c_0\n\\end{bmatrix}\n```\n对 Discrete Fourier Transform（离散傅里叶变换，DFT）而言，Circulant matrices（循环矩阵）是完美无缺的。\n永远有 $CD = DC$。\n它们的 eigenvectors 就是 §IV.2 中 Fourier matrix（傅里叶矩阵）的各列。\n它们的 eigenvalues 恰好就是 $C(\\theta) = \\sum_k c_k e^{ik\\theta}$ 在等间距角度 $\\theta = 0,\\, 2\\pi/N,\\, 4\\pi/N,\\, \\cdots$ 处的取值（其中 $N$ 是循环矩阵的阶数）。\n而 Toeplitz matrices 则几乎是完美的。\n它们正是我们在 signal processing（信号处理）与 convolutional neural nets, CNNs（卷积神经网络）中使用的矩阵。\n它们不绕回，因此对 $A$ 的分析所依据的是 two-sided polynomial（双侧多项式）$A(\\theta)$，其系数为 $a_{1-n}, \\cdots, a_0, \\cdots, a_{n-1}$。\n这个 frequency response（频率响应）就是 $A$ 的 symbol（符号）：\n```math\nA(\\theta) = \\text{symbol of } A = \\sum_k a_k e^{ik\\theta}\n= a_0 + \\sum_{k \\ge 1} a_k\\left(e^{ik\\theta} + e^{-ik\\theta}\\right)\n= a_0 + 2\\sum_{k \\ge 1} a_k \\cos k\\theta\n```\n当 $A$ 为 symmetric（对称）时，符号 $A(\\theta)$ 是实的（因为 $a_k e^{ik\\theta} + a_k e^{-ik\\theta} = 2a_k\\cos k\\theta$）。\n当 $C$ 可逆时，$C(\\theta)$ 处处非零；$C^{-1}$ 的符号就是 $1/C(\\theta)$。\n然而 $A(\\theta) \\ne 0$ 并不是判断 $A$ 可逆性的一个正确判据！\n而且 $A^{-1}$ 一般不是 Toeplitz 的——triangular matrices（三角矩阵）属于例外。\n而 Circulants（循环矩阵）$C$ 所作的是 cyclic convolutions（循环卷积）。\n但 Toeplitz matrices 所作的是 noncyclic convolution（非循环卷积），它随后还要作一次投影：\n```math\n\\begin{aligned}\nx\\text{-space}\\qquad & Ax \\;=\\; \\text{convolve } a * x \\text{, then keep components } 0 \\text{ to } n-1 \\\\\n\\theta\\text{-space}\\qquad & Ax(\\theta) = \\text{multiply } A(\\theta)x(\\theta) \\text{, then project back to } n \\text{ coefficients}\n\\end{aligned}\n```\n我们希望用这个简单的多项式 $A(\\theta)$ 来了解 Toeplitz 矩阵 $A$。\n在许多问题中，Toeplitz 矩阵是 banded（带状）的。\n矩阵只在主对角线之上与之下具有若干条对角线。\n只有从 $a_{-w}$ 到 $a_w$ 的系数可以非零。\n此时 bandwidth（带宽）为 $w$，总共有 $2w+1$ 条非零对角线。\n```math\n\\text{Tridiagonal Toeplitz}\\quad \\text{Bandwidth } w = 1\\qquad A = \\begin{bmatrix}\na_0 & a_{-1} & & \\\\\na_1 & a_0 & a_{-1} & \\\\\n& a_1 & a_0 & a_{-1}\\\\\n& & a_1 & a_0\n\\end{bmatrix}\n```\n我们正是通过研究符号 $A(\\theta) = a_{-1} e^{-i\\theta} + a_0 + a_1 e^{i\\theta}$，来理解大规模的三对角 Toeplitz 矩阵（以及它们的特征值）的。\n它是由 $a_{-1},\\, a_0,\\, a_1$ 构造出来的。\n\n现在输出修订后的译文全文（从 `@@PAGE:233@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4152,
+            "outputTokens": 16493,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4152,
+              "outputTokens": 16493,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 17038,
+          "contextWindow": 1000000,
+          "pressureTokens": 7992,
+          "sampledSurfaceTokens": 4426
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2866,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 12612,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 15894
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

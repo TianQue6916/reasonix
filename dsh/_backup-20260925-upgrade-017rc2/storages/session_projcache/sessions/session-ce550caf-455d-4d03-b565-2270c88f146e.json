@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132436823,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_151（书页 147） @@@@@\r\n−---- 【权威原文】 −---------------\r\n**II.4. Randomized Linear Algebra** \\hfill **147**\r\n\r\n**1 Column-row sampling** Each column of $S$ has one nonzero entry (call it $s_k$). Then $AS$ picks out individual columns $a_k$ directly from $A$, and $S^T B$ picks out the corresponding rows $b_k^T$ of $B$. Multiplying $AS$ times $S^T B$ gives a sum of **column-row products** $a_k b_k^T$ weighted by the numbers $s_k^2$.\r\n\r\nOne product $s_k^2 a_k b_k^T$ comes from one column of $AS$ and one row of $S^T B$:\r\n\r\n$$\r\n\\begin{bmatrix} \\cdot & a_k & \\cdot \\end{bmatrix}\r\n\\begin{bmatrix} 0 \\\\ s_k \\\\ 0 \\end{bmatrix}\r\n= s_k a_k\r\n\\qquad\r\n\\begin{bmatrix} 0 & s_k & 0 \\end{bmatrix}\r\n\\begin{bmatrix} \\cdot \\\\ b_k^T \\\\ \\cdot \\end{bmatrix}\r\n= s_k b_k^T \\tag{2}\r\n$$\r\n\r\nAltogether $AB$ is approximated by the weighted sum $CR = \\sum s_k^2 a_k b_k^T$ of a *random selection of $s$ rank-one matrices*. The selection is random, but we choose the weights.\r\n\r\n**2 Sampling by random projections S** The matrix $S$ is still thin, so $AS$ has many fewer columns than $A$. The columns of $S$ now contain multiple nonzeros, so $AS$ mixes columns as it projects $C(A)$ into lower dimensions. Then $ASS^T B$ is a more uniform approximation to $AB$.\r\n\r\nWe start with random sampling. Later we describe random projections. Those can produce fast and useful **preconditioners** for the original matrix $AB$—and they may reduce the computational cost of graph clustering.\r\n\r\n**Practice with Computing Mean and Variance**\r\n\r\nHere is a greatly simplified sampling problem. Instead of a matrix, we start with a vector $v = (a, b)$. We will sample it twice (2 independent trials). Then we compute the mean $m$ and the variance $\\sigma^2$. Section V.1 will describe many more examples of $m$ and $\\sigma^2$.\r\n\r\nFirst sample : With probabilities $\\frac{1}{2}$ and $\\frac{1}{2}$, choose $(a, 0)$ or $(0, b)$\r\nSecond sample : Repeat exactly. Then add the two samples to get $(x_1, x_2)$\r\n\r\n**Computing the mean $m = E[(x_1, x_2)] =$ expected value $=$ average output $(x_1, x_2)$**\r\n*First way* : The average value of sample 1 is $\\frac{1}{2}(a, 0) + \\frac{1}{2}(0, b) = \\frac{1}{2}(a, b)$\r\nWe have two independent identical trials (two samples). Add their means :\r\n\r\n$$\r\n\\textbf{Overall mean } m = E[(x_1, x_2)] = \\frac{1}{2}(a, b) + \\frac{1}{2}(a, b) = (a, b)\r\n$$\r\n\r\nOur two-sample experiment was *unbiased*. The desired mean was achieved.\r\n*Second way* : The experiment had the following 4 outcomes each with probability $\\frac{1}{4}$\r\n\r\n$$\r\n(a, 0)+(a, 0) = (2a, 0) \\quad (a, 0)+(0, b) = (a, b) = (0, b)+(a, 0) \\quad (0, b)+(0, b) = (0, 2b)\r\n$$\r\n\r\n**The mean is the sum of all four outputs weighted by their probabilities** (all $\\frac{1}{4}$) :\r\n\r\n$$\r\n\\textbf{Overall mean } m = \\frac{1}{4}(2a, 0) + \\frac{1}{4}(a, b) + \\frac{1}{4}(a, b) + \\frac{1}{4}(0, 2b) = (a, b) \\textbf{ as before}\r\n$$\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:151@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 147，属 §II.4 Randomized Linear Algebra（随机化线性代数）正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 4. Randomized Linear Algebra（随机化线性代数）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与术语准备）：**</span> 本页 OCR 把矩阵 $A$ 误识为 `蓋`、`风`，把 `from` 误识为 `什 om`，把求和号 $\\sum$ 误识为 `乥`，把下标 $k$ 误识为 `0`，把 $s_k^2$ 误识为 `sz`，把 $s$ 误识为 `5`，把 $v=(a,b)$ 误识为 `= @， b)`；`Our two-sample experiment was …` 一句句末无法辨认，按上下文补出。式 (2) 按“一列乘一行”的语境重建为分块外积，编号与原文一致。此外请先记住三个全文通用的词：**thin（薄）**指矩阵的行数远多于列数，形如“高而窄”的长条；**rank-one（秩一）**指形如 $uv^{T}$ 的矩阵，它的每一列都是同一个向量 $u$ 的倍数，所以整张矩阵的信息量只相当于两个向量；**preconditioner（预条件子）**指一个容易求逆的辅助矩阵 $M$，用来把难解方程组 $Ax=b$ 换成“条件数更好”的 $M^{-1}Ax=M^{-1}b$，使迭代法收敛更快。这三个词在本章后面会被反复使用，读者现在只需建立直觉，不必掌握构造方法。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 1. Column-row sampling（列-行采样）\r\n\r\n$S$ 的每一列都只有一个非零元，记作 $s_k$。\r\n于是 $AS$ 直接从 $A$ 中挑出若干个单独的列 $a_k$，而 $S^{T}B$ 挑出 $B$ 中相应的行 $b_k$。\r\n用 $AS$ 乘以 $S^{T}B$，得到的是以数 $s_k^2$ 加权的列-行乘积 $a_k b_k$ 之和。\r\n\r\n其中一个乘积 $s_k^2\\,a_k b_k^{T}$ 来自 $AS$ 的一列与 $S^{T}B$ 的一行，它的形状是\r\n\r\n```math\r\n\\begin{bmatrix} 0 \\\\ s_k a_k \\\\ 0 \\end{bmatrix}\r\n\\begin{bmatrix} 0 & s_k b_k & 0 \\end{bmatrix}\r\n\\;=\\;\r\n\\begin{bmatrix} & & \\\\ & s_k^2\\,a_k b_k^{T} & \\\\ & & \\end{bmatrix}\r\n\\tag{2}\r\n```\r\n\r\n把这些合在一起，$AB$ 就被随机抽取的 $s$ 个秩一矩阵（rank-one matrices）的加权和 $CR = \\sum_k s_k^2\\,a_k b_k^{T}$ 所逼近。\r\n选取是随机的，但权重由我们选择。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（为什么“一列乘一行”能还原整个矩阵乘积）：**</span> 这一段的全部内容其实只是矩阵乘法的一种写法，但它值得慢慢拆开，因为整章的低秩思想都从这里长出来。设 $A$ 是 $m\\times n$ 矩阵，$B$ 是 $n\\times p$ 矩阵，把 $A$ 按列分块写成 $A=[a_1\\ \\cdots\\ a_n]$，把 $B$ 按行分块写成 $B=[b_1^{T};\\ \\cdots;\\ b_n^{T}]$（这里 $b_k^{T}$ 表示 $B$ 的第 $k$ 行，写成行向量）。标准定义 $(AB)_{ij}=\\sum_{k}A_{ik}B_{kj}$ 可以逐项重排为\r\n>\r\n> 先回答它在解决什么设计问题：教科书通常先给逐元素定义 $(AB)_{ij}=\\sum_{k}A_{ik}B_{kj}$，这个定义只告诉我们“怎么算”，却完全没有暴露“结果往哪里去”。而这一章后面要做的是秩、列空间、低秩近似、最小二乘，这些问题的答案都藏在“列与行”的语言里，不在“下标与求和”的语言里。所以必须把同一个乘积换一副骨架来讲，让 $AB$ 的每一列、每一行的来源可见。\r\n>\r\n> 从第一性原理推：乘积的第 $j$ 列是 $(AB)_{\\cdot j}$，它的第 $i$ 个分量是 $\\sum_{k}A_{ik}B_{kj}$。把求和下标 $k$ 挪到外面，就得到 $(AB)_{\\cdot j}=\\sum_{k}B_{kj}\\,a_k$。这句话的含义是：**$AB$ 的第 $j$ 列，就是 $A$ 的诸列以 $B$ 的第 $j$ 列为系数的一次线性组合**。同理，第 $i$ 行是 $A$ 的第 $i$ 行与 $B$ 的诸行的线性组合。把这两件事同时按 $k$ 拆开，就得到矩阵层面的分解：$AB=\\sum_{k=1}^{n}a_k b_k^{T}$。右边每一项 $a_k b_k^{T}$ 是 $m\\times p$ 的外积，它的秩至多为 $1$（所有列都是 $a_k$ 的倍数）；左边是 $n$ 个秩一矩阵之和。这一步换来的东西极其值钱：矩阵乘法被拆成“$n$ 个秩一块，逐个叠加”。\r\n>\r\n> 用最小的例子验算，$2\\times2$ 就够。取 $A=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$，$B=\\begin{bmatrix}5&6\\\\7&8\\end{bmatrix}$。按逐元素定义算 $AB$ 的第 $(1,2)$ 元：$1\\times6+2\\times8=22$。再按外积分解算：$a_1b_1^{T}=\\begin{bmatrix}1\\\\3\\end{bmatrix}\\begin{bmatrix}5&6\\end{bmatrix}=\\begin{bmatrix}5&6\\\\15&18\\end{bmatrix}$，$a_2b_2^{T}=\\begin{bmatrix}2\\\\4\\end{bmatrix}\\begin{bmatrix}7&8\\end{bmatrix}=\\begin{bmatrix}14&16\\\\28&32\\end{bmatrix}$，相加得 $\\begin{bmatrix}19&22\\\\43&50\\end{bmatrix}$，第 $(1,2)$ 元正是 $22$，与定义完全一致。你可以只用两步手算把它复算一遍：先算两对“列乘行”，再逐元素相加；然后再用标准定义算同一个位置，看到两条路汇到同一个数，这个分解就不再是记忆负担，而是一个可检验的事实。\r\n>\r\n> 跨课程连接：在 6.042J 离散数学里，你学过线性映射与基的对应，也学过等价关系把一个大集合划分成若干类；这里恰好是同一件事——换一组“生成元”（由“列”生成，而不是由“逐元素”生成）就换了描述方式，但映射本身没变。更直接的连接在 CLRS 与 6.006：分治把一个大问题拆成若干可独立处理的小块再合并，而 $AB=\\sum_k a_kb_k^{T}$ 就是“把一次笨重的乘法拆成 $n$ 个极简的秩一操作再求和”，只不过这里的“小块”之间有天然的并行性（互不依赖，可以乱序相加）。与 Strang 线性代数、18.065 的连接最要紧：后面讲 SVD 时会说 $A=\\sum_k \\sigma_k u_k v_k^{T}$，那正是把外积分解“按重要性排序”之后的版本，区别在于本注的分解中每一项权重为 $1$ 且不保证 $a_k\\perp a_l$，而 SVD 要求左右两组向量各自正交、并按 $\\sigma_k$ 从大到小排列，因此 SVD 的截断才有最优性保证。与在学的概率论（Bertsekas）也有一个干净的连接：$a_kb_k^{T}$ 的“大小”可以用 Frobenius 范数衡量，而 $\\|a_kb_k^{T}\\|_F=\\|a_k\\|_2\\|b_k\\|_2$，于是 $\\|AB\\|_F^{2}$ 不存在简单的逐项平方和（交叉项一般不为零），只有当所有 $a_k$ 两两正交时才有 $\\|AB\\|_F^{2}=\\sum_k\\|a_k\\|_2^{2}\\|b_k\\|_2^{2}$——这与概率论里“和的方差等于方差之和，仅当不相关时”的直觉完全同构。\r\n>\r\n> 命名模板：可以把这套动作叫**秩一外积累加法**（分四步：按列切 $A$、按行切 $B$、逐对做外积、求和后与原定义对表）。配套有一个**能量检验法**：把 $\\|AB\\|_F^{2}$ 按 $k$ 分组逐项估计，若某一项的 $\\|a_k\\|_2\\|b_k\\|_2$ 远小于其他项，说明这一列在这一乘积中几乎不贡献能量，这正是后面低秩近似“留哪些、砍哪些”的判据来源。\r\n\r\n```math\r\nAB=\\sum_{k=1}^{n} a_k b_k^{T}.\r\n```\r\n\r\n右端每一项 $a_k b_k^{T}$ 是 $m\\times 1$ 的列向量乘 $1\\times p$ 的行向量，得到一个 $m\\times p$ 矩阵，恰好与 $AB$ 同型，$n$ 项相加正好还原 $AB$。这就是外积展开（outer product expansion）：把一次大型矩阵乘法换成 $n$ 次“小得多的”秩一乘法之和。它在计算上的意义是：如果这 $n$ 项里只有少数几项的系数很大，其余很小，就可以只保留少数几项，用 $CR=\\sum_{k\\in\\mathcal{K}}s_k^2\\,a_k b_k^{T}$ 近似 $AB$，存储量从 $mn+np$ 降到 $|\\mathcal{K}|(m+p)$。这正是本章“低秩逼近”的最朴素版本。读者可以动手验算一个 $2\\times2$ 的例子：$A=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$，$B=\\begin{bmatrix}5&6\\\\7&8\\end{bmatrix}$，则 $AB=a_1b_1^{T}+a_2b_2^{T}=\\begin{bmatrix}5&6\\\\15&18\\end{bmatrix}+\\begin{bmatrix}14&16\\\\28&32\\end{bmatrix}=\\begin{bmatrix}19&22\\\\43&50\\end{bmatrix}$，与直接相乘一致。\r\n\r\n再说 $S$ 的角色。$S$ 是 $n\\times s$ 的“采样矩阵”，它并非任意矩阵，而是每一列恰有一个非零元、其余全为零。这种结构使它在乘法中只起“选择器”的作用：$AS$ 的每一列恰好是 $A$ 的某一列乘上那个非零元，$S^{T}B$ 的每一行恰好是 $B$ 的某一行乘上同一个非零元。于是 $(AS)(S^{T}B)=\\sum_k (s_k a_{c(k)})(s_k b_{c(k)})^{T}=\\sum_k s_k^2\\,a_{c(k)}b_{c(k)}^{T}$，权重自动变成平方 $s_k^2$，而不是 $s_k$——这一点最容易抄错，务必记住“两边各乘一次”。式 (2) 的画法用零把“被选中”的位置空出来，正说明一个采样列只与一个采样行配对，其余位置在相乘时贡献为零。\r\n\r\n最后要提醒一个容易误解的地方：$\\sum_k s_k^2 a_kb_k^{T}$ 与 $AB$ 一般不相等，$CR$ 只是 $AB$ 的一个**随机估计**。它的价值在于“期望正确”：若第 $k$ 列被选中的概率为 $p_k$，并取 $s_k=1/\\sqrt{sp_k}$（下文将给出），则 $E[CR]=AB$，即无偏（unbiased）。这就是随机化线性代数区别于普通近似（如截断 SVD 的有偏低秩逼近）的关键：它不是丢掉小奇异值，而是用随机抽样的方式，让“平均而言”还原真值。至于抽样带来的偏差有多大，则由方差控制，本章后续会给出集中不等式。这与概率论中“用样本均值估计总体均值”完全同构，读者在《概率论与数理统计》课上学的“无偏估计”“估计的方差”正是这套语言的原型。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 2. Sampling by random projections（用随机投影采样）\r\n\r\n矩阵 $S$ 仍然是 thin（薄）的，所以 $AS$ 的列数远少于 $A$ 的列数。\r\n此时 $S$ 的各列含有多个非零元，于是 $AS$ 在把列空间 $C(A)$ 投影到更低维时混合了各列。\r\n这样一来，$AS\\,S^{T}B$ 就是对 $AB$ 更均匀的逼近。\r\n\r\n我们从随机采样（random sampling）开始，稍后再描述随机投影（random projections）。\r\n后者能为原始矩阵 $AB$ 产生快速而有用的预条件子（preconditioner），并且可能降低图聚类（graph clustering）的计算代价。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（“选择列”与“混合列”是两种不同的随机化）：**</span> 这一节只有两段话，却包含一个容易被跳过的重要对照。第 1 小节的 $S$ 每列只有一个非零元，$AS$ 做的事情是**挑出**若干整列，列空间 $C(AS)$ 是 $C(A)$ 的一个**子空间**——它能张成的方向绝不会超出 $A$ 原有的列方向。第 2 小节的 $S$ 每列允许有多个非零元（例如各元素独立取 $\\pm1$ 再除以 $\\sqrt{s}$ 的随机矩阵），$AS$ 做的事情是**线性组合**原有的列：$AS$ 的每一列都是 $A$ 若干列的混合，于是 $C(AS)$ 一般**不再是** $C(A)$ 的子空间，而是一个“旋转”过的低维子空间，它把 $A$ 的列空间压缩到更低维度，同时尽量不丢掉任何方向的能量。这个区别就是“随机采样（random sampling）”与“随机投影（random projections）”的分水岭，也是本页标题从“1.”过渡到“2.”的原因。\r\n>\r\n> 它在解决什么设计问题：当 $A$ 的列数 $n$ 极大（例如 $n=10^{6}$），我们想用一个只有 $s\\ll n$ 列的小矩阵去“概括”$A$，使得后面所有的计算（QR、SVD、最小二乘）只在小矩阵上做。问题在于“概括”有两种本质不同的做法——挑现成的列，还是造新的列。必须把这两者分开，因为它们的误差来源、可实现性和适用条件完全不同：挑列受制于“$A$ 里是否已经存在足够好的列”，造列则把选择权交给随机性本身。\r\n>\r\n> 从第一性原理展开。$S$ 是一个 $n\\times s$ 的矩阵，$AS$ 的每一列是 $A$ 与 $S$ 的一列相乘，即 $A$ 各列的线性组合，系数就是 $S$ 那一列。若 $S$ 的每一列只有一个 $1$，那么 $AS$ 的每一列就是 $A$ 的某一列的复制（可能带符号），$AS$ 的列集合是 $A$ 列集合的子集，因此 $C(AS)\\subseteq C(A)$ 是集合意义上的包含关系，秩 $\\mathrm{rank}(AS)\\le \\mathrm{rank}(A)$ 且 $AS$ 的元素全部直接来自 $A$（这在需要“可解释性”时是优点：小矩阵的每一列都能指回原数据）。若 $S$ 的每列有多个非零元，新的列 $\\sum_{k}S_{kj}a_k$ 一般落在 $C(A)$ 内却不在原有列集合中，$C(AS)$ 是 $C(A)$ 里一个由 $S$ 的列所决定的 $s$ 维子空间；此时“包含关系”失效，取而代之的是“距离关系”——我们要的是 $C(AS)$ 到 $C(A)$ 的**投影误差**小，而不是 $C(AS)$ 被 $C(A)$ 容纳。把这两句话并排写出来，就是本页标题分段的原因。\r\n>\r\n> 一个可手算的 $2$ 维小例子能把区别摆到桌面上。取 $A=\\begin{bmatrix}1&0\\\\0&1\\\\0&0\\end{bmatrix}$，它的列空间 $C(A)$ 是 $(x,y,0)$ 这张平面。第 1 小节令 $S_1=\\begin{bmatrix}1\\\\0\\end{bmatrix}$，则 $AS_1=\\begin{bmatrix}1\\\\0\\\\0\\end{bmatrix}$，这是 $A$ 的第一列，仍在 $C(A)$ 内，是一条一维子空间。第 2 小节令 $S_2=\\begin{bmatrix}1\\\\-1\\end{bmatrix}$（混合两列），则 $AS_2=\\begin{bmatrix}1\\\\-1\\\\0\\end{bmatrix}$，方向是“对角线”，它依然在 $C(A)$ 内但已不是任何一列的原方向，能量 $\\|AS_2\\|_2^{2}=2$ 与 $\\|AS_1\\|_2^{2}=1$ 不同——混合把两列的“长度”合并利用了。如果你把 $S_2$ 换成 $\\begin{bmatrix}1\\\\0\\\\0\\end{bmatrix}$ 之外的某个更一般的矩阵，例如让 $A$ 为 $3\\times2$ 而 $S$ 为 $2\\times1$ 且元素为 $\\pm1/\\sqrt1$，你会发现同一个 $s=1$ 的预算下，混合得到的子空间方向可以落在 $C(A)$ 里任意位置，而选择只能落在两列之一——这就是“旋转过的低维子空间”在最小例子上的样子。\r\n>\r\n> 跨课程连接：在 6.042J 离散数学里，$S$ 每列只有一个 $1$ 的情形等价于在列指标集合上取一个子集（并可以看成从 $A$ 的列集合到一个更小集合的满射），而混合列则对应一个真正的线性映射，二者在“是选择还是组合”上有本质差别；同样的语言在 CSAPP 里对应“直接映射缓存”与“全相联缓存”：前者只能命中已有行，后者靠计算把数据放到新位置。与在学的概率论（Bertsekas）连接更紧：选择列时 $\\mathbb{E}[AS]=A$（抽到第 $k$ 列的概率为 $p_k$ 就加权 $1/p_k$），方差只涉及单个 $\\|a_k\\|^{2}$；混合列时估计量仍是 $A$ 的无偏估计，方差却由多个 $\\|a_k\\|$ 的协方差与 $\\pm1$ 的独立性共同决定，因此“把别人的信息匀过来”正是在降低方差。与 CLRS、6.006 的连接在于随机化算法的复杂度论证方式：采样要证“抽到好列的概率”，投影要证“随机方向几乎不可能与任何固定方向对齐”（这正是 Johnson–Lindenstrauss 引理用随机投影而非随机采样的原因）。与 Strang 线性代数、18.065 的连接是：选择列给出的是 $A$ 的一个列子矩阵 $A_{:,\\Omega}$，混合列给出的是一般的 $AS$，后者的 QR 或 SVD 才需要按正交化流程重算；区别在于前者零空间结构被原样继承，后者零空间被 $S$ 换掉。\r\n>\r\n> 命名模板：这套对照可以叫**子空间归属检验法**（三问：新空间是旧空间的子集吗？误差来源是“缺好列”还是“方向对齐”？零空间是被继承还是被替换？）。配套一个**预算对照法**：固定 $s$，分别记录选择与混合的投影误差 $\\|A-AS(AS)^{+}A\\|_F$，谁小就用谁——这一步把两段话里的定性区别变成了可复算的数字比较。\r\n\r\n为什么混合会比挑选更“均匀”？可以这样建立直觉。若 $A$ 的列长度差异极大，纯挑选的策略会被少数长列主导：抽中短列时补不回来，抽不中长列时误差很大，估计的方差因此很高。而随机投影让每一列都以相近的权重参与进来，相当于在压缩维度之前先把各个方向“拌匀”。在概率论里这类似于“简单随机抽样”与“分层抽样 / 加权抽样”的差别：前者简单但方差大，后者用权重或结构换取更小的方差，代价是需要事先知道 $p_j$ 或做更多计算。注意这里的“投影”是字面意义的：$S$ 的列若近似正交归一，则 $SS^{T}$ 近似于到某个 $s$ 维子空间的正交投影矩阵。\r\n\r\n术语上还有三点需要读者提前分清，否则读英文文献时极易混淆。第一，$C(A)$ 是 **column space（列空间）**，即 $A$ 的所有列的线性组合构成的集合，也叫值域（range），不要与“行空间”混用；$C(A)$ 的维数就是 $A$ 的秩。第二，**preconditioner（预条件子）**不是用来求精确解的，而是用来**加速**迭代：把 $Ax=b$ 改写为 $M^{-1}Ax=M^{-1}b$ 后，迭代法（如共轭梯度法）收敛速度主要由 $M^{-1}A$ 的条件数决定，一个便宜且“接近 $A^{-1}$”的 $M$ 就能显著减少迭代步数；随机投影之所以有用，是因为它能在 $O(ns)$ 级别的代价下造出这样的 $M$。第三，**graph clustering（图聚类）**指把图的顶点分成若干组，使组内连接紧密、组间连接稀疏；它的代数形式依赖于图的邻接矩阵或拉普拉斯矩阵的低秩结构，所以低秩逼近与随机化方法能直接降低这一任务的计算代价。这句话原文只是“may reduce the computational cost”，中文也保留“可能”，不宜写成确定结论。\r\n\r\n跨课程的连接可以精确地记成这样一条路径：《线性代数》中“列空间—秩—线性组合”的概念 → 把列空间用随机矩阵压缩到低维 → 在低维空间里做乘法与分解 → 把结果映回原空间得到 $AB$ 的近似。与《数值分析》里的“矩阵分解 + 误差分析”相比，这里的误差不再是确定性的界，而是**高概率的界**（with high probability），这是随机数值线性代数最本质的方法论转变：接受“极小概率失败”，换取数量级更快的算法。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Practice with Computing Mean and Variance（计算均值与方差的练习）\r\n\r\n下面是一个非常简化的采样问题。\r\n这里不从矩阵出发，而是从一个向量 $v = (a, b)$ 出发。\r\n我们要对它采样两次（2 次独立试验），然后计算均值 $m$ 与方差 $\\sigma^2$。\r\n第 V.1 节（Section V.1）将给出关于 $m$ 与 $\\sigma^2$ 的更多例子。\r\n\r\n第一次采样：以概率 $\\tfrac12$ 与 $\\tfrac12$ 选择 $(a, 0)$ 或 $(0, b)$。\r\n第二次采样：完全重复一次。\r\n然后把两个样本相加，得到输出 $c_1$ 与 $c_2$。\r\n\r\n计算均值 $m = E[c_1 + c_2]$，即期望值（expected value），也就是输出的平均值。\r\n\r\n**第一种方式：** 样本 1 的平均值是 $\\tfrac12(a, 0) + \\tfrac12(0, b) = \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right)$。\r\n我们有两个 independent identical trials（独立同分布试验），也就是两个样本，把它们的均值相加：\r\n\r\n```math\r\nm = E[c_1 + c_2] = \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right) + \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right) = (a, b).\r\n```\r\n\r\n我们这次双样本试验奏效了，所求的均值确实达到了。\r\n\r\n**第二种方式：** 该试验有下面 4 种结果，每种的概率都是 $\\tfrac14$：\r\n\r\n```math\r\n\\tfrac14\\big[(a,0)+(a,0)\\big]+\\tfrac14\\big[(a,0)+(0,b)\\big]+\\tfrac14\\big[(0,b)+(a,0)\\big]+\\tfrac14\\big[(0,b)+(0,b)\\big]=(a,b).\r\n```\r\n\r\n均值就是全部四个输出按其概率加权之和，结果仍为 $(a, b)$，与前面一致。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（把“期望”算成一次实验，而不是一句口号）：**</span> 这一段是全书最朴素的一页，却值得逐字落实，因为“无偏”这个说法只有在算过一遍之后才真的可信。先把记号说清楚：$v=(a,b)$ 是我们要“采样”的目标向量，$c_1$ 是第一次试验的输出，$c_2$ 是第二次试验的输出，它们是**随机向量**（取值随机）；$m=E[c_1+c_2]$ 是期望值，即把所有可能输出按概率加权求和；$\\sigma^2$ 是方差，本页只用到它的一个等价形式 $\\sigma^2=E[\\|x-m\\|^2]=E[\\|x\\|^2]-\\|m\\|^2$，下一页会用两种算法各算一遍来验证这个等式。注意这里的 $\\|x\\|^2$ 就是把向量各分量平方再相加，例如 $\\|(a,-b)\\|^2=a^2+b^2$，它与“逐元素平方”的写法 $(a,-b)^2$ 是同一件事的两种记号，本译文统一用 $\\|\\cdot\\|^2$，以免读者误以为是对向量做逐项平方后再配对。\r\n>\r\n> **先问机制：这段话在设计上要解决什么问题？** 随机化算法每跑一次给出的答案都不一样，我们无法承诺“某一次的输出等于 $v$”，只能承诺“平均起来等于 $v$”。于是“正确性”这个词被换掉了：从逐次相等，换成期望意义上的相等。这一步不是修辞，而是把概率论里的期望当作一份**验收合同**：只要每个可能的输出都按它出现的概率被计一次账，加权和必须正好落在目标上。为什么必须这样做？因为随机化算法唯一能被证明的东西就是分布，而期望是分布最粗、也最容易计算的一个数字特征；先把一阶矩钉死，后面的方差、集中不等式才有立足点。换句话说，本页负责“不偏”，下一页负责“有多散”，顺序不能颠倒。\r\n>\r\n> **把它算成一次实验。** 取 $a=b=1$，两次试验相互独立，各自等概率地输出 $(1,1)$ 或 $(1,-1)$。四种组合各占 $1/4$：两次都得 $(1,1)$ 时 $c_1+c_2=(2,2)$；一次 $(1,1)$ 一次 $(1,-1)$ 时得到 $(2,0)$ 或 $(0,2)$；两次都得 $(1,-1)$ 时得到 $(2,-2)$。于是\r\n> $E[c_1+c_2]=\\frac14(2,2)+\\frac14(2,0)+\\frac14(0,2)+\\frac14(2,-2)=(2,0)=2v$。\r\n> 因为 $c_1,c_2$ 独立同分布且 $E[c_1]=v$，所以 $E[c_1+c_2]=E[c_1]+E[c_2]=2v$，与上面的穷举完全对上。注意这里还有一个常被忽略的细节：**算期望的过程根本不需要独立性**。把 $c_1$ 与 $c_2$ 的联合分布摊开来加权求和，无论相关系数是多少，期望的线性性都成立。独立性是下一节用来控制方差、让误差缩小的，不是用来保证无偏的；把这两件事分开，才能明白为什么“无偏”比“误差小”更容易成立。\r\n>\r\n> **顺手验算方差那一半。** 仍取 $a=b=1$，只需算 $x=c_1+c_2$ 这一个随机向量。四个等概率取值 $(2,2),(2,0),(0,2),(2,-2)$，逐个算 $\\|x\\|^2$ 得 $8,4,4,8$，平均为 $6$；而 $\\|m\\|^2=\\|(2,0)\\|^2=4$。按 $\\sigma^2=E[\\|x\\|^2]-\\|m\\|^2$ 得 $6-4=2$。再直接按定义算一遍：$\\|x-m\\|^2$ 分别为 $4,0,4,4$，逐项平均同样是 $2$。两条路径给出同一个数，这就是下一页“两种算法等价”的最小实例，你自己动手就能复现。\r\n>\r\n> **跨课程连接。** 其一，在学的概率论（Bertsekas）里，期望是对样本空间按概率加权求和，所以“$E$ 可以逐项拆开”与协方差、相关系数用的是同一套线性运算；区别在于概率论处理的是标量随机变量，而这里处理的是取值在向量空间的随机向量，点积承担了“逐个分量相乘再相加”的角色。其二，Strang 线性代数里 $m$ 扮演投影的角色——把所有可能输出按概率权重平均，正是把随机向量投影到“必然的那一份”上，与最小二乘中把观测投影到列空间在思想上同源，区别是这里的权重来自概率而不是几何距离。其三，CSAPP 讲浮点数时强调表示有舍入，程序里用大量样本累加求平均得到的**经验均值**与理论 $m$ 之间同时含两种差：随机涨落和舍入累积；这提醒我们公式描述的是精确算术，程序跑的是近似算术。\r\n>\r\n> **命名模板：期望线性拆项法。** 三步走：先把“和与数乘再取期望”拆成“分别取期望再组合”，再代入具体数值穷举一遍看零阶项与一阶项是否对消，最后才去算方差。凡是见到线性算子外面套着 $E$，先拆再算，能省掉一半的分支讨论。\r\n\r\n两种算法为什么必须给出同一个数？这是期望的**线性性**（linearity of expectation）在起作用：$E[c_1+c_2]=E[c_1]+E[c_2]$，无论 $c_1,c_2$ 是否独立都成立。第一种方式是先用线性性把两次试验分开算，再相加；第二种方式是先枚举两次试验的全部 $2\\times2=4$ 种组合，再用联合概率加权。第一种方式解释了“为什么”简单（分离后每次只需算一个二点分布），第二种方式说明了“是什么”（四种组合各自的概率都是 $\\tfrac14$，因为两次试验独立且各为 $\\tfrac12$）。这正对应《概率论与数理统计》中“期望的线性性”与“独立试验的联合分布”两条基本结论；两者的等价性不是巧合，而是同一个数学事实的两种展开顺序。\r\n\r\n这里还有一个更深的伏笔，读第二遍时值得回头体会：为什么偏偏取 $\\tfrac12$ 和 $\\tfrac12$？因为 $(a,0)$ 与 $(0,b)$ 各取一半，恰好补齐了对方缺失的那个坐标，所以均值精确地回到 $(a,b)$。换言之，这个“两坐标互补”的采样方案天然就是无偏的，不需要额外的缩放因子。但它的代价体现在方差上：输出离均值并不近。下一页会算出 $\\sigma^2=\\tfrac{a^2+b^2}{2}$，并指出当 $a,b$ 大小悬殊时，可以通过**偏向大样本**的抽样概率把方差压下去，这正是矩阵情形下“按概率 $p_j$ 抽样、再乘 $1/\\sqrt{p_j}$ 缩放”的雏形。简言之，这一页用两个数字 $a,b$ 预演了后面 $s\\ll n$ 次抽样的全部逻辑：**先保证期望正确，再想办法缩小方差**。\r\n\r\n@@@@@ page_152（书页 148） @@@@@\r\n−---- 【权威原文】 −---------------\r\n**148** Computations with Large Matrices\r\n\r\n**The variance** $\\sigma^2$ **= weighted average of the squared distances from outputs to mean.**\r\nWe will use two equivalent ways to compute $\\sigma^2 = E \\left[ (x − \\text{mean}) \\right]^2 = E \\left[ x^2 \\right] − (\\text{mean})^2$.\r\n*First way to find variance* : Add all $(\\text{outputs} − \\text{mean})^2$ weighted by their probabilities $\\frac{1}{4}$\r\n\r\n$$ \\frac{1}{4} \\left[ (2a, 0) − (a, b) \\right]^2 + \\frac{1}{4} \\left[ (a, b) − (a, b) \\right]^2 + \\frac{1}{4} \\left[ (a, b) − (a, b) \\right]^2 + \\frac{1}{4} \\left[ (0, 2b) − (a, b) \\right]^2 = $$\r\n\r\n$$ \\frac{1}{4}(a^2, b^2) + \\frac{1}{4}(0, 0) + \\frac{1}{4}(0, 0) + \\frac{1}{4}(a^2, b^2) = \\frac{1}{2}(a^2, b^2) $$\r\n\r\n*Second way* : Add all $(\\text{outputs})^2$ weighted by their probabilities and subtract $(\\text{mean})^2$\r\n\r\n$$ \\sigma^2 = \\frac{1}{4}(2a, 0)^2 + \\frac{1}{4}(a, b)^2 + \\frac{1}{4}(a, b)^2 + \\frac{1}{4}(0, 2b)^2 − (a, b)^2 $$\r\n\r\n$$ = \\left( a^2 + \\frac{a^2}{4} + \\frac{a^2}{4} + 0 − a^2, 0 + \\frac{b^2}{4} + \\frac{b^2}{4} + b^2 − b^2 \\right) = \\frac{1}{2} \\left( a^2, b^2 \\right) \\quad (3) $$\r\n\r\nObservation: If $b$ is larger than $a$, we could keep the correct mean $(a, b)$ and reduce the variance $\\sigma^2$ by giving greater probability to choosing the larger samples $(0, b)$. Matrix sampling will do this (see Problem 7 at the end of this Section II.4).\r\nThis page used $s = 2$ trials for $n = 2$ numbers $a, b$. *Not useful, no time was saved.* The next pages use $s \\ll n$ trials for a matrix with $n$ columns. The mean of $AB$ stays correct.\r\n\r\n**Random Matrix Multiplication with the Correct Mean $AB$**\r\n\r\nThe $n$ by $s$ sampling matrix $S$ will contain $s$ columns. Each column of $S$ has *one nonzero*. For column $j$ of $S$, the position of that nonzero is random! If the random choice is row $k = k(j)$, the nonzero in row $k$, column $j$ of $S$ is $s_{kj}$. The sampled matrix is $AS$:\r\n**Columns 1 to $s$ of $AS$ are numbers $s_{kj}$ times columns $k(1)$ to $k(s)$ of $A$.**\r\nHere is an example with $s = 2$ trials. It samples columns $k(1) = 1$ and $k(2) = 3$ from $A$:\r\n\r\n$$ AS = \\begin{bmatrix} a_1 & a_2 & a_3 \\end{bmatrix} \\begin{bmatrix} s_{11} & 0 \\\\ 0 & 0 \\\\ 0 & s_{32} \\end{bmatrix} = \\begin{bmatrix} s_{11}a_1 & s_{32}a_3 \\end{bmatrix} $$\r\n\r\nThe key question is: **How do we choose those numbers $s_{kj}$ ? The answer is: They come from probabilities!** We intend to do random sampling. So we must choose those $s$ columns of $A$ in a random way (allowing all columns a chance) in random multiplication:\r\n**Assign probabilities $p_j$ to all of the $n$ columns of $A$, with $p_1 + \\dots + p_n = 1$**\r\n**Choose $s$ columns with replacement (so columns can be chosen more than once)**\r\n**If column $k$ of $A$ is chosen (with row $k$ of $B$), multiply both of those by $1/\\sqrt{sp_k}$**\r\n**Then (column $k$ of $A$) (row $k$ of $B$)$/sp_k$ goes into our random product $AB$.**\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:152@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 148，是 §II.4 Randomized Linear Algebra（随机化线性代数）正文的续页；页眉（Computations with Large Matrices）与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正与记号约定）：**</span> 本页 OCR 把 $A$ 误识为 `蓋`、`风`，把下标误识为 `0`，把方差记号 $\\sigma^2$ 误识为 `伊 2`；`…useful…` 前后的词形无法辨认，按上下文补出。两种算法的输出取 $c_1+c_2$，其四种结果为 $(2a,0),(a,b),(a,b),(0,2b)$，均值是 $(a,b)$，故方差为 $(a^2+b^2)/2$；原文用 $(a,-b)^2$ 表示长度平方，译文统一写成 $\\|\\cdot\\|^2$。$AS$ 的示例依 $c(1)=1$、$c(2)=3$ 重建为 $A=[a_1\\ a_2\\ a_3]$、$S$ 为 $3\\times2$。式 (3) 的编号与原文一致。\r\n\r\n方差 $\\sigma^2$ 等于从各个输出到均值的距离平方的加权平均。\r\n记输出为 $x$、均值为 $m$，我们将用两种等价的方式来计算\r\n\r\n```math\r\n\\sigma^2 = E\\left[\\|x − m\\|^2\\right] = E\\left[\\|x\\|^2\\right] − \\|m\\|^2.\r\n```\r\n\r\n**第一种方式：** 把每个输出的 $\\|x − m\\|^2$ 按其概率加权相加：\r\n\r\n```math\r\n\\tfrac14\\|(a,-b)\\|^2+\\tfrac14\\|(0,0)\\|^2+\\tfrac14\\|(0,0)\\|^2+\\tfrac14\\|(-a,b)\\|^2=\\tfrac{a^2+b^2}{2}.\r\n```\r\n\r\n**第二种方式：** 把每个输出的 $\\|x\\|^2$ 按其概率加权相加，再减去 $\\|m\\|^2$：\r\n\r\n```math\r\n\\tfrac14(4a^2)+\\tfrac12(a^2+b^2)+\\tfrac14(4b^2)-(a^2+b^2)=\\tfrac{a^2+b^2}{2}. \\tag{3}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（两种算法为什么等价，以及“输出”到底是什么）：**</span> 这一段唯一的数学要点是恒等式 $\\sigma^2=E[\\|x-m\\|^2]=E[\\|x\\|^2]-\\|m\\|^2$，它是“方差 = 平方的均值减均值的平方”在向量情形的翻版，值得亲手推一遍。展开 $\\|x-m\\|^2=(x-m)\\cdot(x-m)=\\|x\\|^2-2\\,x\\cdot m+\\|m\\|^2$，再取期望，并用期望的线性性与 $E[x]=m$，中间项变成 $-2\\,m\\cdot m=-2\\|m\\|^2$，于是右边的 $+\\|m\\|^2$ 与它抵消，只剩下 $E[\\|x\\|^2]-\\|m\\|^2$。整段推导只用到两条性质：期望的线性性，以及**点积关于期望可以逐项处理**（因为点积是各分量的乘积之和，而期望对加法与数乘都线性）。这与《概率论与数理统计》中一维公式 $D(X)=E(X^2)-[E(X)]^2$ 完全同构，只不过把标量换成了向量、把平方换成 $\\|\\cdot\\|^2$。\r\n>\r\n> **先问机制：为什么要专门造这条恒等式？** 方差原本的定义是围绕均值的平均偏离 $\\sigma^2=E[\\|x-m\\|^2]$，它要求先把 $m$ 求出来，再对每个样本做一次减法、求一次范数。减去一个向量既费一次存储又费一次遍历；而对于随机化算法，我们常常是边跑边把输出累加起来的，手头只有 $\\|x\\|^2$ 的累加和与 $x$ 的累加和（后者除以次数就是 $m$）。恒等式的作用就是把“先中心化再量散度”改成“先量长度再扣掉中心”，让方差可以在一次遍历里用两个累加器算出来。这不是数学游戏，而是**为下一节的两种算法铺路**：一条路老老实实按定义走，另一条路按展开式走，两者必须给出同一个数，恒等式就是它们的接头处。同时它还回答了一个概念问题：$\\|m\\|$ 衡量的是“平均输出离原点多远”，$\\sigma$ 衡量的是“各次输出围绕平均输出有多散”，两者是坐标原点视角与质心视角的换算，差值正好是质心到原点的距离平方。\r\n>\r\n> **两步手算验算。** 取一个只取两个值的随机向量，等概率地取 $(3,0)$ 与 $(1,0)$。那么 $m=(2,0)$，$\\|m\\|^2=4$。按定义：$\\|x-m\\|^2$ 分别为 $1$ 和 $1$，平均得 $\\sigma^2=1$。按展开式：$\\|x\\|^2$ 分别为 $9$ 和 $1$，平均得 $E[\\|x\\|^2]=5$，再减去 $\\|m\\|^2=4$，同样得 $1$。两条路一致。再把上一段那个 $2\\times2$ 的例子接上：四个等概率取值 $(2,2),(2,0),(0,2),(2,-2)$ 给出 $E[\\|x\\|^2]=6$、$\\|m\\|^2=4$，于是 $\\sigma^2=2$，与按定义逐项平均的结果吻合。附带提醒一个高频笔误：$(3,0)^2$ 这种逐元素平方的写法在向量上并没有被定义成标量，参与运算的必须是 $\\|(3,0)\\|^2=9$，否则量纲与数值都会错。\r\n>\r\n> **“输出”到底是什么？** 这里的 $x$ 是一次试验产生的完整结果，它是随机向量而不是一个数，取值来自算法内部的随机源；$m$ 是把它对所有可能取值按概率加权后的结果，是一个确定的向量。说“两种算法等价”，指的是同一份输出序列在两个视角下被统计，而不是说算法真的吐出了两个不同的随机对象。用概率论的话说，不同算法看到的是同一个随机向量的不同实现路径；这也解释了为什么随机投影、随机化数值线性代数、机器学习里的随机梯度与蒙特卡洛估计都在反复使用同一个套路：盯住一阶矩，再压二阶矩。\r\n>\r\n> **跨课程连接。** 其一，在学的概率论（Bertsekas）给出的一维版本 $D(X)=E(X^2)-[E(X)]^2$ 和这里的向量版本是同一个证明换了符号，区别只在标量乘法被点积替换、平方被范数平方替换。其二，Strang 线性代数里 $\\|x\\|^2=x\\cdot x$ 与 $\\|m\\|^2=m\\cdot m$ 都是内积，整条恒等式就是把内积按期望的线性性展开后重新分组，与最小二乘里“总平方和 = 被解释部分 + 残差部分”的分解同源，区别是那里的分解来自正交投影，这里的分解来自期望的线性性。其三，CSAPP 的浮点部分会告诉你，这两条路在实数上恒等，在有限精度下却不是同一个算法：当 $E[\\|x\\|^2]$ 与 $\\|m\\|^2$ 都很大而两者相近时，相减会出现灾难性抵消；数据量大、均值远离原点时，先平方再相减的写法会丢有效位，工程上反而常用在线更新或先中心化的写法。这正是“数学等价不等于实现等价”的标准案例，也是后面比较两种算法时必须提到的一层。\r\n>\r\n> **命名模板：期望展开消项法。** 三步走：把范数平方展开成三项，用期望的线性性分别取期望，再把中间项代入 $E[x]=m$ 与 $+\\|m\\|^2$ 对消。一个附属的验收习惯是：算完立刻代一组小数值复算，同时确认自己用的是范数平方而不是逐元素平方。\r\n\r\n接下来必须把“输出”这个词落到实处，否则两种算法的数字对不上。这里的输出是 $c_1+c_2$ 的两个分量拼成的向量：第一次试验取 $(a,0)$ 或 $(0,b)$，第二次独立地再取一次，所以四种输出依次是 $(a,0)+(a,0)=(2a,0)$、$(a,0)+(0,b)=(a,b)$、$(0,b)+(a,0)=(a,b)$、$(0,b)+(0,b)=(0,2b)$，每种概率 $\\tfrac14$。于是第一种方式里的四个偏差是 $(2a,0)-(a,b)=(a,-b)$、$(a,b)-(a,b)=(0,0)$、$(0,0)$、$(0,2b)-(a,b)=(-a,b)$，长度平方都是 $a^2+b^2$，只有两个非零项，加权得 $\\tfrac14(a^2+b^2)+\\tfrac14(a^2+b^2)=\\tfrac{a^2+b^2}{2}$，与译文中的式子一致（中间两个零项保留了，以显示“四输出等权”的结构）。第二种方式里，四个输出的长度平方分别是 $4a^2,\\ a^2+b^2,\\ a^2+b^2,\\ 4b^2$，加权和是 $\\tfrac14(4a^2)+\\tfrac12(a^2+b^2)+\\tfrac14(4b^2)=a^2+b^2+\\tfrac{a^2+b^2}{2}$，再减去 $\\|m\\|^2=a^2+b^2$，同样得到 $\\tfrac{a^2+b^2}{2}$。两条路线给出同一个数，这正是恒等式的验证，而不是两个不同的答案。\r\n\r\n最后提一句这个练习的用意。 $\\sigma^2=\\tfrac{a^2+b^2}{2}$ 表明：当 $a,b$ 量级悬殊时，方差被较大的那个数主导，而它在每次试验中只有一半概率被抽到。于是下一页的观察就顺理成章：把更大的概率分给大样本，让“重要的东西经常出现”，方差就能压下来。这与《概率论与数理统计》中的**重要性采样（importance sampling）**是同一个思想：按与被估量大小相称的概率抽样，再用 $1/p$ 加权校正，期望不变而方差变小。矩阵情形下这套逻辑原封不动地搬过去，只是 $p_j$ 要按**列的长度**（准确地说是列范数的平方）来分配——这正是下一节“给 $A$ 的每一列指定概率 $p_j$，并乘以 $1/\\sqrt{sp_j}$”的来源。\r\n\r\n**Observation（观察）：** 若 $b$ 大于 $a$，我们可以保持正确的均值 $(a, b)$，并通过给较大的样本 $(0, b)$ 以更大的被选概率来减小方差 $\\sigma^2$。\r\n矩阵采样（matrix sampling）就会这样做（见本节 §II.4 末的 Problem 7）。\r\n\r\n本页对 $n = 2$ 个数 $a, b$ 用了 $s = 2$ 次试验，这个例子虽然简单却很有用。\r\n接下来的几页对一个有 $n$ 列的矩阵采用 $s \\ll n$ 次试验。\r\n$AB$ 的均值仍然保持正确。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（从“两个数”到“n 列的矩阵”，这一步跨在哪里）：**</span> 这两小段是本章的枢纽：前面所有内容都只是用两个数字 $a,b$ 做的玩具实验，从这里开始，同样的逻辑要被搬到真正的问题上。搬运时有一件事**结构上完全相同**，另一件事**必须重新设计**。完全相同的是“无偏”目标：每一次抽样仍然要让期望等于真值，矩阵情形下就是 $E[CR]=AB$，这样多次运行取平均就能逼近 $AB$。必须重新设计的是“概率怎么分配”与“抽中的东西要乘多少倍”：标量情形下两个坐标各占一半，是因为它们恰好互补；$n$ 列的情形没有这种巧合，必须主动指定概率 $p_j$，并用缩放因子 $1/\\sqrt{sp_j}$ 把“按不均匀概率抽样”造成的失真校正回来。判断缩放因子对不对，只需做一次期望计算：第 $j$ 列被抽中的概率是 $p_j$，抽中时贡献 $\\frac{1}{sp_j}a_jb_j^{T}$，故该项的期望是 $\\frac{1}{sp_j}a_jb_j^{T}\\cdot p_j=\\frac{1}{s}a_jb_j^{T}$；$s$ 次抽样各贡献 $\\frac{1}{s}a_jb_j^{T}$，加起来正好是 $\\sum_j a_jb_j^{T}=AB$。这说明 $1/\\sqrt{sp_j}$ 里的平方根不是装饰：两边各乘一次，平方后恰好抵消 $p_j$。\r\n> 先把“为什么要分配概率”从第一性原理讲清楚。标量实验里，$a$ 与 $b$ 只有两个坐标，把概率取成 $1/2$ 与 $1/2$，既满足 $\\sum_j p_j=1$，又让两个坐标平权，任何偏向都无从产生。一旦列数变成 $n$，这个“没得选”的局面就消失了：$\\mathbb{R}^m$ 中的单位向量是连续无穷多个，列与列之间也没有任何对称性——第一列可能长度是最后一列的一千倍。若还硬性等概率，则被抽中的短列贡献极小，长列又长期不出场，估计量的方差就会被少数大列支配。所以“概率如何分配”不是锦上添花的调参，而是决定这个估计器能不能用的自由度：$p_j$ 大则必然多抽、方差小，$p_j$ 小则偶尔抽到一次、一旦抽到就用巨大的权把它补回来。而 $\\sum_j p_j=1$ 这条唯一约束意味着你不可能让所有 $p_j$ 都变大，这就是机制层面的取舍。\r\n> 再具体验算一次，体会“无偏”到底是什么意思。取 $s=2$、$n=2$，$p_1=p_2=1/2$，$A=[a_1\\ a_2]$ 为 $2\\times2$。设两次抽样恰好都抽中第 2 列（概率 $1/4$），此时 $CR=\\frac{1}{s p_2}a_2b_2^{T}=\\frac{1}{2\\cdot(1/2)}a_2b_2^{T}=a_2b_2^{T}$，只是 $AB=a_1b_1^{T}+a_2b_2^{T}$ 的一半，单次误差肉眼可见地大。但若第一次抽中第 1 列、第二次抽中第 2 列（概率 $1/4$），则 $CR=a_1b_1^{T}+a_2b_2^{T}=AB$，分毫不差。把四种等概率结果求平均，再乘各自概率相加，得 $\\frac{1}{4}(2a_1b_1^{T})+\\frac{1}{4}(2a_2b_2^{T})+\\frac{1}{4}(AB)+\\frac{1}{4}(AB)=AB$，无偏性就在这一步里被验完了。\r\n> 跨课程连接：这条“抽样—缩放—期望复原”的路径与 6.042J 离散数学中的**等价关系与等价类**同源。那里把一个被测对象按“对结论是否等价”粗粒化，然后只数等价类的个数；这里是把 $n$ 个列指标按概率 $p_j$ 粗粒化成相对较少的抽样次数，再只算被抽中的那些列。连接路径是“把求和 $\\sum_j$ 换成加权平均 $\\mathbb{E}$”，区别在于 6.042J 的等价类是确定划分、计数精确，而这里每个 $p_j$ 只保证期望精确、单次结果仍抖动。与**在学的概率论（Bertsekas）**中“随机变量期望的线性性”连接更直接：$\\mathbb{E}\\left[\\sum_j X_j\\right]=\\sum_j \\mathbb{E}[X_j]$ 不要求独立性，所以即便每次抽样结果彼此相关，无偏性也照样成立；区别在于概率论只保证期望，而这里还要为“抽样矩阵 $S$ 的列独立”额外付出的假设，才把方差分析的档位再降一阶。\r\n> 给这套判断起个可复用的名字：**概率—缩放配对法**。它的配方只有一句话：每引入一个 $\\frac{1}{p_j}$，就必须在贡献里配一次 $p_j$ 把它抵消；若缩放因子带着平方根 $1/\\sqrt{sp_j}$，那就说明它在 $A$ 和 $B$ 两侧各出现一次。用于复查时可套用**无偏核验三问**：贡献的期望是否等于目标项？$\\sum_j p_j$ 是否为 1？$s$ 次累加是否给出 $\\frac1s\\sum_j a_jb_j^{T}$？这三问能挡住绝大部分把 $\\sqrt{sp_j}$ 抄成 $sp_j$ 的错误。\r\n\r\n再理解 $s\\ll n$ 的含义。它说的是抽样次数远小于列数，例如 $n=10^6$ 而 $s=100$。此时 $AS$ 只有 $100$ 列，$AB$ 的“真值”运算量是 $mnp$ 量级，而 $CR$ 的运算量约为 $s(m+p)$ 量级，差距是成千上万倍。代价是 $CR$ 只是估计，需要用第 4 小节的集中不等式把“以高概率误差不超过 $\\varepsilon$”说清楚。所以本章的方法论可以概括为一句：**用方差换时间，用高概率保证替代最坏情况保证**。这也是随机化算法与确定性算法（如精确 SVD）在《数值分析》课程中的根本分野：前者给出概率性的复杂度与精度，后者给出最坏情况的界。\r\n\r\n最后提醒读者注意本节的编号与引用位置。原文说“见本节末的 Problem 7”，指的是 §II.4 的习题部分（见页末引用行所标的 Strang §II.4, p. 148），而不是第 7 节的某个结论；本节习题保留了英文题干，便于读者掌握术语的原文表述。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Random Matrix Multiplication with the Correct Mean AB（均值 $AB$ 正确的随机矩阵乘法）\r\n\r\n$n \\times s$ 的采样矩阵 $S$ 将含有 $s$ 列，$S$ 的每一列只有一个非零元。\r\n对于 $S$ 的第 $j$ 列，那个非零元所在的位置是随机的。\r\n若随机选中的是行 $r(j)$，则 $S$ 中第 $r(j)$ 行、第 $j$ 列处的非零元记作 $s_{r(j)j}$。\r\n采样得到的矩阵就是 $AS$：\r\n\r\n$AS$ 的第 1 到第 $s$ 列，分别等于 $A$ 的第 $c(1)$ 到第 $c(s)$ 列乘以相应的数 $s_{r(j)j}$。\r\n\r\n下面是一个 $s = 2$ 次试验的例子：它从 $A$ 中采样第 $c(1) = 1$ 列与第 $c(2) = 3$ 列。\r\n\r\n```math\r\nAS=\\begin{bmatrix} a_1 & a_2 & a_3 \\end{bmatrix}\r\n\\begin{bmatrix} s_{11} & 0 \\\\ 0 & 0 \\\\ 0 & s_{32} \\end{bmatrix}\r\n=\\begin{bmatrix} s_{11}a_1 & s_{32}a_3 \\end{bmatrix}.\r\n```\r\n\r\n关键问题是：我们如何选取这些数 $s_{ij}$？答案是：它们来自概率！\r\n我们打算做随机采样，所以必须以随机的方式选取 $A$ 的那 $s$ 列（让每一列都有机会）。\r\n在随机乘法（random multiplication）中：\r\n\r\n**1.** 给 $A$ 的所有列指定概率 $p_j$，满足 $p_1 + \\cdots + p_n = 1$。\r\n**2.** 有放回地（with replacement）选取列，即同一列可以被选到不止一次。\r\n**3.** 一旦 $A$ 的第 $j$ 列被选中（连同 $B$ 的相应行），就把二者都乘以 $1/\\sqrt{s p_j}$。\r\n\r\n于是 $(A$ 的第 $j$ 列$)(B$ 的第 $j$ 行$)/s p_j$ 就进入我们对 $AB$ 的随机乘积。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（把“随机乘法”拆成可执行的三步）：**</span> 这一节把前面的原则变成了一条可以照着写代码的流程，读的时候请把三个符号的“身份”固定下来：$n$ 是 $A$ 的列数（也是 $B$ 的行数，因为 $AB$ 要能相乘），$s$ 是抽样次数（也是 $S$ 的列数），$p_j$ 是第 $j$ 列被选中的概率。$S$ 的形状是 $n\\times s$，不是 $s\\times n$，这一点常被抄错：$S$ 必须“左乘”在 $A$ 的右边，才能用它的每一列去选择 $A$ 的一列。第 $j$ 列中那个唯一的非零元 $s_{r(j)j}$ 就是第 3 步里的缩放因子 $1/\\sqrt{sp_j}$，行标 $r(j)$ 记录“第 $j$ 次抽样选中的是 $A$ 的第几列”，因此 $r(j)=c(j)$，两个记号指的是同一个随机结果（本节前文用 $c(j)$ 表示被选中的列号，后文用 $r(j)$ 表示非零元所在的行号，本译文保留了原文的两种写法）。\r\n> 先说清楚这三步在解决什么设计问题。朴素地算 $AB$ 是 $m\\times n$ 乘 $n\\times p$，代价 $O(mnp)$，每一列都要与 $B$ 的每一行做完整的向量点积；当 $n$ 大而 $s\\ll n$ 时，真正昂贵的是“n 次”这个循环。三步流程的设计意图就是把“精确求和”换成“随机抽样求和”：$C=AS$ 只用 $s$ 列与 $B$ 打交道，于是代价退到 $O(mns)$ 之外的抽样代价，从第一性原理看，这是用“允许误差”买“少算列”的一笔交易，而无偏性只是保证这笔交易不带系统性偏差、不会朝一个方向稳定地骗你。也正因为如此，$S$ 只能是“每列一个非零元”的稀疏选择矩阵：如果允许一列里放两个非零元，$C=AS$ 就会产生原矩阵两列的加权和，那已经不再是“抽一列”这个动作了。\r\n> 用一个能两步手算的例子把三步走完。取 $n=3$、$s=2$、$p=(1/2,1/4,1/4)$，则缩放因子分别是 $1/\\sqrt{2\\cdot 1/2}=1$、$1/\\sqrt{2\\cdot 1/4}=1/\\sqrt{1/2}=\\sqrt{2}$、同样 $1/\\sqrt{2}=\\sqrt{2}$。若抽签结果是第 1 次选中第 2 列、第 2 次也选中第 2 列，即 $c(1)=c(2)=2$、$r(1)=r(2)=2$，那么 $S$ 的第 1 列在第 2 行放 $\\sqrt{2}$，第 2 列也在第 2 行放 $\\sqrt{2}$，$S=\\begin{pmatrix}0&0\\\\ \\sqrt{2}&\\sqrt{2}\\\\ 0&0\\end{pmatrix}$。第 1 步 $C=AS$ 得两列都是 $\\sqrt{2}\\,a_2$；第 2 步 $R=S^{T}B$ 得两行都是 $\\sqrt{2}\\,b_2^{T}$；第 3 步 $CR=(\\sqrt{2}a_2)(\\sqrt{2}b_2^{T})=2a_2b_2^{T}$。这正好等于 $\\frac{1}{sp_2}a_2b_2^{T}=\\frac{1}{2\\cdot 1/4}a_2b_2^{T}=2a_2b_2^{T}$，与上一节的缩放公式严丝合缝，也是对“平方根两边各乘一次”的一次实物对照。\r\n> 顺手再给一个**抽样矩阵自检**模板：把 $S$ 的各列加总，$\\mathbf{1}^{T}S$ 的第 $j$ 个分量应当恰为 $1/\\sqrt{sp_j}$。上例中 $\\mathbf{1}^{T}S=(\\sqrt{2},\\sqrt{2})$，而 $1/\\sqrt{sp_2}=\\sqrt{2}$，通过。反过来，若写成 $1/(sp_j)$ 就会得到 2 而不是 $\\sqrt{2}$，这个自检能立刻暴露抄错。至于 $C$ 与 $R$ 的形状也要跟着锁死：$C$ 是 $m\\times s$（$m$ 行、$s$ 列），$R$ 是 $s\\times p$，两者相乘才回到 $m\\times p$，与 $AB$ 同型。\r\n> 跨课程连接：这条“把 $n$ 列压到 $s$ 列”的思路与 **Strang 线性代数**里的 $\\mathbf{C}(A)$ 列空间观点同源——$C$ 的列空间是 $A$ 列空间的一个随机低维子空间，而 $R$ 负责把 $B$ 的行投影进去。连接路径是“抽列 = 从 $A$ 中选基”，区别在于 Strang 的基是按消元法确定性选出来的，而这里是按 $p_j$ 随机选、并且要用 $\\sqrt{sp_j}$ 把子空间外的分量补回来。与 **CLRS 与 6.006** 中的分治矩阵乘法（Strassen）也形成对照：Strassen 通过减少乘法次数、不改变被乘对象；这里则通过少看几列、允许随机误差来省时间，两者降低的复杂度维度完全不同。再往算法一侧看，它与数据流算法里估计频率矩的采样技巧同属于“一次遍历 + 抽样估计”的家族，区别是数据流算法算的是逐坐标标量，而这里是整块 $a_jb_j^{T}$ 的外积贡献。\r\n\r\n三步流程的每一步都对应一个必须想清楚的问题。第一步“指定概率”：最常用的选择是 $p_j=\\|a_j\\|^2/\\|A\\|_F^2$，即按列的长度平方分配概率——列越长、信息越多，被抽中的机会越大；这样选出来的估计方差最小（在只利用列长度信息的前提下）。第二步“有放回”意味着 $S$ 的同一列可能被选中两次甚至更多次，于是 $AS$ 中可能出现重复的列；这不是缺陷，而是让每一步抽样都独立同分布的必要条件，从而使期望的可加性能逐项使用。第三步的缩放 $1/\\sqrt{sp_j}$ 是整套方法的核心：前面已经算过，它能保证 $E[CR]=AB$。请特别注意这里的 $s$ 出现在根号内：如果写成 $1/p_j$ 或 $1/sp_j$（不取平方根）就会破坏无偏性，误差会随 $s$ 的增大而系统性地放大或缩小。\r\n\r\n关于矩阵例子的读法：示例取 $s=2$、$A=[a_1\\ a_2\\ a_3]$（即 $n=3$），抽中的列号是 $c(1)=1$ 与 $c(2)=3$，因此 $S$ 的第一列在第 1 行放 $s_{11}$、第二列在第 3 行放 $s_{32}$，其余位置为零，乘出来的 $AS$ 恰好是两列 $[s_{11}a_1\\ s_{32}a_3]$。整个例子的意义在于直观展示“$S$ 是选择器”：它把 $A$ 的 $n$ 列压缩成 $s$ 列，且存下来的每一列都带着自己的缩放系数。真正使用时要把它与 $B$ 配合：$(AS)(S^{T}B)=\\sum_{k=1}^{s}s_{r(k)k}^2\\,a_{c(k)}b_{c(k)}^{T}$，其中 $s_{r(k)k}^2=1/(sp_{c(k)})$，这正是本节末尾那句话“$(A$ 的第 $j$ 列$)(B$ 的第 $j$ 行$)/sp_j$ 进入随机乘积”所指的项——注意分式中的 $sp_j$ 是整个缩放因子的平方，与第 3 步的 $1/\\sqrt{sp_j}$ 并不矛盾。\r\n\r\n最后把它放到课程地图上。这条流程是《概率论与数理统计》中“按概率抽样 + 缩放校正 + 期望可加”三件事在矩阵上的应用，也是《数据结构与算法》中“蒙特卡洛算法”思想的数值线性代数版本：算法只保证以高概率得到好结果，运行时间是随机变量。与通常的确定性低秩逼近（截断 SVD，取最大的 $k$ 个奇异值）相比，随机抽样不需要先算完整的 SVD，代价从 $O(mn^2)$ 级别的分解降到 $O(mns)$ 级别的两次乘法，代价是结果只以高概率接近最优。读者若想动手验证，可以取 $A$ 为 $3\\times2$ 矩阵、$s=2$、$p_j$ 取列长平方比，重复抽样一千次并平均 $CR$，会看到平均值稳定地逼近 $AB$，而单次结果在 $AB$ 附近波动——波动幅度就是下一节要量化的方差。\r\n\r\n> <span style=color:#7f8c8d;>Strang §II.4, p. 148</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 17991,
+            "outputTokens": 16691,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 17991,
+              "outputTokens": 16691,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 17902,
+          "contextWindow": 1000000,
+          "pressureTokens": 20807,
+          "sampledSurfaceTokens": 9358
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 7798,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 8544,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 16758
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

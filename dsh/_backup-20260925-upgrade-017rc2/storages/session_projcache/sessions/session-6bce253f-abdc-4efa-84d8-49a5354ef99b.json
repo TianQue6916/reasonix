@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129447718,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_161 = 书页 157\r\npage_162 = 书页 159\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:161@@（书页 157）\r\n−-- OCR 原文 −--\r\nPart III\r\nLow Rank and Compressed\r\nIII.I\r\n111.2\r\n111.3\r\n111.4\r\n111,5\r\nSensing\r\nChanges in 蓋 一 1 什 om Changes № 蓋\r\nlnterlacing Eigenvalues and L ow Rank Signals\r\nRapidly D ecaying Singular Values\r\nSplit Algorithms for + 1\r\nCompressed Sensing and Matrix C ompletion\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 161 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 157，是 Part III（第三部分）的章首标题页，只有章名与五个节标题；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原 OCR 的 `蓋 一 1` 为 $A^{-1}$，`№ 蓋` 为 in $A$，`111.2`–`111,5` 为节号 III.2–III.5，`+ 1` 为 $\\ell_1$；左右两栏曾被 OCR 交错读出，此处按语义重新排序。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Part III — Low Rank and Compressed Sensing（第三部分——低秩与压缩感知）\r\n\r\n本部分依次展开五节，逐层处理低秩（low rank）与压缩感知（compressed sensing）的核心问题。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.1 Changes in $A^{-1}$ from Changes in $A$（$A$ 变化时 $A^{-1}$ 的变化）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.4 Split Algorithms for $\\ell_1$（$\\ell_1$ 的分裂算法）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\n@@PAGE:162@@（书页 159）\r\n−-- OCR 原文 −--\r\npart III ： LOW Rank and Compressed Sensing\r\nThi s part of the book looks at three types 0f low rank matnces ：\r\nI. Maffices that truly have a small rank （ 鬱 T is an ex treme case with rank = 1 ）\r\n2 · Maffices 山 at have exp onenti ally decreasing singular values 00w effective rank) ·\r\n3 · lncomplete matri ces (mssing entries) th at are completed t0 10w rank matrices.\r\nThe first type are not i nvertible (because rank < · The second type are invertible in\r\ntheory but not in practice · The matrix with entrie s @ + j 一 1 ）\r\niS a famous example ·\r\nHOW can y ou recogmze that this matnx or ano ther matrix has very 10w effective rank ？\r\nThe 山 计 d questi on—matrix completion—is appro ached in Section 111.5. We create\r\na 皿 mmization problem that applie s tO re c 0 mmender matric e s ：\r\nMinimiz e 丨 丨 蓋 《 lN ove r all possible choices of th e missing entries.\r\nThat nuclear no 皿 ” gives a well-posed problem to repl ace a nonconvex problem ：\r\n皿 nimzing rank · 况 c r 刀 0- S are conjectured be im or gradient descent.\r\nThe rank Of a mafr1X corresponds in some deep way tO the number Of nonzeros in a\r\nvector. ln that an alogy, a IOW rank matnx is 1 e a sparse vector. Again, the number\r\nOf nonzero S ln iS not a n orm ！ That numb er is sometlmes written as 日 0 ， but thi s\r\n2 《 卜 We don ， t double the number of nonzeros.\r\n0 norm ” violates the rule 目 2 叫 I\r\nlt is highly imp ortant to find sparse solutions to = b. By a seeming mracle ，\r\n= 丨 + 一 + @誄 fact\r\nsparse solutions come by minimzing the norm llclll\r\nhas led to a n ew world of compressed sensing, with applications throughout engineenng\r\nand medicine (including changes in th e machines for MagneUc Resonance lmaging) ·\r\nAlgorithms for minimization are described and compared in 111.4.\r\nT)—I and\r\nS ection III.I opens this ch ap ter with a famous formula for @ _\r\n） 一 1 · This is the Sherman-Morrison-Woodbury formula. lt shows that the\r\nch ange in the inverse matrix so has rank 1 ()f the matnX remams inveruble). Thi s\r\nfomula with its exten si o n to hi gher rank perturbations （ 一 UVT)-\r\n一 1 d /\\(t) and 0@） when “\r\ncompute the “ 咖 “ 羔@）\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 162 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 159，是 Part III（第三部分）总览正文的首页；页眉为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>译者注（OCR 修正）：</span> 原 OCR 噪声按数学语境修正：`鬱 T` 为 $uv^T$，`Maffices`/`mafr1X` 为 matrices/matrix，`山 at` 为 that，`@ + j 一 1` 为 $1/(i+j-1)$，`丨丨蓋《l` 为 $\\|A\\|_*$，`皿 nimizing` 为 Minimizing，`日 0` 为 $\\ell_0$，`111.4`/`111.5` 为 §III.4/§III.5，`llclll` 为 $\\|x\\|_1$，`= 丨 + 一 + @誄` 为 $\\|x\\|_1 = |x_1| + \\cdots + |x_n|$。\r\n\r\n本部分（Part III）考察三种类型的低秩矩阵（low rank matrices）：\r\n\r\n**1.** 真正具有小秩的矩阵——$uv^T$ 是极端情形，其 rank（秩）等于 1。\r\n\r\n**2.** 奇异值（singular values）呈指数衰减的矩阵，即有效秩（effective rank）很低的矩阵。\r\n\r\n**3.** 不完整的矩阵（incomplete matrices，含有缺失元素 missing entries），它们被补全（completed）成低秩矩阵。\r\n\r\n第一类矩阵不可逆（not invertible），因为 rank $< n$。第二类矩阵在理论上可逆，在实践中却不可逆。元素为 $1/(i+j-1)$ 的矩阵就是一个著名的例子。\r\n\r\n你怎样才能看出这个矩阵或者另一个矩阵具有非常低的有效秩（effective rank）？\r\n\r\n第三个问题——矩阵补全（matrix completion）——将在 §III.5 中讨论。我们要构造一个适用于推荐矩阵（recommender matrices）的最小化问题（minimization problem）：\r\n\r\n```math\r\n\\text{Minimize } \\|A\\|_* \\text{ over all possible choices of the missing entries.}\r\n```\r\n\r\n也就是说，在所有可能的缺失元素取值中，使核范数（nuclear norm）$\\|A\\|_*$ 达到最小。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 为什么最小化 rank必须被替换掉，而核范数 $\\|A\\|_*=\\sum_i\\sigma_i$ 能顶上？回到最基础的假设：秩是非零奇异值的个数，它是一个计数函数，像 $\\ell_0$ 一样不满足范数的齐次性——$\\operatorname{rank}(cA)=\\operatorname{rank}(A)$ 而不是 $|c|\\operatorname{rank}(A)$，所以它不是范数；更致命的是 $\\{A:\\operatorname{rank}(A)\\le k\\}$ 不是凸集：两个秩一矩阵之和可以是秩二，它们的中点落在集合之外。最省事的反例是二维矩阵：令 $A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$、$B=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$，两者秩都是一，中点 $M=\\frac{1}{2}A+\\frac{1}{2}B=\\begin{pmatrix}1/2&0\\\\0&1/2\\end{pmatrix}$ 的秩是二，而秩一集合若凸就必须包含这个中点，矛盾。你在凸优化课上学的那套机器（凸集、凸函数、KKT 条件、对偶）只接受凸的可行集与目标，所以最少非零元的个数、最小秩这类目标天然进不了这套框架，只能改用它的**凸包松弛**。松弛的精确含义是：$\\{A:\\|A\\|_*\\le1\\}$ 恰好是 $\\{A:\\operatorname{rank}(A)\\le1,\\ \\|A\\|_2\\le1\\}$ 的凸包。这是一维事实的矩阵版——$\\ell_1$ 单位球（二维的菱形）是四个点 $(\\pm1,0),(0,\\pm1)$ 的凸包，相邻两端点连成的线段就是它的一个面。既然凸包是包含原集合的最小凸集，核范数就是最紧的凸替代：任何在秩一矩阵上都不小于秩指示函数的凸函数，必定不小于核范数。对偶地看，$\\|A\\|_*\\le\\zeta$ 等价于对一切 $\\|X\\|_2\\le1$ 有 $\\langle A,X\\rangle\\le\\zeta$，而每个这样的 $X$ 的端点就是秩一矩阵，所以核范数是这些端点的支持函数所生成的凸包。几何直觉解释了弱化目标为何反而给出正确结构：在一个仿射约束集（已知元素固定，形如 $Ax=b$ 的解集）上最小化核范数，切点倾向于落在单位球的低维面上，而那里正是低秩矩阵；验算最简的一维仿射集 $x_1+x_2=1$——$\\ell_1$ 最小给 $(1,0)$ 或 $(0,1)$（稀疏），$\\ell_2$ 最小给 $(1/2,1/2)$（不稀疏），差别完全来自单位球的形状：菱形有顶点，圆没有。矩阵版同理，奇异值之和这个目标在把能量摊到更多奇异方向上时代价更大，于是解停在少数几个大奇异值上：秩一矩阵的能量全在 $\\sigma_1$ 上，代价已经最省，再摊平只会让和变大。上面那个 $M$ 正好可以量化这一点：它的奇异值是两个 $\\frac{1}{2}$，故 $\\|M\\|_*=1$、$\\|M\\|_F^{2}=\\frac{1}{2}$，而秩一矩阵总有 $\\|M\\|_*=\\|M\\|_F$；比值 $\\|M\\|_*/\\|M\\|_F=\\sqrt{2}$ 恰好等于 $\\sqrt{\\operatorname{rank}(M)}$，说明核范数与 Frobenius 范数之比可以当作“能量摊平程度”的读数，$\\|M\\|_*/\\|M\\|_F=\\sqrt{\\operatorname{rank}(M)}$ 是奇异值全部相等时的极端情形，一般只满足 $\\|M\\|_*\\le\\sqrt{\\operatorname{rank}(M)}\\,\\|M\\|_F$。跨课程连接（Strang/18.065 → 凸优化 → CSAPP）：你在 SVD 一章里得到的三个量都只依赖奇异值谱——rank 数非零个数、核范数求和、Frobenius 范数求平方和，所以“用哪个替代 rank”本质上是在奇异值上加什么样的凸惩罚；把它和你已经学的浮点算术接起来还有一层现实约束：SVD 是迭代算法，计算出的 $\\sigma_i$ 带相对误差，当真实的前 $k$ 个奇异值比机器精度还接近时，“哪个奇异值算零”本身变成病态判断，这也是核范数在奇异值衰减快时更好用的原因——谱衰减越快，低秩结构越稳定，松弛越容易被扰动破坏的边界也越清楚，恢复结论就必须加上谱间隙条件。这条模板命名为**凸包松弛法**：把组合目标（选 $k$ 列、选秩 $k$）换成它的凸包上的线性泛函（$\\ell_1$ 范数、核范数）最小化。但必须记住它的边界：凸松弛只保证没有更好的凸方法，不保证一定恢复出真正的最小秩解，恢复所需的额外条件（不相干性、RIP）属于 §III.5；这句话的严格含义是弱对偶——任何从奇异值到一个凸函数的替代品，只要在每个秩一矩阵上不低于秩函数，就一定不小于核范数，核范数因此在“凸替代”这个集合里取到下确界。\r\n\r\n\r\n这个核范数给出一个适定问题（well-posed problem），用来替代一个非凸问题（nonconvex problem）：最小化 rank（秩）。人们猜测，梯度下降（gradient descent）一类的算法是求解它的最佳途径。\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 末句原文 OCR 严重残损（`况 c r 刀 0- S are conjectured be im or gradient descent`），此处依据上下文与 §III.4 的算法内容重建其大意。\r\n\r\n矩阵的 rank（秩）在某种深刻的意义上与向量中非零元素的个数（number of nonzeros）相对应。在这种类比之下，低秩矩阵（low rank matrix）就如同稀疏向量（sparse vector）。再说一遍：$x$ 中非零元素的个数并不是一个范数（norm）！这个数有时被写成 $\\ell_0$；但所谓的“$\\ell_0$ 范数”违反了范数规则 $\\|2x\\| = 2\\|x\\|$——我们并不把非零元的个数加倍。\r\n\r\n求 $Ax = b$ 的稀疏解（sparse solution）极为重要。看似奇迹的是，稀疏解竟来自最小化 $\\ell_1$ 范数（$\\ell_1$ norm）$\\|x\\|_1 = |x_1| + \\cdots + |x_n|$。事实上，这一事实带来了一个崭新的压缩感知（compressed sensing）世界，其应用遍及工程与医学（包括核磁共振成像 Magnetic Resonance Imaging 所用机器的变革）。$\\ell_1$ 最小化的算法将在 §III.4 中加以描述与比较。\r\n\r\n§III.1 以关于 $A^{-1}$ 与 $(A − uv^T)^{-1}$ 的一个著名公式开启本章。这就是 Sherman-Morrison-Woodbury 公式（Sherman-Morrison-Woodbury formula）。它表明，逆矩阵的变化同样是 rank 1（秩一）的——只要该矩阵仍然可逆。这个公式及其对更高秩扰动 $(A − UV^T)^{-1}$ 的推广，将用来在矩阵发生变化时计算 $A^{-1}(t)$ 与 $A(t)$。\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 末句原文 OCR 在行末截断（`compute the “ 咖 “ 羔@） and 0@） when “`），依据上下文与下一段的 Sherman-Morrison-Woodbury 公式重建其大意；原句在此处尚未结束，于下一页继续。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4405,
+            "outputTokens": 4545,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4405,
+              "outputTokens": 4545,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 6243,
+          "contextWindow": 1000000,
+          "pressureTokens": 7861,
+          "sampledSurfaceTokens": 3863
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2303,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2380,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 5099
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

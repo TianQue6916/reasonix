@@ -1,0 +1,261 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128893932,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 50,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 50,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 每一步都用 $A^{T}$ 的某一列的一个倍数来调整 $x_k$，使第 $i$ 个方程 $a_i^{T}x_{k+1} = b_i$ 得到满足： ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 式 (33) 只有一行，却藏了两个设计决定：为什么沿 $a_i$ 方向走，以及为什么恰好走这么多。把它拆开看：$x_{k+1}=x_k+\\frac{b_i-a_i^{T}x_k}{\\|a_i\\|_2^2}a_i$，令 $r_i=b_i-a_i^{T}x_k$ 为第 $i$ 个方程的残差，整个动作就是把当前点沿 $a_i$ 方向平移，直到落进超平面 $\\{x:a_i^{T}x=b_i\\}$ 里。第一步是为什么方向必须是 $a_i$：设 $x_{k+1}=x_k+t a_i$，代入方程得 $a_i^{T}x_k+t\\|a_i\\|_2^2=b_i$，于是 $t=r_i/\\|a_i\\|_2^2$ 是被唯一逼出来的，不是人为选定；而之所以挑 $a_i$ 而不是别的方向，是因为 $a_i$ 是该超平面的法向量，沿法向走是到该超平面的最短路径——所有满足 $a_i^{T}x=b_i$ 的点中，$x_{k+1}$ 离 $x_k$ 最近。这正是你在 Strang 课上见过的投影矩阵 $P=a_ia_i^{T}/\\|a_i\\|_2^2$：把 (33) 改写成 $x_{k+1}=(I-P)x_k+\\frac{b_i}{\\|a_i\\|_2^2}a_i$，前半句是抹掉 $x_k$ 在法向上的分量，后半句是补上正确的法向分量，一步投影 = 一次擦除加一次写入。具体验算一下：取 $A=\\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix}$、$b=(3,1)$，真解是 $x=(2,1)$。从 $x_0=(0,0)$ 出发，第 1 行给出 $r=3$、$\\|a_1\\|_2^2=2$，得 $x_1=(1.5,1.5)$；第 2 行算 $a_2^{T}x_1=1.5-1.5=0$、$r=1$，得 $x_2=(1.5,1.5)+0.5(1,-1)=(2,1)$。两步精确命中，原因是两行正交，第二次投影没有破坏第一次满足的方程；若两行不正交，第二次投影必然把第一个方程的残差重新弄脏，这正是迭代存在的理由。把这个套路抽象出来，可以命名成**逐行投影法**：把解 $Ax=b$换成轮流投影到 $m$ 个超平面，每次只碰一行。它的代价结构对你这种学过 CSAPP 的人很有吸引力：若每行只有 $O(1)$ 个非零元，一次扫描是 $O(m)$ 时间、$O(n)$ 内存，而且可以随时早停得到粗糙解；这和 6.006 里 LU 分解那种一次性 $O(n^3)$ 的预付费完全相反，是典型的用便宜迭代换掉昂贵分解。据文献记载这个方法由 Stefan Kaczmarz 在 1937 年提出，几十年来主要用于断层扫描的图像重建——你现在读到它被 Strang 用在大数据与稀疏向量上，是同一条几何直觉换了个战场。至于它与共轭梯度法的区别，可以这样记：共轭梯度用 Krylov 子空间累积历史信息、要求矩阵对称正定；Kaczmarz 只用一行、不要求任何对称性，代价是收敛速度依赖行的选取顺序。\r\n\r\n=== ANCHOR: Sparse Kaczmarz（稀疏 Kaczmarz）步骤把 (33) 与 (31) 中的软阈值结合起来： ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 式 (34) 是两步串联：先用 (33) 做一次数据拟合，得到中间量 $y_{k+1}$；再对 $y_{k+1}$ 做一次软阈值 $S_\\lambda$，得到真正的输出 $x_{k+1}$。这里必须先写清 $S_\\lambda$ 长什么样：$S_\\lambda(y)_i=\\operatorname{sign}(y_i)\\max(|y_i|-\\lambda,0)$，即保留符号，把绝对值整体减掉 $\\lambda$，减到负数就归零。问题立刻来了：凭什么阈值恰好是 $\\lambda$？答案不是设定，而是算出来的：$S_\\lambda(y)=\\arg\\min_x \\frac12\\|x-y\\|_2^2+\\lambda\\|x\\|_1$。证明可以逐分量做，因为目标函数的各坐标互不耦合。单个标量问题 $\\min_x \\frac12(x-y)^2+\\lambda|x|$ 中，$|x|$ 在 $x=0$ 处没有导数，用你在 Boyd 课上学过的次梯度来写最优性条件：$0\\in x-y+\\lambda\\partial|x|$。分三种情况：若 $x>0$，条件变成 $x-y+\\lambda=0$，即 $x=y-\\lambda$，而$x>0$等价于 $y>\\lambda$；若 $x<0$，得 $x=y+\\lambda$，要求 $y<-\\lambda$；若 $x=0$，此时次梯度集合是整个区间 $[-\\lambda,\\lambda]$，条件退化成 $y\\in[-\\lambda,\\lambda]$。三段拼起来正好是软阈值的定义式。关键在第三段：只要 $|y|\\le\\lambda$，最优解被**吸到精确的 0**，而不是缩小成一个小数。具体算一个：取 $y=(0.3,-1.5,2.0)$、$\\lambda=0.5$，则 $S_\\lambda(y)=(0,\\,-1.0,\\,1.5)$——第一个分量被彻底清零，后两个各自朝原点收缩了 0.5。反过来看，如果惩罚项换成 $\\ell_2$ 的 $\\lambda\\|x\\|_2^2$，最优解是 $x=y/(1+2\\lambda)$：只要 $y\\ne0$ 解就非零，稀疏性根本无从产生。这个对比就是 $\\ell_1$ 与 $\\ell_2$ 的全部差别所在：$\\ell_1$ 在原点的尖角给每个坐标留了一段宽度为 $2\\lambda$ 的死区，落进去就被判为零。由此可以提炼一个可复用模板，命名**近端算子即软阈值**：凡是目标写成光滑项 $+\\lambda\\|x\\|_1$，都可以走对光滑项做一步梯度下降，再套一次软阈值的流程，$S_\\lambda$ 就是 $\\ell_1$ 的近端算子 $\\operatorname{prox}_{\\lambda\\|\\cdot\\|_1}$；后面遇到的 ISTA、FISTA、LASSO 的各种变体，本质上只是换步长、换加速策略的填空题。回到本页：译文特别强调 $y_{k+1}$ 只是中间变量、$x_{k+1}$ 才是稀疏输出，这正是为了让谁负责拟合、谁负责稀疏两件事在记号上分开——如果直接把软阈值的结果当作下一步迭代的输入，收敛性证明会立刻变难。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 50,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 50,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 50,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 50,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 50,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 3383,
+            "outputTokens": 13354,
+            "cacheReadTokens": 86656,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 7,
+            "buckets": {
+              "uncachedInputTokens": 210,
+              "outputTokens": 2424,
+              "cacheReadTokens": 16640,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 50,
+        "val": {
+          "surfaceTokens": 10656,
+          "contextWindow": 1000000,
+          "pressureTokens": 16850,
+          "sampledSurfaceTokens": 9646
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 50,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1006,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 887,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 3468,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 955,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 839,
+              "system": false
+            },
+            {
+              "seq": 35,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 555,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 206,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 53,
+              "system": false
+            },
+            {
+              "seq": 48,
+              "heuristicTokens": 1010,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9512
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 50,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 50,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 47,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 49
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 50,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 50,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 50,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 50,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 50,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 50,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

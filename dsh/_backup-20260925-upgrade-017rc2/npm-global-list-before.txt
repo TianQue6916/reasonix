@@ -1,0 +1,14 @@
+﻿C:\Users\27063\AppData\Roaming\npm
++-- @anthropic-ai/claude-code@2.1.144
++-- @axiom_ai/api@1.0.4
++-- @deepseek-ai/dsh@0.1.5-rc.2
++-- @reasonix/cli-win32-x64@1.22.0
++-- generator-code@1.11.18
++-- marked@18.0.5
++-- pnpm@11.21.0
++-- puppeteer@25.2.0
++-- reasonix@1.19.4
++-- typescript@6.0.3
++-- vsce@2.15.0
+`-- yo@7.0.1
+

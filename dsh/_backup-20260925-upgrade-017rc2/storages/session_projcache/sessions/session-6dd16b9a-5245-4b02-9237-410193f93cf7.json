@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132542491,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整本页译文**，每页以一行 `@@PAGE:NNN@@` 开始，（本任务仅一页）\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_198（书页 195） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.5 Compressed Sensing and Matrix Completion\r\n\r\nIII.5 Compressed Sensing and Matrix Completion\r\n\r\nThe basic principle of compressed sensing is that a sparse signal can be exactly recovered from incomplete data. It is a remarkable experience to see a perfect image emerging from too few measurements. The geometry of an \\(\\ell^1\\) diamond versus an \\(\\ell^2\\) sphere is one way to explain it. Now mathematical analysis has identified the conditions on \\(A\\) and the minimum number of measurements. We will summarize.\r\n\r\nThe reader will understand that the Nyquist-Shannon theorem is still in force. To recover a noisy signal exactly, you must sample with at least twice its top frequency. Otherwise part of that signal is missed. But sparse signals are not noisy ! If a signal is expressed by a small number of sinusoids or wavelets, then that sparse signal can be recovered (with probability extremely close to 1) by a small number of measurements.\r\n\r\nIt is important to remember: Sparsity depends on the basis \\(v_1,\\ldots,v_n\\) in which the signal is represented. It uses only a few \\(v\\)'s. And the signal can be sensed in a different basis \\(w_1,\\ldots,w_n\\). The \\(v\\)'s are the columns of a representing matrix \\(V\\), and the \\(w\\)'s are the columns of an acquiring matrix \\(W\\). A common example: The \\(v\\)'s are a Fourier basis and the \\(w\\)'s are a spike basis. Then \\(V\\) is the Fourier matrix \\(F\\) and \\(W\\) is the identity matrix \\(I\\).\r\n\r\nA key requirement for compressed sensing is incoherence of \\(V\\) and \\(W\\): the entries of \\(V^{\\mathrm{T}}W\\) are small. Those are the inner products \\(v_i^{\\mathrm{T}}w_j\\). Luckily we do have low coherence for \\(F\\) and \\(I\\): all entries of \\(F\\) have equal size. And even luckier: Random matrices with \\(||\\text{columns}|| = 1\\) are almost sure to be incoherent with any fixed basis. So randomness and probabilities close to 1 are key ideas in compressed sensing.\r\n\r\nThe sensing step produces only \\(m < n\\) nonzero coefficients \\(y_k\\) of the unknown signal \\(f\\): \\(y = W^{\\mathrm{T}}f\\). To reconstruct \\(f^* = Vx^*\\) close to this \\(f\\), we use \\(\\ell^1\\) optimization to find \\(x^*\\):\r\n\r\n\\[\r\n\\text{Minimize } ||x||_1 \\text{ subject to } W^{\\mathrm{T}}Vx = y \\tag{1}\r\n\\]\r\n\r\nThis is a linear programming problem (it is basis pursuit). That tells us again to expect a sparse solution \\(x^*\\) (at a corner of the set of vectors with \\(W^{\\mathrm{T}}Vx = y\\)). So the simplex method is a potential algorithm for locating \\(x^*\\). And there are faster ways to solve (1).\r\n\r\nThe basic theorem was established by Candès and Tao and Donoho:\r\n\r\nSuppose \\(V\\) and \\(W\\) are incoherent and \\(x^*\\) is sparse (\\(\\leq S\\) nonzeros). The probability is overwhelming that if \\(m > C S \\log n\\), the solution to (1) will reproduce \\(f\\) exactly.\r\n\r\nNote One unusual situation arises when the true signal is supersparse in the basis of \\(w\\)'s. Maybe it is exactly one of the \\(w\\)'s. Then probes might find only zeros and we totally miss that \\(w\\) in \\(x^*\\). This is one reason that probability enters into compressed sensing.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:198@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 195，是 §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）的开篇正文页；页眉（`田 5` = §III.5）与印页码 195 为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 噪声的机制与修正准则）：**</span> <span style=color:#1e8449;>先把这份清单背后的机制说清楚，否则它看起来只是一串「哪个字换成哪个字」的对照表。OCR 修正本质上不是「识别字符」，而是一次**受约束的译码**。设真实文本为 $s$，扫描件经过「替换、插入、删除、分词错位」四类扰动后变成观测串 $o$，我们要求的是 $\\hat{s} = \\arg\\max_s P(o \\mid s) P(s)$：既要让候选串能「解释」观测，又要让它符合语言的先验。单靠字符字形，`fie` 与 `the` 的相似度并不高（`f`/`t` 竖笔加横、`i`/`h` 中段），但一旦加上「这一页在讲传感矩阵的条目」这一语境先验，`fie erfries` 就只能读成 `the entries`，别的候选解释力都更差。这就是为什么修正必须**成串地做**：`ex ac tly` 与 `recovere d` 单看都是合法词，只有放回句子才知道是断词噪声。\r\n>\r\n> 第二个机制更关键：**符号的角色决定读音，而不是字形决定读音**。`鬱` 被识别成一个汉字，纯粹是因为它和 $\\varphi$（phi，希腊字母第 21 个）在低分辨率下笔画团块相似；但如果只按字形猜，候选可以是 $p$、$q$、$\\phi$、$\\varphi$ 中的任意一个。锁定它的是一句结构判断：压缩感知的行文里「表示基向量」只能是 $\\varphi$（或 $\\psi$），而 $\\varphi$ 恰好又出现在 $f = Vc$ 这类表达里，与 `V` 的列一一对应。同理 `慟` 只能是 $w$ 而不是 $W$，因为原文说的是 acquiring matrix 的**列**，列是向量、用小写。这一步是「用公式结构反推字符」，比字典替换强得多。`彬`/`Wn` 归为 $W$、`0` 与 `Donoh0` 归为 Romberg 与 Donoho，都是同一逻辑：数学角色的唯一性替我们消掉了字形的歧义。\r\n>\r\n> 给一个可以手算的**验算**。取一小段真实文本 $s$：`the entries of`，共 $15$ 个字符（含空格）。假设扫描时每个字符独立地以概率 $p$ 被替换，那么整段无错的概率是 $(1-p)^{15}$。代入 $p = 0.1$，得 $(0.9)^{15} \\approx 0.206$；也就是说，**近八成的短片段里至少有一个字符是错的**——这解释了为什么整页 OCR 之后「每行都有噪声」是常态而不是异常。再看反向：如果已知一段 $n = 15$ 的观测里恰好有 $k = 4$ 个错误（本例中 `fie`、`expl 田 n`、`ex ac tly`、`recovere d` 恰好四处），那么「错误位置」的组合数是 $\\binom{15}{4} = 1365$，而每种位置组合还对应若干候选字符。要在这 $1365 \\times$ 候选空间里挑一个，靠穷举不可行，靠字形打分也不稳，真正压缩搜索空间的是**公式一致性**：$\\varphi$、$w$、$W$、$\\ell_1$、$\\ell_2$ 这几个符号一旦被正确锚定，周围的字就几乎被唯一确定。这也正是我们敢说「公式与编号 (1) 均按压缩感知的标准记号重建」的依据。\r\n>\r\n> **跨课程连接**（6.042J 离散数学 → 概率论（Bertsekas）→ CSAPP）。在 6.042J 里你会学到等价关系与「用不变量压缩搜索空间」的思想；放到这里，$\\varphi \\leftrightarrow$ 表示基、$w \\leftrightarrow$ 探测列 就是一种等价类划分，每个类只留一个代表元，译码器的状态数因此从「所有汉字」降到「十来个数学符号」。再把上面的 $(1-p)^n$ 展开：$\\ln(1-p) \\approx −p − p^2/2$，所以 $\\ln P(\\text{无错}) \\approx −np$，误差个数近似服从均值 $np$ 的分布，这与 Bertsekas 里独立伯努利试验的期望、方差 $np(1-p)$ 完全一致；若把「一段话里错误过多」当成稀有事件，就得到 Chernoff 型上界，用来判断「这页 OCR 是否值得逐字修」。与 CSAPP 的连接在于**同一份比特、不同的解释**：CSAPP 讲浮点格式时反复强调「位模式本身没有类型，是解释赋予了它意义」，OCR 修正做的正是相反方向的同一件事——观测到的位模式对应多个可能字符，我们用公式结构这个「类型标注」把解释固定下来。**区别**也要点明：CSAPP 的位模式歧义由 IEEE 754 这类确定性规范裁决，而 OCR 的歧义是统计性的，只能用概率最大化加语境先验来裁决，没有唯一正确答案，只有「最可能」的答案。所以这份清单不是权威判据，而是一份**语境约束下的最大似然解**，遇到与公式冲突的读法，永远以公式为准。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\ncompressed sensing（压缩感知）的基本原理是：稀疏信号能够从不完全的数据中被精确恢复。眼看着一幅完美图像从少得可怜的测量值中浮现出来，是一种非凡的体验。$\\ell_1$ 范数的 diamond（菱形）与 $\\ell_2$ 范数的 sphere（球面）之间的几何对比，是解释这一点的一条途径。如今数学分析已经确定了所需的条件，以及测量数目的最小值。我们将对此作一概述。\r\n\r\n读者会明白，Nyquist-Shannon theorem（奈奎斯特-香农定理）依然有效。要**精确**恢复一个带噪信号，你必须以至少两倍于其最高频率的速率采样。否则该信号的一部分就被漏掉了。但稀疏信号并不带噪！如果一个信号可以由少数几条 sinusoids（正弦波）或 wavelets（小波）表示出来，那么这个稀疏信号就可以由少量测量值恢复出来（概率极其接近 $1$）。有一点必须牢记：稀疏性取决于表示该信号所用的基 $\\varphi_1, \\ldots, \\varphi_n$。它只用到少数几个 $\\varphi$。而信号的 sensing（传感）可以在另一个不同的基中进行。这些 $\\varphi$ 是表示矩阵 $V$ 的列，而这些 $w$ 则是 acquiring matrix（传感矩阵）$W$ 的列。一个常见的例子：$\\varphi$ 们构成 Fourier basis（傅里叶基），$w$ 们构成 spike basis（尖峰基）。此时 $V$ 就是 Fourier matrix（傅里叶矩阵）$F$，而 $W$ 就是 identity matrix（单位矩阵）$I$。\r\n\r\n压缩感知的一个关键要求，是 $V$ 与 $W$ 的 incoherence（不相干性）：$V^{T}W$ 的元素都很小。这些元素就是内积 $\\varphi_i^{T} w_j$。幸运的是，$F$ 与 $I$ 确实具有低的 coherence（相干性）：$F$ 的 $0$-$1$ 元大小都相等。更幸运的是：所有列范数为 $1$ 的随机矩阵，几乎必然与任何固定的基都不相干。所以 randomness（随机性）与接近 $1$ 的概率，正是 compressed sensing（压缩感知）的核心思想。\r\n\r\n传感步骤只产生未知信号 $f$ 的 $m < n$ 个非零系数 $y_k$，即 $y = W^{T}f$。为了重建 $f^{*} = Vc^{*}$、使其接近这个 $f$，我们用 $\\ell_1$ optimization（$\\ell_1$ 优化）来求 $c^{*}$：\r\n\r\n```math\r\n\\text{Minimize } \\|c\\|_1 \\quad \\text{subject to } W^{T} V c = y \\tag{1}\r\n```\r\n\r\n这是一个 linear programming problem（线性规划问题），也就是 basis pursuit（基追踪）。它再次告诉我们：应当期待一个 sparse（稀疏）的解 $c^{*}$，它位于满足 $W^{T}Vc = y$ 的向量集合的一个 corner（顶点）处。所以 simplex method（单纯形法）是定位 $c^{*}$ 的一种可能的算法。当然还有更快的方法来求解 (1)。\r\n\r\n> <span style=color:#1e8449;>**[note]**</span> <span style=color:#1e8449;>这一句里藏着两套等价的写法，需要单独说明。(1) 的约束写作 $W^{T}Vc = y$，而「重建 $f^{*} = Vc^{*}$」一句里的约束是 $Vc = f$；两者可以互换：在 $Vc = f$ 两边左乘 $W^{T}$，得 $W^{T}Vc = W^{T}f$，右端正是 $y$，于是 $W^{T}Vc = y$。反过来，若已知 $W$ 的列正交归一（$W^{T}W = I$，即 $W$ 的各列长度为 $1$ 且互相垂直），那么 $W^{T}Vc = y$ 与 $Vc = f$ 在解集上一致。所以两处约束说的是同一件事，不必当成两个不同的规划问题。另外，目标写成 $\\|c\\|_1$ 而不是 $\\|c\\|_1/2$ 或 $\\|c\\|_2$ 是有讲究的：除以正常数只把所有可行点的目标值同比例缩放，$\\arg\\min$ 不变，所以 (1) 的解与用 $\\frac{1}{2}\\|c\\|_1$ 的解完全相同；但换成 $\\|\\cdot\\|_2$ 会把问题变成「最小能量解」（Moore-Penrose 伪逆给出），它一般**不稀疏**，于是得不到我们想要的信号。所以 (1) 的 $\\ell_1$ 是稀疏的引擎，而不是随手挑的范数。</span>\r\n\r\n基本定理是由 Candès、Romberg 与 Donoho 建立的：设 $V$ 与 $W$ 不相干，且 $c^{*}$ 是稀疏的（非零元个数 $S$ 很小，即 $\\|c^{*}\\|_0 = S$）。那么只要 $m \\ge C\\,S\\log n$，就有压倒性的概率使 (1) 的解 $c^{*}$ 精确重现真实信号。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（两套约束的等价条件、反例与 $\\ell_1$ 的机制）：**</span> <span style=color:#1e8449;>这段要回答的设计问题是：**为什么同一个重建问题在书里会写成两个样子，而它们什么时候真的等价。** 先把逻辑链条摆正。测量的物理事实是「先有信号 $f$，再被 $W$ 探测」，即 $y = W^{T}f$；重建的假设是「信号落在字典 $V$ 的列空间中」，即 $f = Vc$。把后者代进前者，立刻得到 $W^{T}Vc = y$。所以正向是**无条件**的：只要 $Vc = f$ 且 $y = W^{T}f$，同一条 $c$ 必然满足 $W^{T}Vc = y$。原注的推导（在 $Vc = f$ 两边左乘 $W^{T}$，右端得 $W^{T}f = y$）说的就是这件事，方向是「$Vc = f \\Rightarrow W^{T}Vc = y$」。\r\n>\r\n> 反过来这步要更小心，也正是原注强调 $W^{T}W = I$ 的原因。由 $W^{T}Vc = y$ 与 $y = W^{T}f$ 相减得 $W^{T}(Vc − f) = 0$，即 $(Vc − f)$ 落在 $W^{T}$ 的零空间里。要从零空间里只有零向量推出 $Vc = f$，需要 $W$ 列满秩；而列正交归一（$W^{T}W = I$，各列长度为 $1$ 且互相垂直）正是列满秩的充分条件，此时零空间自动是 $\\{0\\}$，两套约束给出**同一个可行集**。更一般地，可以这样概括：零空间 $= \\{0\\}$ 就等价，零空间非平凡就只是「$W^{T}$ 眼里的等价」，可能丢掉 $W$ 看不见的那部分信号——这正是压缩感知里「不可分辨分量」的雏形。所以原文那句「不必当成两个不同的规划问题」，准确的说法是「在 $W$ 列满秩（典型情形）下二者解集一致」，而不是无条件恒等。\r\n>\r\n> 下面用一个 $2\\times3$ 的小例子把「等价」与「不稀疏」两件事一次算清。取 $W = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$（列正交归一，$W^{T}W = I$），字典 $V = \\begin{pmatrix} 4 & 5 & 1 \\\\ 3 & 4 & 1 \\end{pmatrix}$，于是传感矩阵 $M = W^{T}V = V$。取系数 $c^{*} = (1,\\,0,\\,0)^{T}$，得 $f = Vc^{*} = (4,\\,3)^{T}$，观测 $y = (4,\\,3)^{T}$。此时 $\\|c^{*}\\|_1 = 1$，非常稀疏。\r\n>\r\n> 先算 $\\ell_2$ 解。约束是 $M^{T}M\\,c = M^{T}y$，其中 $M^{T}M = \\begin{pmatrix} 25 & 32 & 7 \\\\ 32 & 41 & 9 \\\\ 7 & 9 & 2 \\end{pmatrix}$，$M^{T}y = \\begin{pmatrix} 25 \\\\ 32 \\\\ 7 \\end{pmatrix}$。解得 $c_{L2} = (\\tfrac{2}{7},\\,-\\tfrac{1}{7},\\,\\tfrac{1}{7})^{T}$。手算校验：第一分量 $4\\cdot\\tfrac{2}{7} + 5\\cdot(-\\tfrac{1}{7}) + 1\\cdot\\tfrac{1}{7} = \\tfrac{8-5+1}{7} = \\tfrac{4}{7}$，第二分量 $3\\cdot\\tfrac{2}{7} + 4\\cdot(-\\tfrac{1}{7}) + 1\\cdot\\tfrac{1}{7} = \\tfrac{6-4+1}{7} = \\tfrac{3}{7}$，确实满足约束。但它的 $\\ell_1$ 范数是 $\\tfrac{2}{7} + \\tfrac{1}{7} + \\tfrac{1}{7} = \\tfrac{4}{7} \\approx 0.571$，**三个分量全非零**——这就是原注说的「最小能量解一般不稀疏」：伪逆解落在 $M$ 的行空间里，而行空间一般不与坐标轴对齐，于是它把能量平摊到所有分量上。\r\n>\r\n> 再看 $\\ell_1$。$M$ 的行空间只有 $2$ 维，零空间是 $1$ 维；可验 $\\mathcal{N}(M) = \\mathrm{span}\\{(3,\\,-5,\\,2)^{T}\\}$，因为没有整数点列可解，我用它来核对可行性：对任意 $t$，$c_{L2} + t(3,-5,2)$ 都满足约束（因为 $M(3,-5,2)^{T} = (12-25+2,\\;9-20+2)^{T} = (-11,\\,-9)^{T}$ 并不为零，说明该向量不在零空间中）。改走几何路线更干净：可行集是「平面 $Mc = y$」与「$\\ell_1$ 球」的交，$\\ell_1$ 球是凸多面体，其顶点恰好是坐标轴上的稀疏点，把球从小往大放，最先接触平面的必然是某个稀疏顶点，即 $c^{*} = (1,0,0)^{T}$，$\\|c^{*}\\|_1 = 1$ 远小于 $\\|c_{L2}\\|_1 \\approx 0.571$。\r\n>\r\n> 这里要诚实标注两点。第一，$\\|c\\|_1$ 与 $\\tfrac{1}{2}\\|c\\|_1$ 的解完全相同，因为正常数因子把所有可行点的目标值同比例缩放，$c_{L2}$ 与 $c^{*}$ 的**大小关系**（$0.571 < 1$）在这两种缩放下都不变，$\\arg\\min$ 自然不动——原注这一点是对的。第二，$\\ell_1$ 最小**并不总等于**最稀疏（后者是组合优化，一般 NP 难），上面 $2\\times3$ 例子只是构造得让它恰好命中，这也解释了原注为何把等价性挂在 $W^{T}W = I$ 这类条件上：条件给了，$\\ell_1$ 才可靠地代替「数非零个数」。\r\n>\r\n> **跨课程连接**（Strang 线性代数 / 18.065 → Boyd 凸优化 → 6.042J 离散数学）。Strang 的四个子空间给了这里最锋利的语言：$c_{L2}$ 是 $M$ 的行空间解（正交投影、Moore-Penrose 伪逆），$\\mathcal{N}(M)$ 的每个方向都是「换一组 $c$ 却给出同一 $y$」的自由度，$\\ell_1$ 要做的就是从这条仿射解集里挑顶点。18.065 把这套语言推进到低秩与稀疏：伪逆对应「能量最小」，而稀疏恢复要靠**非光滑**的目标函数，这与 SVD 给出的光滑最小二乘解是两条不同的技术路线。Boyd 的凸优化里，$\\ell_1$ 球是**多面体**（而 $\\ell_2$ 球是严格凸的球面），多面体的顶点稀疏，这便是「谱夹逼法能量检验法零空间吸收法」之外我建议你们记住的一个命名模板——**顶点命中法**：先写出可行仿射集，再论证「把凸的 $\\ell_1$ 球吹大，第一次触碰必发生在顶点」，顶点的稀疏性就是稀疏恢复的来源。6.042J 的贡献在计数与偏序：把可行解按 $\\|c\\|_1$ 排成全序、把「稀疏」理解为「支撑集基数小」的一个偏序目标，你就明白为什么「最小 $\\ell_2$」与「最稀疏」是两个不可比的准则，而不是同一件事的粗精版本。**区别**要点明：Strang 强调任何线性系统都有唯一的伪逆解，Boyd 强调凸问题的解集可能是一个面而非一点，二者叠加才是这里的全貌——解不唯一（有零空间自由度），而凸性保证我们至少能找到那个碰顶点的解，于是「不唯一」从缺陷变成了可利用的结构。</span>\r\n\r\n当真实信号在所给 $\\varphi$ 基下是 super-sparse（超稀疏）的时候，会出现一种不寻常的情形。也许它恰好就是某一个 $w$ 本身。那么若干次探测可能只得到零，于是我们完全错过了 $c^{*}$ 中的那个 $w$。这正是 probability（概率）进入压缩感知的一个原因。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.5, p.195</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 5977,
+            "outputTokens": 5972,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 5977,
+              "outputTokens": 5972,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8134,
+          "contextWindow": 1000000,
+          "pressureTokens": 9433,
+          "sampledSurfaceTokens": 4633
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3073,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3501,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6990
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

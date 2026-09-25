@@ -11,12 +11,12 @@
     "rows": {
       "title": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": "reasonix突然无法对话，看看是"
       },
       "titleInput": {
         "ver": 3,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "first": {
             "seq": 9,
@@ -28,17 +28,17 @@
       },
       "llmRetry": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": {}
       },
       "sandboxMode": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": "danger-full-access"
       },
       "goal": {
         "ver": 6,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "current": null,
           "seenGoalIds": [],
@@ -47,21 +47,21 @@
       },
       "tokenUsage": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "totals": {
-            "uncachedInputTokens": 1007074,
-            "outputTokens": 236102,
-            "cacheReadTokens": 30907264,
+            "uncachedInputTokens": 1021571,
+            "outputTokens": 243812,
+            "cacheReadTokens": 31651328,
             "cacheWriteTokens": 0
           },
           "last": {
             "turn": 5,
-            "step": 1,
+            "step": 9,
             "buckets": {
-              "uncachedInputTokens": 233,
-              "outputTokens": 2309,
-              "cacheReadTokens": 78080,
+              "uncachedInputTokens": 1818,
+              "outputTokens": 649,
+              "cacheReadTokens": 99968,
               "cacheWriteTokens": 0
             }
           }
@@ -69,17 +69,16 @@
       },
       "contextPressure": {
         "ver": 4,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
-          "surfaceTokens": 59504,
-          "contextWindow": 1000000,
-          "pressureTokens": 78313,
-          "sampledSurfaceTokens": 52921
+          "surfaceTokens": 73415,
+          "pressureTokens": 101786,
+          "sampledSurfaceTokens": 72671
         }
       },
       "contextBreakdown": {
         "ver": 4,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "nodes": [
             {
@@ -451,53 +450,168 @@
               "seq": 1253,
               "heuristicTokens": 4339,
               "system": false
+            },
+            {
+              "seq": 1256,
+              "heuristicTokens": 2077,
+              "system": false
+            },
+            {
+              "seq": 1258,
+              "heuristicTokens": 799,
+              "system": false
+            },
+            {
+              "seq": 1260,
+              "heuristicTokens": 1182,
+              "system": false
+            },
+            {
+              "seq": 1263,
+              "heuristicTokens": 793,
+              "system": false
+            },
+            {
+              "seq": 1265,
+              "heuristicTokens": 312,
+              "system": false
+            },
+            {
+              "seq": 1267,
+              "heuristicTokens": 99,
+              "system": false
+            },
+            {
+              "seq": 1270,
+              "heuristicTokens": 630,
+              "system": false
+            },
+            {
+              "seq": 1272,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 1274,
+              "heuristicTokens": 965,
+              "system": false
+            },
+            {
+              "seq": 1277,
+              "heuristicTokens": 314,
+              "system": false
+            },
+            {
+              "seq": 1279,
+              "heuristicTokens": 394,
+              "system": false
+            },
+            {
+              "seq": 1281,
+              "heuristicTokens": 316,
+              "system": false
+            },
+            {
+              "seq": 1284,
+              "heuristicTokens": 687,
+              "system": false
+            },
+            {
+              "seq": 1286,
+              "heuristicTokens": 757,
+              "system": false
+            },
+            {
+              "seq": 1288,
+              "heuristicTokens": 302,
+              "system": false
+            },
+            {
+              "seq": 1291,
+              "heuristicTokens": 745,
+              "system": false
+            },
+            {
+              "seq": 1293,
+              "heuristicTokens": 69,
+              "system": false
+            },
+            {
+              "seq": 1295,
+              "heuristicTokens": 418,
+              "system": false
+            },
+            {
+              "seq": 1298,
+              "heuristicTokens": 715,
+              "system": false
+            },
+            {
+              "seq": 1300,
+              "heuristicTokens": 77,
+              "system": false
+            },
+            {
+              "seq": 1302,
+              "heuristicTokens": 1486,
+              "system": false
+            },
+            {
+              "seq": 1305,
+              "heuristicTokens": 509,
+              "system": false
+            },
+            {
+              "seq": 1307,
+              "heuristicTokens": 83,
+              "system": false
+            },
+            {
+              "seq": 1309,
+              "heuristicTokens": 152,
+              "system": false
             }
           ],
           "breakdown": {
             "systemTokens": 16,
             "toolsTokens": 2045,
-            "messageTokens": 59488
+            "messageTokens": 73399
           }
         }
       },
       "turnBoundary": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
-          "openTurnStartSeq": 1245,
-          "lastStepStartSeq": 1255,
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 1311,
           "lastStepBoundary": {
-            "kind": "start",
-            "seq": 1255
+            "kind": "end",
+            "seq": 1315
           },
           "lastTurn": 5
         }
       },
       "sessionStats": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "turns": 5,
-          "steps": 205,
-          "llmMs": 1811412,
-          "toolMs": 872180,
-          "ttftMs": 806034,
-          "ttftSteps": 205,
-          "decodeMs": 1005378,
-          "decodeTokens": 236102,
+          "steps": 214,
+          "llmMs": 1870807,
+          "toolMs": 1320090,
+          "ttftMs": 834975,
+          "ttftSteps": 213,
+          "decodeMs": 1035832,
+          "decodeTokens": 243812,
           "lastTurn": 5,
-          "openStep": {
-            "turn": 5,
-            "step": 2,
-            "startTime": 1790336251039,
-            "firstTokenTime": null
-          },
+          "openStep": null,
           "pendingCalls": {}
         }
       },
       "turnOutline": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "turns": [
             {
@@ -536,33 +650,32 @@
       },
       "agentPreset": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": "anchored-standard"
       },
       "subagentCatalog": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "inheritedEventCount": 0
         }
       },
       "subagentTiming": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "descriptorSeen": false,
-          "settledMs": 0,
-          "pendingTurnStart": 1790336212627
+          "settledMs": 0
         }
       },
       "subagent": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {}
       },
       "permissions": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "preset": "danger-full-access",
           "sandbox": "danger-full-access",
@@ -572,7 +685,7 @@
       },
       "modelSelection": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "lastUsed": {
             "provider": "commandcode-goat",
@@ -584,7 +697,7 @@
       },
       "sessionListMetadata": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "blank": false,
           "lastPromptAt": 1790336212639
@@ -592,17 +705,17 @@
       },
       "imageLimits": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": null
       },
       "todos": {
         "ver": 2,
-        "seq": 1255,
+        "seq": 1316,
         "val": null
       },
       "plan": {
         "ver": 3,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "active": false,
           "wanted": null,
@@ -612,12 +725,12 @@
       },
       "subagentModelSelectionPolicy": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": null
       },
       "inbox": {
         "ver": 1,
-        "seq": 1255,
+        "seq": 1316,
         "val": {
           "next-turn": [],
           "next-step": []

@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789864343839,
+      "cwd": "C:\\Users\\27063\\AppData\\Local\\Temp\\reasonix-session-tmp-3202014897\\dsh-cmp",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 22,
+        "val": "Use your bash/pwsh tool to"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 22,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "Use your bash/pwsh tool to run: echo ANCHOR-OK. Then report the exact output."
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 22,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 22,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 22,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 22,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 22,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4128,
+            "outputTokens": 92,
+            "cacheReadTokens": 12928,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 252,
+              "outputTokens": 23,
+              "cacheReadTokens": 8320,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 22,
+        "val": {
+          "surfaceTokens": 1668,
+          "contextWindow": 1000000,
+          "pressureTokens": 8572,
+          "sampledSurfaceTokens": 1640
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 22,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 15,
+              "heuristicTokens": 37,
+              "system": false
+            },
+            {
+              "seq": 17,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 20,
+              "heuristicTokens": 28,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 7257,
+            "messageTokens": 524
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 22,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 22,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 19,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 21
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 22,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 22,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 22,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 22,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 22,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 22,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

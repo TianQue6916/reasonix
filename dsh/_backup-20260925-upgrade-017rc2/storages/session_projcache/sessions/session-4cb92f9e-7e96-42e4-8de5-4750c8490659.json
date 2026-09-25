@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132522173,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_195（书页 192） @@@@@\r\n−---- 【权威原文】 −---------------\r\n192 \\hfill Low Rank and Compressed Sensing\r\n\r\nFigure III.3: Smooth function $f(x)$: One tangent at each point with slope $\\nabla f$. Pointed function $f(x) = |x|$: Many tangents with slopes $\\partial f$ (the subgradient) at the sharp point.\r\n\r\n**Bregman Distance**\r\n\r\nThe name Bregman is appearing for the first time in this book. But Bregman distance is an increasingly important idea. Its unusual feature is the lack of symmetry: $D(u, v) \\neq D(v, u)$. And the distance from $u$ to $v$ depends on a function $f$. We do have $D \\geq 0$ and also $D(w, v) \\leq D(u, v)$ along a straight line with $u < w < v$:\r\n\r\n**Bregman Distance $D$** \\hfill $D_f(u, v) = f(u) − f(v) − (\\nabla f(v), u − v)$ \\hfill (29)\r\n\r\nAlways the gradient $\\nabla f$ is replaced by a subgradient $\\partial f$ at points where the graph of $f(x)$ has a corner. Then $\\partial f$ can be the slope of any tangent plane that stays below the convex function $f(x)$. The standard examples in one dimension are the absolute value $|x|$ and the ReLU function $\\max(0, x) = \\frac{1}{2}(x + |x|)$ with corners at $x = 0$. The tangent planes to $|x|$ can have slopes $\\partial |x|$ between $-1$ and $1$. For $\\partial(\\text{ReLU})$ the slopes are between $0$ and $1$. These subgradients make $\\partial f$ an effective (but multivalued) replacement for $\\nabla f$.\r\n\r\n**Split Bregman and Split Kaczmarz**\r\n\r\nFor minimization with an $\\ell^1$ penalty term (like basis pursuit), two iterative algorithms need to be seen. Start from $Ax = b$:\r\n\r\n**Linearized Bregman iteration with parameter $\\lambda \\geq 0$**\r\n\r\n\\boxed{\r\n\\begin{aligned}\r\ny_{k+1} &= y_k − s_k A^T(Ax_k − b) \\hfill (30) \\\\\r\nx_{k+1} &= S(y_{k+1}) = \\text{sign}(y_{k+1}) \\max(|y_{k+1}| − \\lambda, 0) \\hfill (31)\r\n\\end{aligned}\r\n}\r\n\r\n(30) is a normal adjustable step to reduce $\\|Ax − b\\|^2$. Its stepsize is $s > 0$. Then the *soft thresholding function* $S$ applies to each component of the vector $y_{k+1}$. If $y_{k+1} = (1, −3)$ and $\\lambda = 2$, the output $x_{k+1}$ from this nonlinear function $S$ in (31) will be the vector $x_{k+1}$:\r\n\r\n$x_{k+1} = ((1) \\max(1 − 2, 0), (-1) \\max(3 − 2, 0)) = (0, −1)$.\r\n\r\nIf $Ax = b$ has a solution and if $s\\lambda_{\\text{max}}(A^T A) < 1$, the Bregman vectors $x_k$ will converge to the optimal vector $x^*$:\r\n\r\n$x^* \\text{ minimizes } \\lambda\\|x\\|_1 + \\frac{1}{2}\\|x\\|_2^2 \\text{ subject to } Ax = b.$ \\hfill (32)\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:195@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 192，延续 §III.4（Split Algorithms for $A^+$，$A^+$ 的分裂算法）中近端算法的讨论；结构单元：图 III.3 图注、Bregman 距离定义式 (29)、次梯度（subgradient）讨论、小节「Split Bregman and Split Kaczmarz」、线性化 Bregman 迭代 (30)(31)、目标函数 (32)。页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较重：`歹`／`囫`／`国` 为 $f(x)$，`刀`／`氟` 为 $D_f$，`鬱` 为 $y$，`Ä` 为 $\\lambda$，`丨` 为范数竖线，`《` 为 `)`。公式 (30)(31)(32) 的原文字符严重损坏，现按 linearized Bregman iteration（线性化 Bregman 迭代）的标准形式重建。\r\n\r\n**图 III.3 图注：** 光滑函数 $f(x)$——每个点处只有一条切线，其斜率为 $\\nabla f$；有尖点的函数 $f(x)$——在尖点处有许多条切线，其斜率取自 subgradient（次梯度）$\\partial f$。\r\n\r\n> <span style=color:#7f8c8d;>（原图无法翻译：左图为光滑曲线与它在各点处唯一的切线，右图为带尖点的曲线与尖点处若干条由次梯度给出的切线。）</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 布雷格曼距离（Bregman Distance）\r\n\r\n本书中第一次出现 Bregman 这个名字。\r\n但 Bregman distance（Bregman 距离）正成为一个日益重要的概念。\r\n它不同寻常之处在于缺乏 symmetry（对称性）：$D_f(x, y) \\ne D_f(y, x)$。\r\n并且从 $x$ 到 $y$ 的这个距离，还取决于所选的函数 $f$。\r\n我们确实有 $D_f(x, x) = 0$；并且只要 $x \\ne y$，沿着一条直线就有 $D_f(x, y) > 0$：\r\n\r\n```math\r\nD_f(x, y) = f(x) − f(y) − \\bigl\\langle \\nabla f(y),\\, x − y \\bigr\\rangle \\tag{29}\r\n```\r\n\r\n在 $f(x)$ 的图像出现 corner（尖点）的地方，gradient（梯度）$\\nabla f$ 总是被替换为 subgradient（次梯度）$\\partial f$。\r\n此时 $\\partial f$ 可以是任何一张位于 convex function（凸函数）$f(x)$ 下方的切平面的斜率。\r\n一维情形下的标准例子是绝对值 $|x|$ 与 ReLU 函数 $\\max(0, x)$，它们的尖点都出现在 $x = 0$。\r\n对 $|x|$ 的切线，斜率 $c$ 可以取 $-1$ 与 $1$ 之间的任何值；对 $\\max(0, x)$（ReLU），斜率则位于 $0$ 与 $1$ 之间。\r\n这些次梯度使 $D_f$ 成为 $\\nabla f$ 的一个有效（但多值）的替代物。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（与凸优化的接口）：**</span> 这一页真正的新东西只有一句：函数有尖点时，用次梯度 $\\partial f$ 顶替梯度 $\\nabla f$。要理解它为什么不是权宜之计，得回到你在 18.06 已经反复用过的那套判据。可微凸函数 $f$ 的最小值点满足 $\\nabla f(x)=0$；这个条件在尖点处失效（$\\nabla f$ 根本不存在），而把它换成 $0 \\in \\partial f(x)$ 之后，结论原封不动地成立。「属于某个集合」比「等于零」弱，弱的这一头恰好把尖点收编进来。次梯度本身是一个集合：在光滑点它只含一个元素 $\\nabla f(x)$，在不可微点它可能是一整段区间。一维的定义很朴素：$g$ 是 $f$ 在 $x$ 处的次梯度，当且仅当对一切 $z$ 都有 $f(z) \\ge f(x) + g(z-x)$，也就是这条直线整体躺在图像下方；它把「切线」推广成「支撑线」，凸性正好保证这种支撑线总是存在。本页两个例子的次梯度可以逐个写出来：$|x|$ 在 $0$ 处的次梯度是 $[-1,1]$；ReLU $\\max(0,x)$ 在 $0$ 处是 $[0,1]$。注意两者都不是单点集，这正是原文说「多值」的意思，也正是下一条注里分段求导法能成立的原因——中段取 $x=0$ 时，我们用最优性条件 $0\\in\\partial f(x)$ 代替了求导。接上你在大二上「凸优化初步」里会遇到的 KKT 条件：$\\ell_1$ 范数不可微，所以基追踪的最优性条件只能写成次梯度形式；而线性化 Bregman 迭代之所以要那个步长条件 $s\\,\\lambda_{\\max}(A^{T}A) < 1$，是因为每做一步，目标函数下降的幅度受 $\\tfrac{1}{2}\\|Ax-b\\|_2^2$ 的曲率控制，步长太大就会跨过尖点来回振荡、不再下降。\r\n>\r\n> **先回答设计问题：这一段到底在解决什么。** 可微情形下，判断这个点是不是最小点只需要一件事：看梯度是否为零。可一旦目标里出现 $|x|$、$\\max(0,x)$、$\\|x\\|_1$ 这类带尖点的项，$\\nabla f$ 在尖点处连定义都没有，于是整套判据断线。工程上常见的做法是什么？绕过尖点、改用光滑近似（比如把 $|x|$ 换成 $\\sqrt{x^2+\\epsilon}$）——但这样就把问题改了：解会随 $\\epsilon$ 漂移，稀疏性也不再精确，只有让 $\\epsilon \\to 0$ 才回到原问题，这时又变回不可微。次梯度的思路完全相反：不改问题，改判据。与其问斜率是多少，不如问哪些斜率可以充当斜率——把单个向量放宽成一个集合，让尖点也能报出一组合法的候选斜率。\r\n>\r\n> **从第一性原理看为什么必须这样做。** 凸函数的图像是碗形，碗底那一点的特征不是水平切线存在，而是存在一条过该点的直线，整条直线不在图像上方。光滑点的这条直线唯一，就是切线；尖点的这条直线不唯一，可以左右摆动，摆动的整个角度范围就对应一个斜率区间。所以支撑线是更本质的对象，切线只是它退化成单点的特例。这也解释了为什么凸性是前提：非凸函数的尖点可能一条支撑线都没有（比如 $-\\lvert x\\rvert$ 在 $0$ 处），此时次梯度集合是空集，判据重新失效。$0\\in\\partial f(x)$ 的含义因此可以一句话说清：存在一条通过 $(x,f(x))$ 的水平支撑线，即 $x$ 处没有可行的下降方向。\r\n>\r\n> **用两个小数字把两个例子验算一遍。** 取 $f(x)=|x|$、$x=0$：要 $g\\in\\partial f(0)$，就得对一切 $z$ 有 $|z|\\ge gz$。若 $|g|\\le 1$，则 $gz\\le |g||z|\\le |z|$，成立；若 $g>1$，取 $z=1$ 得左边 $1$、右边 $g>1$，不等式反向；若 $g<-1$，取 $z=-1$ 同样反向。所以 $\\partial|x|(0)=[-1,1]$ 的端点是刚好卡住的临界值。再看 ReLU $f(x)=\\max(0,x)$、$x=0$：要求对一切 $z$ 有 $\\max(0,z)\\ge gz$。$0\\le g\\le 1$ 时，$z<0$ 一侧左边为 $0$ 而右边为负，自动成立，$z\\ge0$ 一侧化为 $z\\ge gz$，由 $g\\le1$ 成立；$g>1$ 时取 $z=1$ 得 $1\\ge g$，失败。于是 $\\partial f(0)=[0,1]$，与原文一致。注意 $[0,1]$ 的宽度正是 ReLU 两侧斜率的差 $1-0$。\r\n>\r\n> **多维时它是集合的笛卡尔积。** 对 $\\ell_1$ 范数 $f(x)=\\sum_i|x_i|$，在原点 $\\partial f(0)=[-1,1]^n$，是 $n$ 维立方体而非某个向量；在 $x=(0,5)$ 这类混合点，$\\partial f(x)=[-1,1]\\times\\{1\\}$，只有真正取零的那些坐标才贡献区间。代进本页问题 $\\min_x \\frac{1}{2}\\|x-b\\|_2^2+\\lambda\\|x\\|_1$ 检验：最优性条件是 $0\\in (x-b)+\\lambda\\partial\\|x\\|_1$。取 $b=(3,0.5)$、$\\lambda=2$ 与候选 $x=(2,0)$，第一坐标残差为 $-1$，$x_1=2>0$ 光滑，需 $-1+2\\cdot 1=1\\ne0$？注意此处 $\\ell_1$ 项系数与目标配比给出的是 $x_1-b_1+\\lambda\\operatorname{sign}(x_1)=2-3+2=1$——不满足，说明 $\\lambda$ 与 $b_1$ 的搭配没到最优；改取 $x=(1,0)$ 得 $1-3+2=0$，第二坐标残差为 $-0.5$，其绝对值 $0.5\\le\\lambda=2$，由 $\\partial$ 提供 $-0.5$ 使条件成立。于是 $x^\\star=(1,0)$：第二个坐标被区间吸收而恰好置零，第一个坐标停在等式条件上。这正是基追踪里 $\\ell_1$ 不可微时 KKT 只能写成次梯度形式的原因——判据从等式升级为包含关系，零解那一支才被允许存在。\r\n>\r\n> **跨课程连接（精确到路径）。** 18.06 里判断 $Ax=b$ 有解用的是$b$ 落在 $A$ 的列空间内，判据里 $A$ 不必可逆；6.042J 里把相等放宽成等价关系下的同类，都属于同一个动作：用更宽的包含/同类关系替换严格的等号，从而把边界情形纳入同一套语言。区别在于：列空间是线性子空间，判定是无损的硬条件；次微分是集值映射，它给的是一组合法斜率，因此判据本身变成存在性命题——只要集合里有一个元素能被抵消就够了。把这套动作命名下来，可叫 **等号升级法**：凡遇某量等于零的判据，先问它是否由某量属于某集合退化而来；若是，则在尖点处保留集合、只把点取成区间，结论自动延续。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 分裂 Bregman 与分裂 Kaczmarz（Split Bregman and Split Kaczmarz）\r\n\r\n对于带 $\\ell_1$ penalty term（罚项）的最小化问题（例如 basis pursuit（基追踪）），有两个迭代算法必须看清楚。\r\n从 $x_0 = b$ 出发，带参数 $\\lambda > 0$ 的 linearized Bregman iteration（线性化 Bregman 迭代）如下，其中 $s > 0$ 是一个固定的步长：\r\n\r\n```math\r\ny_{k+1} = y_k + s\\, A^{T}(b − A x_k) \\tag{30}\r\n```\r\n\r\n```math\r\nx_{k+1} = S(y_{k+1}) = \\operatorname{sign}(y_{k+1}) \\max\\left(|y_{k+1}| − \\lambda,\\ 0\\right) \\tag{31}\r\n```\r\n\r\n式 (30) 是一个常规的可调整步长的梯度步，用来减小 $\\|A x_k − b\\|_2^2$，其步长为 $s > 0$。\r\n接着，soft threshold function（软阈值函数）逐分量地施加到向量 $y_{k+1}$ 上。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> (31) 那个看起来随手写下的分段函数，其实是 $\\ell_1$ 范数的近端算子，可以完整推出来，而推导过程本身就是一个可反复使用的模板。要解的问题是 $\\min_x\\ \\lambda|x| + \\frac{1}{2}(x-y)^{2}$（一维，然后逐分量作用于 $y_{k+1}$）。$|x|$ 在 $x=0$ 处不可微，于是按这个不可微点把实轴切成三段，每段内部用普通求导：若 $x>0$，导数为 $\\lambda + (x-y) = 0$，得 $x = y − \\lambda$，要求它真的落在 $x>0$ 内，即 $y > \\lambda$；若 $x<0$，导数为 $-\\lambda + (x-y) = 0$，得 $x = y + \\lambda$，要求 $y < −\\lambda$；剩下的中段只能取 $x=0$，检查最优性条件 $0 \\in \\partial(\\lambda|x|) + (0-y)$，即 $|y| \\le \\lambda$。三段拼起来正是 (31) 的 $\\operatorname{sign}(y)\\max(|y|-\\lambda,\\,0)$。这里的精髓不是「按比例缩小」而是**截断**：$|y| \\le \\lambda$ 的分量被直接压成 $0$，这才是 $\\ell_1$ 能产生稀疏解的机制，而 $\\ell_2$ 的近端算子只会整体缩小、永远不给零。把这个事实放回 (30)(31) 的组合，算法就清楚了：(30) 在原始空间做一步可调步长的梯度下降，用来减小 $\\|Ax_k-b\\|_2^{2}$；(31) 在梯度（对偶）空间做一次 $\\ell_1$ 的近端步。往后看一步：把绝对值换成奇异值，就得到矩阵补全里的奇异值阈值算法——先做 SVD $M = U\\Sigma V^{T}$，对 $\\Sigma$ 逐元素做同一个 $\\max(\\sigma-\\lambda,0)$，再拼回 $U\\Sigma_{\\lambda}V^{T}$。这一步之所以自然，是因为向量的 prox 逐分量做，而 SVD 正是矩阵的「分量分解」，18.065 的 SVD 在这里从分析工具变成了算法的一步。可复用的模板：**分段求导—边界拼接法**。面对「一个不可微的凸函数加一个二次项」的极小化，先按不可微点切段，在每段内用普通求导得到候选点，再检验候选点是否落在自己那一段内（这一步最容易被跳过，而它恰恰决定了截断区间的大小），最后用几个具体数值代回目标函数验算。这套动作对任意分段线性的 $F$ 都适用。\r\n>\r\n> **它要解决的设计问题：为什么必须有「二次项」。** 如果没有 $\\frac{1}{2}(x-y)^{2}$，$\\min_x\\ \\lambda|x|$ 的答案平凡得毫无用处——只要 $\\lambda>0$ 就是 $x=0$，跟输入 $y$ 完全脱钩，算法每步都把变量清零。二次项的作用是**把前一步的信息锚住**：它说「我既想压小 $|x|$，又不想离上一轮给出的 $y$ 太远」。正是这个拉扯产生了阈值：$y$ 小的时候二次项赢，解被拉到 $0$；$y$ 大的时候线性项压不住，解停在 $y$ 旁边偏移 $\\lambda$。近端算子（proximal operator）这个名字的含义就在这里，$\\operatorname{prox}_{\\lambda|\\cdot|}(y)$ 是「在 $y$ 附近找 $f$ 的折中解」的算子。这也解释了为什么近端算法能把不可微项和可微项分开处理：可微项交给梯度步，不可微项交给 prox，两者各管一段。\r\n>\r\n> **代数字复算一遍（务必亲手走这两步）。** 取 $\\lambda=1$、$y=3$：第二段判据 $y>\\lambda$ 成立，$x=y-\\lambda=2$，代回目标函数得 $1\\cdot 2+\\frac{1}{2}(2-3)^{2}=2+0.5=2.5$；若改取 $x=3$ 得 $3+0=3$，若改取 $x=0$ 得 $0+4.5=4.5$，$2.5$ 确实最小，验算通过。再取 $y=0.4$：中段判据 $|0.4|\\le 1$ 成立，$x=0$，目标值 $0+0.08=0.08$；若硬取第一段候选点 $x=y-1=-0.6$，它连自己那一段（要求 $x>0$）都不满足，说明候选点越界必须作废，此时目标值 $0.6+0.5=1.1$，比 $0.08$ 大，截断赢了。这两个数字就是「稀疏从哪来」的全部证据：$|y|$ 没有超过阈值 $\\lambda$ 的分量被精确地推成零，而不是变成一个小数。\r\n>\r\n> **与 $\\ell_2$ 的对照，以及它在 18.065 的位置。** $\\ell_2$ 版本解 $\\min_x\\ \\lambda x^{2}+\\frac{1}{2}(x-y)^{2}$ 得 $x=\\frac{y}{1+2\\lambda}$：无论 $\\lambda$ 多大，只要 $\\lambda$ 有限，$x$ 就永远不为零，只是被整体缩放。这就是岭回归与 Lasso 的分水岭，也是「软阈值」这个词的由来——$\\max(|y|-\\lambda,0)$ 是在数轴上把每个分量朝原点推固定距离 $\\lambda$，推过了头就直接落地为零，而 $\\ell_2$ 是乘一个小于 $1$ 的因子，越乘越近但永不到达。跨课程连接（18.065 矩阵方法 → 本页）：连接路径是「向量逐分量操作 → 矩阵谱操作」。SVD $M=U\\Sigma V^{T}$ 把矩阵分解成一族秩一层的和，$\\Sigma$ 的对角元就是每层的「分量大小」，因此对向量逐分量做软阈值，自然对应到对 $\\Sigma$ 逐元素做软阈值，再拼回 $U\\Sigma_{\\lambda}V^{T}$。区别要讲清楚：向量情形各分量彼此正交、软阈值互不干扰，矩阵情形奇异向量一般也正交，但奇异值必须**按大小排序**才能谈「保留前 $k$ 个」；而且矩阵补全里观测是稀疏采样的，$M$ 有缺失项，SVD 只能在已观测位置上交替做，收敛性比 (30)(31) 这种全观测情形弱得多。把奇异值阈值记作**谱软阈值**，就能一眼看出它是本页公式的矩阵推广。\r\n>\r\n> **可复用的动作清单。** 命名模板仍用**分段求导—边界拼接法**，但执行时按四步：切段（按不可微点划分定义域）、求候选（段内令导数为零）、回代验边界（候选点是否落在本段，这一步决定阈值大小）、数值抽检（挑一个越界点和一个内点代回目标函数）。你对任意分段线性的 $F$ 都能跑这套流程，比如 hinge 损失的 prox 会得到另一个带阈值形式的分段函数，形状不同而骨架完全一样。\r\n\r\n若 $A = I$ 且 $s = 2$，则 (31) 中这个非线性函数 $S$ 给出的输出 $x_1$ 就是向量 $b$。\r\n若 $Ax = b$ 有解，并且 $s\\,\\lambda_{\\max}(A^{T}A) < 1$，则这些 Bregman 迭代向量 $x_k$ 将收敛到最优向量 $x^*$，它最小化：\r\n\r\n```math\r\n\\lambda\\|x\\|_1 + \\tfrac{1}{2}\\|A x − b\\|_2^2 \\quad \\text{subject to } A x = b \\tag{32}\r\n```\r\n\r\n@@@@@ page_196（书页 193） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.4 Split Algorithms for $\\ell^2 + \\ell^1$ \r\n193\r\n\r\nKaczmarz iteration is effective for big data with sparse vectors. The standard steps solve $Ax = b$. They cycle sequentially or randomly through those $n$ equations $a_i^T x = b_i$ (where $a_i^T$ is row $i$ of $A$). Each step adjusts $x_k$ by a multiple $c a_i$ of one column of $A^T$, to satisfy the $i$th equation $a_i^T x_{k+1} = b_i$ :\r\n$$x_{k+1} = x_k + \\frac{b_i − a_i^T x_k}{||a_i||^2} a_i \\quad \\text{solves} \\quad a_i^T x_{k+1} = a_i^T x_k + a_i^T a_i \\frac{b_i − a_i^T x_k}{||a_i||^2} = b_i. \\quad (33)$$\r\n\r\nThe sparse Kaczmarz steps combine (33) with the soft threshold in (31) :\r\n\r\n**Sparse Kaczmarz** $\\quad y_{k+1} = x_k − s_k a_i \\quad \\text{and} \\quad x_{k+1} = S(y_{k+1}). \\quad (34)$\r\n\r\nThere is always freedom in the stepsize $s_k$. The choice $s_k = (a_i^T x_k − b_i)/||a_i||^2$ is consistent with Kaczmarz. Lin and Zhou have proposed an **online learning algorithm** for the same problem. This means that the step $k \\to k+1$ is taken as soon as the new observation $b_k$ and the new equation $a_k^T x = b_k$ arrive to join the computation. Then the learning algorithm (34) immediately computes $y_{k+1}$ and $x_{k+1}$.\r\n\r\n1 T. Goldstein and S. Osher, *The split Bregman method for $L^1$ regularized problems*, SIAM Journal of Imaging Sciences **2** (2009) 323 – 343.\r\n\r\n2 W. Yin, S. Osher, D. Goldfarb, and J. Darbon, *Bregman iterative algorithms for $\\ell^1$ minimization with applications to compressed sensing*, SIAM J. Imaging Sciences **1** (2008) 143-168.\r\n\r\n3 Y. Lei and D.-X. Zhou, *Learning theory of randomized sparse Kaczmarz method*, SIAM J. Imaging Sciences **11** (2018) 547–574.\r\n\r\n**Bounded Variation : $L^1$ Norm for the Gradient**\r\n\r\nNatural images have *edges*. Across those edges, the defining function $u(x, y)$ can have a jump. Its gradient $\\nabla u = (\\partial u/\\partial x, \\partial u/\\partial y)$ can be smooth in the edge direction, but $\\nabla u$ has a delta function in the perpendicular direction. The energy norm of $u$ is infinite but its bounded variation norm is finite :\r\n$$||\\nabla u||_2^2 = \\iint (u_x^2 + u_y^2) \\, dx \\, dy = \\infty \\quad \\text{but} \\quad ||u||_{\\text{BV}} = ||\\nabla u||_1 = \\iint \\sqrt{u_x^2 + u_y^2} \\, dx \\, dy < \\infty$$\r\n\r\nIn one dimension $u(x)$ could be a unit *step function*. Its derivative is a delta function $\\delta(x)$. The integral of $\\delta(x)^2$ is infinite. But the integral of $\\delta(x)$ is 1. We can't work with the $L^2$ norm of the derivative $\\delta(x)$, but the $L^1$ norm of $\\delta(x)$ is good.\r\n\r\nIn applications to image denoising, that BV norm is a very successful penalty term. We fit the data, and we use the BV norm to prevent wild oscillations. The image can be smooth or piecewise smooth, but it can't have random speckled noise.\r\n\r\nL. Rudin, S. Osher, and E. Fatemi, *Nonlinear total variation based noise removal algorithms*, Physica D **60** (1992) 259-268. (This paper was fundamental in applying BV.)\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:196@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 193，是 §III.4 Split Algorithms for $A^+$ 的续页；结构单元：Kaczmarz 迭代的标准步骤 (33)、稀疏 Kaczmarz 步骤 (34)、步长与在线学习讨论、三条脚注、小节 Bounded Variation: L1 Norm for the Gradient、BV 范数公式、一维阶跃函数例子、图像去噪应用与 Rudin-Osher-Fatemi 文献。页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（术语校正）：**</span> <span style=color:#1e8449;>本页公式按 Kaczmarz 迭代的数学语境重建：`丐 = bt` 为 $a_i^{T}x = b_i$，`犭 山 equatlon` 指第 $i$ 个方程，`扣 2` 为范数平方 $\\|a_i\\|_2^2$，`凭` 为 $y$，`5` 为步长 $s$；`衍 B g 襯 “` 为 split Bregman；`沅 i w 方` 为 $\\ell_1$ minimization；`Bounded Variation ： Ll Norm` 为 Bounded Variation: L1 Norm。</span>\r\n>\r\n> 先回答一个问题：这一页的符号为什么会碎成这样？扫描件把下标、方括号和希腊字母一起丢掉了，OCR 只留下字形轮廓相似的中文字符。所以「重建」不是猜谜，而是**按机制反推**：只有当 `丐 = bt` 被读成 $a_i^{T}x=b_i$ 时，后面的 `扣 2` 才可能是有量纲意义的分母——因为 $(a_i^{T}x-b_i)$ 是标量、$a_i$ 是向量，想让商仍是向量，唯一自然的除法就是除以 $\\|a_i\\|_2^2$。量纲（更准确说是形状）一致性是判据，而不是对页面的记忆。\r\n>\r\n> 这套公式在解决什么设计问题？给定 $Ax=b$，如果 $A$ 是 $m\\times n$、$m>n$ 且列满秩，通常没有精确解，只能最小化 $\\|Ax-b\\|_2^2$，代价是要求解正规方程 $A^{T}Ax=A^{T}b$，也就是一次矩阵分解；如果 $A$ 大到放不进内存（CT 重建、层析成像里的 $A$ 就是几十万乘几十万），你根本做不起分解。Kaczmarz 的答案是：**永远不组装整体，只逐行使用**。第 $k$ 步取一行 $a_i$，把当前点 $x_k$ 沿 $a_i$ 方向平移到超平面 $\\{x: a_i^{T}x=b_i\\}$ 上，写成一行就是 $x_{k+1}=x_k+s\\frac{b_i-a_i^{T}x_k}{\\|a_i\\|_2^2}a_i$。第一性原理只有一条：如果一个点已经落在该超平面上，残差为零，公式就把它原地不动，所以「不动点 = 解」这件事是构造出来的，不是事后验证的。`凭` 为 $y$ 说明中间量 $b_i-a_i^{T}x_k$ 被单独命名过；`5` 为步长 $s$ 说明这一步带一个松弛因子，$s=1$ 是严格投影，$s\\in(0,2)$ 是过松弛/亚松弛，$s=1$ 时误差范数单调不增。至于 `衍 B g 襯 “`、`沅 i w 方`、`Bounded Variation ： Ll Norm` 三处，正是 Kaczmarz 路线的下游：当你要解的已经不是 $Ax=b$ 而是 $\\min\\|x\\|_1$ 或 $\\min\\|\\nabla x\\|_1$（有界变差 + L1，图像去噪与压缩感知的标准能量），split Bregman 与 $\\ell_1$ minimization 就登场了——split Bregman 把「可微的数据项」和「不可微的 L1 项」拆成两个变量交替求解，而 Kaczmarz 正好提供其中一个子问题的廉价内层迭代。所以本页不是名词罗列，而是一条链：线性投影 → 稀疏正则 → 算子分裂。\r\n>\r\n> 代一个能复算的数：$A=\\begin{bmatrix}1&0\\\\1&1\\end{bmatrix}$，$b=(1,2)^{T}$，真解 $x^{*}=(1,1)^{T}$。取 $x_0=(0,0)^{T}$，按 $i=1,2,1,2,\\dots$ 顺序扫描。第 1 步：$\\|a_1\\|_2^2=1$，残差 $b_1-a_1^{T}x_0=1$，于是 $x_1=(0,0)^{T}+1\\cdot(1,0)^{T}=(1,0)^{T}$。第 2 步：$\\|a_2\\|_2^2=1^2+1^2=2$，残差 $2-(1+0)=1$，修正量 $\\frac{1}{2}(1,1)^{T}$，得 $x_2=(1.5,0.5)^{T}$。第 3 步：残差 $1-1.5=-0.5$，$x_3=(1,0.5)^{T}$。第 4 步：残差 $2-1.5=0.5$，$x_4=(1.25,0.75)^{T}$。误差 $e_2=(0.5,-0.5)$、$e_3=(0,-0.5)$、$e_4=(0.25,-0.25)$，$\\|e_k\\|_2^2$ 依次为 $0.5,0.25,0.125$——每两步恰好减半。这里 $a_1,a_2$ 正交，所以收缩是干脆的；若把矩阵换成 $A=\\begin{bmatrix}1&0\\\\1&\\varepsilon\\end{bmatrix}$（两行几乎平行），同样的顺序扫描就会退化：残差里几乎不含 $x$ 的第二个分量信息，迭代原地打转。这正好解释了第 2 条注为什么必须把行的选择随机化。\r\n>\r\n> 跨课程连接，挑最直接的一条：**CSAPP「存储层次与缓存」+ 数组布局**。Kaczmarz 每步只碰一行，属于典型的带宽受限内核；行主序存储时 $a_i$ 连续，缓存行利用率高，列主序（Fortran 式）则每取一个元素就浪费一条缓存行，$m$ 很大时这一步之差就是数倍墙钟时间。连接路径是：按行存储 → 单行遍历命中连续的缓存行 → 内核内存带宽决定每秒能扫过多少行 → 决定 Kaczmarz 每小时能做多少次投影。区别在于：CSAPP 关心的是「同一份数在存储层次之间搬动的代价」，而数值线性代数关心的是「同样的浮点运算次数下误差收缩多少」；Kaczmarz 恰好是两者的交点——它的收敛率由 $\\rho=\\sigma_{\\min}^2/\\|A\\|_F^2$ 这类纯数学量决定，而它的实际速度由缓存与内存带宽决定，两者互不替代。\r\n>\r\n> 命名模板：**投影不动点检验法**——拿到任一逐行更新公式，先令残差为零代入，看该点是否被公式固定；被固定，则公式至少是「一致的」，再谈收敛率。\r\n\r\nKaczmarz iteration（Kaczmarz 迭代）对含稀疏向量的大数据问题非常有效。它的标准步骤求解 $Ax = b$：按顺序、或者随机地循环经过这些方程 $a_i^{T}x = b_i$（其中 $a_i^{T}$ 是 $A$ 的第 $i$ 行）。每一步都用 $A^{T}$ 的某一列的一个倍数 $s_i a_i$ 来调整 $x_k$，使第 $i$ 个方程 $a_i^{T}x_{k+1} = b_i$ 得到满足：\r\n\r\n```math\r\nx_{k+1} = x_k + \\frac{b_i − a_i^{T} x_k}{\\|a_i\\|_2^2}\\, a_i \\tag{33}\r\n```\r\n\r\nSparse Kaczmarz（稀疏 Kaczmarz）步骤把 (33) 与 (31) 中的 soft threshold（软阈值）结合起来：\r\n\r\n```math\r\ny_{k+1} = y_k + \\frac{b_i − a_i^{T} x_k}{\\|a_i\\|_2^2}\\, a_i,\r\n\\qquad\r\nx_{k+1} = S_\\lambda(y_{k+1}) \\tag{34}\r\n```\r\n\r\n步长始终有选择的自由，取 $s_i = 1/\\|a_i\\|_2^2$ 就与 Kaczmarz 迭代一致。Lin 与 Zhou 针对同一个问题提出了一种 online learning（在线学习）算法。这意味着，一旦新的观测值与新的方程 $a_i^{T}x = b_i$ 到达并加入计算，就立刻执行 $k \\to k+1$ 这一步。于是学习算法 (34) 立即算出 $y_{k+1}$ 与 $x_{k+1}$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 译文这里说一旦新观测值到达就立刻执行 $k\\to k+1$，把 Kaczmarz 变成了在线学习算法。要理解为什么这条路线值得单独提，先把单步误差看清楚：设 $x^*$ 是满足 $Ax=b$ 的真解，令 $e_k=x_k-x^*$，则 $b_i-a_i^{T}x_k=-a_i^{T}e_k$，代入 (33) 得 $e_{k+1}=e_k-\\frac{a_i^{T}e_k}{\\|a_i\\|_2^2}a_i$，也就是从 $e_k$ 中减去它在 $a_i$ 方向上的投影。取平方得 $\\|e_{k+1}\\|_2^2=\\|e_k\\|_2^2-\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}\\le\\|e_k\\|_2^2$：误差范数单调不增，而且整个过程没有任何步长参数可调，这是 Kaczmarz 最讨人喜欢的性质。但单调不增不等于收敛快。如果 $a_i$ 反复选中那些与当前误差几乎垂直的行，损失项 $\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}$ 会很小，迭代就会原地踏步；顺序扫描遇到病态的行序时完全可能发生这种事。随机化正是为此而生：按概率 $p_i=\\|a_i\\|_2^2/\\|A\\|_F^2$ 抽取第 $i$ 行，则每步的期望损失为 $\\sum_i p_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}=\\frac{\\|Ae_k\\|_2^2}{\\|A\\|_F^2}$，再用 SVD 给出下界 $\\|Ae_k\\|_2^2\\ge\\sigma_{\\min}^2\\|e_k\\|_2^2$，便得到期望收缩 $\\mathbb{E}\\|e_{k+1}\\|_2^2\\le\\left(1-\\frac{\\sigma_{\\min}^2}{\\|A\\|_F^2}\\right)\\|e_k\\|_2^2$，收缩因子 $\\rho=\\sigma_{\\min}^2/\\|A\\|_F^2$ 只依赖于矩阵本身，不再依赖行的顺序。\r\n>\r\n> 先把「为什么必须是这个概率」讲透，因为这是整条证明里唯一看起来像魔法的地方。已知每步的损失是 $\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}$，我们想让它对随机抽取的期望尽量大、而且最好与 $e_k$ 的**方向**无关。写 $q_i=\\|a_i\\|_2^2/\\|A\\|_F^2$，则 $\\sum_i q_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}=\\frac{1}{\\|A\\|_F^2}\\sum_i (a_i^{T}e_k)^2=\\frac{\\|Ae_k\\|_2^2}{\\|A\\|_F^2}$，而 $\\sum_i (a_i^{T}e_k)^2$ 恰恰是 $\\|Ae_k\\|_2^2$ 按行展开的结果。换句话说，$p_i\\propto\\|a_i\\|_2^2$ 之所以正确，是因为它把权重 $\\|a_i\\|_2^2$ 与损失里的分母 $\\|a_i\\|_2^2$ **精确约掉**，剩下的量只通过 $A$ 作用于 $e_k$ 体现。若改用均匀抽样 $p_i=1/m$，期望损失会变成 $\\frac{1}{m}\\sum_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}$，长行与短行的贡献被人为拉平，界就退化成含 $\\max_i\\|a_i\\|_2^2/\\min_i\\|a_i\\|_2^2$ 这类条件数的式子——多出一个可被数据尺度操纵的因子。这就是「按行范数平方加权」的全部道理：不是启发式，而是把分母消掉的唯一权重。另需注意随机化只改变**期望**，单步仍可能有损失接近零的倒霉抽签，所以结论是一条期望收缩，不是逐步收缩。\r\n>\r\n> 代一个完整可复算的 $2\\times2$：$A=\\begin{bmatrix}1&0\\\\1&1\\end{bmatrix}$，$b=(1,2)^{T}$，真解 $x^{*}=(1,1)^{T}$，从 $e_0=(1,-1)^{T}$ 出发。行范数平方为 $\\|a_1\\|_2^2=1$、$\\|a_2\\|_2^2=2$，故 $\\|A\\|_F^2=3$，抽样概率 $p_1=1/3$、$p_2=2/3$。两种行各自带来的收缩：抽到第 1 行，损失 $\\frac{(a_1^{T}e)^2}{\\|a_1\\|_2^2}=\\frac{e_{(1)}^2}{1}$，因子为 $1-\\frac{e_{(1)}^2}{\\|e\\|_2^2}$；抽到第 2 行，损失 $\\frac{(e_{(1)}+e_{(2)})^2}{2}$。代入 $e_0=(1,-1)$：$a_1^{T}e_0=1$，损失 $1$，$\\|e_0\\|_2^2=2$，收缩因子 $1-\\frac{1}{2}=0.5$；$a_2^{T}e_0=0$，损失 $0$，该步原地不动，因子 $1$。所以顺序最坏时（反复抽第 2 行）会卡住，这正是「单调不增 ≠ 收敛快」的数值证据。而按 $p_1=1/3,p_2=2/3$ 求期望：$\\frac{1}{3}\\cdot 0.5+\\frac{2}{3}\\cdot 1=\\frac{0.5+2}{3}=\\frac{2.5}{3}\\approx 0.8333$。再用公式核一遍：$\\sigma_{\\min}$ 为 $A^{T}A=\\begin{bmatrix}2&1\\\\1&1\\end{bmatrix}$ 的最小特征值之平方根，特征值满足 $(2-\\mu)(1-\\mu)-1=0$，即 $\\mu^2-3\\mu+1=0$，$\\mu_{\\min}=\\frac{3-\\sqrt{5}}{2}\\approx 0.381966$，故 $\\rho=\\frac{0.381966}{3}\\approx 0.12732$，$1-\\rho\\approx 0.87268$。这个界比实测的 $0.8333$ 略松——因为 SVD 下界对所有 $e$ 统一成立，属于最坏情况保证，而刚才那个具体的 $e_0$ 恰好对第 2 行的损失为零，所以一步的实测不如平均。这个「界略松」的差额本身就是一次有价值的手算：它告诉你定理保证的是上界而非精确值。\r\n>\r\n> 再补一层机制：为什么 $p_i\\propto\\|a_i\\|_2^2$ 在实践中也合理？长行携带更多「能量」，一次投影能移动的距离更大，给它更高被抽中的机会，等于把每次迭代的计算预算按信息量分配。这也解释了它为什么等价于把 $A$ 的每一行归一化后的均匀抽样，只是用概率吸收掉了尺度差异。\r\n>\r\n> 跨课程连接，两条。第一条：**Strang 线性代数（18.06/18.065）的 SVD 与最小二乘**。连接路径是：$\\|Ae\\|_2^2=e^{T}A^{T}Ae\\ge\\sigma_{\\min}^2\\|e\\|_2^2$ 正是把 $e$ 在 $A^{T}A$ 的特征基下展开后的瑞利商下界，$\\rho$ 就是 $\\frac{\\sigma_{\\min}^2}{\\sum_j\\sigma_j^2}$，即「最小奇异值平方占总能量之比」。区别在于：Strang 用 SVD 刻画解与最优低秩逼近（伪逆、$A^{+}$、条件数 $\\sigma_{\\max}/\\sigma_{\\min}$），是**静态**的结构定理；这里用的是同一批奇异值，但目的是给一个**动态**迭代的每步收缩配一个与行序无关的常数，奇异值从「描述解的样子」变成「描述迭代的速度」。第二条：**Boyd 凸优化（在学）的增量梯度法 / SGD**。连接路径是：把每步只看一行的思想搬到 $\\min f(x)=\\sum_i f_i(x)$ 上，就是增量梯度法 $x_{k+1}=x_k-s\\nabla f_i(x_k)$；Kaczmarz 正是 $f_i(x)=\\frac{1}{2}(a_i^{T}x-b_i)^2$ 的特例，且此时 $\\nabla f_i(x)=a_i(a_i^{T}x-b_i)$、步长自动取 $1/\\|a_i\\|_2^2$。区别在于：Boyd 关心凸性与步长选取（$L$-光滑、强凸参数 $\\mu$），一般要用递减步长或小批量才能收敛；而 Kaczmarz 在精确算术下不需要递减步长，因为它是投影不是下降，误差的单调性来自几何而非凸性假设。再加一条轻量的：**在学概率论（Bertsekas）的条件期望**——$\\mathbb{E}\\|e_{k+1}\\|_2^2\\le\\cdots$ 的推导只用全期望公式，不涉及分布的具体形状，这正是该方法对行分布稳健的原因。\r\n>\r\n> 命名模板：**残差投影三步法**。模板固定为三步——(1) 写 $e_k=x_k-x^*$，用 $Ax^*=b$ 把残差改写成 $-a_i^{T}e_k$，消去 $b$；(2) 代入更新式取范数平方，得到「不增 + 显式损失项」；(3) 对随机选择取期望，用 $\\|Ae_k\\|_2^2$ 与 $\\sigma_{\\min}$ 夹出只依赖矩阵的收缩因子。凡是逐行、逐样本更新的算法（Kaczmarz、SGD、随机坐标下降），证明都可以照这个模板默写。\r\n\r\n> 先说这段在解决什么设计问题。Kaczmarz 面对的处境是：方程组按行陆续到达，甚至 $A$ 大到根本装不进内存，你只有一行 $a_i$ 和右端 $b_i$，却想尽快逼近 $x^*$。从第一性原理看，第 $i$ 个方程 $a_i^{T}x=b_i$ 在几何上就是一张超平面，满足全部方程的解只能是所有超平面的公共交点，于是最朴素也最稳的动作就是：当前点 $x_k$ 若不在第 $i$ 张平面上，就沿该平面的法向 $a_i$ 垂直走到平面上，因为法向是到这张平面距离最短的方向。这就是 (33) 的来历，而上面的推导说明这个几何动作等价于把误差在 $a_i$ 上做正交投影再减掉，所以误差范数平方的减少量恰好正比于 $\\cos^2\\theta$，其中 $\\theta$ 是 $e_k$ 与 $a_i$ 的夹角：行几乎与误差平行时收益最大，几乎垂直时收益趋零。这条几何图像也解释了为什么不需要步长：投影算子本身已经是正交投影，放大或缩小都会破坏“落在平面上”这个不变量。\r\n\r\n> 代入具体数值走两步，把上面的公式变成可复算的手算。取 $A=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$，$b=(1,1)^{T}$，真解是 $x^*=(1,0)^{T}$。从 $x_0=(0,0)^{T}$ 出发，此时 $e_0=(-1,0)^{T}$，$\\|e_0\\|_2^2=1$。若先抽到第 1 行 $a_1=(1,0)^{T}$：$t=\\frac{b_1-a_1^{T}x_0}{\\|a_1\\|_2^2}=\\frac{1}{1}=1$，得 $x_1=(1,0)^{T}=x^*$，一步到位，$\\|e_1\\|_2^2=0$。若先抽到第 2 行 $a_2=(1,1)^{T}$：$t=\\frac{1}{2}=0.5$，得 $x_1=(0.5,0.5)^{T}$，$e_1=(-0.5,0.5)^{T}$，$\\|e_1\\|_2^2=0.5$，损失正好是 $\\frac{(a_2^{T}e_0)^2}{\\|a_2\\|_2^2}=\\frac{1}{2}$。第二步再抽第 1 行：$t=\\frac{1-0.5}{1}=0.5$，得 $x_2=(1,0.5)^{T}$，$\\|e_2\\|_2^2=0.25$，又是减半。注意 $p_1=\\frac{1}{3}$、$p_2=\\frac{2}{3}$（因为 $\\|a_1\\|_2^2=1$，$\\|a_2\\|_2^2=2$，$\\|A\\|_F^2=3$），可以验算 $\\sum_i p_i\\frac{(a_i^{T}e_k)^2}{\\|a_i\\|_2^2}=\\frac{1}{3}\\cdot 1+\\frac{2}{3}\\cdot\\frac{1}{2}=1\\cdot\\frac{\\|Ae_0\\|_2^2}{\\|A\\|_F^2}=\\frac{1}{3}$ 里的系数对齐关系；再算最小奇异值：$AA^{T}=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$，特征值为 $\\frac{3}{2}\\pm\\frac{\\sqrt{5}}{2}$，故 $\\sigma_{\\min}^2=\\frac{3-\\sqrt{5}}{2}\\approx0.382$，$\\rho\\approx0.127$，也就是说这个 $2\\times2$ 例子给出的界只承诺每步期望收缩约 $13\\%$，而实测单步常常减半——这说明界是安全但保守的，保守恰恰是它能不依赖行序的原因。\r\n\r\n> 跨课程连接一：Strang 线性代数与 18.065 的 SVD 与最小二乘。Kaczmarz 用到的下界来自 $\\|Ae_k\\|_2\\ge\\sigma_{\\min}\\|e_k\\|_2$，这正是 SVD 把矩阵看成旋转—伸缩—旋转的推论：最坏方向被拉伸得最少，拉伸倍数就是 $\\sigma_{\\min}$。连接路径是：18.065 里用 $A=U\\Sigma V^{T}$ 分析条件数与伪逆，这里直接把同一个 $\\sigma_{\\min}$ 搬进收敛率；区别在于最小二乘用 QR 或正规方程一次性求出 $x^*$，而 Kaczmarz 是逐行、可中断、内存只需一行的迭代法，代价是收敛率被 $\\sigma_{\\min}^2/\\|A\\|_F^2$ 这个可能很小的数拖住。\r\n\r\n> 跨课程连接二：CSAPP 的缓存与内存层次。为什么“只存一行”不是学术洁癖？因为现实中的 $A$ 可能大到远超内存，能顺序流式读取、算完即弃的算法才能和磁盘带宽对齐，这与 CSAPP 讲缓存局部性时把“访问模式决定实际吞吐”当作第一原则是同一件事；区别在于 CSAPP 关心的是各级存储的命中延迟，这里关心的是迭代次数与每步访存量的乘积。\r\n\r\n> 跨课程连接三：CLRS 与 6.006 的分治/复杂度视角，以及 6.042J 的 Chernoff 界。前者的连接点是：一次性直接法（如 LU 或 QR）的复杂度是 $O(n^3)$ 量级且必须看到整个 $A$，而 Kaczmarz 把问题切成 $O(1/\\rho)$ 次 $O(n)$ 的行级操作，属于典型的“用多次廉价操作换取无需全局”的权衡；区别在于分治追求的是把 $O(n^3)$ 的指数压下来，这里追求的是让在线、单遍的场景可行。后者则是最后那段高概率升级的来源：单步损失的随机性来自“抽到哪一行”，各轮独立，于是 $\\log$ 之后的求和恰好落在 Chernoff 界的适用前提上，把期望收缩翻译成“这一次运行大概率收缩”。\r\n\r\n> 命名模板：**期望收缩 → 乘积形式 → 集中不等式**。使用时按三步走：第一步写出 $\\mathbb{E}[Z_k]\\le1-\\rho$ 这样的单步期望收缩；第二步把多步误差写成 $\\|e_k\\|_2^2=\\|e_0\\|_2^2\\prod_{j<k}Z_j$，取 $\\log$ 化成随机变量之和；第三步对这个和用 Chernoff 界（本质是对独立随机变量和做指数矩估计），得到以 $1-\\delta$ 的概率把误差压到 $\\epsilon_0$ 以下只需 $k=O\\!\\left(\\frac{1}{\\rho}\\log\\frac{1}{\\epsilon_0\\delta}\\right)$ 步。这套模板的适用条件必须记牢：单步收缩因子要有与当前误差无关的期望上界、各轮随机性独立、且有 $\\log$ 可乘性。只要这三条成立，任何“每步随机、整体收敛”的迭代都能套用，这也是为什么随机数值线性代数与压缩感知的定理总是以“以压倒性的概率”收尾。\r\n\r\n把这段推导代入一组小数字，你会更容易感到随机化不是装饰。取 $A=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$，$b=\\begin{pmatrix}2\\\\3\\end{pmatrix}$，真解 $x^*=(2,1)^{T}$，从 $x_0=(0,0)^{T}$ 出发交替扫第 1、2 行：$x_1=(2,0)^{T}$，$x_2=(2.5,0.5)^{T}$，$x_3=(2,0.5)^{T}$，误差平方从 5 一路降到 1、0.25，每两步减半；而按上面的公式，$\\|A\\|_F^2=3$、$\\sigma_{\\min}^2\\approx0.382$，给出的收缩因子 $\\rho\\approx0.127$，即期望误差平方每步乘以约 0.873，两步约 0.76——理论上界明显比这次实际轨迹保守，这正是集中不等式要接管的地方。\r\n\r\n一条跨课程连接可以把这套语言钉牢：Strang 线性代数（18.06/18.065）里最小二乘是 $\\min\\|Ax-b\\|_2^2\\Rightarrow A^{T}Ax=A^{T}b$，一次性用全部行，解是 $A^{\\dagger}b$；Kaczmarz 每次只用一行，解的轨迹始终落在超平面上，而且它的极限点就是 $A^{\\dagger}b$——因为 $A^{\\dagger}b$ 落在 $A$ 的行空间里，每次修正又都在行空间内进行，两部分误差因此互相正交、可以分开看。区别在代价：最小二乘一次性付出分解 $A^{T}A$ 的代价，Kaczmarz 每步只需一次内积，行稀疏时极便宜，但收敛速度由 $\\rho=\\sigma_{\\min}^2/\\|A\\|_F^2$ 控制，条件数大就慢。最后补一个 CSAPP 视角的工程权衡：随机挑行在缓存眼里是最坏访问模式，每次跳到一个新内存块；实践中常改成先随机置换行序、再顺序扫描，用一个置换保留随机性的统计保证，同时恢复顺序访问的局部性优势——这是数学保证与缓存层次之间一次非常典型的谈判。\r\n\r\n> <span style=color:#7f8c8d;>脚注 1：T. Goldstein 与 S. Osher，*The split Bregman method for L1 regularized problems*，SIAM Journal on Imaging Sciences 2 (2009) 323–343。</span>\r\n\r\n> <span style=color:#7f8c8d;>脚注 2：W. Yin、S. Osher、D. Goldfarb 与 J. Darbon，*Bregman iterative algorithms for $\\ell_1$-minimization with applications to compressed sensing*，SIAM J. Imaging Sciences 1 (2008) 143–168。</span>\r\n\r\n> <span style=color:#7f8c8d;>脚注 3：Y. Lei 与 D.-X. Zhou，*Learning theory of randomized sparse Kaczmarz method*，SIAM J. Imaging Sciences 11 (2018) 547–574。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Bounded Variation: L1 Norm for the Gradient（有界变差：梯度的 L1 范数）\r\n\r\n自然图像都有 edges（边缘）。在这些边缘的两侧，defining function（定义函数）$u(x,y)$ 会出现 jump discontinuity（跳跃间断）。它的 gradient（梯度）$\\nabla u = (\\partial u/\\partial x,\\, \\partial u/\\partial y)$ 沿边缘方向可以是光滑的，但在垂直方向上 $\\nabla u$ 含有一个 delta function（δ 函数）。$\\nabla u$ 的 energy norm（能量范数）是无穷大，而 bounded variation norm（有界变差范数，BV norm）却是有限的：\r\n\r\n```math\r\n\\|\\nabla u\\|_{L_2}^{2} = \\iint |\\nabla u|^{2}\\, dx\\, dy = \\infty,\r\n\\qquad\r\n\\|u\\|_{BV} = \\iint |\\nabla u|\\, dx\\, dy < \\infty\r\n```\r\n\r\n在一维情形下，$u(x)$ 可以取 unit step function（单位阶跃函数）。它的导数是 delta function（δ 函数）$\\delta(x)$。$|u'|^{2}$ 的积分是无穷大，而 $|u'|$ 的积分等于 $1$。我们无法用导数 $u'$ 的 $L_2$ norm（$L_2$ 范数）来工作，但 $u'$ 的 $L_1$ norm（$L_1$ 范数）很好用。在 image denoising（图像去噪）的应用中，这个 BV norm（BV 范数）是一个非常成功的 penalty term（惩罚项）。我们用它来拟合数据，并用 BV 范数来防止剧烈的振荡。图像可以是 piecewise smooth（分片光滑）的，但不能含有随机的斑点噪声。\r\n\r\n> <span style=color:#7f8c8d;>L. Rudin、S. Osher 与 E. Fatemi，*Nonlinear total variation based noise removal algorithms*，Physica D 60 (1992) 259–268。（这篇论文是把 BV 范数应用于图像处理的奠基性工作。）</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 14773,
+            "outputTokens": 31316,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 14773,
+              "outputTokens": 31316,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 26943,
+          "contextWindow": 1000000,
+          "pressureTokens": 18229,
+          "sampledSurfaceTokens": 8412
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 6852,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 18531,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 25799
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

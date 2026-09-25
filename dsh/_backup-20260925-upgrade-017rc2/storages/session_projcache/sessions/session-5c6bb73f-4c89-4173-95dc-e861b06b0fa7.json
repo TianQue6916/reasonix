@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148166863,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_215]\nIV.2  Shift Matrices and Circulant Matrices    213\n\n**IV.2  Shift Matrices and Circulant Matrices**\n\nWhen this matrix \\(P\\) multiplies a vector \\(x\\), the components of \\(x\\) shift upward:\n\n**Upward shift**\n**Cyclic permutation**\n\\[\nPx = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix} \\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} x_2 \\\\ x_3 \\\\ x_4 \\\\ x_1 \\end{bmatrix} \\tag{1}\n\\]\n\nThe words cyclic and circular apply to \\(P\\) because the first component \\(x_1\\) moves to the end. If we think of numbers \\(x_1, x_2, x_3, x_4\\) around a circle, \\(P\\) moves them all by one position. And \\(P^2\\) turns the circle by two positions:\n\n\\[\nP^2x = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix} \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix} \\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\end{bmatrix} \\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} x_3 \\\\ x_4 \\\\ x_1 \\\\ x_2 \\end{bmatrix} \\tag{2}\n\\]\n\nEvery new factor \\(P\\) gives one additional shift. Then \\(P^4\\) gives a complete \\(360^\\circ\\) turn: \\(P^4x = x\\) and \\(P^4 = I\\). The next powers \\(P^5, P^6, P^7, P^8\\) repeat the pattern and cycle around again. Notice that \\(P^3\\) is the inverse of \\(P\\), because \\((P^3)(P) = P^4 = I\\).\n\nThe next matrix is called a **circulant**. It is simply a combination of \\(P, P^2, P^3\\), and \\(P^4 = I\\). It has **constant diagonals**:\n\n\\[\n\\textbf{Circulant matrix} \\quad C = c_0I + c_1P + c_2P^2 + c_3P^3 = \\begin{bmatrix} c_0 & c_1 & c_2 & c_3 \\\\ c_3 & c_0 & c_1 & c_2 \\\\ c_2 & c_3 & c_0 & c_1 \\\\ c_1 & c_2 & c_3 & c_0 \\end{bmatrix} \\tag{3}\n\\]\n\nEach diagonal in that matrix cycles around exactly like the 1's in \\(P\\). The diagonal with \\(c_1, c_1, c_1\\) is completed by the fourth \\(c_1\\) at the bottom. **Important: If you multiply two circulant matrices \\(C\\) and \\(D\\), their product \\(CD = DC\\) is again a circulant matrix.**\n\nWhen you multiply \\(CD\\), you are multiplying powers of \\(P\\) to get more powers of \\(P\\). And \\(DC\\) is doing exactly the same. This example has \\(N = 3\\) and \\(P^3 = I\\):\n\n\\[\nCD = \\begin{bmatrix} 1 & 2 & 3 \\\\ 3 & 1 & 2 \\\\ 2 & 3 & 1 \\end{bmatrix} \\begin{bmatrix} 5 & 0 & 4 \\\\ 4 & 5 & 0 \\\\ 0 & 4 & 5 \\end{bmatrix} = \\begin{bmatrix} 13 & 22 & 19 \\\\ 19 & 13 & 22 \\\\ 22 & 19 & 13 \\end{bmatrix} = \\text{circulant} \\tag{4}\n\\]\n\n\\[\n(I + 2P + 3P^2)(5I + 4P^2)\n\\]\n\\[\n(5I + 4P^2)(I + 2P + 3P^2) = 5I + 10P + (15+4)P^2 + 8P^3 + 12P^4 = 13I + 22P + 19P^2\n\\]\n\n### [原文 page_216]\n\\textbf{214} \\hfill \\textbf{Special Matrices}\n\nAt that last step, I needed and used the circular facts that \\(P^3=I\\) and \\(P^4=P\\). So the vectors \\((1,2,3)\\) for \\(C\\) and \\((5,0,4)\\) for \\(D\\) produce the vector \\((13,22,19)\\) for \\(CD\\) and \\(DC\\). This operation on vectors is called \\textbf{cyclic convolution}.\n\nTo summarize : When we multiply \\(N\\) by \\(N\\) circulant matrices \\(C\\) and \\(D\\), we take the cyclic convolution of the vectors \\((c_0,c_1,\\ldots,c_{N-1})\\) and \\((d_0,d_1,\\ldots,d_{N-1})\\). Ordinary convolution finds the coefficients when we multiply \\((c_0I+c_1P+\\cdots+c_{N-1}P^{N-1})\\) times \\((d_0I+d_1P+\\cdots+d_{N-1}P^{N-1})\\). Then cyclic convolution uses the crucial fact that \\(P^N=I\\).\n\n\\[\n\\textbf{Convolution}\\qquad (1,2,3)*(5,0,4)=(5,10,19,8,12) \\tag{5}\n\\]\n\\[\n\\textbf{Cyclic convolution}\\qquad (1,2,3)\\circledast(5,0,4)=(5+8,10+12,19)=(13,22,19) \\tag{6}\n\\]\n\nOrdinary convolution is the multiplication you learned in second grade (made easier because there is no ``carrying'' to the next column):\n\n\\[\n\\begin{array}{rrrrr}\n & 1 & 2 & 3 \\\\\n & 5 & 0 & 4 \\\\ \\hline\n & 4 & 8 & 12 \\\\\n 0 & 0 & 0 & \\\\\n 5 & 10 & 15 & \\\\ \\hline\n 5 & 10 & 19 & 8 & 12\n\\end{array}\n\\quad = c*d\n\\]\n\nThe cyclic step combines \\(5+8\\) because \\(P^3=I\\). It combines \\(10+12\\) because \\(P^4=P\\). The result is \\((13,22,19)\\).\n\n\\textbf{Practice}\\qquad\n\\[\n\\begin{aligned}\n(0,1,0)\\circledast(d_0,d_1,d_2)&=(d_1,d_2,d_0)\\\\\n(1,1,1)\\circledast(d_0,d_1,d_2)&=(d_0+d_1+d_2,d_0+d_1+d_2,d_0+d_1+d_2)\\\\\n(c_0,c_1,c_2)\\circledast(d_0,d_1,d_2)&=(d_0,d_1,d_2)\\circledast(c_0,c_1,c_2)\n\\end{aligned}\n\\]\n\nThat last line means that \\(CD=DC\\) for circulant matrices and \\(c\\circledast d=d\\circledast c\\) for cyclic convolutions. Powers of \\(P\\) in \\(C\\) commute with powers of \\(P\\) in \\(D\\).\n\nIf you add \\(1+2+3=6\\) and \\(5+0+4=9\\), you have a quick check on convolution. Multiply 6 times 9 to get 54. Then 54 should be (and is) equal to \\(5+10+19+8+12=54\\). And also \\(13+22+19=54\\) for cyclic convolution.\n\nThe sum of the \\(c\\)'s times the sum of the \\(d\\)'s equals the sum of the outputs. That is because every \\(c\\) multiplies every \\(d\\) in \\(c*d\\) and in \\(c\\circledast d\\).\n\n【当前译文】\n@@PAGE:215@@\n<!-- page 215 -->\n> <span style=color:#7f8c8d;>本页为书页 213，属 §IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：</span> 本页 OCR 中 `¯I` 为上标 $-1$，`尹 4`／`五` 为 $P^4$／$I$，`訂` 为 $5I$，`@` 为 $I$，`131` 为 $13I$，`什 0 m` 为 from，`lmp 0 皿 t` 为 Important；例子的规模 OCR 读作 $N = 3$ 与 $P^3 = I$，故式 (4) 的各矩阵均为 $3\\times3$，并由此得到 $13I + 22P + 19P^2$；公式编号照原文保留，其中多项式乘法那一行原文未编号（下一页的普通卷积才是式 (5)）。\n<span style=color:#2471a3;>**[section]**</span>\n## IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.2, p.213</span>\n当这个矩阵 $P$ 乘上一个向量时，各分量都向上移位：\n```math\nPx = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} x_2 \\\\ x_3 \\\\ x_4 \\\\ x_1 \\end{bmatrix} \\tag{1}\n```\n> <span style=color:#7f8c8d;>（式 (1) 旁的边注：Upward shift（向上移位）／Cyclic permutation（循环置换）。）</span>\n这个移位同时也是 cyclic permutation（循环置换）。\n英文词 cyclic（循环的）与 circular（环形的）之所以适用于 $P$，是因为第一个分量 $x_1$ 跑到了末尾。\n若把 $(x_1, x_2, x_3, x_4)$ 想成排在一个圆周上的数，那么 $P$ 把它们全体挪动一个位置。\n而 $P^2$ 则把这个圆周转过两个位置：\n```math\nP^2x = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix}\\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} x_3 \\\\ x_4 \\\\ x_1 \\\\ x_2 \\end{bmatrix} \\tag{2}\n```\n每多乘一个因子 $P$，就多一次移位。\n于是 $P^4$ 给出完整的 $360^\\circ$ 旋转，并且 $P^4 = I$。\n接下来的幂 $P^5, P^6, P^7, P^8$ 重复同样的模式，再一次绕回原处。\n注意 $P^3$ 就是 $P$ 的逆，因为 $(P^3)(P) = P^4 = I$。\n### [note] page_215 ｜ 置换矩阵 $P$ 与位反转顺序：把置换拆成轮换来看\n> <span style=color:#1e8449;>[note] Note（译者注）：本页的 $P$ 是「把每个分量向上移位一格、第一个分量绕到末尾」的那个矩阵。它值得单独立一条注，因为它把一个抽象的置换变成了可以数、可以画的东西。写下来就是：$P$ 作用在 $(x_1,x_2,x_3,x_4)$ 上得到 $(x_2,x_3,x_4,x_1)$。跟踪一个分量的足迹：位置 1 的分量先跑到位置 4，再到位置 3，再到位置 2，最后回到位置 1——四个位置被串成一个圈。这正是 6.042J 里「置换的轮换分解」：任意置换都可以唯一地（不计次序）写成若干互不相交的轮换之积，而 $P$ 的轮换分解就是一个长度为 4 的单轮换 $(1\\,4\\,3\\,2)$。于是 $P^4=I$ 立刻可见：走一圈回到原处。同理 $P^3$ 是 $P$ 的逆（本页原文就是这样说的），因为再走三步就凑满一圈；一般 $N$ 情形下 $P^N=I$、$P^{N-1}=P^{-1}$。</span>\n> <span style=color:#1e8449;>轮换分解还解释了本页后面那句「每条对角线都是常数」的循环矩阵为什么封闭。把 $C=c_0I+c_1P+c_2P^2+c_3P^3$ 当作 $P$ 的多项式，两个循环矩阵相乘就是两个多项式相乘，再把超过 $N-1$ 次的幂按 $P^N=I$ 折回来。两个多项式的乘法可交换，所以 $CD=DC$——本页说的重要事实不必逐个元素去验证，用轮换关系一句话就能说完。书页 214（page_216）把这个「折回来」写成了公式：式（5）的普通卷积 $(1,2,3)*(5,0,4)=(5,10,19,8,12)$ 有 5 项，而式（6）的循环卷积把最高的两项折回低位，得到 $(5+8,\\;10+12,\\;19)=(13,22,19)$——折回的规则正是 $P^3=I$（$P^3$ 折成 $I$）与 $P^4=P$（$P^4$ 折成 $P$），注意这个例子取的是 $N=3$。</span>\n> <span style=color:#1e8449;>把这套工具用到 FFT 里的那个置换上，收获更具体。书页 211（page_213）说，全部偶奇置换做完之后，各分量进入 FFT 的顺序是位反转顺序：把 $0$ 到 $N-1$ 写成二进制，再把数位次序颠倒。$N=4$ 时得到 $0,2,1,3$。去查它的轮换分解：$0$ 与 $3$ 各自不动（固定点），$1$ 与 $2$ 互换，是一个对换。也就是说，这个置换是对合的——做两次就回到原处。这与书页 207（page_209）讲的 $\\Omega=FP$、$P^2=I$ 属于同一类现象：偶奇打乱这类置换通常满足 $P^2=I$，因为「把偶数挑到前面」这件事重复做一次就把顺序还原了。</span>\n> <span style=color:#1e8449;>一个小技巧随之出现：既然置换是对合的，它的置换矩阵必然是对称的（第 $i$ 行第 $j$ 列与第 $j$ 行第 $i$ 列同时为 $1$），而书页 207 里那个把 $F$ 的列前后翻转的 $J$（反对角线上全为 $1$ 的反序单位矩阵）确实是对称的。另外，数一数位反转置换的逆序数，还能确定它对应多少次行交换的奇偶性：$N=4$ 时 $0,2,1,3$ 只有一对逆序（$2$ 排在 $1$ 前面），是奇置换。这类「数逆序定奇偶」的练习在 6.042J 里出现过，在这里它给出一条实用的自检——如果你实现的位反转排序交换次数是偶数，那就一定有 bug。位反转顺序的实际意义也值得点一句：它让整张递归分解图可以原地执行，输入按位反转顺序排好后，每一层只在本层的相邻位置之间做蝶形运算，不需要额外的临时数组。</span>\n> <span style=color:#1e8449;>可迁移的结论：遇到任何置换或重排（位反转、转置、分块洗牌、缓存行重排），第一件事是写它的轮换分解——轮换长度告诉你迭代几次回到原处（对合、单轮换、多轮换一目了然），固定点告诉你哪些位置完全不需要动（可以直接跳过，省时间），逆序数的奇偶性则可以给实现做自检。这与 CSAPP 里分析矩阵转置时的分块重排是同一个思路：先把数据移动的模式看清，才知道能不能原地做、要不要额外的缓冲区。</span>\n下一个矩阵称为 circulant（循环矩阵）。\n它无非是 $P, P^2, P^3$ 与 $P^4 = I$ 的组合，其特点是每条对角线都是常数：\n```math\n\\text{Circulant matrix } C = c_0I + c_1P + c_2P^2 + c_3P^3 = \\begin{bmatrix} c_0 & c_1 & c_2 & c_3 \\\\ c_3 & c_0 & c_1 & c_2 \\\\ c_2 & c_3 & c_0 & c_1 \\\\ c_1 & c_2 & c_3 & c_0 \\end{bmatrix} \\tag{3}\n```\n该矩阵中的每一条对角线，其绕行方式与 $P$ 中那些 $1$ 完全一样。\n带有 $c_1$ 的那条对角线，由底部第四个 $c_1$ 补全。\n重要之处在于：两个循环矩阵 $C$ 与 $D$ 相乘，其乘积 $CD = DC$ 仍是循环矩阵。\n当你计算 $CD$ 时，你是在把 $P$ 的幂相乘，从而得到 $P$ 的更高次幂。\n而 $DC$ 做的完全是同一件事。\n这个例子取 $N = 3$，于是 $P^3 = I$：\n```math\nCD = \\begin{bmatrix} 1 & 2 & 3 \\\\ 3 & 1 & 2 \\\\ 2 & 3 & 1 \\end{bmatrix} \\begin{bmatrix} 5 & 0 & 4 \\\\ 4 & 5 & 0 \\\\ 0 & 4 & 5 \\end{bmatrix} = \\begin{bmatrix} 13 & 22 & 19 \\\\ 19 & 13 & 22 \\\\ 22 & 19 & 13 \\end{bmatrix} \\qquad \\text{circulant} \\tag{4}\n```\n```math\n(I + 2P + 3P^2)(5I + 4P^2) = (5I + 4P^2)(I + 2P + 3P^2) = 5I + 10P + (15 + 4)P^2 + 8P^3 + 12P^4 = 13I + 22P + 19P^2\n```\n\n@@PAGE:216@@\n<!-- page 216 -->\n> <span style=color:#7f8c8d;>本页为书页 214，属 §IV.2 Shift Matrices and Circulant Matrices（移位矩阵与循环矩阵）的续页；页眉与印页码为重复元素，不译、不收录。</span>\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.2, p.214</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：</span> 本页 OCR 中的 `山 at` 为 that，`an d` 为 and，`什 om` 为 from，`皑` 类噪声为矩阵本体；普通卷积在原文中编号为 $(5)$、循环卷积编号为 $(6)$（OCR 已读出的两个编号即为此），`P3 = I` 与 `P4 = P` 是 $N=3$ 情形的正确读法，（原书此处 OCR 残缺）本页 $D$ 的顶行向量是 $(5,0,4)$（三元），不是 $(5,0,4,0)$。\n在最后一步中，我需要并使用了循环关系 $P^3 = I$ 与 $P^4 = P$。于是 $C$ 的向量 $(1, 2, 3)$ 与 $D$ 的向量 $(5, 0, 4)$ 为 $CD$ 与 $DC$ 产生出同一个向量 $(13, 22, 19)$。这种作用在向量上的运算称为 cyclic convolution（循环卷积）。\n总结一下：当我们把两个 $N\\times N$ 的循环矩阵 $C$ 与 $D$ 相乘时，我们取向量 $(c_0, c_1, \\cdots, c_{N-1})$ 与 $(d_0, d_1, \\cdots, d_{N-1})$ 的循环卷积（cyclic convolution）。普通卷积（ordinary convolution）给出的是把 $(c_0I + c_1P + \\cdots + c_{N-1}P^{N-1})$ 乘以 $(d_0I + d_1P + \\cdots + d_{N-1}P^{N-1})$ 时的各项系数；而循环卷积（cyclic convolution）用到的则是 $P^{N} = I$ 这一关键事实。（续）卷积。ordinary convolution（普通卷积）求的是 $(c_0 + c_1 P + \\cdots + c_{N-1}P^{N-1})$ 乘以 $(d_0 + d_1 P + \\cdots + d_{N-1}P^{N-1})$ 之后的各项系数；而循环卷积用到的关键事实是 $P^N = I$。\n```math\n\\text{Convolution } (1, 2, 3) * (5, 0, 4) = (5,\\ 10,\\ 19,\\ 8,\\ 12) \\tag{5}\n```\n```math\n\\text{Cyclic convolution } (1, 2, 3) \\ast (5, 0, 4) = (5 + 8,\\ 10 + 12,\\ 19) = (13, 22, 19) \\tag{6}\n```\n而普通卷积就是你二年级学过的乘法（因为没有向下一位“进位”，所以更简单）：\n```math\n\\begin{array}{rrrrr}\n& & 1 & 2 & 3\\\\\n& & 5 & 0 & 4\\\\ \\hline\n& & 4 & 8 & 12\\\\\n& 0 & 0 & 0 & \\\\\n5 & 10 & 15 & & \\\\ \\hline\n5 & 10 & 19 & 8 & 12\n\\end{array}\n\\qquad = c * d\n```\n循环的那一步把 $5 + 8$ 合并起来，因为 $P^3 = I$；它把 $10 + 12$ 合并起来，因为 $P^4 = P$；结果就是 $(13, 22, 19)$。\n> <span style=color:#7f8c8d;>（原书边注：Practice（练习）。）</span>\n练习（Practice）：\n```math\n\\begin{aligned}\n(0,1,0) \\circledast (d_0, d_1, d_2) &= (d_1, d_2, d_0)\\\\\n(1,1,1) \\circledast (d_0, d_1, d_2) &= (d_0 + d_1 + d_2,\\ d_0 + d_1 + d_2,\\ d_0 + d_1 + d_2)\\\\\n(c_0, c_1, c_2) \\circledast (d_0, d_1, d_2) &= (d_0, d_1, d_2) \\circledast (c_0, c_1, c_2)\n\\end{aligned}\n```\n最后这一行说明：对循环矩阵有 $CD = DC$，对循环卷积有 $c \\ast d = d \\ast c$。$C$ 中 $P$ 的幂与 $D$ 中 $P$ 的幂彼此可交换。\n如果你把 $1 + 2 + 3$ 加起来得 $6$、把 $5 + 0 + 4$ 加起来得 $9$，你就得到对卷积的一次快速检查。把 6 乘以 9 得 54，那么 54 应当（而且确实）等于 $5 + 10 + 19 + 8 + 12 = 54$，这正是普通卷积各项之和；而 $13 + 22 + 19 = 54$ 则是循环卷积各项之和。\n$c_i$ 之和乘以 $d_j$ 之和，等于输出之和。这是因为在 $c * d$ 与 $c \\ast d$ 中，每个 $c$ 都与每个 $d$ 相乘一次。\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：原 OCR 把「练习」一行的两个因子写成 `@0 ， dl ， d2 ） ． @0 ， CI ， C2` 一类的残缺串，其中卷积结果三个分量在 OCR 中完全相同（`do + dl + d2`），据此还原为「一个因子取 $(1,1,1)$、另一个取 $(c_0,c_1,c_2)$」这一使三个分量相等的写法，（原书此处 OCR 残缺）练习行原文的第二个因子究竟是 $(c_0,c_1,c_2)$ 还是 $(d_0,d_1,d_2)$。</span>\n\n现在输出修订后的译文全文（从 `@@PAGE:215@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6603,
+            "outputTokens": 5186,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6603,
+              "outputTokens": 5186,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8176,
+          "contextWindow": 1000000,
+          "pressureTokens": 10443,
+          "sampledSurfaceTokens": 5014
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3454,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3162,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7032
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

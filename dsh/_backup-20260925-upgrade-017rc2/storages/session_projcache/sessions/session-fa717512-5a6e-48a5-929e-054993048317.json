@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790148180609,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_223]\nIV.3 The Kronecker Product \\(A \\otimes B\\)                                221\n\n**IV.3 The Kronecker Product \\(A \\otimes B\\)**\n\nSection IV.1 described the Discrete Fourier Transform of a 1-dimensional signal \\(f\\). This section will describe the 2-dimensional DFT—which is needed for image processing. When the 1-dimensional transform uses a matrix of size \\(N\\), the 2-dimensional transform needs a matrix of size \\(N^2\\) (and video will introduce a third dimension). The 2D matrices will be large. We hope to construct them easily from the 1D Fourier matrices \\(F\\) and \\(\\Omega\\).\n\nThis construction uses the **Kronecker products** \\(F \\otimes F\\) and \\(\\Omega \\otimes \\Omega\\). The earlier word was *tensor product*. The MATLAB command is \\(\\text{kron}(F, F)\\) and \\(\\text{kron}(\\Omega, \\Omega)\\).\n\nThis operation is extremely convenient for many purposes. So this section develops the key ideas and operations on \\(K = A \\otimes B\\): to invert \\(K\\), to solve \\((A \\otimes B) x = y\\), and to find the eigenvalues and eigenvectors and SVD of \\(A \\otimes B\\).\n\nThe first thing to know about Kronecker products is the size of \\(A \\otimes B = \\text{kron}(A, B)\\):\n\n**1** If \\(A\\) and \\(B\\) are \\(n\\) by \\(n\\), then \\(A \\otimes B\\) is \\(n^2\\) by \\(n^2\\).\n\n**2** If \\(A\\) is \\(m\\) by \\(n\\) and \\(B\\) is \\(M\\) by \\(N\\), then \\(A \\otimes B\\) has \\(mM\\) rows and \\(nN\\) columns.\n\nThe entries of \\(A \\otimes B\\) are (all \\(mn\\) entries of \\(A\\)) times (all \\(MN\\) entries of \\(B\\)).\n\nThe next fact is the position of those products in the large matrix. The rule is to **multiply each entry of \\(A\\) times the whole matrix \\(B\\)**. Then \\(A \\otimes B\\) is a block matrix. Every block is a multiple of \\(B\\):\n\n\\[\n\\text{Kronecker product} \\qquad A \\otimes B = \\begin{bmatrix} a_{11}B & \\cdots & a_{1n}B \\\\ \\vdots & & \\vdots \\\\ a_{m1}B & \\cdots & a_{mn}B \\end{bmatrix}. \\tag{1}\n\\]\n\nThe simplest case has identity matrices for \\(A\\) and \\(B\\): (2 by 2) \\(\\otimes\\) (3 by 3) = 6 by 6.\n\n\\[\nI_2 \\otimes I_3 = I_6 \\qquad \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} \\otimes \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 I_3 & 0 I_3 \\\\ 0 I_3 & 1 I_3 \\end{bmatrix} = I_6. \\tag{2}\n\\]\n\nA harder case (but not impossible) comes from multiplying two Kronecker products:\n\n\\[\nA \\otimes B \\quad \\text{times} \\quad C \\otimes D \\qquad \\text{equals} \\quad AC \\otimes BD \\tag{3}\n\\]\n\\[\nA \\otimes B \\quad \\text{times} \\quad A^{-1} \\otimes B^{-1} \\qquad \\text{equals} \\quad I \\otimes I \\tag{4}\n\\]\n\nEquation (3) allows rectangular matrices. Equation (4) is for invertible square matrices. \\(I \\otimes I\\) is the identity matrix of size \\(nN\\). So the inverse of \\(A \\otimes B\\) is \\(A^{-1} \\otimes B^{-1}\\).\n\n### [原文 page_224]\n**222** Special Matrices\n\nThe proof of equation (3) comes from block multiplication of Kronecker products:\n\\[\n\\begin{bmatrix} a_{11}B & a_{12}B \\\\ a_{21}B & a_{22}B \\end{bmatrix}\n\\begin{bmatrix} c_{11}D & c_{12}D \\\\ c_{21}D & c_{22}D \\end{bmatrix}\n=\n\\begin{bmatrix} (a_{11}c_{11} + a_{12}c_{21})BD & (a_{11}c_{12} + a_{12}c_{22})BD \\\\ (a_{21}c_{11} + a_{22}c_{21})BD & (a_{21}c_{12} + a_{22}c_{22})BD \\end{bmatrix}. \\tag{5}\n\\]\n\nThat is exactly \\(AC \\otimes BD\\). A matrix of size \\(N^2\\) times a matrix of size \\(N^2\\) is still a matrix of size \\(N^2\\). The final basic identity produces the transpose of \\(A \\otimes B\\):\n\\[\n(A \\otimes B)^{\\mathrm{T}} = A^{\\mathrm{T}} \\otimes B^{\\mathrm{T}}\n\\qquad\n\\begin{bmatrix} a_{11}B & a_{12}B \\\\ a_{21}B & a_{22}B \\end{bmatrix}^{\\mathrm{T}}\n=\n\\begin{bmatrix} a_{11}B^{\\mathrm{T}} & a_{21}B^{\\mathrm{T}} \\\\ a_{12}B^{\\mathrm{T}} & a_{22}B^{\\mathrm{T}} \\end{bmatrix} \\tag{6}\n\\]\n\n**Two-dimensional Discrete Fourier Transforms**\n\nStart with an \\(N\\) by \\(N\\) image. It could be a photograph with \\(N^2\\) small pixels, taken by your phone. It could be a painting by Chuck Close (who realized that your eyes merge the small squares into a continuous image—this is how the phone camera works too). We have \\(N^2\\) numbers.\n\nAnd we have a choice. We could unfold those numbers into a long vector of length \\(N^2\\). Or we could keep them in an \\(N\\) by \\(N\\) matrix, so that pixels which are close in the image remain close. The unfolding into a vector (by an operator called \\(vec\\)) will be described later in this section. For now we think of a vector \\(f\\) in \\(\\mathbf{R}^{n^2}\\) with its \\(n^2\\) components in a square.\n\nWe intend to apply a \\(2D\\) Discrete Fourier Transform to \\(f\\). The result will be a \\(2D\\) vector \\(c\\). You could think of this process in two steps:\n\n**Row by row** Apply the \\(1D\\) DFT to each row of pixels separately.\n**Column by column** Rearrange the output by columns and transform each column.\n\nThe matrix for each step is \\(N^2\\) by \\(N^2\\). First think of the \\(N^2\\) pixels a row at a time and multiply each row in that long vector by the one-dimensional DFT matrix \\(\\Omega_N\\):\n\\[\n\\Omega_{\\mathrm{row}} f =\n\\begin{bmatrix}\n\\Omega_N & & & \\\\\n& \\Omega_N & & \\\\\n& & \\Omega_N & \\\\\n& & & \\Omega_N\n\\end{bmatrix}\n\\begin{bmatrix}\n\\text{row } 1 \\\\\n\\text{row } 2 \\\\\n\\text{row } 3 \\\\\n\\text{row } 4\n\\end{bmatrix}\n\\qquad\n(f \\text{ and } \\Omega_{\\mathrm{row}} f \\text{ have length } N^2) \\tag{7}\n\\]\n\nThat matrix is \\(\\Omega_{\\mathrm{row}} = I_N \\otimes \\Omega_N\\). It is a Kronecker product of size \\(N^2\\).\n\nNow the output \\(\\Omega_{\\mathrm{row}} f\\) is (mentally not electronically) rearranged into columns. The second step of the \\(2D\\) transform multiplies each column of that “halfway” image \\(\\Omega_{\\mathrm{row}} f\\) by \\(\\Omega_N\\). Again we are multiplying by a matrix \\(\\Omega_{\\mathrm{column}}\\) of size \\(N^2\\). The full \\(2D\\) transform is \\(\\Omega_N \\otimes \\Omega_N\\).\n\n\\noindent\\fbox{%\n\\begin{minipage}{\\dimexpr\\linewidth-2\\fboxsep-2\\fboxrule}\n\\vspace{4pt}\nThat matrix \\(\\Omega_{\\mathrm{column}}\\) is the Kronecker product \\(\\Omega_N \\otimes I_N\\).\n\nThe \\(2D\\) transform puts the row and column steps together into \\(\\Omega_{N \\times N}\\).\n\\[\n\\Omega_{N \\times N} = \\Omega_{\\mathrm{column}} \\Omega_{\\mathrm{row}} = (\\Omega_N \\otimes I_N)(I_N \\otimes \\Omega_N) = \\Omega_N \\otimes \\Omega_N. \\tag{8}\n\\]\n\\vspace{4pt}\n\\end{minipage}%\n}\n\n【当前译文】\n@@PAGE:223@@\n<!-- page 223 -->\n> <span style=color:#7f8c8d;>本页为书页 221，属 §IV.3 The Kronecker Product（克罗内克积）的正文首页；页眉与印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[section]**</span>\n## （首节）The Kronecker Product $A \\otimes B$（克罗内克积 $A \\otimes B$）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.3, p.221</span>\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多：`蓋`、`丆`、`方` 均为矩阵 $A$，`刀`、`召` 为矩阵 $B$，`什 om`、`什 0 m` 为 from，`¯I` 为上标 $-1$，`．` 为 $\\otimes$（克罗内克积），`ÄB` 一类为 $\\approx$；公式均按数学语境重建。\n§IV.1 描述了 1 维信号 $f$ 的 Discrete Fourier Transform, DFT（离散傅里叶变换）。\n本节将描述 2 维 DFT——图像处理正需要它。\n当 1 维变换使用一个规模为 $N$ 的矩阵时，2 维变换需要一个规模为 $N^2$ 的矩阵（而视频还会引入第三个维度）。\n这些 2 维矩阵将会很大。\n我们希望从 1 维 Fourier 矩阵 $F$ 与 $\\Omega$ 出发，轻松地把它们构造出来。\n这一构造用到的正是 Kronecker product（克罗内克积）$F \\otimes F$ 与 $\\Omega \\otimes \\Omega$。\n这个运算更早的名字是张量积（tensor product）。\nMATLAB 命令是 `kron(F,F)` 与 `kron(\\Omega,\\Omega)`。\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）OCR 此处仅残存 `怊 “ ro` 三枚符号，疑为 tensor product（张量积）的残迹；已按「克罗内克积亦称张量积」这一通行事实重建，如需精确核对，请对照原书相应页。\n这个运算对许多目的都极其方便。\n因此本节围绕 $K = A \\otimes B$ 展开关键思想与运算：如何求逆，如何求解 $(A \\otimes B)x = b$，以及如何求 $A \\otimes B$ 的特征值、特征向量与 SVD。\n关于 Kronecker 积首先要知道的，是 $A \\otimes B = \\mathrm{kron}(A,B)$ 的规模：\n**1.** 若 $A$ 与 $B$ 都是 $n \\times n$，则 $A \\otimes B$ 是 $n^{2} \\times n^{2}$。\n**2.** 若 $A$ 是 $m \\times n$、$B$ 是 $M \\times N$，则 $A \\otimes B$ 有 $mM$ 行与 $nN$ 列。\n$A \\otimes B$ 的元素，是（$A$ 的全部 $mn$ 个元素）乘以（$B$ 的全部 $MN$ 个元素）。\n下一个事实是这些乘积在大矩阵中的位置。\n规则是：把 $A$ 的每个元素乘以整个矩阵 $B$。\n于是 $A \\otimes B$ 是一个 block matrix（分块矩阵）。\n每个块都是 $B$ 的一个倍数：\n<span style=color:#2471a3;>**[definition]**</span> <span style=color:#c0392b;>**Kronecker product（克罗内克积）**</span>\n```math\nA \\otimes B = \\begin{bmatrix}\na_{11}B & \\cdots & a_{1n}B\\\\\n\\vdots & & \\vdots\\\\\na_{m1}B & \\cdots & a_{mn}B\n\\end{bmatrix} \\tag{1}\n```\n最简单的情形是 $A$ 与 $B$ 都取单位矩阵：$(2 \\times 2) \\otimes (3 \\times 3) = 6 \\times 6$。\n```math\n\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} \\otimes\n\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 0 & 0 & & & \\\\\n0 & 1 & 0 & & & \\\\\n0 & 0 & 1 & & & \\\\\n& & & 1 & 0 & 0\\\\\n& & & 0 & 1 & 0\\\\\n& & & 0 & 0 & 1\n\\end{bmatrix} \\tag{2}\n```\n一个更难（但并非不可能）的情形，是把两个 Kronecker 积相乘：\n```math\n(A \\otimes B)(C \\otimes D) = AC \\otimes BD \\tag{3}\n```\n```math\n(A \\otimes B)(A^{-1} \\otimes B^{-1}) = I \\otimes I \\tag{4}\n```\n方程 (3) 允许矩阵是长方形的。\n方程 (4) 针对可逆方阵。\n$I \\otimes I$ 是规模 $nN$ 的单位矩阵。\n所以 $A \\otimes B$ 的逆是 $A^{-1} \\otimes B^{-1}$。\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）OCR 只捕获到编号 (2)(3)(4)，未见 (1)。此处按编号连续性把「分块定义式」定为 (1)、把单位矩阵的例子定为 (2)；如需精确核对，请对照原书相应页。\n<span style=color:#2471a3;>**[note]**</span>\n> <span style=color:#1e8449;>**[note] 译者注 ｜ 克罗内克积就是「把两个下标拼成一个下标」：**</span> 克罗内克积第一次见会觉得「浪费」：把两个矩阵的所有元素两两相乘，堆成一个 $mM\\times nN$ 的大矩阵，图什么？答案是它把两个方向上的问题**拆开**了。本页给出的分块规则（「把 $A$ 的每个元素乘以整个 $B$」）本质上是在定义一个**下标编码**，而看懂这个编码，是理解后面 $I\\otimes \\Omega$、$\\Omega\\otimes I$、$A\\oplus B$、$\\mathrm{vec}$ 的前提。\n>\n> <span style=color:#1e8449;>**把下标拼成一个下标。** 设 $A$ 是 $m\\times n$、$B$ 是 $M\\times N$。$A\\otimes B$ 的第 $(i,j)$ 块就是 $a_{ij}B$，所以大矩阵的一个位置由「块坐标 $(i,j)$」与「块内坐标 $(p,q)$」共同决定。按行优先把它们压成整数下标：行号 $r=(i-1)M+p$、列号 $s=(j-1)N+q$，则 $(A\\otimes B)_{rs}=a_{ij}b_{pq}$。用 6.042J 的话说，$(i,p)\\mapsto(i-1)M+p$ 是一个双射（配对函数），它没丢任何信息，只是把二维的块结构编码进一维下标。</span>\n>\n> <span style=color:#1e8449;>**这和 CSAPP 里的行主序是同一件事。** 一维地址 = 基址 + 行号 × 每行字节数 + 列号，本身就是一个下标编码函数。克罗内克积相当于把「块的下标」放在高位、「块内下标」放在低位，也就是把 $A$ 当粗粒度、$B$ 当细粒度。于是同一批数字可以有完全不同的排布：C 语言按行主序摊平二维数组，Fortran/MATLAB 按列主序，而 page_227 定义的 $\\mathrm{vec}(A)$ 是按**列**堆叠。三套约定都合法，混用就会出现最经典的那类 bug——推导全对，程序跑出来却是转置的结果。page_229 习题 6 里 $Y=G\\,X^{T}F^{T}$ 再配 `reshape` 的写法，正是被这条「约定差」反复咬过之后才写得出来的。</span>\n>\n> <span style=color:#1e8449;>**运算律为什么好记。** $(A\\otimes B)(C\\otimes D)=AC\\otimes BD$ 做一次分块乘法就看出来了：左端第 $(i,j)$ 块是 $\\sum_k(a_{ik}B)(c_{kj}D)$，而 $a_{ik}$、$c_{kj}$ 是标量，标量与矩阵相乘天然可以自由换序，于是 $(a_{ik}B)(c_{kj}D)=a_{ik}c_{kj}(BD)$，求和后正好是 $(AC)_{ij}(BD)$。这一步之所以轻松，全靠「分块里出现的是标量倍数」这个特殊结构。两条最有用的推论可以直接抄下：$(A\\otimes B)^{-1}=A^{-1}\\otimes B^{-1}$（即 $(4)$ 式），以及 $A\\otimes B$ 的特征值是全部乘积 $\\lambda_i\\mu_j$（page_226）。</span>\n>\n> <span style=color:#1e8449;>**一个可以自己验算的结论。** 由特征值 $\\lambda_i\\mu_j$ 立刻得到：若 $A$ 是 $m\\times m$、$B$ 是 $n\\times n$，则 $\\det(A\\otimes B)=\\det(A)^{n}\\det(B)^{m}$（每个 $\\lambda_i$ 出现 $n$ 次、每个 $\\mu_j$ 出现 $m$ 次）。拿一对 $2\\times2$ 矩阵手算行列式就能确认。这也是「记住 $a_{ij}B$ 的排布」+「把 $\\otimes$ 读成两个独立方向」两招就够复现全部运算律的例子。</span>\n>\n> <span style=color:#1e8449;>**可迁移的结论**：看到 $\\otimes$ 就在心里读成「两个互不相干的坐标方向上的笛卡尔积作用」。凡是能写成 $\\otimes$ 的矩阵，都绝不要真的按稠密矩阵去乘：$N^2\\times N^2$ 的稠密矩阵有 $N^4$ 个元素，而它的结构其实只由两个 $N\\times N$ 的小矩阵决定；能否利用这一点，就是「算得动」与「算不动」的分界线。</span>\n\n@@PAGE:224@@\n<!-- page 224 -->\n> <span style=color:#7f8c8d;>本页为书页 222，属 §IV.3 的正文续页，末尾进入 Two-dimensional Discrete Fourier Transforms（二维离散傅里叶变换）；页眉与印页码为重复元素，不译、不收录。</span>\n<span style=color:#2471a3;>**[proof]**</span>\n方程 (3) 的证明来自 Kronecker 积的 block multiplication（分块乘法）：\n```math\n\\begin{bmatrix} a_{11}B & a_{12}B \\\\ a_{21}B & a_{22}B \\end{bmatrix}\n\\begin{bmatrix} c_{11}D & c_{12}D \\\\ c_{21}D & c_{22}D \\end{bmatrix}\n=\n\\begin{bmatrix}\n(a_{11}c_{11} + a_{12}c_{21})BD & (a_{11}c_{12} + a_{12}c_{22})BD \\\\\n(a_{21}c_{11} + a_{22}c_{21})BD & (a_{21}c_{12} + a_{22}c_{22})BD\n\\end{bmatrix} \\tag{5}\n```\n这正是 $(AC) \\otimes (BD)$。\n一个规模为 $N^2$ 的矩阵乘以一个规模为 $N^2$ 的矩阵，结果仍然是规模为 $N^2$ 的矩阵。\n最后一条基本恒等式给出 $A \\otimes B$ 的转置：\n```math\n(A \\otimes B)^{\\mathrm{T}} = A^{\\mathrm{T}} \\otimes B^{\\mathrm{T}}\n\\qquad\n\\begin{bmatrix} a_{11}B & a_{12}B \\\\ a_{21}B & a_{22}B \\end{bmatrix}^{\\mathrm{T}}\n=\n\\begin{bmatrix} a_{11}B^{T} & a_{21}B^{T} \\\\ a_{12}B^{T} & a_{22}B^{T} \\end{bmatrix} \\tag{6}\n```\n> <span style=color:#1e8449;>**[note] 译者注：**</span> （原书此处 OCR 残缺）编号 $(6)$ 在本页 OCR 中缺失（OCR 只显示转置前后的两个分块矩阵，其右侧另有 `AT ． BT` 一行可读作 $(A\\otimes B)^{T}=A^{T}\\otimes B^{T}$）。此处按编号连续性补出（本页有 $(5)$、下一页有 $(7)$，中间的转置恒等式只能是 $(6)$）；如需精确核对，请对照原书相应页。\n<span style=color:#2471a3;>**[section]**</span>\n### Two-dimensional Discrete Fourier Transforms（二维离散傅里叶变换）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.3, p.222</span>\n从一个 $N \\times N$ 的图像开始。\n它可以是一张照片，含有 $N^2$ 个很小的像素，由手机拍摄而来。\n它也可以是 Chuck Close 的一幅画（他意识到你的眼睛会把这些小方块融合成一幅连续的图像——手机相机的工作原理也是如此）。\n我们有 $N^2$ 个数。\n于是我们面临一个选择。\n我们可以把这些数展平成一个长度为 $N^2$ 的长向量；也可以把它们保留在一个 $N \\times N$ 的矩阵中，使得图像中彼此靠近的像素依然靠近。\n用一个称为 vec 的算子展平成向量，将在本节后面描述。\n眼下我们把 $\\mathbb{R}^{N^2}$ 中的一个向量想成是排布在一个正方形中的 $N^2$ 个分量。\n我们打算对 $f$ 施加一个 2 维 Discrete Fourier Transform（离散傅里叶变换）。\n结果将是一个 2 维向量 $c$。\n你可以把这个过程想成两步。\n**1.** 逐行做（Row by row）：对每一行像素分别施加 1 维 DFT。\n**2.** 逐列做（Column by column）：按列重新排列输出，并变换每一列。\n每一步的矩阵都是 $N^2 \\times N^2$ 的。\n先一次考虑一行的 $N$ 个像素，把长向量中的每一行乘以一维 DFT 矩阵 $\\Omega_N$：\n```math\n\\Omega_{\\text{row}} f = \\begin{bmatrix} \\Omega_N & & & \\\\ & \\Omega_N & & \\\\ & & \\cdot & \\\\ & & & \\Omega_N \\end{bmatrix}\\begin{bmatrix} \\text{row 1} \\\\ \\text{row 2} \\\\ \\text{row 3} \\\\ \\text{row 4} \\end{bmatrix}\n\\qquad (f \\text{ 与 } \\Omega_{\\text{row}} f \\text{ 的长度都是 } N^2) \\tag{7}\n```\n那个矩阵是 $\\Omega_{\\text{row}} = I_N \\otimes \\Omega_N$。\n它是规模为 $N^2$ 的 Kronecker 积，即一个 $N^2 \\times N^2$ 的矩阵。\n现在，输出 $\\Omega_{\\text{row}} f$ 被（在心里、而非在电子上）重新排列成列。\n2 维变换的第二步，是把那张「中途」图像 $\\Omega_{\\text{row}} f$ 的每一列乘以 $\\Omega_N$。\n这里我们又乘上一个规模为 $N^2 \\times N^2$ 的矩阵 $\\Omega_{\\text{column}}$。\n完整的 2 维变换就是 $\\Omega_N \\otimes \\Omega_N$。\n```math\n\\text{That matrix } \\Omega_{\\text{column}} \\text{ is the Kronecker product } \\Omega_N \\otimes I_N .\n```\n2 维变换把行步骤与列步骤合到一起成为 $\\Omega_{N \\times N}$：\n```math\n\\Omega_{N \\times N} = \\Omega_{\\text{column}}\\Omega_{\\text{row}} = (\\Omega_N \\otimes I_N)(I_N \\otimes \\Omega_N) = \\Omega_N \\otimes \\Omega_N . \\tag{8}\n```\n```math\nega_N) = \\Omega_N \\otimes \\Omega_N.\n```\n<span style=color:#2471a3;>**[note]**</span>\n> <span style=color:#1e8449;>**[note] 译者注 ｜ 二维 DFT 的可分离性：从 $O(N^4)$ 到 $O(N^2\\log N)$：**</span> 本页说 2D 变换 = 先逐行、再逐列，两个步骤的矩阵是 $I\\otimes \\Omega_N$ 与 $\\Omega_N\\otimes I_N$，合起来是 $\\Omega_N\\otimes \\Omega_N$。这句话背后是一次数量级的胜利，值得把账算清楚——它是「利用结构」这件事最干净的样板。\n>\n> <span style=color:#1e8449;>**第一段账：按定义硬算 $O(N^4)$。** $N\\times N$ 的图像有 $N^2$ 个像素，2D DFT 也有 $N^2$ 个输出；每个输出按定义要对全部 $N^2$ 个输入求和，于是 $N^2\\times N^2=N^4$ 次复数乘加。$N=1024$ 时是 $10^{12}$ 次运算，而且那个 $N^2\\times N^2$ 的变换矩阵本身就有 $10^{12}$ 个元素——光是存下来都不可能。</span>\n>\n> <span style=color:#1e8449;>**第二段账：可分离性给出 $O(N^3)$。** 先对每行做一次一维 DFT：$N$ 行、每行朴素 $O(N^2)$，共 $O(N^3)$；再对每列做一次，又一个 $O(N^3)$。注意这里有个容易忽略的细节：$I\\otimes \\Omega_N$ 名义上是 $N^2\\times N^2$ 的矩阵，但它是**分块对角**的（只有 $N$ 个非零块，每块 $N\\times N$），乘一个长向量只要 $N\\times N^2=O(N^3)$ 次。所以「矩阵很大」和「计算很贵」是两件事——**永远不要照着一个 Kronecker 矩阵的表面尺寸去估复杂度**。</span>\n>\n> <span style=color:#1e8449;>**第三段账：FFT 给出 $O(N^2\\log N)$。** 每一行的 DFT 用 FFT 是 $O(N\\log N)$，$N$ 行就是 $O(N^2\\log N)$，列同理，总共 $O(N^2\\log N)$。对比一下：把整幅图拍平成长度 $N^2$ 的一维向量再做一维 FFT，代价是 $O(N^2\\log N^2)=O(2N^2\\log N)$——比二维可分做法还多一个常数因子。**二维比拍平成一维更快**，因为可分离性把额外的结构用上了。这就是 6.006 里那条分治递推 $T(N)=2T(N/2)+O(N)$ 的二维版本：同一个分治在两个方向上各用一次。</span>\n>\n> <span style=color:#1e8449;>**机器层面的账（CSAPP）。** 逐行做 FFT 时内存访问是连续的，缓存友好；按列做时，若数组是行主序（C 语言），同一列相邻两个元素的地址相差整整一行。缓存一次取 64 字节，而你每次只用 8 字节（一个 double），命中率会掉到大约八分之一，行越长越糟。这就是本页那句「被（在心里、而非在电子上）重新排列成列」的真正代价所在：真的在内存里转置要额外付 $O(N^2)$ 次搬运，只是「心里」换下标则要付缓存缺失；成熟的 FFT 库（例如 FFTW）在二维以上变换里大量使用转置、分块和缓存无关递归，正是在这两笔开销之间做取舍。</span>\n>\n> <span style=color:#1e8449;>**可迁移的结论**：① 遇到高维变换，先问「这个 $N^2\\times N^2$ 的矩阵是不是 Kronecker 结构」，是的话复杂度立刻降一个数量级；② 可分离性 = 沿每个方向各做一次一维处理，这个模式在克罗内克和 $A\\oplus B=A\\otimes I+I\\otimes B$（page_225–226，把两个方向的差分相加）里会再出现一次；③ 矩阵层面漂亮的结构，到了真实机器上会被内存层次重新定价——算法复杂度和实际运行时间是两笔账。</span>\n\n现在输出修订后的译文全文（从 `@@PAGE:223@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7179,
+            "outputTokens": 6452,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7179,
+              "outputTokens": 6452,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 10092,
+          "contextWindow": 1000000,
+          "pressureTokens": 11019,
+          "sampledSurfaceTokens": 5864
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4304,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4228,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 8948
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

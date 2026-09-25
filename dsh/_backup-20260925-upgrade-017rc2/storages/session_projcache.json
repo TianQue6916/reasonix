@@ -1,0 +1,511 @@
+{
+  "unit": {
+    "name": "session_projcache",
+    "version": 3
+  },
+  "global": null,
+  "tables": {
+    "sessions": {
+      "session-a57e11b1-544d-49c9-973d-e549ab0efdb0": {
+        "identity": {
+          "createdAt": 1788533339663,
+          "cwd": "C:\\Users\\27063"
+        },
+        "rows": {
+          "sessionStats": {
+            "ver": 1,
+            "seq": 483,
+            "val": {
+              "turns": 1,
+              "steps": 4,
+              "llmMs": 11369,
+              "toolMs": 83690,
+              "ttftMs": 8950,
+              "ttftSteps": 4,
+              "decodeMs": 2419,
+              "decodeTokens": 526,
+              "lastTurn": 1,
+              "openStep": null,
+              "pendingCalls": {}
+            }
+          },
+          "title": {
+            "ver": 1,
+            "seq": 483,
+            "val": "？我只是组建了一个三个方块"
+          },
+          "goal": {
+            "ver": 4,
+            "seq": 483,
+            "val": null
+          },
+          "tokenUsage": {
+            "ver": 1,
+            "seq": 483,
+            "val": {
+              "totals": {
+                "uncachedInputTokens": 15288,
+                "outputTokens": 526,
+                "cacheReadTokens": 19328,
+                "cacheWriteTokens": 0
+              },
+              "last": {
+                "turn": 1,
+                "step": 4,
+                "buckets": {
+                  "uncachedInputTokens": 6619,
+                  "outputTokens": 171,
+                  "cacheReadTokens": 8960,
+                  "cacheWriteTokens": 0
+                }
+              }
+            }
+          },
+          "contextPressure": {
+            "ver": 4,
+            "seq": 483,
+            "val": {
+              "surfaceTokens": 9005,
+              "contextWindow": 1000000,
+              "pressureTokens": 15579,
+              "sampledSurfaceTokens": 8856
+            }
+          },
+          "contextBreakdown": {
+            "ver": 2,
+            "seq": 483,
+            "val": {
+              "systemTokens": 16,
+              "toolsTokens": 1574,
+              "messageTokens": 9005
+            }
+          },
+          "subagentTiming": {
+            "ver": 2,
+            "seq": 483,
+            "val": {
+              "descriptorSeen": false,
+              "settledMs": 0
+            }
+          },
+          "subagent": {
+            "ver": 2,
+            "seq": 483,
+            "val": {}
+          },
+          "permissions": {
+            "ver": 1,
+            "seq": 483,
+            "val": {
+              "preset": "danger-full-access",
+              "sandbox": "danger-full-access",
+              "approval": "never"
+            }
+          },
+          "sessionListMetadata": {
+            "ver": 1,
+            "seq": 483,
+            "val": {
+              "blank": false,
+              "lastPromptAt": 1789370059989
+            }
+          },
+          "imageLimits": {
+            "ver": 1,
+            "seq": 483,
+            "val": null
+          },
+          "todos": {
+            "ver": 2,
+            "seq": 483,
+            "val": null
+          },
+          "plan": {
+            "ver": 2,
+            "seq": 483,
+            "val": {
+              "active": false,
+              "wanted": null,
+              "running": null
+            }
+          }
+        }
+      },
+      "session-58fa6cfb-e11c-4e74-a3bf-203d0a546681": {
+        "identity": {
+          "createdAt": 1788584108976,
+          "cwd": "C:\\Users\\27063"
+        },
+        "rows": {
+          "sessionStats": {
+            "ver": 1,
+            "seq": 25441,
+            "val": {
+              "turns": 2,
+              "steps": 2,
+              "llmMs": 341459,
+              "toolMs": 0,
+              "ttftMs": 2354,
+              "ttftSteps": 1,
+              "decodeMs": 339105,
+              "decodeTokens": 23750,
+              "lastTurn": 2,
+              "openStep": null,
+              "pendingCalls": {}
+            }
+          },
+          "title": {
+            "ver": 1,
+            "seq": 25441,
+            "val": "你是一名学术翻译终审专家。"
+          },
+          "goal": {
+            "ver": 4,
+            "seq": 25441,
+            "val": null
+          },
+          "tokenUsage": {
+            "ver": 1,
+            "seq": 25441,
+            "val": {
+              "totals": {
+                "uncachedInputTokens": 6243,
+                "outputTokens": 23750,
+                "cacheReadTokens": 1152,
+                "cacheWriteTokens": 0
+              },
+              "last": {
+                "turn": 2,
+                "step": 1,
+                "buckets": {
+                  "uncachedInputTokens": 6243,
+                  "outputTokens": 23750,
+                  "cacheReadTokens": 1152,
+                  "cacheWriteTokens": 0
+                }
+              }
+            }
+          },
+          "contextPressure": {
+            "ver": 4,
+            "seq": 25441,
+            "val": {
+              "surfaceTokens": 20079,
+              "contextWindow": 1000000,
+              "pressureTokens": 7395,
+              "sampledSurfaceTokens": 3687
+            }
+          },
+          "contextBreakdown": {
+            "ver": 2,
+            "seq": 25441,
+            "val": {
+              "systemTokens": 16,
+              "toolsTokens": 883,
+              "messageTokens": 20079
+            }
+          },
+          "subagentTiming": {
+            "ver": 2,
+            "seq": 25441,
+            "val": {
+              "descriptorSeen": false,
+              "settledMs": 0
+            }
+          },
+          "subagent": {
+            "ver": 2,
+            "seq": 25441,
+            "val": {}
+          },
+          "permissions": {
+            "ver": 1,
+            "seq": 25441,
+            "val": {
+              "preset": "danger-full-access",
+              "sandbox": "danger-full-access",
+              "approval": "never"
+            }
+          },
+          "sessionListMetadata": {
+            "ver": 1,
+            "seq": 25441,
+            "val": {
+              "blank": false,
+              "lastPromptAt": 1788584222318
+            }
+          },
+          "imageLimits": {
+            "ver": 1,
+            "seq": 25441,
+            "val": null
+          },
+          "todos": {
+            "ver": 2,
+            "seq": 25441,
+            "val": null
+          },
+          "plan": {
+            "ver": 2,
+            "seq": 25441,
+            "val": {
+              "active": false,
+              "wanted": null,
+              "running": null
+            }
+          }
+        }
+      },
+      "session-1a9e31c1-bd77-4959-9318-ed08ad4f5ab4": {
+        "identity": {
+          "createdAt": 1788685738266,
+          "cwd": "C:\\Users\\27063"
+        },
+        "rows": {
+          "sessionStats": {
+            "ver": 1,
+            "seq": 43882,
+            "val": {
+              "turns": 2,
+              "steps": 10,
+              "llmMs": 640963,
+              "toolMs": 1804,
+              "ttftMs": 30375,
+              "ttftSteps": 9,
+              "decodeMs": 610588,
+              "decodeTokens": 42299,
+              "lastTurn": 2,
+              "openStep": null,
+              "pendingCalls": {}
+            }
+          },
+          "title": {
+            "ver": 1,
+            "seq": 43882,
+            "val": "你是译者注扩写专家。发挥你"
+          },
+          "goal": {
+            "ver": 4,
+            "seq": 43882,
+            "val": null
+          },
+          "tokenUsage": {
+            "ver": 1,
+            "seq": 43882,
+            "val": {
+              "totals": {
+                "uncachedInputTokens": 17179,
+                "outputTokens": 42299,
+                "cacheReadTokens": 65152,
+                "cacheWriteTokens": 0
+              },
+              "last": {
+                "turn": 2,
+                "step": 8,
+                "buckets": {
+                  "uncachedInputTokens": 2090,
+                  "outputTokens": 1527,
+                  "cacheReadTokens": 14080,
+                  "cacheWriteTokens": 0
+                }
+              }
+            }
+          },
+          "contextPressure": {
+            "ver": 4,
+            "seq": 43882,
+            "val": {
+              "surfaceTokens": 34381,
+              "contextWindow": 1000000,
+              "pressureTokens": 16170,
+              "sampledSurfaceTokens": 33759
+            }
+          },
+          "contextBreakdown": {
+            "ver": 2,
+            "seq": 43882,
+            "val": {
+              "systemTokens": 16,
+              "toolsTokens": 1574,
+              "messageTokens": 34381
+            }
+          },
+          "subagentTiming": {
+            "ver": 2,
+            "seq": 43882,
+            "val": {
+              "descriptorSeen": false,
+              "settledMs": 0
+            }
+          },
+          "subagent": {
+            "ver": 2,
+            "seq": 43882,
+            "val": {}
+          },
+          "permissions": {
+            "ver": 1,
+            "seq": 43882,
+            "val": {
+              "preset": "danger-full-access",
+              "sandbox": "danger-full-access",
+              "approval": "never"
+            }
+          },
+          "sessionListMetadata": {
+            "ver": 1,
+            "seq": 43882,
+            "val": {
+              "blank": false,
+              "lastPromptAt": 1788685981816
+            }
+          },
+          "imageLimits": {
+            "ver": 1,
+            "seq": 43882,
+            "val": null
+          },
+          "todos": {
+            "ver": 2,
+            "seq": 43882,
+            "val": null
+          },
+          "plan": {
+            "ver": 2,
+            "seq": 43882,
+            "val": {
+              "active": false,
+              "wanted": null,
+              "running": null
+            }
+          }
+        }
+      },
+      "session-49848d04-3038-4992-a54d-9e82fc6969d8": {
+        "identity": {
+          "createdAt": 1789863410711,
+          "cwd": "C:\\Users\\27063"
+        },
+        "rows": {
+          "sessionStats": {
+            "ver": 1,
+            "seq": 23107,
+            "val": {
+              "turns": 1,
+              "steps": 30,
+              "llmMs": 161091,
+              "toolMs": 306153,
+              "ttftMs": 65751,
+              "ttftSteps": 30,
+              "decodeMs": 95340,
+              "decodeTokens": 23911,
+              "lastTurn": 1,
+              "openStep": null,
+              "pendingCalls": {}
+            }
+          },
+          "title": {
+            "ver": 1,
+            "seq": 23107,
+            "val": "reasonix无法启动，更新没成功"
+          },
+          "goal": {
+            "ver": 4,
+            "seq": 23107,
+            "val": null
+          },
+          "tokenUsage": {
+            "ver": 1,
+            "seq": 23107,
+            "val": {
+              "totals": {
+                "uncachedInputTokens": 56422,
+                "outputTokens": 23911,
+                "cacheReadTokens": 1110656,
+                "cacheWriteTokens": 0
+              },
+              "last": {
+                "turn": 1,
+                "step": 30,
+                "buckets": {
+                  "uncachedInputTokens": 250,
+                  "outputTokens": 1183,
+                  "cacheReadTokens": 76800,
+                  "cacheWriteTokens": 0
+                }
+              }
+            }
+          },
+          "contextPressure": {
+            "ver": 4,
+            "seq": 23107,
+            "val": {
+              "surfaceTokens": 55101,
+              "contextWindow": 1000000,
+              "pressureTokens": 77050,
+              "sampledSurfaceTokens": 53926
+            }
+          },
+          "contextBreakdown": {
+            "ver": 2,
+            "seq": 23107,
+            "val": {
+              "systemTokens": 16,
+              "toolsTokens": 1574,
+              "messageTokens": 55101
+            }
+          },
+          "subagentTiming": {
+            "ver": 2,
+            "seq": 23107,
+            "val": {
+              "descriptorSeen": false,
+              "settledMs": 0
+            }
+          },
+          "subagent": {
+            "ver": 2,
+            "seq": 23107,
+            "val": {}
+          },
+          "permissions": {
+            "ver": 1,
+            "seq": 23107,
+            "val": {
+              "preset": "danger-full-access",
+              "sandbox": "danger-full-access",
+              "approval": "never"
+            }
+          },
+          "sessionListMetadata": {
+            "ver": 1,
+            "seq": 23107,
+            "val": {
+              "blank": false,
+              "lastPromptAt": 1789863428159
+            }
+          },
+          "imageLimits": {
+            "ver": 1,
+            "seq": 23107,
+            "val": null
+          },
+          "todos": {
+            "ver": 2,
+            "seq": 23107,
+            "val": null
+          },
+          "plan": {
+            "ver": 2,
+            "seq": 23107,
+            "val": {
+              "active": false,
+              "wanted": null,
+              "running": null
+            }
+          }
+        }
+      }
+    }
+  }
+}

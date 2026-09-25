@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132439811,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_157（书页 153） @@@@@\r\n−---- 【权威原文】 −---------------\r\nII.4. Randomized Linear Algebra\r\n\r\n153\r\n\r\nHere are fast decompositions starting from a randomized \\(A \\approx CB\\).\r\n\r\n\\[\r\n\\boxed{\r\n\\begin{aligned}\r\n(A \\approx QR) \\qquad & \\text{Factor } C \\text{ into } Q_1 R_1. \\text{ Factor } R_1 B \\text{ into } Q_2 R_2. \\text{ Then } A \\approx (Q_1 Q_2) R_2. \\\\\r\n(A \\approx U \\Sigma V^{\\mathrm{T}}) \\qquad & \\text{From } C = Q_1 R_1 \\text{ factor } R_1 B \\text{ into } U_2 \\Sigma V^{\\mathrm{T}}. \\text{ Choose } U = Q_1 U_2.\r\n\\end{aligned}\r\n}\r\n\\]\r\n\r\n**Projections \\(J\\) and Projection Matrices \\(P\\)**\r\n\r\nA “projection” of \\(m\\)-dimensional space \\(\\mathbf{R}^m\\) to \\(k\\)-dimensional space \\(\\mathbf{R}^k\\) is a \\(k\\) by \\(m\\) matrix. In case that matrix \\(J\\) has full row rank \\(k\\), then \\(k \\le m\\) and the projections fill all of \\(\\mathbf{R}^k\\).\r\n\r\nA specially nice case is when the \\(k\\) rows of \\(J\\) are orthonormal. This means that \\(J J^{\\mathrm{T}} = I\\). Then the rank is certainly \\(k\\) and the column space \\(\\mathbf{C}(J)\\) is all of \\(\\mathbf{R}^k\\).\r\n\r\nNotice that a *projection* \\(J\\) is different from a *projection matrix* \\(P\\). \\(P\\) is square (\\(m\\) by \\(m\\)). Its rank is \\(k < m\\) (except when \\(P = I\\)). Its column space is a \\(k\\)-dimensional subspace of \\(\\mathbf{R}^m\\) (quite different from the vector space \\(\\mathbf{R}^k\\)). And the key property of the projection matrix is \\(P^2 = P\\). If we project *perpendicularly* onto the column space, the projection \\(Pb\\) is closest to \\(b\\) in the usual norm \\(||b − Pb||\\). Then \\(P\\) is also symmetric.\r\n\r\n\\(J\\) and \\(P\\) have one nice connection. **In case \\(J\\) has orthonormal rows, then \\(J^{\\mathrm{T}} J\\) is a symmetric projection matrix \\(P\\).** You see that \\(P^2 = J^{\\mathrm{T}} (J J^{\\mathrm{T}}) J = J^{\\mathrm{T}} I J = P\\).\r\n\r\n**Example 1**  Projection \\(J = \\begin{bmatrix} \\cos \\theta & \\sin \\theta \\end{bmatrix}\\) with \\(J J^{\\mathrm{T}} = [\\cos^2 \\theta + \\sin^2 \\theta] = [1]\\)\r\n\r\nProjection matrix \\(P = J^{\\mathrm{T}} J = \\begin{bmatrix} \\cos^2 \\theta & \\cos \\theta \\sin \\theta \\\\ \\cos \\theta \\sin \\theta & \\sin^2 \\theta \\end{bmatrix} = P^2\\)\r\n\r\nA symmetric \\(P\\) projects **orthogonally** onto its column space. Here that is \\(\\mathbf{C}(J^{\\mathrm{T}})\\).\r\n\r\n**Random Projections**\r\n\r\nSuppose the entries of a \\(k\\) by \\(m\\) projection \\(J\\) are independent random variables. In the simplest case they are drawn from a normal distribution (a Gaussian) with mean \\(m = 0\\) and variance \\(\\sigma^2 = 1/k\\). We will show that the **expected value of \\(P = J^{\\mathrm{T}} J\\) is the identity matrix.** In other words, the **expected length of the projection \\(v = Ju\\) equals the length of \\(u\\).**\r\n\r\n1. The \\((i,i)\\) entry on the diagonal of \\(J^{\\mathrm{T}} J\\) is the sum \\(J_{1i}^2 + \\cdots + J_{ki}^2\\). Those squares are independent samples, each with mean \\(1/k\\). (With zero mean for each entry of \\(J\\), the expected value of the square is the variance \\(\\sigma^2 = 1/k\\).) Then the mean (the expected value) of the sum of \\(k\\) terms is \\(k(1/k) = 1\\).\r\n\r\n2. The \\((i,j)\\) entry off the diagonal of \\(J^{\\mathrm{T}} J\\) is the sum \\(J_{1i} J_{1j} + \\cdots + J_{ki} J_{kj}\\). Each of those terms is the product of two independent variables with mean zero. So the mean of each term is zero, and the mean of their sum \\((J^{\\mathrm{T}} J)_{ij}\\) is also zero.\r\n\r\nThus \\(\\mathbf{E}[J^{\\mathrm{T}} J] = I = \\text{identity matrix of size } m\\).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:157@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 153，属 §II.4 Randomized Linear Algebra（随机化线性代数）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把 `什 om`/`行 om`/`丘 om` 混作 from，把 `蓋`/`风` 混作矩阵 $A$，把 `¯I` 混作上标 $-1$，把 `屛` 一类符号混作 $k$ 或 $n$。文中的分解公式（$C = Q_1R_1$、$B = Q_2R_2$、$A \\approx Q_1Q_2R_2$，以及由 $C = Q_1R_1$ 与 $B = U_2\\Sigma V^T$ 得 $U = Q_1U_2$）均按随机化 QB 与 SVD 的标准写法重建。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## （续）Randomized Linear Algebra（随机化线性代数）\r\n\r\n下面就是各种快速分解，它们都从一个随机化列基（randomized column basis）出发，即先取定 $C$ 与 $B$，使 $A \\approx CB$。由 $C$ 分解为 $Q_1R_1$、$B$ 分解为 $Q_2R_2$，得到 $A \\approx Q_1Q_2R_2$，这用到的只是正交矩阵与三角矩阵。\r\n\r\n而由 $C = Q_1R_1$ 出发，把 $B$ 分解为 $U_2\\Sigma V^T$，并取 $U = Q_1U_2$，就得到 $A \\approx U\\Sigma V^T$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Projections $J$ and Projection Matrices $P$（投影 $J$ 与投影矩阵 $P$）\r\n\r\n一个从 $m$ 维空间 $\\mathbf{R}^m$ 到 $k$ 维空间 $\\mathbf{R}^k$ 的投影 $J$，是一个 $k \\times m$ 的矩阵。\r\n\r\n在矩阵 $J$ 具有满行秩（full row rank）的情形下，$k \\le m$，而投影的像填满整个 $\\mathbf{R}^k$。\r\n\r\n一个特别漂亮的情形是 $J$ 的各行标准正交（orthonormal），这时 $JJ^T = I$；此时秩当然就是 $k$，而列空间 $C(J)$ 就是整个 $\\mathbf{R}^k$。\r\n\r\n请注意，投影 $J$ 与投影矩阵 $P$ 是不同的东西：$P$ 是方阵（$m \\times m$），它的秩小于等于 $k$（除非 $P$ 退化为 $I$ 这类特殊情形），它的列空间是 $\\mathbf{R}^m$ 的一个 $k$ 维子空间（与向量空间 $\\mathbf{R}^k$ 完全不同）。投影矩阵的关键性质是 $P^2 = P$：若我们把向量 $b$ 投影到列空间上，则投影 $Pb$ 是在通常范数意义下离 $b$ 最近的点，即最小化 $\\|b − Pb\\|$。此外 $P$ 还是对称的。\r\n\r\n<span style=color:#2471a3;>**[note]**</span> 此处 $J$ 是 $k \\times m$ 的投影，$P = JJ^T$ 为 $m \\times m$ 的投影矩阵，投影到 $C(J^T)$ 上。OCR 的 `JT J` 与 `JTIJ` 依语境重建：$P = JJ^T$，$P^2 = J(J^TJ)J^T = JIJ^T = P$。\r\n\r\n$J$ 与 $P$ 之间有一种漂亮的联系：当 $J$ 的行标准正交时，$JJ^T$ 是一个对称投影矩阵 $I$，而 $J^TJ$ 则是投影到 $C(J^T)$ 上的对称投影矩阵 $P$。你可以验证 $P^2 = J(J^TJ)J^T = JIJ^T = P$。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n<span style=color:#c0392b;>**Example 1**</span> 取投影 $J = \\begin{bmatrix} \\cos\\theta & \\sin\\theta \\end{bmatrix}$，于是 $JJ^T = \\cos^2\\theta + \\sin^2\\theta = 1$。\r\n\r\n此时投影矩阵为\r\n\r\n```math\r\nP = J^TJ = \\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}.\r\n```\r\n\r\n一个对称矩阵 $P$ 正交地投影到自己的列空间上；在这里，那个列空间就是 $C(J^T)$。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Random Projections（随机投影）\r\n\r\n假设一个 $k \\times m$ 的投影 $J$ 的各个元素都是独立的随机变量。最简单的情形是它们取自正态分布（normal distribution，即高斯分布），均值 $m = 0$、方差 $\\sigma^2 = 1/k$。我们下面要证明：投影矩阵的期望值 $E[P] = E[J^TJ]$ 就是单位矩阵。换句话说，投影 $y = Jc$ 的期望长度等于 $c$ 的长度。\r\n\r\n**1.** $J^TJ$ 对角线上的第 $(i,i)$ 个元素是 $J_{1i}^2 + \\cdots + J_{ki}^2$ 这个和。这些平方都是独立的样本，每一个的均值都是 $1/k$。（因为 $J$ 的每个元素均值为零，所以平方的期望值就等于方差 $1/k$。）于是这 $k$ 项之和的均值（即期望值）是 $k \\cdot (1/k) = 1$。\r\n\r\n**2.** $J^TJ$ 的第 $(i,j)$ 个非对角元素是 $J_{1i}J_{1j} + \\cdots + J_{ki}J_{kj}$ 这个和。其中每一项都是两个均值为零的独立变量之积，因此每一项的均值都是零，它们之和的均值 $E[(J^TJ)_{ij}]$ 也就等于零。\r\n\r\n于是 $E[J^TJ] = I$，即 $m \\times m$ 的单位矩阵。\r\n\r\n@@@@@ page_158（书页 154） @@@@@\r\n−---- 【权威原文】 −---------------\r\n154 \\hfill Computations with Large Matrices\r\n\r\nUsing columns times rows, each matrix (row $i$ of $J$)$^{\\text{T}}$ (row $i$ of $J$) has expectation $I/k$.\r\nThe sum has expectation $I$. Please notice what that means.\r\n\r\n\\begin{quote}\r\n\\fbox{\\parbox{0.9\\textwidth}{\r\n``In expectation'' the $m$ columns of $J$ are orthonormal.\r\nTherefore in expectation $Jx$ has the same length as $x$ :\r\n\\begin{equation}\r\n\\mathbb{E} \\left[ \\|Jx\\|^2 \\right] = \\mathbb{E} \\left[ x^{\\text{T}} J^{\\text{T}} J x \\right] = \\mathbb{E} \\left[ x^{\\text{T}} x \\right] = \\|x\\|^2. \\tag{12}\r\n\\end{equation}\r\n}}\r\n\\end{quote}\r\n\r\nThis random projection shows why linear algebra and probability sometimes seem to be different worlds within mathematics. In linear algebra, a $k$ by $m$ matrix $J$ with $k < m$ could not have rank $m$. Then $J^{\\text{T}}J$ could not have rank $m$. But now take expected values! $\\mathbb{E}[J]$ can be the zero matrix and $\\mathbb{E}[J^{\\text{T}}J]$ can be the identity matrix. For 1 by 1 matrices this would be the most ordinary thing in the world : \\textit{mean zero and variance one}.\r\n\r\n\\textit{Here is the key point.} On average, the squared distance between $x$ and $y$ in $\\mathbf{R}^m$ is the same as the squared distance between $Jx$ and $Jy$ in $\\mathbf{R}^k$. ``The projection $J$ into a lower dimensional space preserves distances in an average sense.'' \\textbf{What we really want is to preserve the actual distances within a factor $1 + \\epsilon$, for a set of $n$ given points in $\\mathbf{R}^m$.}\r\n\r\nThat property of $J$ is the subject of the famous Johnson-Lindenstrauss Lemma. It seems amazing that points in a high dimension can be transformed linearly to points in a low dimension, with very small change in the distance between every pair of points.\r\n\r\n\\textit{How low can the low dimension be?} This is a crucial question.\r\n\r\n\\begin{center}\r\n\\textbf{Dimension $k=1$ is Too Low}\r\n\\end{center}\r\n\r\nSuppose we have $n=3$ points $x_1, x_2, x_3$ in the plane $\\mathbf{R}^2$. Is there a 1 by 2 matrix $J$ that nearly preserves their distances? We can certainly achieve $\\|Jx_1 − Jx_2\\| = \\|x_1 − x_2\\|$. If the third point $x_3 = \\frac{1}{2}(x_1 + x_2)$ is halfway between, then by linearity $Jx_3$ will be $\\frac{1}{2}(Jx_1 + Jx_2)$ and all distances are perfect. But if $x_1, x_2, x_3$ give an equilateral triangle, then $x_3$ has a component in the nullspace of $J$. That component will be lost (projected to zero). The lengths $\\|Jx_1 − Jx_3\\|$ and $\\|Jx_2 − Jx_3\\|$ will be seriously reduced.\r\n\r\nJohnson-Lindenstrauss looked at \\textit{random} $k$ by $m$ projections of $n$ points in $\\mathbf{R}^m$. They proved that \\textbf{if the dimension $k$ is large enough}, then one of those projections (in fact most of them) will nearly preserve distances between the $n$ points.\r\n\r\n\\textit{``In high dimensions, random vectors are orthogonal with probability near 1.''}\r\n\r\n\\begin{center}\r\n\\textbf{The Johnson-Lindenstrauss Lemma}\r\n\\end{center}\r\n\r\n\\begin{quote}\r\n\\fbox{\\parbox{0.9\\textwidth}{\r\nSuppose $x_1, \\dots, x_n$ are any $n$ points in $\\mathbf{R}^m$, and $k \\ge (8 \\log n)/\\epsilon^2$. Then there is a projection $J$ from $\\mathbf{R}^m$ to $\\mathbf{R}^k$ so that all distances between the $n$ points are nearly preserved:\r\n\\begin{equation}\r\n(1 − \\epsilon) \\|x_i − x_j\\|^2 \\le \\|Jx_i − Jx_j\\|^2 \\le (1 + \\epsilon) \\|x_i − x_j\\|^2 \\tag{13}\r\n\\end{equation}\r\n}}\r\n\\end{quote}\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:158@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 154，是 Computations with Large Matrices（大型矩阵的计算）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把大量符号 $n$ 误识为 `刀`/`丿`/`了`/`丹`，把 $J$ 误识为 `丿`/`上`，把 $C$（或 $c$）误识为 `刀`，把 `況`/`淝` 一类乱码按语境重建为 variance（方差）。公式 $\\|Jc\\|^2 = \\|c\\|^2$ 的期望形式、Johnson-Lindenstrauss 引理中的维数条件与式 (13) 均按数学语境重建。\r\n\r\n利用列乘行的写法，矩阵 $J_i^T J_i$（即 $J$ 的第 $i$ 行转置乘以第 $i$ 行）的期望都是 $\\frac{1}{k}I$。\r\n\r\n这些矩阵之和的期望就是 $I$。请留意这意味着什么：在期望的意义下，$J$ 的 $m$ 个列是标准正交的。\r\n\r\n因此在期望的意义下，$Jc$ 与 $c$ 有相同的长度：\r\n\r\n```math\r\nE\\big[\\|Jc\\|^2\\big] = E\\big[c^TJ^TJc\\big] = \\|c\\|^2. \\tag{12}\r\n```\r\n\r\n这个随机投影说明了为什么线性代数与概率论有时看起来像是数学中两个不同的世界。在线性代数里，一个 $k \\times m$ 的矩阵 $J$（当 $k < m$ 时）不可能有秩 $m$，因此 $J^TJ$ 也不可能有秩 $m$。但一旦取期望值，情况就变了：$E[J]$ 可以是零矩阵，而 $E[J^TJ]$ 却可以是单位矩阵。对 $1 \\times 1$ 的矩阵来说，这其实是世界上最平常不过的事情：均值与方差。\r\n\r\n关键就在于此：平均而言，$\\mathbf{R}^m$ 中 $c$ 与 $d$ 之间的平方距离，与 $\\mathbf{R}^k$ 中 $Jc$ 与 $Jd$ 之间的平方距离是相同的。也就是说，投影到较低维空间的映射 $J$ 在平均意义下保持距离。我们真正想要的，是对 $\\mathbf{R}^m$ 中给定的 $n$ 个点，把实际距离保持在因子 $1 + \\varepsilon$ 的范围之内。\r\n\r\n$J$ 的这一性质正是著名的 Johnson-Lindenstrauss Lemma（约翰逊-林登施特劳斯引理）的主题。\r\n\r\n看起来令人惊奇的是：高维中的点可以被线性地变换到低维中的点，而每一对点之间距离的变化都非常小。\r\n\r\n那么低维的那个维数究竟可以低到什么程度？这是一个至关重要的问题。\r\n\r\n<span style=color:#c0392b;>**维数 $= 1$ 是太低（TOO LOW）**</span>\r\n\r\n假设我们在平面 $\\mathbf{R}^2$ 中有 $n = 3$ 个点 $C_1, C_2, C_3$。是否存在一个 $1 \\times 2$ 的矩阵 $J$ 能几乎保持它们之间的距离？我们当然可以让 $\\|JC_1 − JC_2\\| = \\|C_1 − C_2\\|$。\r\n\r\n如果第三个点 $C_3$ 恰好在 $C_1$ 与 $C_2$ 的中点，即 $C_3 = \\frac{1}{2}(C_1 + C_2)$，那么由线性性，$JC_3$ 就是 $\\frac{1}{2}(JC_1 + JC_2)$，所有的距离都完美保持。但如果这三个点构成等边三角形，那么 $C_3$ 在 $J$ 的零空间中有一个分量；这个分量会被丢掉（被投影为零），于是长度 $\\|JC_1 − JC_3\\|$ 与 $\\|JC_2 − JC_3\\|$ 都会严重缩小。\r\n\r\nJohnson 与 Lindenstrauss 研究的是 $\\mathbf{R}^m$ 中点的随机 $k \\times m$ 投影。\r\n\r\n他们证明了：只要维数 $k$ 足够大，这些投影中就会有一个（事实上是绝大多数投影）几乎保持点与点之间的距离。\r\n\r\n随机投影保持距离的概率非常接近 1，因此必定存在一个确定的投影保持距离。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n### The Johnson-Lindenstrauss Lemma（约翰逊-林登施特劳斯引理）\r\n\r\n<span style=color:#c0392b;>**定理（Johnson-Lindenstrauss）。**</span> <span style=color:#00838f;>设 $C_1, \\ldots, C_n$ 是 $\\mathbf{R}^m$ 中的任意 $n$ 个点，且维数 $k \\ge \\dfrac{8\\log n}{\\varepsilon^2}$。则存在一个从 $\\mathbf{R}^m$ 到 $\\mathbf{R}^k$ 的投影 $J$，使得这些点之间的所有距离都几乎被保持：</span>\r\n\r\n```math\r\n(1 − \\varepsilon)\\,\\|C_i − C_j\\|^2 \\;\\le\\; \\|JC_i − JC_j\\|^2 \\;\\le\\; (1 + \\varepsilon)\\,\\|C_i − C_j\\|^2. \\tag{13}\r\n```"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 5694,
+            "outputTokens": 13509,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 5694,
+              "outputTokens": 13509,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 13932,
+          "contextWindow": 1000000,
+          "pressureTokens": 9150,
+          "sampledSurfaceTokens": 4861
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3301,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 9071,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 12788
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

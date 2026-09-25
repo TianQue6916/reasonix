@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790061614585,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 MIT 18.065（Gilbert Strang，Spr"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Gilbert Strang，Spring 2018）双语详解稿的**译者注规格修订专家**。\r\n\r\n【任务】下面是待处理的译者注原文。请按要求处理，**只输出修订后的注文本**：不要寒暄、不要说明你做了什么、不要写以下是……、不要输出任何给主代理的说明或待核项汇总、不要附带修订清单。\r\n\r\n【读者画像】大二上、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；未学抽象代数/拓扑/泛函分析。\r\n\r\n【规格】\r\n- 修订后每条注的**正文 850-1100 汉字**（公式、配图、字幕引文不计入字数）。\r\n- 保留 blockquote 结构（每行以 `>` 开头）、`> <span style=color:#1e8449;>**[note]**</span>` 标签、`**Note（译者注）——（标题）**` 格式。\r\n- 每条注须独立可读（机制展开 + 例子 + 连接/模板）；跨课程连接精确到「课程名 + 具体概念 + 连接路径」；不得裸甩名词、不得空洞赞美。\r\n- 中文为主体，英文术语写作 `English（中文翻译）`；每句话第一个字必须是中文。\r\n- 🎥 引文一律保留原样（含已附的中文翻译）。\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$`、` ```math ` 围栏与全部反斜杠命令必须**一字不改原样保留**：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述、把 `\\sigma_1` 写成 `sigma1`。\r\n2. 不得删除数学内容、例子、跨课程连接、公式；压缩对象只能是重复论证与修辞铺陈。\r\n3. 不得改变数学结论与数值。\r\n\r\n【具体要求】下面这条注偏长（超过 1200 汉字）。请把它**拆成两条独立的注**：\r\n- 第一条子标题写作 `**Note（译者注）——（其一）（原主题的前半）》**`，第二条写作 `**Note（译者注）——（其二）（后半主题）**`（标题用中文即可，不必照抄括号里的字）。\r\n- 每条 850-1100 汉字，各自独立可读（有自己的机制展开、例子/连接与收束句）。\r\n- 拆分的依据是主题边界（例如定义的由来/机制与与其它结构的连接/应用），而不是机械按字数切。\r\n- 合并后总信息量不得减少：原文的公式、例子、跨课程连接必须全部保留在两条注中任一。\r\n\r\n【待处理注（原文，逐字）】\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——（主元、秩、特征值：三把尺子为何量出不同的数却互相锁死）**\r\n>\r\n> 本注要处理一个刚学正定检验时最容易混淆的设计问题：同一个矩阵，pivots 算出 $4,0,0$，eigenvalues 算出 $24,0,0$，rank 算出 $1$，det 算出 $0$——这四个数字凭什么可以同时是对的？它们各自量的是矩阵的哪一面？\r\n>\r\n> 先建立三条**互不相同的锁**。第一把锁是「数个数」：rank 数的是 column space（列空间）的维数，也就是「这个矩阵能把空间里多少个独立方向送到非零处」；这正是你在 Strang 线性代数里反复使用的秩—零化度守恒 $\\operatorname{rank}+\\dim N(S)=n$。第二把锁是「数总量」：trace 是特征值之和，这是对称矩阵谱分解的必然结果——把 $S=Q\\Lambda Q^T$ 与 $\\operatorname{tr}(S)=\\operatorname{tr}(Q\\Lambda Q^T)=\\operatorname{tr}(\\Lambda Q^TQ)=\\operatorname{tr}\\Lambda$ 走一遍即可，这里只用了迹的循环性质与 $Q^TQ=I$。第三把锁是「数个数乘总量」：det 是特征值之积。三条锁分别对应「几个」、「加起来多少」、「乘起来多少」，一组错误数字要同时骗过三项并不容易，这就是为什么自检必须同时做 rank、trace、det 三项，而不是只做一项。（命名模板：**三锁校验**——rank 锁个数、trace 锁总量、det 锁乘积。）\r\n>\r\n> 那为什么 pivots 的**数值**既不是 trace 也不是特征值？因为主元是消元过程的产物，它记录的是「在给定消元顺序下，每个位置还能提取出多少新信息」。对对称矩阵，正主元、负主元、零主元的**个数**分别等于正特征值、负特征值、零特征值的个数（Sylvester 惯性律），但数值上两套数字一般并不相等：真正必须成立的等式是主元之积等于 det；主元之和等于 trace 只发生在 $S$ 已经是对角矩阵这种退化情形，本题 $S$ 完全稠密，主元之和 $4$ 与 trace $24$ 本来就不该相等。因此正确的读法是：**主元（pivots）管符号模式与可逆性，特征值（eigenvalues）管量级与正定性**，两组数字分工不同，谁也不是谁的抄写。\r\n>\r\n> 具体验一遍这条分工。对本节的 $S$，消元得 $D=\\operatorname{diag}(4,0,0)$：主元里出现两个零，立刻宣告「不可逆、det $=0$、非正定」；特征值算出 $\\{24,0,0\\}$，立刻宣告「半正定、trace $=24$、能量最大放大倍数为 $24$」。若把 $S$ 改成 $S+\\epsilon I$（$\\epsilon>0$ 小量），特征值变成 $24+\\epsilon,\\epsilon,\\epsilon$ 三个全正；主元也一起翻正，但数值并不跟着变成同一组数：$d_1=4+\\epsilon$，$d_2=\\frac{\\epsilon(8+\\epsilon)}{4+\\epsilon}\\approx2\\epsilon$，$d_3=\\frac{\\epsilon(24+\\epsilon)}{8+\\epsilon}\\approx3\\epsilon$（后两者可由 $d_1d_2d_3=\\det(S+\\epsilon I)=(24+\\epsilon)\\epsilon^2$ 反推校验）。两把尺子同步翻面、数值却不同，这正是正定与半正定的分界线：$\\epsilon\\to0^+$ 时，三个主元与三个特征值都趋向「一正两零」，符号模式在极限处仍然一致。\r\n>\r\n> 跨课程连接要落到机制上。你在 6.006 学过二分搜索与分治：主元序列 $d_1,d_2,\\dots,d_n$ 有点像分治算法里每一步递归后的**剩余问题规模**——第一步消元从 $3$ 个未知量里提取出 $1$ 维独立信息，第二步发现剩余规模已经是 $0$，于是递归立即终止；主元为 $0$ 不是「除不动」，而是「剩余子问题真空」。区别在于，分治的复杂度由递归深度与每层工作量决定，而这里我们关心的是每一步剩余的自由度，它决定了零空间的维数。再往 100B 实分析方向接一句：$c^TSc$ 是连续函数（多项式），它在单位球面（紧集）上的最小值就是最小特征值，本题最小值为 $0$，且在某条直线上取到，这条直线正是零空间方向——「半正定」在分析语言里就是「能量泛函在单位球面上的下确界为 $0$ 且可达到」。CSAPP 第 2 章的浮点表示在这里也有直接后果：第二个主元的公式 $d_2=\\frac{ac-b^2}{a}$（对 $2\\times2$ 对称块 $\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}$）在 $ac$ 与 $b^2$ 几乎相等时会发生 catastrophic cancellation（灾难性抵消），有效数字被减掉，主元的符号可能在浮点下被误判；讨论条件数（condition number）时正是从这类现象入手。\r\n>\r\n> 最后回到本讲的检验清单：教材 §I.7 列出五个检验——energy、pivots、determinants、eigenvalues、$S=A^TA$——它们各自独立地给出完整答案。本题恰好把五条同时用上：energy 给 semidefinite（$4(v^Tx)^2\\ge0$），pivots 给「一正两零」，determinants 给 det $=0$、非正定，eigenvalues 给 $\\{24,0,0\\}$，$S=A^TA$ 给 $\\operatorname{rank}A=1$。五条路全部指向同一个结论，而数值各不相同。能把「数值不同但结论相同」这件事讲清楚，才算真正把这五个检验装进了同一套账本。\r\n>\r\n> 🎥 *Strang 在课上列举检验清单时*：determinants, pivots,（翻译：行列式、主元、）以及 Each one gives a test for positive definite matrices.（翻译：每一个都提供了正定矩阵的检验方法。）本题恰好显示这条清单在 semidefinite（半正定）边界上的行为：判据并未失效，只是答案从「正定」变成了「半正定」。\r\n>\r\n> 🎥 *Strang 在课上演示哪个判据最快暴露失败时*：Which is the easy test to see that it fails? Negative determinant. Determinant. The determinant is 15 minus 16,（翻译：哪个简单测试可以看出它不成立？负行列式。行列式。行列式为 $15$ 减 $16$，）本题的 det 不是负的而是 $0$：负 det 宣告 indefinite（不定），零 det 宣告 semidefinite（半正定），两者都不是 positive definite，但后续结论走向完全不同的分支，这个区别在套用判据时必须先分清。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2227,
+            "outputTokens": 6483,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 2227,
+              "outputTokens": 6483,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 6358,
+          "contextWindow": 1000000,
+          "pressureTokens": 5683,
+          "sampledSurfaceTokens": 2609
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1049,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3749,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 5214
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

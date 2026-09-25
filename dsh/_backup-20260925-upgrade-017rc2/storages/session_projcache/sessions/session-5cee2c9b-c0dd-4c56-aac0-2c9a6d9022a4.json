@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129443312,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_151 = 书页 147\r\npage_152 = 书页 148\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:151@@（书页 147）\r\n−-- OCR 原文 −--\r\n4 ， Randomized Li near Algebra\r\n147\r\n1 C olumn- row sampling E ach column of S has one n on zero entry (call it ） ·\r\nThen AS picks out individual columns ak directl y from ， an d STB picks out the\r\ncorresponding row s bk of B. Multiplying AS times STB gives a s um of column ·\r\nrow products 0kbk weighted by th e numb ers sz\r\nOne product s@kbkT comes 什 om one column of AS and one row of STB ·\r\n0\r\nSkOk\r\n0\r\nSkbk\r\n（ 2 ）\r\nAIto gether AB is approximated by the weighted sum CR = 乥 Sk0kbk of a ra do\r\nOf 5 rank-one matrices. The selection is random, but we choose the w eights ·\r\n2 S ampling by random projections S The m atrix S is still thin, so AS has many\r\nfewer c olumn s th an · The columns Of S now c ontain multiple nonzeros, so AS\r\nmixes c olumn s as it projects C(A) into lower dimensions. Then ASSTB is a\r\nmore uniform approximation tO AB.\r\nWe start with random sampling. L ater we describe random proj ections · Th0 se c an produce\r\nfast and u seful p reconditioners for the original matrix AB—and they may reduce the\r\ncomputational cost 0f graph clustenng ·\r\nPractice with C omputin g Me an and Variance\r\nHere is a greatly simplified sampling problem · ln ste ad of a matrix ， we start w ith a vector\r\n= @， b) · We will sample it twic e （ 2 independent trials) · Then we c ompute the me m\r\nand the variance · S ection V. 1 will describe many more examples of rn and 2\r\nFirst s ample ： With prob ab ilitie s and 是 choose (), 0 ） or （ 0 ， b)\r\nSecond sample ： Rep eat ex actly. Then add the two samples to get 01 ， 昀\r\nC0mputing the mean m = E[@I ， 2\r\n= expected value = average output 01 ， C2\r\nway ： The average value of s ample 1 is ä(), 0 ） + 缸 0 ， b) =\r\nWe have two mdependent identic al 引 s (two s ample s) ． Add their me ans ：\r\n1\r\n0 verall mean m = E [ 1 ， 2\r\n2\r\nOur two ． s ample exp enment was 刀 历 “ e 乙 The desired mean was achieved.\r\nSecond way ： The experiment h ad the following 4 outcomes each with probability\r\n紜 0 ） + 紜 0 ）\r\nThe mean is the sum of all four outputs weighted by their probabilities all\r\n， b) as b efore\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 151 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 147，属 §II.4 Randomized Linear Algebra（随机化线性代数）正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 4. Randomized Linear Algebra（随机化线性代数）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把矩阵 $A$ 误识为 `蓋`、`风`，把 `from` 误识为 `什 om`，把求和号 $\\sum$ 误识为 `乥`，把下标 $k$ 误识为 `0`，把 $s_k^2$ 误识为 `sz`，把 $s$ 误识为 `5`，把 $v=(a,b)$ 误识为 `= @， b)`；`Our two-sample experiment was …` 一句句末的词形无法辨认，按上下文补出。式 (2) 按“一列乘一行”的语境重建为分块外积，编号与原文一致。\r\n\r\n**1. Column-row sampling（列-行采样）**\r\n\r\n$S$ 的每一列都只有一个非零元，记作 $s_k$。\r\n于是 $AS$ 直接从 $A$ 中挑出若干个单独的列 $a_k$，而 $S^{T}B$ 挑出 $B$ 中相应的行 $b_k$。\r\n用 $AS$ 乘以 $S^{T}B$，得到的是以数 $s_k^2$ 加权的列-行乘积 $a_k b_k$ 之和。\r\n\r\n其中一个乘积 $s_k^2\\,a_k b_k^{T}$ 来自 $AS$ 的一列与 $S^{T}B$ 的一行，它的形状是\r\n\r\n```math\r\n\\begin{bmatrix} 0 \\\\ s_k a_k \\\\ 0 \\end{bmatrix}\r\n\\begin{bmatrix} 0 & s_k b_k & 0 \\end{bmatrix}\r\n\\;=\\;\r\n\\begin{bmatrix} & & \\\\ & s_k^2\\,a_k b_k^{T} & \\\\ & & \\end{bmatrix}\r\n\\tag{2}\r\n```\r\n\r\n把这些合在一起，$AB$ 就被随机抽取的 $s$ 个秩一矩阵（rank-one matrices）的加权和 $CR = \\sum_k s_k^2\\,a_k b_k^{T}$ 所逼近。\r\n选取是随机的，但权重由我们选择。\r\n\r\n**2. Sampling by random projections（用随机投影采样）**\r\n\r\n矩阵 $S$ 仍然是 thin（薄）的，所以 $AS$ 的列数远少于 $A$ 的列数。\r\n此时 $S$ 的各列含有多个非零元，于是 $AS$ 在把列空间 $C(A)$ 投影到更低维时混合了各列。\r\n这样一来，$AS\\,S^{T}B$ 就是对 $AB$ 更均匀的逼近。\r\n\r\n我们从随机采样（random sampling）开始，稍后再描述随机投影（random projections）。\r\n后者能为原始矩阵 $AB$ 产生快速而有用的预条件子（preconditioner），并且可能降低图聚类（graph clustering）的计算代价。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Practice with Computing Mean and Variance（计算均值与方差的练习）\r\n\r\n下面是一个非常简化的采样问题。\r\n这里不从矩阵出发，而是从一个向量 $v = (a, b)$ 出发。\r\n我们要对它采样两次（2 次独立试验），然后计算均值 $m$ 与方差 $\\sigma^2$。\r\n第 V.1 节（Section V.1）将给出关于 $m$ 与 $\\sigma^2$ 的更多例子。\r\n\r\n第一次采样：以概率 $\\tfrac12$ 与 $\\tfrac12$ 选择 $(a, 0)$ 或 $(0, b)$。\r\n第二次采样：完全重复一次。\r\n然后把两个样本相加，得到输出 $c_1$ 与 $c_2$。\r\n\r\n计算均值 $m = E[c_1 + c_2]$，即期望值（expected value），也就是输出的平均值。\r\n\r\n**第一种方式：** 样本 1 的平均值是 $\\tfrac12(a, 0) + \\tfrac12(0, b) = \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right)$。\r\n我们有两个 independent identical trials（独立同分布试验），也就是两个样本，把它们的均值相加：\r\n\r\n```math\r\nm = E[c_1 + c_2] = \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right) + \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right) = (a, b).\r\n```\r\n\r\n我们这次双样本试验奏效了，所求的均值确实达到了。\r\n\r\n**第二种方式：** 该试验有下面 4 种结果，每种的概率都是 $\\tfrac14$：\r\n\r\n```math\r\n\\tfrac14\\big[(a,0)+(a,0)\\big]+\\tfrac14\\big[(a,0)+(0,b)\\big]+\\tfrac14\\big[(0,b)+(a,0)\\big]+\\tfrac14\\big[(0,b)+(0,b)\\big]=(a,b).\r\n```\r\n\r\n均值就是全部四个输出按其概率加权之和，结果仍为 $(a, b)$，与前面一致。\r\n\r\n@@PAGE:152@@（书页 148）\r\n−-- OCR 原文 −--\r\n148\r\nComputations with Large Matnces\r\n= weighted average 0f the squared distances from outputs t0 mean\r\n2\r\nThe vanance 伊\r\nWe will u se tWO equivalent way s tO compute 02 = E [ （ 一 mean\r\n一 (mean)2.\r\nFirst way 力 ” d “ r ” ： Add all (outputs 一 mean)2 weighted by their probabilities\r\n4\r\n2\r\n1\r\n2\r\n2\r\n2\r\n4\r\n1\r\n1\r\n(a2, b2 ）\r\n2\r\n4\r\nSecond way ： Add 1 (outputs)2 weighted by their probabilities and subtract (mean)2\r\n1\r\n2\r\n4\r\n2\r\n2\r\n2\r\n1\r\na2 b2\r\n（ 3 ）\r\n2\r\nObservation ： If b is 1 arg er th an we could keep the correct me an (), b) and reduce the\r\nvanance 伊 2 by giving g “ probability to choosing the larger s ample s （ 0 b).\r\nM atrix sampling will do this (see Problem 7 at the end of this S ection 11.4) ·\r\nThi s page used 5 = 2 trials for = 2 numbers b. useful, ” 0 e was 法 The\r\nnext pages use 5 < < trials for a matnx with columns. The mean Of AB Stays correct.\r\nRandom Matrix Multiplication with the C 0 rrect Mean AB\r\nThe by 5 s ampling matrix S will contam 5 columns. Each c olumn of S has 0 e 0 ero ·\r\nFor column j Of 5 ， the position Of th at nonzero is random ！ If the random choice IS\r\nrow = 0 ） ， the nonzero in row column j of S is 5 。 The sampled matrix is AS ：\r\nCoIumns 1 to s of AS are numbers s times columns （ 1 ） to 处@） of ．\r\nHere is an example with 5 = 2 trials. lt s amp les columns 1 ） = 1 and 2 ） = 3 什 0 m 士\r\n511 0\r\nAS =\r\n02 03\r\n0\r\n0\r\ns11a1 S3203\r\n0 s32\r\nTh e key question is ： How do we choose those numbers s 幻 ？ The answer is ： They\r\ncome om probabilities ！ We intend to do random samplinge So we must choose those\r\ns columns of 风 in a random way (allowing all columns a chance) in random multiplicat1011 ：\r\nAssign probabilities Pj to all of th e columns of ， with PI + 。 。 。 + Pn = 1\r\nChoose columns with replacement ()o columns can be chosen more 皿 once)\r\ncolumn of is chosen (with row of B), multiply both of those by 1 / −\r\nThen (column of 蓋 ） (row of B)/SPk go into our random product AB.\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 152 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 148，是 §II.4 Randomized Linear Algebra（随机化线性代数）正文的续页；页眉（Computations with Large Matrices）与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把 $A$ 误识为 `蓋`、`风`，把下标误识为 `0`，把方差记号 $\\sigma^2$ 误识为 `伊 2`；`…useful…` 前后的词形无法辨认，按上下文补出。两种算法的输出取 $c_1+c_2$，其四种结果为 $(2a,0),(a,b),(a,b),(0,2b)$，均值是 $(a,b)$，故方差为 $(a^2+b^2)/2$；原文用 $(a,-b)^2$ 表示长度平方，译文统一写成 $\\|\\cdot\\|^2$。$AS$ 的示例依 $c(1)=1$、$c(2)=3$ 重建为 $A=[a_1\\ a_2\\ a_3]$、$S$ 为 $3\\times2$。式 (3) 的编号与原文一致。\r\n\r\n方差 $\\sigma^2$ 等于从各个输出到均值的距离平方的加权平均。\r\n记输出为 $x$、均值为 $m$，我们将用两种等价的方式来计算 $\\sigma^2 = E\\left[\\|x − m\\|^2\\right] = E\\left[\\|x\\|^2\\right] − \\|m\\|^2$。\r\n\r\n**第一种方式：** 把每个输出的 $\\|x − m\\|^2$ 按其概率加权相加：\r\n\r\n```math\r\n\\tfrac14\\|(a,-b)\\|^2+\\tfrac14\\|(0,0)\\|^2+\\tfrac14\\|(0,0)\\|^2+\\tfrac14\\|(-a,b)\\|^2=\\tfrac{a^2+b^2}{2}.\r\n```\r\n\r\n**第二种方式：** 把每个输出的 $\\|x\\|^2$ 按其概率加权相加，再减去 $\\|m\\|^2$：\r\n\r\n```math\r\n\\tfrac14(4a^2)+\\tfrac12(a^2+b^2)+\\tfrac14(4b^2)-(a^2+b^2)=\\tfrac{a^2+b^2}{2}. \\tag{3}\r\n```\r\n\r\n**Observation（观察）：** 若 $b$ 大于 $a$，我们可以保持正确的均值 $(a, b)$，并通过给较大的样本 $(0, b)$ 以更大的被选概率来减小方差 $\\sigma^2$。\r\n矩阵采样（matrix sampling）就会这样做（见本节 §II.4 末的 Problem 7）。\r\n\r\n本页对 $n = 2$ 个数 $a, b$ 用了 $s = 2$ 次试验，这个例子虽然简单却很有用。\r\n接下来的几页对一个有 $n$ 列的矩阵采用 $s \\ll n$ 次试验。\r\n$AB$ 的均值仍然保持正确。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Random Matrix Multiplication with the Correct Mean AB（均值 $AB$ 正确的随机矩阵乘法）\r\n\r\n$n \\times s$ 的采样矩阵 $S$ 将含有 $s$ 列，$S$ 的每一列只有一个非零元。\r\n对于 $S$ 的第 $j$ 列，那个非零元所在的位置是随机的。\r\n若随机选中的是行 $r(j)$，则 $S$ 中第 $r(j)$ 行、第 $j$ 列处的非零元记作 $s_{r(j)j}$。\r\n采样得到的矩阵就是 $AS$：\r\n\r\n$AS$ 的第 1 到第 $s$ 列，分别等于 $A$ 的第 $c(1)$ 到第 $c(s)$ 列乘以相应的数 $s_{r(j)j}$。\r\n\r\n下面是一个 $s = 2$ 次试验的例子：它从 $A$ 中采样第 $c(1) = 1$ 列与第 $c(2) = 3$ 列。\r\n\r\n```math\r\nAS=\\begin{bmatrix} a_1 & a_2 & a_3 \\end{bmatrix}\r\n\\begin{bmatrix} s_{11} & 0 \\\\ 0 & 0 \\\\ 0 & s_{32} \\end{bmatrix}\r\n=\\begin{bmatrix} s_{11}a_1 & s_{32}a_3 \\end{bmatrix}.\r\n```\r\n\r\n关键问题是：我们如何选取这些数 $s_{ij}$？答案是：它们来自概率！\r\n我们打算做随机采样，所以必须以随机的方式选取 $A$ 的那 $s$ 列（让每一列都有机会）。\r\n在随机乘法（random multiplication）中：\r\n\r\n**1.** 给 $A$ 的所有列指定概率 $p_j$，满足 $p_1 + \\cdots + p_n = 1$。\r\n**2.** 有放回地（with replacement）选取列，即同一列可以被选到不止一次。\r\n**3.** 一旦 $A$ 的第 $j$ 列被选中（连同 $B$ 的相应行），就把二者都乘以 $1/\\sqrt{s p_j}$。\r\n\r\n于是 $(A$ 的第 $j$ 列$)(B$ 的第 $j$ 行$)/s p_j$ 就进入我们对 $AB$ 的随机乘积。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 5323,
+            "outputTokens": 8081,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 5323,
+              "outputTokens": 8081,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 7900,
+          "contextWindow": 1000000,
+          "pressureTokens": 8139,
+          "sampledSurfaceTokens": 4067
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2507,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 3833,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6756
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

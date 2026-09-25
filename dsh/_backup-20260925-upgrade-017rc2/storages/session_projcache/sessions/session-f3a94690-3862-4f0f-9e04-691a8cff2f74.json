@@ -1,0 +1,231 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128859740,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 35,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 35,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 但是，加上带 $\\rho$ 的惩罚项有一个很大的缺点 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（第一性原理洞察）：**</span> 这一段是全书结构上最关键的一处两难，读不透它就无法理解 ADMM 为什么必须存在。把矛盾摊开来看：**可分离性** 与 **收敛稳健性** 是两个都想保住、但在朴素做法下互相排斥的性质。\r\n\r\n先确认惩罚项买到了什么。式 (11) 的 $\\mathcal{L}_\\rho(c,y)=f(c)+y^T(Ac-b)+\\frac{\\rho}{2}\\|Ac-b\\|^2$ 相比 (5) 的 $L$，多了一个以 $\\rho$ 为系数的二次项。它的作用是把必须精确满足 $Ac=b$这件硬约束软化成偏离约束要交罚款。为什么这能救收敛？因为 $f$ 本身可能不是严格凸的（比如 $f\\equiv 0$，此时 (4) 就是找一个满足 $Ax=b$ 的点），对偶函数 $m(y)$ 可能出现平坦区域或尖角，最速上升就会卡住、震荡甚至发散；加上二次罚之后，(11) 等价于在约束下最小化 $f(c)+\\frac{\\rho}{2}\\|Ac-b\\|^2$，代价函数增了一项**严格凸**的二次型（只要 $A$ 列满秩，$A^TA$ 正定），最优点被钉得唯一而稳定，同时那个惩罚常数 $\\rho$ 正好充当一个安全的步长 $s$。\r\n\r\n再看代价，也就是本段点出的很大缺点。$f$ 可分离的性质，是靠 $f(c)=\\sum_i f_i(c_i)$ 传递到 $L$ 上的；但新加的 $\\frac{\\rho}{2}\\|Ac-b\\|^2=\\frac{\\rho}{2}\\|\\sum_i A_ic_i-b\\|^2$ 里的**范数平方不能拆开**——它是 $(c_1,\\dots,c_N)$ 的耦合二次型，展开后会出现 $c_i^TA_i^TA_jc_j$（$i\\ne j$）这样的交叉项。用具体数字确认：$N=2$、$A_1=A_2=I$、$b=0$，则 $\\|c_1+c_2\\|^2=\\|c_1\\|^2+2c_1^Tc_2+\\|c_2\\|^2$，那个 $2c_1^Tc_2$ 就是无法分配的公摊。后果是 (9) 式的 $N$ 个并行最小化塌缩成一个整体最小化，并行优势荡然无存。\r\n\r\n所以真正的出路不是选边站，而是**用新变量把耦合项挪出目标函数、挪进约束**：让 $x$ 和 $z$ 各管一半，用 $x-z=0$ 记账，于是每一步只需对其中一个变量做带惩罚的最小化，而另一个变量的惩罚项里就没有交叉项了。把这条思路提炼成模板，命名为**耦合外移法（coupling relocation）**：当惩罚项便利与结构可分离冲突时，不要试图修改惩罚项，而是引入冗余变量，把冲突的那一项从目标函数搬到约束里去——代价是变量和约束变多，收益是每步都变成可并行的简单子问题。ADMM 全部的三行迭代 (13)–(15) 都是这条模板的产物。\r\n\r\n=== ANCHOR: 两个函数 $f(x)$ 与 $g(z)$ 是被分开处理的。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 把 ADMM 的三步迭代 (13)–(15) 与你在线性代数（Strang）里学过的 Gauss-Seidel 迭代并排看，会发现它们是同一件事在非线性、非光滑场景下的推广，区别恰恰在于每次更新几个变量。\r\n\r\n复习一下 Gauss-Seidel 求解 $Ax=b$：把 $A=L+D+U$（下三角、对角、上三角），迭代写成 $(D+L)x_{k+1}=b-Ux_k$，其含义是——更新第 $i$ 个分量时，前面 $i-1$ 个分量已经用了**本轮的新值**，后面还用旧值。对照 ADMM：(13) 用旧的 $z^k,y^k$ 求出 $x^{k+1}$；(14) **立刻用刚出炉的 $x^{k+1}$** 加上旧的 $y^k$ 求出 $z^{k+1}$；(15) 再用新出的 $x^{k+1},z^{k+1}$ 更新 $y^{k+1}$。这就是交替方向（alternating direction）四个字的全部含义：变量被切成两组，轮流坐上被优化的位置，每一轮总有一个变量持有的是最新值。\r\n\r\n为什么必须交替而不是联合？联合更新要同时最小化 $f(x)+g(z)$，而两者被同一个二次耦合项 $\\frac{\\rho}{2}\\|Ax+Bz-c\\|^2$ 绑着，正如上一段所说，无法拆成并行子问题。交替更新的好处是：每一步里另一个变量是**常数**，惩罚项就退化成该变量的一个普通二次函数，可以与 $f$ 或 $g$ 直接合并求解；如果 $g$ 是 $\\lambda\\|z\\|_1$，该步甚至退化成软阈值（例 2），有闭式解。\r\n\r\n代价也要讲清楚：交替更新使每一步只下降部分目标，收敛证明必须依赖更精细的工具（这也是书中说凸分析超出了这里的准备的原因），而且当 $\\rho$ 太大时 ADMM 会明显变慢——因为 $x$ 步与 $z$ 步都被拉向中间那个约束，两者互相拉扯。\r\n\r\n命名一个可复用的模板：**分块轮转下降法（block-coordinate rotation descent）**。适用条件是：目标可分成两块之和（或更多块），块间耦合项是光滑的二次型，各块单独的极小化可解。步骤：写出增广目标；对块 $A$ 最小化（固定块 $B$）；对块 $B$ 最小化（用新的块 $A$）；更新对偶乘子以记录块间不一致量。检验标准：每一步目标单调不增，且乘子序列的增量（此处的 $Ax^{k+1}+Bz^{k+1}-c$）趋于零。这套模板在凸优化（Boyd）里会以坐标下降的名字再次出现，只是那里的耦合更弱、不需要乘子。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 35,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 35,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 35,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 35,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2609,
+            "outputTokens": 23652,
+            "cacheReadTokens": 60800,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 4,
+            "buckets": {
+              "uncachedInputTokens": 161,
+              "outputTokens": 4159,
+              "cacheReadTokens": 24960,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 35,
+        "val": {
+          "surfaceTokens": 16158,
+          "contextWindow": 1000000,
+          "pressureTokens": 25121,
+          "sampledSurfaceTokens": 13976
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 35,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 903,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 2675,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 7041,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 28,
+              "heuristicTokens": 1689,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 2182,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 15014
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 35,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 32,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 34
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 35,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 35,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 35,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 35,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,396 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789948920441,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 121,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 121,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 `Manual` 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy | Manual, Problem Set I.x 题 N</span>`。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、$\\det$ 与 $\\operatorname{trace}$ 校验数字不符等。请**独立重算每一处计算**，包括题面给出的矩阵是否与官方答案自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错，有没有把对的说成错的、把错的说成对的。\r\n③ 🔴 译者注**规格**：本技能规定**每条注 800–1200 字**（公式/配图/引文不计）。本次草稿的注普遍超长（部分 2000–8000 字），请处理为合规形态：优先**按主题拆分为多条注**（子标题写作 `**Note（译者注）——（其一）……**`、`**Note（译者注）——（其二）……**`），每条 800–1200 字；太短或碎片化的可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——压缩对象只能是重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板），跨课程连接精确到「课程名 + 具体概念 + 连接路径 + 区别」，不得裸甩名词。\r\n④ 🟡 术语一致性：同一术语本段内单一译法（outer product 一律外积、rank one matrix 一律秩一矩阵、permutation matrix 一律置换矩阵、projection matrix 一律投影矩阵）。\r\n⑤ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑥ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；`Original（英文原题）` 是否与题面逐字对应。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课的一道题（含题干、解答、译者注、设计意图）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 数学一律 LaTeX；不确定处写 `⚠ 待核：<存疑点>`。\r\n- 禁止只输出意见清单而不给修订全文。\r\n\r\n======================= 待审部分开始（该课的一道题（含题干、解答、译者注、设计意图）） =======================\r\n\r\n### <span style=color:#2471a3;>**[problem]**</span> <span style=color:#c0392b;>Problem 2（问题 2）</span>\r\n\r\n> <span style=color:#7f8c8d;>教材 §I.5, p.31-35 | Manual, Problem Set I.5 题 2</span>\r\n\r\n画出两个不互相 orthogonal（正交）的 unit vector（单位向量）$u$ 与 $v$；再验证 $w = v - u(u^Tv)$ 与 $u$ 正交，并把 $w$ 补进你的图里。\r\n\r\n<span style=color:#7f8c8d;>**Original（英文原题）：** Draw unit vectors $u$ and $v$ that are not orthogonal. Show that $w = v - u(u^Tv)$ is orthogonal to $u$ (and add $w$ to your picture).</span>\r\n\r\n---\r\n\r\n---\r\n\r\n> <span style=color:#1e8449;>**[solution]**</span> **一、结论**\r\n>\r\n> 设 $u, v \\in \\mathbb{R}^n$，$\\|u\\| = 1$（即 $u^Tu = 1$），$v$ 任意（本题额外要求 $u^Tv \\neq 0$ 以体现不垂直）。则\r\n>\r\n> ```math\r\n> w = v - u(u^Tv) \\quad \\Longrightarrow \\quad u^Tw = 0\r\n> ```\r\n>\r\n> 且这是唯一的 orthogonal decomposition（正交分解）：$u^Tv$ 是 $v$ 在直线 $L = \\mathrm{span}\\{u\\}$ 上的 projection（投影）坐标，$w$ 是垂足到 $v$ 的余项，$v = u(u^Tv) + w$ 对应一个直角三角形的斜边与两条直角边。当 $u^Tv = 0$（题面排除的情形）时 $w = v$，结论退化为$v$ 本身正交于 $u$，仍成立但不体现本题机制。\r\n>\r\n> **二、方法一：直接代入验算（Manual 的路线，最省事）**\r\n>\r\n> 唯一要用的工具是 inner product（内积）的双线性：$(x+y)^Tz = x^Tz + y^Tz$、$(cu)^Tv = c\\,(u^Tv)$。\r\n>\r\n> ```math\r\n> u^Tw = u^T\\bigl(v - u(u^Tv)\\bigr) = u^Tv - (u^Tu)(u^Tv) = u^Tv - 1\\cdot(u^Tv) = 0\r\n> ```\r\n>\r\n> 注意标量的位置可以自由移动：$u^T\\bigl(u(u^Tv)\\bigr)$ 中 $u^Tv$ 是一个数，可以先算 $u^Tu$ 再乘它，先把 $u^Tu$ 算成 $1$ 是整个验证的关键一步。\r\n>\r\n> 这个方法看到了别的视角看不到的东西：它只用了内积公理，因此对任何 $n$、任何时候都成立，且错了立刻看得见——中间量 $u^Tv$ 与最终结果 $0$ 都是可复核的标量。适用条件是 $\\|u\\| = 1$。缺点是它只完成 verification（验证），不告诉你 $w$ 为何非取这个形状不可，也看不出 $w$ 是最优的。\r\n>\r\n> **三、方法二：投影矩阵视角（$P = uu^T$ 与 $I - P$）**\r\n>\r\n> 把标量 $u^Tv$ 与向量 $u$ 重新结合成矩阵乘法：$u(u^Tv) = (uu^T)v = Pv$，其中 $P = uu^T$。于是\r\n>\r\n> ```math\r\n> w = v - Pv = (I - P)v\r\n> ```\r\n>\r\n> 先验证 $P$ 确实是 projection matrix（投影矩阵）：对称性 $(uu^T)^T = u^{TT}u^T = uu^T$，幂等性\r\n>\r\n> ```math\r\n> P^2 = (uu^T)(uu^T) = u(u^Tu)u^T = u\\cdot 1\\cdot u^T = P\r\n> ```\r\n>\r\n> 对称 + 幂等按定义就是正交投影算子。再算 $u^T(I-P) = u^T - u^Tuu^T = u^T - u^T = 0$，即 $I - P$ 的值域落在 $u$ 的 orthogonal complement（正交补）$u^{\\perp} = \\{x : u^Tx = 0\\}$ 中。这个方法看到的是结构：$w \\perp u$ 不是算出来的巧合，而是任何向量减去它在某方向上的正交投影，余项必与该方向正交这一条普遍定理的特例。\r\n>\r\n> 自检维度：$P$ 是 $n\\times n$，$\\mathrm{rank}(P) = 1$（它的每一列都是 $u$ 的倍数），$\\mathrm{trace}(P) = u^Tu = 1$，与秩为 $1$ 的幂等阵迹等于秩相符；$I - P$ 的迹为 $n - 1$，正是 $u^\\perp$ 的维数。两种算法殊途同归，秩与迹的账本彼此吻合。\r\n>\r\n> **四、方法三：把 $w$ 当作最优余项（Minimality / 正交性原理）**\r\n>\r\n> 换一个提问顺序：先在直线 $L$ 上找离 $v$ 最近的点 $cu$，解 $\\min_c \\|v - cu\\|^2$。展开\r\n>\r\n> ```math\r\n> \\|v - cu\\|^2 = \\|v\\|^2 - 2c\\,(u^Tv) + c^2\\|u\\|^2 = \\|v\\|^2 - 2c\\,(u^Tv) + c^2\r\n> ```\r\n>\r\n> 这是 $c$ 的二次函数，顶点在 $c = u^Tv$。同一件事还有一条不依赖微积分的路径：设余项 $e = v - cu$，要求 $e$ 与 $L$ 中每个向量正交，取 $L$ 的基 $u$ 得 $u^T(v - cu) = 0$，又用 $u^Tu = 1$ 解出 $c = u^Tv$。两条路径给出同一个 $c$。\r\n>\r\n> 这个方法看到的是：投影不是某个公式，而是最近点与正交条件的同一枚硬币两面——对子空间 $L$，垂足就是最近点。它还自带 Pythagorean（勾股）检验：当 $c = u^Tv$ 时交叉项消失，$\\|v\\|^2 = \\|u(u^Tv)\\|^2 + \\|w\\|^2$。适用条件是 $\\|u\\| = 1$（否则要解 $c = \\frac{u^Tv}{u^Tu}$）。缺点是要多写几行，且把几何问题翻译成代数最优化时引入了额外的语境。\r\n>\r\n> **五、图形（题目要求的画图）**\r\n>\r\n> ```text\r\n>         v\r\n>        /|\r\n>       / |\r\n>      /  |  w = v - u(u^T v)     （垂直于 u）\r\n>     /   |\r\n>    /θ   |\r\n> O------+------------------> 直线 L = span{u}\r\n>      u(u^T v)\r\n>     （u 为单位方向，长度 u^T v = cos θ）\r\n> ```\r\n>\r\n> 图注：$u$ 是 $L$ 上的单位方向，$v$ 与它成锐角 $\\theta$；$u(u^Tv)$ 是 $v$ 落在 $L$ 上的直角边，$w$ 是另一条直角边，$v$ 是斜边。$v$ 不在 $L$ 上、又不与 $u$ 垂直，正是 $0 < |u^Tv| < 1$ 的几何外表。\r\n>\r\n> **六、常见错误判定**\r\n>\r\n> ❌ 写成 $u^Tw = u^Tv - u^Tuu^Tv = u^Tv - 1 = 0$。错在把 $(u^Tu)(u^Tv)$ 中间那个乘法当成了两个向量相乘而只留下 $u^Tu$；$u^Tv$ 是标量因子，$u^Tu = 1$ 只把系数变成 $1$，不能把整个第二项抹成一个纯数 $1$，这与 $1\\cdot(u^Tv) = u^Tv$ 的维度记账冲突。\r\n>\r\n> ❌ 认为 $u(u^Tv) = (u^Tu)v$。错在顺序：$u^Tv$ 是标量，左乘 $u$ 得到的是沿 $u$ 方向的向量；$(u^Tu)v = \\|u\\|^2v$ 一般与 $v$ 同向、且当 $\\|v\\|\\neq 1$ 时长度也不同。反例 $u = (1,0)$、$v = (1,1)$：前者是 $(1,0)$，后者是 $(1,1)$。\r\n>\r\n> ❌ 认为投影矩阵是 $uv^T$ 或 $uu^T$ 与 $vu^T$ 可以互换。错在 $v$ 只是被投影的对象，不是定义投影方向的量：$uv^T$ 把任意 $x$ 映为 $(v^Tx)u$，那是沿 $u$ 的投影没错，但它依赖 $v$、不幂等（除非 $v$ 与 $u$ 特别相关），更不是 $I$ 减去就能得到正交补投影的那个 $P$。只有 $P = uu^T$ 才同时满足 $P^T = P$、$P^2 = P$。\r\n>\r\n> ❌ 把 $u(u^Tv)$ 与 $u(v^Tu)$ 当成两回事并宣称后者才合法。对实向量 $u^Tv = v^Tu$，这两个写法在实数域上数值相同，差别仅在记号习惯；把它们对立起来没有数学内容，真正要小心的是 $(u^Tv)u$ 这个标量乘向量与 $(uv^T)$ 这个外积（$n\\times n$ 矩阵）的区别。\r\n>\r\n> ❌ 用错公式：对非单位向量 $u$ 直接套 $w = v - u(u^Tv)$。反例 $u = (1,0,0)$ 恰好是单位向量看不出问题，改用 $u = (2,0)$、$v = (1,1)$：错误公式给 $v - 2\\cdot 2\\cdot u = (1,1) - (8,0) = (-7,1)$，它虽然仍与 $u$ 正交（巧合于 $u$ 沿坐标轴）但长度离谱；正确公式 $v - \\frac{u^Tv}{u^Tu}u = (1,1) - \\frac{2}{4}(2,0) = (0,1)$。一般情形下错误公式给出的余项甚至不与 $u$ 正交：取 $u = (1,1)$、$v = (1,0)$，错误结果 $(1,0) - 1\\cdot(1,1) = (0,-1)$，而 $u^T(0,-1) = -1 \\neq 0$。\r\n>\r\n> ❌ 把 $w = 0$ 当成反例推翻正交性。$w = 0$ 时 $u^Tw = 0$ 成立，零向量按约定与一切向量正交；它只是说明此时的正交分解丧失唯一性（见方法三与自检），不构成反例。\r\n>\r\n> ❌ 在验算里用 $w$ 定义 $w$，写因为 $w\\perp u$，所以 $u^Tw = 0$。这是循环论证（把结论当条件用），也正是本题要求show的原因：需要独立计算出标量 $u^Tw$ 等于 $0$。\r\n>\r\n> **七、自检**\r\n>\r\n> 代入验算（取 $u = (1,0)$、$v = (\\cos\\theta, \\sin\\theta)$，$n = 2$）：$u^Tv = \\cos\\theta$，$u(u^Tv) = (\\cos\\theta,0)$，$w = (0,\\sin\\theta)$，$u^Tw = 0$，且 $\\|u(u^Tv)\\|^2 + \\|w\\|^2 = \\cos^2\\theta + \\sin^2\\theta = 1 = \\|v\\|^2$。\r\n>\r\n> 形状记账：$u^Tv$ 是 $(1\\times n)(n\\times 1) = 1\\times 1$ 标量，$u(u^Tv)$ 是 $n\\times 1$，$w$ 是 $n\\times 1$，$u^Tw$ 是 $1\\times 1$；$P = uu^T$ 是 $(n\\times 1)(1\\times n) = n\\times n$。全链条无形状冲突。\r\n>\r\n> trace-det 校验：$P$ 的特征值为 $1, 0, \\ldots, 0$（对 $u$ 特征值 $1$，对任意 $x\\in u^\\perp$ 为 $0$，因为 $Px = u(u^Tx) = 0$），故 $\\mathrm{trace}(P) = 1 = \\mathrm{rank}(P)$，$\\det P = 0$（$n\\ge 2$）；$I - P$ 的特征值为 $0,1,\\ldots,1$，$\\mathrm{trace}(I-P) = n-1 = \\dim u^\\perp$。秩—零化度守恒对 $P$ 的账目是 $1 + (n-1) = n$。\r\n>\r\n> 唯一性 / 边界情形：设 $v = c_1u + w_1 = c_2u + w_2$，$w_1, w_2\\perp u$，相减得 $(c_1-c_2)u = w_2 - w_1$，左边属 $L$、右边属 $u^\\perp$；取与 $u$ 的内积得 $(c_1-c_2)\\|u\\|^2 = 0$，于是 $c_1 = c_2$，$w_1 = w_2$。所以沿 $u$ 的分解唯一，且 $c = u^Tv$。当 $w = 0$（即 $v = \\pm u$）时，任何满足 $v = cu + w'$、$w'\\perp u$ 的 $(c, w')$ 都形如 $(1, 0)$ 或 $(-1, 0)$ 再加 $c = \\pm 1$ 的扰动——准确的严格说法是：投影坐标 $c = u^Tv$ 仍然唯一（$c$ 总等于 $\\pm 1$），丧失的只是余项由 $v$ 与 $c$ 唯一决定这一条的非零性保证；$c$ 本身永不被扰动。\r\n>\r\n> 符号方向校验：$u^Tw$ 是带符号标量，本题结果为 $0$，无需讨论正负；但与 $u^Tv$ 不同，$u^Tv$ 的符号是真实信息（钝角时为负，投影点落在 $u$ 的反向延长线上），不要因为要证的是 $0$ 就以为内积的符号无所谓。\r\n>\r\n> **八、一句话**：这道题真正训练的是用内积公理与单位化条件把几何正交翻译成一行代数，以及减掉投影必得正交余项这条贯穿 Gram-Schmidt、least squares（最小二乘）与傅里叶系数的分解范式。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——单位化的红利：为什么 $u^Tu=1$ 值得在最开始就付掉**\r\n>\r\n> 本注要讲的核心只有一句：$u^Tu=1$ 不是装饰性假设，它是把投影公式从要做一次除法降级成什么都不用做的那把钥匙。本题里 $w = v - u(u^Tv)$ 之所以是一行，而不是 $v - \\frac{u^Tv}{u^Tu}u$ 那种带分母的两行，全部红利都来自这个条件。\r\n>\r\n> 先从第一性原理看一般情形。设 $u$ 任意非零，要在 $L = \\mathrm{span}\\{u\\}$ 上解 $\\min_c\\|v - cu\\|^2$。展开得 $\\|v\\|^2 - 2c(u^Tv) + c^2(u^Tu)$，这是开口向上的二次函数，顶点在\r\n>\r\n> ```math\r\n> c^{*} = \\frac{u^Tv}{u^Tu}\r\n> ```\r\n>\r\n> 分母 $u^Tu$ 就是 L 中基向量 $u$ 的 Gram matrix（格拉姆矩阵）——一维时它只是一个数，$k$ 维时它是 $k\\times k$ 矩阵，一般解是 $c = G^{-1}A^Tv$。把 $u$ 单位化后 $G = [1]$，矩阵求逆退化为恒等运算。这正是 §I.5 中 Gram-Schmidt 第一步 $c = b - \\frac{a^Tb}{a^Ta}a$ 与本题 $w = v - u(u^Tv)$ 的唯一差别：前者处理一般 $a$，后者处理已单位化的 $u$。\r\n>\r\n> 用具体数字验证一次。取 $u = (3,4)$（$\\|u\\| = 5$）、$v = (1,0)$。一般公式：$u^Tv = 3$，$u^Tu = 25$，$c = 3/25$，余项 $v - \\frac{3}{25}(3,4) = (1 - 9/25, -12/25) = (16/25, -12/25)$，与 $u$ 的内积为 $\\frac{48}{25} - \\frac{48}{25} = 0$。现在把 $u$ 换成 $\\hat u = (3/5, 4/5)$：$\\hat u^Tv = 3/5$，余项为 $(1,0) - \\frac{3}{5}(3/5, 4/5) = (1 - 9/25, -12/25)$，两次结果一字不差。区别只在计算路径：前者每一步都要带着分母 $25$，后者分母恒为 $1$。余项相同是因为投影的几何位置与基的选取无关，这就是基的替换不改变子空间这一事实的数值影子。\r\n>\r\n> 跨课程连接，给出可复用的判断模板。在 18.065 §I.5 与 Gram-Schmidt 中，单位化让后续所有内积公式自动除以 $1$，代价是每根新轴都要算一次平方根并做一次除法；这与 6.006 里预处理一次、之后每步查询变 $O(1)$的 amortization（摊还）思路同构，也与 CSAPP 第 2、3 章里把重复的地址计算提前算好写进寄存器是同一类取舍。可以把它命名为**单位化预付模板**：先把尺度成本一次付清（除以 $\\|u\\|$），此后每一步公式都退化为无分母形式。反过来，数值上还有一条与 CSAPP 浮点表示直接相关的警告：$w = v - u(u^Tv)$ 是两个几乎相等的向量相减，当 $v$ 接近 $\\pm u$ 时 $\\|w\\|$ 极小，leading zeros（前导零）造成 catastrophic cancellation（灾难性抵消），相对误差被放大。教科书上的 classical Gram-Schmidt（经典格拉姆—施密特）正是用这个减法逐列进行，因此实际实现改用 modified Gram-Schmidt（修正格拉姆—施密特）或 Householder reflection（豪斯霍尔德反射），把先算投影再相减改成每减一项立刻重算内积，减少抵消；这一话题在后续讲 condition number（条件数）与 QR 分解时还会回来。\r\n>\r\n> 收束回正文：本题那一行 $u^Tw = 0$ 的干净程度，是单位化预付的直接产物；若题目不给 $\\|u\\| = 1$，同一结论仍成立但公式必须带着 $u^Tu$ 的分母，Manual 的验算也就不会在最后一步恰好化成 $u^Tv - u^Tv$。\r\n>\r\n> <span style=color:#1e8449;>**[note]**</span> **Note（译者注）——沿子空间分解与沿正交补分解：等价关系给出的唯一代表元**\r\n>\r\n> 本注要讲的核心是：$v = u(u^Tv) + w$ 这个分解的真正身份，是把 $\\mathbb{R}^n$ 按模去 $u^\\perp$做了一次分类，而正交性负责在每一个等价类里挑出一个唯一、且长度最小的代表元。\r\n>\r\n> 机制展开。令 $L = \\mathrm{span}\\{u\\}$、$U = u^{\\perp} = \\{x : u^Tx = 0\\}$。先确认 $U$ 是 subspace（子空间）：$u^T0 = 0$ 故 $0\\in U$；若 $u^Tx = u^Ty = 0$，则 $u^T(x+y) = 0$、$u^T(cx) = c\\cdot 0 = 0$，对加法与数乘封闭。再确认 $L\\cap U = \\{0\\}$：若 $x = tu$ 且 $u^Tx = 0$，则 $t(u^Tu) = t = 0$，故 $x = 0$。两条合起来给出直和\r\n>\r\n> ```math\r\n> \\mathbb{R}^n = L \\oplus U, \\qquad \\dim L + \\dim U = 1 + (n-1) = n\r\n> ```\r\n>\r\n> 维数记账与秩—零化度守恒在这里以最简形式出现：$P = uu^T$ 是秩 $1$ 的算子，$I - P$ 是秩 $n-1$ 的算子，两者值域的交只有 $\\{0\\}$，两个值域张成整个空间。\r\n>\r\n> 用 6.042J 的语言重述：把等价关系定义为 $x \\sim y \\iff x - y \\in U$。每个等价类是一个平行于 $u$ 的直线，即一个 coset（陪集）$x + U$；商集 $\\mathbb{R}^n/U$ 与 $L$ 一一对应（每个类恰好与 $L$ 交于一点，因为 $L\\oplus U = \\mathbb{R}^n$ 保证存在性，$L\\cap U = \\{0\\}$ 保证唯一性）。于是商映射 $\\mathbb{R}^n\\to\\mathbb{R}^n/U$与投影 $P$在下述意义下是同一个东西：$Px$ 就是等价类 $x + U$ 中那个唯一的 $L$-代表元。本题的 $w$ 则是另一个方向上的代表元：它是 $v$ 在同一条平行线上的所有点里，离 $L$ 最近的那一个（最近距离为 $\\|w\\|$）。\r\n>\r\n> 与 6.042J 里学过的等价类划分相比，这里有两点必须区分。第一，6.042J 的商集只关心谁和谁同类，不关心代表元的长度；这里额外要求代表元落在 $L$ 或 $U$ 中，于是每个类获得一个几何上被唯一钉住的代表元——这正是 least squares（最小二乘）能给出唯一解的原因：法方程 $A^TAx = A^Tb$ 有唯一解当且仅当 $A$ 的列线性无关（本题 $A = u$，一列，$\\|u\\|\\neq 0$ 自动满足），而解的唯一性本质上来自 $N(A^TA) = N(A) = \\{0\\}$。第二，6.042J 的划分是纯组合结构，与内积无关；这里的划分依赖内积才能定义 $U$，换一个内积（例如加权内积 $\\langle x,y\\rangle = x^TWy$，$W$ 正定）就换一套划分与投影，公式变成 $w = v - u\\frac{u^TWv}{u^TWu}$。把这条改名成**正交代表元模板**：给定内积空间与子空间，每个陪集有唯一最短向量，且它垂直于该子空间。这个模板在 100B 实分析里以Hilbert 空间中的最佳逼近元存在唯一的形式重现（名称先记在这里，具体定理等到那门课再展开），在傅里叶级数里则是取前 $N$ 项三角多项式是所有 $N$ 项逼近中 $L^2$ 误差最小的。\r\n>\r\n> 收束回正文：$u^Tw = 0$ 除了是本题的答案，还在说$w$ 是它所在陪集里垂直于 $L$ 的那个代表元；一旦用这层语言去看，Gram-Schmidt 的每一步就都是取一个陪集、拆成沿已有正交方向的分量加正交余项，而 Manual 那一行验算只是这台机器最小的一个零件。\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 121,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 121,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 121,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 121,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 121,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 63928,
+            "outputTokens": 102298,
+            "cacheReadTokens": 1515520,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 20,
+            "buckets": {
+              "uncachedInputTokens": 220,
+              "outputTokens": 10469,
+              "cacheReadTokens": 117120,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 121,
+        "val": {
+          "surfaceTokens": 76119,
+          "contextWindow": 1000000,
+          "pressureTokens": 117340,
+          "sampledSurfaceTokens": 71592
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 121,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2864,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 26543,
+              "system": false
+            },
+            {
+              "seq": 20,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 240,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 4382,
+              "system": false
+            },
+            {
+              "seq": 27,
+              "heuristicTokens": 1121,
+              "system": false
+            },
+            {
+              "seq": 30,
+              "heuristicTokens": 1043,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 41,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 2259,
+              "system": false
+            },
+            {
+              "seq": 37,
+              "heuristicTokens": 151,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 44,
+              "heuristicTokens": 279,
+              "system": false
+            },
+            {
+              "seq": 46,
+              "heuristicTokens": 73,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 216,
+              "system": false
+            },
+            {
+              "seq": 51,
+              "heuristicTokens": 32,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 230,
+              "system": false
+            },
+            {
+              "seq": 56,
+              "heuristicTokens": 435,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 333,
+              "system": false
+            },
+            {
+              "seq": 61,
+              "heuristicTokens": 1866,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 1395,
+              "system": false
+            },
+            {
+              "seq": 66,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 136,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 861,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 6241,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 66,
+              "system": false
+            },
+            {
+              "seq": 79,
+              "heuristicTokens": 4547,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 84,
+              "heuristicTokens": 4531,
+              "system": false
+            },
+            {
+              "seq": 86,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 89,
+              "heuristicTokens": 1152,
+              "system": false
+            },
+            {
+              "seq": 91,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 94,
+              "heuristicTokens": 2782,
+              "system": false
+            },
+            {
+              "seq": 96,
+              "heuristicTokens": 42,
+              "system": false
+            },
+            {
+              "seq": 99,
+              "heuristicTokens": 4881,
+              "system": false
+            },
+            {
+              "seq": 101,
+              "heuristicTokens": 51,
+              "system": false
+            },
+            {
+              "seq": 104,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 106,
+              "heuristicTokens": 51,
+              "system": false
+            },
+            {
+              "seq": 109,
+              "heuristicTokens": 217,
+              "system": false
+            },
+            {
+              "seq": 111,
+              "heuristicTokens": 65,
+              "system": false
+            },
+            {
+              "seq": 114,
+              "heuristicTokens": 359,
+              "system": false
+            },
+            {
+              "seq": 116,
+              "heuristicTokens": 50,
+              "system": false
+            },
+            {
+              "seq": 119,
+              "heuristicTokens": 4527,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 74975
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 121,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 121,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 118,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 120
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 121,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 121,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 121,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 121,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 121,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 121,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

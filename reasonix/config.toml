@@ -111,6 +111,7 @@ model_overrides   = { "deepseek-v4-flash" = { supported_efforts = ["disabled", "
 
 [[providers]]
 name        = "commandcode-goat"
+balance_url = "http://127.0.0.1:8790/balance"   # local GOAT quota endpoint (2 accounts x 5h/week/month)
 kind        = "openai"
 base_url    = "http://127.0.0.1:8788/v1"
 chat_url    = "http://127.0.0.1:8788/v1/chat/completions"   # legacy OpenAI chat endpoint override

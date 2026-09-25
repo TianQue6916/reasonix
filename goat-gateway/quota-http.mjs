@@ -11,11 +11,13 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import fs from 'node:fs';
 
 const PORT = Number(process.env.QUOTA_HTTP_PORT || 8790);
 const SCRIPT = process.env.GOAT_USAGE_SCRIPT || 'D:\\Toolbox\\goat-gateway\\goat-usage.ps1';
 const CACHE = path.join(os.tmpdir(), 'goat-quota-http-cache.json');
 const TTL_MS = 10000;
+const HITLOG = 'D:\\Toolbox\\goat-gateway\\logs\\balance-hits.log';
 
 let last = { at: 0, body: null };
 
@@ -65,6 +67,7 @@ const server = http.createServer((req, res) => {
     return;
   }
   if (url.pathname === '/balance') {
+    try { fs.appendFileSync(HITLOG, new Date().toISOString() + '  ua=' + String(req.headers['user-agent'] || '-').slice(0, 60) + '  q=' + url.search + '\n'); } catch {}
     try {
       const body = readQuota(url.searchParams.get('force') === '1');
       const rows = (body.rows || []).filter(Boolean);

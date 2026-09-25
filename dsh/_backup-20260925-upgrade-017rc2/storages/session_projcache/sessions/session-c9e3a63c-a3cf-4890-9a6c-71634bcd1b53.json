@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132490237,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_183（书页 180） @@@@@\r\n−---- 【权威原文】 −---------------\r\n180 \\hfill Low Rank and Compressed Sensing\r\n\r\n\\section*{The Sylvester Equation}\r\n\r\nWe turn to the central problem of the subject: **Which families of matrices have low effective rank?** The goal is to find a test that will reveal this property. To the examples of the Hilbert matrix and the NUDFT matrix $A$ we want to add Vandermonde. And we hope for a test that can be applied to much wider classes of matrices---going far beyond the Vandermonde example.\r\n\r\nHere is the ``Sylvester test'' = ``$A, B, C$ test'' developed by Beckermann and Townsend. The words *low displacement rank* and *structured matrix* are often applied to $X$.\r\n\r\n\\begin{quote}\r\nIf $AX − XB = C$ has rank $r$ for normal matrices $A, B$ with no shared eigenvalues, then the singular values of $X$ decay at an exponential rate decided by $A$, $B$, and $C$.\r\n\\end{quote}\r\n\r\nA matrix is normal if $\\overline{A}^{\\mathrm{T}} A = A \\overline{A}^{\\mathrm{T}}$. Then $A$ has orthogonal eigenvectors: $A = Q \\Lambda \\overline{Q}^{\\mathrm{T}}$. Symmetric and orthogonal matrices are normal, because the test gives $S^2 = S^2$ and $I = I$. The Sylvester matrix equation $AX − XB = C$ is important in control theory, and the particular case when $B = −\\overline{A}^{\\mathrm{T}}$ is called the Lyapunov equation.\r\n\r\nThis Sylvester test requires us to find $A, B$, and $C$ ! That has been done for highly important families of Toeplitz and Hankel and Cauchy and Krylov matrices (including the Vandermonde matrix $V$). All those matrices solve Sylvester's equation for simple choices of $A, B, C$. We take $V$ as our prime example:\r\n\r\n\\[\r\n\\textbf{Vandermonde matrix} \\qquad V = \\begin{bmatrix} 1 & x_1 & x_1^2 & \\cdots & x_1^{n-1} \\\\ 1 & x_2 & x_2^2 & \\cdots & x_2^{n-1} \\\\ \\cdot & \\cdot & \\cdot & & \\cdot \\\\ 1 & x_n & x_n^2 & \\cdots & x_n^{n-1} \\end{bmatrix} \\tag{4}\r\n\\]\r\n\r\n$V$ is the $n$ by $n$ ``interpolation matrix''. It is invertible as long as the points $x_1, \\ldots, x_n$ are all different. We solve $Vc = f$ when we want the coefficients of a polynomial $p = c_0 + c_1 x + \\cdots + c_{n-1} x^{n-1}$. Multiplying $V$ times $c$ gives us the value of $p$ at the points $x = x_1, \\ldots, x_n$. Then $Vc = f$ says that the interpolating polynomial has the desired values $f_1, \\ldots, f_n$ at those $n$ points. **The polynomial exactly fits the data.**\r\n\r\nWe noted that $V$ becomes the Fourier matrix $F$ when we choose complex points $x_1 = \\omega = e^{-2\\pi i/N}$ and $x_k = \\omega^k$. This $F$ has full rank. In that Fourier case $A$ and $B$ (below) have the same eigenvalues $\\omega^k$ : *not allowed*. $A$ and $B$ don't satisfy our requirement of well-separated eigenvalues and all the singular values have equal size : no decay.\r\n\r\nIt is Vandermonde matrices with real numbers $x_1$ to $x_n$ that have exponential decay in their singular values. To confirm this, apply the $A, B, C$ test using these matrices:\r\n\r\n\\[\r\nA = \\begin{bmatrix} x_1 & & & \\\\ & x_2 & & \\\\ & & \\cdot & \\\\ & & & x_n \\end{bmatrix} \\quad\r\nB = \\begin{bmatrix} 0 & 0 & \\cdot & −1 \\\\ 1 & 0 & 0 & \\cdot \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\end{bmatrix} \\quad\r\nC = \\begin{bmatrix} 0 & 0 & 0 & x_1^n + 1 \\\\ 0 & 0 & 0 & x_2^n + 1 \\\\ 0 & 0 & 0 & \\cdot \\\\ 0 & 0 & 0 & x_n^n + 1 \\end{bmatrix} \\tag{5}\r\n\\]\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:183@@\r\n\r\n<span style=color:#7f8c8d;>本页为书页 180，属 §III.3 正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Sylvester Equation（Sylvester 方程）\r\n\r\n我们转向本主题的核心问题：哪些矩阵族具有 low effective rank（低有效秩）？目标是找到一个能揭示这一性质的检验。在已经讨论过的 Hilbert matrix（希尔伯特矩阵）与 NUDFT 矩阵这两个例子之外，我们还想把 Vandermonde matrix（范德蒙矩阵）加进来。而且我们期望这个检验能适用于远比 Vandermonde 例子广泛得多的矩阵类。\r\n\r\n下面就是由 Beckermann 与 Townsend 发展的 Sylvester test（Sylvester 检验），也称 A, B, C test。对于 $X$，人们常常使用 low rank（低秩）与 structured（结构化）这两个词。若对没有公共特征值的正规矩阵（normal matrix）$A$、$B$ 来说，方程 $AX − XB = C$ 的秩为 $r$，则 $X$ 的奇异值以指数速率衰减，该速率由 $A$、$B$、$C$ 决定。若 $\\overline{A}^{T}A = A\\overline{A}^{T}$，则称 $A$ 为 normal matrix（正规矩阵）。于是 $A$ 具有正交的特征向量：$A = Q\\Lambda\\overline{Q}^{T}$。对称矩阵与正交矩阵都是正规矩阵——因为该检验对它们分别给出 $S^{2} = S^{2}$ 与 $I = I$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（为什么「秩」能控制「衰减」）：**</span> Sylvester 检验表面上在谈秩，实际在谈**线性算子的可逆性与条件数**。把 $-B^T$ 与 $A$ 按 Kronecker 积拼成 $I\\otimes A-B^T\\otimes I$，再把 $X$ 按列拉直成 $\\operatorname{vec}(X)$，则矩阵方程 $AX-XB=C$ 就变成一条普通的线性方程 $K\\operatorname{vec}(X)=\\operatorname{vec}(C)$。这一步用到向量化恒等式 $\\operatorname{vec}(AXB)=(B^T\\otimes A)\\operatorname{vec}(X)$，其中 $\\otimes$ 是 Kronecker 积。\r\n>\r\n> 先补机制。我们真正要回答的设计问题是：给定 $B$ 与 $C$，方程 $AX-XB=C$ 什么时候**对任意** $C$ 都有唯一解，而且解不会因为 $C$ 的微小扰动而爆炸？从第一性原理看，这个方程对未知量 $X$ 是线性的——若 $X_1,X_2$ 都是解，则 $A(X_1-X_2)-(X_1-X_2)B=0$，所以「唯一性」完全等价于齐次方程 $AX=XB$ 只有零解，也就是算子 $L(X)=AX-XB$ 单射。有限维下单射即满射，于是「对任意 $C$ 可解」与「只有零解」是同一件事，这正是 Sylvester 定理的秩形式：$\\operatorname{rank}(K)=n^2$ 当且仅当 $\\sigma(A)\\cap\\sigma(B)=\\varnothing$。向量化只是把抽象算子 $L$ 具体化成一张 $n^2\\times n^2$ 的矩阵 $K$，让「秩」这个词终于有一个可以计算的载体。至于「衰减」，指的是逆算子 $L^{-1}$ 的范数：$\\lVert X\\rVert\\le\\lVert K^{-1}\\rVert\\lVert C\\rVert$，而 $\\lVert K^{-1}\\rVert=1/\\sigma_{\\min}(K)$。所以秩刻画的是「有没有解」，最小奇异值刻画的是「解稳不稳」，二者合起来才是完整的可解性图景。\r\n>\r\n> 再看一个可直接复算的验算。取 $2\\times2$ 的 $A=\\begin{pmatrix}\\alpha_1&0\\\\0&\\alpha_2\\end{pmatrix}$，$B=\\begin{pmatrix}\\beta_1&0\\\\0&\\beta_2\\end{pmatrix}$。按列拉直约定，$I\\otimes A$ 先作用在 vec 的第一块上。算 $I\\otimes A$：$\\begin{pmatrix}A&0\\\\0&A\\end{pmatrix}$；算 $B^T\\otimes I$：$\\begin{pmatrix}\\beta_1I&\\beta_2I\\\\ \\beta_1I&\\beta_2I\\end{pmatrix}$ 再按块取转置得 $\\begin{pmatrix}\\beta_1I&0\\\\0&\\beta_2I\\end{pmatrix}$。两者相减得 $K=\\operatorname{diag}(\\alpha_1-\\beta_1,\\alpha_1-\\beta_2,\\alpha_2-\\beta_1,\\alpha_2-\\beta_2)$，于是 $\\det K=(\\alpha_1-\\beta_1)(\\alpha_1-\\beta_2)(\\alpha_2-\\beta_1)(\\alpha_2-\\beta_2)$。这段两行手算把结论全部摊开了：$K$ 满秩当且仅当任意一对 $(\\alpha_j,\\beta_k)$ 都不相等，也就是 $\\prod_{j,k}(\\alpha_j-\\beta_k)\\neq0$。对可对角化的一对矩阵，同一个乘积形式依然成立，这就是「谱距离」的代数化身。\r\n>\r\n> 跨课程连接一条，精确到路径与区别。在 Strang 线性代数与 18.065 里，$\\prod_{j,k}(\\alpha_j-\\beta_k)$ 正是两个特征多项式结式的因子分解形态，出现在「用特征值研究矩阵方程」这一节；共同点是都用谱来判定退化，区别在于 18.06 侧重点是谱定理与对角化本身，而这里要的是谱的**相减**——是两族特征值之间的间隔，而不是单族的分布。补一句浮点层面的连接：CSAPP 告诉我们，$\\sigma_{\\min}$ 比机器精度还小时，纸面上的可逆在 IEEE 双精度里会直接变成「有效位数被吃光」，所以工程上从不只看秩，还要看条件数。可命名的模板：**谱夹逼法**——把「秩是否满」夹到「谱是否撞车」上，用一次 $\\prod(\\alpha_j-\\beta_k)$ 的数值检查代替原矩阵的秩计算。\r\n\r\n> 关键在于：$K$ 的全部特征值恰好是两组特征值的一切差 $\\alpha_i-\\beta_j$，$\\alpha_i$ 取自 $A$，$\\beta_j$ 取自 $B$。于是「$A$ 与 $B$ 没有公共特征值」等价于「$K$ 可逆」，也就是方程对每个 $C$ 都有唯一解。这正是本书反复强调这一条件的真正原因：它不是礼貌性的技术假设，而是「可解」这一要求在谱上的翻译。\r\n\r\n> 由此得到我称为**谱分离判定模板**的三步：(i) 把矩阵方程拉直成线性系统；(ii) 写出算子的谱并检验是否含零——含零则不唯一可解，不含零则唯一可解；(iii) 用最小谱间隙 $\\min_{i,j}|\\alpha_i-\\beta_j|$ 估计解对 $C$ 的敏感度，因为它就是 $K$ 条件数的核心成分。18.065 课把这条谱判据放在「矩阵方程的数值解」一节，与该课反复训练的「先看谱、再看条件数」是同一套动作。顺带得到一条设计经验：要让 $C$ 保持低秩、又要让 $X$ 的衰减足够快，就得让两组谱互相避得远远的；$\\min_{i,j}|\\alpha_i-\\beta_j|$ 越大，$X$ 的奇异值衰减越快。\r\n\r\n> 小规模验算（$n=2$）。取 $A=\\operatorname{diag}(2,5)$、$B=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$，后者的特征值是 $0,0$。四个差为 $2,5,2,5$，都不为零，故 $K$ 可逆、条件数为 $5/2=2.5$，任何 $C$ 都有唯一解。若把 $A$ 换成 $\\operatorname{diag}(0,5)$，差集中出现 $0$，$K$ 奇异：方程并非对每个 $C$ 都可解，有解时也不唯一。注意 $B$ 自身带重特征值并不妨碍推理，可见判据只要求「两组谱不撞车」，并不要求各自互异。\r\n\r\n> Vandermonde 的例子还可以手算确认「$C$ 的秩为 $1$」。取节点 $c=(1,2,3)$，$V=\\begin{bmatrix}1&1&1\\\\1&2&4\\\\1&3&9\\end{bmatrix}$，$A=\\operatorname{diag}(1,2,3)$，$B$ 取上移位阵。则 $AV=\\begin{bmatrix}1&1&1\\\\2&4&8\\\\3&9&27\\end{bmatrix}$，$VB=\\begin{bmatrix}0&1&1\\\\0&2&4\\\\0&3&9\\end{bmatrix}$，相减得 $\\begin{bmatrix}1&0&0\\\\2&0&0\\\\3&0&0\\end{bmatrix}=[1,2,3]^T e_1^T$，确实是秩 $1$。原因不神秘：$V$ 的第 $k$ 列是节点向量的第 $k-1$ 次幂，左乘 $A$ 相当于把幂次加一，右乘移位阵相当于把幂次挪一格，两者之差只剩最低次幂那一列。（页面上用于 Krylov 例子的写法是 $A=\\operatorname{diag}(1,\\dots,n)$；两种写法是同一个位移结构的不同记法，检验的核心始终是「幂次作用减去移位作用，只剩秩一残差」。）\r\n\r\nSylvester matrix equation（Sylvester 矩阵方程）$AX − XB = C$ 在控制论（control theory）中很重要，而当 $B = −A^T$ 时的特殊情形被称为 Lyapunov equation（Lyapunov 方程）。\r\n\r\n这个 Sylvester 检验要求我们找出 $A$、$B$、$C$！对于若干极为重要的矩阵族，这件事已经完成了：Toeplitz、Hankel、Cauchy 以及 Krylov 矩阵（其中包含 Vandermonde 矩阵 $V$）。所有这些矩阵都对简单的 $A$、$B$、$C$ 选择求解 Sylvester 方程。我们取下面这个主要例子：\r\n\r\nVandermonde matrix（Vandermonde 矩阵）\r\n\r\n```math\r\nV = \\begin{bmatrix}\r\n1 & 1 & 1 & \\cdots & 1 \\\\\r\n1 & c_2 & c_2^2 & \\cdots & c_2^{n-1} \\\\\r\n1 & c_3 & c_3^2 & \\cdots & c_3^{n-1} \\\\\r\n\\vdots & \\vdots & \\vdots & & \\vdots \\\\\r\n1 & c_n & c_n^2 & \\cdots & c_n^{n-1}\r\n\\end{bmatrix}\r\n```\r\n\r\n它是 interpolation matrix（插值矩阵）。只要点 $c_1, \\ldots, c_n$ 两两不同，它就是可逆的。当我们想要多项式 $p(x) = c_1 + c_2 x + c_3 x^2 + \\cdots + c_n x^{n-1}$ 的系数时，就求解 $Vc = f$。把 $V$ 乘以 $c$ 就给出 $p$ 在各点 $c_1, \\ldots, c_n$ 处的值。于是 $Vc = f$ 说明该插值多项式在这些点上恰好取到数据所要求的值。\r\n\r\n我们曾指出，当选取复数点 $c_j = w^j$（$w = e^{-2\\pi i/N}$）时，$V$ 就变成 Fourier matrix（傅里叶矩阵）$F$。在那个傅里叶情形下 $F$ 满秩，并且 $A$ 与 $B$（见下文）具有相同的特征值：这是不允许的，它们不满足我们关于特征值良好分离的要求；此时全部奇异值大小相等：没有衰减。\r\n\r\n只有取位于 $0$ 与 $1$ 之间的实节点的 Vandermonde matrices（范德蒙矩阵）才在其奇异值中具有指数衰减。为确认这一点，用下面这些矩阵来做 $A, B, C$ 检验：\r\n\r\n```math\r\nA = \\begin{bmatrix}\r\n1 & & & \\\\\r\n& 2 & & \\\\\r\n& & \\ddots & \\\\\r\n& & & n\r\n\\end{bmatrix},\r\n\\qquad\r\nB = \\begin{bmatrix}\r\n0 & 1 & & \\\\\r\n& 0 & \\ddots & \\\\\r\n& & \\ddots & 1 \\\\\r\n& & & 0\r\n\\end{bmatrix},\r\n\\qquad\r\nC = \\begin{bmatrix}\r\n1 & 0 & \\cdots & 0 \\\\\r\n0 & 0 & \\cdots & 0 \\\\\r\n\\vdots & \\vdots & & \\vdots \\\\\r\n0 & 0 & \\cdots & 0\r\n\\end{bmatrix}\r\n```\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原文此处矩阵被 OCR 打散为零散数字，现按 Sylvester 检验的数学语境重建：取 $X$ 的元素为 $X_{jk} = c_j^{k-1}$（$j, k = 1, \\ldots, n$），与 $A = \\operatorname{diag}(1, 2, \\ldots, n)$、上移位阵 $B$ 相乘，则 $(AX − XB)_{jk} = c_j^{k-1}$，即 $C = [1, c_2, \\ldots, c_n]^T e_1^T$，是一个秩一矩阵（与正文所说秩 $r$ 一致）。上文 OCR 中 `ÄX 一 XB = C` 重建为 $AX − XB = C$，`蓋` 重建为 $A$，`正常矩阵`（normal）原本被 OCR 记为 `蓋 = 蓋 蓋`，按正规矩阵定义重建为 $\\overline{A}^{T}A = A\\overline{A}^{T}$，`= QAQ` 重建为 $A = Q\\Lambda\\overline{Q}^{T}$；`B = 一` 中的 `一` 为负号，即 $B = −A^T$；`low m “ ra 刀 and structured r` 依上下文重建为 low rank and structured；`real be 1 tO` 依范德蒙衰减条件重建为 real between 0 and 1，即实节点落在 $(0,1)$ 内；句末被切碎的下标与句号按插值语境重建。\r\n\r\n@@@@@ page_184（书页 181） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.3. Rapidly Decaying Singular Values\r\n\r\n181\r\n\r\nThose matrices $A$ and $B$ are certainly normal. (This requirement could be weakened but here it's not necessary.) The eigenvalues of $B$ are equally spaced around the unit circle. Those $\\lambda$'s are at angles $\\pi/n, 3\\pi/n, \\ldots, (2n − 1)\\pi/n$, so they are not real numbers provided $n$ is even. Then they don't touch the real eigenvalues $x_1, \\ldots, x_n$ of $A$. And $C$ has rank 1. The $A, B, C$ Sylvester test is passed.\r\n\r\nThe graph of singular values confirms that $V$ is highly ill-conditioned. So is $K$.\r\n\r\nFigure III.2: Vandermonde and Krylov singular values for $V$ and $K = [b\\ Ab\\ \\ldots\\ A^{n-1}b]$. Here $b$ = all ones and $A_{ij}$ = random numbers (standard normal). $V$ equals $K$ when $A = \\text{diag}\\,(1/n, 2/n, \\ldots, 1)$.\r\n\r\nAn Improved Sylvester Test\r\n\r\nThe requirement that $AX − XB = C$ has low rank is much more strict than the conclusion that $X$ has rapidly decaying singular values. A perfect theorem would match the hypothesis on the $C_n$ with the conclusion about $X_n$. Certainly it is not true that Vandermonde or Krylov matrices $X_n$ of increasing size $n$ have bounded rank. So we have to weaken that low rank requirement on $C_n$, while preserving the rapid singular value decay for $X_n$.\r\n\r\nTownsend has found such a theorem: “log-rank” for $C$ leads to “log-rank” for $X$. And a recent paper with Udell establishes that log-rank is a very widespread property. Here is the definition (and many log-rank examples have $q = 0$ or $q = 1$).\r\n\r\nA family of matrices $C_n$ has log-rank if $|(C_n − E_n)_{ij}| < \\epsilon$\r\nfor nearby matrices $E_n$ that have rank $(E_n) < c (\\log n)^q$     (6)\r\n\r\nExample 1 The radial basis function kernel is often used in support vector machines:\r\nRBF Kernel $K(x, x') = \\exp \\left( −\\frac{\\|x − x'\\|^2}{2\\sigma^2} \\right)$\r\n\r\nFor a set of feature vectors $x_i$, this produces the entries $0 < K_{ij} < 1$ of a full matrix $K$. Calculating all of them is impossible. With good approximations, we solve nonlinear classification problems by the “kernel trick” in VII.5. That matrix has low effective rank.\r\n\r\n1. M. D. Buhmann, Radial basis functions, Acta Numerica 9 (2000) 1-38.\r\n2. B. Fornberg and N. Flyer, A Primer on Radial Basis Functions, SIAM (2015).\r\n3. T. Hofmann, B. Scholkopf, and A. J. Smola, Kernel methods in machine learning, Annals of Statistics 36 (2008) 1171-1220 (with extensive references).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:184@@\r\n\r\n<span style=color:#7f8c8d;>本页为书页 181，属 §III.3 正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.3 快速衰减的奇异值（Rapidly Decaying Singular Values，续）\r\n\r\n那些矩阵 $A$ 与 $B$ 当然是正规矩阵（normal matrix）。（这一要求本可以减弱，但此处没有必要。）$B$ 的特征值等间距地分布在单位圆（unit circle）上。它们位于角度 $2\\pi(k-1)/n$ 处（$k = 1, \\ldots, n$），因此只要 $n$ 为偶数，它们就不是实数。于是它们不会与 $A$ 的实特征值（real eigenvalues）$1, 2, \\ldots, n$ 相碰。而 $C$ 的秩为 $1$。所以 $A, B, C$ 检验已通过。\r\n\r\n奇异值（singular values）的图像确认了 $V$ 是高度病态的（highly ill-conditioned）。$K$ 也是如此。\r\n\r\n> <span style=color:#7f8c8d;>**Figure III.2:** Vandermonde 与 Krylov 的奇异值图像。图中对比 $V$ 与 $K = [\\,b\\;\\;Ab\\;\\;\\cdots\\;\\;A^{n-1}b\\,]$ 的奇异值；$A = \\operatorname{diag}(1/2,\\,2/2,\\,\\ldots,\\,n/2)$，$b$ 为全 $1$ 向量，而 $K$ 取 $b$ 为随机数（标准正态，standard normal）时与 $V$ 相同。横轴为 $n = 5, 10, 15, 50$，纵轴为奇异值的对数尺度（$10^{0}$ 到 $10^{-15}$）。图片本身无法翻译，此处仅给出图注。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较多，逐项复原如下：`田 ， 3` 为节标题 `III.3`；`an d` 复原为 and；`入 ， s` 复原为特征值 $\\lambda_k$（希腊字母在 OCR 中常被识别成汉字）；`丌 / 3 丌 / ， （ 2 一 1 ） 丌 /` 依单位圆等间距语境重建为角度 $2\\pi(k-1)/n$；`nu mb ers`、`provided is even`、`th e re al` 分别复原为 numbers、provided $n$ is even、the real；`r is “ d` 依上文 Sylvester 检验重建为「检验通过」；`y lov` 与 `KryIov` 复原为 Krylov；`all ones an d 万 = random nu mb ers` 依数学语境重建为「$b$ 为全 $1$ 向量」与「$b$ 取随机标准正态」；`= diag （ 1 / ， 2 / ，` 重建为 $A = \\operatorname{diag}(1/2,\\,2/2,\\,\\ldots,\\,n/2)$。另外，图中 $K$ 与 $V$ 的曲线是两条对照曲线，不是同一个矩阵，图注按此排印。以下图注依上述修正排印。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（为什么傅里叶情形是反例、实节点情形是正例）：**</span> 要读懂这两个判定，得先看清 $B$ 的身份。移位阵 $B$ 的幂作用是不断把向量向上挪一格，它只有 $0$ 这一个特征值。换一个方向看，把移位作用放到 Fourier 基（即离散 Fourier 矩阵 $F_n$ 的列）下，它就对角化成单位根 $w^{k-1}=e^{-2\\pi i(k-1)/n}$——这正是正文所说「特征值等间距分布在单位圆上、角度为 $2\\pi(k-1)/n$」的来源。18.06 课用 $F_n$ 对角化循环移位矩阵，走的就是这条「换基之后移位变对角」的路径；区别在于 18.06 关心的是对角化本身与快速变换，本节关心的是对角化之后能不能与 $A$ 的谱撞车。\r\n>\r\n> 先补机制：这段在解决什么设计问题。问题是「可解性判定能不能只用谱来说话，以及用哪一套谱」。对移位阵这类**幂零**算子，它的谱是单点 $\\{0\\}$，而 $0$ 又必然落在任何矩阵 $A$ 的谱里吗？不必然，但一旦 $A$ 有 $0$ 特征值，$\\sigma(A)\\cap\\sigma(B)\\neq\\varnothing$ 立刻成立，方程就不可解。更本质的是：相似变换（包括换到 Fourier 基）**不改变特征值**，所以换基绝不改变 $B$ 的谱是 $\\{0\\}$ 这一事实，它只是把同一个谱换一个角度看。这就是为什么「傅里叶情形是反例」——被对角化的那个算子本身谱退化，你再怎么换基，它都退化；而「实节点情形是正例」则是说，当 $B$ 来自实节点差分格式时它的谱不再挤压在一点上，于是与 $A$ 的谱相撞的概率大幅降低，可解性判定自然给出「正」的答案。判断的对象始终是「谱集合是否相交」，不是「基好不好看」。\r\n>\r\n> 补一个可复算的 $n=4$ 验算。取循环移位阵 $B=\\begin{pmatrix}0&0&0&1\\\\1&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\end{pmatrix}$，$F_4$ 的第 $j$ 列为 $v_j=\\frac1{\\sqrt4}(1,i^{j-1},i^{2(j-1)},i^{3(j-1)})$。直接验算第一列：$Bv_1=v_1$，特征值 $1$；第二列 $v_2$ 的元素是 $1,-i,-1,i$，乘 $i$ 得 $i,1,-i,-1$，而这恰是 $Bv_2$ 各分量（$Bv_2$ 的第 $k$ 个分量是 $v_2$ 的第 $k-1$ 个分量），于是 $Bv_2=i\\,v_2$，特征值 $i$；同法 $Bv_3=-v_3$，$Bv_4=-i\\,v_4$。四个单位根 $1,i,-1,-i$ 在单位圆上等间隔 $90^\\circ$，与 $2\\pi(k-1)/n$ 一一对应，手算完毕。往下推一步：由 $|\\lambda|^4=1$ 可知 $\\lambda$ 只能是四次单位根，而 $n$ 次单位根集合 $\\{1,w,\\dots,w^{n-1}\\}$ 对任意 $n$ 都精确给出了整个谱，其中 $w=e^{-2\\pi i/n}$。于是「等间距分布在单位圆上」不是修辞，而是「谱恰等于 $\\{z:z^n=1\\}$」的几何翻译。\r\n>\r\n> 跨课程连接一条。6.042J 的循环群、同余与单位根代数，穿过 18.06 的 $F_n$ 对角化，再到本节：共同点是都在做「换基使算子简单」这件事，区别在于 6.042J 只关心单位根的代数性质（乘幂回到 $1$、$w^{j+n}=w^j$ 的周期性），18.06 关心对角化与快速变换，而本节关心的是这些对角元**是否与 $A$ 的谱相交**——判定目标从「变换本身」升级成「两族谱的互斥性」。再补一个反例对话：若取 $A=B$ 或 $A=B^T$，则 $\\sigma(A)$ 恰好含有单位根，Sylvester 算子奇异，方程 $AX-XB=C$ 只对满足相容条件的 $C$ 有解；这在实空间里就是周期边界条件下稳态方程必须满足零均值相容条件，与常微分方向上的 Fredholm 二择一结构同型。可命名的模板：**单位根碰撞检验法**——先算出 $B$ 的谱是不是 $\\{z:z^n=1\\}$，再判断它与 $\\sigma(A)$ 是否有交；注意换基永远救不了谱退化，所以这个检验只需在谱上做一次，不必真的构造 $F_n$。\r\n\r\n> 于是两种情况分道扬镳。傅里叶情形：$A$ 的特征值是 $1,2,\\ldots,n$，$B$ 的特征值是单位根，二者都含有 $1$，谱发生重叠，Sylvester 检验的前提被破坏——这正是 $F$ 的全部奇异值彼此相等、没有一点衰减的谱解释（$F$ 的列两两正交且长度相同，所以奇异值全部相等）。实节点情形：$B$ 仍是移位阵，特征值全为 $0$，$A$ 的特征值为 $1,2,\\ldots,n$，两组谱相距至少 $1$，良好分离，检验通过，$V$ 的奇异值按指数速率衰减。一句话：**决定衰减快慢的不是节点本身，而是两组谱的最小间隙**；节点是否为实数只是改变这个间隙的一个开关。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### 改进的 Sylvester 检验（An Improved Sylvester Test）\r\n\r\n要求 $AX − XB = C$ 具有低秩（low rank），这一条件比「结论说 $X$ 具有快速衰减的奇异值」要严格得多。一个完美的定理应当使关于 $C_n$ 的假设与关于 $X_n$ 的结论彼此匹配。诚然，对于规模不断增大的 Vandermonde 或 Krylov 矩阵，其秩并非有界。所以我们必须放宽对 $C_n$ 的低秩要求，同时保持 $X_n$ 的奇异值快速衰减。Townsend 找到了这样的定理：$C$ 的 log-rank（对数秩）性质可导出 $X$ 的 log-rank 性质。而最近一篇与 Udell 合作的论文证明，对数秩是一种非常普遍的性质。下面是其定义（许多对数秩的例子取 $q = 0$ 或 $q = 1$）：\r\n\r\n```math\r\n\\|C_n − E_n\\|_2 < \\epsilon\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（把「低秩」放宽成「对数秩」）：**</span> 这页引入了本书低秩主线里最实用的一类放宽：**不要把秩当成固定的小整数，而要允许它随精度缓慢增长。** 对数秩的定义是：存在 $\\|C_n-E_n\\|_2<\\epsilon$ 且 $\\operatorname{rank}(E_n)\\le c(\\log n)^q$ 的邻近矩阵 $E_n$。换成一句人话：只要允许秩按 $(\\log n)^q$ 增长，就能把 $C_n$ 逼近到给定精度 $\\epsilon$。注意这里的「秩」是逼近出来的，$C_n$ 自己的秩可以很大——Vandermonde 与 Krylov 恰恰如此，所以必须先放宽假设，定理才可能成立。\r\n>\r\n> 先说这个放宽在解决什么设计问题。低秩压缩的整个商业逻辑只有一条：**存储与运算成本由秩 $r$ 决定，而不是由阶数 $n$ 决定。** 一个 $n\\times n$ 的矩阵，若先存两个因子 $n\\times r$ 与 $r\\times n$，内存从 $n^{2}$ 掉到 $2nr$；而矩阵—向量乘 $y = Cx$ 也不再需要 $n^{2}$ 次乘法，而是先算 $z = V^{T}x$（$2nr$ 次），再算 $y = Uz$（$2nr$ 次），总共 $4nr$ 次。于是「成本是线性的还是平方的」这件事，完全被 $r$ 相对 $n$ 的增长速度决定。若 $r$ 是固定常数，成本是 $O(n)$，这是最理想的情形；可现实里大量矩阵没有这个福气。对数秩就是在问：**如果我不苛求常数秩，只要求 $r\\le c(\\log n)^q$，成本会退化到什么程度？** 答案好得出人意料：$2n\\cdot c(\\log n)^q$ 与 $n^{2}$ 相比，当 $n$ 增大时优势无限扩大，同时在数值上仍然可控——这就是「放宽一点假设，换回一整类可算对象」的典型交易。\r\n>\r\n> 为什么必须放宽？从第一性原理看，**秩是一个不稳定的整数**。它是一个计数，取的是「非零奇异值有多少个」，而任何矩阵只要被一个量级为 $\\delta$ 的扰动碰到，原本为零的奇异值就可能被抬到 $\\delta$ 的水平，于是秩从一个数跳到另一个数。这种「离散量对连续扰动敏感」的性质，让秩在浮点世界里几乎不可直接使用。数值分析的标准对策是把计数换成连续量：与其问「有多少个奇异值严格为零」，不如问「第 $r+1$ 个奇异值相对第一个有多小」，也就是比值 $\\sigma_{r+1}/\\sigma_1$。对数秩正是这一置换的产物：它不主张「$C_n$ 的秩很小」，只主张「在精度 $\\epsilon$ 的尺度上，$C_n$ 的行为像秩为 $c(\\log n)^q$ 的矩阵」。这样做还有一个结构上的好处：允许秩缓慢增长，就把「严格低秩」这个脆弱的类别，扩成一个对扰动封闭、对算法友好的类别，定理才不至于被一个 $10^{-16}$ 的舍入误差击穿。\r\n>\r\n> 代入具体数值验算一次。取 $n = 10^{6}$，则 $\\log n \\approx 13.8$（自然对数）。若取 $c = 1$、$q = 1$，则秩上界约 $14$；若取 $q = 2$，约 $190$。现在比较内存：完整存 $C_n$ 需要 $n^{2} = 10^{12}$ 个元素，按双精度每个 $8$ 字节算是 $8$ 太字节（TB），单机根本放不下；而对数秩压缩只需 $2nr = 2\\times 10^{6}\\times 14 \\approx 2.8\\times 10^{7}$ 个元素，约 $0.22$ 吉字节（GB），一块普通显卡显存即可容纳；即便取 $q=2$ 的 $r \\approx 190$，也只有约 $3$ GB。再看一次矩阵—向量乘：直接算需要 $n^{2} = 10^{12}$ 次乘加，按每秒 $10^{9}$ 次算要 $1000$ 秒；压缩后是 $4nr \\approx 5.6\\times 10^{7}$ 次，约 $0.06$ 秒，加速约 $1.8\\times 10^{4}$ 倍。**这就是「对数」二字的全部含金量：对数增长慢到几乎可以当成常数，所以在 $n$ 大到现实量级时，对数秩矩阵在成本上仍然被当作低秩矩阵使用。**\r\n>\r\n> 还要交代一句：秩只是记账单位，不是最终指标。真正要盯的是两件事——「秩长到多大」与「算一次近似的代价是多少」。用奇异值截断（SVD 截断）得到最优秩 $r$ 近似，代价是 $O(n^{2}r)$，当 $r$ 随 $\\log n$ 增长时仍是 $O(n^{2}\\log n)$，比 $O(n^{3})$ 的满秩分解便宜一个 $n/\\log n$ 的因子；而自适应交叉近似（adaptive cross approximation）这类只用部分元素、逐列选主元的算法，能把代价进一步压到 $O(nr^{2})$，这才是对数秩在工程上真正兑现的地方。换句话说，对数秩不是一个纯存在性声明，它对应着一整族「只读一部分矩阵也能达到该精度」的算法，这也是它比「固定低秩」更适合作为定理假设的原因。\r\n>\r\n> 跨课程连接一条。课程 **6.042J 离散数学**里有等价关系与偏序：秩条件 $\\operatorname{rank}(E)\\le r$ 本身就在「所有 $n\\times n$ 矩阵」这个集合上切出一个子集，而「$\\|C-E\\|_2<\\epsilon$ 且 $\\operatorname{rank}(E)\\le r$」定义的是一族等价类，对数秩说的是「存在一个元素落在这族类里」。连接路径是：**6.042J 的等价关系给出「按精度分层」的语言，这里的对数秩给出一个随 $n$ 缓慢放宽的层号。** 区别在于：离散数学里的等价关系是精确的、二值的，两个对象要么等价要么不等价；而对数秩里的「邻近」是数值的、带阈值的，$\\epsilon$ 一改，整个分层结构就跟着移动，所以不能直接套用离散的分划定理，只能借用它的表述方式。同样的味道也出现在课程 **CLRS／6.006** 的分治复杂度分析里：$T(n) = 2T(n/2) + O(n)$ 给出 $O(n\\log n)$，而这里的 $O(n^{2}\\log n)$ 是「把 $\\log n$ 当作低阶修正」的同一种记账习惯；区别是分治的 $\\log n$ 来自递归深度，对数秩的 $\\log n$ 来自矩阵本身的可逼近结构，前者是算法产生的，后者是被逼近对象自带的。\r\n>\r\n> 可复用的模板：**对数秩成本核算法**。遇到一个声称「结构化」的大矩阵，先做三步：第一步写下你允许的精度 $\\epsilon$；第二步问在该精度下秩能取到多少（$\\log n$ 还是 $n$，量级差多少）；第三步把 $n$、$r$ 代进 $2nr$（内存）与 $4nr$（一次乘法）两个公式与 $n^{2}$ 对照，算清楚加速比。任何一段声称低秩的论证，只要第二步给不出可验证的秩界，它就没有兑现任何成本承诺。\r\n\r\n> 对数增长为什么是决定性的，用 6.006 课（算法导论）的复杂度语言就能讲清：$n\\times n$ 稠密矩阵要存 $O(n^2)$ 个数，而秩 $r=c(\\log n)^q$ 的近似只需存因子 $U\\Sigma V^T$ 中的 $O(nr)$ 个数。取 $q=1$、$n=10^{6}$，有 $\\log_2 n\\approx 20$，于是 $O(n\\log n)$ 远小于 $O(n^2)$，两者相差约五个数量级；即便取 $q=2$，$(\\log_2 n)^2\\approx 400$，仍比 $n$ 小三个数量级。6.006 课训练的是「先估输入规模，再看时间与空间随规模的增长阶」；本节只是把同一把尺子从时间换成了存储：低有效秩不是审美偏好，而是问题能否放进内存的分界。区别在于 6.006 关心最坏情况的渐近阶，本节关心给定精度 $\\epsilon$ 下实际需要的秩，二者都要先问「增长阶是多少」。\r\n\r\n> 用 RBF 核做一次可算的验算。取一维等距点 $x_i=ih$，核元素只依赖 $i-j$，记 $K_{ij}=q^{(i-j)^2}$，其中 $q=e^{-h^{2}/(2\\sigma^{2})}$。取 $h^{2}/(2\\sigma^{2})=\\ln 2$，即 $q=\\frac{1}{2}$，则相隔 $k$ 个格点的元素为 $2^{-k^{2}}$：$k=1$ 得 $0.5$，$k=2$ 得 $0.0625$，$k=3$ 得 $1.95\\times 10^{-3}$，$k=4$ 得 $1.53\\times 10^{-5}$，$k=5$ 得 $3.05\\times 10^{-8}$。若只要求逐元素误差不超过 $10^{-6}$，保留 $|i-j|\\le 5$ 的对角带就已足够；被切掉的那些元素每个都小于 $10^{-8}$，整条尾巴的总量也在 $10^{-6}$ 量级。所以这条尾巴构成一个很「便宜」的 $E_n$，而 $C_n-E_n$ 正是被切掉的尾巴——这就是定义中「邻近矩阵 $E_n$ 秩很小」的实体版本。\r\n\r\n> 这里要纠正一句容易说反的直觉：带宽固定时，带状矩阵的形式秩并不小（除极特殊情形外它是满秩的），真正小的是**数值秩**——奇异值快速衰减，衰减到某个精度以下就可以截断。对高斯核而言，$\\sigma$ 越小，核越尖，相邻格点的相关性衰减越快，达到同样精度所需的带宽与数值秩反而越低；代价是核变得近乎不光滑，能分辨的细节变少。于是超参数 $\\sigma$ 的取舍是这个样子：$\\sigma$ 大则核平滑、数值秩高、逼近更贵；$\\sigma$ 小则数值秩低、更省内存，但模型能表达的尺度也随之变粗。决定数值难度的依旧是衰减速率，而不是矩阵的规模。\r\n\r\n> 它与概率论的联系让这件事变得可预期。$K(x,y)$ 与高斯密度只差归一化常数：$\\exp(-\\|x-y\\|^{2}/(2\\sigma^{2}))$ 就是以 $y$ 为中心、方差 $\\sigma^{2}$ 的钟形。6.041 课（概率论）里的 Chernoff 界告诉我们高斯尾概率按 $e^{-t^{2}/2}$ 衰减，这里看到的是同一指数落在矩阵元素上：距离超过几个 $\\sigma$ 的点贡献小到可以忽略，核矩阵自然「带形」、数值秩自然低。区别在于概率论用它控制一次随机试验的尾概率，本节用它控制一个确定的核矩阵中远离对角线的元素。\r\n\r\n> 最后再拓展一步。既然核矩阵低有效秩，就可以显式构造特征映射：Rahimi 与 Recht（2007）的随机傅里叶特征用平移不变核的傅里叶表示，取 $r$ 个随机频率近似它，得到 $z(x)$ 使 $z(x)^Tz(y)\\approx K(x,y)$。于是核技巧被换成显式低秩因子 $K\\approx ZZ^T$（$Z$ 为 $n\\times r$）。采样误差按 $O(1/\\sqrt{r})$ 衰减，$r=100$ 时约一成，$r=10^{4}$ 时约百分之一，常数依赖核的光滑程度——这与 6.041 里「样本量增大、估计误差按 $1/\\sqrt{r}$ 缩小」是同一量级关系，区别只在于那里估的是概率，这里估的是一个函数值。这条路把「无限维特征空间」的抽象说法落到一个能算的 $n\\times r$ 矩阵上，也直接接回本节主题：低有效秩不是巧合，而是可以被构造出来的。\r\n\r\n<span style=color:#00838f;>**定义。**</span> 一族矩阵（family of matrices）$C_n$ 具有 log-rank（对数秩）性质，如果对邻近的矩阵（nearby matrices）$E_n$ 有 $\\|C_n − E_n\\|_2 < \\epsilon$，其中 $\\operatorname{rank}(E_n) \\le c\\,(\\log n)^q$。\r\n\r\n（6）\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**Example 1** 径向基函数核（radial basis function kernel）常用于支持向量机（support vector machines）：\r\n\r\n```math\r\nK(x, y) = \\exp\\!\\left(-\\frac{\\|x − y\\|^2}{2\\sigma^2}\\right)\r\n```\r\n\r\n对一组特征向量（feature vectors）而言，这产生一个核矩阵（kernel matrix）$K$，其元素满足 $0 < K_{ij} \\le 1$。把它们全部计算出来是不可能的。借助良好的近似，我们用核技巧（kernel trick）求解非线性分类问题（nonlinear classification problems），见 §VII.5。该矩阵具有低有效秩（low effective rank）。\r\n\r\n> <span style=color:#7f8c8d;>1. M. D. Buhmann, *Radial Basis Functions*, Acta Numerica 9 (2000) 1–38.\r\n> 2. B. Fornberg and N. Flyer, *A Primer on Radial Basis Functions*, SIAM (2015).\r\n> 3. T. Hofmann, B. Schölkopf, and A. J. Smola, *Kernel methods in machine learning*, Annals of Statistics 36 (2008) 1171–1220（附大量参考文献）。</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 11653,
+            "outputTokens": 26872,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 11653,
+              "outputTokens": 26872,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 24253,
+          "contextWindow": 1000000,
+          "pressureTokens": 15109,
+          "sampledSurfaceTokens": 7327
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5767,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 16926,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 23109
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

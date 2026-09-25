@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129488378,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 24,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 24,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_171 = 书页 168\r\npage_172 = 书页 169\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:171@@（书页 168）\r\n−-- OCR 原文 −--\r\n168\r\nLow Rank and Compressed Sensing\r\n111,2 lnterlacing Eigenvalues and Low Rank Signals\r\nThe previous section found th e change in 一 produced by a change in 儿 We could\r\nallow infinitesimal changes dA an d also finite changes AA = —uvT. The results w ere an\r\ninfinitesimal change or a finite change in the inverse matn X ：\r\n一 一 1 and ^ 一 1 ： 一 IU@ 一 VTA¯IU)¯IVTA-I\r\nThis section asks the same questions ab ou t th e eigenvalues an d singular values Of 蓋 ·\r\nHow d0 each and each 伊 change as the matrix 蓋 changes ？\r\nYou will see nice formulas for d/\\/dt and dc/dt. But not much is linear ab out\r\neigenvalue s or singular values. C alculu s succeeds for infinitesimal changes dÄ and dc\r\nbec au se the denv ative iS a linear operator. But we can't expect tO know exact values in\r\nthe jumps t0 /\\(A + ^ ） or c(A + (A). Eigenvalue s are more complicated than inverses.\r\nS till there is good new s · What c an be achieved is remarkable · Here is a taste for a\r\nsymmetric matrix & Suppose S changes to S + (a positive change of rank 1 ） ，\r\nWe expect lncrease S\r\nlts eigenvalue s change 丘 0 m 入 1 /\\2\r\ntO ZI Z2 之\r\n2\r\neigenvalues smce was positive S emidefinite · B 况 九 OW large are 九 e increases ·\r\nEach eigenvalue of S + T is not smaller than Xi or greater than\r\nSO the Xs and z ， s are interlaced ” · Each Z2 ， 。 。 。 ， zn is b etween two ， s ：\r\nZI .XI 之 Z2 ,X2\r\n> zn >\r\n（ 2 ）\r\nWe have upper bounds on the eigenvalue changes even if we don ， t have formulas for 厶 丸\r\nThere is one point tO notice because it could be misunderstood. Suppose th e change uU\r\nin the matrix is Cq2q2 (where q2 is the second unit eigenvector of S). Then Sq2 = № q2\r\nwill see a Jump in 山 at eigenvalue t0 /\\2 + C, because (S + Cq2q2 )q2\r\nThat jump is large if C 'is large. ow could 叻 e co 刀 d eigenvalue S + 镒\r\npossib 纱 have Z2 = № + C ？\r\nA nswe r ： If C is a big number ， then ,•\\2 + C is not the second eigenvalue of S +\r\nlt becomes ZI ， the № rgest eigenvalue 0f the new matnx S + Cq2q2 (and its eigenvector\r\nis (2). The original top eigenvalue of S is now the second eigenvalue Z2 of the new\r\nmatrix. SO the statement （ 2 ） that Z2 ZI is the completely true statement ()n this\r\nexample) that Z2 = is below ZI = /\\2 + C.\r\nWe will connect this interlacing tO the fact 山 at the eigenvectors between /\\1 = Ämax\r\nand = min are 1 saddle points of the ratio （ ）\r\ncTSc/cTc.\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 171 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 168，属 Part III「Low Rank and Compressed Sensing（低秩与压缩感知）」正文；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#1e8449;>**[note] OCR 修正：**</span> 本页 OCR 噪声严重，`蓋`/`儿`/`Ä` 均为矩阵 $A$，`¯I` 为上标 $-1$，`山`/`丸` 为 $\\lambda$，`伊` 为 $\\sigma$，`之` 为交错后的特征值 $z$，`№` 为 $\\lambda_{\\max}$，`uU` 为 $c$，`镒` 为 $T = cq_2q_2^T$，`厶 丸` 为 $\\Delta\\lambda_i$；`T` 为 rank-one（秩一）变化 $T$，`B 况 九 OW large` 实为 `But how large`，`ow could 叻 e co 刀 d eigenvalue` 实为 `How could the second eigenvalue`，`0f`/`()n` 等为 `of`/`in` 的噪声。文中被破坏的公式均已按数学语境重建，原文公式编号 (2) 予以保留。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n上一节考察的是矩阵 $A$ 的变化如何引起 $A^{-1}$ 的变化。我们既可以允许无穷小变化 $dA$，也可以允许有限变化 $\\Delta A = −uv^T$。所得到的结果，是逆矩阵的无穷小变化或有限变化：\r\n```math\r\n(A − uv^T)^{-1} = A^{-1} + \\frac{A^{-1}uv^TA^{-1}}{1 − v^TA^{-1}u}\r\n\\qquad\\text{and}\\qquad\r\n(A − UV^T)^{-1} = A^{-1} + A^{-1}U\\,(I − V^TA^{-1}U)^{-1}V^TA^{-1}\r\n```\r\n\r\n本节则针对矩阵 $A$ 的 eigenvalue（特征值）与 singular value（奇异值）提出同样的问题。当矩阵 $A$ 发生变化时，每一个 $\\lambda$ 与每一个 $\\sigma$ 各是如何变化的？\r\n\r\n你会看到关于 $d\\lambda/dt$ 与 $d\\sigma/dt$ 的漂亮公式。但特征值与奇异值都谈不上有多少线性性质。微积分对无穷小变化 $dA$ 与 $d\\sigma$ 行之有效，因为其导数是一个线性算子。可是我们不能指望精确知道跳跃量 $\\lambda(A + \\Delta A)$ 或 $\\sigma(A + \\Delta A)$ 的值。特征值比逆矩阵更复杂。\r\n\r\n尽管如此，仍然有好消息：能够做到的事情是相当出色的。这里先尝一尝 symmetric matrix（对称矩阵）$S$ 的味道：假设 $S$ 变为 $S + T$，其中 $T$ 是一个正的 rank-one matrix（秩一矩阵）变化。我们预料 $S$ 的特征值会增大：\r\n```math\r\n\\lambda_1 \\le \\lambda_2 \\le \\cdots \\le \\lambda_n\r\n\\quad\\longrightarrow\\quad\r\nz_1 \\le z_2 \\le \\cdots \\le z_n\r\n```\r\n因为 $T$ 是 positive semidefinite（半正定）的。但增大量究竟有多大呢？\r\n\r\n$S + T$ 的每个特征值都不小于对应的 $\\lambda_i$，也不大于对应的 $\\lambda_{i+1}$，其下标在合适范围内移动。因此 $\\lambda$ 与 $z$ 是彼此 interlaced（交错）的。每一个 $z_2, \\ldots, z_n$ 都夹在两个相邻的 $\\lambda$ 之间：\r\n```math\r\n\\lambda_1 \\le z_1 \\le \\lambda_2 \\le z_2 \\le \\lambda_3 \\le \\cdots \\le \\lambda_n \\le z_n\r\n\\tag{2}\r\n```\r\n即便我们没有关于 $\\Delta\\lambda_i$ 的公式，我们也有特征值变化的上界。\r\n\r\n有一点需要提请注意，因为它可能被误解。假设矩阵中的变化是 $T = cq_2q_2^T$（其中 $q_2$ 是 $S$ 的第二个单位特征向量）。那么 $Sq_2 = \\lambda_2 q_2$，于是\r\n```math\r\n(S + cq_2q_2^T)q_2 = (\\lambda_2 + c)q_2\r\n```\r\n我们会在 eigenvalue（特征值）$\\lambda_2$ 处看到一个跳到 $\\lambda_2 + c$ 的跳跃。如果 $c$ 很大，这个跳跃就很大。那么怎么会使矩阵 $S + cq_2q_2^T$ 的第二个特征值仍然等于 $z_2 = \\lambda_2 + c$ 呢？\r\n\r\n**答：** 如果 $c$ 是一个很大的数，那么 $\\lambda_2 + c$ 并不是 $S + cq_2q_2^T$ 的第二个特征值。它变成了 $z_1$，即新矩阵 $S + cq_2q_2^T$ 的最大特征值（其对应的特征向量是 $q_2$）。$S$ 原来的最大特征值现在则是新矩阵的第二个特征值 $z_2$。所以命题 (2) 中 $z_2 \\ge \\lambda_2$ 这一说法（在这个例子里）是完完全全成立的：$z_2 = \\lambda_1$ 确实位于 $z_1 = \\lambda_2 + c$ 的下方。\r\n\r\n我们会把这种交错性质与如下事实联系起来：介于 $\\lambda_1 = \\lambda_{\\max}$ 与 $\\lambda_n = \\lambda_{\\min}$ 之间的那些特征向量，都是 Rayleigh quotient（瑞利商）比值\r\n```math\r\n\\frac{c^TSc}{c^Tc}\r\n```\r\n的 saddle point（鞍点）。\r\n\r\n@@PAGE:172@@（书页 169）\r\n−-- OCR 原文 −--\r\nlnterlacing Eigenvalues and Low Rank Signals\r\n169\r\nThe D erivative of an Eigenvalue\r\nhave a matnx 羔@） that is changing with the time t. So its eigenvalue s ,\\(t) are also\r\nWe will SUPPOSe th at 刀 0 e “ “ “ 可 （ 0 ） 淝 repeated—each eigenvalue\r\nchanginge\r\n入 （ 0 ） of （ 0 ） c an be s afely followed for at least a short time t, as Ä(O) changes to an\r\neigenvalue Ä(t) of 氖@） · What is its derivative dX/dt ？\r\nThe keY to dÄ / is to assemble the facts we ow · The first is 蓋@） 堡@） = 入@） 堡@） ·\r\nThe second is that the transpose matrix 风甲@） also has the eigenvalue 入@） ， because\r\ndet(A 一 /\\I) · Prob ably AT has a different eig envector 衫@） · When\r\ndet()T 一 M)\r\nis column Of the eigenvector matn x X for 风 ， is column Of the eigenvector matrix\r\n(X-I)T for AT. (The reason is that = X-IAX leads to AT = xTA(x-1)T). The\r\nlengths 0f and are normalized by X¯IX = q s T@） 凭@） = 1 了 all\r\nHere are thes e facts on one line with the desired formula for d 入 / on the next li ne ·\r\nFacts 蓋@） 仍@） ： n(t)c(t) 沪@） 蓋@） ： Ä(t)yT(t) 沪@） 硨 ） ： 1\r\n（ 3 ）\r\ndX\r\nFormulas\r\n（ 4 ）\r\nand\r\ndt\r\nAc, just multiply the first fact\r\nfind that formula\r\n/\\c by and\r\nuse = 1. Or multiply the second fact yT = /\\YT on the right side by\r\nNow take the derivative of 入 = T 蓋 The product rule gives three terms in dÄ/dt ·\r\ndc\r\ndÄ\r\ndt\r\n（ 5 ）\r\nThe middle term is the correct derivative dÄ/dt. The first and 山 计 d terms add t0 zero ：\r\ndc\r\n（ 6 ）\r\nThere are so formulas for d2Ä / 2 and dc / (but they are more complicated).\r\nExample =\r\nhas 入 2 一 2 （ 1 (t)/\\ + 2t = 0 and = 1 + t 士 一\r\n2 1\r\n2 2\r\n2 一 1 / 2\r\nAt t ： 0\r\n， 1 = 2 and /\\2 = 0 and the derivative s ofÄ1 an d № are 1 士 1 + t ）\r\n： [ 0 1 ] d 1 =\r\nThe eigenvectors for = 2 at t = 0 are 1\r\n1\r\nThe eigenvectors for = 0 at\r\ndX1\r\nequation （ 5 ） confirms that\r\n= 0 are 2\r\n1\r\n一 ] and 2 =\r\n1\r\n0\r\n2\r\n1 / 2\r\n1\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page_172 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 169，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与印页码为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `羔`/`氖`/`风` 均为矩阵 $A$，`Ä`/`刀` 为 $\\lambda$，`衫`/`伊` 为特征向量 $x$ 或 $y$，`¯I` 为上标 $-1$，`山 计 d` 为 third（第三）。式 (3)–(6) 的残片按特征值导数的标准推导重建，编号照旧。例题矩阵的元素 OCR 全乱，已按同页印出的特征方程 $\\lambda^2-2(1+t)\\lambda+2t=0$（迹为 $2+2t$、行列式为 $2t$）重建，使 $t=0$ 处的特征值与特征向量完全吻合。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Derivative of an Eigenvalue（特征值的导数）\r\n\r\n设矩阵 $A(t)$ 随时间 $t$ 变化，它的特征值 $\\lambda(t)$ 也随之变化。我们假定没有重复的特征值：$A(0)$ 的每个特征值 $\\lambda(0)$ 至少在短时间内能被安全地追踪，即当 $A(0)$ 变化为 $A(t)$ 时，$\\lambda(0)$ 跟随成为 $A(t)$ 的某个特征值 $\\lambda(t)$。那么它的导数 $d\\lambda/dt$ 是什么？\r\n\r\n求 $d\\lambda/dt$ 的关键，是把已知的事实组装起来。第一条事实是 $A(t)x(t)=\\lambda(t)x(t)$。第二条事实是转置矩阵 $A^T(t)$ 也有同一个特征值 $\\lambda(t)$，因为 $\\det(A-\\lambda I)=\\det(A^T-\\lambda I)$；不过 $A^T$ 很可能有另一个特征向量 $y(t)$。当 $x$ 是 $A$ 的特征向量矩阵 $X$ 的某一列时，$y$ 就是 $A^T$ 的特征向量矩阵 $(X^{-1})^T$ 的对应列（理由是由 $A=X\\Lambda X^{-1}$ 可得 $A^T=X^{-T}\\Lambda X^{T}$）。向量 $x$ 与 $y$ 的长度由 $X^{-1}X=I$ 归一化，也就是对所有 $i$ 都有 $y_i^Tx_i=1$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 这段推导解决的设计问题是：**矩阵元素被连续调节时，特征值如何响应**——这是「直接对特征值做梯度下降」这类做法的合法性来源。它把求导从「对特征多项式求导」那种需要 $n$ 阶行列式的暴力路线，换成只需要一对左右特征向量的内积。\r\n\r\n> 关键结构是「左右各一个向量」。$A$ 的特征向量 $x$ 与 $A^T$ 的特征向量 $y$ 一般不同，它们由 $y^Tx=1$ 一起被归一化（而不是各自归一化为单位长度）。这条归一化正是消掉乘积法则中多余两项的机关：由 $Ax=\\lambda x$ 与 $y^TA=\\lambda y^T$ 得 $d(y^Tx)/dt=0$，于是三项只剩中间一项。我把它命名为**双正交归一化导数模板**，可复用的三步是：(i) 写出左右两个特征关系；(ii) 令 $y^Tx=1$；(iii) 对 $y^TAx=\\lambda$ 求导，用 (ii) 杀掉两端项。\r\n\r\n> 与凸优化的连接最直接。在 Boyd 的框架里，$\\lambda_{\\max}(A)$ 是矩阵变量 $A$ 上的凸函数，它在对称矩阵空间中的梯度恰是 $xx^T$（$x$ 为单位特征向量）。式 (4) 给出的是同一件事的方向导数形式：$d\\lambda=y^T\\,dA\\,x=\\langle yx^T,dA\\rangle$。把 $A$ 限制为对称矩阵并取 $y=x$，梯度就退化为 $xx^T$，而 $x^Tx=1$ 自动满足一阶条件。于是「求最大特征值」可以当作光滑（单重特征值处）目标交给梯度法，式 (4) 就是它的梯度预言机。这也解释了特征值优化里为什么反复出现 $xx^T$：它同时是投影矩阵与梯度。\r\n\r\n> 与 18.065 的接口在条件数上。$y^Tx=1$ 的归一化同时暴露了公式的脆弱性：若两个特征值接近，对应的 $x$ 与 $y$ 几乎正交，按 $y^Tx=1$ 归一化后 $\\|y\\|$ 会爆炸，敏感度 $\\|y\\|\\|x\\|$ 随之爆炸。用本书例子手算验算：$t=0$ 时 $\\lambda_1=2$、$\\lambda_2=0$，$dA/dt=\\begin{bmatrix}0&0\\\\0&2\\end{bmatrix}$。取 $x_1=(1,1)$、$y_1=\\frac{1}{2}(1,1)$，则 $dA/dt\\,x_1=(0,2)$，$y_1^T(0,2)=\\frac{1}{2}\\cdot 2=1$，与解析导数 $1+t/\\sqrt{1+t^2}$ 在 $t=0$ 处的值 $1$ 一致；对 $x_2=(-1,1)$、$y_2=\\frac{1}{2}(-1,1)$ 同样得 $1$。\r\n\r\n> 与实分析的连接点（Thomson TBB、Rudin 的多元隐函数定理）在于「为什么必须假设没有重根」。特征值是矩阵元素的连续函数（特征多项式的根连续依赖于系数），但重根处一般不可微，隐函数定理所需的雅可比非奇异性恰好失效——这里那个雅可比就是 $y^Tx$，它为零正是重根出现的标志。所以 $y^Tx\\ne 0$ 不是技术性的小条件，而是可微性的入场券。\r\n\r\n\r\n下面用一行列出这些事实，再在下一行给出所要求的 $d\\lambda/dt$ 公式。\r\n\r\n```math\r\n\\text{Facts:}\\quad A(t)x(t)=\\lambda(t)x(t),\\qquad y^T(t)A(t)=\\lambda(t)y^T(t),\\qquad y^T(t)x(t)=1 \\tag{3}\r\n```\r\n\r\n```math\r\n\\text{Formulas:}\\quad \\frac{d\\lambda}{dt}=y^T\\frac{dA}{dt}x \\tag{4}\r\n```\r\n\r\n要看出为什么有 $A^Ty=\\lambda y$，只需把第一条事实转置。要发现公式 (4)，就在第一条事实的两边左乘 $y^T$，并利用 $y^Tx=1$；或者把第二条事实 $y^TA=\\lambda y^T$ 在右边乘以 $x$。\r\n\r\n现在对 $\\lambda=y^TAx$ 求导，乘积法则给出 $d\\lambda/dt$ 的三项：\r\n\r\n```math\r\n\\frac{d\\lambda}{dt}=\\frac{dy^T}{dt}Ax+y^T\\frac{dA}{dt}x+y^TA\\frac{dx}{dt} \\tag{5}\r\n```\r\n\r\n中间那一项就是正确的导数 $d\\lambda/dt$；第一项与第三项加起来为零：\r\n\r\n```math\r\n\\frac{dy^T}{dt}Ax+y^TA\\frac{dx}{dt}=\\lambda\\frac{dy^T}{dt}x+\\lambda y^T\\frac{dx}{dt}=\\lambda\\frac{d}{dt}\\bigl(y^Tx\\bigr)=0 \\tag{6}\r\n```\r\n\r\n对于 $d^2\\lambda/dt^2$ 与 $dx/dt$ 也有相应的公式（不过它们更复杂）。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 取矩阵 $A=\\begin{bmatrix}1&1\\\\1&1+2t\\end{bmatrix}$，它的特征值满足 $\\lambda^2-2(1+t)\\lambda+2t=0$，于是 $\\lambda_1=1+t+\\sqrt{1+t^2}$、$\\lambda_2=1+t-\\sqrt{1+t^2}$。在 $t=0$ 处，$\\lambda_1=2$、$\\lambda_2=0$，而 $\\lambda_1$ 与 $\\lambda_2$ 的导数分别是 $1+t/\\sqrt{1+t^2}$ 与 $1-t/\\sqrt{1+t^2}$，在 $t=0$ 处都等于 $1$。\r\n\r\n在 $t=0$ 处，对应 $\\lambda_1=2$ 的特征向量是 $x_1=\\begin{bmatrix}1\\\\1\\end{bmatrix}$，对应 $\\lambda_2=0$ 的特征向量是 $x_2=\\begin{bmatrix}-1\\\\1\\end{bmatrix}$；按 $y^Tx=1$ 归一化后，$y_1=\\frac12\\begin{bmatrix}1\\\\1\\end{bmatrix}$、$y_2=\\frac12\\begin{bmatrix}-1\\\\1\\end{bmatrix}$。方程 (5) 确认 $d\\lambda_1/dt=1$、$d\\lambda_2/dt=1$。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 24,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 24,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 24,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 24,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6136,
+            "outputTokens": 83893,
+            "cacheReadTokens": 49920,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 229,
+              "outputTokens": 46700,
+              "cacheReadTokens": 46464,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 24,
+        "val": {
+          "surfaceTokens": 62586,
+          "contextWindow": 1000000,
+          "pressureTokens": 46693,
+          "sampledSurfaceTokens": 32281
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 24,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3028,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 27537,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 22,
+              "heuristicTokens": 30305,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 61442
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 24,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 21,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 23
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 24,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 24,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 24,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 24,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

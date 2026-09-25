@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128339210,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**审计员兼修复者**（审计 + 修复一体）。服务对象是大二学生（智能科学与技术专业）。本次审计 part004（书页 147-197）中的 3 页译文。\r\n\r\n【审计清单（逐项执行；发现问题**当场改好**，不要只列意见）】\r\n1. 🔴 漏译：对照 OCR 原文逐句核对，有无句子 / 公式 / 例子 / 习题被跳过，或被压缩成一句（禁止把 3-5 句压成 1 句）\r\n2. 🔴 英中分段对照（先完整英文段再中文段）——必须改为中文主体 + 术语行内嵌入（`English term（中文翻译）`），禁止出现完整英文原句\r\n3. 🔴 公式重建正确性：OCR 乱码处的数学重建是否符合数学语境——下标 / 指标（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$、逆 $-1$、范数、权重 $s_k$ 与 $s_k^2$、系数位置必须逐个核对\r\n4. 🔴 编号一致：定理 / 公式 tag / 图号 / 节号 / 题号必须与原文一致（不硬编码）\r\n5. 🟡 段落与标签：**正文段落不得带 `[note]` 标签**；同一段内多个句子必须连续排列（不得一句一空行）；`[section]` / `[theorem]` / `[proof]` / `[definition]` / `[example]` / `[problem]` 使用位置是否正确\r\n6. 🟡 LaTeX 规范：LaTeX 环境内**不得出现中文**（含 `\\text{{}}`）；不得有 `$$`；不得有 Unicode 上下标；行内 `$...$`、块级 ```math 围栏\r\n7. 🟡 术语一致性（对照下方术语表）；关键术语首次出现必须带中文括号\r\n8. 🟡 习题页（Problem Set / Problem）：题干必须**保留英文原文**（不得译成中文），页首灰色说明行与 `[problem]` 标签齐全\r\n9. 🟢 每句首字必须是中文（不得以英文单词开句）\r\n10. 🟢 span 引号完整：必须写成 `<span style=color:#2471a3;>`\r\n11. 🟢 页内交叉引用（如见 §III.2、Problem II.2.11 on page 135）是否译出并正确\r\n\r\n【本书页映射（供交叉引用核对，已由印页码锚定）】\r\npage_175 = 书页 172\r\npage_176 = 书页 173\r\npage_177 = 书页 174\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 3 页译文**，每页以一行 `@@PAGE:NNN@@` 开始（照抄此写法），页与页之间用 `@@BREAK@@` 分隔\r\n− 不要任何前言、审计说明、总结、思考过程；不要给正文句加标签\r\n− 修订时保持中文主体 + 术语行内双语；OCR 修正说明用绿色 note\r\n− 若某页完全无问题，也要原样输出该页全文（不得省略）\r\n\r\n【术语表】\r\n## Strang LaLFD 术语表（part001 已确立 + part002 新增，全文统一）\r\n\r\n### 核心线性代数术语（part001 已确立，必须沿用）\r\n− linear algebra（线性代数）/ matrix（矩阵）/ vector（向量）/ column（列）/ row（行）\r\n− column space（列空间）/ row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n− subspace（子空间）/ dimension（维数）/ rank（秩）/ independent columns（独立列）\r\n− basis（基）/ basis vectors（基向量）/ orthogonal（正交）/ orthonormal（标准正交）/ perpendicular（垂直）\r\n− inner product（内积）/ length（长度）/ unit vector（单位向量）\r\n− eigenvalue（特征值）/ eigenvector（特征向量）/ eigenvector directions（特征向量方向）\r\n− trace（迹）/ determinant（行列式）/ diagonalization（对角化）/ spectral theorem（谱定理）\r\n− symmetric matrix（对称矩阵）/ positive definite（正定）/ positive semidefinite（半正定）\r\n− pivot（主元）/ elimination（消元）/ leading principal minors（顺序主子式）/ leading determinants（前导行列式）\r\n− energy（能量）/ energy test（能量检验）\r\n− Cholesky factorization / Cholesky decomposition（乔列斯基分解）\r\n− covariance matrix（协方差矩阵）/ Hessian matrix（海森矩阵）/ Gram matrix（格兰姆矩阵）\r\n− least squares（最小二乘）/ projection（投影）\r\n− factorization（分解）/ rank-one matrix（秩一矩阵）/ rank-one pieces（秩一分量）\r\n\r\n### part002 新增术语（SVD / PCA / 范数 / 瑞利商）\r\n− singular value（奇异值）/ singular vector（奇异向量）\r\n− Singular Value Decomposition, SVD（奇异值分解）\r\n− singular value decomposition A = UΣV^T（奇异值分解 A = UΣV^T）\r\n− left singular vectors（左奇异向量）/ right singular vectors（右奇异向量）\r\n− stretching factors（拉伸因子）/ principal axes（主轴）/ ellipse（椭圆）\r\n− Eckart-Young theorem（Eckart-Young 定理）\r\n− low-rank approximation（低秩近似）/ closest rank k matrix（最接近的秩 k 矩阵）\r\n− spectral norm（谱范数）/ Frobenius norm（弗罗贝尼乌斯范数）/ nuclear norm（核范数）\r\n− norm（范数）/ triangle inequality（三角不等式）/ Cauchy-Schwarz（柯西-施瓦茨不等式）\r\n− Rayleigh quotient（瑞利商）/ generalized eigenvalue（广义特征值）/ generalized eigenvector（广义特征向量）\r\n− generalized SVD（广义奇异值分解）\r\n− Principal Component Analysis, PCA（主成分分析）\r\n− linear discriminant analysis, LDA（线性判别分析）/ Fisher's linear discriminant（Fisher 线性判别）\r\n− variance（方差）/ total variance（总方差）/ scree plot（碎石图）\r\n− convex（凸）/ strictly convex（严格凸）/ saddle point（鞍点）\r\n− gradient descent（梯度下降）/ loss function（损失函数）\r\n− polar decomposition（极分解）/ orthogonal times positive semidefinite（正交乘半正定）\r\n− finite differences（有限差分）/ second difference matrix（二阶差分矩阵）\r\n− Hilbert matrix / hilb(40)（希尔伯特矩阵）/ ill-conditioned（病态）\r\n− interlacing of eigenvalues（特征值交错性质）\r\n− condition number（条件数）\r\n− interpolation（插值）/ quarter circle matrix（四分之一圆矩阵）\r\n− rank of matrix（矩阵的秩）/ rank-1 approximation（秩一近似）\r\n− singular values in descending order（降序排列的奇异值）\r\n− vector norm（向量范数）/ matrix norm（矩阵范数）/ operator norm（算子范数）\r\n− LTI: Linear Time Invariance（线性时不变）\r\n− Fourier（傅里叶）/ signal processing（信号处理）\r\n− trace of matrix（矩阵的迹）/ diagonal entries（对角元）\r\n− maximization problem（最大化问题）/ minimum point（最小值点）\r\n− strictly convex function（严格凸函数）\r\n− loss（损失）/ error（误差）\r\n− unsupervised learning（无监督学习）\r\n− data matrix（数据矩阵）/ rows（行）/ columns（列）\r\n− measurements（测量值）/ samples（样本）\r\n\r\n### 页类型标记（用于结构标注）\r\n− Problem Set（习题集）/ Exercise（习题）/ Example（例）/ Theorem（定理）/ Proof（证明）/ Definition（定义）/ Note（注）/ Application（应用）/ Section（节）\r\n\r\n### part003 新增术语（§I.12 + Part II：Factoring / 数值线性代数 / 最小二乘 / 列空间基）— 由主代理预注入\r\n#### §I.12 Factoring Matrices and Tensors\r\n− tensor（张量）/ tensor decomposition（张量分解）/ three-way tensor（三路张量）/ slices（切片）\r\n− rank-one tensor（秩一张量）/ CP tensor decomposition（CP 张量分解，CANDECOMP/PARAFAC）\r\n− nonnegative matrix factorization, NMF（非负矩阵分解）/ sparse（稀疏）/ nonnegativity（非负性）\r\n− data matrix（数据矩阵）/ factor matrices（因子矩阵）/ alternating iteration（交替迭代）/ alternating least squares（交替最小二乘）\r\n− group（群组）/ clustering（聚类）/ community detection（社群检测）/ network（网络）\r\n− weight（权重）/ weights（权重）/ Frobenius norm（弗罗贝尼乌斯范数）\r\n− best rank-k approximation（最佳秩 k 逼近）/ low-rank（低秩）\r\n\r\n#### Part II / §II.1 Numerical Linear Algebra\r\n− Numerical Linear Algebra（数值线性代数）/ ill-conditioned（病态）/ condition number（条件数）\r\n− elimination（消元）/ pivot（主元）/ backslash command（反斜杠命令，A\\b）\r\n− pseudoinverse（伪逆）/ Moore-Penrose（摩尔-彭罗斯）/ least squares solution（最小二乘解）\r\n− minimum norm solution（最小范数解）/ sparse solution（稀疏解）\r\n− Gram-Schmidt（格拉姆-施密特）/ Householder（豪斯霍尔德）/ orthogonalize（正交化）\r\n− Krylov subspace（Krylov 子空间）/ Lanczos iteration（兰乔斯迭代）/ Arnoldi（阿诺尔迪）\r\n− conjugate gradients（共轭梯度）/ preconditioner（预条件子）/ preconditioning（预条件处理）\r\n− Rayleigh quotient iteration（瑞利商迭代）/ QR algorithm（QR 算法）/ Hessenberg（海森伯格）\r\n− symmetric tridiagonal（对称三对角）/ deflation（收缩）/ shift（位移）\r\n− randomized（随机化）/ random sampling（随机采样）/ low-rank approximation（低秩近似）\r\n− interpolation（插值）/ high-order interpolation（高阶插值）\r\n\r\n#### §II.2 Least Squares: Four Ways\r\n− least squares（最小二乘）/ normal equations（正规方程）/ four ways（四种方法）\r\n− pseudoinverse（伪逆）/ projection（投影）/ column space（列空间）\r\n− row space（行空间）/ nullspace（零空间）/ left nullspace（左零空间）\r\n− independent columns（独立列）/ independent rows（独立行）\r\n− QR factorization（QR 分解）/ full rank（满秩）\r\n− minimum norm（最小范数）/ overdetermined（超定）/ underdetermined（欠定）\r\n− orthogonal matrix（正交矩阵）/ orthonormal（标准正交）\r\n− singular values（奇异值）/ SVD（奇异值分解）\r\n\r\n#### §II.3 Three Bases for the Column Space\r\n− column basis（列基）/ row basis（行基）/ Three Bases（三种基）\r\n− interpolative decomposition, ID（插值分解）\r\n− well-conditioned（良态）/ safely independent（安全独立）\r\n− column exchanges（列交换）/ pivoted QR（主元 QR）\r\n− CUR decomposition（CUR 分解）/ skeleton（骨架）\r\n− matrix factorization（矩阵分解）/ randomized algorithms（随机算法）\r\n− E = UΣV^T / UEVT（OCR 噪声，实为 A = UΣV^T）\r\n\r\n===================== 待审计材料：OCR 原文 + 现有译文 =====================\r\n########## page_175（书页 172）##########\r\n−-- OCR 原文 −--\r\n172\r\nLow Rank and Compressed Sensing\r\nThe Largest Eigenvalue of S + T\r\nThe largest eigenvalue Of a symmetric matrix S is the maximum value Of TS / T\r\nThis statement applies also to T (still symmetric). Right aw aY we know about the largest\r\neigenvalue of S +\r\n(s + T) xmax(s) + (T)\r\ncT(S + ）\r\n05 ）\r\nThat maximum iS reached at an\r\nTh e le side is th e maximum value of\r\neigenvector of S + ：\r\ncTSc\r\nvT(S + ） 鬱 T 鬱\r\nÄS+T =\r\n= xs + XT ·\r\n< max\r\n+ max\r\nThe eigenvector 鬱 Of S + maximizes th at first ratio. But it probably doesn't maximlze\r\nthe last two. Therefore ,Ås + ÄT can only increase beyond ÄS+T.\r\nThi S shows th at a maximum principle iS convenient. SO iS a mirllmum pnnciple\r\nfor the sm 訂 g “ v · There we expect /\\min (S + ） /\\min (S) + /\\min@） ·\r\nThe s ame reasomng will prove it—the separate minimum principles for S and will bnng\r\nus lower than /\\min (S + ） · Or we c an app ly th e maximum pnnciple t0 —S and 一\r\nThe difficulties come for the in-between eigenvalues t0 /\\n\r\nTheir elgenvectors\r\nTS / T The derivatives of 咒 ） are all\r\nare saddle points of the function R@)\r\nzero at the eigenvectors q2 tO q 一 1 · But the matrix Of second deriv ativ e s Of 娓 is indefi nite\r\n(plus and minus eigenvalues) at these saddle points · That makes the eigenvalues h ard to\r\ne stimate and hard to calculate.\r\n刀 OW give a e 0 觐 the saddle 0 ． One reason is their possible app e aran C e ln\r\nthe algonthms of deep learning. We need some expenence with them ， in the basic problem\r\nOf eigenvalues · S addle points also appear when there are constraints · If possible we want\r\ntO connect them tO 襯 0 殍 10 or tO m 讠 a 可 maxima ·\r\nThose ideas lead to the best possible bound for each eigenvalue of S + ：\r\nWeyl upper bounds .X ·\r\n艹 “ 1 （ s + T) Xi(S)+Äj(T).\r\n（ 16 ）\r\nSaddle P0ints 什 om Lagrange Multipliers\r\nComp ared tO saddle points, computing a maximum or minimum Of F(C) is rel atively e asYe\r\nWhen we h ave an approximate solution ， we know th at 尸 （ ） is not below th e mimmum\r\nof 尹 and not above the maximum ： d ” 0 But we don ， t know whether (@) is\r\nab 0 or below a saddle point value. Similarly, th e matrix H(c) of second derivatives 0f\r\nF is positive definite ()r semldefinite) at a minimum and negative definite at a maximum•\r\nTh e second derivative matrix H at a saddle point is symmetric but indefinite,\r\nH has both positive and neg atlve eigenvalues-—this make s saddle points more difficult•\r\nThe co 丐 ugate gradient method is not usually available to find s addle points of T 丌 苏\r\n−-- 现有译文 −--\r\n<!-- page_175 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 172，属 §III.1 与 §III.2 之间的过渡正文；页眉「Low Rank and Compressed Sensing」与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## The Largest Eigenvalue of $S+T$（$S+T$ 的最大特征值）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 中 `蓋`、`风`、`鬱` 均为 $A$ 或向量记号之误，`ÄS+T` 重建为 $\\lambda_{S+T}$，`Åmin`、`/\\min` 重建为 $\\lambda_{\\min}$，`/\\n` 重建为 $\\lambda_n$，`咒）` 重建为 $R(c)$，`TS / T`、`cTSc` 等重建为 $x^T S x$ 形式的二次型。所有公式均按数学语境重建。\r\n\r\n对称矩阵 $S$ 的最大特征值，就是瑞利商 $\\dfrac{x^T S x}{x^T x}$ 的最大值。\r\n\r\n这一陈述同样适用于 $T$（它依然是对称矩阵）。由此我们立刻知道 $S+T$ 的最大特征值满足什么：\r\n\r\n```math\r\n\\lambda_{\\max}(S+T) = \\max_{x\\neq 0}\\frac{x^T(S+T)x}{x^T x}\r\n```\r\n\r\n该最大值在某一个向量处达到。\r\n\r\n左端是 $\\dfrac{x^T(S+T)x}{x^T x}$ 的最大值，右端把分子拆成两项之比：\r\n\r\n```math\r\n\\lambda_{S+T} = \\max_{x\\neq 0}\\left(\\frac{x^T S x}{x^T x} + \\frac{x^T T x}{x^T x}\\right)\r\n\\;\\le\\; \\max_{x\\neq 0}\\frac{x^T S x}{x^T x} + \\max_{x\\neq 0}\\frac{x^T T x}{x^T x}\r\n= \\lambda_S + \\lambda_T .\r\n```\r\n\r\n$S+T$ 的那个使第一个比值取最大的特征向量 $x$，未必同时使最后两个比值取最大。因此 $\\lambda_S + \\lambda_T$ 只会比 $\\lambda_{S+T}$ 更大。\r\n\r\n这说明 maximum principle（最大值原理）用起来很方便。对最小的那个奇异值 $S$ 而言，minimum principle（最小值原理）同样方便。在那里我们预期 $\\lambda_{\\min}(S+T) \\ge \\lambda_{\\min}(S) + \\lambda_{\\min}(T)$。\r\n\r\n同样的推理可以证明它——把 $S$ 与 $T$ 各自的最小值原理分开使用，会把我们带到比 $\\lambda_{\\min}(S+T)$ 更低的地方。或者我们可以把最大值原理应用于 $-S$ 与 $-T$。\r\n\r\n真正的困难出现在中间那些特征值，即从 $\\lambda_2$ 一直到 $\\lambda_{n-1}$ 的那些。\r\n\r\n它们的特征向量是函数 $R(c) = \\dfrac{c^T S c}{c^T c}$ 的鞍点（saddle point）。$R(c)$ 的导数在特征向量 $q_2$ 到 $q_{n-1}$ 处全都为零。但 $R$ 的二阶导数矩阵在这些鞍点处是不定的（indefinite，特征值有正有负）。这使得这些特征值既难以估计，也难\r\n\r\n以计算。\r\n\r\n下面给出关于鞍点的一点直观感受。原因之一是它们可能出现在深度学习的算法中。我们需要对它们积累一些经验，而这要从特征值这个基本问题入手。当存在约束时，鞍点也会出现。如果可能的话，我们希望把它们与某种极小或极大联系起来。\r\n\r\n这些想法导向 $S+T$ 每个特征值的最佳可能上界：\r\n\r\n<span style=color:#c0392b;>**[theorem] Weyl upper bounds（Weyl 上界）**</span>\r\n\r\n```math\r\n\\lambda_{i+j-1}(S+T) \\le \\lambda_i(S) + \\lambda_j(T). \\tag{16}\r\n```\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Saddle Points from Lagrange Multipliers（来自拉格朗日乘子的鞍点）\r\n\r\n与鞍点相比，计算 $F(c)$ 的最大值或最小值要相对容易。当我们有一个近似解时，我们知道 $F(c)$ 不低于最小值、不高于最大值。但我们并不知道 $F(c)$ 是高于还是低于某个鞍点值。类似地，$F$ 的二阶导数矩阵 $H(c)$ 在最小值处是正定（或半正定）的，在最大值处是负定的。\r\n\r\n而在鞍点处，二阶导数矩阵 $H$ 虽然对称，却是不定的。\r\n\r\n$H$ 同时具有正特征值和负特征值——这正是鞍点更难以处理的原因。共轭梯度法（conjugate gradient method）通常无法用来求 $F$ 的鞍点。\r\n\r\n########## page_176（书页 173）##########\r\n−-- OCR 原文 −--\r\n田 2 lnterlacing Eigenvalues an d Low Rank SignaIs\r\n173\r\nLagrange is responsible for a lot of saddle point problems. We start by mnimizing\r\na positive definite energy Sc, but there are m constraints = b on the solution ·\r\nThose constraints are multiplied by new unknowns 入 1 ， 。\r\n· ， /\\rn (the Lagrange multipli er s)\r\nand theY are built into th e Lagran g i an function ：\r\n1\r\nLagrangian L(), X) =\r\n2\r\nThe m + equations DL/Dc = 0 and OL/OX = 0 produce an indefinite block matn ：\r\n0L/0æ\r\n/ 0 入\r\nSc 十 AT 入\r\nS AT\r\nand H\r\n一 b\r\n入\r\n0\r\n（ 17 ）\r\nb\r\nA small ex ample would be H 一\r\nwith neg ative determrnant 一 1 ： its eigenvalues\r\n1 0\r\nhave oppo s ite signs. The ProbIem Set confirms that this KKT matrix ” in equation （ 17 ）\r\nis 忉 d 乜 The solution （ X) is a saddle point 0f Lagrange's function L\r\nS addle Points from Rayleigh Quotients\r\nThe manmum and minimum of the Rayleigh quotient ） = are 入 1 and 入\r\nqlsqn\r\nql Sq1\r\nql Ä1q1 = 入 1 Minimum\r\nMaximum\r\nql ql\r\nqn 入 q = 入 讹\r\nOur question is ab out the s addle points—the other points where 酣 deriv auve s 0f the\r\nquotient R(c) are zero · We w ill c onfirm that those saddle p oints occur at the 0 ther\r\neigenvectors q2 t0 q 一 1 Of S. Our goal is tO see 入 2 t0 入 一 1 as maxima 0f minima ·\r\nThat max-min in sight is the key tO interlacing ·\r\nNotice that the vectors and 2 and cc @ 关 0 ） all produce the same quotient ：\r\n4 cTSc cTSc\r\n(2c)Ts （ 2\r\n（ 2 T （ 2\r\nSO We Only need tO consider unit vectors w ith = 1. Th at C an become a constraint ：\r\ncTSc\r\nis th e same aS max subj ect tO = 1\r\n08 ）\r\nmax\r\nThe constraint T = 1 can be handled by one Lagrange multiplier ！\r\n（ 19 ）\r\nLagrangian L(c,Ä) = 一 入 一 1 ） ·\r\nThe max-min-saddle points will have OL/Oæ = 0 an d OL/O/\\ = 0 ()s in Section 1.9) ：\r\nOL\r\nOL\r\n= 2Sc 一 '2Ä = 0 and\r\n0c\r\nSays that the unit vector is an eigenvector with Sc = 入\r\n（ 20 ）\r\n−-- 现有译文 −--\r\n<!-- page_176 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 173，是 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）的首段正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页页眉噪声 `田 2` 重建为节号 §III.2，`入 1`、`/\\rn` 重建为 $\\lambda_1$、$\\lambda_m$，`æ` 重建为 $c$，`T 丌 苏` 依语境重建为函数记号，`忉 d 乜` 重建为 indefinite（不定），公式均按数学语境重建。\r\n\r\n拉格朗日对大量鞍点问题负有责任。我们从最小化一个正定能量 $\\frac{1}{2}c^T S c$ 出发，但解上带有 $m$ 个约束 $A c = b$。\r\n\r\n这些约束乘以新的未知量 $\\lambda_1,\\dots,\\lambda_m$（即 Lagrange multipliers，拉格朗日乘子），并被构造成 Lagrange 函数：\r\n\r\n```math\r\n\\text{Lagrangian } L(c,\\lambda) = \\tfrac{1}{2}c^T S c + \\lambda^T(Ac − b).\r\n```\r\n\r\n$m+n$ 个方程 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial \\lambda = 0$ 产生一个不定的分块矩阵：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial c} = Sc + A^T\\lambda = 0,\r\n\\qquad\r\n\\frac{\\partial L}{\\partial \\lambda} = Ac − b = 0,\r\n```\r\n\r\n```math\r\n\\begin{bmatrix} S & A^T \\\\ A & 0 \\end{bmatrix}\r\n\\begin{bmatrix} c \\\\ \\lambda \\end{bmatrix}\r\n=\r\n\\begin{bmatrix} 0 \\\\ b \\end{bmatrix},\r\n\\qquad H =\r\n\\begin{bmatrix} S & A^T \\\\ A & 0 \\end{bmatrix}. \\tag{17}\r\n```\r\n\r\n一个很小的例子是 $H = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}$，其行列式为 $-1$：它的两个特征值符号相反。习题集将证实方程（17）中这个「KKT matrix」（KKT 矩阵）是不定的。该解 $(c,\\lambda)$ 是拉格朗日函数 $L$ 的一个鞍点。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Saddle Points from Rayleigh Quotients（来自瑞利商的鞍点）\r\n\r\n瑞利商 $R(c) = \\dfrac{c^T S c}{c^T c}$ 的最大值与最小值分别是 $\\lambda_1$ 与 $\\lambda_n$：\r\n\r\n```math\r\n\\frac{q_1^T S q_1}{q_1^T q_1} = \\lambda_1 \\ \\text{(Maximum)},\r\n\\qquad\r\n\\frac{q_n^T S q_n}{q_n^T q_n} = \\lambda_n \\ \\text{(Minimum)}.\r\n```\r\n\r\n我们的问题关乎鞍点——即商 $R(c)$ 的其余那些导数为零的点。我们将确认，这些鞍点出现在 $S$ 的其余特征向量 $q_2$ 到 $q_{n-1}$ 处。我们的目标是把 $\\lambda_2$ 到 $\\lambda_{n-1}$ 看成某种极大中的极小。这一 max-min（极大-极小）视角正是交错性质的关键。\r\n\r\n请注意，向量 $c$ 与 $2c$（以及任何 $c \\neq 0$ 的倍数）都产生同一个商：\r\n\r\n```math\r\n\\frac{c^T S c}{c^T c} = \\frac{(2c)^T S (2c)}{(2c)^T (2c)}.\r\n```\r\n\r\n所以我们只需考虑长度满足 $c^T c = 1$ 的单位向量。这可以写成一个约束：\r\n\r\n```math\r\n\\max_{c\\neq 0}\\frac{c^T S c}{c^T c}\r\n\\quad\\text{与}\\quad\r\n\\max\\ c^T S c \\ \\text{subject to}\\ c^T c = 1 \\tag{18}\r\n```\r\n\r\n是同一个问题。\r\n\r\n约束 $c^T c = 1$ 可以用一个拉格朗日乘子来处理：\r\n\r\n```math\r\n\\text{Lagrangian } L(c,\\lambda) = c^T S c − \\lambda(c^T c − 1). \\tag{19}\r\n```\r\n\r\n极大、极小与鞍点都将满足 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial \\lambda = 0$（与 §I.9 一样）：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial c} = 2Sc − 2\\lambda c = 0\r\n\\qquad\\text{and}\\qquad\r\n\\frac{\\partial L}{\\partial \\lambda} = c^T c − 1 = 0 . \\tag{20}\r\n```\r\n\r\n第一个方程说明：这个单位向量是特征向量，且满足 $Sc = \\lambda c$。\r\n\r\n########## page_177（书页 174）##########\r\n−-- OCR 原文 −--\r\n174\r\nLow Rank an d Compressed Sensing\r\nExample SUppose S is the with entries 5 ， 3 ， 1 · Write ， ）\r\nmaximum value 5 at = （ 1 ， 0 ， 0 ）\r\n5 2 + 3 鬱 2 + 慟 2\r\nhas a mi nimum value 1 at = （ 0 ， 0 ， 1 ）\r\n“ 2 + 俨 + 2\r\nsaddle point value 3 at = （ 0 ， 1 ， 0 ）\r\nBy looking at 月 ， you see its maximum of 5 and its minimum 0f 1 · AII p arti al derivatives of\r\n月 ， ） are zero at those three points （ 1 ， 0 ， 0 ） ， （ 0 ， 0 ， 1 ） ， （ 0 ， 1 ， 0 ） · These are eigenvectors\r\nof the diagonal matrix S. 月 （ ） e qu al s th e eigenvalues 5 ， 1 ， 3 at those three points.\r\nMaxima and Minim a over Subspaces\r\nof S are saddle points of the quotient\r\nAII the middle eigenvectors q2 ，\r\n。 一 1 at those eigenvectors · AII the rmddle\r\ncT Sc/cT The quotient equals /\\2 ， ·\r\n。 。 · ， 鬱 “ 一 1 are saddle points 0f the growth rati 0 目 · The ratio\r\nsingular vectors 2 ，\r\n· ， “ 一 1 at those singular vectors · Those statements are directly connected by\r\nequals 02 ， ·\r\nthe fact that Sc = cT ATAc = 日 c 目 2\r\nBut s addle points are more difficult tO study than maxima or mlnima. A function moves\r\nboth ways ， up and dow n ， as you leave a saddle. At a maximum th e only movement is down.\r\nAt a mimmum the only movement is up · SO the best way tO s tudy saddle points is tO\r\ncapture them by a ' 'max- 皿 n ” or min-max ， pnnciple.\r\nMax-min for 入 2\r\nmax\r\nmin\r\n（ 21 ）\r\nall 2D spaces Y is in Y T\r\nthe 5 ， 3 ， 1 ex ample ， one choice of the 2D subspace 丫 is 1 vectors\r\nThO se vectors are combinations Of ql and q2. ln side this 丫 ， the minimum ratiO cTsc/c\r\n= （ 0 ， 1 ， 0 ） ()e understand minima)e\r\n3 · That mmimum is at = q2\r\nwill certainly be /\\2\r\nKey p ： Every 2D space 丫 must inters ect the 2D space of all vectors （ 0 鬱 ， ）\r\nThose 2D spaces in R will surely meet because 2 + 2 > 3 · For any\r\nwe definitely know that cTSc/cTc 入 2 · SO for e ach 丫 the 皿 nimum in (21) is 孓 № ·\r\nConclusion ： The maximum possible minimum is ,X2 in （ 21 ） and in （ 22 ） ·\r\nmin C SC\r\nmax\r\ndim V = in V T\r\nmin 到\r\nmax\r\n（ 22 ）\r\ndim w = cin w 日 到\r\nFor\r\n1 ， the spaces V and are one-dimensional lines. The line V through = ql\r\n(first eigenvector) m akes cT Sc/cTc = /\\1 a maximume The li ne W through = 鬱 1\r\n(first singular vector) makes 到 / 日 到 =\r\n01 a maxlmum.\r\nFor = 2 ， the spaces an d are two-dimensional planes. The maximzing V con-\r\ntains the eigenvectors ql ， q2 an d the maxinuzing CO ntain s the singular vectors 鬱 1 ， 鬱 2 ·\r\nThe rmnrmum over that V is ， the min imu m over that is 02 · Thi s p attern continueS\r\nfor every i. lt produce s the Courant-Fischer · 裥 p rin c les in equaüon （ 22 ） ·\r\n−-- 现有译文 −--\r\n<!-- page 177 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 174，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 `蓋`、`風`、`儿` 等字均为矩阵 $A$ 或向量记号之误，`月` 为瑞利商 $R$ 之误，`鬱` 为系数之误，`ÄB` 为 $\\approx$ 之误。公式一律按数学语境重建。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 设 $S$ 为对角矩阵，对角元依次为 $5,\\,3,\\,1$。请写出 $R(c) = c^T S c / c^T c$。\r\n此时\r\n```math\r\nR(c)=\\frac{5c_1^2+3c_2^2+c_3^2}{c_1^2+c_2^2+c_3^2}\r\n```\r\n在 $c=(1,0,0)$ 处取最大值 $5$，在 $c=(0,0,1)$ 处取最小值 $1$，而在 $c=(0,1,0)$ 处取 saddle point（鞍点）值 $3$。\r\n观察 $R$ 便可看出，它的最大值是 $5$、最小值是 $1$。\r\n在 $(1,0,0)$、$(0,0,1)$、$(0,1,0)$ 这三点处，$R(c)$ 的所有偏导数都为零。\r\n这三点正是对角矩阵 $S$ 的 eigenvector（特征向量）。\r\n$R(c)$ 在这三点处分别等于 eigenvalue（特征值）$5,\\,1,\\,3$。\r\n\r\n**Subspaces 上的极大与极小**\r\n$S$ 的中间那些特征向量 $q_2,\\dots,q_{n-1}$ 都是该商的鞍点。\r\n商 $c^T S c/c^T c$ 在这种特征向量处等于 $\\lambda_2,\\dots,\\lambda_{n-1}$。\r\n所有中间的 singular vector（奇异向量）$y_2,\\dots,y_{n-1}$ 也都满足同样的结论：商在它们处等于 $\\sigma_2,\\dots,\\sigma_{n-1}$。\r\n这些论断由下面这一事实直接联系起来：$S c = \\sigma\\, c$ 对应着 $c^T A^T A c = \\lVert A c\\rVert^2$。\r\n但鞍点比极大点或极小点更难研究。\r\n离开一个鞍点时，函数既可以上升也可以下降，两个方向都可能。\r\n而在极大点处，唯一的运动方向是下降；在极小点处，唯一的运动方向是上升。\r\n因此研究鞍点的最佳办法，是用 max-min（极大-极小）或 min-max（极小-极大）原理把它们捕捉住。\r\n\r\n**$\\lambda_2$ 的极大-极小刻画**\r\n\r\n```math\r\n\\max_{\\dim V=2}\\ \\min_{c\\ \\text{in}\\ V}\\ \\frac{c^T S c}{c^T c}=\\lambda_2 \\tag{21}\r\n```\r\n\r\n在 $5,3,1$ 这个例子中，二维子空间 $V$ 的一种取法是 $q_1$ 与 $q_2$ 的一切组合所构成的空间。\r\n这些向量都是 $q_1$ 与 $q_2$ 的线性组合。\r\n在这个 $V$ 内部，比值 $c^T S c/c^T c$ 的最小值必定是 $\\lambda_2 = 3$，而且该最小值就在 $c=q_2=(0,1,0)$ 处取到。\r\n关键之处在于：每个二维空间 $V$ 都必然与一切形如 $(0,*,*)$ 的向量所构成的二维空间相交。\r\n在 $\\mathbf{R}^3$ 中这两个二维空间一定相交，因为 $2+2>3$。\r\n于是对任一 $c=(0,c_2,c_3)$ 我们都能确定 $c^T S c/c^T c \\le \\lambda_2$。\r\n所以对每个 $V$，(21) 中的最小值都不超过 $\\lambda_2$。\r\n**结论：** (21) 与 (22) 中可能取到的最大最小值就是 $\\lambda_2$。\r\n\r\n```math\r\n\\max_{\\dim V=2}\\ \\min_{c\\ \\text{in}\\ V}\\ \\frac{c^T S c}{c^T c}=\\lambda_2,\r\n\\qquad\r\n\\min_{\\dim W=2}\\ \\max_{c\\ \\text{in}\\ W}\\ \\frac{\\lVert A c\\rVert}{\\lVert c\\rVert}=\\sigma_2 \\tag{22}\r\n```\r\n\r\n当 $i=1$ 时，空间 $V$ 与 $W$ 都是一维直线。\r\n过 $c=q_1$（第一个特征向量）的直线 $V$ 使 $c^T S c/c^T c$ 取到最大值 $\\lambda_1$。\r\n过 $c=y_1$（第一个奇异向量）的直线 $W$ 使 $\\lVert A c\\rVert/\\lVert c\\rVert$ 取到最大值 $\\sigma_1$。\r\n当 $i=2$ 时，空间 $V$ 与 $W$ 都是二维平面。\r\n使目标取最大值的 $V$ 包含特征向量 $q_1,q_2$，而使目标取最大值的 $W$ 包含奇异向量 $y_1,y_2$。\r\n在这样一个 $V$ 上取最小值得到 $\\lambda_2$，在这样一个 $W$ 上取最小值得到 $\\sigma_2$。\r\n这一模式对每个 $i$ 都继续成立。\r\n它产生了方程 (22) 中的 Courant-Fischer（柯朗-费舍尔）极小-极大原理。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 9084,
+            "outputTokens": 6006,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 9084,
+              "outputTokens": 6006,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11389,
+          "contextWindow": 1000000,
+          "pressureTokens": 12540,
+          "sampledSurfaceTokens": 6793
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 5233,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4596,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 10245
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

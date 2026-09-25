@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790061028761,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 23,
+        "val": "你是 MIT 18.065（Matrix Methods in"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 23,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 MIT 18.065（Matrix Methods in Data Analysis, Signal Processing, and Machine Learning, Spring 2018, Gilbert Strang）课程材料的数学终审专家，负责一份**中文行内双语的「题目 + 详解 + 译者注」**稿件的正确性与规格终审。请发挥你最高能力（max thinking），逐行通读，**直接把修改落实，输出修订后的全文**。\r\n\r\n【读者画像】大二上学期、智能科学与技术专业；构建主义学习者：要求第一性原理、逻辑链完整可复现、反感空洞赞美与甩名词。已学 6.042J 离散数学、CSAPP、Strang 线性代数；正在学 100B 实分析、6.006 算法、18.065；**未学**抽象代数/拓扑/泛函分析（不得裸甩这些名词）。\r\n\r\n【格式铁律（违反即不合格）】\r\n1. 中文为主体，英文术语以 `English term（中文翻译）` 行内嵌入；术语首次出现加括号翻译。**每句话第一个字必须是中文**。\r\n2. 🚨 禁止英中分段对照：不得有完整英文原句（`Original（英文原题）` 行与 Manual 标准答案引文是唯一例外）。\r\n3. 行内公式 `$...$`；块级公式用 ` ```math ` 围栏；**零 `$$` 残留**。\r\n4. 禁止 Unicode 上下标（₀₁₂₃、⁰¹²³），一律 `$x_n$`、`$x^n$`。禁止 `<div>`；答案与注用 `>` blockquote 包裹；标题标记必须在行首。\r\n5. 配色：功能标签 `#2471a3`、题号 `#c0392b`、定义核心句 `#00838f`、译者注 `#1e8449`、灰引用行 `#7f8c8d`；灰引用行统一写作 `> <span style=color:#7f8c8d;>教材 §I.x, p.yy-zz | Manual, Problem Set I.x 题 N</span>`。\r\n6. 🚨 所有 `$...$`、```math 围栏与全部反斜杠命令必须原样保留：严禁把 `$\\lambda$` 写成 `lambda`、把 `\\begin{bmatrix}` 写成文字描述。\r\n\r\n【审计维度（逐项过，发现问题当场改）】\r\n① 🔴 数学硬伤：结论错误、推导跳步或漏洞、形状/维数记错、验算写错、秩与零空间维数混淆、行列式与迹校验数字不符等。请**独立重算每一处计算**，并核对题面矩阵与结论是否自洽。\r\n② 🔴 常见错误判定小节：逐条检查被标 ❌ 的说法是否真的错（有没有把对的说成错的）。\r\n③ 🔴 译者注**规格**：每条注 **800–1200 汉字**（公式/配图/引文不计）。超长的请**按主题拆分为多条**（子标题写作 `**Note（译者注）——（其一）……**`、`（其二）……`），每条落在区间内；过短可并入相邻注。🚫 **不得为压字数删除数学内容、例子或跨课程连接**——只能压缩重复论证与修辞铺陈。每条注仍须独立可读（机制展开 + 例子 + 连接/模板）。\r\n④ 🔴 **数学编号不得硬编码**：稿中若引用教材公式编号（如(9) 式、(12)、(13)）、章节号、页码，必须与下面给出的校对基准一致；无法确认的编号改成不带编号的表述（如教材 §I.8 中由 $A^TA$ 求 $v$ 的构造），不得保留可疑编号。\r\n⑤ 🟡 术语一致性：同一术语全段单一译法（singular value 一律奇异值、rank-one 一律秩一、positive definite 一律正定）。\r\n⑥ 🟡 事实与断言：史实、年份、教材页码、Manual 引述是否准确；不确定的标 `⚠ 待核：<存疑点>`，不要猜。\r\n⑦ 🟡 **`Original（英文原题）` 必须与校对基准中给出的 OCW 英文原题逐字一致**（可修正明显的 OCR/转写差异，但不得改写句式、不得替换为自己重写的英文句子）。\r\n⑧ 🟡 **🎥 引文**：每条 🎥 引文必须（a）能在校对基准的字幕摘录（或你确知出自该讲字幕的内容）中找到依据；（b）**附中文翻译**。凡无依据或没收中文翻译的，删去该引文或补上翻译；无法确认的依据标 `⚠ 待核：<存疑点>`。\r\n⑨ 🟢 表述与结构：翻译腔、空洞赞美（精妙/经典/极致/优雅）、同义反复、编号引用前后不一致；标题层级无跳级。\r\n\r\n【输出协议（严格遵守）】\r\n- 先给**简短修订清单**（Markdown 表格 ≤ 15 行）：`位置 | 原句（截取） | 类型 | 判定 | 改为`。\r\n- 随后**输出修订后的全文**（本次只审下面给出的部分——该课的课程头（含来源行、讲次标题、引言与术语口径节）——请逐块输出，结构与标签保持原样；未改动的部分原样输出即可）。\r\n- 禁止只输出意见清单而不给修订全文。禁止输出给主代理的说明待核项汇总之类的话术（`⚠ 待核：…` 就地标注即可）。\r\n\r\n【终审校对基准（主代理提供，权威）】\r\n- 讲次：Lecture 5 —— Positive Definite and Semidefinite Matrices（正定矩阵与半正定矩阵）\r\n- 教材：§I.7, p.46-55；Problem Set I.7 在 p.52-55；Manual for Instructors 的 Problem Set I.7 在 page 52\r\n- 本讲题目：Problem 3、Problem 14、Problem 15（OCW 题目表：Problems for Lecture 5, from textbook Section I.7）\r\n- 教材 §I.7 的核心口径（可核对）：正定的能量定义 $c^TSc>0$；五种等价检验（主元、顺序主子式、特征值、能量、$S=A^TA$ 加列无关）；$S=LDL^T$，$D$ 装主元；Cholesky 为 $S=A^TA$ 且 $A=\\sqrt{D}L^T$；$S=A^TA$ 只保证半正定，正定需 $A$ 列无关\r\n- 本讲无题目解答需要核对；字幕摘录见下\r\n\r\n### 本讲官方字幕摘录（供 🎥 引文核对）\r\n# lec5 字幕教学片段（MIT 18.065 官方字幕，英文原句 + 官方中文字幕对齐）\r\n- [00:01:03,760 --> 00:01:07,140] **EN**: Each one gives a test for positive definite matrices.\r\n  **ZH**: 每一个都提供了正定矩阵的检验方法。\r\n- [00:03:11,220 --> 00:03:12,900] **EN**: Positive definite matrices.\r\n  **ZH**: Positive definite matrices (正定矩阵)。\r\n- [00:03:23,640 --> 00:03:26,780] **EN**: positive definite matrices, they have positive eigenvalues.\r\n  **ZH**: positive definite matrices (正定矩阵) 具有 positive eigenvalues (正特征值)。\r\n- [00:00:54,980 --> 00:00:55,760] **EN**: energy,\r\n  **ZH**: energy (能量),\r\n- [00:04:13,400 --> 00:04:21,279] **EN**: OK. So you could compute its eigenvalues since it's 2 by 2. It's energy. I'll come back to that because that's the most important one.\r\n  **ZH**: 好的。既然它是2x2矩阵，你可以计算它的特征值（eigenvalues）。这是 能量（energy）。我会回到这一点，因为这是最重要的问题。\r\n- [00:09:42,460 --> 00:09:43,380] **EN**: Let me do the energy.\r\n  **ZH**: 让我来负责能量部分。\r\n- [00:00:58,840 --> 00:01:00,240] **EN**: determinants, pivots,\r\n  **ZH**: determinants (行列式), pivots (主元),\r\n- [00:04:52,100 --> 00:04:53,800] **EN**: positive determinants. Positive pivots.\r\n  **ZH**: 正行列式。 正主元。\r\n- [00:07:22,680 --> 00:07:25,080] **EN**: And have you noticed the connection to pivots?\r\n  **ZH**: 并且 你是否注意到了与 pivot (枢轴) 之间的联系？\r\n- [00:04:59,100 --> 00:05:07,900] **EN**: Which is the easy test to see that it fails? Negative determinant. Determinant. The determinant is 15 minus 16,\r\n  **ZH**: 哪个简单测试可以看出它不成立？负行列式。行列式。行列式为15减16，\r\n- [00:05:11,940 --> 00:05:15,040] **EN**: that's what's so how is the determinant connected to the eigenvalues?\r\n  **ZH**: 这就是问题所在：那么 行列式（determinant）与特征值（eigenvalues）是如何联系起来的？\r\n\r\n======================= 待审部分开始（该课的课程头（含来源行、讲次标题、引言与术语口径节）） =======================\r\n\r\n# <span style=color:#c0392b;>18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning（数据分析、信号处理与机器学习中的矩阵方法）</span>\r\n\r\n> <span style=color:#7f8c8d;>MIT OpenCourseWare · Spring 2018 · Gilbert Strang · 第五课（Lecture 5）配套 Problem Set I.7</span>\r\n>\r\n> <span style=color:#7f8c8d;>原文来源：MIT OCW 18.065 S18 *Problem Sets Related to Lectures and Readings*（Problems for Lecture 5，教材 §I.7）· 教材出处：Linear Algebra and Learning from Data（Strang 2019）§I.7, p.46-55 · 答案核验：教材官方 Manual for Instructors, Problem Set I.7, page 52</span>\r\n\r\n## <span style=color:#c0392b;>第五课 · Problems for Lecture 5（第 5 讲讲题）</span>\r\n\r\n本讲标题是 <span style=color:#00838f;>Positive Definite and Semidefinite Matrices（正定矩阵与半正定矩阵）</span>。把它读成一个设计问题会更清楚：**要让二次型 $c^TSc$ 对每个非零向量 $c$ 都取正值，一个对称矩阵必须满足什么？**换个说法：什么条件下「能量曲面」是一个开口向上的碗，而不是马鞍面或倒扣的碗？这个问题决定了方程 $Sx=b$ 有没有唯一解、最小二乘的法方程是否可解、最优化里的二阶条件在说些什么。\r\n\r\n这个问题分三层被压住。第一层是**消元这一侧能读出什么**：消元过程中留在对角线上的主元（pivot）与逐阶取出的顺序主子式，是判定正定性最省事的一组数据——小矩阵手算全靠它，而它和特征值判据一样能给出完整答案。第二层是**谱这一侧能读出什么**：把 $c$ 展开到正交特征基上，$c^TSc$ 立刻变成 $\\lambda_1c_1^2+\\cdots+\\lambda_nc_n^2$，所有方向上的正性于是完全由「每个系数都为正」控制。第三层是**分解这一侧能读出什么**：$S=A^TA$ 把能量改写成 $\\|Ac\\|^2$，秩与零空间由此进入判定——$A$ 的列无关时正定，列相关时只能半正定，这正是法方程与最小二乘必须处理的边界情形。\r\n\r\n三层合起来是本课程反复使用的一条纪律：**每引进一个新对象，先问它由哪些更基本的量决定（主元、特征值、秩），再准备两条以上互相独立的验算路径。**本讲的五种检验之所以有价值，不是因为多，而是因为它们分别来自消元、行列式、特征值、$S=A^TA$ 四条不同的推理路线，却必须给出同一个答案。\r\n\r\n### <span style=color:#00838f;>术语口径（本讲五个词，后文严格按此使用）</span>\r\n\r\n> <span style=color:#00838f;>**positive definite（正定）**：设 $S$ 对称，若对所有 $c\\neq0$ 都有 $c^TSc>0$，则称 $S$ 正定。它是全部检验的根定义，能量（energy）是这台机器唯一的原始量。</span>\r\n>\r\n> ```math\r\n> c^TSc>0 \\quad \\text{对每个 } c\\neq0\r\n> ```\r\n>\r\n> <span style=color:#00838f;>**energy test（能量检验）**：判定式为 $c^TSc>0$，对每个非零 $c$ 成立。用正交特征基 $c=c_1x_1+\\cdots+c_nx_n$ 展开，得 $c^TSc=\\lambda_1c_1^2+\\cdots+\\lambda_nc_n^2$，能量的正负因此逐项由特征值的正负决定；它与检验「所有 $\\lambda_i>0$」是同一件事的两种写法。</span>\r\n>\r\n> <span style=color:#00838f;>**semidefinite（半正定）**：把严格不等号放宽为 $c^TSc\\ge0$。半正定允许某些非零 $c$ 使能量为零，正定不允许；两者被 $c^TSc$ 的等号能否取到严格分开。$\\|Ac\\|^2$ 永远不为负，所以 $S=A^TA$ 至少半正定；等号出现当且仅当 $Ac=0$。</span>\r\n>\r\n> <span style=color:#00838f;>**$LDL^T$ 与 Cholesky（乔列斯基分解）**：对称矩阵消元可写成 $S=LU=LDL^T$，$D$ 的对角线就是主元，$L$ 的对角线全为 $1$。取 $A=\\sqrt{D}\\,L^T$（上三角，对角元是主元的平方根）即得 $S=A^TA$，这就是 Cholesky 分解；它只在所有主元为正时才在实数范围内存在。</span>\r\n>\r\n> ```math\r\n> S=LDL^T=A^TA,\\qquad A=\\sqrt{D}\\,L^T\r\n> ```\r\n>\r\n> <span style=color:#00838f;>**Sylvester 主元与行列式判据（pivot test and determinant test）**：第 $k$ 个主元等于行列式之比 $d_k=D_k/D_{k-1}$（$D_0=1$），故「所有主元为正」与「所有顺序主子式 $D_1,\\dots,D_n$ 为正」互为等价，并与「所有 $\\lambda_i>0$」等价。用二阶矩阵对照：$a>0$ 且 $ac-b^2>0$ 同时就是主元正与顺序主子式正。</span>\r\n\r\n> 🚨 必须挡住的三处混淆：① **半正定 ≠ 正定**——$c^TSc\\ge0$ 里等号可以取到（如 $\\begin{bmatrix}1&1&1\\\\1&2&3\\end{bmatrix}$ 的 $A^TA$ 有 $c=(1,-2,1)$ 使能量为零），而正定要求对每个 $c\\neq0$ 都严格为正；② **$S=A^TA$ 不自动正定**——$c^TSc=\\|Ac\\|^2$ 只保证非负，必须 $A$ 的列线性无关，$Ac=0$ 才只有零解，否则只能得到半正定；③ **行列式检验用的是顺序主子式**——是 $D_k$（取前 $k$ 行前 $k$ 列）全为正，不是「所有主子式为正」，也不是只看 $\\det S$：$\\det S>0$ 连二阶都不够（$\\begin{bmatrix}-1&0\\\\0&-1\\end{bmatrix}$ 的行列式为 $1$ 却各阶全负），单看一个数一定判错。\r\n\r\n---\r\n\r\n---\r\n\r\n======================= 待审部分结束 ======================="
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 23,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 23,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 23,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 23,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4354,
+            "outputTokens": 52502,
+            "cacheReadTokens": 52992,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 161,
+              "outputTokens": 9823,
+              "cacheReadTokens": 49920,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 23,
+        "val": {
+          "surfaceTokens": 39944,
+          "contextWindow": 1000000,
+          "pressureTokens": 50081,
+          "sampledSurfaceTokens": 34140
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 23,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1832,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 30592,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 5804,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 38800
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 23,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 20,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 22
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 23,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 23,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 23,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

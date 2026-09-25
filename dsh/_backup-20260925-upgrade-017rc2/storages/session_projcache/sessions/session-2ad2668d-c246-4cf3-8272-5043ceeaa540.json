@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132487082,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_177（书页 174） @@@@@\r\n−---- 【权威原文】 −---------------\r\n174 \\hfill Low Rank and Compressed Sensing\r\n\r\n**Example** Suppose \\(S\\) is the diagonal matrix with entries \\(5, 3, 1\\). Write \\(x\\) as \\((u, v, w)\\):\r\n\\[\r\nR = \\frac{x^{\\mathrm{T}} S x}{x^{\\mathrm{T}} x} = \\frac{5u^2 + 3v^2 + w^2}{u^2 + v^2 + w^2} \\quad \\text{has a} \\quad \\begin{array}{l} \\text{maximum value } 5 \\text{ at } x = (1, 0, 0) \\\\ \\text{minimum value } 1 \\text{ at } x = (0, 0, 1) \\\\ \\text{saddle point value } 3 \\text{ at } x = (0, 1, 0) \\end{array}\r\n\\]\r\n\r\nBy looking at \\(R\\), you see its maximum of 5 and its minimum of 1. All partial derivatives of \\(R(u, v, w)\\) are zero at those three points \\((1, 0, 0), (0, 0, 1), (0, 1, 0)\\). These are eigenvectors of the diagonal matrix \\(S\\). \\(R(x)\\) equals the eigenvalues \\(5, 1, 3\\) at those three points.\r\n\r\n## Maxima and Minima over Subspaces\r\n\r\nAll the middle eigenvectors \\(q_2, \\ldots, q_{n-1}\\) of \\(S\\) are saddle points of the quotient \\(x^{\\mathrm{T}} S x / x^{\\mathrm{T}} x\\). The quotient equals \\(\\lambda_2, \\ldots, \\lambda_{n-1}\\) at those eigenvectors. All the middle singular vectors \\(v_2, \\ldots, v_{n-1}\\) are saddle points of the growth ratio \\(\\|Ax\\| / \\|x\\|\\). The ratio equals \\(\\sigma_2, \\ldots, \\sigma_{n-1}\\) at those singular vectors. Those statements are directly connected by the fact that \\(x^{\\mathrm{T}} S x = x^{\\mathrm{T}} A^{\\mathrm{T}} A x = \\|Ax\\|^2\\).\r\n\r\nBut saddle points are more difficult to study than maxima or minima. A function moves both ways, up and down, as you leave a saddle. At a maximum the only movement is down. At a minimum the only movement is up. So the best way to study saddle points is to capture them by a “max-min” or “min-max” principle.\r\n\r\n\\[\r\n\\text{Max-min for } \\lambda_2 \\qquad \\lambda_2 = \\begin{array}{c} \\max \\\\ \\text{all 2D spaces } Y \\end{array} \\begin{array}{c} \\min \\\\ x \\text{ is in } Y \\end{array} \\frac{x^{\\mathrm{T}} S x}{x^{\\mathrm{T}} x} \\tag{21}\r\n\\]\r\n\r\nIn the \\(5, 3, 1\\) example, one choice of the 2D subspace \\(Y\\) is all vectors \\(x = (u, v, 0)\\). Those vectors are combinations of \\(q_1\\) and \\(q_2\\). Inside this \\(Y\\), the minimum ratio \\(x^{\\mathrm{T}} S x / x^{\\mathrm{T}} x\\) will certainly be \\(\\lambda_2 = 3\\). That minimum is at \\(x = q_2 = (0, 1, 0)\\) (we understand minima).\r\n\r\n**Key point**: Every 2D space \\(Y\\) must intersect the 2D space of all vectors \\((0, v, w)\\). Those 2D spaces in \\(\\mathbf{R}^3\\) will surely meet because \\(2 + 2 > 3\\). For any \\(x = (0, v, w)\\) we definitely know that \\(x^{\\mathrm{T}} S x / x^{\\mathrm{T}} x \\leq \\lambda_2\\). So for each \\(Y\\) the minimum in (21) is \\(\\leq \\lambda_2\\).\r\n\r\n**Conclusion**: The maximum possible minimum is \\(\\lambda_2\\) in (21) and \\(\\lambda_i\\) in (22).\r\n\r\n\\[\r\n\\lambda_i(S) = \\begin{array}{c} \\max \\\\ \\dim V = i \\end{array} \\begin{array}{c} \\min \\\\ x \\text{ in } V \\end{array} \\frac{x^{\\mathrm{T}} S x}{x^{\\mathrm{T}} x} \\qquad \\sigma_i(A) = \\begin{array}{c} \\max \\\\ \\dim W = i \\end{array} \\begin{array}{c} \\min \\\\ x \\text{ in } W \\end{array} \\frac{\\|Ax\\|}{\\|x\\|} \\tag{22}\r\n\\]\r\n\r\nFor \\(i = 1\\), the spaces \\(V\\) and \\(W\\) are one-dimensional lines. The line \\(V\\) through \\(x = q_1\\) (first eigenvector) makes \\(x^{\\mathrm{T}} S x / x^{\\mathrm{T}} x = \\lambda_1\\) a maximum. The line \\(W\\) through \\(x = v_1\\) (first singular vector) makes \\(\\|Ax\\| / \\|x\\| = \\sigma_1\\) a maximum.\r\n\r\nFor \\(i = 2\\), the spaces \\(V\\) and \\(W\\) are two-dimensional planes. The maximizing \\(V\\) contains the eigenvectors \\(q_1, q_2\\) and the maximizing \\(W\\) contains the singular vectors \\(v_1, v_2\\). The minimum over that \\(V\\) is \\(\\lambda_2\\), the minimum over that \\(W\\) is \\(\\sigma_2\\). This pattern continues for every \\(i\\). It produces the Courant-Fischer max-min principles in equation (22).\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:177@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 174，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 2. Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 破损严重，已按数学语境逐处重建：`月`、`月 ， ）`、`月 （ ）` 重建为瑞利商 $R$ 与 $R(c)$；`蓋`、`風`、`兒`、`慟`、`俨` 等残字依上下文重建为分量记号 $c_1,c_2,c_3$；`cTsc/c`、`cT Sc/cT` 重建为 $c^T S c/c^T c$；`Sc = cT ATAc = 日 c 目 2` 重建为 $Sc=A^T A c$ 与 $\\lVert Ac\\rVert^2$；`孓 №`、`min 到` 重建为 $\\lambda_2$、$\\min$ 等；`max- 皿 n` 重建为 max-min。公式一律按数学语境重建，不逐字照抄乱码。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 设 $S$ 是对角矩阵，对角元依次为 $5,\\,3,\\,1$。请写出 $R(c)=\\dfrac{c^T S c}{c^T c}$，即\r\n\r\n```math\r\nR(c)=\\frac{5c_1^2+3c_2^2+c_3^2}{c_1^2+c_2^2+c_3^2}.\r\n```\r\n\r\n它在 $c=(1,0,0)$ 处取最大值 $5$，在 $c=(0,0,1)$ 处取最小值 $1$，而在 $c=(0,1,0)$ 处取 saddle point（鞍点）值 $3$。\r\n\r\n观察 $R$ 便可看出，它的最大值是 $5$、最小值是 $1$。在 $(1,0,0)$、$(0,0,1)$、$(0,1,0)$ 这三点处，$R(c)$ 的所有偏导数都为零。这三点正是对角矩阵 $S$ 的 eigenvector（特征向量）。$R(c)$ 在这三点处分别等于 eigenvalue（特征值）$5,\\,1,\\,3$。\r\n\r\n**子空间上的极大与极小**\r\n\r\n$S$ 的中间那些特征向量 $q_2,\\dots,q_{n-1}$ 都是该商的鞍点。商 $c^T S c/c^T c$ 在这些特征向量处等于 $\\lambda_2,\\dots,\\lambda_{n-1}$。所有中间的 singular vector（奇异向量）$y_2,\\dots,y_{n-1}$ 也都是对应商的鞍点，商在它们处等于 $\\sigma_2,\\dots,\\sigma_{n-1}$。这两组论断由下面这一事实直接联系起来：\r\n\r\n```math\r\nS=A^{T}A,\\qquad c^{T}Sc=c^{T}A^{T}Ac=\\lVert Ac\\rVert^{2}.\r\n```\r\n\r\n但鞍点比极大点或极小点更难研究。离开一个鞍点时，函数既可以上升也可以下降，两个方向都可能。而在极大点处，唯一的运动方向是下降；在极小点处，唯一的运动方向是上升。因此研究鞍点的最佳办法，是用 max-min（极大-极小）或 min-max（极小-极大）原理把它们捕捉住。\r\n\r\n**$\\lambda_2$ 的极大-极小刻画**\r\n\r\n```math\r\n\\max_{\\dim V=2}\\ \\min_{c\\ \\text{in}\\ V}\\ \\frac{c^T S c}{c^T c}=\\lambda_2 \\tag{21}\r\n```\r\n\r\n在 $5,3,1$ 这个例子中，二维子空间 $V$ 的一种取法是 $q_1$ 与 $q_2$ 的一切组合所构成的空间。这些向量都是 $q_1$ 与 $q_2$ 的线性组合。在这个 $V$ 内部，比值 $c^T S c/c^T c$ 的最小值必定是 $\\lambda_2=3$，而且该最小值就在 $c=q_2=(0,1,0)$ 处取到。\r\n\r\n关键之处在于：每个二维空间 $V$ 都必然与一切形如 $(0,*,*)$ 的向量所构成的二维空间相交。在 $\\mathbf{R}^3$ 中这两个二维空间一定相交，因为 $2+2>3$。于是对交集中的非零向量 $c=(0,c_2,c_3)$，我们都能确定 $c^T S c/c^T c\\ge\\lambda_2$。所以对每个 $V$，(21) 中的最小值都不超过 $\\lambda_2$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（维数计数与极大-极小原理）：**</span> 你大概会问：凭什么「相交」这件事不用算就知道？因为相交是维数预算的必然结果，不是某个矩阵的偶然性质。在 $\\mathbf{R}^2$ 里，两条过原点的直线可以只交于原点；到了 $\\mathbf{R}^3$，两个二维子空间的维数之和是 $2+2=4$，而整个空间只提供 $3$ 维，多出的 $1$ 维无处可去，只能被两个子空间共享。这条引理叫**维数计数相交引理**，写成公式是 $\\dim(V\\cap W)\\ge\\dim V+\\dim W-n$。证明很朴素：若 $V\\cap W=\\{0\\}$，把两者的基拼在一起就得到 $\\dim V+\\dim W$ 个线性无关向量，于是 $n\\ge\\dim V+\\dim W$，与假设矛盾。命名模板：**子空间鸽巢**——你在 6.042J 学的鸽巢原理说「$n+1$ 个物体放进 $n$ 个盒子必有碰撞」，这里把「物体」换成「维数」：两个子空间维数之和超过整个空间维数，多出来的部分只能落进交集。有了它，$\\lambda_2$ 的刻画就是两步夹逼。先看上界：对任意二维 $V$，取 $W=\\operatorname{span}(q_2,q_3)$（在 $5,3,1$ 的例子中就是 $(0,*,*)$ 那个平面），两者必有公共非零向量 $c$，而 $c$ 与 $q_1$ 正交，所以 $c^TSc/c^Tc$ 只用到 $\\lambda_2,\\lambda_3$ 两个方向，可具体算：$c=(0,c_2,c_3)$ 时 $R=\\frac{3c_2^2+c_3^2}{c_2^2+c_3^2}\\le3$。既然每个 $V$ 里都藏着一个比值不超过 $3$ 的向量，那么 $\\min_{c\\in V}R(c)\\le3$ 对一切二维 $V$ 成立，取最大也只能到 $3$。再看下界：取 $V=\\operatorname{span}(q_1,q_2)$，此时 $\\min$ 恰好等于 $3$，所以最大值至少是 $3$。两边一夹，$\\max_{\\dim V=2}\\min_{c\\in V}\\frac{c^TSc}{c^Tc}=\\lambda_2$。换一个 $V$ 复核：$V=\\operatorname{span}(e_1,e_3)$ 时 $R=\\frac{5c_1^2+c_3^2}{c_1^2+c_3^2}$，最小值在 $c=e_3$ 处为 $1$，确实不超过 $3$，这正是上界方向的保证。为什么最小值一定是某个 $\\lambda$？把向量按特征基展开 $c=\\sum_jy_jq_j$，正交归一使 $c^Tc=\\sum_jy_j^2$、$c^TSc=\\sum_j\\lambda_jy_j^2$，于是 $R$ 就是各 $\\lambda_j$ 以 $y_j^2$ 为权的加权平均：加权平均落在最小值与最大值之间，所以 $R$ 的取值被夹在「当前用到的最小 $\\lambda$」与「最大 $\\lambda$」之间。这也是交错与压缩感知的技术底座：只要某个低维子空间里一定存在「比值不太大」的向量，就能保证极值被某个特征值牢牢控制。把 $2$ 换成任意 $i$，就得到 Courant-Fischer 原理（得名于 Courant 与 Fischer，20 世纪初）：$\\max_{\\dim V=i}\\min_{c\\in V}R(c)=\\lambda_i$。同一套语言直接推广到奇异值：把瑞利商换成 $\\frac{c^TA^TAc}{c^Tc}=\\frac{\\lVert Ac\\rVert^2}{\\lVert c\\rVert^2}$，就得到 $\\min_{\\dim W=i}\\max_{c\\in W}\\frac{\\lVert Ac\\rVert}{\\lVert c\\rVert}=\\sigma_i$，因为 $\\sigma_i^2$ 正是 $A^TA$ 的第 $i$ 个特征值。注意 max 与 min 的顺序不能交换，一般只有 $\\max\\min\\le\\min\\max$；中间那些特征值必须写成「先在一族子空间里取最小（安全），再在所有子空间里取最大（最优）」，才能把鞍点抓住。这与上一页「$\\lambda_2$ 到 $\\lambda_{n-1}$ 是鞍点、只能靠极大-极小刻画」是同一句话的两种说法。工程味道：$\\lambda_2$ 的这个刻画就是 PCA 的第二步——去掉第一主方向后，在剩余的正交补里再找方差最大的方向；压缩感知关心的「少数几个大奇异值能否代表整张矩阵」，靠的也是这种在子空间里取极值的比较方式。最后提醒一个数值细节：一旦 $\\lambda_2$ 与 $\\lambda_3$ 靠得很近，上界就会变松——CSAPP 里讲浮点舍入时你会看到，两个几乎相等的量相减，相对误差会被放大，同理瑞利商的微小误差会被 $\\lvert\\lambda_2-\\lambda_3\\rvert$ 这个差距除一次，特征方向的扰动就变大，于是夹逼给出的区间从「紧」退化为「可用但粗」。把 $3$ 换成 $7$，同一个 $V$ 的上界变成 $7$，而最小值仍是 $1$，说明夹逼给的是「不超过」而非「等于」，这个差距正是工程上还要迭代精化的原因。\r\n\r\n**结论：** (21) 与 (22) 中可能取到的最大最小值就是 $\\lambda_2$。\r\n\r\n```math\r\n\\max_{\\dim V=2}\\ \\min_{c\\ \\text{in}\\ V}\\ \\frac{c^T S c}{c^T c}=\\lambda_2,\r\n\\qquad\r\n\\min_{\\dim W=2}\\ \\max_{c\\ \\text{in}\\ W}\\ \\frac{\\lVert A c\\rVert}{\\lVert c\\rVert}=\\sigma_2 \\tag{22}\r\n```\r\n\r\n当 $i=1$ 时，空间 $V$ 与 $W$ 都是一维直线。过 $c=q_1$（第一个特征向量）的直线 $V$ 使 $c^T S c/c^T c$ 取到最大值 $\\lambda_1$。过 $c=y_1$（第一个奇异向量）的直线 $W$ 使 $\\lVert A c\\rVert/\\lVert c\\rVert$ 取到最大值 $\\sigma_1$。\r\n\r\n当 $i=2$ 时，空间 $V$ 与 $W$ 都是二维平面。使目标取最大值的 $V$ 包含特征向量 $q_1,q_2$，而使目标取最大值的 $W$ 包含奇异向量 $y_1,y_2$。在这样一个 $V$ 上取最小值得到 $\\lambda_2$，在这样一个 $W$ 上取最小值得到 $\\sigma_2$。这一模式对每个 $i$ 都继续成立。它产生了方程 (22) 中的 Courant-Fischer（柯朗-费舍尔）极小-极大原理。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p. 174</span>\r\n\r\n@@@@@ page_178（书页 175） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.2. Interlacing Eigenvalues and Low Rank Signals 175\r\n\r\n**Interlacing and the Weyl Inequalities**\r\n\r\nFor any symmetric matrices \\(S\\) and \\(T\\), Weyl found bounds on the eigenvalues of \\(S + T\\).\r\n\r\n> **Weyl inequalities**\r\n> \\[\r\n \\lambda_{i+j-1}(S + T) \\leq \\lambda_i(S) + \\lambda_j(T) \\tag{23} \r\n\\]\r\n> \\[\r\n \\lambda_k(S) + \\lambda_n(T) \\leq \\lambda_k(S + T) \\leq \\lambda_k(S) + \\lambda_1(T) \\tag{24} \r\n\\]\r\n\r\nThe interlacing of the \\(z\\)'s that we saw in Figure III.1 is also proved by equation (23). The rank one matrix \\(T\\) is \\(\\theta u u^T\\) and its largest eigenvalue is \\(\\lambda_1(T) = \\theta\\). All of the other eigenvalues \\(\\lambda_j(T)\\) are zero. Then for every \\(j = 2, 3, \\dots\\) Weyl's inequality gives \\(\\lambda_{i+1}(S + T) \\leq \\lambda_i(S)\\). Each eigenvalue \\(z_{i+1}\\) of \\(S + T\\) cannot go past the next eigenvalue \\(\\lambda_i\\) of \\(S\\). And for \\(j = 1\\) we have \\(\\lambda_1(S + T) \\leq \\lambda_1(S) + \\theta\\): an upper bound on the largest eigenvalue of signal plus noise.\r\n\r\n> Here is a beautiful interlacing theorem for eigenvalues, when the last column and row of a symmetric matrix \\(S\\) are removed. That leaves a matrix \\(S_{n-1}\\) of size \\(n − 1\\).\r\n> \r\n> **The \\(n − 1\\) eigenvalues \\(\\alpha_i\\) of the matrix \\(S_{n-1}\\) interlace the \\(n\\) eigenvalues of \\(S\\).**\r\n\r\nThe idea of the proof is that removing the last row and column is the same as forcing all vectors to be orthogonal to \\((0, \\dots, 0, 1)\\). Then the minimum in (22) could move below \\(\\lambda_i\\). But \\(\\alpha_i\\) won't move below \\(\\lambda_{i+1}\\), because \\(\\lambda_{i+1}\\) allows a free choice with dim \\(V = i + 1\\).\r\n\r\n**Example**\r\n\\[\r\n \\lambda_i \\geq \\alpha_i \\geq \\lambda_{i+1} \r\n\\]\r\n\\[\r\n \\begin{bmatrix} 2 & −1 & −1 \\\\ −1 & 2 & −1 \\\\ −1 & −1 & 2 \\end{bmatrix} \\qquad \\begin{bmatrix} 2 & −1 \\\\ −1 & 2 \\end{bmatrix} \\qquad \\begin{bmatrix} 2 \\end{bmatrix} \r\n\\]\r\n\\[\r\n \\lambda = 3, 3, 0 \\qquad \\alpha = 3, 1 \\qquad 3 > 2 > 1 \r\n\\]\r\n\r\n**Interlacing of Singular Values**\r\n\r\nSuppose \\(A\\) is not square and symmetric—so its singular values are involved. Each column of \\(A\\) represents one frame in a video. We want to identify a rank one signal \\(\\beta x y^T\\) hidden in those columns. That signal is obscured by random noise. If a light was turned on or off during the video, the goal is to see when that happened.\r\n\r\nThis leads us to ask: How much do the singular values change from \\(A\\) to \\(A + B\\)? Changes in eigenvalues of symmetric matrices are now understood. So we can study \\(A^T A\\) or \\(A A^T\\) or this symmetric matrix of size \\(m + n\\) with eigenvalues \\(\\sigma_i\\) and \\(-\\sigma_i\\):\r\n\\[\r\n \\begin{bmatrix} 0 & A \\\\ A^T & 0 \\end{bmatrix} \\begin{bmatrix} u_i \\\\ v_i \\end{bmatrix} = \\sigma_i \\begin{bmatrix} u_i \\\\ v_i \\end{bmatrix} \\quad \\text{and} \\quad \\begin{bmatrix} 0 & A \\\\ A^T & 0 \\end{bmatrix} \\begin{bmatrix} −u_i \\\\ v_i \\end{bmatrix} = −\\sigma_i \\begin{bmatrix} −u_i \\\\ v_i \\end{bmatrix} \\tag{25} \r\n\\]\r\nInstead we recommend the amazing notes by Terry Tao: https://terrytao.wordpress.com/2010/01/12/254a-notes-3a-eigenvalues-and-sums-of-hermitian-matrices/\r\n\r\n> **Weyl inequalities**\r\n> \\[\r\n \\sigma_{i+j-1}(A + B) \\leq \\sigma_i(A) + \\sigma_j(B) \\tag{26} \r\n\\]\r\n> \\[\r\n i \\leq m \\leq n \\qquad |\\sigma_i(A + B) − \\sigma_i(A)| \\leq \\|B\\| \\tag{27} \r\n\\]\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:178@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 175，属 §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声较重，已按数学语境重建：`th e`→the、`symmetnc`→symmetric、`WeyI`→Weyl、`interl acing`→interlacing、`matnx`→matrix、`hogonal`→orthogonal、`colu 画`→column、`SinguIar`→Singular；例中的 $2\\times2$ 子矩阵第二行第一列是 $-2$（OCR 把负号吞掉了），取 $+2$ 时特征值为 $(3\\pm\\sqrt{17})/2$，与正文给出的 $3,1$ 不符；公式 (23)(24) 与 (26)(27) 的下标、指标范围均已按 Weyl 不等式的标准形式还原。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 2. Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n### Interlacing 与 Weyl 不等式\r\n\r\n对任意对称矩阵 $S$ 与 $T$，Weyl 找到了 $S+T$ 的特征值的上下界：\r\n\r\n```math\r\n\\lambda_{i+j-1}(S+T)\\ \\le\\ \\lambda_i(S)+\\lambda_j(T) \\tag{23}\r\n```\r\n\r\n```math\r\n\\lambda_k(S)+\\lambda_n(T)\\ \\le\\ \\lambda_k(S+T)\\ \\le\\ \\lambda_k(S)+\\lambda_1(T) \\tag{24}\r\n```\r\n\r\n图 III.1 中看到的那些 $\\lambda_i$ 的交错（interlacing）性质，也可以由方程 (23) 证明。设 rank one matrix（秩一矩阵）为 $T=\\theta uu^{T}$，它的最大特征值是 $\\lambda_1(T)=\\theta$，其余特征值全为零，即 $\\lambda_n(T)=0$。于是对每个 $j=2,3,\\dots$，Weyl 不等式给出 $\\lambda_{i+1}(S+T)\\le\\lambda_i(S)$，即 $S+T$ 的每个特征值 $z_{i+1}$ 都不会越过 $S$ 的相邻特征值 $\\lambda_i$；而当 $j=1$ 时，我们有 $\\lambda_1(S+T)\\le\\lambda_1(S)+\\theta$，这就是 signal plus noise（信号加噪声）的最大特征值的一个上界。\r\n\r\n<span style=color:#2471a3;>**[theorem]**</span>\r\n\r\n**Interlacing theorem（交错定理）** 这里有一个关于特征值的优美交错定理：当对称矩阵 $S$ 的最后一行与最后一列被删去时，留下一个大小为 $n-1$ 的矩阵 $S_{n-1}$。\r\n\r\n```math\r\n\\lambda_1(S)\\ \\ge\\ \\alpha_1\\ \\ge\\ \\lambda_2(S)\\ \\ge\\ \\alpha_2\\ \\ge\\ \\cdots\\ \\ge\\ \\alpha_{n-1}\\ \\ge\\ \\lambda_n(S)\r\n```\r\n\r\n$S_{n-1}$ 的 $n-1$ 个特征值 $\\alpha_i$ 与 $S$ 的 $n$ 个特征值交错排列。\r\n\r\n<span style=color:#2471a3;>**[proof]**</span>\r\n\r\n证明的想法是：删去最后一行与最后一列，等价于强制一切向量都与 $(0,0,\\dots,0,1)$ 正交。于是 (22) 中的最小值就可能下降到 $\\lambda_i$ 以下；但它不会降到 $\\lambda_{i+1}$ 以下，因为 $\\lambda_{i+1}$ 允许在维数为 $i+1$ 的空间中自由选取。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（交错定理：夹逼与维数预算）：**</span> 这条定理常被称为 Cauchy interlacing theorem（柯西交错定理）：删掉对称矩阵的一行一列，剩下的 $(n-1)\\times(n-1)$ 矩阵的特征值不会「另起炉灶」，而是被原矩阵的特征值一对一对地夹住。理解它的钥匙是第 174 页的 Courant-Fischer 刻画，但要看清一个集合包含关系：$\\dim V=i$ 而 $c\\perp e_n$，这就等于在 $\\{e_n\\}^{\\perp}$ 这个 $n-1$ 维空间中找 $i$ 维子空间。于是 $\\alpha_i=\\max_{\\dim V=i,\\,V\\perp e_n}\\min_{c\\in V}R(c)$ 里的「$V$ 还要垂直于 $e_n$」是一条额外约束，候选对象比 $\\lambda_i=\\max_{\\dim V=i}\\min_{c\\in V}R(c)$ 少，所以 $\\alpha_i\\le\\lambda_i$。反方向看：$\\lambda_{i+1}$ 允许在 $i+1$ 维空间里自由选取，比 $\\alpha_i$ 的一族「被钉在正交补里」的 $i$ 维空间更宽松；维数预算保证任何 $i+1$ 维子空间必与 $\\{e_n\\}^{\\perp}$ 有至少 $1$ 维的交（$(i+1)+(n-1)\\ge n$），在这个交里取一个向量就能把比值压到 $\\alpha_i$ 附近，于是 $\\alpha_i\\ge\\lambda_{i+1}$。两边合起来就是 $\\lambda_i\\ge\\alpha_i\\ge\\lambda_{i+1}$，交错由此得名。注意「删去行列」与「限制在正交补内」是同一件事：删掉最后一行一列后，二次型 $c^TSc$ 中凡出现 $c_n$ 的项全部消失，剩下的恰好是子矩阵的二次型，而 $c$ 自然满足 $c_n=0$，也就是 $c\\perp e_n$。这条定理是压缩感知与低秩建模的技术底座：它告诉你删掉一帧、丢掉一个传感器、少测一个坐标，谱只会「小幅挪动」，不会跳变，所以低秩结构在缺数据时依然可辨认。跨课程连接：概率论与数理统计里的「极值统计」处理的是随机样本的最大最小，而这里的 $\\max\\min$ 是几何对象（子空间族）上的极值，两者的共同点是都靠夹逼定界，区别在于后者的可行性由维数整数决定，与随机性无关。常见误用要避免：交错定理只对**对称**矩阵（或 Hermitian 矩阵）成立，一般方阵没有实特征值可交错；写成「所有矩阵」就错了。另外 $\\alpha_i$ 是删去后子矩阵的特征值，不是原矩阵任意 $n-1$ 个特征值，别把两个列表混着比。\r\n>\r\n> 补充机制：为什么不能换成任意一个 $(n-1)\\times(n-1)$ 子矩阵来比？因为夹逼的两端都被 $\\{e_n\\}^{\\perp}$ 这个特定空间钉住，一旦 Courant-Fischer 的候选子空间族改变，包含关系立刻失效，不等式也无从谈起。定理成立的根源在于「删去一行一列」与「限制在正交补上」在二次型层面完全等价：于是两个最优化问题的可行族之间存在包含关系，而包含关系只能给出不等号、不能给出等号，这正是交错是不等式而非恒等式的理由。另一条独立通道是扰动：把 $S$ 写成分块秩一形式，删去行列相当于对左上块做一次秩一修正，特征值的移动量被修正项的范数控制，这解释了弱耦合情形下谱为什么几乎不动。\r\n>\r\n> 补充验算：取 $S=\\begin{bmatrix}2&1&0\\\\1&2&1\\\\0&1&2\\end{bmatrix}$，展开 $\\det(S-tI)$ 并括出因子 $(2-t)$，得 $p_S(t)=-(2-t)\\big((2-t)^2-2\\big)$，故 $\\lambda=(2-\\sqrt2,\\,2,\\,2+\\sqrt2)\\approx(0.586,\\,2,\\,3.414)$。删去最后一行一列后 $\\alpha$ 满足 $p_\\alpha(t)=(2-t)^2-1$，即 $\\alpha=(1,3)$。逐项核对：$0.586\\le1\\le2$ 与 $2\\le3\\le3.414$ 同时成立，两条夹逼都通过，可复算。注意删掉的是与 $c_3$ 有关的全部项，剩下的二次型恰好是左上块的，这正是前面那句等价性的具体表现。\r\n>\r\n> 补充跨课程连接：CSAPP 的性能分析里有一条同型的维数预算论证——分块矩阵乘（tiling）能把缓存未命中从 $O(n^3)$ 压到 $O(n^3/s)$，靠的正是「大小为 $s$ 的块与一整行必然相交」这一计数保证。连接路径是「维数预算 −> 交集非空 −> 得到界」；区别在于那里的预算是缓存行数与块长的整数关系、界是访存次数的渐近量，而这里维数预算给出的是谱的精确数值不等式。\r\n>\r\n> 命名模板：把「用维数预算保证子空间必相交、再在交里取向量压出界」这套推理命名为「维数预算夹逼法」。\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**例** 取 $S$ 与其 $2\\times 2$ 的顺序主子矩阵 $S_2$：\r\n\r\n```math\r\nS=\\begin{bmatrix} 1 & 2 & 2\\\\ 2 & −2 & 2\\\\ 2 & 2 & 3\\end{bmatrix},\r\n\\qquad\r\nS_2=\\begin{bmatrix} 1 & 2\\\\ 2 & −2\\end{bmatrix},\r\n\\qquad\r\n\\lambda(S):\\ 3,\\ 3,\\ 0\r\n```\r\n\r\n```math\r\n\\lambda(S_2):\\ 3,\\ 1\r\n\\qquad\\Longrightarrow\\qquad\r\n3\\ \\ge\\ 3\\ \\ge\\ 1\\ \\ge\\ 0\r\n```\r\n\r\n### Interlacing of Singular Values（奇异值的交错）\r\n\r\n假设 $A$ 不是方阵也不对称——这时涉及的是它的 singular value（奇异值）。$A$ 的每一列代表一段视频中的一帧；我们想识别出隐藏在这些列中的 rank one signal（秩一信号）$\\beta cy^{T}$，而这一信号被 random noise（随机噪声）所掩盖。若在视频播放期间有一盏灯被打开或被关掉，我们的目标就是看出这件事发生在什么时刻。\r\n\r\n这就引导我们提出一个问题：从 $A$ 变到 $A+B$ 时，奇异值究竟改变了多少？对称矩阵特征值的变化如今已被理解清楚，所以我们可以转而研究 $A^TA$ 或 $B^TB$，或者研究下面这个大小为 $m+n$ 的对称矩阵，它的特征值正是 $\\pm\\sigma$：\r\n\r\n```math\r\n\\begin{bmatrix} 0 & A\\\\ A^{T} & 0\\end{bmatrix}\r\n\\qquad\\text{与}\\qquad\r\n\\begin{bmatrix} 0 & A+B\\\\ A^{T}+B^{T} & 0\\end{bmatrix} \\tag{25}\r\n```\r\n\r\n与其自己硬推，我们推荐陶哲轩（Terence Tao）那篇精彩的笔记，网址为 https://terrytao.wordpress.com/2010/01/25/random-matrices-and-hermitian-matrices/ 。\r\n\r\n**Weyl inequalities（Weyl 不等式）** 用于奇异值的形式为：\r\n\r\n```math\r\n\\sigma_{i+j-1}(A+B)\\ \\le\\ \\sigma_i(A)+\\sigma_j(B),\r\n\\qquad i+j\\le n+1 \\tag{26}\r\n```\r\n\r\n```math\r\n\\sigma_j(A+B)\\ \\ge\\ \\sigma_j(A)-\\sigma_1(B),\r\n\\qquad j=1,\\dots,n \\tag{27}\r\n```\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（Weyl 不等式的读法）：**</span> Weyl 不等式把「扰动」这件事说成一句人话：矩阵加了噪声，特征值和奇异值最多按噪声的**大小**（而不是方向）成比例地移动。看 (23)：$\\lambda_{i+j-1}(S+T)\\le\\lambda_i(S)+\\lambda_j(T)$，它说的是「$S+T$ 靠后的那个特征值，不会超过 $S$ 靠前的那个特征值再加上 $T$ 的最大特征值」——下标错位 $i+j-1$，正是把扰动项整段平移的价格。取 $i=j=1$ 得到 $\\lambda_1(S+T)\\le\\lambda_1(S)+\\lambda_1(T)$，这是「最大特征值是好孩子」的准确含义：它对扰动是 1-Lipschitz 的，扰动多大，它最多变多大，绝不放大。取 $T$ 为秩一矩阵 $\\theta uu^T$ 时，$\\lambda_1(T)=\\theta$、$\\lambda_n(T)=0$，(23) 立刻退化为 $\\lambda_{j+1}(S+T)\\le\\lambda_j(S)$——这就是交错：加一个秩一扰动，谱整体被「压」进原来的相邻缝隙里。奇异值版本 (26)(27) 是同一思想的平移：$\\sigma_{i+j-1}(A+B)\\le\\sigma_i(A)+\\sigma_j(B)$ 是上界，$\\sigma_j(A+B)\\ge\\sigma_j(A)-\\sigma_1(B)$ 是下界，两边合起来就是 $\\lvert\\sigma_j(A+B)-\\sigma_j(A)\\rvert\\le\\lVert B\\rVert_2$，即奇异值对扰动是 1-Lipschitz 的。注意 (26) 的指标范围和普通的「逐项夹」不同：$i+j\\le n+1$ 要求两个下标不能都大，因为两条「大奇异值」的缝隙没有余量可挤，这正是维数预算在谱上的又一次现身。跨课程连接：概率论与数理统计里的大数定律告诉你样本量 $m$ 增大时估计误差按 $1/\\sqrt{m}$ 缩小，Weyl 不等式告诉你的是另一件事——误差如何**确定性地**被 $\\lVert B\\rVert_2$ 控制，两者相乘就得到随机矩阵理论里常见的 $\\lVert B\\rVert_2\\approx C\\sqrt{n}$ 型结论。工程味道：压缩感知与 PCA 都靠这两条不等式把「噪声有多大」翻译成「奇异值最多偏多少」，再据此判断哪些奇异值是真的信号、哪些只是噪声尾巴；如果只知 $\\lambda_j$ 而不知缝隙宽度，就无法判断某个奇异值是否显著。常见的三处误用必须避开：第一，把下标写成 $\\lambda_j(S+T)\\le\\lambda_j(S)+\\lambda_1(T)$（丢掉错位 $i+j-1$，结论过强而错）；第二，把 (26)(27) 里的 $\\sigma_1(B)$ 误写成 $\\lVert B\\rVert_F$（Frobenius 范数一般更大，界会松）；第三，把「奇异值扰动 ≤ $\\sigma_1(B)$」误推广为「奇异向量也只差这么多」——特征向量的扰动被特征值缝隙 $\\lvert\\lambda_j-\\lambda_k\\rvert$ 除一次，缝隙很小时方向可以转得很厉害，这是数值线性代数与 CSAPP 里浮点误差分析反复强调的同一件事。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.2, p. 175</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 9521,
+            "outputTokens": 7871,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 9521,
+              "outputTokens": 7871,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 11103,
+          "contextWindow": 1000000,
+          "pressureTokens": 12977,
+          "sampledSurfaceTokens": 6541
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4981,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4562,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 9959
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

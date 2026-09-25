@@ -145,4 +145,6 @@
 
 - [goat 额度 窗口标题方案与时间含义 2026 09 25](goat-额度-窗口标题方案与时间含义-2026-09-25.md) — [global/reference] 解释额度面板里的三个时间（数据时间 / 5h 与周的窗口重置，滚动窗口非固定时刻）；并记录 Reasonix 侧“窗口标题显示额度”的落地方案（goat-title.ps1 + GoatTitle 计划任务，实测不被 Electron 还原）
 
-- [dsh 版本线快照 20260925](dsh-版本线快照-20260925.md) — [global/reference] dsh 版本现状快照（2026-09-25 实查 npm+GitHub）：仍无正式版/GA，npm latest=0.1.5-rc.3 / next=0.1.7-rc.2，本机 Windows 为 0.1.5-rc.2
+- [dsh 版本线快照 20260925](dsh-版本线快照-20260925.md) — [global/reference] dsh 版本现状快照（2026-09-25 实查 npm+GitHub+官网）：无正式版/GA（官网自称开发者预览版），npm latest=0.1.5-rc.3 / next=0.1.7-rc.2，本机 0.1.5-rc.2；桌面端存在于 apps/desktop（Electron，0.1.7-rc.2，仅 mac/win，无公开下载入口）
+
+- [reasonix 状态栏余额打桩为 goat 六额度 2026 09 25](reasonix-状态栏余额打桩为-goat-六额度-2026-09-25.md) — [global/reference] Reasonix 桌面版底部状态栏的 balance（“余额”）项数据源 = provider 级 balance_url；已把它指向本地 http://127.0.0.1:8790/balance（返回 2 账号×5h/周/月 共 6 个额度）+ 请求日志观测法，需重启 Reasonix 生效

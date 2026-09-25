@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129183984,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是 Gilbert Strang《Linear Algebra a"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是 Gilbert Strang《Linear Algebra and Learning From Data》双语译稿的**译者注撰写专家**。为 part004（书页 147-197，Part III 低秩与压缩感知）中以下 7 页译文补写译者注。\r\n\r\n【读者画像（必须对齐，禁止甩未学概念）】\r\n− 大二上学期、智能科学与技术专业；构建主义学习者：先问这解决什么设计问题，再要公式；反感裸甩名词与空洞赞美\r\n− ✅ 已学：离散数学 6.042J（等价关系、偏序、数论、图论、Chernoff 界）、CSAPP 全 12 章（浮点、缓存、机器级代码）、Strang 线性代数、算法 6.006/CLRS（分治、图、复杂度）\r\n− 🔄 在学：100B 实分析（Thomson TBB + Rudin）、18.065 矩阵方法、概率论（Bertsekas）、CS144 计算机网络、凸优化（Boyd）\r\n− ⚠️ 未学：抽象代数（群/环/域）、拓扑学、泛函分析、非标准分析——不得甩这些名词\r\n− 可用脚手架：等价关系、浮点表示、二分搜索、矩阵分解（LU/QR/SVD）、分治与复杂度、Chernoff 界、缓存层次、条件数\r\n【注的类型（每条必须是一条可独立阅读的小专题）】\r\n1. 跨课程连接——精确到课程名 + 具体概念 + 连接路径 + 区别\r\n2. 第一性原理洞察——追溯最基础假设，回答为什么必须这样\r\n3. 证明策略模板——抽象为可复用模板并**命名**（如谱夹逼法能量检验法）\r\n4. 历史与人物——只作点缀并标年份（不确定就省略）\r\n5. 拓展前沿——从已知概念搭脚手架，禁止裸甩名词\r\n【硬性质量标准】\r\n− 每条注正文 **800-1200 个汉字**（公式、`math` 围栏、字幕引文不计）；宁可少写几条，不可注水\r\n− 每条注包含：与当前内容的直接关系 + 一个具体例子或验算 + 一条命名模板或跨课程连接\r\n− 🚫 禁止：裸甩名词、空洞赞美（精妙经典）、堆历史年表、重复正文\r\n− 🚫 LaTeX 规范：公式一律 `$...$` 或 ```math 围栏；**严禁把 `$\\lambda$` 写成 lambda、把 `$A$` 写成 A**；禁止 `$$`；禁止 Unicode 上下标\r\n− 术语按术语表统一；关键术语首次出现带中文括号\r\n\r\n【本书页映射（供引用核对）】\r\npage_151 = 书页 147\r\npage_152 = 书页 148\r\npage_153 = 书页 149\r\npage_161 = 书页 157\r\npage_163 = 书页 160\r\npage_165 = 书页 162\r\npage_171 = 书页 168\r\n\r\n【数量要求】每页至少 1 条注，本批共 7 页 → **至少 7 条注**；注要分布在各页，不要堆在一页。\r\n\r\n【输出协议（🚨 结构化，必须逐字照此格式，便于程序提取）】\r\n\r\n@@NOTE@@\r\n@@ANCHOR@@原文片段（从下方译文中**逐字复制**的连续片段，12-40 个汉字；必须在该页译文中唯一出现，不要改写、不要加省略号）\r\n@@BODY@@\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 注的正文……\r\n@@END@@\r\n\r\n− 一条注一个 @@NOTE@@ … @@END@@ 块；块与块之间空一行\r\n− 只输出这些块，不要前言、说明、汇总、思考过程\r\n\r\n【本批译文（7 页）】\r\n@@PAGE:151@@（书页 147）\r\n<!-- page 151 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 147，属 §II.4 Randomized Linear Algebra（随机化线性代数）正文；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## 4. Randomized Linear Algebra（随机化线性代数）\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把矩阵 $A$ 误识为 `蓋`、`风`，把 `from` 误识为 `什 om`，把求和号 $\\sum$ 误识为 `乥`，把下标 $k$ 误识为 `0`，把 $s_k^2$ 误识为 `sz`，把 $s$ 误识为 `5`，把 $v=(a,b)$ 误识为 `= @， b)`；`Our two-sample experiment was …` 一句句末的词形无法辨认，按上下文补出。式 (2) 按“一列乘一行”的语境重建为分块外积，编号与原文一致。\r\n\r\n**1. Column-row sampling（列-行采样）**\r\n\r\n$S$ 的每一列都只有一个非零元，记作 $s_k$。\r\n于是 $AS$ 直接从 $A$ 中挑出若干个单独的列 $a_k$，而 $S^{T}B$ 挑出 $B$ 中相应的行 $b_k$。\r\n用 $AS$ 乘以 $S^{T}B$，得到的是以数 $s_k^2$ 加权的列-行乘积 $a_k b_k$ 之和。\r\n\r\n其中一个乘积 $s_k^2\\,a_k b_k^{T}$ 来自 $AS$ 的一列与 $S^{T}B$ 的一行，它的形状是\r\n\r\n```math\r\n\\begin{bmatrix} 0 \\\\ s_k a_k \\\\ 0 \\end{bmatrix}\r\n\\begin{bmatrix} 0 & s_k b_k & 0 \\end{bmatrix}\r\n\\;=\\;\r\n\\begin{bmatrix} & & \\\\ & s_k^2\\,a_k b_k^{T} & \\\\ & & \\end{bmatrix}\r\n\\tag{2}\r\n```\r\n\r\n把这些合在一起，$AB$ 就被随机抽取的 $s$ 个秩一矩阵（rank-one matrices）的加权和 $CR = \\sum_k s_k^2\\,a_k b_k^{T}$ 所逼近。\r\n选取是随机的，但权重由我们选择。\r\n\r\n**2. Sampling by random projections（用随机投影采样）**\r\n\r\n矩阵 $S$ 仍然是 thin（薄）的，所以 $AS$ 的列数远少于 $A$ 的列数。\r\n此时 $S$ 的各列含有多个非零元，于是 $AS$ 在把列空间 $C(A)$ 投影到更低维时混合了各列。\r\n这样一来，$AS\\,S^{T}B$ 就是对 $AB$ 更均匀的逼近。\r\n\r\n我们从随机采样（random sampling）开始，稍后再描述随机投影（random projections）。\r\n后者能为原始矩阵 $AB$ 产生快速而有用的预条件子（preconditioner），并且可能降低图聚类（graph clustering）的计算代价。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Practice with Computing Mean and Variance（计算均值与方差的练习）\r\n\r\n下面是一个非常简化的采样问题。\r\n这里不从矩阵出发，而是从一个向量 $v = (a, b)$ 出发。\r\n我们要对它采样两次（2 次独立试验），然后计算均值 $m$ 与方差 $\\sigma^2$。\r\n第 V.1 节（Section V.1）将给出关于 $m$ 与 $\\sigma^2$ 的更多例子。\r\n\r\n第一次采样：以概率 $\\tfrac12$ 与 $\\tfrac12$ 选择 $(a, 0)$ 或 $(0, b)$。\r\n第二次采样：完全重复一次。\r\n然后把两个样本相加，得到输出 $c_1$ 与 $c_2$。\r\n\r\n计算均值 $m = E[c_1 + c_2]$，即期望值（expected value），也就是输出的平均值。\r\n\r\n**第一种方式：** 样本 1 的平均值是 $\\tfrac12(a, 0) + \\tfrac12(0, b) = \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right)$。\r\n我们有两个 independent identical trials（独立同分布试验），也就是两个样本，把它们的均值相加：\r\n\r\n```math\r\nm = E[c_1 + c_2] = \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right) + \\left(\\tfrac{a}{2}, \\tfrac{b}{2}\\right) = (a, b).\r\n```\r\n\r\n我们这次双样本试验奏效了，所求的均值确实达到了。\r\n\r\n**第二种方式：** 该试验有下面 4 种结果，每种的概率都是 $\\tfrac14$：\r\n\r\n```math\r\n\\tfrac14\\big[(a,0)+(a,0)\\big]+\\tfrac14\\big[(a,0)+(0,b)\\big]+\\tfrac14\\big[(0,b)+(a,0)\\big]+\\tfrac14\\big[(0,b)+(0,b)\\big]=(a,b).\r\n```\r\n\r\n均值就是全部四个输出按其概率加权之和，结果仍为 $(a, b)$，与前面一致。\r\n\r\n@@PAGE:152@@（书页 148）\r\n<!-- page 152 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 148，是 §II.4 Randomized Linear Algebra（随机化线性代数）正文的续页；页眉（Computations with Large Matrices）与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 把 $A$ 误识为 `蓋`、`风`，把下标误识为 `0`，把方差记号 $\\sigma^2$ 误识为 `伊 2`；`…useful…` 前后的词形无法辨认，按上下文补出。两种算法的输出取 $c_1+c_2$，其四种结果为 $(2a,0),(a,b),(a,b),(0,2b)$，均值是 $(a,b)$，故方差为 $(a^2+b^2)/2$；原文用 $(a,-b)^2$ 表示长度平方，译文统一写成 $\\|\\cdot\\|^2$。$AS$ 的示例依 $c(1)=1$、$c(2)=3$ 重建为 $A=[a_1\\ a_2\\ a_3]$、$S$ 为 $3\\times2$。式 (3) 的编号与原文一致。\r\n\r\n方差 $\\sigma^2$ 等于从各个输出到均值的距离平方的加权平均。\r\n记输出为 $x$、均值为 $m$，我们将用两种等价的方式来计算 $\\sigma^2 = E\\left[\\|x − m\\|^2\\right] = E\\left[\\|x\\|^2\\right] − \\|m\\|^2$。\r\n\r\n**第一种方式：** 把每个输出的 $\\|x − m\\|^2$ 按其概率加权相加：\r\n\r\n```math\r\n\\tfrac14\\|(a,-b)\\|^2+\\tfrac14\\|(0,0)\\|^2+\\tfrac14\\|(0,0)\\|^2+\\tfrac14\\|(-a,b)\\|^2=\\tfrac{a^2+b^2}{2}.\r\n```\r\n\r\n**第二种方式：** 把每个输出的 $\\|x\\|^2$ 按其概率加权相加，再减去 $\\|m\\|^2$：\r\n\r\n```math\r\n\\tfrac14(4a^2)+\\tfrac12(a^2+b^2)+\\tfrac14(4b^2)-(a^2+b^2)=\\tfrac{a^2+b^2}{2}. \\tag{3}\r\n```\r\n\r\n**Observation（观察）：** 若 $b$ 大于 $a$，我们可以保持正确的均值 $(a, b)$，并通过给较大的样本 $(0, b)$ 以更大的被选概率来减小方差 $\\sigma^2$。\r\n矩阵采样（matrix sampling）就会这样做（见本节 §II.4 末的 Problem 7）。\r\n\r\n本页对 $n = 2$ 个数 $a, b$ 用了 $s = 2$ 次试验，这个例子虽然简单却很有用。\r\n接下来的几页对一个有 $n$ 列的矩阵采用 $s \\ll n$ 次试验。\r\n$AB$ 的均值仍然保持正确。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Random Matrix Multiplication with the Correct Mean AB（均值 $AB$ 正确的随机矩阵乘法）\r\n\r\n$n \\times s$ 的采样矩阵 $S$ 将含有 $s$ 列，$S$ 的每一列只有一个非零元。\r\n对于 $S$ 的第 $j$ 列，那个非零元所在的位置是随机的。\r\n若随机选中的是行 $r(j)$，则 $S$ 中第 $r(j)$ 行、第 $j$ 列处的非零元记作 $s_{r(j)j}$。\r\n采样得到的矩阵就是 $AS$：\r\n\r\n$AS$ 的第 1 到第 $s$ 列，分别等于 $A$ 的第 $c(1)$ 到第 $c(s)$ 列乘以相应的数 $s_{r(j)j}$。\r\n\r\n下面是一个 $s = 2$ 次试验的例子：它从 $A$ 中采样第 $c(1) = 1$ 列与第 $c(2) = 3$ 列。\r\n\r\n```math\r\nAS=\\begin{bmatrix} a_1 & a_2 & a_3 \\end{bmatrix}\r\n\\begin{bmatrix} s_{11} & 0 \\\\ 0 & 0 \\\\ 0 & s_{32} \\end{bmatrix}\r\n=\\begin{bmatrix} s_{11}a_1 & s_{32}a_3 \\end{bmatrix}.\r\n```\r\n\r\n关键问题是：我们如何选取这些数 $s_{ij}$？答案是：它们来自概率！\r\n我们打算做随机采样，所以必须以随机的方式选取 $A$ 的那 $s$ 列（让每一列都有机会）。\r\n在随机乘法（random multiplication）中：\r\n\r\n**1.** 给 $A$ 的所有列指定概率 $p_j$，满足 $p_1 + \\cdots + p_n = 1$。\r\n**2.** 有放回地（with replacement）选取列，即同一列可以被选到不止一次。\r\n**3.** 一旦 $A$ 的第 $j$ 列被选中（连同 $B$ 的相应行），就把二者都乘以 $1/\\sqrt{s p_j}$。\r\n\r\n于是 $(A$ 的第 $j$ 列$)(B$ 的第 $j$ 行$)/s p_j$ 就进入我们对 $AB$ 的随机乘积。\r\n\r\n@@PAGE:153@@（书页 149）\r\n<!-- page 153 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 149，属 §II.4 Randomized Linear Algebra（随机化线性代数）；页眉（含节号 4 与印页码 149）为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 丢失了维数与部分下标：`the “ by matrix SST` 依数学语境补为 $n\\times n$ 矩阵 $SS^{T}$，`SP9` 补为 $s p_j$（其中 $\\sum_j p_j = 1$），`ASSTB ÄB` 补为 $E[AS\\,S^{T}B] = AB$，`1/SP` 补为 $1/(s p_j)$，`Section 11.4` 即 Section II.4。式 (4)(5) 的编号与原文一致。\r\n\r\n**有待验证的结论（conclusion to be verified）：** $n \\times n$ 矩阵 $SS^{T}$ 的期望值是 $I$。\r\n同一个结论换一种说法：$AS\\,S^{T}B$ 的期望值是 $AB$。\r\n因此，随机采样算出的矩阵乘积具有正确的均值 $AB$。\r\n\r\n**一共有 $s$ 次完全相同的试验（identical trials）。** 每次试验都以概率 $p_1$ 到 $p_n$ 选取 $A$ 的一列与 $B$ 的一行，也就是取 $A$ 的第 $j$ 列 $a_j$ 乘以 $B$ 的第 $j$ 行 $b_j$，再除以 $s p_j$，其中 $\\sum_j p_j = 1$。\r\n于是期望值 = 均值 = 每次试验结果的平均值，它等于\r\n\r\n```math\r\n\\sum_{j=1}^{n} p_j\\,\\frac{a_j b_j}{s\\,p_j}=\\frac{1}{s}\\sum_{j=1}^{n} a_j b_j=\\frac{AB}{s}. \\tag{4}\r\n```\r\n\r\n这些 $p$ 相互抵消，结果恰好是 $AB/s$。\r\n而由于一共有 $s$ 次试验，随机化乘法 $(AS)(S^{T}B)$ 的期望值就是 $AB$。\r\n\r\n**结论（Conclusion）。** 到此为止一切顺利——但我们必须选出概率 $p_1$ 到 $p_n$。\r\n任何一组（加起来等于 1 的）选择都给出正确的期望值 $AB$（也就是均值）。\r\n但 $p$ 的选取会强烈影响方差（variance）！\r\n\r\n均匀采样（uniform sampling）会选取相等的概率 $p_j = 1/n$。\r\n当 $A$ 的各列（以及 $B$ 的各行）长度相近时，这样做是合理的。\r\n但假如 $(A$ 的第 1 列$)(B$ 的第 1 行$)$ 构成了 $AB$ 的绝大部分——它压倒了其余的列-行外积（outer products），那么我们就不希望在随机选取时把它漏掉。\r\n\r\n我们这里的做法是采用范数平方采样（norm-squared sampling）。\r\n下面我们陈述并算出最好的 $p$。\r\n同时还要提一个完全不同的选项：引入混合矩阵（mixing matrix）$M$，改为对 $AM$ 与 $M^{-1}B$ 做计算，然后对 $A$ 的随机混合列与 $B$ 的相应行采用相等的概率。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Norm-squared Sampling Minimizes the Variance（范数平方采样使方差最小）\r\n\r\n范数平方采样（norm-squared sampling）选取的概率正比于数 $\\|a_j\\|\\,\\|b_j\\|$，其中 $a_j$ 是 $A$ 的第 $j$ 列，$b_j$ 是 $B$ 的第 $j$ 行。\r\n在重要的情形 $B = A^{T}$ 下，$p_j$ 正比于 $\\|a_j\\|^2$。\r\n这时“norm-squared（范数平方）”或“length-squared（长度平方）”这个名字就很自然。\r\n\r\n我们仍然要用一个合适的常数 $C$ 去缩放所有概率，使它们加起来等于 1：\r\n\r\n```math\r\np_j=\\frac{\\|a_j\\|\\,\\|b_j\\|}{C},\\qquad C=\\sum_{j=1}^{n}\\|a_j\\|\\,\\|b_j\\|. \\tag{5}\r\n```\r\n\r\n现在我们不惮其烦地计算任意概率 $p_j$ 下随机化矩阵乘法的方差，并验证式 (5) 中的选择使方差取到最小。\r\n最好是更频繁地选取大的列与大的行。\r\n式 (4) 之后的那句话已经说明，这样的选择给出正确的均值 $E[AS\\,S^{T}B] = AB$。\r\n\r\n@@PAGE:161@@（书页 157）\r\n<!-- page_161 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 157，是 Part III（第三部分）的章首标题页，只有章名与五个节标题；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 原 OCR 的 `蓋 一 1` 为 $A^{-1}$，`№ 蓋` 为 in $A$，`111.2`–`111,5` 为节号 III.2–III.5，`+ 1` 为 $\\ell_1$；左右两栏曾被 OCR 交错读出，此处按语义重新排序。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Part III — Low Rank and Compressed Sensing（第三部分——低秩与压缩感知）\r\n\r\n本部分共分五节：\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.1 Changes in $A^{-1}$ from Changes in $A$（$A$ 变化时 $A^{-1}$ 的变化）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.3 Rapidly Decaying Singular Values（快速衰减的奇异值）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.4 Split Algorithms for $\\ell_1$（$\\ell_1$ 的分裂算法）\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### III.5 Compressed Sensing and Matrix Completion（压缩感知与矩阵补全）\r\n\r\n@@PAGE:163@@（书页 160）\r\n<!-- page 163 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 160，属 Part III 开篇正文；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>译者注（OCR 修正）：本页 OCR 噪声较密——`蓋` 与 `亻` 分别对应 $A$ 与 $A^{-1}$，`什 om` 为 from；`一 1`、`¯I`、`¯1` 一律为 $-1$；`鬱` 为 $u$，而孤立的 `T` 为 $v^{T}$（故 `鬱 T` 实为 $uv^{T}$，`T` 为 $v^T u$）；`化 ature` 为 feature，`il s` 为 fails。公式均按数学语境重建。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n**III.1 Changes in $A^{-1}$ from Changes in $A$（$A$ 的扰动对 $A^{-1}$ 的影响）**\r\n\r\n假设我们从 $A$ 中减去一个 low rank matrix（低秩矩阵）。下一节将估计特征值的变化以及奇异值的变化，本节则要找出 $A^{-1}$ 变化量的精确公式。这个公式被一些作者称为 matrix inversion lemma（矩阵求逆引理），在另一些人那里它更著名的名字是 Sherman-Morrison-Woodbury formula（谢尔曼-莫里森-伍德伯里公式）。这些来自工程与统计学的名字，在 numerical analysis（数值分析）中对应的正是 updating and downdating formulas（更新与降阶更新公式）。\r\n\r\n这个公式是更新线性方程组 $Ax = b$ 之解的关键：改动可能发生在 $A$ 已有的某一行或某一列上，也可能来自增加或删除一行、一列，而这些都属于 rank one changes（秩一改变）。我们先从这个最简单的例子开始，此时 $A = I$。矩阵 $M = I − uv^{T}$ 的逆为\r\n\r\n```math\r\nM^{-1} = I + \\frac{uv^{T}}{1 − v^{T}u}. \\tag{1}\r\n```\r\n\r\n这个公式有两个引人注目的特点。第一个特点是对 $A^{-1}$ 的修正项同样是秩一的，也就是公式中最后那一项 $uv^{T}/(1 − v^{T}u)$。第二个特点是这个修正项可能变为无穷大，此时 $M$ 不可逆：不存在 $M^{-1}$。当数 $v^{T}u$ 恰好等于 $1$ 时就会出现这种情况，公式 (1) 以除以零收场。在这种情形下公式失效：$M = I − uv^{T}$ 不可逆，因为它的行列式为零：\r\n\r\n```math\r\n\\det M = 1 − v^{T}u. \\tag{2}\r\n```\r\n\r\n公式 (1) 最简单的证明是把 $M$ 与 $M^{-1}$ 直接相乘：\r\n\r\n```math\r\nMM^{-1} = \\left(I − uv^{T}\\right)\\left(I + \\frac{uv^{T}}{1 − v^{T}u}\\right)\r\n= I − uv^{T} + \\frac{uv^{T} − u\\,(v^{T}u)\\,v^{T}}{1 − v^{T}u}\r\n= I. \\tag{3}\r\n```\r\n\r\n你可以看到那个数 $v^{T}u$ 是如何在关键的最后一步中从矩阵 $uv^{T}$ 里移出来的。\r\n\r\n现在我们已证明公式 (1) 是正确的，却还没有说明它从何而来。一个好办法是把 $I$ 扩展为一个带新行和新列的矩阵 $E$：\r\n\r\n```math\r\nE = \\begin{bmatrix} I & u \\\\ v^{T} & 1 \\end{bmatrix}\r\n\\quad\\text{has determinant}\\quad\r\n\\det E = 1 − v^{T}u .\r\n```\r\n\r\n消元给出了求 $E^{-1}$ 的两种途径。第一种是把 $E$ 的第 1 行乘以 $v^{T}$ 后从第 2 行中减去：\r\n\r\n```math\r\n\\begin{bmatrix} I & 0 \\\\ −v^{T} & 1 \\end{bmatrix}\r\n\\begin{bmatrix} I & u \\\\ v^{T} & 1 \\end{bmatrix}\r\n= \\begin{bmatrix} I & u \\\\ 0 & 1 − v^{T}u \\end{bmatrix}.\r\n```\r\n\r\n于是\r\n\r\n```math\r\nE^{-1} = \\begin{bmatrix} I & u \\\\ 0 & 1 − v^{T}u \\end{bmatrix}^{-1}\r\n\\begin{bmatrix} I & 0 \\\\ −v^{T} & 1 \\end{bmatrix}.\r\n```\r\n\r\n@@PAGE:165@@（书页 162）\r\n<!-- page 165 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 162，属 Part III Low Rank and Compressed Sensing（低秩与压缩感知）；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>译者注（OCR 修正）：本页 `蓋`、`风`、`鬱` 均为矩阵 $A$，`¯I` 为上标 $-1$，`什 om`/`wnting` 为 from/writing 之误，`丆` 为单位矩阵 $I$；Equation (9) 与 Equation (10) 均按数学语境重建，编号沿用原文。</span>\r\n\r\n<span style=color:#2471a3;>**[example]**</span>\r\n\r\n**Example 2（例 2）**\r\n\r\n若 $M = \\begin{bmatrix} 0 & 1 & 1 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{bmatrix} = UV^T$，则 $M^{-1}$ 来自把首个显示出来的矩阵写成 $UV^T$、再反过来写成 $V^T U$：\r\n\r\n```math\r\nUV^T = \\begin{bmatrix} 0 & 1 \\\\ 0 & 1 \\\\ 0 & 0 \\end{bmatrix}\\begin{bmatrix} 1 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}\r\n\\quad\\text{and}\\quad\r\nV^T U = \\begin{bmatrix} 0 & 1 \\\\ 0 & 1 \\end{bmatrix}.\r\n```\r\n\r\n于是上式中的 $M^{-1} = I + U\\left[I − V^T U\\right]^{-1}V^T$ 就是\r\n\r\n```math\r\nM^{-1} = I + U\\begin{bmatrix} 0 & 1 \\\\ 0 & 1 \\end{bmatrix}^{-1}V^T.\r\n```\r\n\r\n全部要点在于：$3 \\times 3$ 矩阵 $M^{-1}$ 来自对那个加粗的 $2 \\times 2$ 矩阵求逆。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n**Perturbing any Invertible Matrix $A$（扰动任意可逆矩阵 $A$）**\r\n\r\n到此为止我们都是从单位矩阵 $I = I$ 出发的。我们把 $I$ 改成 $I − uv^{T}$，随后又改成 $I − UV^{T}$，先做秩 $1$ 的改动，再做秩 $k$ 的改动。为了获得完整 Sherman-Morrison-Woodbury（谢尔曼-莫里森-伍德伯里）思想的好处，我们现在再进一步：用矩阵 $A$ 取代 $I$。\r\n\r\n<span style=color:#c0392b;>**Sherman-Morrison-Woodbury formula（谢尔曼-莫里森-伍德伯里公式）**</span>\r\n\r\n用秩 $k$ 矩阵 $UV^T$ 扰动任意可逆矩阵 $A$。此时 $M = A − UV^T$：\r\n\r\n```math\r\nM^{-1} = (A − UV^T)^{-1} = A^{-1} + A^{-1}U\\,(I − V^T A^{-1} U)^{-1} V^T A^{-1}. \\tag{9}\r\n```\r\n\r\n到此为止 $A$ 都取作 $I$。最终的公式 (9) 仍然与一个扩展矩阵 $E$ 相联系。假设当 $M = A − UV^T$ 可逆时 $A$ 可逆。\r\n\r\n要找出 $A$ 的这个逆，我们可以做行运算把 $V^T$ 换成零：把第 $1$ 行乘以 $V^T A^{-1}$，再从第 $2$ 行中减去，得到\r\n\r\n```math\r\n\\begin{bmatrix} A & U \\\\ 0 & I − V^T A^{-1} U \\end{bmatrix}.\r\n```\r\n\r\n再做列运算把 $U$ 换成零：把第 $1$ 列乘以 $-A^{-1} U$，再从第 $2$ 列中减去，得到\r\n\r\n```math\r\n\\begin{bmatrix} A & 0 \\\\ 0 & I − V^T A^{-1} U \\end{bmatrix}.\r\n```\r\n\r\n正如方程 (6) 那样，我们有两种方式求 $E$ 的逆，而 $E^{-1}$ 的这两种形式必定相等：\r\n\r\n```math\r\n\\begin{bmatrix} A & U \\\\ V^T & I \\end{bmatrix}^{-1} =\r\n\\begin{bmatrix} A^{-1} + A^{-1}U C^{-1} V^T A^{-1} & −A^{-1}U C^{-1} \\\\ −C^{-1}V^T A^{-1} & C^{-1} \\end{bmatrix}\r\n=\r\n\\begin{bmatrix} M^{-1} & −M^{-1}U \\\\ −V^T M^{-1} & I + V^T M^{-1} U \\end{bmatrix}. \\tag{10}\r\n```\r\n\r\n这里 $C$ 就是 $I − V^T A^{-1} U$，而 $M$ 就是 $A − UV^T$。我们所求的矩阵是 $M^{-1}$（即 $A$ 被扰动之后的逆）。比较方程 (10) 中的 $(1,1)$ 分块，就得到方程 (9)。\r\n\r\n<span style=color:#c0392b;>**总结**</span>\r\n\r\n$M = A − UV^T$ 的 $n \\times n$ 逆来自 $A$ 的 $n \\times n$ 逆与 $C = I − V^T A^{-1} U$ 的 $k \\times k$ 逆。若要一个快速证明，把 (9) 式乘以 $A − UV^T$ 即可。\r\n\r\n@@PAGE:171@@（书页 168）\r\n<!-- page 171 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 168，属 Part III「Low Rank and Compressed Sensing（低秩与压缩感知）」正文；页眉与页码为重复元素，不译、不收录。</span>\r\n\r\n<span style=color:#1e8449;>**[note] OCR 修正：**</span> 本页 OCR 噪声严重，`蓋`/`儿`/`Ä` 均为矩阵 $A$，`¯I` 为上标 $-1$，`山`/`丸` 为 $\\lambda$，`伊` 为 $\\sigma$，`之` 为交错后的特征值 $z$，`№` 为 $\\lambda_{\\max}$，`uU` 为 $c$，`镒` 为 $T = cq_2q_2^T$，`厶 丸` 为 $\\Delta\\lambda_i$；`T` 为 rank-one（秩一）变化 $T$，`B 况 九 OW large` 实为 `But how large`，`ow could 叻 e co 刀 d eigenvalue` 实为 `How could the second eigenvalue`，`0f`/`()n` 等为 `of`/`in` 的噪声。文中被破坏的公式均已按数学语境重建，原文公式编号 (2) 予以保留。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## §III.2 Interlacing Eigenvalues and Low Rank Signals（特征值交错与低秩信号）\r\n\r\n上一节考察的是矩阵 $A$ 的变化如何引起 $A^{-1}$ 的变化。我们既可以允许无穷小变化 $dA$，也可以允许有限变化 $\\Delta A = −uv^T$。所得到的结果，是逆矩阵的无穷小变化或有限变化：\r\n```math\r\n(A − uv^T)^{-1} = A^{-1} + \\frac{A^{-1}uv^TA^{-1}}{1 − v^TA^{-1}u}\r\n\\qquad\\text{and}\\qquad\r\n(A − UV^T)^{-1} = A^{-1} + A^{-1}U\\,(I − V^TA^{-1}U)^{-1}V^TA^{-1}\r\n```\r\n\r\n本节则针对矩阵 $A$ 的 eigenvalue（特征值）与 singular value（奇异值）提出同样的问题。当矩阵 $A$ 发生变化时，每一个 $\\lambda$ 与每一个 $\\sigma$ 各是如何变化的？\r\n\r\n你会看到关于 $d\\lambda/dt$ 与 $d\\sigma/dt$ 的漂亮公式。但特征值与奇异值都谈不上有多少线性性质。微积分对无穷小变化 $dA$ 与 $d\\sigma$ 行之有效，因为其导数是一个线性算子。可是我们不能指望精确知道跳跃量 $\\lambda(A + \\Delta A)$ 或 $\\sigma(A + \\Delta A)$ 的值。特征值比逆矩阵更复杂。\r\n\r\n尽管如此，仍然有好消息：能够做到的事情是相当出色的。这里先尝一尝 symmetric matrix（对称矩阵）$S$ 的味道：假设 $S$ 变为 $S + T$，其中 $T$ 是一个正的 rank-one matrix（秩一矩阵）变化。我们预料 $S$ 的特征值会增大：\r\n```math\r\n\\lambda_1 \\le \\lambda_2 \\le \\cdots \\le \\lambda_n\r\n\\quad\\longrightarrow\\quad\r\nz_1 \\le z_2 \\le \\cdots \\le z_n\r\n```\r\n因为 $T$ 是 positive semidefinite（半正定）的。但增大量究竟有多大呢？\r\n\r\n$S + T$ 的每个特征值都不小于对应的 $\\lambda_i$，也不大于对应的 $\\lambda_{i+1}$，其下标在合适范围内移动。因此 $\\lambda$ 与 $z$ 是彼此 interlaced（交错）的。每一个 $z_2, \\ldots, z_n$ 都夹在两个相邻的 $\\lambda$ 之间：\r\n```math\r\n\\lambda_1 \\le z_1 \\le \\lambda_2 \\le z_2 \\le \\lambda_3 \\le \\cdots \\le \\lambda_n \\le z_n\r\n\\tag{2}\r\n```\r\n即便我们没有关于 $\\Delta\\lambda_i$ 的公式，我们也有特征值变化的上界。\r\n\r\n有一点需要提请注意，因为它可能被误解。假设矩阵中的变化是 $T = cq_2q_2^T$（其中 $q_2$ 是 $S$ 的第二个单位特征向量）。那么 $Sq_2 = \\lambda_2 q_2$，于是\r\n```math\r\n(S + cq_2q_2^T)q_2 = (\\lambda_2 + c)q_2\r\n```\r\n我们会在 eigenvalue（特征值）$\\lambda_2$ 处看到一个跳到 $\\lambda_2 + c$ 的跳跃。如果 $c$ 很大，这个跳跃就很大。那么怎么会使矩阵 $S + cq_2q_2^T$ 的第二个特征值仍然等于 $z_2 = \\lambda_2 + c$ 呢？\r\n\r\n**答：** 如果 $c$ 是一个很大的数，那么 $\\lambda_2 + c$ 并不是 $S + cq_2q_2^T$ 的第二个特征值。它变成了 $z_1$，即新矩阵 $S + cq_2q_2^T$ 的最大特征值（其对应的特征向量是 $q_2$）。$S$ 原来的最大特征值现在则是新矩阵的第二个特征值 $z_2$。所以命题 (2) 中 $z_2 \\ge \\lambda_2$ 这一说法（在这个例子里）是完完全全成立的：$z_2 = \\lambda_1$ 确实位于 $z_1 = \\lambda_2 + c$ 的下方。\r\n\r\n我们会把这种交错性质与如下事实联系起来：介于 $\\lambda_1 = \\lambda_{\\max}$ 与 $\\lambda_n = \\lambda_{\\min}$ 之间的那些特征向量，都是 Rayleigh quotient（瑞利商）比值\r\n```math\r\n\\frac{c^TSc}{c^Tc}\r\n```\r\n的 saddle point（鞍点）。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 9705,
+            "outputTokens": 31546,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 9705,
+              "outputTokens": 31546,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 23488,
+          "contextWindow": 1000000,
+          "pressureTokens": 12521,
+          "sampledSurfaceTokens": 5689
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4129,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 17799,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 22344
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

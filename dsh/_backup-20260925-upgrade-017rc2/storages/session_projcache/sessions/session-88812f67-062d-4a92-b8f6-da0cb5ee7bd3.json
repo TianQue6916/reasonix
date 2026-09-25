@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1789867351534,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 18,
+        "val": "线性代数四个基本子空间详解"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "不要调用任何工具，直接输出连续说明文字。主题：线性代数四个基本子空间（列空间、零空间、行空间、左零空间）。要求：分四节，每节不少于 1200 个汉字，总正文不少于 5000 个汉字，写完即止，不要总结、不要客套。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 18,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 18,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 18,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 18,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 583,
+            "outputTokens": 5716,
+            "cacheReadTokens": 2816,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 583,
+              "outputTokens": 5716,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 18,
+        "val": {
+          "surfaceTokens": 3870,
+          "contextWindow": 1000000,
+          "pressureTokens": 3399,
+          "sampledSurfaceTokens": 1595
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 18,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 35,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 2275,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 2726
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 18,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 17
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 18,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 18,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 18,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 18,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

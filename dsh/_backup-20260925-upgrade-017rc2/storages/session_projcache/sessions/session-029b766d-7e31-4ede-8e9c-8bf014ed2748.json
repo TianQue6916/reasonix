@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790147729167,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是一位学术翻译终校专家，"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是一位学术翻译终校专家，服务对象是大二学生（智能科学与技术专业）。你的任务是把一份已经翻译好的**行内双语** Markdown 译稿，对照【权威原文】逐句校对并**直接输出修订后的译文全文**（审计+修复一体）。\n\n【铁律（违反即不合格）】\n1. **术语格式必须是 `English（中文）`**：英文术语在前、中文翻译在括号内。当前译稿里有大量 **反格式** 的写法 `中文（English）`（例如 `核范数（nuclear norm）`、`压缩感知（Compressed sensing）`、`以高概率（high probability）`），**必须全部反转**为 `nuclear norm（核范数）`、`Compressed sensing（压缩感知）`、`以 high probability（高概率）`。\n   ⚠️ 关键：只把**术语本体**移进括号，句中的介词/动词/连词（以、把、将、被、由、用、是、与、和、则、于是、所谓、即、叫、都、就、正、该、这种、那些……）**留在括号外**。\n   例：`以最小的核范数（nuclear norm）求 X` → `以最小的 nuclear norm（核范数）求 X`；`我们必须为一个随机矩阵（random matrices）的模型而工作` → `我们必须为一个 random matrices（随机矩阵）的模型而工作`。\n   同一术语**首次出现**加括号，**后续出现省略括号**。\n2. **禁止英中分段对照**：不得出现「完整英文句子 + 中文翻译」的段落。输出主体是中文，英文只以术语片段嵌入。\n3. **禁止英文开句**：每句话第一个字必须是中文。\n4. **逐句完整**：不得把 2-3 句压缩成 1 句；不得漏译原文任何一句。\n5. **LaTeX 内不翻译**：`$...$`、```math 围栏内的内容（含 `\\text{}`）保持英文原样。\n6. **数学格式**：行内用 `$...$`，块级用 ```math 围栏；**禁止 `$$`**；禁止 Unicode 上下标字符（₀₁₂、⁰¹²）。\n7. **标题标记在行首**：`##` / `###` 前不得有 `<span>` 等 HTML tag；禁止 `<div>`。\n8. **保留全部标签与配色**：`<span style=color:#2471a3;>**[theorem]**</span>` 等标签、`> <span style=color:#7f8c8d;>...</span>` 灰色引用行、`[note]` 注（深绿 `#1e8449`）一律原样保留，不要删、不要改配色。\n9. 🚨 **公式完整性（本轮最大事故）**：严禁产出被截断的公式。每个 ```math 围栏内的公式必须自洽、花括号配对、`\\begin{}`/`\\end{}` 成对；**严禁**出现 `\\tag{3} \\text{...`、`\\tag{9}tag{9}`、同行两个 `\\tag{` 这类残片。\n10. **编号与原文一致**：式号、定理号、题号必须与【权威原文】一致（原文有 `\\tag{n}` 就必须有；原文没有的不要加）。\n\n【校对要求】\n- 【权威原文】是扫描页的权威转写（公式为 LaTeX）。**凡译文与权威原文冲突，一律以权威原文为准**（补漏译、改错式、修错记号）。\n- 权威原文里出现的**公式编号**（如 (3)、(14)）在译文里必须有；译文里的编号若原文没有，删掉或改正。\n- 译者注（`[note]`）保留原样（它们是译者补充，不需要与原文一致），但注里的**公式格式**同样要符合上面第 6、9 条。\n- 若某页在译文里已被标注为「按铁律 9 不收录习题」，则保留该说明行，不要恢复习题。\n\n【输出协议（严格遵守）】\n- **只输出修订后的译文全文**，不要写任何前言、说明、思考过程、总结。\n- 页面之间用单独一行 `@@PAGE:NNN@@` 分隔（NNN = 页码数字，如 `@@PAGE:201@@`）。\n- 页内的 `<!-- page NNN -->` 标记行必须原样保留在每个 `@@PAGE:NNN@@` 之后。\n- 未作任何修改的页也要完整输出（不要写（未修改））。\n\n【权威原文】\n### [原文 page_213]\nIV.1. Fourier Transforms : Discrete and Continuous \\hfill 211\n\n\\begin{array}{cccccc}\n00 & c_0 & & & & y_0 & 00 \\\\\n& & \\searrow & & \\swarrow & & \\\\\nc' = \\text{evens} & & & y' & & & 1 \\\\\n10 & c_2 & & & & y_1 & 10 \\\\\n& & \\swarrow & & \\searrow & & \\\\\n& & & & & & i \\\\\n01 & c_1 & & & & y_2 & 01 \\\\\n& & \\searrow & & \\swarrow & & \\\\\nc'' = \\text{odds} & & & y'' & & & -1 \\\\\n11 & c_3 & & & & y_3 & 11 \\\\\n& & \\swarrow & & \\searrow & & \\\\\n& & -1 & & -i & & \n\\end{array}\n\n\\subsection*{The Full FFT by Recursion}\n\nIf you have read this far, you probably guessed what comes next. We reduced $F_N$ to $F_{N/2}$. \\textbf{Keep on going to $F_{N/4}$}. Every $F_{512}$ leads to $F_{256}$. Then 256 leads to 128. \\textit{That is recursion}.\n\nRecursion is a basic principle of many fast algorithms. Here is step 2 with four copies of $F_{256}$ and $D$ (256 powers of $w_{512}$). Evens of evens $c_0, c_4, c_8, \\dots$ come before $c_2, c_6, c_{10}, \\dots$\n\n\\begin{bmatrix} F_{512} \\\\ & F_{512} \\end{bmatrix} = \\begin{bmatrix} I & D & & \\\\ I & -D & & \\\\ & & I & D \\\\ & & I & -D \\end{bmatrix} \\begin{bmatrix} F & & & \\\\ & F & & \\\\ & & F & \\\\ & & & F \\end{bmatrix} \\begin{bmatrix} \\text{pick } 0, 4, 8, \\dots \\\\ \\text{pick } 2, 6, 10, \\dots \\\\ \\text{pick } 1, 5, 9, \\dots \\\\ \\text{pick } 3, 7, 11, \\dots \\end{bmatrix}.\n\nWe will count the individual multiplications, to see how much is saved. Before the FFT was invented, the count was the usual $N^2 = (1024)^2$. This is about a million multiplications. I am not saying that they take a long time. The cost becomes large when we have many, many transforms to do—which is typical. Then the saving by the FFT is also large:\n\n\\textit{The final count for size $N = 2^\\ell$ is reduced from $N^2$ to $\\frac{1}{2} N \\ell$.}\n\nThe number 1024 is $2^{10}$, so $\\ell = 10$. The original count of $(1024)^2$ is reduced to $(5)(1024)$. The saving is a factor of 200. A million is reduced to five thousand. That is why the FFT has revolutionized signal processing.\n\nHere is the reasoning behind $\\frac{1}{2} N \\ell$. There are $\\ell$ levels, going from $N = 2^\\ell$ down to $N = 1$. Each level has $N/2$ multiplications from the diagonal $D$'s, to reassemble the half-size outputs from the lower level. This yields the final count $\\frac{1}{2} N \\ell$, which is $\\frac{1}{2} N \\log_2 N$.\n\nOne last note about this remarkable algorithm. There is an amazing rule for the order that the $c$'s enter the FFT, after all the even-odd permutations. Write the numbers 0 to $n-1$ in binary (like 00, 01, 10, 11 for $n=4$). Reverse the order of those digits: 00, 10, 01, 11. \\textbf{That gives the bit-reversed order 0, 2, 1, 3 with evens before odds.}\n\nThe complete picture shows the $c$'s in bit-reversed order, the $\\ell = \\log_2 N$ steps of the recursion, and the final output $y_0, \\dots, y_{N-1}$ which is $F_N$ times $c$.\n\nThe FFT recursion for the DFT matrix $\\Omega = \\overline{F}$ uses exactly the same ideas.\n\n### [原文 page_214]\n212 \\hfill Special Matrices\n\n\\section*{Problem Set IV.1}\n\n1 After \\(S = 0\\) in equation (5), the text says that all off-diagonal entries of \\(F_n\\Omega_N\\) are zero. Explain (row \\(i\\) of \\(F\\)) \\(\\cdot\\) (column \\(j\\) of \\(\\Omega\\)) = complex dot product = 0?\n\nWhy is \\((1, w^i, w^{2i}, \\dots, w^{(N-1)i}) \\cdot (1, w^j, w^{2j}, \\dots, w^{(N-1)j}) = 0\\) if \\(i \\neq j\\)?\nYou must use the dot product for complex vectors, not \\(x_1y_1 + \\dots + x_Ny_N\\).\n\n2 If \\(M = \\frac{1}{2}N\\) show that \\((w_N)^M = -1\\). This is used in the FFT equation (12).\n\n3 What are the matrices \\(F_3\\) and \\(\\Omega_3\\) (using \\(w = e^{2\\pi i/3}\\) and \\(\\omega = \\overline{w}\\))? What 3 by 3 permutation matrix \\(P\\) will connect them by \\(\\Omega = F P\\) and \\(F = \\Omega P\\)?\n\n4 Find the Discrete Fourier Transform \\(c\\) of \\(f = (0, 1, 0, 0)\\). Verify that the inverse transform of \\(c\\) is \\(f\\).\n\n5 Connect \\(F_6\\) to two copies of \\(F_3\\) by a matrix equation like (10) and (11).\n\n6 For \\(N = 6\\), how do you see that \\(1 + w + w^2 + w^3 + w^4 + w^5 = 0\\)?\n\n7 Suppose \\(f(x) = 1\\) for \\(|x| \\leq \\pi/2\\) and \\(f(x) = 0\\) for \\(\\pi/2 < |x| \\leq \\pi\\). This function is even because \\(f(-x) = f(x)\\). Even functions can be expanded in cosine series:\n\\[\nf(x) = a_0 + a_1 \\cos x + a_2 \\cos 2x + \\dots\n\\]\nIntegrate both sides from \\(x = -\\pi\\) to \\(\\pi\\), to find \\(a_0\\). Multiply both sides by \\(\\cos x\\) and integrate from \\(-\\pi\\) to \\(\\pi\\), to find \\(a_1\\).\n\n8 Every real matrix \\(A\\) with \\(n\\) columns has \\(AA^T x = a_1(a_1^T x) + \\dots + a_n(a_n^T x)\\).\nIf \\(A\\) is an orthogonal matrix \\(Q\\), what is special about those \\(n\\) pieces?\nFor the Fourier matrix (complex), what is changed in that formula?\n\n9 What vector \\(x\\) has \\(F_4 x = (1, 0, 1, 0)\\)? What vector has \\(F_4 y = (0, 0, 0, 1)\\)?\n\n【当前译文】\n@@PAGE:213@@\n<!-- page 213 -->\n> <span style=color:#7f8c8d;>本页为书页 211，属 §IV.1 Fourier Transforms: Discrete and Continuous（傅里叶变换：离散与连续）；页眉与印页码为重复元素，不译、不收录。左栏顶部残余的 `00 / C / 10 / 01 / evens − odds` 是上一页蝶形流程图的碎片，不单独成句翻译。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：</span> 本页 OCR 噪声极重：`Founer` 即 Fourier，`艹` 指 $F$（傅里叶矩阵），`丆` 指 $\\bar{F}$，`办`／`仞` 为 $w$，`什 0 m` 为 from，`coples` 为 copies，`mvente d` 为 invented，`乙` 为乘法计数，`圭` 为 $\\tfrac{1}{2}$，`砒` 为 that，`2 =` 为 $N^2$，`0 一 1` 为 $0$ 到 $N-1$。末句 `O = 丆` 依本书 $\\Omega=\\bar F$ 的约定（书页 205 定义 $\\Omega$ 为 $F$ 的复共轭）还原为 $\\Omega=\\bar{F}$，（原书此处 OCR 残缺）原文末句是否写作 $\\Omega=\\bar F$ 而非 $\\Omega=F/\\sqrt N$。\n<span style=color:#2471a3;>**[section]**</span>\n### The Full FFT by Recursion（完整的 FFT：用递归实现）\n> <span style=color:#7f8c8d;>Strang LaLFD §IV.1, p.211</span>\n读到这里的读者，大概已经猜到下一步会发生什么了。\n我们把 $F_N$ 归约到 $F_{N/2}$，再继续归约到 $F_{N/4}$。\n每一次除以 $2$ 都把规模缩小一半：512 归到 256，256 再归到 128。\n这就是递归。\n递归是许多快速算法共有的基本原理。\n下面是第 2 步：它用四个 $F_{256}$ 的副本，再加上对角矩阵 $D$（其中是 $w_{512}$ 的 256 次幂）。\n偶下标的偶下标分量 $c_0, c_4, c_8, \\ldots$ 排在前面，接着是 $c_2, c_6, c_{10}, \\ldots$。\n```math\n\\begin{aligned}\n&\\text{pick } 0, 4, 8, \\ldots\\\\\n&\\text{pick } 2, 6, 10, \\ldots\\\\\n&\\text{pick } 1, 5, 9, \\ldots\\\\\n&\\text{pick } 3, 7, 11, \\ldots\n\\end{aligned}\n```\n```math\n\\begin{bmatrix} F_{512} & \\\\ & F_{512} \\end{bmatrix}\n= \\begin{bmatrix} I & D & & \\\\ I & -D & & \\\\ & & I & D \\\\ & & I & -D \\end{bmatrix}\n\\begin{bmatrix} F & & & \\\\ & F & & \\\\ & & F & \\\\ & & & F \\end{bmatrix}\n\\begin{bmatrix} \\text{pick } 0,4,8,\\ldots \\\\ \\text{pick } 2,6,10,\\ldots \\\\ \\text{pick } 1,5,9,\\ldots \\\\ \\text{pick } 3,7,11,\\ldots \\end{bmatrix}\n```\n我们要数一数其中单个乘法的次数，看看究竟省下了多少。\n在 FFT 尚未被发明之前，计数是通常的 $N^2 = (1024)^2$，大约是 100 万次乘法。\n我并不是说这些乘法本身耗时很久。\n真正让代价变得庞大的是我们往往要做极多、极多次的变换——而这才是常态。\n此时使用 FFT 的递归所带来的节省同样庞大：规模为 $N = 2^k$ 的代价从 $N^2$ 降到 $\\tfrac{1}{2}N\\log_2N$。\n数 $1024$ 就是 $2^{10}$，所以 $\\log_2 1024 = 10$。\n于是原来 $(1024)^2$ 的计数被减到 $(5)(1024)$。\n节省的因子是 200：100 万被压到 5000。\n这就是为什么 FFT 彻底改变了 signal processing（信号处理）。\n这一计数的推理依据如下。\n共有 $\\log_2N = k$ 层，从 $N = 2^k$ 一路向下走到 $N = 1$。\n每一层都从对角矩阵 $D$ 带来 $N/2$ 次乘法，用来把下一层送来的半规模输出重新组装起来。\n由此得到最终计数 $(N/2)\\log_2N$。\n关于这个了不起的算法，最后再补一点说明。\n经过全部偶奇置换之后，各分量 $c$ 进入 FFT 的顺序遵循一条惊人的规律。\n把 $0$ 到 $N-1$ 这些数写成二进制（例如 $N = 4$ 时为 $00, 01, 10, 11$），再把这些数位的顺序颠倒过来，得到 $00, 10, 01, 11$。\n这就给出 bit-reversed order（位反转顺序）$0, 2, 1, 3$，其中偶下标仍然排在奇下标之前。\n完整的图像展示了处于位反转顺序的各分量 $c$、递归的 $\\log_2N$ 个步骤，以及最终输出 $y_0, \\ldots, y_{N-1}$，它等于 $F_N$ 乘 $c$。\n对 DFT matrix（DFT 矩阵）$\\Omega = \\bar{F}$ 而言，其 FFT 递归所用的思想完全相同。\n\n@@PAGE:214@@\n<!-- page 214 -->\n> <span style=color:#7f8c8d;>本页为书页 212，属 Problem Set IV.1（习题集 IV.1）；页眉 `Special Matrices`（Part IV 的篇名）与印页码为重复元素，不译、不收录。习题题干按本系列先例保留英文原文，仅把被 OCR 打散的公式还原为 LaTeX。</span>\n> <span style=color:#1e8449;>[note] 译者注（OCR 修正）：</span> 本页 OCR 噪声说明：`FnON` 为 $F_N\\Omega_N$（$\\Omega$ 被读成 $O$、下标被吞），`O`／`03` 为 $\\Omega$／$\\Omega_3$，`讠 关 j` 为 $i \\neq j$，`仞`／`WN` 为 $w$／$w_N$，`2 丌 3` 为 $2\\pi i/3$，`歹` 为 $f$，`山 at 皿 ula` 为 that formula，`0 hogonal` 为 orthogonal；第 1、3、4、8、9 题中被打散的符号（复内积的两个因子、$w_N^{N/2} = -1$、$P$ 为 $3\\times3$ 时的 $\\Omega_3$、以及按列向量写出的秩一表示）均依数学语境还原。页边题号在 OCR 中只读出 1–9 共九个数字，而正文可归并出的题目块恰好也是九块，故把 `You must use the dot product for complex vectors, not $|f_1| + \\cdots + |f_N|$` 一句并回第 1 题（它是对第 1 题的提示，本身不含提问），全页共 9 题，（原书此处 OCR 残缺）纸书是否实为 10 题（若如此，则本句为独立的第 2 题，其后各题号依次加 1）。\n\n> <span style=color:#7f8c8d;>本页（书页见页首说明）原书为 Problem Set IV.1，共 9 道习题。按技能**铁律 9**（非必要习题不收录），此处不保留习题原文。</span>\n\n现在输出修订后的译文全文（从 `@@PAGE:213@@` 开始）："
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 4063,
+            "outputTokens": 4719,
+            "cacheReadTokens": 3840,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 4063,
+              "outputTokens": 4719,
+              "cacheReadTokens": 3840,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 8204,
+          "contextWindow": 1000000,
+          "pressureTokens": 7903,
+          "sampledSurfaceTokens": 4050
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 2490,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 4154,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 7060
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

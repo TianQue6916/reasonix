@@ -1,0 +1,128 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "createdAt": 1788584108976,
+      "cwd": "C:\\Users\\27063"
+    },
+    "rows": {
+      "sessionStats": {
+        "ver": 1,
+        "seq": 25441,
+        "val": {
+          "turns": 2,
+          "steps": 2,
+          "llmMs": 341459,
+          "toolMs": 0,
+          "ttftMs": 2354,
+          "ttftSteps": 1,
+          "decodeMs": 339105,
+          "decodeTokens": 23750,
+          "lastTurn": 2,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "title": {
+        "ver": 1,
+        "seq": 25441,
+        "val": "你是一名学术翻译终审专家。"
+      },
+      "goal": {
+        "ver": 4,
+        "seq": 25441,
+        "val": null
+      },
+      "tokenUsage": {
+        "ver": 1,
+        "seq": 25441,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 6243,
+            "outputTokens": 23750,
+            "cacheReadTokens": 1152,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 2,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 6243,
+              "outputTokens": 23750,
+              "cacheReadTokens": 1152,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 25441,
+        "val": {
+          "surfaceTokens": 20079,
+          "contextWindow": 1000000,
+          "pressureTokens": 7395,
+          "sampledSurfaceTokens": 3687
+        }
+      },
+      "contextBreakdown": {
+        "ver": 2,
+        "seq": 25441,
+        "val": {
+          "systemTokens": 16,
+          "toolsTokens": 883,
+          "messageTokens": 20079
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 25441,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 25441,
+        "val": {}
+      },
+      "permissions": {
+        "ver": 1,
+        "seq": 25441,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never"
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 25441,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1788584222318
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 25441,
+        "val": null
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 25441,
+        "val": null
+      },
+      "plan": {
+        "ver": 2,
+        "seq": 25441,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null
+        }
+      }
+    }
+  }
+}

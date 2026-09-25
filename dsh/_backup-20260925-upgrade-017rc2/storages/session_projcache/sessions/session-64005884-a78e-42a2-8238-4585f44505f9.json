@@ -1,0 +1,201 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129487495,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 23,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 23,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_169 = 书页 166\r\npage_170 = 书页 167\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:169@@（书页 166）\r\n−-- OCR 原文 −--\r\n166\r\nProblem Set III. 1\r\nLow Rank and Compressed Sensing\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\nAnother approach to @ 一\r\nstarts with th e formula for a geometnc series ：\r\n+ + · · Apply that formula when =\r\n一 m atn X ：\r\nTake = 鬱 T tO see +\r\nThis is exactly equation (l) for @ 一 鬱\r\n1 一 鬱 T\r\n什 om equation （ 4 ） with 刀 = 1 一 and also fro m equation （ 5 ） ：\r\nFind E¯\r\nFrom （ 4 ）\r\nFrom （ 5 ）\r\n7 一 刀 一 1\r\n0\r\n1\r\nE¯\r\n1\r\nE¯\r\n0 刀 一 1\r\n—vT(I 一 鬱\r\n0\r\n0\r\n1\r\nCompare the 1 ， 1 blocks to find 一 1 = @ 一 鬱\r\n1\r\nin formul a (1).\r\nThe final Sherman-Morrison-Woodbury formula （ 9 ） p erturb s by UVT @ank 陶 ·\r\nWnte down that formul a in the imp ortant case when = 1 ：\r\nTest the formul a on thi s small ex ample ：\r\n1\r\n0\r\n1\r\n0\r\nProbIem 3 found the inverse matrix M¯l = （ 一 鬱\r\n· ln solving the equaUon\r\nMy = b, we compute only the solution an d not the whole inverse matrix\r\nYou can find in two easy step s ：\r\nStep 1 Solve = b and Az = Compute 刀 = 1 一 z ·\r\nz is the solution to M = （ 且 一 T ） = b•\r\nStep 2 Then ： +\r\nVerify （ 一 鬱 )y=b. We solved two equations using ， no equations using M\r\nProve that the final formula （ 9 ） is correct ！ Multiply equation （ 9 ） by 蓋 一 UV\r\nWatch for the moment when （ 一 UVT)A¯IU becomes U(I 一 VT 一 10 ） ·\r\nln the foolish case U = V = ， equ ati 0 n （ 9 ） gives what formul a for （ 一 刀 一\r\nCan you prove it directl y ？\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 169 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 166，属 Part III 的 §III.1 习题集（Problem Set III.1）；页眉与页码为重复元素，不译。</span>\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Problem Set III.1（习题集 III.1）\r\n\r\n<span style=color:#1e8449;>**[note] OCR 修正：**</span> 本页 OCR 把矩阵 $A$ 识别为 `蓋`/`鬱`/`@`，把 $U,V$ 等符号识别为 `刀`/`陶`/`田`，把括号与负号识别为 `一`；公式均按 Sherman-Morrison-Woodbury（谢尔曼-莫里森-伍德伯里）恒等式的数学语境重建。本页为习题页，**题干保留英文原文**，乱码处修正为 LaTeX。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 1.** Another approach to $(A − UV^T)^{-1}$ starts with the formula for a geometric series:\r\n```math\r\nI + X + X^2 + \\cdots = (I − X)^{-1}.\r\n```\r\nApply that formula when $X = UV^T$:\r\n```math\r\n(I − UV^T)^{-1} = I + UV^T + UV^TUV^T + \\cdots\r\n```\r\nTake $U = V = u$ to see $I + uv^T + uv^Tuv^T + \\cdots$ and $v^Tu$ as a scalar:\r\n```math\r\n(I − uv^T)^{-1} = I + \\frac{uv^T}{1 − v^Tu}.\r\n```\r\nThis is exactly equation (1) for $E = I − UV^T$:\r\n```math\r\nE^{-1} = I + U(I − V^TU)^{-1}V^T.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 2.** $E^{-1}$ from equation (4) with $B = I − V^TA^{-1}U$, and also from equation (5)：\r\n```math\r\n\\begin{bmatrix} A & U \\\\ V^T & I \\end{bmatrix}^{-1} = \\begin{bmatrix} E^{-1} & −A^{-1}UE^{-1} \\\\ −V^TA^{-1}E^{-1} & E^{-1} \\end{bmatrix}.\r\n```\r\nFind $E^{-1}$. From (4):\r\n```math\r\nE^{-1} = (I − V^TA^{-1}U)^{-1}V^TA^{-1}\r\n```\r\nFrom (5):\r\n```math\r\nE^{-1} = V^TA^{-1}(I − UV^TA^{-1})^{-1}\r\n```\r\nCompare the $1,1$ blocks to find $E^{-1} = A − UV^T$ in formula (1).\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 3.** The final Sherman-Morrison-Woodbury formula (9) perturbs $A$ by $UV^T$ of rank $k$. Write down that formula in the important case when $k = 1$:\r\n```math\r\n(A − uv^T)^{-1} = A^{-1} + \\frac{A^{-1}uv^TA^{-1}}{1 − v^TA^{-1}u}.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 4.** Test the formula on this small example:\r\n```math\r\nA = \\begin{bmatrix} 1 & 0 \\\\ 0 & 2 \\end{bmatrix}, \\quad U = \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}, \\quad V = \\begin{bmatrix} 0 \\\\ 1 \\end{bmatrix}.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 5.** Problem 3 found the inverse matrix $M^{-1} = (A − UV^T)^{-1}$. In solving the equation $My = b$, we compute only the solution and not the whole inverse matrix $M^{-1}$. You can find $y$ in two easy steps:\r\n**Step 1** Solve $Aw = b$ and $AZ = U$. Compute $C = I − V^TZ$. ($Z$ is the solution to $AZ = U$.)\r\n**Step 2** Then $y = w + Zc$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 6.** Verify $(A − UV^T)y = b$. We solved two equations using $A$, no equations using $M$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Prove that the final formula (9) is correct! Multiply equation (9) by $A − UV^T$. Watch for the moment when $(I − UV^T)A^{-1}U$ becomes $U(I − V^TA^{-1}U)$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** In the foolish case $U = V = u$, equation (9) gives what formula for $(A − uu^T)^{-1}$? Can you prove it directly?\r\n\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 本页习题围绕同一个设计问题：$A$ 被低秩矩阵 $UV^T$ 改动之后，能不能不重新做一次 $n\\times n$ 求逆，就得到 $(A-UV^T)^{-1}b$？先给第一性原理上的答案：$n\\times n$ 求逆或 LU 分解是 $O(n^3)$，而这个代价几乎全部花在「大矩阵内部成千上万次元素对元素的消去」上；既然改动 $UV^T$ 只有 $k$ 个方向、$2nk$ 个数，那么正确的设计目标就是——把 $O(n^3)$ 的大结构一次冻结、反复复用，把变化量全部压缩到 $O(k^2)$ 的小系统里。Strang 的答案是「只解方程，不造逆矩阵」，这正是 6.006 里「先算清复杂度再动手」的又一个具体化身。复杂度账本如下：把 $M$ 直接求逆约需 $2n^3/3$ 次浮点运算，而 $U,V$ 每变一次就要重付；Problem 5 的两步法则是对 $A$ 做一次 LU 分解（约 $n^3/3$），再解 $k+1$ 个右端项（每个 $O(n^2)$），最后解一个 $k\\times k$ 的小系统 $C=I-V^TZ$（$k^3$）；$k=1$ 时那个小系统退化成一元一次方程，只剩一次标量除法，$k^3$ 项的常数近似为零。关键在于：$Z=A^{-1}U$ 与 $W=A^{-1}V$ 是在 $U,V$ 冻结时预先算好的，此后每换一个 $U$ 或 $V$，需要重算的只有 $Zb$、$V^TZ$ 和最后的线性组合，全是矩阵-向量乘法，合计约 $O(n^2)$，而不是再碰一次 $n^3$。取 $n=1000,\\,k=1$：重算求逆约 $6.7\\times10^8$ 次运算，而更新一次只要几次 $n^2$ 量级的代入（约 $4\\times10^6$），差两个数量级。代入具体数字验算：$n^2=10^6$，求 $Zb$ 约 $2n^2=2\\times10^6$，$V^TZ$ 又是约 $2n^2$，代回组合约 $2n^2$，三者相加不到 $10^7$，与 $6.7\\times10^8$ 相比确实是百倍量级的差距。CSAPP 的视角把差距说得更具体：解方程阶段做的是矩阵-向量乘法，访存是顺序流式的，缓存命中率高；LU 分解则要在 $n\\times n$ 数据上反复扫过整块（GEPP 还要选主元、跳着访问），即使分块优化后仍是访存受限（memory bound），这正是第 6 章缓存层次那套分析的直接应用。低秩更新之所以快，不只是浮点运算少，而是把「必须反复触碰全部 $n^2$ 个元素」换成了「$k+1$ 次触碰」。Problem 1 用几何级数推出 $k=1$ 的公式，这一步你在 6.042J 的生成函数里见过：$(I-X)^{-1}=I+X+X^2+\\cdots$。关键在 $X=uv^T$ 时级数塌缩成标量几何级数，因为 $(uv^T)^2=u(v^Tu)v^T=(v^Tu)\\,uv^T$，于是 $X^m=(v^Tu)^{m-1}uv^T$，求和得 $I+\\dfrac{uv^T}{1-v^Tu}$。代一组数验算：取 $u=(1,1)^T$、$v=(0.25,0.25)^T$，则 $v^Tu=0.5$，公式给出 $(I-uv^T)^{-1}=I+\\dfrac{uv^T}{0.5}$；而 $uv^T$ 是秩一矩阵，$(I-uv^T)uv^T=uv^T-(v^Tu)uv^T=0.5\\,uv^T$，两边相乘得 $(I-uv^T)(I+2uv^T)=I+2uv^T-uv^T-2\\cdot0.5\\,uv^T=I$，恒等式成立。这也标出了公式失效的边界：$v^Tu=1$ 时级数不收敛、$I-uv^T$ 奇异；数值上 $1-v^Tu$ 接近 $0$ 会发生灾难性抵消，与 CSAPP 第 2 章「相近浮点数相减丢有效位」以及你在 Strang 里反复见到的条件数是同一件事。按浮点模型的粗略估计，$v^Tu$ 由 $n$ 次乘加累积而来，本身已带约 $n\\varepsilon$ 的相对误差，因此当 $1-v^Tu$ 小到 $10^{-4}$ 量级（即 $v^Tu=0.9999$）时，相减后仅剩约 4 位有效数字，解 $x$ 的相对误差被放大约 $10^4$ 倍——这就是条件数在起作用的同一现象，也解释了为什么 Sherman-Morrison 在实践中必须配合显式的奇异性检查。跨课程连接：从 18.065 的 QR 与最小二乘出发，把「分解一次、复用多次」这条线索接到本页——$A=QR$ 时低秩更新等价于对 $R$ 做小的修正，连接路径是「固定分解 $\\to$ 预处理 $Z,W$ 并缓存 $\\to$ 每次变动只解 $k\\times k$ 系统」，区分的要点在于：QR 更新（如 Givens 旋转）的目标是保持正交因子的结构以维持数值稳定性，代价是每次更新 $O(n^2)$ 且要对因子本身动手；而 Sherman-Morrison-Woodbury 的目标是保持已算好的线性求解器不动，只在大矩阵之外挂一个小修正项，代价更低、实现更简单，但把全部数值风险集中到了分母 $1-V^TZ$ 上——这是两者的核心区别：一个修因子，一个修解，前者换稳定性，后者换速度。命名模板：**低秩更新法（不改分解，只解方程）**——凡是「大矩阵被小改动、又要反复使用」的场合，先固定大矩阵的分解，把小改动全部塞进一个 $k\\times k$ 的小系统。增量 PCA、递归最小二乘、在线学习的协方差更新都是这个模板的实例。\r\n\r\n@@PAGE:170@@（书页 167）\r\n−-- OCR 原文 −--\r\n7\r\n8\r\n9\r\n10\r\n11\r\nchanges in 蓋 一 1 from Changes in 蓋\r\n167\r\nproblem 4 extends to a rank change M-l = 一 UvT)-1. solve the equation\r\nb, we compute only th e solution and not the whole inverse m atrix M\r\nMY =\r\nStep 1 Solve = b an d the equations AZ ： U (U and Z are by\r\nStep 2 Form the m atrix C = 丆 一 VTZ and solve Cw = T The desired\r\nM-lbis ： + Zw.\r\nUse （ 9 ） to verify that （ 蓋 一 UVT) = b. We solved + 1 equations using 蓋\r\nand we multiplied VTZ, bu t we never used M = 蓋 一 UVT.\r\nWhat is the derivativ e of 似@） ） 2 ？ Th e correct derivative is not 2 蓋@）\r\ndt\r\nYou must compute （ + 厶 ） 2 and subtract 2 · Divide by 厶 and send At to 0 ·\r\nTest formul a （ 12 ） for the derivative of 一 1@） when\r\n2\r\n1\r\nan d 1@） =\r\n0\r\n1\r\nSUPPOSe Y ou ow the averag e cold of bl, b2 ，\r\n0 999 · When b1000 amves, check\r\nthat the new average is a combination Of öold and th e mismatch b1000 一 cold ：\r\nbl + · 一 + b1000\r\nbl + 一 · + b999\r\n1\r\nbl + 一 · + b999\r\nCnew\r\n1000\r\n1000\r\n999\r\n1000\r\n999\r\nThis is a Kalman filter ”\r\n1000 1000 一 引 d ） with gain matr1X\r\n1\r\n1000 。\r\nThe Kalman filter includes alSO a 豆 砒 e eq 况 刀 + 1 = FCk with its 0 wn error\r\nr 勉 52 · The dynamc least squares problem allow s tO drift ” as 為 increases ：\r\n1\r\n1\r\n2\r\n2\r\n0 With variances\r\n2\r\n0\r\nWith 丆 = 1 ， divide both sides of those three equations by 5 ， and 伍 Fin d and\r\n1 by least squares ， which gives more weight to th e recent bl.\r\nBill Hager ' s P ap er on the 淝 e a Matrix wa s extremely useful in\r\nwriting thi s section of the book ： S IAM Review 31 （ 1989 ） ·\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 170 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 167，为 §III.1 习题集（Problem Set III.1）的续页；页眉与页码为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 本页 Problem 10 把「矩阵被改一点怎么办」搬到了数据上：已知 $b_1,\\dots,b_{999}$ 的平均值 $c_{\\text{old}}$，第 1000 个数到来时，要不要把 999 个数重新加一遍？先想清楚这件事在第一性原理上为什么值得问：平均值里每个数都以相同权重 $1/n$ 出现，重算等于把已经付过代价的信息再付一次，而新数据只改动了众多「贡献」中的一项，所以合理的做法不是重做，而是只结算这一项的增量。把 $\\sum_{i=1}^{n}b_i$ 与 $\\sum_{i=1}^{n-1}b_i$ 相减，差的正是 $b_{1000}$，这一步是恒等式而非近似，所以递推与重算在数学上完全等价，省下的只是重复劳动。Strang 给出一行递推 $c_{\\text{new}}=c_{\\text{old}}+\\frac{1}{1000}(b_{1000}-c_{\\text{old}})$：把新数据相对旧估计的偏差按它该占的份额 $1/1000$ 折算进去。验算：设前 999 个数都是 10，$b_{1000}=20$，递推给 $10+\\frac{1}{1000}\\cdot10=10.01$；直接求和是 $(9990+20)/1000=10.01$，一致。这个式子读成一句话就是「新估计 = 旧估计 + 增益 × 残差」，残差 $b_{1000}-c_{\\text{old}}$ 表示新数据打了旧估计一个措手不及的那部分。它在概率论（Bertsekas 那本）里就是条件期望的递推形式：把 $c$ 当成待估参数、$b_i=c+\\text{噪声}$，最小二乘 $\\min_c\\sum(b_i-c)^2$ 的解是算术平均；若各测量方差 $\\sigma_i^2$ 不同，加权最小二乘给出 $\\sum b_i/\\sigma_i^2 \\big/ \\sum 1/\\sigma_i^2$，权重自动由 $1/\\sigma_i^2$ 决定。把先验方差 $\\sigma^2$ 与测量方差 $r^2$ 代进去，增益是 $\\sigma^2/(\\sigma^2+r^2)$：旧估计越不确定（$\\sigma^2$ 大）或新测量越可信（$r^2$ 小），增益越靠近 1，越愿意相信新数据。1000 个等权样本是它的特例，增益恰为 $1/1000$，这也解释了 Problem 11 里 $F=1$ 的漂移模型为何给最近的 $b_1$ 更大权重。从 6.006 的角度看，这是一次 $O(n)\\to O(1)$ 的均摊优化：重算平均要读完全部数据，递推只要常数时间，代价是内存里多留两个状态量（$c_{\\text{old}}$ 与计数），典型的「用状态换时间」。CSAPP 第 2 章提醒你注意代价：每次递推都做一次浮点乘加，$10^9$ 次之后舍入误差会累积，$c_{\\text{old}}$ 会缓慢漂移，工程上用 Welford 式算法或每隔若干步重算一次来校准。文本提到的 Bill Hager 综述（*SIAM Review* **31**，1989）正是把这套递推语言系统化的工作。命名模板：**增量更新模板（新 = 旧 + 增益 × 残差）**——均值、方差、协方差、信念更新、随机梯度下降的参数更新都落在这个模板上，区别只在增益怎么取。另外补一个能让你手算核对的第二层例子：设两个样本 $b_1=10$（方差 $r_1^2=1$）与 $b_2=20$（方差 $r_2^2=4$），加权平均是 $\\frac{10/1+20/4}{1/1+1/4}=12$；换成递推视角，从 $c_1=10$ 出发，新样本的增益是 $r_1^2/(r_1^2+r_2^2)=1/5$，于是 $10+\\frac15(20-10)=12$，两条路又对上了，而且可以看出方差大的样本被自动调小了话语权。跨课程连到 Strang 自己的线性代数：算术平均其实是把向量 $b$ 投影到全 1 方向上的系数，正规方程给 $\\hat c=(A^TA)^{-1}A^Tb$，而增量形式正是把矩阵求逆换成一次秩一更新，这就是 Strang 在最小二乘与 QR 章节里反复铺垫的「别重解方程，只更新因子」的思想；矩阵版本就是递归最小二乘，增益从标量 $1/n$ 升级为矩阵 $P_{n-1}a/(a^TP_{n-1}a+1)$ 的形式。概率论里还有一条与之配套的边界条件：要让第 $n$ 步的增益按 $1/n$ 衰减，必须满足 $\\sum g_n=\\infty$ 且 $\\sum g_n^2<\\infty$，否则步长掉得太快，估计会卡在离真值很远的地方不动。\r\n\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Changes in $A^{-1}$ from Changes in $A$（$A$ 的扰动对 $A^{-1}$ 的影响，续）\r\n\r\n<span style=color:#1e8449;>**[note] OCR 修正：**</span> 本页 `蓋` 为 $A$，`丆` 为 $I$，`似@）` 为 $A(t)$，`厶` 为 $\\Delta A$，`引 d` 为 `old`，`豆 砒 e eq 况` 为 `state equation`，`r 勉 52` 为 `its own error`；`cnew` 行的分母 `1000`/`999` 与 `丆 一 VTZ`、`Cw = T`、`y = + Zw` 等处的个别字符已被 OCR 破坏，公式均按数学语境重建。本页同样为习题页，**题干保留英文原文**。\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 7.** Problem 4 extends to a rank $k$ change $M^{-1} = (A − UV^T)^{-1}$. To solve the equation $My = b$, we compute only the solution and not the whole inverse matrix $M^{-1}$. Let $U$ and $V$ be $n$ by $k$:\r\n**Step 1** Solve $Aw = b$ and the equations $AZ = U$. ($U$ and $Z$ are $n$ by $k$.)\r\n**Step 2** Form the matrix $C = I − V^TZ$ and solve $Cv = V^Tb$. The desired $M^{-1}b$ is $y = w + Zv$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 8.** Use (9) to verify that $(A − UV^T)y = b$. We solved $k + 1$ equations using $A$ and we multiplied $V^TZ$, but we never used $M = A − UV^T$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 9.** What is the derivative of $A(t)^{-1}$? The correct derivative is not $2A(t)\\dfrac{dA}{dt}$. You must compute $(A + \\Delta A)^{-1}$ and subtract $A^{-1}$. Divide by $\\Delta t$ and send $\\Delta t$ to $0$:\r\n```math\r\n\\frac{d}{dt}A(t)^{-1} = −A^{-1}\\frac{dA}{dt}A^{-1}.\r\n```\r\nTest formula (12) for the derivative of $A^{-1}(t)$ when\r\n```math\r\nA = \\begin{bmatrix} 2 & 1 \\\\ 0 & 1 \\end{bmatrix} \\quad \\text{and} \\quad A(t) = \\begin{bmatrix} 2 & 1 \\\\ 0 & 1 \\end{bmatrix}.\r\n```\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 10.** Suppose you know the average $c_{\\text{old}}$ of $b_1, b_2, \\ldots, b_{999}$. When $b_{1000}$ arrives, check that the new average is a combination of $c_{\\text{old}}$ and the mismatch $b_{1000} − c_{\\text{old}}$:\r\n```math\r\nc_{\\text{new}} = \\frac{b_1 + \\cdots + b_{1000}}{1000} = \\frac{b_1 + \\cdots + b_{999}}{1000} + \\frac{b_{1000}}{1000} = \\frac{999}{1000}c_{\\text{old}} + \\frac{1}{1000}b_{1000}\r\n```\r\n```math\r\nc_{\\text{new}} = c_{\\text{old}} + \\frac{1}{1000}\\left(b_{1000} − c_{\\text{old}}\\right).\r\n```\r\nThis is a Kalman filter（卡尔曼滤波器）$\\big(c_{\\text{new}} = c_{\\text{old}} + \\text{gain}\\cdot(b_{1000} − c_{\\text{old}})\\big)$ with gain matrix $\\dfrac{1}{1000}$.\r\n\r\n<span style=color:#2471a3;>**[problem]**</span> **Problem 11.** The Kalman filter includes also a state equation $c_{k+1} = Fc_k$ with its own error $r_k^2$. The dynamic least squares problem allows $c$ to drift as $k$ increases:\r\n```math\r\nF = 1, \\quad c_1 \\approx b_1 \\ \\text{with variance} \\ \\sigma_1^2, \\quad c_2 \\approx b_2 \\ \\text{with variance} \\ \\sigma_2^2\r\n```\r\n<span style=color:#1e8449;>**[note]** 上面三条方程右侧的方差数值在 OCR 中已损坏（仅余 `1`、`2` 一类残片），故此处保留方差记号 $\\sigma_1^2,\\sigma_2^2$ 而不臆造具体数字。</span>\r\n\r\nWith $F = 1$, divide both sides of those three equations by $\\sigma$, and find $c_1$ and $c_2$ by least squares, which gives more weight to the recent $b_1$.\r\n\r\nBill Hager's paper on the inverse matrix was extremely useful in writing this section of the book: *SIAM Review* **31** (1989)."
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 23,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 23,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 23,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 23,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 97845,
+            "outputTokens": 97468,
+            "cacheReadTokens": 16384,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 2,
+            "buckets": {
+              "uncachedInputTokens": 90567,
+              "outputTokens": 4844,
+              "cacheReadTokens": 12928,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 23,
+        "val": {
+          "surfaceTokens": 72718,
+          "contextWindow": 1000000,
+          "pressureTokens": 103495,
+          "sampledSurfaceTokens": 69943
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 23,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3707,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 64520,
+              "system": false
+            },
+            {
+              "seq": 18,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 2775,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 71574
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 23,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 20,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 22
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 23,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 23,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 23,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 23,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

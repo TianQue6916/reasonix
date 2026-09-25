@@ -1,0 +1,296 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1788533339663,
+      "cwd": "C:\\Users\\27063",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 44,
+        "val": "？我只是组建了一个三个方块"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 44,
+        "val": {
+          "first": {
+            "seq": 17,
+            "text": "？我只是组建了一个三个方块大小的升降机 @[错误报告-2026-9-14_15.08.44.zip](.reasonix/attachments/clipboard-20260914-150859.203552-000001.zip)直接就崩溃了"
+          },
+          "count": 1,
+          "lastSeq": 17
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 44,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 44,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 44,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 15288,
+            "outputTokens": 526,
+            "cacheReadTokens": 19328,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 4,
+            "buckets": {
+              "uncachedInputTokens": 6619,
+              "outputTokens": 171,
+              "cacheReadTokens": 8960,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 44,
+        "val": {
+          "surfaceTokens": 9005,
+          "contextWindow": 1000000,
+          "pressureTokens": 15579,
+          "sampledSurfaceTokens": 8856
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 44,
+        "val": {
+          "nodes": [
+            {
+              "seq": 19,
+              "heuristicTokens": 16,
+              "system": true
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 26,
+              "system": false
+            },
+            {
+              "seq": 17,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 23,
+              "heuristicTokens": 119,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 3844,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 69,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 34,
+              "heuristicTokens": 83,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 4658,
+              "system": false
+            },
+            {
+              "seq": 39,
+              "heuristicTokens": 129,
+              "system": false
+            },
+            {
+              "seq": 41,
+              "heuristicTokens": 20,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 16,
+            "toolsTokens": 1574,
+            "messageTokens": 9005
+          }
+        }
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 38,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 42
+          },
+          "lastTurn": 1
+        }
+      },
+      "sessionStats": {
+        "ver": 1,
+        "seq": 44,
+        "val": {
+          "turns": 1,
+          "steps": 4,
+          "llmMs": 11369,
+          "toolMs": 83690,
+          "ttftMs": 8950,
+          "ttftSteps": 4,
+          "decodeMs": 2419,
+          "decodeTokens": 526,
+          "lastTurn": 1,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "turnOutline": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "turns": [
+            {
+              "turn": 1,
+              "seq": 11,
+              "prompt": "？我只是组建了一个三个方块大小的升降机 @[错误报告-2026-9-14_15.08.44.zip…",
+              "response": ""
+            }
+          ],
+          "draft": ""
+        }
+      },
+      "agentPreset": {
+        "ver": 1,
+        "seq": 44,
+        "val": "anchored-standard"
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 44,
+        "val": {}
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": true
+        }
+      },
+      "modelSelection": {
+        "ver": 2,
+        "seq": 44,
+        "val": {
+          "lastUsed": {
+            "provider": "commandcode-goat",
+            "model": "deepseek/deepseek-v4.1-flash",
+            "reasoningEffort": "high"
+          },
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 44,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1789370059989
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 44,
+        "val": null
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 44,
+        "val": null
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 44,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 44,
+        "val": null
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 44,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      },
+      "armor": {
+        "ver": 3,
+        "seq": 44,
+        "val": {
+          "running": true,
+          "verdict": null,
+          "words": [],
+          "safe": [],
+          "risk": [],
+          "domain": null,
+          "domainHits": 0
+        }
+      }
+    }
+  }
+}

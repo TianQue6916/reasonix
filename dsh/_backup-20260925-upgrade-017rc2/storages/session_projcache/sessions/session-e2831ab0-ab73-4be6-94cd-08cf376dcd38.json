@@ -1,0 +1,211 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790128832070,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 26,
+        "val": "你是学术译者注的**字数与质"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译者注的**字数与质量归一化专家**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者（先问机制，再要公式；反感裸甩名词与空洞赞美）。\r\n\r\n【任务】把下面 2 条译者注逐条控制在 **800-1200 个汉字**（公式、`math` 围栏、代码不计入；汉字数以正文为准）。\r\n\r\n【改写规则】\r\n− 低于 800 字：**扩写**——补足机制解释（第一性原理：为什么要这样设计）、一个具体数值或小例子（可代入验算）、一条跨课程连接（精确到课程名 + 概念 + 连接路径 + 区别），必要时给一个**命名模板**（如谱夹逼法能量检验法）\r\n− 高于 1200 字：**精简**——删重复表述、删历史年表、删空泛议论、删与正文重复的内容；🚫 **不得删除任何数学内容、公式、例子、跨课程连接**\r\n− 可用的跨课程锚点：6.042J 离散数学（等价关系/偏序/数论/图论/Chernoff 界）、CSAPP（浮点/缓存/机器级代码）、CLRS 与 6.006（分治/图/复杂度）、Strang 线性代数与 18.065（LU/QR/SVD/最小二乘）、在学的概率论（Bertsekas）与凸优化（Boyd）\r\n− ⚠️ 未学课程（抽象代数/拓扑/泛函/非标准分析）不得出现，除非从已知概念完整搭出脚手架\r\n\r\n【🚨 红线（违反即整份作废）】\r\n1. 所有 `$...$` 行内公式与 ```` ```math ```` 围栏、反斜杠命令（`\\lambda`、`\\Sigma`、`\\sum`、`\\tag` 等）必须**一字不改、原样保留**；严禁把 `$\\lambda$` 写成 `lambda`、把 `$A$` 写成 `A`、把 `$S^T$` 写成 `S^T`\r\n2. 禁止 Unicode 上下标字符；禁止 `$$...$$`\r\n3. 每条注的 `=== ANCHOR: … ===` 行必须**逐字原样保留**（它是插入锚点，改动会导致插入失败）\r\n4. 保留 `> <span style=color:#1e8449;>**[note] 译者注（…）：**</span>` 这一行的标签与配色；注的类型标签可保持原样\r\n5. 输出只有注本身，不要前言、不要说明、不要思考过程、不要汇总\r\n\r\n【输出格式】（与输入完全一致）\r\n=== ANCHOR: <逐字原样保留> ===\r\n> <span style=color:#1e8449;>**[note] 译者注（…）：**</span> 注的正文……\r\n\r\n===================================== 待归一化的注 =====================================\r\n=== ANCHOR: 奇异值的一个简单公式（针对非重根 $\\sigma$ 的导数）来自 $u^T A v = \\sigma$。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（拓展前沿）：**</span> 奇异值导数 $\\frac{d\\sigma}{dt}=u^T\\frac{dA}{dt}v$ 与特征值导数 $\\frac{d\\lambda}{dt}=y^T\\frac{dA}{dt}x$ 形状相同，但干净得多，原因是 $u$ 与 $v$ 天然单位正交，不需要 $y^Tx=1$ 这种对条件数敏感的人为归一化——这直接决定了「奇异值比特征值稳健」这条数值线性代数常识。由 Cauchy-Schwarz（你在 Strang 里已经用过）立刻得到一阶扰动界：$\\|u\\|=\\|v\\|=1$ 时 $\\left|u^T\\Delta A\\,v\\right|\\le\\|\\Delta A\\|_2$，即 $|\\sigma(A+\\Delta A)-\\sigma(A)|\\le\\|\\Delta A\\|_2$，奇异值在谱范数下是 $1$-Lipschitz 的。两个验算。第一个（一阶有效的方向）：$A=\\operatorname{diag}(2,1)$，只把第二个对角元加 $0.3$，$\\sigma_2$ 从 1 变到 $1.3$，改变量 $0.3$ 恰等于 $u_2^T\\Delta A\\,v_2=0.3$，也恰不超过 $\\|\\Delta A\\|_2$。第二个（一阶失效的方向）：同样取 $A=\\operatorname{diag}(2,1)$，但加 $\\begin{bmatrix}0&\\varepsilon\\\\ \\varepsilon&0\\end{bmatrix}$，$\\varepsilon=0.01$；此时 $u_1=v_1=e_1$，一阶项 $u_1^T\\Delta A\\,v_1=0$，于是 $\\sigma_1$ 到一阶仍等于 $2$；精确计算 $A^TA=\\begin{bmatrix}4.0001&0.03\\\\0.03&1.0001\\end{bmatrix}$，最大特征值 $4.0004$，于是 $\\sigma_1=\\sqrt{4.0004}=2.0001$，变化只有 $10^{-4}$ 量级，即 $O(\\varepsilon^2)$。这说明「导数是把变化投影到敏感方向」的图像对奇异值同样成立，而且投影给出了明确的 Lipschitz 常数。Davis-Kahan 界把它升级成几何结论：$\\sin\\theta\\le\\|T\\|/d$，$\\theta$ 是 $S$ 与 $S+T$ 的单位特征向量夹角，$d$ 是相关特征值到其余谱的最小距离。它的结构值得单独命名——**扰动-间隙两步法**：第一步用范数控制「扰动有多大」，第二步用一个间隙 $d$ 做分母，把范数换算成「子空间转了多少角度」。$d$ 出现在分母上，正是条件数的角色：谱间隙小（特征值近乎重合）时扰动被放大，特征向量方向不再可靠，与你熟悉的「小主元让消元不稳定」是同一类病态。跨课程连接在这里最直接：在 6.042J 里，Chernoff 界控制的是随机抽样造成的标量误差；在随机数值线性代数中，它的矩阵版本控制 $\\|T\\|$，而 Davis-Kahan 负责把 $\\|T\\|$ 翻译成子空间夹角——两个不等式串起来，是一条从概率到几何的完整路径。区别也要说清：Chernoff 是概率性的、随样本数指数衰减的界，Davis-Kahan 是确定性的、对 $d$ 反比敏感的界；前者管「扰动大概有多小」，后者管「扰动小的时候子空间一定转得不多」。\r\n\r\n=== ANCHOR: 这张图表明，每个 $z_k$ 都位于 $\\lambda_k$ 的上方或下方——这正是 interlacing（交错）现象。 ===\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 久期方程（secular equation）$\\frac{1}{\\theta}=\\sum_{k=1}^n\\frac{(u^Tq_k)^2}{z-\\lambda_k}$ 是本节最实用的工具：它把一个特征值问题变成求根问题，而求根有成熟算法，特征值问题没有闭式解。先把函数看清楚：右端 $f(z)=\\sum_k\\frac{(u^Tq_k)^2}{z-\\lambda_k}$ 在 $z=\\lambda_k$ 处有极点，从右侧趋近趋向 $+\\infty$，从左侧趋近趋向 $-\\infty$；在任意两个相邻极点之间的区间上它连续且单调，左端是常数 $1/\\theta$。于是每个区间 $(\\lambda_{k+1},\\lambda_k)$ 内恰有一个交点 $z_k$，这就是交错：$\\lambda_{k+1}<z_k<\\lambda_k$。命名模板：**极点括根法（poles give brackets）**——只要能说明函数在每个极点区间内单调且两端异号，就能用 6.006 里的二分法把根夹住，每步把区间长度减半，$O(\\log(1/\\varepsilon))$ 次函数求值即可。作为对比，牛顿法二次收敛但需要导数，而且可能从所在区间跳到另一个区间，收敛到错误的特征值；这里的单调结构让二分法格外合适，这也解释了为什么 Lanczos、QR 这类算法的位移（shift）都要先估计一个落在正确区间内的值。具体验算：取 $S=\\operatorname{diag}(5,3,1)$，$\\theta=1$，$u=\\frac{1}{\\sqrt3}(1,1,1)^T$，则 $(u^Tq_k)^2=\\frac13$，方程变成 $\\frac13\\left(\\frac{1}{z-5}+\\frac{1}{z-3}+\\frac{1}{z-1}\\right)=1$。在 $(5,\\infty)$ 上二分：$z=5.5$ 给 $0.874<1$，$z=5.4$ 给 $1.048>1$，根在两者之间；继续夹得 $z=5.43\\to0.9876$，$z=5.424\\to0.9990$，$z=5.4235\\to0.99999$，所以 $z_1\\approx5.4235$。它落在交错允许的区间 $5\\le z_1\\le 5+\\theta=6$ 内，而且离上界还有距离——因为 $u$ 不是 $S$ 的特征向量，$\\theta$ 只有一部分被用上。反过来，若 $u=q_1$，则 $(u^Tq_k)^2$ 只在 $k=1$ 时为 1，方程立刻给出 $z_1=\\lambda_1+\\theta$，与你在线性代数里验证过的「秩一更新恰好沿特征方向抬高该特征值 $\\theta$」完全一致。图像还给出一个直觉：$\\theta$ 增大时水平线 $1/\\theta$ 下移，所有交点右移，$z$ 全部变大；$1/\\theta\\to0$（信号极强）时 $z_1\\to\\infty$ 而其余 $z_k\\to\\lambda_k$，这正是「只有一两个特征值的变化量达到 $\\theta$ 量级」的定量版本，也是低秩信号检测能奏效的原因。"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 26,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 26,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 26,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 26,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 2619,
+            "outputTokens": 7658,
+            "cacheReadTokens": 18944,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 3,
+            "buckets": {
+              "uncachedInputTokens": 197,
+              "outputTokens": 5270,
+              "cacheReadTokens": 7936,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 26,
+        "val": {
+          "surfaceTokens": 7690,
+          "contextWindow": 1000000,
+          "pressureTokens": 8133,
+          "sampledSurfaceTokens": 4186
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 26,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 1039,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 1169,
+              "system": false
+            },
+            {
+              "seq": 16,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 380,
+              "system": false
+            },
+            {
+              "seq": 21,
+              "heuristicTokens": 19,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 3504,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 6546
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 26,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 23,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 25
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 26,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 26,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 26,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 26,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

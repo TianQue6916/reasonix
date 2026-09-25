@@ -1,0 +1,386 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790178835541,
+      "cwd": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\global-workspace",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 109,
+        "val": "先用 dev_tool_search 搜索关键词 g"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 109,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "先用 dev_tool_search 搜索关键词 goat 找到额度查询工具，然后调用它，把 163 与 qq 的 5 小时/本周/本月百分比列出来"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 109,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 109,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 109,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 109,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 109,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 35706,
+            "outputTokens": 4003,
+            "cacheReadTokens": 287360,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 15,
+            "buckets": {
+              "uncachedInputTokens": 381,
+              "outputTokens": 740,
+              "cacheReadTokens": 40448,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 109,
+        "val": {
+          "surfaceTokens": 33423,
+          "contextWindow": 1000000,
+          "pressureTokens": 40829,
+          "sampledSurfaceTokens": 33050
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 109,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 27,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 15,
+              "heuristicTokens": 198,
+              "system": false
+            },
+            {
+              "seq": 17,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 473,
+              "system": false
+            },
+            {
+              "seq": 22,
+              "heuristicTokens": 175,
+              "system": false
+            },
+            {
+              "seq": 24,
+              "heuristicTokens": 1889,
+              "system": false
+            },
+            {
+              "seq": 26,
+              "heuristicTokens": 1982,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 155,
+              "system": false
+            },
+            {
+              "seq": 31,
+              "heuristicTokens": 2101,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 1949,
+              "system": false
+            },
+            {
+              "seq": 36,
+              "heuristicTokens": 343,
+              "system": false
+            },
+            {
+              "seq": 38,
+              "heuristicTokens": 961,
+              "system": false
+            },
+            {
+              "seq": 40,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 43,
+              "heuristicTokens": 112,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 881,
+              "system": false
+            },
+            {
+              "seq": 47,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 50,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 52,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 54,
+              "heuristicTokens": 1378,
+              "system": false
+            },
+            {
+              "seq": 57,
+              "heuristicTokens": 103,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 28,
+              "system": false
+            },
+            {
+              "seq": 62,
+              "heuristicTokens": 33,
+              "system": false
+            },
+            {
+              "seq": 64,
+              "heuristicTokens": 2213,
+              "system": false
+            },
+            {
+              "seq": 67,
+              "heuristicTokens": 222,
+              "system": false
+            },
+            {
+              "seq": 69,
+              "heuristicTokens": 4960,
+              "system": false
+            },
+            {
+              "seq": 71,
+              "heuristicTokens": 581,
+              "system": false
+            },
+            {
+              "seq": 74,
+              "heuristicTokens": 380,
+              "system": false
+            },
+            {
+              "seq": 76,
+              "heuristicTokens": 389,
+              "system": false
+            },
+            {
+              "seq": 78,
+              "heuristicTokens": 52,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 130,
+              "system": false
+            },
+            {
+              "seq": 83,
+              "heuristicTokens": 1581,
+              "system": false
+            },
+            {
+              "seq": 85,
+              "heuristicTokens": 86,
+              "system": false
+            },
+            {
+              "seq": 88,
+              "heuristicTokens": 155,
+              "system": false
+            },
+            {
+              "seq": 90,
+              "heuristicTokens": 4007,
+              "system": false
+            },
+            {
+              "seq": 92,
+              "heuristicTokens": 45,
+              "system": false
+            },
+            {
+              "seq": 95,
+              "heuristicTokens": 171,
+              "system": false
+            },
+            {
+              "seq": 97,
+              "heuristicTokens": 1089,
+              "system": false
+            },
+            {
+              "seq": 99,
+              "heuristicTokens": 1836,
+              "system": false
+            },
+            {
+              "seq": 102,
+              "heuristicTokens": 157,
+              "system": false
+            },
+            {
+              "seq": 104,
+              "heuristicTokens": 320,
+              "system": false
+            },
+            {
+              "seq": 107,
+              "heuristicTokens": 373,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 32279
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 109,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 109,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 106,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 108
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 109,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 109,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 109,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 109,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 109,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 109,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

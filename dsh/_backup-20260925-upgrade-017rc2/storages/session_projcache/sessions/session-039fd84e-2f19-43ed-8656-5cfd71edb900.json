@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790132518909,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术译稿的**终校订正专"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术译稿的**终校订正专家**。下面是 Strang《Linear Algebra and Learning From Data》part004（书页 147–197）**同一页的两份材料**：\r\n\r\n− 【权威原文】：由视觉模型从**原书扫描页**逐字转写的英文原文（公式为 LaTeX，含印刷的公式编号）——它是**权威参照**，凡与原译文冲突，一律以它为准\r\n− 【当前译文】：已有的双语译稿（中文主体 + `English term（中文翻译）` 行内嵌入，含译者注）\r\n\r\n【任务】逐段对照，把译文订正到与权威原文一致，具体包括：\r\n1. **补齐缺失**：权威原文里有、而译文缺失或压缩掉的**公式**（含印刷编号）、**句子**、**编号**，全部补上并译成同样的行内双语风格；公式一律 LaTeX 化，编号用 `\\tag{n}`（与原文编号一致）\r\n2. **订正不符**：译文中与原文冲突的记号、下标、常数、不等式方向、断言（例如把 $\\delta<\\sqrt{2}-1$ 写成 $0.1$、把 normal matrix 写成 symmetric、把 $A_0,B_0,C_0$ 写成 $A_{11},A_{12},A_{13}$ 之类）——按原文改正\r\n3. **保留译文已有的一切**：译者注（绿色 `**[note] 译者注（…）：**` 块，含 OCR 修正说明）**一条不删**、逐字保留其正文；不要新增译者注（除 OCR 修正类一句话说明外）\r\n4. **保持风格**：中文为主体句子、英文术语行内 `English term（中文翻译）`、习题页题干保留英文原文、不出现完整英文段落、禁止英中分段对照\r\n5. 若译文某页本来就与原文一致，原样输出（不要为了改动而改动）\r\n\r\n【格式规范】\r\n− 行内 `$...$`，块级 ```math 围栏（禁止 `$$`）；LaTeX 内不出现中文（`\\text{}` 内亦然）\r\n− 功能标签 `<span style=color:#2471a3;>**[tag]**</span>` 在行首规则不变；注为 `<span style=color:#1e8449;>**[note] …**</span>`，续行加 `> `\r\n− 页首灰色说明行保留；禁止 Unicode 上下标；禁止 `<div>`\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**订正后的完整两页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、说明、汇总、思考过程；不要文件一/文件二之类标记\r\n\r\n===================== 材料 =====================\r\n@@@@@ page_189（书页 186） @@@@@\r\n−---- 【权威原文】 −---------------\r\n186 \\hfill Low Rank and Compressed Sensing\r\n\r\nThe combined solution $x^*, y^*$ is a saddle point of $L$: $\\min_x \\max_y L = \\max_y \\min_x L$.\r\nThe equations to solve are $\\partial L/\\partial x = 0$ and $\\partial L/\\partial y = 0$. In fact $\\partial L/\\partial y = 0$ gives us back exactly the constraint $Ax = b$. This is a fundamental idea in optimization with constraints. In Chapter VI, the $y$'s are seen as the derivatives $\\partial L/\\partial b$ at the optimal $x^*$.\r\n\r\nNow comes the key step from the primal problem for $x = (x_1, \\ldots, x_n)$ to the dual problem for $y = (y_1, \\ldots, y_m)$. Minimize $L(x, y)$ over $x$. The minimum occurs at a point $x^*$ depending on $y$. Then the dual problem is to maximize $m(y) = L(x^*(y), y)$.\r\n\r\n\\textbf{Steepest Increase of $m(y)$}\r\n\r\nTo maximize a function $m(y)$, we look for a point $y^*$ where all the partial derivatives are zero. In other words, the gradient is zero: $\\nabla m = (\\partial m/\\partial y_1, \\ldots, \\partial m/\\partial y_m) = 0$. The present problem has a neat formula for those $y$-derivatives of $m$: $\\nabla m = Ax^* − b$.\r\n\r\nHow to maximize a function $m(y)$ when we know its first derivatives? This will be the central question of Chapter VI, leading to the algorithm that optimizes the weights in deep learning. There we will minimize a loss function; here we are maximizing $m(y)$. There we will follow the gradient downhill (steepest descent). Here we will follow the gradient uphill (steepest ascent). In both cases the gradient tells us the steepest direction.\r\n\r\n\\begin{minipage}{0.5\\textwidth}\r\n\\textbf{Steepest increase for max min $L$ = max $m$}\r\n\\end{minipage}\r\n\\begin{minipage}{0.5\\textwidth}\r\n\\raggedleft\r\n$x_{k+1} = \\text{argmin } L(x, y_k)$ \\hfill (6)\\\\\r\n$y_{k+1} = y_k + s_k(Ax_{k+1} − b)$ \\hfill (7)\r\n\\end{minipage}\r\n\r\n\\textbf{Find $x_{k+1}$ and follow $\\nabla m = Ax_{k+1} − b$}\r\n\r\nThat number $s_k$ is the stepsize. It determines how far we move in the uphill direction $\\nabla m$. We do not expect to hit the maximum of $m$ in one step! We just take careful steps upward. It is a common experience that the first steps are successful and later steps give only small increases in $m$. In financial mathematics that dual variable $y$ often represents ``prices''.\r\n\r\nNote that ``argmin'' in equation (6) is the point $x$ where that function $L$ is minimized. This introduction of duality---minimizing over $x$ and maximizing over $y$, in either order---was not just a wild impulse. The reason comes next.\r\n\r\n\\textbf{Dual Decomposition}\r\n\r\nSuppose that the original function $f(x)$ is separable: $f(x) = f_1(x_1) + \\cdots + f_N(x_N)$. Those $x_i$ are subvectors of $x = (x_1, \\ldots, x_n)$. We partition the columns of $A$ in the same way, so that $A = [A_1 \\ldots A_N]$. Then Lagrange's function $L(x, y)$ splits into $N$ simpler Lagrangians, $L_1$ to $L_N$:\r\n\r\n$$f(x) + y^T(Ax − b) = \\sum_{1}^{N} L_i(x_i, y) = \\sum_{1}^{N} \\left[ f_i(x_i) + y^T A_i x_i − \\frac{1}{N} y^T b \\right] \\quad (8)$$\r\n\r\nNow the $x$-minimization of $L$ splits into $N$ minimizations to be solved in parallel.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:189@@\r\n\r\n合并后的解 $c^*$ 与 $y^*$ 是 $L$ 的一个 saddle（鞍点）：\r\n\r\n```math\r\n\\min_{c}\\max_{y} L = \\max_{y}\\min_{c} L\r\n```\r\n\r\n需要求解的方程是 $\\partial L/\\partial c = 0$ 与 $\\partial L/\\partial y = 0$。事实上 $\\partial L/\\partial y = 0$ 恰好把约束 $Ac = b$ 还给我们。这是带约束优化中的一个基本思想。在第 VI 章中，这些 $y$ 被看作最优解 $c^*$ 处的导数 $\\partial L/\\partial b$。\r\n\r\n现在来到 min-max 问题的关键一步（也可以从 max-min 一侧出发）：对固定的 $y$，在 $c$ 上最小化 $L(c,y)$。最小值在某个依赖于 $y$ 的点 $c^*$ 处取到。于是 dual problem（对偶问题）就是最大化 $m(y) = L(c^*,y)$。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 噪声密集（`什 om` = from，`m p 况 e 襯` = min-max problem，`刀` = $L$，`蓋` = $A$，`g 而 n` = argmin，`¯I` = 上标 $-1$，`ÄB` = $A_i c_i$，`y-denvatives` = $y$-derivatives），公式 (6)(7)(8) 与行内乱码均已按数学语境重建为 LaTeX。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Steepest Increase of $m(y)$（$m(y)$ 的最速上升）\r\n\r\n要最大化函数 $m(y)$，我们要找一个点 $y^*$，使所有偏导数都为零。换言之，梯度为零：$\\nabla m = (\\partial m/\\partial y_1,\\ldots,\\partial m/\\partial y_m) = 0$。本问题对 $m$ 的这些 $y$-导数有一个干净的公式：$\\nabla m = Ac^* − b$。\r\n\r\n当我们已知函数 $m(y)$ 的一阶导数时，该如何最大化它？这将是第 VI 章的核心问题，并引出 deep learning（深度学习）中优化权重的算法。在那里我们最小化一个 loss function（损失函数）；这里我们最大化 $m(y)$。在那里我们沿着梯度下坡（steepest descent，最速下降）；这里我们沿着梯度上坡（steepest ascent，最速上升）。两种情形下，梯度都告诉我们最陡的方向。\r\n\r\n<span style=color:#00838f;>**$\\max\\min L = \\max m$ 的最速上升（Steepest increase for $\\max\\min L = \\max m$）**</span>：先求出 $c_{k+1}$，再沿 $\\nabla m = Ac_{k+1} − b$ 前进。\r\n\r\n```math\r\nc_{k+1} = \\arg\\min_{c} L\\left(c, y_k\\right) \\tag{6}\r\n```\r\n\r\n```math\r\n\\nabla m(y_k) = Ac_{k+1} − b, \\qquad y_{k+1} = y_k + s\\,\\nabla m(y_k) \\tag{7}\r\n```\r\n\r\n那个数就是 stepsize（步长）。它决定我们沿着上坡方向 $\\nabla m$ 走多远。我们并不指望一步就命中 $m$ 的最大值！我们只是小心地一步步向上走。经验表明，最初几步总是成功的，而往后的步子只带来 $m$ 的微小增加。在 financial mathematics（金融数学）中，那个对偶变量 $y$ 常常代表 prices（价格）。\r\n\r\n注意，方程 (6) 中的 argmin 就是使该函数取到最小值的那个点。这里引入对偶性——在 $c$ 上最小化、在 $y$ 上最大化，两种顺序可以互换——并非一时的冲动。理由紧接着给出。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Dual Decomposition（对偶分解）\r\n\r\n假设原来的函数 $f(c)$ 是 separable（可分离）的：$f(c) = f_1(c_1) + \\cdots + f_N(c_N)$。其中 $c_1,\\ldots,c_N$ 都是 $c$ 的子向量。我们以同样的方式划分 $A$ 的列，即 $A = [A_1 \\cdots A_N]$。于是 Lagrange's function（拉格朗日函数）$L(c,y)$ 分裂为更简单的拉格朗日函数 $L_1$ 到 $L_N$：\r\n\r\n```math\r\nL(c,y) = \\sum_{i=1}^{N} L_i\\left(c_i, y\\right) − y^{T}b, \\qquad L_i\\left(c_i, y\\right) = f_i\\left(c_i\\right) + y^{T}A_i c_i \\tag{8}\r\n```\r\n\r\n现在对 $L$ 关于 $c$ 的最小化分裂为 $N$ 个可以并行求解的最小化问题。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 你在 CSAPP 第 5 章（优化程序性能）里学到的并行化代价结构，在对偶分解里有一个精确的数学对应物。\r\n>\r\n> 先说这段在解决什么设计问题。原始问题 minimize $f(c)$ s.t. $Ac=b$ 是**一个**优化问题：只要约束还在，任何一步改进 $c_1$ 都可能让约束更差，于是所有变量被迫一起动，规模一大就既不能并行也不能分块求解。对偶分解要回答的是：能不能把这个大问题拆成 $N$ 个互不通信的小问题，还保证解出来是同一个解？\r\n>\r\n> 数学侧的机制是：原始问题 minimize $f(c)$ s.t. $Ac=b$ 中，$Ac=\\sum_{i=1}^N A_ic_i$ 是唯一把各子向量 $c_i$ 耦合起来的地方，$f$ 本身是分开的。式 (8) 把耦合项 $y^{T}(Ac-b)=y^{T}\\sum_i A_ic_i-y^{T}b$ 分配到每个 $L_i$，这一步能成立的全部依据是**和的极小等于极小的和**：$\\min_{c_1,\\dots,c_N}\\sum_i L_i(c_i,y)=\\sum_i\\min_{c_i}L_i(c_i,y)$，因为每个 $c_i$ 只出现在自己那一项里。于是 (9) 的 $N$ 个最小化彼此完全独立，协调只通过一个共享的 $m$ 维向量 $y$ 完成。\r\n>\r\n> 从第一性原理看，这一步其实是把硬约束翻译成价格。约束 $Ac=b$ 是二值的：满足或违反，没有中间状态，所以它必须被全局同时检查；乘子 $y$ 把它换成一份线性账单 $y^{T}(Ac-b)$，违反一个单位就多付 $y$ 的钱，各子问题只要知道单价就能各自结算。这就是为什么协调信息量恰好等于约束个数 $m$，而不是变量个数 $n$。\r\n>\r\n> 那为什么不把 $y$ 消掉？因为耦合是**等式约束**：想消元就得先反解 $A^{-1}b$，这要求 $A$ 可逆且条件数不坏；一旦 $A$ 是扁的、高的或病态的，这条路当场断掉。拉格朗日乘子把硬约束换成写在目标里的价格，各子问题只认自己的价格 $y$，不必看见别人的 $c_j$。\r\n>\r\n> 与 CSAPP 对齐的判据只有一句：每台机器只读自己的列块 $A_i$、不写别人，所以共享写为零，每轮通信全花在一次 $m$ 维归约上，是 $O(m)$ 而非 $O(n)$。反过来说，判据是**列块可分离性**：$f$ 的每一项只依赖一个 $c_i$、且 $A$ 的每一列只属于一个列块，分裂就是精确等号而非近似。\r\n>\r\n> 给一个可以两步手算的验算。取 $N=2$、$m=1$、$n=2$，$f(c)=\\frac{1}{2}(c_1^2+c_2^2)$，$A=[1\\ \\ 1]$、$b=0$。于是 $L_1(c_1,y)=\\frac{1}{2}c_1^2+yc_1$、$L_2(c_2,y)=\\frac{1}{2}c_2^2+yc_2$。分别对 $c_i$ 求导置零得 $c_1=c_2=-y$，两个子问题各算各的，确实没有互相查阅；代回得 $\\sum_i\\min_{c_i}L_i=y^2-2y^2=-y^2$，对 $y$ 求极大得 $y=0$，此时 $c_1=c_2=0$、$Ac=0=b$，对偶间隙为零。反过来若有人拍脑袋取 $y=1$，子问题给出 $c_1=c_2=-1$，约束变成 $Ac=-2\\neq0$，账面上却每台机器都算完了——残差校验正是防这个的。这也是对偶函数始终是原问题下界的原因：任取 $y$ 得到的 $\\sum_i\\min_{c_i}L_i$ 都 $\\le$ 最优值，调 $y$ 就是在抬高下界。\r\n>\r\n> 通信量的对比同样可以代入数字：若用 $O(n)$ 的朴素做法，$n=10^6$、$m=10^2$ 时每轮要搬 $10^6$ 个数；按上式只搬 $10^2$ 个数，差四个数量级，这就是只读自己的列块换来的全部红利。\r\n>\r\n> 区别必须点明：(1) 数学上的可分离性是精确等号，而工程上的加速比永远受 Amdahl 定律限制，$y$ 的串行更新就是那个不可并行的尾项；(2) 数学上 $N$ 可任意大，工程上 $N$ 超过物理核数只增加调度开销，通常取 $N\\approx$ 核数；(3) $f$ 一旦不可分离，(9) 只能退化成一次大型最小化 (6)，这就是下一节增广拉格朗日要付出的代价，而病态时该换的是预条件或更稳的分解结构，不是加大 $\\rho$；(4) 工程上拆的是数据与流水，数学上拆的是变量与约束，混用时最容易犯的错是把多开线程当成多切列块，结果每台机器仍需读到全部 $A$ 才能凑齐 $Ac$，共享读爆炸而共享写为零，加速比不升反降。\r\n>\r\n> 跨课程连接还可以再钉两颗钉子。第一颗钉在 CSAPP 第 5 章本身：那里讲的关键路径（critical path）长度决定了并行下界，这里 $y$ 的更新就是唯一的关键路径，$N$ 个子问题的求解是并行的旁支，所以把 $N$ 从 4 提到 16 并不会让 $y$ 的更新变快，这正对应 CSAPP 里增加处理器不缩短串行部分的结论。第二颗钉在 Strang 线性代数与 18.065 的分块消元：把 $A$ 按列分块写成 $A=[A_1\\ \\cdots\\ A_N]$ 后，$Ac=\\sum_i A_ic_i$ 就是分块矩阵乘法，而条件数 $\\kappa(A)$ 衡量的正是能否安全反解 $A^{-1}b$，当 $\\kappa(A)$ 很大时，$A_i$ 之间的近线性相关使价格 $y$ 的微小变化引起 $c_i$ 的大幅摆动，对偶迭代会震荡；这与 (18) 之后用 SVD 或 QR 判断子问题稳定性的做法是同一条思路。区别在于：Strang 用它判断矩阵能否可靠求解，这里用它判断分解是否值得做。\r\n>\r\n> 最后给这条注一个可复用的命名模板，遇到同类结构时对号入座：**列块可分离性检验 + 单一价格归约**。检验三件事——目标可加、约束线性、通信量等于约束个数；若三者成立，分裂是等号；若目标不可加，就必须退回增广项，那时通信量与收敛速度要一起重新结算。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.4, p.186</span>\r\n\r\n@@@@@ page_190（书页 187） @@@@@\r\n−---- 【权威原文】 −---------------\r\nIII.4. Split Algorithms for $\\ell^2 + \\ell^1$    187\r\n\r\n**Decomposed dual problem**     $$x_i^{k+1} = \\operatorname{argmin} L_i(x_i, y^k)$$     (9)\r\n**$N$ dual problems in parallel**     $$y^{k+1} = y^k + s_k(Ax^{k+1} − b)$$     (10)\r\n\r\nThe $N$ new $x_i^{k+1}$ from (9) are gathered into $Ax^{k+1}$ in (10). Then the resulting $y^{k+1}$ is distributed to the $N$ processors that execute separate minimizations in the next iteration of (9). This can give an enormous saving compared to one large minimization (6) when $f(x)$ is not separable.\r\n\r\n**Augmented Lagrangians**\r\n\r\nTo make the iterations (9)–(10) more robust—to help them converge if $f(x)$ is not strictly convex—we can augment $f(x)$ by a penalty term with a variable factor $\\rho$:\r\n\r\n**Augmented Lagrangian**     $$L_\\rho(x, y) = f(x) + y^{\\mathrm{T}}(Ax − b) + \\frac{1}{2}\\rho\\|Ax − b\\|_2^2.$$     (11)\r\n\r\nThis is the Lagrangian for minimizing $f(x) + \\frac{1}{2}\\rho\\|Ax − b\\|^2$ with constraint $Ax = b$.\r\nThe same steps still lead to maximization as in (6)–(7). And the penalty constant $\\rho$ becomes an appropriate stepsize $s$: We can show that each new $(x_{k+1}, y_{k+1})$ satisfies $\\nabla f(x_{k+1}) + A^{\\mathrm{T}}y_{k+1} = 0$. But there is a big drawback to adding the penalty term with $\\rho$: The Lagrangian $L_\\rho$ is not separable even if $f(x)$ is separable!\r\nWe need one more step to keep the advantage of separability (leading to $N$ simpler maximizations solved in parallel) together with the greater safety that comes from including the penalty term $\\frac{1}{2}\\rho\\|Ax − b\\|^2$.\r\n\r\n**ADMM: Alternating Direction Method of Multipliers**\r\n\r\nThe key new idea is splitting. The original $f(x)$ is broken into two parts (possibly an $\\ell^1$ part and an $\\ell^2$ part). We could call these parts $f_1$ and $f_2$, but to avoid subscripts they will be $f$ and $g$. And we allow $g$ to have a new variable $z$ (instead of $x$), but we recover the original problem by adding the constraint $x = z$. This dodgy but legal maneuver allows us to keep a separable problem, with the big advantage of parallel computations—the pieces of $x_{k+1}$ and $z_{k+1}$ are distributed to separate computers.\r\nThat new constraint $x = z$ joins the original $Ax = b$ in a total of $p$ linear constraints $Ax + Bz = c$. We are now maximizing $f(x) + g(z)$. And as before, we augment the Lagrangian for safer convergence:\r\n\r\n$$L_\\rho(x, z, y) = f(x) + g(z) + y^{\\mathrm{T}}(Ax + By − c) + \\frac{1}{2}\\rho\\|Ax + By − c\\|^2.$$     (12)\r\n\r\nNow we have an extra equation to update $z$ at each step. As before, the stepsize $s$ can be the regularizing coefficient $\\rho$. The key advantage of ADMM is that $x$ and $z$ are updated sequentially and not jointly. The two functions $f(x)$ and $g(z)$ are alternated. A separable $f$ or $g$ will allow the distribution of pieces, for minimization in parallel.\r\n\r\n−---- 【当前译文】 −---------------\r\n@@PAGE:190@@\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 187，系 §III.4 Split Algorithms（分裂算法）一节正文的续页；页眉 Split Algorithms for $A^{+}$ 与印页码 187 均为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 破损严重，按数学语境重建：`叼` = $c_i^{k+1}$、`什 0 m` = from、`g 甩 g Lp 刀 sepa 况 e` = augmented $\\mathcal{L}_{\\rho}$ lose separability、`目 2` = 范数平方、`把 rn` = 分开处理、`0 晦 沅 problem adding e co 刀 豆 ra 忉` = 给问题额外添加一个约束；公式 (9)(10)(11)(12) 依 ADMM 标准推导重建，题注 Decomposed dual problem / N dual problems in parallel 为原书图旁标注，一并译出。\r\n\r\n```math\r\nc_i^{k+1} = \\arg\\min_{c_i} L_i\\left(c_i, y^{k}\\right), \\qquad i = 1,\\ldots,N\r\n\\tag{9}\r\n```\r\n\r\n```math\r\ny^{k+1} = y^{k} + s\\left(Ac^{k+1} − b\\right)\r\n\\tag{10}\r\n```\r\n\r\n> <span style=color:#7f8c8d;>图旁标注：Decomposed dual problem（分解后的对偶问题）——$N$ dual problems in parallel（$N$ 个对偶问题并行求解）。</span>\r\n\r\n由 (9) 得到的 $N$ 个新分量 $c_i^{k+1}$ 在 (10) 中被汇集为 $c^{k+1}$。随后得到的 $y^{k+1}$ 被分发给各个处理器，它们在 (9) 的下一次迭代中各自执行独立的最小化。当 $f(c)$ 不可分离时，与做一次大型最小化 (6) 相比，这种做法能带来巨大的节省。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## Augmented Lagrangians（增广拉格朗日函数）\r\n\r\n为了使迭代 (9)—(10) 更加 robust（稳健）——也就是当 $f(c)$ 不是 strictly convex（严格凸）时帮助它们收敛——我们可以用一个带可变因子 $\\rho$ 的 penalty term（惩罚项）来增广 $L(c,y)$：\r\n\r\n```math\r\n\\mathcal{L}_{\\rho}(c,y) = f(c) + y^{T}\\left(Ac − b\\right) + \\frac{\\rho}{2}\\left\\|Ac − b\\right\\|^{2}\r\n\\tag{11}\r\n```\r\n\r\n这就是在约束 $Ac = b$ 之下最小化 $f(c) + \\frac{\\rho}{2}\\|Ac − b\\|^{2}$ 的 Lagrangian（拉格朗日函数）。同样的步骤仍然导向与 (6)—(7) 中相同的最大化问题。而惩罚常数 $\\rho$ 恰好成为一个合适的步长 $s$。我们可以证明，每一个新的 $(c^{k+1}, y^{k+1})$ 都满足\r\n\r\n```math\r\n\\nabla f\\left(c^{k+1}\\right) + A^{T}y^{k+1} + \\rho A^{T}\\left(Ac^{k+1} − b\\right) = 0\r\n```\r\n\r\n但是，加上带 $\\rho$ 的惩罚项却有一个很大的缺点：**增广后的 $\\mathcal{L}_{\\rho}$ 不再可分离——即使 $f$ 本身是可分离的！**\r\n\r\n我们还需要再走一步，才能既保住可分离性带来的好处（导致 $N$ 个更简单的最大化问题被并行求解），又保住引入惩罚项 $\\frac{\\rho}{2}\\|Ac − b\\|^{2}$ 所带来的更大安全性。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n## ADMM: Alternating Direction Method of Multipliers（ADMM：交替方向乘子法）\r\n\r\n关键的新思想是 splitting（分裂）。原来的 $f$ 被拆成两部分（可能是 $f_1$ 与 $f_2$）。我们本可以把这两部分叫作 $f_1$ 与 $f_2$，但为了避免下标，就称它们为 $f$ 与 $g$。同时我们允许 $g$ 拥有一个新变量 $z$（用来代替 $x$），但我们最终会恢复 $z = x$。这个有点取巧却完全合法的操作——给问题额外添加一个约束——使我们能够保住问题的可分离性，从而享有并行计算的巨大优势：$x^{k+1}$ 与 $z^{k+1}$ 的各分量被分发到不同的计算机上。\r\n\r\n那个新约束 $x = z$ 与原来的 $Ax = b$ 合在一起，构成总共 $p$ 个线性约束 $Ax + Bz = c$。我们现在要最大化的是 $f(x) + g(z)$。和之前一样，为了让收敛更有保障，我们增广 Lagrangian：\r\n\r\n```math\r\n\\mathcal{L}_{\\rho}(x,z,y) = f(x) + g(z) + y^{T}\\left(Ax + Bz − c\\right) + \\frac{\\rho}{2}\\left\\|Ax + Bz − c\\right\\|^{2}\r\n\\tag{12}\r\n```\r\n\r\n现在每一步都多出一个用来更新 $z$ 的方程。和之前一样，步长 $s$ 可以取 regularizing coefficient（正则化系数）$\\rho$。ADMM 的关键优势在于：$x$ 与 $z$ 是依次（sequentially）更新的，而不是联合（jointly）更新。两个函数 $f(x)$ 与 $g(z)$ 是被分开处理的。只要 $f$ 或 $g$ 之一可分离，就允许把各分量分发出去，并行地做最小化。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（跨课程连接）：**</span> 把 ADMM 的三步迭代 (13)–(15) 与你在线性代数（Strang）里学过的 Gauss-Seidel 迭代并排看，会发现它们是同一件事在非线性、非光滑场景下的推广，区别恰恰在于每次更新几个变量。\r\n>\r\n> 复习 Gauss-Seidel 求解 $Ax=b$：把 $A$ 拆成严格下三角、对角、严格上三角三块 $A=L+D+U$，迭代写成 $(D+L)x_{k+1}=b-Ux_k$。它的含义是——更新第 $i$ 个分量时，前 $i-1$ 个分量已经用了**本轮的新值**，后面还用旧值。对照 ADMM：(13) 用旧的 $z^k,y^k$ 求出 $x^{k+1}$；(14) **立刻用刚出炉的 $x^{k+1}$** 加上旧的 $y^k$ 求出 $z^{k+1}$；(15) 再用新出的 $x^{k+1},z^{k+1}$ 更新 $y^{k+1}$。这就是 alternating direction（交替方向）四个字的全部含义：变量被切成两组，轮流坐上被优化的位置，每一轮总有一个变量持有的是最新值。\r\n>\r\n> 落点也要钉死，否则容易把两者混为一谈。Gauss-Seidel 每一步只解一个标量方程（一次除法），收敛与否看迭代矩阵的谱半径是否小于一；ADMM 每一步要解一个子优化问题，收敛与否看原残差与对偶残差是否同时趋零。\r\n>\r\n> 为什么必须交替而不是联合？联合更新要同时最小化 $f(x)+g(z)$，而两者被同一个二次耦合项 $\\frac{\\rho}{2}\\|Ax+Bz-c\\|^2$ 绑着，无法拆成并行子问题。交替更新的好处是：每一步里另一个变量是**常数**，惩罚项就退化成该变量的一个普通二次函数，可与 $f$ 或 $g$ 直接合并求解；若 $g$ 是 $\\lambda\\|z\\|_1$，该步甚至退化成软阈值，有闭式解。举个能心算的数：$\\lambda=1$、$\\rho=2$ 时阈值是 $\\lambda/\\rho=0.5$，某个分量取 $a=0.3$ 会被压成 $0$，取 $a=1.4$ 则变成 $1.4-0.5=0.9$。\r\n>\r\n> 再说机制：为什么交替就一定在下降。$x$ 步是对 $\\mathcal{L}_\\rho(\\cdot,z^k,y^k)$ 求全局极小，于是 $\\mathcal{L}_\\rho(x^{k+1},z^k,y^k)\\le\\mathcal{L}_\\rho(x^k,z^k,y^k)$；$z$ 步同理再压低一次。三步里唯一会抬高 $\\mathcal{L}_\\rho$ 的是 $y$ 步，抬高量恰好等于 $\\rho\\|Ax^{k+1}+Bz^{k+1}-c\\|^2$，这正解释了模板里那条检验标准——原残差趋于零，就是增广拉格朗日重新趋于平稳的量度。\r\n>\r\n> 代价也要讲清楚：交替更新使每一步只下降部分目标，所以在第 VI 章、第 VII 章你会看到，收敛证明必须借助次梯度、单调算子这类凸分析工具，而这本书没有展开；工程上 $\\rho$ 太大时 ADMM 会明显变慢，因为 $x$ 步与 $z$ 步都被拉向中间那个约束，互相拉扯。\r\n>\r\n> 命名一个可复用的模板：**分块轮转下降法（block-coordinate rotation descent）**。适用条件是：目标可分成两块之和（或更多块），块间耦合项是光滑的二次型，各块单独的极小化可解。步骤：写出增广目标；对一个块最小化（固定另一块）；对另一个块最小化（用前一块的新值）；更新对偶乘子以记录块间不一致量。检验标准：每一步目标单调不增，且乘子序列的增量（此处的 $Ax^{k+1}+Bz^{k+1}-c$）趋于零。这套模板在凸优化（Boyd）里会以坐标下降的名字再次出现，只是那里的耦合更弱、不需要乘子。\r\n\r\n> <span style=color:#7f8c8d;>Strang §III.4, p.187</span>"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 7902,
+            "outputTokens": 19706,
+            "cacheReadTokens": 3456,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 7902,
+              "outputTokens": 19706,
+              "cacheReadTokens": 3456,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 17983,
+          "contextWindow": 1000000,
+          "pressureTokens": 11358,
+          "sampledSurfaceTokens": 5714
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 4154,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 12269,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 16839
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}

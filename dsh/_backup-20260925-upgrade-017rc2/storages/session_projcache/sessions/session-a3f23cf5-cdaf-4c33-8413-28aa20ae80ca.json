@@ -1,0 +1,191 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 3,
+      "createdAt": 1790129895240,
+      "cwd": "C:\\Windows\\system32",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 16,
+        "val": "你是学术翻译的**终审专家（"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "你是学术翻译的**终审专家（超强审计 + 修订一体）**。服务对象：大二上学期、智能科学与技术专业、构建主义学习者。你将以最高强度思考，通读下面 2 页（Gilbert Strang《Linear Algebra and Learning From Data》part004，Part III 低秩与压缩感知）的双语译文与译者注，**直接落实修改并输出修订后的完整译文**（不是只给意见清单）。\r\n\r\n【审计维度（全部覆盖；发现问题当场改好）】\r\n1. 🔴 结构完整性：对照 OCR 原文逐句核对——漏译（整句/整段/过渡段/图注）、顺序错乱、编号错误（定理/公式 tag/图号/题号）、习题边界（习题页题干必须保留英文原文）\r\n2. 🔴 数学硬伤：概念混淆（如完备性/紧致性、范数空间直觉误推广）、下标/指标混淆（$s$ 与 $r$、$k$ 与 $j$）、转置 $T$ 与逆 $-1$、权重 $s_k$ 与 $s_k^2$、数值断言错误、证明逻辑缺口。**这是审计的核心价值，务必逐个公式核查**\r\n3. 🔴 译者注质量：每条 800-1200 汉字（公式/引文不计）；有无裸甩名词（不解释的高级概念，如群论/拓扑/泛函——读者尚未学）；跨课程连接是否精确到「课程名 + 概念 + 连接路径 + 区别」；注是否插在对应内容之后；注内的公式是否完整（**严禁把 `$\\lambda$` 写成 lambda**）\r\n4. 🟡 翻译质量：翻译腔（欧化长句、被字滥用、的字堆叠）、伪逐句（把 3-5 句压成 1 句）、术语是否全文一致、每句首字是否中文\r\n5. 🟡 事实核对：注中的年代、数学公式、算法/工具声明是否正确（不确定的直接删掉该断言）\r\n6. 🟢 格式细节：`<span style=color:#2471a3;>` 引号完整；零 `$$`；零 `<div>`；零 Unicode 上下标；标题标记在行首；行内 `$...$` 配对；块级公式用 ```math 围栏；页首灰色说明行与页末灰色引用行格式统一（页末引用行格式：`> <span style=color:#7f8c8d;>Strang §X.Y, p.书页</span>`）\r\n\r\n【本书页映射（核对引用用）】\r\npage_153 = 书页 149\r\npage_154 = 书页 150\r\n\r\n【输出协议（🚨 严格）】\r\n− 直接输出**修订后的完整 2 页译文**，每页以一行 `@@PAGE:NNN@@` 开始，两页之间用 `@@BREAK@@` 分隔\r\n− 不要前言、不要审计说明、不要汇总、不要思考过程\r\n− 保留原来的结构：页首灰色说明行 → 正文/标签 → 译者注（`> <span style=color:#1e8449;>**[note] …**</span>`）→ 页末灰色引用行\r\n− 若某页完全无问题，也原样输出该页全文（不得省略）\r\n\r\n===================== 待终审材料（OCR 原文 + 现有双语译文与注） =====================\r\n@@PAGE:153@@（书页 149）\r\n−-- OCR 原文 −--\r\n4 · Randomized Linear Algebra\r\n149\r\nconclusion t0 be venfied ： The expected value of the “ by matrix SST is I\r\nSame conclusion in 0 th er words ： The expected value of ASSTB is AB\r\nThu s rand om sampling computes the m atrl x product with the correct mean AB\r\np There are 5 identical tri al s · Each tri al chooses a column-row pair of and B with\r\nprobabilitie s t0 Pn (column 什 0 m times row from B divided by − = SP9 〗\r\nThen the expected value = mean = average outcome fro m e ach tri al iS\r\n(column 1 of ） (row 1 of B)\r\n(column of ） (row of B)\r\n1\r\n（ 4 ）\r\nSP\r\nThe p's cancel. This is ex actly AB/s. An d since there are 5 trials, the expected value\r\nfor the randomized multiplication (AS) (STB) is AB,\r\nConclusion AII well so far—but we have to choose the prob abilitie s 内 t0 Pn\r\nAny choice (adding t0 1 ） gives the correct expected value AB (the mean) · But the choice\r\nof the p's c an strongly affec t the variance ！\r\nUniform sampling would choose equal probabilities P = 1 / This is re as on le\r\nthe column s 0f (and also the row s of B) have s imil ar lengths. But SUPPOSe that\r\n(column 1 of ） (row 1 of B) make s uP most of B—it dominates the 0 ther c olumn-row\r\nouter products. Then we don' t want tO randomly miss it.\r\nOur appro ach here is t0 use 况 eq ba 历 I 湎 We now state and c 0 mpute the\r\nbest p's. And we mention an entirely different option ： lntroduce a mxing rnaü•ix M\r\nand work with AM and M¯IB. Then use equal probabilities for the randomly mixe d\r\ncolu 画 s of and row s of B.\r\nNorm-squared Sampling Minimizes the Variance\r\nN0 皿 · squared s ampling chooses the prob abilities proportional to the numbers\r\n日 colu 画 j of | llrow j of BII. ln the impo rtant case B = AT ， the are proportional\r\nt0 llcolumn j of 日 2 · Th e n ame “ 刀 orn 况 a d ' ' or “ I g 仫 d ' ' is then natural.\r\nWe still have to sc ale all the probabilities by a suitable constant C so they ad d to 1 ：\r\n1\r\n： 1 日 日 陋 · （ 5 ）\r\n一 j llrowj of ：\r\nC\r\nN0w we will p amstakingly c ompute the variance for randomized matrix multiplic 黿 on\r\nusing any prob abilities 一 d we w ill verify that e 0 记 e P ' 沅 eq （ 5 ）\r\ni es the va 五 a c 巳 Best tO choose large columns and rows more Often. The line\r\nafter equation （ 4 ） showed that choices give the c orrect me 皿 E [ASSTBI = AB.\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 153 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 149，属 §II.4 Randomized Linear Algebra（随机化线性代数）；页眉（含节号 4 与印页码 149）为重复元素，不译。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 丢失了维数与部分下标：`the “ by matrix SST` 依数学语境补为 $n\\times n$ 矩阵 $SS^{T}$，`SP9` 补为 $s p_j$（其中 $\\sum_j p_j = 1$），`ASSTB ÄB` 补为 $E[AS\\,S^{T}B] = AB$，`1/SP` 补为 $1/(s p_j)$，`Section 11.4` 即 Section II.4。式 (4)(5) 的编号与原文一致。\r\n\r\n**有待验证的结论（conclusion to be verified）：** $n \\times n$ 矩阵 $SS^{T}$ 的期望值是 $I$。\r\n同一个结论换一种说法：$AS\\,S^{T}B$ 的期望值是 $AB$。\r\n因此，随机采样算出的矩阵乘积具有正确的均值 $AB$。\r\n\r\n**一共有 $s$ 次完全相同的试验（identical trials）。** 每次试验都以概率 $p_1$ 到 $p_n$ 选取 $A$ 的一列与 $B$ 的一行，也就是取 $A$ 的第 $j$ 列 $a_j$ 乘以 $B$ 的第 $j$ 行 $b_j$，再除以 $s p_j$，其中 $\\sum_j p_j = 1$。\r\n于是期望值 = 均值 = 每次试验结果的平均值，它等于\r\n\r\n```math\r\n\\sum_{j=1}^{n} p_j\\,\\frac{a_j b_j}{s\\,p_j}=\\frac{1}{s}\\sum_{j=1}^{n} a_j b_j=\\frac{AB}{s}. \\tag{4}\r\n```\r\n\r\n这些 $p$ 相互抵消，结果恰好是 $AB/s$。\r\n而由于一共有 $s$ 次试验，随机化乘法 $(AS)(S^{T}B)$ 的期望值就是 $AB$。\r\n\r\n**结论（Conclusion）。** 到此为止一切顺利——但我们必须选出概率 $p_1$ 到 $p_n$。\r\n任何一组（加起来等于 1 的）选择都给出正确的期望值 $AB$（也就是均值）。\r\n但 $p$ 的选取会强烈影响方差（variance）！\r\n\r\n均匀采样（uniform sampling）会选取相等的概率 $p_j = 1/n$。\r\n当 $A$ 的各列（以及 $B$ 的各行）长度相近时，这样做是合理的。\r\n但假如 $(A$ 的第 1 列$)(B$ 的第 1 行$)$ 构成了 $AB$ 的绝大部分——它压倒了其余的列-行外积（outer products），那么我们就不希望在随机选取时把它漏掉。\r\n\r\n我们这里的做法是采用范数平方采样（norm-squared sampling）。\r\n下面我们陈述并算出最好的 $p$。\r\n同时还要提一个完全不同的选项：引入混合矩阵（mixing matrix）$M$，改为对 $AM$ 与 $M^{-1}B$ 做计算，然后对 $A$ 的随机混合列与 $B$ 的相应行采用相等的概率。\r\n\r\n<span style=color:#2471a3;>**[section]**</span>\r\n\r\n### Norm-squared Sampling Minimizes the Variance（范数平方采样使方差最小）\r\n\r\n范数平方采样（norm-squared sampling）选取的概率正比于数 $\\|a_j\\|\\,\\|b_j\\|$，其中 $a_j$ 是 $A$ 的第 $j$ 列，$b_j$ 是 $B$ 的第 $j$ 行。\r\n在重要的情形 $B = A^{T}$ 下，$p_j$ 正比于 $\\|a_j\\|^2$。\r\n这时“norm-squared（范数平方）”或“length-squared（长度平方）”这个名字就很自然。\r\n\r\n我们仍然要用一个合适的常数 $C$ 去缩放所有概率，使它们加起来等于 1：\r\n\r\n```math\r\np_j=\\frac{\\|a_j\\|\\,\\|b_j\\|}{C},\\qquad C=\\sum_{j=1}^{n}\\|a_j\\|\\,\\|b_j\\|. \\tag{5}\r\n```\r\n\r\n现在我们不惮其烦地计算任意概率 $p_j$ 下随机化矩阵乘法的方差，并验证式 (5) 中的选择使方差取到最小。\r\n最好是更频繁地选取大的列与大的行。\r\n式 (4) 之后的那句话已经说明，这样的选择给出正确的均值 $E[AS\\,S^{T}B] = AB$。\r\n\r\n@@PAGE:154@@（书页 150）\r\n−-- OCR 原文 −--\r\nHere the 叻 （ 习 g the bab “ 叻 i 忉 e the va riance （ 6 丿 ·\r\n1 by a Lagrange multiplier Add it to the\r\nMultiply the constramt + 。 · 。 +\r\nfunction in （ 6 ） · Th1 s is the key to Lagrange multipliers ：\r\n2 日 b 2\r\n1\r\n−IIAB112F+Ä Ep\r\n5\r\n1\r\nTake the p arti al derivatives OL/Dpj to find the minimizing (the optimal probabilities) ：\r\nOL\r\n1\r\n0 becomes\r\n2\r\nThi s says that = 日 日 日 b 力 7 · Choose the Lagrange multiplier so th at 乥 = 1 ·\r\nComputations with Large Matrices\r\n150\r\nEach of the s al s produces a matnx X, = b / 5 with probability 巧 ， lts\r\nentry is （ ） 认 = 廾 / 5 · ln each 亩 al we compute th e mean ： the cancel.\r\nMean E 凶 ： 乥  塢 ： 一 −AB as in （ 4 ）\r\n1\r\nThe variance for on e tri al is by definition E[X2] 一 (E[X])2. Adding the results for\r\ns independent trials multiplies th e one-trial mean an d also the one-trial variance by 5 · The\r\nmean becomes AB as we kn OW. The variance will be computed in th e Frobeniu s norm\r\n(sum of squares of matrix entries) · Compare the correct AB with the random CR ·\r\n乥 巧 ： 乥\r\nj=l\r\n(sum first over and 乥\r\n1\r\n1\r\n5\r\n2\r\n（ 6 ）\r\n2\r\n， pn tO mmimize thi s variance. Equation （ 5 ） reve al s\r\nFin ly we choose probabilities 内 ， ．\r\n| 同 目 llb}ll/c from （ 5 ） ，\r\nthe mimmzing choice, proved b elow. For th at choice\r\n引 2 目 b 2 in equation （ 6 ） become cl 目 丨 丰 Their sum is c2\r\nthe terms\r\nThe smallest variance (using those optimal ） is our final result ：\r\n2\r\n1\r\n2\r\n5\r\n1\r\n5\r\n2\r\n2\r\n（ 7 ）\r\n1\r\n= 1 gives = C and\r\n1\r\nas predicted in （ 5 ） ，\r\nN0rm-squared sampling uses the optimal probabilities Pj for minimum variance•\r\n\r\n−-- 现有译文（含译者注） −--\r\n<!-- page 154 −->\r\n\r\n> <span style=color:#7f8c8d;>本页为书页 150，仍属 §II.4 Randomized Linear Algebra；页眉 Computations with Large Matrices 与印页码 150 为重复元素，不译、不收录。</span>\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（OCR 修正）：**</span> 本页 OCR 损坏较重：`叻（习g the bab “叻i忉e the variance （6丿` 依语境重建为“概率 $p_j$ 决定方差 (6)”，`Ä` 重建为 Lagrange multiplier（拉格朗日乘子）$\\lambda$，`IIAB112F` 重建为 $\\|AB\\|_F^{2}$，`乥巧`、`引`、`cl 丨 丰` 等分别重建为下标 $j$、求和号与常数 $C$；`X_i = a_jb_j^{T}/s` 按“求均值时 $p_j$ 相互抵消”补回分母中的 $p_j$。公式 (6)(7) 按方差的标准推导还原，编号与原文一致。\r\n\r\n这里，概率 $p_j$ 的取值决定了方差 (6)。\r\n把约束 $p_1 + \\cdots + p_n = 1$ 乘以一个 Lagrange multiplier（拉格朗日乘子）$\\lambda$，再加到 (6) 中的函数上去。\r\n这正是拉格朗日乘子法的关键之处：\r\n\r\n```math\r\nL = \\frac{1}{s}\\sum_{j=1}^{n}\\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{p_j} − \\|AB\\|_F^{2} + \\lambda\\sum_{j=1}^{n} p_j\r\n```\r\n\r\n其中 $a_j$ 是 $A$ 的第 $j$ 列，$b_j$ 是 $B$ 的第 $j$ 行（写成列向量，因此 $a_jb_j^{T}$ 是 $m \\times n$ 矩阵）。\r\n对 $p_j$ 求偏导数 $\\partial L/\\partial p_j$，就得到使函数取极小的 $p_j$（即最优概率）：\r\n\r\n```math\r\n\\frac{\\partial L}{\\partial p_j} = −\\frac{1}{s}\\,\\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{p_j^{2}} + \\lambda = 0 \\quad\\Longrightarrow\\quad p_j^{2} = \\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{\\lambda s}\r\n```\r\n\r\n这说明 $p_j$ 与 $\\|a_j\\|\\,\\|b_j\\|$ 成正比。\r\n再选取拉格朗日乘子，使 $\\sum_{j=1}^{n} p_j = 1$。\r\n\r\n在 $s$ 次试验中，每一次都以概率 $p_j$ 生成一个矩阵 $X_i = a_jb_j^{T}/(s\\,p_j)$。\r\n它的元素是 $(X_i)_{kl} = a_{kj}b_{jl}/(s\\,p_j)$。\r\n在每次试验中我们都计算均值：$p_j$ 相互抵消。\r\n\r\n```math\r\nE[X] = \\sum_{j=1}^{n} p_j\\,\\frac{a_jb_j^{T}}{s\\,p_j} = \\frac{AB}{s}\r\n```\r\n\r\n这与式 (4) 一致：单次试验的均值是 $AB/s$，把 $s$ 次试验的结果相加，均值就变成 $AB$。\r\n单次试验的方差按定义（by definition）就是 $E[X^{2}] − (E[X])^{2}$。\r\n把 $s$ 次独立试验（independent trials）的结果相加，会把单次试验的均值以及单次试验的方差都乘以 $s$。\r\n均值如我们所知就变成了 $AB$。\r\n方差将在 Frobenius norm（弗罗贝尼乌斯范数）下计算，也就是矩阵各元素平方之和。\r\n把正确的 $AB$ 与随机的 $CR$ 作比较（其中 $C = AS$，$R = S^{T}B$）：\r\n\r\n```math\r\n\\text{Variance} = \\frac{1}{s}\\left(\\sum_{j=1}^{n}\\frac{\\|a_j\\|^{2}\\,\\|b_j\\|^{2}}{p_j} − \\|AB\\|_F^{2}\\right) \\tag{6}\r\n```\r\n\r\n这里的求和先对 $j$ 进行，再对矩阵的各个元素进行。\r\n\r\n最后我们选取概率 $p_1,\\dots,p_n$，使这个方差取到最小。\r\n\r\n> <span style=color:#1e8449;>**[note] 译者注（证明策略模板）：**</span> 这一页把选概率变成了一个标准的约束优化问题，并且给出了完全解。记 $c_j=\\|\\text{column }j\\text{ of }A\\|^{2}\\,\\|\\text{row }j\\text{ of }B\\|^{2}$，要最小化的是式 (6) 中的 $\\sum_{j=1}^{n}\\dfrac{c_j}{p_j}$（外面那层 $\\frac{1}{s}$ 与 $-\\|AB\\|_F^{2}$ 都是常数），约束为 $p_1+\\cdots+p_n=1$、$p_j>0$。第一性原理：$1/p$ 在 $p>0$ 上凸（二阶导 $2/p^{3}>0$），凸函数配正系数相加仍凸，约束又是线性的，所以**驻点就是全局最小点**，拉格朗日必要条件足够——这正是 Boyd 课里 KKT 条件最温和的一档（凸问题、线性约束，Slater 条件自动成立）。求导得 $-\\frac{1}{s}\\frac{c_j}{p_j^{2}}+\\lambda=0$，于是 $p_j\\propto\\sqrt{c_j}=\\|\\text{column }j\\|\\cdot\\|\\text{row }j\\|$，再由 $\\sum_j p_j=1$ 定出 $1/\\sqrt{\\lambda s}=1/C$，正好还原式 (5)。\r\n\r\n先看清 $c_j$ 为什么长这样：$AB=\\sum_{j=1}^{n}(\\text{column }j\\text{ of }A)(\\text{row }j\\text{ of }B)$ 是 $n$ 个秩一矩阵之和，而每个秩一项的 Frobenius 范数平方恰好等于 $\\|\\text{column }j\\text{ of }A\\|^{2}\\|\\text{row }j\\text{ of }B\\|^{2}=c_j$，所以 $c_j$ 就是第 $j$ 项的能量，目标 $\\sum_j c_j/p_j$ 则是能量的加权倒数和。跨课程连接：Strang 线性代数与 18.065 里，SVD 把矩阵写成奇异值乘秩一项之和，并用少数大的奇异值做低秩近似，判据同样是各项能量；这里的连接路径是：把 $AB$ 看成秩一项之和，于是每项能量是 $c_j$，于是抽样式矩阵乘法的方差正比于 $\\sum_j c_j/p_j$。区别在于 SVD 是确定性的截断，保留最大的几项、丢掉其余；抽样式近似则是随机地保留全部项，只让大项出现得更频繁，因此估计仍然无偏。另外 $p_j>0$ 这个约束其实永远不会取等号：只要某个 $p_j$ 趋近于零，$c_j/p_j$ 就趋于无穷，最优解自动落在内部，这正是 Slater 条件自动成立的具体体现，也是驻点即全局最优能放心使用的原因。\r\n\r\n但有个更快、信息更全的做法，值得抽象成模板——**柯西-施瓦茨配平法**：要最小化 $\\sum_j c_j/p_j$ 且 $\\sum_j p_j=1$，就把 $\\sum_j\\sqrt{c_j}$ 拆成内积形式\r\n```math\r\n\\sum_{j=1}^{n}\\sqrt{c_j}=\\sum_{j=1}^{n}\\frac{\\sqrt{c_j}}{\\sqrt{p_j}}\\cdot\\sqrt{p_j}\r\n\\;\\Longrightarrow\\;\r\n\\Big(\\sum_{j=1}^{n}\\sqrt{c_j}\\Big)^{2}\\le\\Big(\\sum_{j=1}^{n}\\frac{c_j}{p_j}\\Big)\\Big(\\sum_{j=1}^{n}p_j\\Big)=\\sum_{j=1}^{n}\\frac{c_j}{p_j}.\r\n```\r\n等号当且仅当 $\\frac{\\sqrt{c_j}}{\\sqrt{p_j}}\\propto\\sqrt{p_j}$，即 $p_j\\propto\\sqrt{c_j}$。于是最小的 $\\sum_j c_j/p_j$ 就是 $\\big(\\sum_j\\sqrt{c_j}\\big)^{2}=C^{2}$，代回式 (6) 立刻得到式 (7) 的最小方差 $\\frac{1}{s}(C^{2}-\\|AB\\|_F^{2})$。柯西-施瓦茨一次给出三样东西：最优值、最优解（等号条件）、以及这确实是下界的证明，比只解驻点更强也更短；凸性负责把局部最优升级为全局最优。两者配合是这类分母含 $p$、分子固定的配比问题的标准打法。\r\n\r\n一个可以心算的验算：设三列的 $c=(4,1,1)$，则 $C=2+1+1=4$，$C^{2}=16$，$\\sum_j c_j=6$。均匀概率 $p_j=1/3$ 给出 $\\sum_j c_j/p_j=18$；最优概率 $p=(1/2,1/4,1/4)$ 给出 $4\\cdot2+1\\cdot4+1\\cdot4=16$，恰好等于 $C^{2}$。同一个无偏约束下，方差从 18 压到 16（公共因子不影响比较）。18 与 16 之差就是柯西-施瓦茨的间隙 $\\sum_j c_j/p_j-\\big(\\sum_j\\sqrt{c_j}\\big)^{2}$，均匀取概率时它等于 2；用 Jensen 不等式（$\\sqrt{\\cdot}$ 是凹函数）也能得到同一个下界，但柯西-施瓦茨额外送出了等号条件，也就是最优解本身。\r\n\r\n还有一条关于代价的跨课程连接：抽样式矩阵乘法每抽中一个 $j$，就形成秩一项 $(\\text{column }j\\text{ of }A)(\\text{row }j\\text{ of }B)$，代价 $O(n^{2})$，抽 $s$ 次总代价 $O(sn^{2})$；而 6.006 与 CLRS 里的精确矩阵乘法是 $O(n^{3})$（分治版本 $8T(n/2)+O(n^{2})$ 仍是同一个量级）。区别在于分治是精确算法、精度不损失，抽样是近似算法，拿方差换时间；式 (6) 里那个 $\\frac{1}{s}$ 还提醒你，方差与 $s$ 成反比而标准差只按 $1/\\sqrt{s}$ 收缩，精度想翻倍就得付四倍工作量。\r\n\r\n还有一点直觉值得点明：最优解不是把概率全押在最大的那一项上（那是贪心，会让其余项以极小的 $p$ 换来巨大的 $c_j/p_j$，方差反而爆炸），而是**按 $\\sqrt{c_j}$ 配平**——大的略大、小的不至于被饿死。拉格朗日乘子 $\\lambda$ 可以理解成约束 $\\sum_j p_j=1$ 的价格，度量放松这条约束能给目标带来多少好处，这正是凸优化对偶变量的经济学解释。\r\n\r\n式 (5) 揭示了使方差最小的那个选择 $p_j = \\|a_j\\|\\,\\|b_j\\|/C$，其证明见下。\r\n对这一选择，式 (6) 中的各项 $\\|a_j\\|^{2}\\|b_j\\|^{2}/p_j$ 变成 $C\\,\\|a_j\\|\\,\\|b_j\\|$，而它们的和就是 $C^{2}$。\r\n于是，采用这些最优 $p_j$ 所得到的最小方差就是我们的最终结果：\r\n\r\n```math\r\n\\text{smallest variance} = \\frac{1}{s}\\left(C^{2} − \\|AB\\|_F^{2}\\right) \\tag{7}\r\n```\r\n\r\n而 $\\sum_{j=1}^{n} p_j = 1$ 给出 $\\sqrt{\\lambda s} = C$，以及正如式 (5) 所预言的那样的 $p_j$。\r\n\r\n**范数平方采样使用最优概率 $p_j$，从而取得最小方差。**"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 16,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 16,
+        "val": "danger-full-access"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 16,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 16,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 246,
+            "outputTokens": 11297,
+            "cacheReadTokens": 9344,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 1,
+            "buckets": {
+              "uncachedInputTokens": 246,
+              "outputTokens": 11297,
+              "cacheReadTokens": 9344,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "surfaceTokens": 12429,
+          "contextWindow": 1000000,
+          "pressureTokens": 9590,
+          "sampledSurfaceTokens": 4634
+        }
+      },
+      "contextBreakdown": {
+        "ver": 4,
+        "seq": 16,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 1144,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 3074,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 310,
+              "system": false
+            },
+            {
+              "seq": 14,
+              "heuristicTokens": 7795,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 1144,
+            "toolsTokens": 1885,
+            "messageTokens": 11285
+          }
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 16,
+        "val": null
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 6,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 15
+          },
+          "lastTurn": 1
+        }
+      },
+      "subagentCatalog": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 16,
+        "val": {}
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 16,
+        "val": null
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 16,
+        "val": {
+          "preset": "danger-full-access",
+          "sandbox": "danger-full-access",
+          "approval": "never",
+          "seeded": false
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 16,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      }
+    }
+  }
+}
