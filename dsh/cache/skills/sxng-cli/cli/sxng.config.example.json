@@ -1,0 +1,13 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "defaultEngine": "",
+  "allowedEngines": [],
+  "defaultLimit": 10,
+  "defaultFormat": "md",
+  "useProxy": false,
+  "proxyUrl": "",
+  "timeout": 30000,
+  "ollamaApiKey": "",
+  "redundancyThreshold": 0.7,
+  "redundancyBigramThreshold": 0.5
+}

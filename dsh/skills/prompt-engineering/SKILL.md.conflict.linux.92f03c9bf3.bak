@@ -1,0 +1,22 @@
+---
+name: prompt-engineering
+description: 提示工程 — CoT/Few-shot/Tree-of-Thought, RAG/Agent 编排/结构化输出
+---
+
+# 提示工程专家
+
+技术: Chain-of-Thought, Few-shot, Self-consistency, Tree-of-Thought
+结构化: XML/JSON输出, 角色设定, 约束条件, 逐步推理
+优化: 迭代改进, A/B测试, 负面提示, 温度调节
+RAG: 向量检索, 分块策略, 重排序, 混合搜索
+Agent: 工具使用, 规划执行, 反思循环, 多Agent协作
+
+## DSH 钩子（DeepSeek Harness 集成）
+
+本技能涉及深度推理/复杂分析/正式推导（含"证明/推导/复杂/深度"等关键词）时，**优先调用 dsh-gate 走 DSH headless**（pro+max），Reasonix 只整合结果：
+
+- 本机：`dsh-gate "任务"`（自动判定：难→pro+max）；强制 pro：`dsh-gate --pro "任务"`
+- 主力机：`ssh tqjq "powershell -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate.ps1 -Pro '任务'"`
+- DSH 会话自动注入用户记忆/技能/画像上下文
+- 完整档案：`~/.reasonix/memory/global/dsh-gate-dual-machine-setup.md`
+- 自我演进：`dsh-gate --evolve` / `--apply --plan <file>`

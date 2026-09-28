@@ -64,6 +64,10 @@ const UNLOCKABLE_INDEX = [
   'interrupt_agent / send_message / list_agents — multi-agent control',
   'todo_write — task tracking',
   'ask_user_question — ask the user',
+  // Preset-local (memory.mjs), not a harness package: listed here because the
+  // standing rule is `use-user-persona-before-tasks`, and a tool the model
+  // cannot see is a rule that can never fire.
+  'memory_search / memory_read / memory_profile / memory_remember — the shared reasonix memory corpus (~/.reasonix/memory)',
 ]
 
 /** Register the model-facing `dev_tool_search` tool. */
@@ -93,27 +97,53 @@ export function apply(ctx) {
     },
     async execute(args, exec) {
       const query = typeof args.query === 'string' ? args.query.trim() : ''
-      const unlock = Array.isArray(args.toolNames) ? args.toolNames.filter((name) => typeof name === 'string' && name.length > 0) : []
+      const unlock = Array.isArray(args.toolNames)
+        ? [...new Set(args.toolNames.filter((name) => typeof name === 'string' && name.length > 0))]
+        : []
 
       const lines = []
-      if (unlock.length > 0) {
-        lines.push(`Unlocked for the next request: ${unlock.join(', ')}`)
-      }
       if (query.length === 0 && unlock.length === 0) {
         lines.push('Provide `query` to search the catalog, or `toolNames` to unlock tools.')
         return { text: lines.join('\n') }
+      }
+
+      // The executing agent IS the viewing scope: preset tools register into
+      // the agent-scope layer of the tools registry, and schemas() with no
+      // scope only sees the global layer — every preset-provided tool would
+      // be invisible to keyword search (issue #24). Same pattern as the
+      // harness's own code mode (`registry.schemas(exec.agent)`).
+      //
+      // FIX (local, 2026-09-27): resolve the catalog ONCE, up front, and
+      // validate `toolNames` against it BEFORE reporting. The previous version
+      // echoed `Unlocked for the next request: <input>` with NO validation, so
+      // a typo — or a tool owned by a preset row this session never mounted —
+      // was reported as unlocked here and then silently dropped by
+      // tool-bootstrap.mjs's keep-set filter, with no signal anywhere. Absent
+      // names are now named explicitly instead of being called unlocked.
+      let schemas
+      try {
+        schemas = ctx.tools.schemas(exec?.agent)
+      } catch (error) {
+        return { text: `catalog unavailable: ${String((error && error.message) || error)}` }
+      }
+      const catalog = new Set(schemas.map((schema) => schema.name))
+
+      if (unlock.length > 0) {
+        const known = unlock.filter((name) => catalog.has(name))
+        const absent = unlock.filter((name) => !catalog.has(name))
+        if (known.length > 0) lines.push(`Unlocked for the next request: ${known.join(', ')}`)
+        if (absent.length > 0) {
+          lines.push(
+            `NOT unlocked — absent from this session's catalog: ${absent.join(', ')}`,
+            "An unlock can only expose a tool that is already registered. An absent name means either a typo, or a plugin this session never mounted — a preset row added AFTER the session was created is not retrofitted into it. Start a NEW session to pick that row up.",
+          )
+        }
       }
       if (query.length === 0) {
         return { text: lines.join('\n') || 'Nothing to do.' }
       }
 
       try {
-        // The executing agent IS the viewing scope: preset tools register into
-        // the agent-scope layer of the tools registry, and schemas() with no
-        // scope only sees the global layer — every preset-provided tool would
-        // be invisible to keyword search (issue #24). Same pattern as the
-        // harness's own code mode (`registry.schemas(exec.agent)`).
-        const schemas = ctx.tools.schemas(exec?.agent)
         const wanted = query.toLowerCase().split(/[^a-z0-9_]+/).filter(Boolean)
         // FIX: score instead of AND-filter. Exact name match ranks first;
         // otherwise every tool matching at least one token competes, ordered

@@ -1,0 +1,25 @@
+{
+  "name": "dsh-profile-web",
+  "private": true,
+  "dependencies": {
+    "@liustack/modlens": "3.26.5",
+    "@local/dsh-plugin-goat-panel": "file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel",
+    "dsh-deja": "^0.21.2",
+    "dsh-plugin-local-search": "link:D:/Toolbox/goat-gateway/dsh-plugin-local-search",
+    "dsh-web-search-multi": "git+https://github.com/cinob/dsh-web-search-multi.git"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "@deepseek-ai/dsh-base",
+        "@deepseek-ai/dsh-web-app",
+        "@local/dsh-plugin-goat-panel",
+        "dsh-web-search-multi",
+        "dsh-deja",
+        "@liustack/modlens",
+        "dsh-plugin-local-search"
+      ],
+      "patchReload": "live"
+    }
+  }
+}

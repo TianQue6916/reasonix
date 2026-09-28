@@ -1,0 +1,16 @@
+# dsh-plugin-local-search bundle patch
+# 把 web_search 的 provider 换成「本地 wiki + 全 GitHub」，多源搜索作为 fallback。
+- insert:
+    - id: local-wiki-github
+      name: dsh-plugin-local-search
+      config:
+        timeoutMs: 20000
+        maxResults: 8
+        enableGithub: true
+        enableFallback: true
+        fallbackProviderId: "web-search-deepseek"
+        priorityOwner: "TianQue6916"
+
+- id: web
+  config:
+    searchProvider: local-wiki-github

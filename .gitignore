@@ -11,3 +11,21 @@ skills/ai-vibe-writing-skills/.git/
 
 # Node modules (if any)
 node_modules/
+
+# 凭据类（绝不入库）
+dsh/local-search-token
+dsh/.env
+dsh/.credentials.yaml
+dsh/.credentials.yml
+**/keys.json
+*.token
+
+# 会话/凭据类（绝不入库，2026-09-27）
+reasonix/weixin/accounts/
+reasonix/desktop-shell/Network/Trust Tokens*
+
+# 会话投影缓存（21MB / 1254 JSON，含密钥命中）与 mnemon 数据草稿，绝不入库
+dsh/storages/session_projcache/
+dsh/storages/mnemon-draft.json
+**/session_projcache/
+**/session_projcache.json

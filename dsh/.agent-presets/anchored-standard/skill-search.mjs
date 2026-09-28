@@ -25,6 +25,10 @@
  * the composition must NOT mount both, or the catalog injection returns.
  */
 
+import { readFile, writeFile, mkdir, rename } from 'node:fs/promises'
+import { join, dirname } from 'node:path'
+import { homedir } from 'node:os'
+
 /** Cordis plugin name used by loader diagnostics. */
 export const name = 'skill-search'
 
@@ -32,6 +36,71 @@ export const name = 'skill-search'
 export const inject = ['agents', 'tools', 'skills']
 
 const MAX_RESULTS = 20
+/**
+ * Usage ledger — how often each skill was actually loaded, and when. Written on every
+ * successful `skill_load`, read only to sort `skill_search` results: a frequently or
+ * recently used skill floats up, but a strictly better textual match still wins.
+ * This is the dsh-side counterpart of the community `dsh-skill-scoreboard` plugin —
+ * kept inside this tool because the ordering adjustment has to happen here.
+ */
+const USAGE_PATH = process.env.DSH_SKILL_USAGE ?? join(homedir(), '.dsh', 'storages', 'skill-usage.json')
+/** Days after which one past use stops mattering much (exponential decay). */
+const RECENCY_HALF_LIFE_DAYS = 14
+/** How far usage may lift a skill above an equally-matching peer. */
+const USAGE_WEIGHT = 0.6
+
+/** Read the ledger (missing or corrupt reads as empty). */
+async function loadUsage() {
+  try {
+    const parsed = JSON.parse(await readFile(USAGE_PATH, 'utf8'))
+    if (parsed && typeof parsed === 'object' && parsed.skills) return parsed
+  } catch {
+    /* cold start */
+  }
+  return { version: 1, skills: {} }
+}
+
+/** Atomic write of the ledger. */
+async function saveUsage(state) {
+  await mkdir(dirname(USAGE_PATH), { recursive: true })
+  const tmp = `${USAGE_PATH}.tmp-${process.pid}`
+  await writeFile(tmp, JSON.stringify(state, null, 1), 'utf8')
+  await rename(tmp, USAGE_PATH)
+}
+
+/** Record one successful load; the ledger is best-effort and never breaks a call. */
+async function recordSkillUse(name) {
+  try {
+    const state = await loadUsage()
+    const entry = state.skills[name] ?? { loads: 0, firstUsedAt: 0, lastUsedAt: 0 }
+    entry.loads += 1
+    entry.lastUsedAt = Date.now()
+    if (!entry.firstUsedAt) entry.firstUsedAt = entry.lastUsedAt
+    state.skills[name] = entry
+    await saveUsage(state)
+  } catch {
+    /* best-effort */
+  }
+}
+
+/** Frequency + recency score for one skill (0 when never used). */
+function usageScore(entry, now) {
+  if (entry === undefined || entry === null) return 0
+  const frequency = Math.log1p(entry.loads ?? 0)
+  const ageDays = Math.max(0, (now - (entry.lastUsedAt ?? 0)) / 86400000)
+  return frequency + Math.exp(-ageDays / RECENCY_HALF_LIFE_DAYS)
+}
+
+/** Short relative age for the result line. */
+function relativeDays(at, now) {
+  if (!at) return 'never'
+  const days = (now - at) / 86400000
+  if (days < 1) return 'today'
+  if (days < 2) return 'yesterday'
+  if (days < 30) return `${Math.round(days)}d ago`
+  return `${Math.round(days / 30)}mo ago`
+}
+
 
 /** Minimal JSON schema compiler for tool parameters (zero dependencies). */
 function toJsonSchema(spec) {
@@ -70,15 +139,36 @@ export function apply(ctx) {
           cwd: exec?.agent?.session?.header?.cwd,
           signal: exec?.signal,
         })
-        const matches = all.filter((skill) => {
-          if (wanted.length === 0) return true
-          const haystack = tokens(`${skill.name} ${skill.description ?? ''} ${skill.whenToUse ?? ''}`).join(' ')
-          return wanted.every((token) => haystack.includes(token))
-        })
-        const head = matches.slice(0, MAX_RESULTS)
-        const lines = head.map((skill) => {
-          const desc = (skill.description || '').split('\n')[0]
-          return `- ${skill.name}: ${desc}`
+        const usageState = await loadUsage()
+        const now = Date.now()
+        const scored = all
+          .filter((skill) => {
+            if (wanted.length === 0) return true
+            const haystack = tokens(`${skill.name} ${skill.description ?? ''} ${skill.whenToUse ?? ''}`).join(' ')
+            return wanted.every((token) => haystack.includes(token))
+          })
+          .map((skill) => {
+            const nameTokens = tokens(skill.name).join(' ')
+            const nameHits = wanted.filter((token) => nameTokens.includes(token)).length
+            const entry = usageState.skills[skill.name]
+            return {
+              skill,
+              entry,
+              match: wanted.length === 0 ? 0 : nameHits / wanted.length,
+              usage: usageScore(entry, now),
+            }
+          })
+          .sort(
+            (a, b) =>
+              b.match + USAGE_WEIGHT * b.usage - (a.match + USAGE_WEIGHT * a.usage) ||
+              a.skill.name.localeCompare(b.skill.name),
+          )
+        const matches = scored.map((row) => row.skill)
+        const head = scored.slice(0, MAX_RESULTS)
+        const lines = head.map((row) => {
+          const desc = (row.skill.description || '').split('\n')[0]
+          const uses = row.entry && row.entry.loads > 0 ? ` [${row.entry.loads}x, ${relativeDays(row.entry.lastUsedAt, now)}]` : ''
+          return `- ${row.skill.name}${uses}: ${desc}`
         })
         if (lines.length === 0) return { text: `No skills match "${args.query}". Use skill_search with other keywords.` }
         const extra = matches.length > MAX_RESULTS ? `\n…(${matches.length - MAX_RESULTS} more)` : ''
@@ -123,6 +213,7 @@ export function apply(ctx) {
           content: [{ type: 'text', text: body }],
           source: { kind: 'skill-invocation', name: args.name, form: 'instructions' },
         })
+        await recordSkillUse(args.name)
         return { text: `Skill "${args.name}" loaded; its instructions will be injected for the next request.` }
       } catch (error) {
         return { text: `skill_load failed: ${String((error && error.message) || error)}` }

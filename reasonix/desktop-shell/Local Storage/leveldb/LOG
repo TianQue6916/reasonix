@@ -1,6 +1,24 @@
-2026/09/25-17:46:06.344 4c0c Reusing MANIFEST C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/MANIFEST-000001
-2026/09/25-17:46:06.347 4c0c Recovering log #49
-2026/09/25-17:46:06.348 4c0c Reusing old log C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/000049.log 
-2026/09/25-19:21:26.056 1858 Level-0 table #53: started
-2026/09/25-19:21:26.058 1858 Level-0 table #53: 19311 bytes OK
-2026/09/25-19:21:26.061 1858 Delete type=0 #49
+2026/09/26-13:47:34.747 3604 Reusing MANIFEST C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/MANIFEST-000001
+2026/09/26-13:47:34.784 3604 Recovering log #60
+2026/09/26-13:47:34.785 3604 Reusing old log C:\Users\27063\AppData\Roaming\reasonix\desktop-shell\Local Storage\leveldb/000060.log 
+2026/09/26-13:48:34.793 6560 Level-0 table #64: started
+2026/09/26-13:48:34.798 6560 Level-0 table #64: 20493 bytes OK
+2026/09/26-13:48:34.800 6560 Delete type=0 #60
+2026/09/26-16:28:13.413 6560 Level-0 table #66: started
+2026/09/26-16:28:13.425 6560 Level-0 table #66: 16658 bytes OK
+2026/09/26-16:28:13.427 6560 Delete type=0 #63
+2026/09/26-22:39:11.486 6560 Level-0 table #68: started
+2026/09/26-22:39:11.495 6560 Level-0 table #68: 20172 bytes OK
+2026/09/26-22:39:11.503 6560 Delete type=0 #65
+2026/09/26-22:39:11.503 6560 Compacting 4@0 + 1@1 files
+2026/09/26-22:39:11.509 6560 Generated table #69@0: 19 keys, 12827 bytes
+2026/09/26-22:39:11.509 6560 Compacted 4@0 + 1@1 files => 12827 bytes
+2026/09/26-22:39:11.513 6560 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/09/26-22:39:11.513 6560 Delete type=2 #58
+2026/09/26-22:39:11.513 6560 Delete type=2 #61
+2026/09/26-22:39:11.514 6560 Delete type=2 #64
+2026/09/26-22:39:11.514 6560 Delete type=2 #66
+2026/09/26-22:39:11.514 6560 Delete type=2 #68
+2026/09/27-10:06:20.193 6560 Level-0 table #71: started
+2026/09/27-10:06:20.201 6560 Level-0 table #71: 17833 bytes OK
+2026/09/27-10:06:20.202 6560 Delete type=0 #67

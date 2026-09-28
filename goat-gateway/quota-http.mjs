@@ -71,7 +71,7 @@ const server = http.createServer((req, res) => {
     try {
       const body = readQuota(url.searchParams.get('force') === '1');
       const rows = (body.rows || []).filter(Boolean);
-      if (url.searchParams.get('format') === 'json') {
+      if (url.searchParams.get('format') !== 'text') {
         const infos = [];
         rows.forEach((r) => {
           [['5h', r.fiveHourUsed, r.fiveHourCap],
@@ -80,10 +80,16 @@ const server = http.createServer((req, res) => {
             infos.push({
               currency: r.name + ' ' + w[0],
               total_balance: pct(w[1], w[2]) + '%',
-              granted_balance: String(w[2]),
+              granted_balance: String(Math.round(Number(w[2]))),
               topped_up_balance: String(Number(w[1]).toFixed(2))
             });
           });
+        });
+        infos.push({
+          currency: '\u6570\u636e\u65f6\u95f4',
+          total_balance: (() => { const d = new Date(body.ts); const p = (n) => String(n).padStart(2, '0'); return p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()); })(),
+          granted_balance: '\u7a97\u53e3 5h/14 \u00b7 \u5468/35 \u00b7 \u6708/70',
+          topped_up_balance: ''
         });
         res.writeHead(200, Object.assign({ 'Content-Type': 'application/json; charset=utf-8' }, cors));
         res.end(JSON.stringify({ is_available: true, balance_infos: infos }));

@@ -15,11 +15,19 @@
       "x-topic-id"
     ],
     "keepAlive": true,
-    "agentMaxAgeMs": 300000
+    "agentMaxAgeMs": 300000,
+    "firstChunkTimeoutMs": 180000,
+    "streamIdleTimeoutMs": 30000
+  },
+  "prefixAffinity": {
+    "windowMs": 1800000,
+    "maxNewSessionsPerKey": 10,
+    "prefixTtlMs": 1800000,
+    "maxPrefixes": 4000
   },
   "maxAttemptsPerRequest": 4,
   "strategy": "session",
-  "strategyNote": "session = 同一会话粘同一个 key、不同会话按指纹分散；客户端取消不冷却不切 key；401/402/403/429 立即冷却换 key；5xx/网络错误按 attemptsPerKey 重试同一 key 后再换。",
+  "strategyNote": "session = 同一会话粘同一个 key、不同会话按指纹分散；prefix = 新增会话按 system/tools 前缀亲和到同一 key，并有窗口软上限；客户端取消不冷却不切 key；401/402/403/429 立即冷却换 key；5xx/网络错误按 attemptsPerKey 重试同一 key 后再换。",
   "retryableStatus": [
     401,
     402,

@@ -44,6 +44,23 @@ const DEFAULTS = {
     //（网关 9~90 tok/s，同一分钟直连 315 tok/s；网关侧耗时 16s→58s→90s→221s 
     // 递增），_gateway/reload 重建连接后立刻恢复 3.5s。0 = 不回收。
     agentMaxAgeMs: 300000,
+    // 首 chunk 超时（毫秒）：从请求发出到上游第一个 body chunk 到达。大上下文 prefill 可能
+    // 合法地花几十秒到几分钟，所以这里给 180s 兜底；0 = 关闭。
+    // 注意：只有还没向客户端发出任何字节时才能透明重试/换 key，和下面的 idle 超时是同一前提。
+    firstChunkTimeoutMs: 180000,
+    // 流式响应空闲超时（毫秒）：首个 chunk 之后，超过该时间没有任何新 chunk 就断开。
+    // 动机：上游偶发 200 后长时间不出字/断流，单请求被拖到 200s+，永久污染 dsh 的
+    // 「整个会话累计 decode TPS」。生产建议 30000（30s）；0 = 关闭。
+    streamIdleTimeoutMs: 30000,
+  },
+  // strategy=prefix 时的前缀亲和参数（默认 strategy=session，不生效）：
+  //   windowMs：新会话分配计数的窗口长度；maxNewSessionsPerKey：每 key 窗口内新会话软上限；
+  //   prefixTtlMs：「前缀 → key」绑定 TTL；maxPrefixes：最多记住多少前缀。
+  prefixAffinity: {
+    windowMs: 1800000,
+    maxNewSessionsPerKey: 10,
+    prefixTtlMs: 1800000,
+    maxPrefixes: 4000,
   },
   maxAttemptsPerRequest: 4,
   attemptsPerKey: 1,
@@ -174,6 +191,8 @@ const state = readJSON(STATE_FILE, null) || {
   rr: 0,
   sticky: '',
   sessions: {},
+  prefixBindings: {},
+  prefixWindow: { start: 0, counts: {}, rr: 0 },
   keys: {},
   stats: { requests: 0, forwarded: 0, retries: 0, switched: 0, since: new Date().toISOString() },
 };
@@ -181,6 +200,8 @@ state.stats ||= { requests: 0, forwarded: 0, retries: 0, switched: 0, since: new
 state.keys ||= {};
 state.sticky ||= '';
 state.sessions ||= {};
+state.prefixBindings ||= {};
+state.prefixWindow ||= { start: 0, counts: {}, rr: 0 };
 
 let stateDirty = false;
 let stateSaving = false;
@@ -301,6 +322,114 @@ function pruneSessions() {
 // 会话指纹可能是 16 位十六进制（消息指纹），也可能是 "h:<16hex>"（客户端 session header）。
 // 早期直接 parseInt(fp.slice(0,8),16)：header 形态会得到 NaN，balanced[NaN] === undefined，
 // 随后读 .name 抛异常 → 整个请求 500。这里统一转成稳定整数。
+// ── 前缀亲和（strategy=prefix）────────────────────────────────────────────
+// 目标：把「共享同一段 system/tools/model 前缀」的新会话尽量放到同一个上游账号，
+// 以提高跨会话 prompt cache 命中；同时用窗口内新会话数软上限避免单账号被打爆。
+// 注意：这里无法读到上游真实 KV cache，只能用自己的「前缀 → key」近似；
+// 已有会话仍然由 state.sessions[fp] 忠实绑定，本策略只影响新会话的首次分配。
+function stableStringify(value) {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map((v) => stableStringify(v)).join(',')}]`;
+  const keys = Object.keys(value).sort();
+  return `{${keys.map((k) => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(',')}}`;
+}
+
+function prefixFingerprint(parsed) {
+  if (!parsed || typeof parsed !== 'object') return '';
+  try {
+    const system = Array.isArray(parsed.messages)
+      ? parsed.messages.filter((m) => m && m.role === 'system')
+      : [];
+    const tools = parsed.tools;
+    const hasTools = Array.isArray(tools) ? tools.length > 0 : Boolean(tools);
+    if (!system.length && !hasTools) return '';
+    const basis = { model: parsed.model || '', tools: tools ?? null, system };
+    return 'p:' + crypto.createHash('sha1').update(stableStringify(basis)).digest('hex').slice(0, 16);
+  } catch {
+    return '';
+  }
+}
+
+function currentPrefixWindow() {
+  const windowMs = Math.max(0, Number(CFG.prefixAffinity?.windowMs ?? 1800000));
+  state.prefixWindow ||= { start: 0, counts: {}, rr: 0 };
+  state.prefixWindow.counts ||= {};
+  if (!windowMs || Date.now() - (state.prefixWindow.start || 0) >= windowMs) {
+    state.prefixWindow = { start: Date.now(), counts: {}, rr: 0 };
+    stateDirty = true;
+  }
+  return state.prefixWindow;
+}
+
+function prunePrefixBindings() {
+  const ttl = Math.max(0, Number(CFG.prefixAffinity?.prefixTtlMs ?? 1800000));
+  const max = Math.max(0, Number(CFG.prefixAffinity?.maxPrefixes ?? 4000));
+  const now = Date.now();
+  state.prefixBindings ||= {};
+  for (const [k, v] of Object.entries(state.prefixBindings)) {
+    if (ttl > 0 && now - (v.t || 0) > ttl) delete state.prefixBindings[k];
+  }
+  const names = Object.keys(state.prefixBindings);
+  if (max > 0 && names.length > max) {
+    names.sort((a, b) => (state.prefixBindings[a].t || 0) - (state.prefixBindings[b].t || 0));
+    for (const n of names.slice(0, names.length - max)) delete state.prefixBindings[n];
+  }
+}
+
+function choosePrefixKey(fresh, prefixFp) {
+  const cfg = CFG.prefixAffinity || {};
+  const cap = Math.max(0, Number(cfg.maxNewSessionsPerKey ?? 10));
+  const win = currentPrefixWindow();
+  const counts = win.counts;
+  const bump = (name) => {
+    counts[name] = (counts[name] || 0) + 1;
+    stateDirty = true;
+  };
+
+  // 1) 这个前缀最近已经绑过某个 key，且该 key 在窗口内还没到软上限
+  if (prefixFp) {
+    const bound = state.prefixBindings?.[prefixFp];
+    if (bound) {
+      const held = fresh.find((k) => k.name === bound.key);
+      if (held && (cap <= 0 || (counts[held.name] || 0) < cap)) {
+        bound.t = Date.now();
+        bump(held.name);
+        return held;
+      }
+    }
+  }
+
+  // 2) 选窗口内新会话数最少的 key；并列时轮转，避免固定偏向
+  let min = Infinity;
+  for (const k of fresh) {
+    const c = counts[k.name] || 0;
+    if (c < min) min = c;
+  }
+  const tied = fresh.filter((k) => (counts[k.name] || 0) === min);
+  win.rr = ((win.rr || 0) + 1) % Math.max(1, tied.length);
+  const pick = tied[win.rr % tied.length];
+  bump(pick.name);
+
+  // 3) 只有前缀还没有绑定、或原绑定的 key 已不在候选里，才改写前缀绑定。
+  //    这样「前缀的热 key」不会被 overflow 请求覆盖掉。
+  if (prefixFp) {
+    const prev = state.prefixBindings?.[prefixFp];
+    if (!prev || !fresh.some((k) => k.name === prev.key)) {
+      state.prefixBindings ||= {};
+      state.prefixBindings[prefixFp] = { key: pick.name, t: Date.now() };
+      log(
+        `PREFIX-BIND ${prefixFp.slice(0, 10)} ${prev ? prev.key + ' -> ' : ''}${pick.name}` +
+          ` (window: ${fresh.map((k) => `${k.name}=${counts[k.name] || 0}`).join(' ')})`,
+      );
+      prunePrefixBindings();
+      stateDirty = true;
+    } else {
+      prev.t = Date.now();
+    }
+  }
+  return pick;
+}
+
 function fingerprintBucket(fp, n) {
   const v = String(fp);
   const hex = v.startsWith('h:') ? v.slice(2) : v;
@@ -311,12 +440,12 @@ function fingerprintBucket(fp, n) {
   return (Number.isFinite(num) ? num : 0) % n;
 }
 
-function selectKey(candidates, fp) {
+function selectKey(candidates, fp, prefixFp = '') {
   const strategy = String(CFG.strategy || 'session').toLowerCase();
 
   if (strategy === 'round-robin') return pickKey(candidates.filter((k) => !isCooling(k.name)));
 
-  if (strategy === 'session' && fp) {
+  if ((strategy === 'session' || strategy === 'prefix') && fp) {
     const bound = state.sessions[fp];
     if (bound) {
       const held = candidates.find((k) => k.name === bound.key);
@@ -328,16 +457,23 @@ function selectKey(candidates, fp) {
     const fresh = candidates.filter((k) => !isCooling(k.name));
     if (!fresh.length) return null;
     // 首次见到该会话，或它原来绑定的 key 已不可用（冷却/被本轮试过）→ 重新分配并改写绑定。
-    // 分配规则：优先落到「当前绑定会话最少」的 key，让双账号的并发尽量均衡；并列时按指纹决定，
-    // 保证同样状态下结果确定。一旦切走就不再切回 —— 该会话在新 key 上继续，原 key 的缓存对它已无价值。
+    // 分配规则：
+    //   session（默认）→ 优先落到「当前绑定会话最少」的 key，均衡双账号并发；并列时按指纹决定。
+    //   prefix          → 若该前缀已有热 key 且窗口内未超软上限，优先复用；否则选窗口内新会话最少的 key。
+    // 一旦切走就不再切回 —— 该会话在新 key 上继续，原 key 的缓存对它已无价值。
     const load = {};
     for (const k of fresh) load[k.name] = 0;
     for (const v of Object.values(state.sessions)) {
       if (v.key in load) load[v.key] += 1;
     }
-    const minLoad = Math.min(...fresh.map((k) => load[k.name]));
-    const balanced = fresh.filter((k) => load[k.name] === minLoad);
-    const pick = balanced[fingerprintBucket(fp, balanced.length)];
+    let pick;
+    if (strategy === 'prefix' && prefixFp) {
+      pick = choosePrefixKey(fresh, prefixFp);
+    } else {
+      const minLoad = Math.min(...fresh.map((k) => load[k.name]));
+      const balanced = fresh.filter((k) => load[k.name] === minLoad);
+      pick = balanced[fingerprintBucket(fp, balanced.length)];
+    }
     const prev = state.sessions[fp];
     if (!prev || prev.key !== pick.name) {
       log(
@@ -405,6 +541,35 @@ function stripHopByHop(headers) {
   return headers;
 }
 
+// 从 SSE tail 中提取最后一个 "usage":{...}，支持 prompt_tokens_details 这类嵌套对象。
+// 旧实现用 /"usage":\{[^}]*\}/ 会在第一个内层 } 处截断，导致日志里的 usage 不是合法 JSON。
+function extractLastUsage(text) {
+  const key = '"usage"';
+  let idx = text.lastIndexOf(key);
+  if (idx < 0) return '';
+  let start = text.indexOf('{', idx + key.length);
+  if (start < 0) return '';
+  let depth = 0;
+  let inStr = false;
+  let esc = false;
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (ch === '\\') esc = true;
+      else if (ch === '"') inStr = false;
+      continue;
+    }
+    if (ch === '"') { inStr = true; continue; }
+    if (ch === '{') depth += 1;
+    else if (ch === '}') {
+      depth -= 1;
+      if (depth === 0) return text.slice(start, i + 1).replace(/\s+/g, '');
+    }
+  }
+  return '';
+}
+
 // ── 路径映射：本地 /v1/xxx  →  上游 /provider/v1/xxx ─────────────────────
 function mapPath(url) {
   const u = new URL(url, 'http://localhost');
@@ -416,11 +581,29 @@ function mapPath(url) {
   return basePath.replace(/\/+$/, '') + pathname + u.search;
 }
 
-// ── 单次上游转发；成功即 pipe 给客户端并返回 {ok:true} ─────────────────────
+// ── 单次上游转发；成功即原样转发给客户端并返回 {ok:true}（含流空闲超时保护）───
 function forward(clientReq, clientRes, keyEntry, body, meta) {
   return new Promise((resolve) => {
     let clientGone = false;
     let responseStarted = false;
+    let streamIdleTimer = null;
+    let firstChunkTimer = null;
+    const clearStreamIdle = () => {
+      if (streamIdleTimer) {
+        clearTimeout(streamIdleTimer);
+        streamIdleTimer = null;
+      }
+    };
+    const clearFirstChunk = () => {
+      if (firstChunkTimer) {
+        clearTimeout(firstChunkTimer);
+        firstChunkTimer = null;
+      }
+    };
+    const clearIdleTimers = () => {
+      clearStreamIdle();
+      clearFirstChunk();
+    };
     const target = mapPath(clientReq.url);
     const headers = stripHopByHop({ ...clientReq.headers });
     // 诊断用：先留住客户端原始 UA（下面会被统一改写成网关 UA）。
@@ -447,6 +630,29 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     const model = meta.model;
     const isStream = meta.stream;
     const sess = meta.fp ? meta.fp.slice(0, 8) : '-';
+    const idleMs = Math.max(0, Number(CFG.upstream?.streamIdleTimeoutMs) || 0);
+    const firstChunkMs = Math.max(0, Number(CFG.upstream?.firstChunkTimeoutMs) || 0);
+    let streamDone = false;
+    const armStreamIdle = () => {
+      if (!idleMs || streamDone) return;
+      clearStreamIdle();
+      streamIdleTimer = setTimeout(() => {
+        if (streamDone) return;
+        log(`STREAM-IDLE id=${reqId} key=${keyEntry.name} idle=${idleMs}ms where=stream-gap`);
+        upReq.destroy(new Error(`upstream stream idle timeout after ${idleMs}ms`));
+      }, idleMs);
+      if (streamIdleTimer.unref) streamIdleTimer.unref();
+    };
+    const armFirstChunk = () => {
+      if (!firstChunkMs || streamDone) return;
+      clearFirstChunk();
+      firstChunkTimer = setTimeout(() => {
+        if (streamDone) return;
+        log(`STREAM-IDLE id=${reqId} key=${keyEntry.name} idle=${firstChunkMs}ms where=waiting-first-chunk`);
+        upReq.destroy(new Error(`upstream first-chunk timeout after ${firstChunkMs}ms`));
+      }, firstChunkMs);
+      if (firstChunkTimer.unref) firstChunkTimer.unref();
+    };
 
     const upReq = getTransport().request(
       {
@@ -469,11 +675,14 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           const finish = (result) => {
             if (done) return;
             done = true;
+            clearIdleTimers();
             resolve(result);
           };
           const chunks = [];
           let len = 0;
           upRes.on('data', (c) => {
+            clearFirstChunk();
+            armStreamIdle();
             if (len < 8192) {
               chunks.push(c);
               len += c.length;
@@ -503,32 +712,65 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           return;
         }
 
-        // 正常响应（含 SSE 流）：原样透传；同时轻量 tail 一下以提取 usage
+        // 正常响应（含 SSE 流）：先等第一个 chunk 到达再 writeHead。
+        // 这样「上游 200 后长时间不出字」仍算未对客户端表态，可以透明重试/换 key；
+        // 一旦已有字节发给客户端（responseStarted=true），就只能做 idle 断开保护，不能再重试。
         const outHeaders = stripHopByHop({ ...upRes.headers });
-        try {
-          clientRes.writeHead(status, outHeaders);
-          responseStarted = true;
-        } catch (e) {
-          upRes.destroy();
-          resolve({ ok: false, status: 0, body: `writeHead failed: ${e.message}`, clientGone: true });
-          return;
-        }
+        let headersFlushed = false;
         let tail = '';
-        let streamDone = false;
         const finishStream = (result) => {
           if (streamDone) return;
           streamDone = true;
+          clearIdleTimers();
           resolve(result);
         };
+        const flushHeaders = () => {
+          if (headersFlushed) return true;
+          try {
+            clientRes.writeHead(status, outHeaders);
+            headersFlushed = true;
+            responseStarted = true;
+            return true;
+          } catch (e) {
+            upRes.destroy();
+            if (!clientRes.writableEnded) {
+              try { clientRes.destroy(); } catch {}
+            }
+            finishStream({ ok: false, status: 0, body: `writeHead failed: ${e.message}`, clientGone: true });
+            return false;
+          }
+        };
         upRes.on('data', (c) => {
+          if (streamDone) return;
+          if (clientGone) {
+            clearIdleTimers();
+            upRes.destroy();
+            return;
+          }
+          if (!flushHeaders()) return;
+          clearFirstChunk();
+          armStreamIdle();
           if (tail.length < 65536) tail += c.toString('utf8');
+          try {
+            if (!clientRes.write(c)) {
+              upRes.pause();
+              clientRes.once('drain', () => {
+                if (!streamDone && !clientGone) upRes.resume();
+              });
+            }
+          } catch (e) {
+            log(`STREAM-ERR id=${reqId} key=${keyEntry.name} client write: ${e.message}`);
+            upRes.destroy();
+            finishStream({ ok: false, status: 0, body: `client write failed: ${e.message}`, clientGone: true });
+          }
         });
-        upRes.pipe(clientRes);
         upRes.on('end', () => {
           if (streamDone) return;
-          let usage = '';
-          const m = tail.match(/"usage"\s*:\s*\{[^}]*\}/g);
-          if (m && m.length) usage = m[m.length - 1].replace(/\s+/g, '');
+          if (!flushHeaders()) return;
+          if (!clientRes.writableEnded) {
+            try { clientRes.end(); } catch {}
+          }
+          const usage = extractLastUsage(tail);
           log(
             `OK id=${reqId} ${clientReq.method} ${target} key=${keyEntry.name} status=${status} ${elapsed()}ms` +
               ` sess=${sess} model=${model} stream=${isStream} clientUa=${JSON.stringify(origUa)} ua=${JSON.stringify(String(headers['user-agent'] || ''))}` +
@@ -541,8 +783,20 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
             try { clientRes.destroy(); } catch {}
           }
         };
+        const failBeforeFirstByte = (reason) => {
+          if (streamDone) return;
+          // 还没有任何字节发给客户端：返回 ok:false，让 handle() 透明重试/换 key。
+          log(`STREAM-ERR id=${reqId} key=${keyEntry.name} before-first-byte ${reason}`);
+          try { upReq.destroy(); } catch {}
+          finishStream({ ok: false, status: 0, body: reason, clientGone: false });
+        };
         upRes.on('aborted', () => {
-          if (streamDone || clientGone) return;
+          if (streamDone) return;
+          if (clientGone) {
+            clearIdleTimers();
+            return;
+          }
+          if (!responseStarted) return failBeforeFirstByte('upstream aborted before first byte');
           log(`STREAM-ERR id=${reqId} key=${keyEntry.name} upstream aborted`);
           endClientOnUpstreamFailure();
           finishStream({ ok: true, status, streamError: 'upstream aborted' });
@@ -550,10 +804,12 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
         upRes.on('error', (e) => {
           if (streamDone) return;
           if (clientGone) {
+            clearIdleTimers();
             log(`CLIENT-ABORT id=${reqId} key=${keyEntry.name} stream`);
             finishStream({ ok: false, status: 0, body: 'client aborted', clientGone: true });
             return;
           }
+          if (!responseStarted) return failBeforeFirstByte(e.message);
           log(`STREAM-ERR id=${reqId} key=${keyEntry.name} ${e.message}`);
           endClientOnUpstreamFailure();
           finishStream({ ok: true, status, streamError: e.message });
@@ -566,7 +822,9 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
       upReq.destroy(new Error(`upstream timeout after ${CFG.upstreamTimeoutMs}ms`));
     });
     upReq.on('error', (e) => {
+      clearIdleTimers();
       if (clientGone) {
+        streamDone = true;
         log(`CLIENT-ABORT id=${reqId} key=${keyEntry.name} before-headers`);
         resolve({ ok: false, status: 0, body: 'client aborted', clientGone: true });
         return;
@@ -574,6 +832,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
       // 响应头已经发给客户端之后，不能再换 key 透明重试：客户端已经看到了半截流。
       // 返回 ok:true 让 handle() 直接结束本请求，不冷却、不切 key。
       if (responseStarted) {
+        streamDone = true;
         log(`STREAM-ERR id=${reqId} key=${keyEntry.name} after-headers ${e.message}`);
         if (!clientRes.writableEnded) {
           try { clientRes.destroy(); } catch {}
@@ -581,6 +840,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
         resolve({ ok: true, status: 0, streamError: e.message });
         return;
       }
+      streamDone = true;
       log(`NETWORK id=${reqId} key=${keyEntry.name} ${e.code || ''} ${e.message}`);
       resolve({ ok: false, status: 0, body: `${e.code || 'ERROR'}: ${e.message}` });
     });
@@ -595,11 +855,13 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     clientRes.on('close', () => {
       if (!clientRes.writableEnded) {
         clientGone = true;
+        clearIdleTimers();
         upReq.destroy(new Error('client aborted'));
       }
     });
 
     if (body && body.length) upReq.write(body);
+    armFirstChunk();
     upReq.end();
   });
 }
@@ -658,6 +920,7 @@ function handleLocal(req, res, url) {
         const s = String(CFG.strategy || 'session').toLowerCase();
         if (s === 'round-robin') return 'round-robin + failover（注意：会打断 prompt cache）';
         if (s === 'session') return 'session：同一会话粘同一个 key + failover';
+        if (s === 'prefix') return 'prefix：同前缀新会话优先同 key + 窗口软上限 + failover';
         return 'sticky：全局粘一个 key + failover';
       })(),
       stickyKey: state.sticky || '(尚未选过)',
@@ -786,6 +1049,7 @@ async function handle(req, res) {
     model: parsed && typeof parsed.model === 'string' ? parsed.model : '',
     stream: !!(parsed && parsed.stream === true),
     fp: sessionFingerprint(parsed, req.headers),
+    prefixFp: prefixFingerprint(parsed),
   };
 
   const all = loadKeys().filter((k) => k.enabled);
@@ -808,7 +1072,7 @@ async function handle(req, res) {
   for (let i = 0; i < maxAttempts; i++) {
     // 只把「本轮失败次数还没到 attemptsPerKey」的 key 交给 selectKey。
     const candidates = all.filter((k) => (failures.get(k.name) || 0) < attemptsPerKey);
-    const target = selectKey(candidates, meta.fp);
+    const target = selectKey(candidates, meta.fp, meta.prefixFp);
     if (!target) break;
     attempted.add(target.name);
 

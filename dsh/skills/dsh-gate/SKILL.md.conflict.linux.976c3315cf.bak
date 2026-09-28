@@ -1,0 +1,87 @@
+---
+name: dsh-gate
+description: DeepSeek Harness 决策钩子——需 dsh/深层推理/正式证明/长文档任务时转发主力机 dsh（dsh-remote）。2026-09-09 铁律：**禁止关键词自动判定难度**——调用方必须显式为被调用端指定模型+effort（-pro / -m / -e）。铁律：凡是 Pro 必走 dsh；本机不跑 dsh。
+version: 2.1.0
+---
+
+# dsh-gate — DSH 强制显式调用钩子（2026-09-09 v2.1 重写）
+
+> **当前规范**：本机（小电脑）**不跑 dsh**（性能不足，用户 2026-09-04 拍板）——调用 dsh 一律走 `dsh-remote`（本机 `~/.local/bin/dsh-remote`，SSH 转发主力机执行）。
+
+## ⚠️ 2026-09-09 核心变更：禁止关键词自动判定（用户拍板）
+
+旧版按任务描述关键词（证明/推导/审计/数学…）**自动**选 pro/flash——**不灵活、已废除**。
+现在**必须由调用方（Reasonix agent）显式为被调用端（dsh）选择模型 + 思考强度**：
+
+```bash
+dsh-remote -pro "任务"          # 显式 pro + max（需要最强推理时）
+dsh-remote -m deepseek-v4-flash -e high "任务"   # 显式 flash + high（常规任务）
+dsh-remote -m <任意67模型> -e <effort> "任务"     # 显式指定
+```
+
+- `dsh-remote` 与主力机 `dsh-gate-conc.ps1` 均已删除关键词列表；**缺模型即报错**（exit 2），不猜、不默认。
+- `effort` 可省（默认 high）；`model` **必显式**。
+- **调用时怎么选**：由 Reasonix agent 按任务真实难度判断——需要最强推理/正式证明/全面审计 → `-pro`；常规 → `-m deepseek-v4-flash -e high`。不要把选型压力留给远端脚本。
+
+## 触发条件
+
+以下情况**必须**走 dsh（`dsh-remote` 转发主力机）：
+
+1. **显式要求 pro**：用户说"用 pro""deepseek-v4-pro""加强模型"时 → `dsh-remote -pro`
+2. **推理强度需求**：Reasonix agent 判断任务需要 pro 级推理（多步推导、形式化证明、全面审计、架构设计、max thinking）→ `dsh-remote -pro`
+3. **长文档/重任务**：需要远端独立跑、不占本机会话 → `dsh-remote -m deepseek-v4-flash -e high --async`（简单后台）或 `-pro --async`（重后台）
+4. **学术任务铁律**（2026-09-04 拍板，2026-09-09 修订）：学术相关/要求调 dsh 的**一律** `dsh-remote -pro`（pro + effort=max），任务描述显式写「发挥你最高能力 / max thinking / 详尽输出」
+
+## 用法（2026-09-09 起，模型必须显式）
+
+### 本机（Linux 天阙）→ 转发主力机
+```bash
+dsh-remote -pro "需要 pro 的任务"     # 显式 pro + max
+dsh-remote -m deepseek-v4-flash -e high "简单任务"   # 显式 flash + high
+dsh-remote -m deepseek-v4-pro "任务" -e max          # 自定义模型 + effort=max
+dsh-remote --async -pro "长任务"      # 后台化（schtasks 脱离会话）→ 返回 id
+dsh-remote --status                   # 查所有后台任务进度
+dsh-remote --no-notify -pro "任务"    # 静默（不弹本机横幅）
+# ❌ 禁止：dsh-remote "任务" 裸调用（无模型）→ 会报错 exit 2
+```
+
+### 主力机（Windows 天阙九泉）直接调用（可选）
+```bash
+ssh tqjq "powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate-conc.ps1 -Pro '任务' -Async"
+ssh tqjq "powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\27063\.local\bin\dsh-gate-conc.ps1 -Model deepseek-v4-flash -Effort high '任务'"
+# ❌ 禁止裸调用（位置参数只算任务文本，无 -Model/-Pro 会报错）
+```
+
+### 分工铁律
+- **本机永不跑 dsh**（性能不足）——所有 dsh 调用转发主力机
+- 主力机 dsh 可并发（conc 用独立 settings 副本，无同机锁冲突）
+- 4 agent（双机 Reasonix ×2 + 双机 dsh ×2）完成 → 本机横幅通知（dsh 侧已内置）
+
+## 已注入的上下文（DSH 自动获得）
+- 用户记忆库 `~/.reasonix/memory`（含 global/ + project/）
+- 用户技能库 `~/.reasonix/skills`
+- 用户画像 `memory/global/user-persona-cognitive-system-architect.md`
+- 认知方式要点：构建主义、验证驱动、先证后信；双语规范；第一性原理教学
+
+## 模型选择参照（Reasonix agent 决定，非脚本猜测）
+- 常规问答/翻译草稿/格式化 → `deepseek-v4-flash` + `high`（省钱）
+- 正式证明/全面审计/架构/数学硬核/长文档最终稿 → `deepseek-v4-pro` + `max`
+- **凡是 Pro 必走 dsh**，Reasonix 内置不用 pro
+- 结果落盘：主力机 `%TEMP%\dsh-gate\<时间戳>-<model>.txt`，dsh-remote 同步时回显 stdout
+
+## 并发（2026-09-04 新架构）
+- conc 版用**独立 settings 副本**（`settings-<TaskId>.yaml` + patch），无同机覆盖锁——主力机可并发多个 dsh 任务
+- 旧 dsh-gate（改写 `~/.dsh/settings.yaml` + trap 恢复）**已废弃**，同机锁限制不存在了
+
+## 验证
+```bash
+dsh-remote -m deepseek-v4-flash -e high "1+1等于几？"   # → flash+high（主力机执行，秒回）
+dsh-remote -pro "证明质数无穷多"                        # → pro + max（主力机执行）
+dsh-remote --async -pro "长任务" && dsh-remote --status  # 后台 + 查进度
+```
+主力机会话日志：`~/.dsh/sessions/*/session.jsonl.zstd` 中 `deepseek-v4-pro` 出现次数 > 0。
+
+## 完整档案
+- 操作铁律/67 模型清单/PS/SSH 教训：记忆 `工具-dsh并发调度与命令铁律-20260904.md`
+- 主力机机制细节：`dsh-mode` 技能（注意其头部「本机实跑时期档案」标注）
+- 2026-09-09 官方隔离 + dsh 强制显式改造：记忆 `api-调用默认-command-code-goat-套餐-key-而非-deepseek-官方` 及 REASONIX.md「API 默认走 Command Code GOAT」小节

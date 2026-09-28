@@ -281,6 +281,17 @@
 - id: skill-search
   name: ./skill-search.mjs
 
+# ── memory ──────────────────────────────────────────────────────────────────
+#
+# On-demand access to the SHARED reasonix memory corpus (~/.reasonix/memory),
+# so a dsh session and a reasonix session read one set of facts instead of
+# forking. Read-only by design: reasonix stays the single writer of its facts
+# and its MEMORY.md index, so the two-machine sync keeps working untouched.
+# Ships no resident text (same reasoning as skill-search) — the model calls
+# memory_search / memory_read only when a task needs them.
+- id: memory-reasonix
+  name: ./memory.mjs
+
 # ── goals ───────────────────────────────────────────────────────────────────
 
 # Only the model-facing tool. The goal SERVICE, its session driver, and the

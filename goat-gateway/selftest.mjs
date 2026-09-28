@@ -22,6 +22,8 @@ const upstreamState = {
   hold: false,           // 不回任何流数据，用来测客户端中断
   afterHeadersError: false,
   cloudflare403: false,  // 返回 Cloudflare 1010 风格的 403
+  idleBeforeFirstByte: 0, // 前 N 个请求返回 200 后不发任何数据（测 stream idle timeout）
+  idleSeen: 0,
 };
 
 const upstream = http.createServer((req, res) => {
@@ -50,8 +52,15 @@ const upstream = http.createServer((req, res) => {
       setTimeout(() => res.destroy(new Error('simulated upstream stream error')), 80);
       return;
     }
+    if (upstreamState.idleBeforeFirstByte > 0 && upstreamState.idleSeen < upstreamState.idleBeforeFirstByte) {
+      upstreamState.idleSeen += 1;
+      res.writeHead(200, { 'content-type': 'text/event-stream' });
+      res.flushHeaders(); // 让 gateway 先拿到 200 响应头，再测「收不到任何 body chunk」的空闲超时
+      // 故意保持连接且不发任何数据；gateway 应该在 streamIdleTimeoutMs 后断开并重试
+      return;
+    }
     res.writeHead(200, { 'content-type': 'text/event-stream' });
-    res.write('data: {"choices":[{"delta":{"content":"ok"}}],"usage":{"prompt_tokens":1,"completion_tokens":1}}\n\n');
+    res.write('data: {"choices":[{"delta":{"content":"ok"}}],"usage":{"prompt_tokens":1,"completion_tokens":1,"prompt_tokens_details":{"cached_tokens":0}}}\n\n');
     res.write('data: [DONE]\n\n');
     res.end();
   });
@@ -80,7 +89,7 @@ async function health() {
   return await r.json();
 }
 
-async function ask(signal, system = 'stable system') {
+async function ask(signal, system = 'stable system', user = 'stable first user') {
   const r = await fetch(`http://127.0.0.1:${PORT}/v1/chat/completions`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: 'Bearer client-side' },
@@ -89,7 +98,7 @@ async function ask(signal, system = 'stable system') {
       stream: true,
       messages: [
         { role: 'system', content: system },
-        { role: 'user', content: 'stable first user' },
+        { role: 'user', content: user },
       ],
     }),
     signal,
@@ -111,7 +120,7 @@ async function main() {
 
   writeJson(configPath, {
     listen: { host: '127.0.0.1', port: PORT },
-    upstream: { origin: `http://127.0.0.1:${upstreamPort}`, basePath: '/provider/v1', localPrefix: '/v1' },
+    upstream: { origin: `http://127.0.0.1:${upstreamPort}`, basePath: '/provider/v1', localPrefix: '/v1', firstChunkTimeoutMs: 500, streamIdleTimeoutMs: 500 },
     maxAttemptsPerRequest: 4,
     attemptsPerKey: 2,
     retryDelayMs: 50,
@@ -162,6 +171,10 @@ async function main() {
   let r1 = await ask();
   assert(r1.status === 200, `normal request status=${r1.status}`);
   assert(r1.text.includes('ok'), 'normal request body should contain ok');
+  await sleep(80); // childLog 通过 stdout 'data' 事件收集，给它一个到达窗口
+  const usageMatch = childLog.match(/usage=(\{.*\})/);
+  assert(usageMatch, 'gateway log should contain usage');
+  JSON.parse(usageMatch[1]); // 嵌套 prompt_tokens_details 时也必须是合法 JSON
   let h = await health();
   assert(h.keys.find((k) => k.name === 'A').fail === 0, 'normal request should not fail A');
   console.log('PASS normal stream');
@@ -327,6 +340,47 @@ async function main() {
   const many = await Promise.all(Array.from({ length: 20 }, () => ask()));
   assert(many.every((r) => r.status === 200), '20 concurrent normal requests should all be 200');
   console.log('PASS 20 concurrent requests');
+
+  // 12) 上游 200 后长时间不出字：stream idle timeout 应透明重试并成功（客户端无感）
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reset`);
+  upstreamState.failKeys.clear();
+  upstreamState.hold = false;
+  upstreamState.afterHeadersError = false;
+  upstreamState.cloudflare403 = false;
+  upstreamState.idleBeforeFirstByte = 1;
+  upstreamState.idleSeen = 0;
+  const r12 = await ask(AbortSignal.timeout(8000));
+  assert(r12.status === 200, `idle-timeout retry should end with 200, got ${r12.status} ${r12.text}`);
+  assert(r12.text.includes('ok'), 'idle-timeout retry should deliver normal body');
+  assert(upstreamState.idleSeen === 1, `upstream should have seen exactly 1 idle attempt, got ${upstreamState.idleSeen}`);
+  assert(childLog.includes('STREAM-IDLE'), 'gateway log should contain STREAM-IDLE');
+  console.log('PASS stream idle timeout transparent retry');
+
+  // 13) strategy=prefix：同 system/tools 前缀的新会话优先同 key，窗口软上限触发后才 overflow
+  const cfg13 = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  cfg13.strategy = 'prefix';
+  cfg13.prefixAffinity = { windowMs: 3600000, maxNewSessionsPerKey: 2, prefixTtlMs: 3600000, maxPrefixes: 100 };
+  fs.writeFileSync(configPath, JSON.stringify(cfg13, null, 2), 'utf8');
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reload`);
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reset`);
+  const beforeSessions = await (await fetch(`http://127.0.0.1:${PORT}/_gateway/sessions?limit=200`)).json();
+  const beforeSet = new Set(beforeSessions.recent.map((x) => x.session));
+  const r13a = await ask(undefined, 'prefix-system', 'prefix-user-1');
+  const r13b = await ask(undefined, 'prefix-system', 'prefix-user-2');
+  const r13c = await ask(undefined, 'prefix-system', 'prefix-user-3');
+  assert([r13a.status, r13b.status, r13c.status].every((x) => x === 200), `prefix requests should be 200, got ${r13a.status}/${r13b.status}/${r13c.status}`);
+  const afterSessions = await (await fetch(`http://127.0.0.1:${PORT}/_gateway/sessions?limit=200`)).json();
+  const fresh13 = afterSessions.recent.filter((x) => !beforeSet.has(x.session)).slice(0, 3);
+  assert(fresh13.length === 3, `prefix test should see 3 fresh sessions, got ${fresh13.length}`);
+  const keyCount = {};
+  for (const x of fresh13) keyCount[x.key] = (keyCount[x.key] || 0) + 1;
+  const distribution = Object.values(keyCount).sort();
+  assert(distribution.length === 2 && distribution[0] === 1 && distribution[1] === 2,
+    `same prefix should fill one key first then overflow 1/2, got ${JSON.stringify(fresh13.map((x) => x.key))}`);
+  assert(childLog.includes('PREFIX-BIND'), 'gateway log should contain PREFIX-BIND');
+  console.log('PASS prefix affinity soft cap');
+  fs.writeFileSync(configPath, originalConfigText, 'utf8');
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reload`);
 
   console.log('logs tail:');
   console.log(childLog.split('\n').slice(-20).join('\n'));

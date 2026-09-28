@@ -1,0 +1,125 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@local/dsh-plugin-goat-panel':
+        specifier: file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel
+        version: file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel
+      dsh-deja:
+        specifier: ^0.21.2
+        version: 0.21.2
+      dsh-plugin-local-search:
+        specifier: link:D:/Toolbox/goat-gateway/dsh-plugin-local-search
+        version: link:D:/Toolbox/goat-gateway/dsh-plugin-local-search
+      dsh-web-search-multi:
+        specifier: git+https://github.com/cinob/dsh-web-search-multi.git
+        version: git+https://github.com/cinob/dsh-web-search-multi.git#fcfcd70121bf5df8f27da04d1e1908f450ab3520
+
+packages:
+
+  '@local/dsh-plugin-goat-panel@file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel':
+    resolution: {directory: D:/Toolbox/goat-gateway/dsh-plugin-goat-panel, type: directory}
+
+  '@vshulcz/deja-vu-darwin-amd64@0.21.2':
+    resolution: {integrity: sha512-xqaa+Lj4nlBLZAu7H+QNZ7q6SceriBZX2ak2HTa7o2kKfEFDhywbC+8GQGDIXR0lfZHVoe8xZbzRdCECLCHOdQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@vshulcz/deja-vu-darwin-arm64@0.21.2':
+    resolution: {integrity: sha512-4QaSPrBsMAmbNWBP37Z+C5bzBGAJojhR3M/5fVFant2KK93A6uPJ4iDrqwv1AYr16vgsx1SOZf4qT5E9jMUGKg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@vshulcz/deja-vu-linux-amd64@0.21.2':
+    resolution: {integrity: sha512-pU4S/rNAgdZuWxJ1+NVjxI7oxlsW8dkSaNMSWWIbHwQkWaaTvDpR/6Kb3PyZVhYbcLZrkQbGYmzp4wsJTTPfqg==}
+    cpu: [x64]
+    os: [linux]
+
+  '@vshulcz/deja-vu-linux-arm64@0.21.2':
+    resolution: {integrity: sha512-PpHgkav2r+1QjNxs6z25tudvWtrBFqWFj/Pqe786zgH9Feb2azlyAPYVVyjzdwRriQxgKKWo3v2jzKlPWI25NA==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@vshulcz/deja-vu-windows-amd64@0.21.2':
+    resolution: {integrity: sha512-gSxyDuQceQsTzHaeZ+zzz8M9jGIRBcyu4Vxc5B3ivNgDYJ599bK9M0nuGRu6iMIOtVe9zRlawoX1wVjNCnN5Nw==}
+    cpu: [x64]
+    os: [win32]
+
+  '@vshulcz/deja-vu-windows-arm64@0.21.2':
+    resolution: {integrity: sha512-8OVJ1hnWU5S1qXcUqZB+U7qlkTMN7/MpTwMnqqU0A5a4qMkP/bJcWMDMCSE9sIprs1z7Qb8WqahBapVfUdATNQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@vshulcz/deja-vu@0.21.2':
+    resolution: {integrity: sha512-lLiqcTqMIgHJuoYN+k2WuNIl4tb64Wad07yiDoGL2Nqn5gbBHOGwR5Wwrp16dyLujJggF9x8ti6WpAWPgH7MoQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  dsh-deja@0.21.2:
+    resolution: {integrity: sha512-vbMVwdNzP2/HTV0RDKurKUPjCghxsxELNzEr7dN3xTCn92FPyc7zG3PNJSGTVUDLzBsO2QLY3ozyi1YhRoGF/Q==}
+    engines: {node: '>=18'}
+
+  dsh-web-search-multi@git+https://github.com/cinob/dsh-web-search-multi.git#fcfcd70121bf5df8f27da04d1e1908f450ab3520:
+    resolution: {commit: fcfcd70121bf5df8f27da04d1e1908f450ab3520, repo: https://github.com/cinob/dsh-web-search-multi.git, type: git}
+    version: 0.1.0
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@deepseek-ai/cordis': '*'
+      '@deepseek-ai/dsh-credentials': '*'
+      '@deepseek-ai/dsh-settings': '*'
+      '@deepseek-ai/dsh-web': '*'
+      '@deepseek-ai/schemastery': '*'
+    peerDependenciesMeta:
+      '@deepseek-ai/cordis':
+        optional: true
+      '@deepseek-ai/dsh-credentials':
+        optional: true
+      '@deepseek-ai/dsh-settings':
+        optional: true
+      '@deepseek-ai/dsh-web':
+        optional: true
+      '@deepseek-ai/schemastery':
+        optional: true
+
+snapshots:
+
+  '@local/dsh-plugin-goat-panel@file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel': {}
+
+  '@vshulcz/deja-vu-darwin-amd64@0.21.2':
+    optional: true
+
+  '@vshulcz/deja-vu-darwin-arm64@0.21.2':
+    optional: true
+
+  '@vshulcz/deja-vu-linux-amd64@0.21.2':
+    optional: true
+
+  '@vshulcz/deja-vu-linux-arm64@0.21.2':
+    optional: true
+
+  '@vshulcz/deja-vu-windows-amd64@0.21.2':
+    optional: true
+
+  '@vshulcz/deja-vu-windows-arm64@0.21.2':
+    optional: true
+
+  '@vshulcz/deja-vu@0.21.2':
+    optionalDependencies:
+      '@vshulcz/deja-vu-darwin-amd64': 0.21.2
+      '@vshulcz/deja-vu-darwin-arm64': 0.21.2
+      '@vshulcz/deja-vu-linux-amd64': 0.21.2
+      '@vshulcz/deja-vu-linux-arm64': 0.21.2
+      '@vshulcz/deja-vu-windows-amd64': 0.21.2
+      '@vshulcz/deja-vu-windows-arm64': 0.21.2
+
+  dsh-deja@0.21.2:
+    dependencies:
+      '@vshulcz/deja-vu': 0.21.2
+
+  dsh-web-search-multi@git+https://github.com/cinob/dsh-web-search-multi.git#fcfcd70121bf5df8f27da04d1e1908f450ab3520: {}

@@ -1,0 +1,20 @@
+digraph thread_edges {
+  rankdir=LR;
+  node [shape=box,fontsize=10];
+  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "w0" [label="workflow
+核验近三天 dsh/reasonix 的 64 条努力记录是否真的成立，并给出可复验手段"];
+  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w0";
+  "w1" [label="workflow
+最小可用性探测：确认 agent hook 是否可用"];
+  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w1";
+  "w4" [label="workflow
+单组核验探测，定位失败原因"];
+  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w4";
+  "a2" [label="workflow:agent
+Run the bash command `echo PROBE_OK` and reply with exactly what it pr", style=dashed];
+  "w1" -> "a2";
+  "a3" [label="workflow:agent
+Reply with exactly: PLAIN_OK", style=dashed];
+  "w1" -> "a3";
+}

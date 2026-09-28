@@ -1,0 +1,19 @@
+{
+  "name": "dsh-profile-headless",
+  "private": true,
+  "dependencies": {
+    "dsh-plugin-local-search": "link:D:/Toolbox/goat-gateway/dsh-plugin-local-search",
+    "dsh-web-search-multi": "git+https://github.com/cinob/dsh-web-search-multi.git"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "@deepseek-ai/dsh-base",
+        "@deepseek-ai/dsh-headless",
+        "dsh-web-search-multi",
+        "dsh-plugin-local-search"
+      ],
+      "patchReload": "startup"
+    }
+  }
+}

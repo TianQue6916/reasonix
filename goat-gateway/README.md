@@ -29,13 +29,22 @@ dsh      ─┘  /v1      │ 会话 D ─┤──→ key qq    ← 会话按�
 | 缓存命中 | ¥0.02019 |
 | 缓存未命中 | ¥1.0095 |
 
-**差约 50 倍。** 三种策略（`config.json` 的 `strategy`）：
+**差约 50 倍。** 四种策略（`config.json` 的 `strategy`）：
 
 | 策略 | 行为 | 缓存 | 双账号并发 | 适用 |
 |---|---|---|---|---|
 | **`session`（默认）** | 同一会话永久粘一个 key；不同会话分散 | 保住 | 用得上（会话级分摊） | 常态 |
+| `prefix` | 新会话按 `system + tools + model` 前缀亲和到同一 key；窗口内新会话数软上限，超了再 overflow | 跨会话共享前缀更易命中 | 用得上（窗口计数 + 最少会话兜底） | 想进一步压 prompt cache 成本时 A/B |
 | `sticky` | 全局只粘一个 key，失败才换 | 保住 | 用不上（另一个长期闲置） | 只用得起一个账号的额度时 |
 | `round-robin` | 每次交替 | **打断** | 用得上 | 仅调试，会显著抬高成本 |
+
+> `prefix` 只是「前缀 → key」的近似，因为上游是黑盒 API，网关看不到真实 KV cache；
+> 已有会话仍然由 `state.sessions[fp]` 忠实绑定，本策略只影响新会话首次分配。
+>
+> 社区同类成熟方案：vLLM Production Stack 的 Session-ID / Prefix-aware routing、llm-d Router 的
+> prefix-cache aware EPP、NVIDIA Dynamo 的 KV-Aware Routing、SMG 的 `cache_aware` / `prefix_hash` /
+> `consistent_hashing`。它们多数能直接读取 worker 的真实 KV-cache 状态；黑盒 API 场景下只能用
+> 「前缀哈希 + 软上限」近似。
 
 判定「同一会话」优先用 `x-reasonix-session-id` / `x-session-id` / `x-conversation-id` 等 session header；
 没有 header 时用第一条 `user` message 算稳定指纹，最后才退回 `messages` 前两条。
@@ -172,14 +181,22 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\set-goat-endpoint.ps1 -Mod
 | `upstream.basePath` | `/provider/v1` | 上游路径；本地 `/v1/xxx` 映射到 `/provider/v1/xxx` |
 | `upstream.userAgent` | `commandcode-goat-gateway/1.0` | 统一上游 User-Agent；置空字符串 = 透传客户端原值 |
 | `upstream.stripClientHeaders` | `['x-reasonix-','x-session-id',…]` | 转发前丢掉的客户端头前缀（仅本地选 key 用） |
-| `strategy` | `session` | `session` / `sticky` / `round-robin`（见上文策略表） |
+| `strategy` | `session` | `session` / `prefix` / `sticky` / `round-robin`（见上文策略表） |
+| `prefixAffinity.windowMs` | 1800000 | `prefix` 策略的新会话计数窗口（30 分钟） |
+| `prefixAffinity.maxNewSessionsPerKey` | 10 | 每个 key 每窗口的新会话软上限，超过后 overflow 到其它 key |
+| `prefixAffinity.prefixTtlMs` | 1800000 | 「前缀 → key」绑定的 TTL |
+| `prefixAffinity.maxPrefixes` | 4000 | 最多记住多少个前缀绑定 |
 | `maxSessions` | 2000 | 会话绑定表上限，超出按最久未用淘汰 |
 | `maxAttemptsPerRequest` | 4 | 单请求最多换几个 key |
 | `retryableStatus` | 401/402/403/408/429/5xx | 触发换 key 的状态码 |
 | `cooldownMs.unauthorized` | 1800000 (30min) | key 无效/无权限 |
 | `cooldownMs.quota` | 600000 (10min) | 额度耗尽 |
 | `cooldownMs.rateLimit` | 60000 (1min) | 限流 |
-| `upstreamTimeoutMs` | 900000 | 上游超时（长输出留足） |
+| `upstream.keepAlive` | `true` | 是否复用上游 HTTPS 连接（长连接空闲久了会 stall 时可试 false） |
+| `upstream.agentMaxAgeMs` | 300000 | 连接池最大存活 5 分钟，到期重建 Agent/TLS，避免长连接吐字衰减 |
+| `upstream.firstChunkTimeoutMs` | 180000 | 请求发出后 3 分钟内没有第一个 body chunk 就断开重试（大上下文 prefill 兜底）；`0` = 关闭 |
+| `upstream.streamIdleTimeoutMs` | 30000 | 首个 chunk 之后 30s 内没有新 chunk 就断开（流内 stall）；`0` = 关闭 |
+| `upstreamTimeoutMs` | 900000 | 上游 socket 总超时（长输出兜底；空闲保护由上面那项先出手） |
 
 冷却状态、会话绑定、全局粘滞目标都持久化在 `state.json`，网关重启后仍然生效。
 

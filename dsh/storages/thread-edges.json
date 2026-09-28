@@ -1,0 +1,57 @@
+{
+ "generatedAt": "2026-09-27T16:23:44.424Z",
+ "root": "C:\\Users\\27063\\.dsh\\sessions",
+ "scannedSessions": 25,
+ "failedSessions": 0,
+ "edgeCount": 5,
+ "edges": [
+  {
+   "session": "a0d5fbf8-0fb1-419e-9baf-d95df0190144",
+   "seq": 2926,
+   "time": "2026-09-27T06:19:34.634Z",
+   "tool": "workflow",
+   "callId": "call_00_F0yC3fx2IXyzHPln1lZ99992",
+   "task": "核验近三天 dsh/reasonix 的 64 条努力记录是否真的成立，并给出可复验手段",
+   "name": "verify-3day-efforts",
+   "context": null
+  },
+  {
+   "session": "a0d5fbf8-0fb1-419e-9baf-d95df0190144",
+   "seq": 2957,
+   "time": "2026-09-27T06:41:49.221Z",
+   "tool": "workflow",
+   "callId": "call_00_goFn8zbdJlKWFjDlcTnM2305",
+   "task": "最小可用性探测：确认 agent hook 是否可用",
+   "name": "probe-agent",
+   "context": null
+  },
+  {
+   "session": "a0d5fbf8-0fb1-419e-9baf-d95df0190144",
+   "seq": 2957,
+   "time": "2026-09-27T06:41:49.221Z",
+   "tool": "workflow:agent",
+   "callId": "call_00_goFn8zbdJlKWFjDlcTnM2305",
+   "task": "Run the bash command `echo PROBE_OK` and reply with exactly what it printed, nothing else.",
+   "parent": "workflow:probe-agent"
+  },
+  {
+   "session": "a0d5fbf8-0fb1-419e-9baf-d95df0190144",
+   "seq": 2957,
+   "time": "2026-09-27T06:41:49.221Z",
+   "tool": "workflow:agent",
+   "callId": "call_00_goFn8zbdJlKWFjDlcTnM2305",
+   "task": "Reply with exactly: PLAIN_OK",
+   "parent": "workflow:probe-agent"
+  },
+  {
+   "session": "a0d5fbf8-0fb1-419e-9baf-d95df0190144",
+   "seq": 2970,
+   "time": "2026-09-27T06:42:05.175Z",
+   "tool": "workflow",
+   "callId": "call_00_ai7Zmb6jUUOk18wzpKV47711",
+   "task": "单组核验探测，定位失败原因",
+   "name": "probe-verify-one",
+   "context": null
+  }
+ ]
+}
