@@ -29,3 +29,17 @@ dsh/storages/session_projcache/
 dsh/storages/mnemon-draft.json
 **/session_projcache/
 **/session_projcache.json
+
+# dsh 会话 / 缓存 / 附件 / 历史备份（2026-09-28）
+# sessions 源目录 291MB / 1448 个 .zstd，含完整对话内容，而本 repo 是 public
+dsh/sessions/
+dsh/cache/
+dsh/attachments/
+dsh/_backup*/
+dsh/_archived*/
+dsh/_dropped*/
+
+# 本机回滚 / 冲突副本（不入库；repo 本身就是备份，备份的备份没有意义）
+*.bak
+*.bak-*
+*.conflict.*.bak

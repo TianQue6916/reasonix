@@ -1,3 +1,0 @@
-agent-default-model:
-  model: deepseek-v4-flash
-  reasoningEffort: high

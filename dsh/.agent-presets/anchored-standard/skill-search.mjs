@@ -48,6 +48,8 @@ const USAGE_PATH = process.env.DSH_SKILL_USAGE ?? join(homedir(), '.dsh', 'stora
 const RECENCY_HALF_LIFE_DAYS = 14
 /** How far usage may lift a skill above an equally-matching peer. */
 const USAGE_WEIGHT = 0.6
+/** Loads at which the frequency term saturates — drives the [0,1] normalization in usageScore. */
+const FREQUENCY_SATURATION_LOADS = 20
 
 /** Read the ledger (missing or corrupt reads as empty). */
 async function loadUsage() {
@@ -83,12 +85,28 @@ async function recordSkillUse(name) {
   }
 }
 
-/** Frequency + recency score for one skill (0 when never used). */
+/**
+ * Frequency + recency score for one skill, normalized to [0,1] (0 when never used).
+ *
+ * WHY NORMALIZED（2026-09-28 修）:
+ *   初版返回 `log1p(loads) + exp(-age/HL)` —— **无界**，而 `match ∈ [0,1]`，两者量纲不可比。
+ *   实测：loads=1 的技能得 0.6*(0.693+1) = 1.016，已反超「完美匹配但从未用过」的 1.000；
+ *   临界 loads ≈ 0.95，即**用过一次就能压过任何文本匹配差异** ——
+ *   与本文件开头的承诺「a frequently or recently used skill floats up,
+ *   but a strictly better textual match still wins」完全相反。
+ *   归一化后 USAGE_WEIGHT 才真的表达「最多抬升多少」：usage∈[0,1] ⇒ 最多 +0.6 < 1.0，
+ *   于是「完美匹配」永远赢过「零匹配但常用」。
+ */
 function usageScore(entry, now) {
   if (entry === undefined || entry === null) return 0
-  const frequency = Math.log1p(entry.loads ?? 0)
+  const loads = entry.loads ?? 0
+  if (loads <= 0) return 0
+  const frequency = Math.min(1, Math.log1p(loads) / Math.log1p(FREQUENCY_SATURATION_LOADS))
   const ageDays = Math.max(0, (now - (entry.lastUsedAt ?? 0)) / 86400000)
-  return frequency + Math.exp(-ageDays / RECENCY_HALF_LIFE_DAYS)
+  const recency = Math.exp(-ageDays / RECENCY_HALF_LIFE_DAYS)
+  // 频率 0.6 / 近因 0.4：技能是低频资产（账本实测一个月可能才 load 一两次），
+  // log1p 压缩后频率项区分度有限，所以"最近用过"必须占足够比重。
+  return Math.min(1, 0.6 * frequency + 0.4 * recency)
 }
 
 /** Short relative age for the result line. */
