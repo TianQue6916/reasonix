@@ -1,10 +1,16 @@
 ---
+id: legacy-edcc069d66c45a21e283b77f
+revision: 1
+created_at: "2026-06-01T15:09:02.8450552Z"
+updated_at: "2026-06-01T15:09:02.8450552Z"
 name: installed-skills-round3
 description: 第三批安装：Anthropic 官方技能 + Vercel 官方技能 + 三个技能合集索引
-type: reference
-scope: global
-created: 2026-06-01
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 # 第三批安装的 Reasonix 技能
 
 ## anthropic-skills

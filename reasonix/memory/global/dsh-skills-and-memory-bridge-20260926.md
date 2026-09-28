@@ -1,11 +1,16 @@
 ---
+id: legacy-69177efb538d1a24c4c62481
+revision: 1
+created_at: "2026-09-27T05:05:44.335422Z"
+updated_at: "2026-09-27T05:05:44.335422Z"
 name: dsh-skills-and-memory-bridge-20260926
 description: dsh web 与 reasonix 共用技能与记忆已落地：80 个技能镜像生效（分片验证通过）+ 只读记忆插件 memory_search/memory_read 已挂载（待重启 web 生效）
-type: reference
-scope: global
-created: 2026-09-26
-priority: high
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 # dsh ⇄ reasonix 技能与记忆桥接（2026-09-26 落地）
 
 **结论**：dsh web 已可直接使用 reasonix 的全部合规技能，且能按需检索 reasonix 的记忆（只读、不分叉、不改 reasonix 侧一个字）。

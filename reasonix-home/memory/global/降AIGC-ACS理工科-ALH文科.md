@@ -1,10 +1,16 @@
 ---
+id: legacy-68d4f11347cfb770ec1f8c64
+revision: 1
+created_at: "2026-06-16T15:02:22.6629261Z"
+updated_at: "2026-06-16T15:02:22.6629261Z"
 name: acs-alh-skills-created
 description: ACS(理工科)+ALH(文科)降AIGC技能已创建，基于25篇知网论文真实数据分析
-type: reference
-scope: global
-created: 2026-06-16
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 # ACS + ALH 降AIGC技能创建记录
 
 ## 创建时间

@@ -1,11 +1,15 @@
 ---
+id: legacy-8115a599321f878f14f47831
+revision: 1
+created_at: "2026-06-17T15:48:52.7222647Z"
+updated_at: "2026-06-17T15:48:52.7222647Z"
 name: reasonix-core-identity
 description: Reasonix Code 核心身份与运营规则——只改名字不改内容/标准化命名体系/会话分类规则
-type: user
-scope: global
-created: 2026-06-17
-priority: high
+metadata:
+  type: user
+  scope: global
 ---
+
 # Reasonix Code 核心身份与运营规则
 
 ## 身份

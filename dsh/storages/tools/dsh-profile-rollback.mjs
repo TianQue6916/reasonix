@@ -70,7 +70,12 @@ function collect() {
     }
     walk(root, 0)
   }
-  return out.sort((a, b) => String(b.point || '').localeCompare(String(a.point || '')))
+  // ROOTS 之间存在包含关系（`~/.dsh/profiles` 在 `~/.dsh` 之下），同一个备份会被
+  // 扫到两次 —— 2026-09-28 实测 --list 把每条都打印了两遍。按路径去重。
+  const seen = new Set()
+  return out
+    .filter((x) => (seen.has(x.path) ? false : (seen.add(x.path), true)))
+    .sort((a, b) => String(b.point || '').localeCompare(String(a.point || '')))
 }
 
 const items = collect()

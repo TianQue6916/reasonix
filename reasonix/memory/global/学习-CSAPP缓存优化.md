@@ -1,10 +1,16 @@
 ---
+id: legacy-2236dd58138639263c2156be
+revision: 1
+created_at: "2026-05-22T15:06:07.4640918Z"
+updated_at: "2026-05-22T15:06:07.4640918Z"
 name: csapp-deep
-type: project
-scope: global
 description: CSAPP深入学习：缓存矩阵、对角块优化等
-created: 2025-05-21
+metadata:
+  type: user
+  fact_type: project
+  scope: global
 ---
+
 # CSAPP深入学习
 
 > 来源：LobeHub 导出 | 13 条用户消息，60 条助手消息

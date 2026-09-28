@@ -1,11 +1,16 @@
 ---
+id: legacy-a8f01caf080f62af8b274e97
+revision: 1
+created_at: "2026-06-11T16:35:57.0608699Z"
+updated_at: "2026-06-11T16:35:57.0608699Z"
 name: aigc-detection-battle-log
 description: 10轮AIGC降率实战经验总结：策略对比与关键教训
-type: project
-scope: global
-created: 2026-06-11
-priority: high
+metadata:
+  type: user
+  fact_type: project
+  scope: global
 ---
+
 # AIGC降率实战日志（2026.06）
 
 ## 10轮迭代数据

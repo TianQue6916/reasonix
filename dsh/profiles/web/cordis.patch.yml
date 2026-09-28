@@ -355,6 +355,13 @@
           # session. What a preset chooses is whether its agent can call the goal tool.
           - id: tool-goal
             name: '@deepseek-ai/dsh-tool-goal'
+            # 2026-09-28 hardened after diagnosing "task stopped before it was done":
+            # the shipped default of 3 consecutive rounds is far too early to give up,
+            # since `tool:goal` guidance already says "difficulty, uncertainty, or
+            # useful remaining work is not blocked". Raise the floor so a goal can
+            # only be reported blocked after real persistence.
+            config:
+              blockedAfterConsecutiveRounds: 10
 
           # ── plan mode ───────────────────────────────────────────────────────────────
 
@@ -1170,13 +1177,22 @@
 - id: mnemon
   name: dsh-mnemon
   config:
-    remoteAccess: read-only
+    remoteAccess: trusted-host
     timeoutMs: 10000
     defaultRecallLimit: 10
     embedding:
       enabled: false
       endpoint: http://localhost:11434
       model: nomic-embed-text
+    memoryView:
+      strategyTypeId: default-three-tier
+      entries:
+        include:mnemon-strategy-auto-capture:
+          enabled: true
+          config: {}
+        include:mnemon-strategy-scoped:
+          enabled: true
+          config: {}
     recallQuality:
       policy: strict-v1
       lowScoreThreshold: 0.25
@@ -1191,9 +1207,3 @@
     recallMode: guided
     writebackMode: guided
     idleReviewMs: 30000
-    memoryView:
-      strategyTypeId: default-three-tier
-      entries:
-        include:mnemon-strategy-auto-capture:
-          enabled: true
-          config: {}

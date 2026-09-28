@@ -1,10 +1,16 @@
 ---
+id: legacy-10bf6c4d2cb2c751e7ed3b89
+revision: 1
+created_at: "2026-05-22T15:06:07.4610929Z"
+updated_at: "2026-05-22T15:06:07.4610929Z"
 name: ppt-word-gen
-type: project
-scope: global
 description: 全自动PPT/Word文档生成工作流
-created: 2025-05-21
+metadata:
+  type: user
+  fact_type: project
+  scope: global
 ---
+
 # PPT与Word文档生成
 
 > 来源：LobeHub 导出 | 12 条用户消息，82 条助手消息

@@ -1,10 +1,16 @@
 ---
+id: legacy-dbe2853b7fce06570098f7d6
+revision: 1
+created_at: "2026-06-16T16:07:09.5817052Z"
+updated_at: "2026-06-16T16:07:09.5817052Z"
 name: thunder-download-method
 description: 迅雷调用方法：thunder://协议Base64转换+Powershell推送
-type: reference
-scope: global
-created: 2026-06-16
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 # 迅雷（Thunder）自动化下载方法
 
 ## 安装路径

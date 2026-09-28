@@ -20,8 +20,9 @@
  * sync keeps working.
  */
 
+import { spawn, execFileSync } from 'node:child_process'
 import { readdir, readFile, writeFile, rename, mkdir, copyFile, access } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, dirname } from 'node:path'
 import { homedir } from 'node:os'
 import { randomBytes } from 'node:crypto'
 
@@ -60,6 +61,114 @@ function profileWeight(fact) {
 }
 /** Skip the index itself, dot-entries, sync-conflict leftovers and backups. */
 const SKIP = /^(\.|MEMORY\.md$)|(conflict)|(\.bak$)|(\.orig$)/i
+
+/**
+ * 实时把刚写入的 fact 灌进 mnemon（fire-and-forget）。
+ *
+ * WHY: markdown 语料是 canonical —— 跨 harness（reasonix ⇄ dsh）和跨机同步都靠它；
+ * mnemon 是 dsh 这一侧的检索/注入层。两者之间原本只有每日 12:20 的 MemoryToMnemon
+ * 计划任务这一条桥，实测新写的 fact 最长 24h 不出现在 mnemon 的 recall/search 里
+ * （2026-09-28 用 blockedAfterConsecutiveRounds 当探针，mnemon search hits=0 实证）。
+ *
+ * 失败绝不能影响记忆写入本身：整体 detached + stdio:'ignore' + unref，只监听 error
+ * 事件吞掉它。排查去看 ~/.dsh/logs/memory-to-mnemon.log。设 DSH_MNEMON_SYNC=0 可关掉。
+ */
+const MNEMON_SYNC_PY = join(homedir(), '.dsh', 'storages', 'tools', 'memory-to-mnemon.py')
+
+function syncToMnemon(factName, scope, dir) {
+  if (process.env.DSH_MNEMON_SYNC === '0') return
+  try {
+    // 总是显式传 --src：dir 就是该 scope 的语料目录（global → <root>/global），
+    // 这样 project scope 也走得通，隔离测试也不必额外分支。
+    const args = [MNEMON_SYNC_PY, '--only', factName, '--src', dir]
+    const child = spawn(process.env.DSH_PYTHON ?? 'python', args, {
+      detached: true,
+      stdio: 'ignore',
+      windowsHide: true,
+    })
+    child.on('error', () => {})
+    child.unref()
+  } catch {
+    /* 同步是尽力而为 */
+  }
+}
+
+/**
+ * 记忆级 git 锚点 —— 让每条 fact 都记得自己产生时的本地 git 状态。
+ *
+ * 为什么放旁路文件、而不写进 fact 的 frontmatter：
+ *   renderFact 生成的 frontmatter 是「与 reasonix 自己的 remember 工具同一形状」，
+ *   reasonix 是这套语料的唯一写入方、双机同步也依赖那个形状。往里塞自定义字段
+ *   要先去确认 reasonix 侧解析不会被打断；写到旁路文件则完全不碰语料格式，
+ *   也不会污染喂给 mnemon 的 content。
+ *
+ * 失败绝不阻塞记忆写入本身：所有异常就地吞掉，落盘走 tmp + rename 原子替换。
+ * 文件：~/.dsh/storages/git-anchors.json
+ */
+const GIT_ANCHOR_FILE = join(homedir(), '.dsh', 'storages', 'git-anchors.json')
+const GIT_ANCHOR_KEEP = 300
+
+function gitTry(cwd, args) {
+  try {
+    const out = execFileSync('git', ['-C', cwd, ...args], {
+      encoding: 'utf8',
+      timeout: 2000,
+      stdio: ['ignore', 'pipe', 'ignore'],
+      windowsHide: true,
+      maxBuffer: 512 * 1024,
+    })
+    return String(out).replace(/\r/g, '').trim()
+  } catch {
+    return null
+  }
+}
+
+/** 捕获 process.cwd() 与 ~/.dsh 两处所在仓库（按仓库根去重）。 */
+async function captureGitAnchor(factName) {
+  const repos = []
+  const seen = new Set()
+  for (const dir of [process.cwd(), join(homedir(), '.dsh')]) {
+    const k0 = String(dir).toLowerCase()
+    if (seen.has(k0)) continue
+    seen.add(k0)
+    const root = gitTry(dir, ['rev-parse', '--show-toplevel'])
+    if (root === null || root === '') continue
+    const k1 = root.toLowerCase()
+    if (seen.has(k1)) continue
+    seen.add(k1)
+    const branch = gitTry(dir, ['rev-parse', '--abbrev-ref', 'HEAD']) || '(unknown)'
+    const head = gitTry(dir, ['rev-parse', '--short', 'HEAD']) || '(no commits)'
+    const porcelain = gitTry(dir, ['status', '--porcelain']) || ''
+    repos.push({
+      repo: root,
+      branch,
+      head,
+      dirty: porcelain === '' ? 0 : porcelain.split('\n').filter((l) => l !== '').length,
+    })
+  }
+  if (repos.length === 0) return
+  const path = GIT_ANCHOR_FILE
+  let doc = { version: 1, anchors: {} }
+  try {
+    const parsed = JSON.parse(await readFile(path, 'utf8'))
+    if (parsed && typeof parsed === 'object' && parsed.anchors && typeof parsed.anchors === 'object') {
+      doc = parsed
+    }
+  } catch {
+    /* 首次写入或文件损坏 → 重建 */
+  }
+  doc.version = 1
+  doc.anchors[factName] = { at: new Date().toISOString(), repos }
+  const names = Object.keys(doc.anchors)
+  if (names.length > GIT_ANCHOR_KEEP) {
+    names.sort((a, b) => String(doc.anchors[a].at).localeCompare(String(doc.anchors[b].at)))
+    for (const n of names.slice(0, names.length - GIT_ANCHOR_KEEP)) delete doc.anchors[n]
+  }
+  const tmp = path + '.tmp'
+  await mkdir(dirname(path), { recursive: true })
+  await writeFile(tmp, JSON.stringify(doc, null, 2), 'utf8')
+  await rename(tmp, path)
+}
 
 /** Minimal JSON schema compiler for tool parameters (zero dependencies). */
 function toJsonSchema(spec) {
@@ -292,6 +401,10 @@ export function apply(ctx) {
       })
       await atomicWrite(file, rendered)
       const index = await upsertIndexEntry(scope, factName, description)
+      // mnemon 是 dsh 侧的检索层，语料落地后立刻补桥（详见 syncToMnemon 的注释）
+      syncToMnemon(factName, scope, dir)
+      // 记忆级 git 锚点：让这条 fact 记得自己产生时的本地 git 状态
+      await captureGitAnchor(factName).catch(() => {})
       return {
         text: `${previous === undefined ? 'Saved' : 'Updated'} memory "${factName}" (revision ${revision}, scope ${scope})\nfile: ${file}\nindex: ${index.message}`,
       }

@@ -1,10 +1,16 @@
 ---
+id: legacy-205990ffac0b171da4ea87ed
+revision: 1
+created_at: "2026-06-15T16:09:23.4226325Z"
+updated_at: "2026-06-15T16:09:23.4226325Z"
 name: pdf2zh-toolbox
 description: 工具箱 D:\Toolbox\ 内含 PDFMathTranslate + Codex Desktop App 安装包及快捷方式
-type: reference
-scope: global
-created: 2026-06-10
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 ## PDFMathTranslate 工具箱（便携版）
 
 **位置：** `D:\Toolbox\PDFMathTranslate\`

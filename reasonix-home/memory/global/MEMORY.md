@@ -37,7 +37,7 @@
 - [tool-dsh-infinite-gen4-web-install](tool-dsh-infinite-gen4-web-install.md) — dsh「无限四代」插件 web profile 装卸档案：2026-09-23 已完整卸载，含 junction 坑与三重验证法
 - [skill-安装-无限四代载荷存档](skill-安装-无限四代载荷存档.md) — 无限四代事件全档案（已全部卸载）：诉求演变、拒绝边界、`✗ 购买授权` 真实含义
 - [meta-secret-redaction-select-string-pitfall](meta-secret-redaction-select-string-pitfall.md) — 教训：Select-String 校验含密钥配置会打印整行，key 明文进会话记录；含正确脱敏写法
-- [dsh-skills-and-memory-bridge-20260926](dsh-skills-and-memory-bridge-20260926.md) — dsh web 与 reasonix 共用技能与记忆：80 技能镜像已生效 + 只读记忆插件已挂载待重启 web
+- [dsh skills and memory bridge 20260926](dsh-skills-and-memory-bridge-20260926.md) — [global/reference] dsh web 与 reasonix 共用技能与记忆已落地：80 个技能镜像生效（分片验证通过）+ 只读记忆插件 memory_search/memory_read 已挂载（待重启 web 生效）
 
 ## 四、双机与远程控制（4）
 - [windows-main-machine-full](windows-main-machine-full.md) — 主力机「天阙九泉」完整远控信息（SSH + RustDesk + IPv6），唯一凭据源
@@ -77,7 +77,7 @@
 - [strang-part002-translation-complete](strang-part002-translation-complete.md) — Strang LaLFD part002（p51-100）双语翻译：范围、流程资产、OCR 工具链、成本经验
 - [subtitleedit-skill-created](subtitleedit-skill-created.md) — SubtitleEdit 批量翻译流程验证（zh-CN 文档 + 另存为 Enter）与恢复步骤
 - [tool-subtitleedit-goat-api-20260920](tool-subtitleedit-goat-api-20260920.md) — SubtitleEdit 引擎改指 GOAT：Settings.json 三字段、实测数据、两个验证坑、回退法
-- [csapp-summary-methodology](csapp-summary-methodology.md) — CSAPP 方舟复述方法论：设计问题驱动 + 跨课程连接 + 事实核查 + 零空洞赞美
+- [csapp summary methodology](csapp-summary-methodology.md) — [global/feedback pinned] CSAPP方舟复述方法论——设计问题驱动+跨课程连接+事实核查的课程总结标准
 - [扫描件整理方法论-按章合并成册-带书签-dhash-去重-ocr-页码不可用于排序-名字与内容不符需抽查](扫描件整理方法论-按章合并成册-带书签-dhash-去重-ocr-页码不可用于排序-名字与内容不符需抽查.md) — 扫描件整理方法论：按章合并成册（带书签）+ dHash 去重；OCR 页码不可排序
 - [空壳-word-占位文档识别与清理-判定标准-6-042j-547-5-文件-md5-不同-内容不同的教训](空壳-word-占位文档识别与清理-判定标准-6-042j-547-5-文件-md5-不同-内容不同的教训.md) — 空壳 Word 识别与清理判定标准；6.042J 547→5 文件；MD5 不同 ≠ 内容不同
 - [wps-知识库-kdocs-wiki-完整抓取与下载方法-2026-09-23-课程资料推-github-进度](wps-知识库-kdocs-wiki-完整抓取与下载方法-2026-09-23-课程资料推-github-进度.md) — WPS 知识库（kdocs wiki）完整抓取下载方法 + 课程资料推 GitHub 进度
@@ -90,7 +90,7 @@
 - [技能安装-第三批AnthropicVercel](技能安装-第三批AnthropicVercel.md) — Anthropic 官方 + Vercel 官方 + 三个合集索引
 - [技能安装-演示文稿技能](技能安装-演示文稿技能.md) — 三个由外部仓库转换安装的演示文稿技能
 - [技能安装-MattPocock自动触发](技能安装-MattPocock自动触发.md) — Matt Pocock 技能集自动触发规则 + 已安装索引
-- [academic-research-skills](academic-research-skills.md) — ARS 技能包（Claude Code）安装与核心功能备忘
+- [academic research skills](academic-research-skills.md) — [global/reference] ARS 技能包（Claude Code）安装与核心功能备忘
 
 ## 八、降 AIGC（4）
 - [降AIGC-核心结论](降AIGC-核心结论.md) — 降 AIGC 核心结论与数据（技能 aigc-master 配套）
@@ -101,7 +101,7 @@
 ## 九、工具与系统（27）
 - [工具-离线维基百科](工具-离线维基百科.md) — 离线维基 ZIM 权威路径与搜索代码
 - [工具-离线维基51GB-ZIM](工具-离线维基51GB-ZIM.md) — 英文 51.9GB ZIM 自动搜索流程与代码
-- [offline-wiki-autosearch](offline-wiki-autosearch.md) — 本机路径 /media/OS/wiki-data/zim/，libzim 直搜；只有小电脑有知识库
+- [offline wiki autosearch](offline-wiki-autosearch.md) — [global/project] 离线维基百科（英文，51.9GB ZIM）— 自动搜索流程与代码
 - [离线维基zim迁移c盘-20260802](离线维基zim迁移c盘-20260802.md) — ZIM 完成 C 盘迁移 + 2026-06 新版升级，含 aria2 断点续传经验
 - [工具-Windows工具箱与Codex](工具-Windows工具箱与Codex.md) — D:\Toolbox、Codex、OCR、PPT 工具信息
 - [工具-Codex桌面版安装](工具-Codex桌面版安装.md) — Codex Desktop App v26.609.4994.0 安装与配置记录
@@ -146,7 +146,7 @@
 - [dsh-session-digest-ondemand-distill-20260926](dsh-session-digest-ondemand-distill-20260926.md) — dsh session_digest 上线（按需蒸馏会话：任务/轮次/工具调用/结论），并记录「为何不做无条件自动蒸馏」的设计判断
 - [dsh-community-plugin-landscape-20260926](dsh-community-plugin-landscape-20260926.md) — dsh 社区插件清单（476 个仓库，含直接对应我缺口的 headroom/token/goal/recall/session-lab）+ 出网限制（web_search 402、bash 无网）+ 「应先调研社区再自写」的流程教训
 - [dsh-skill-usage-weighting-20260926](dsh-skill-usage-weighting-20260926.md) — skill_search 加权上线（调用次数 + 时间远近，公式 match + 0.6*(log1p(loads)+exp(-age/14))）；并记录关键事实：两侧历史都没有技能调用数据，账本从零积累
-- [rule-star-open-source-usage](rule-star-open-source-usage.md) — 元规则：用过/读过/借鉴的开源项目要 star（卸载了也要 star）。累计 21 个；并订正 GitHub 操作手法——bash 本就有网，用 --noproxy 绕开死代理即可，不必再绕 PowerShell
+- [rule-star-open-source-usage](rule-star-open-source-usage.md) — 元规则：用过/读过/借鉴过的开源项目必须 star（本次新增 9 个，累计 30）+ 纯 bash 的 star 执行路径
 - [dsh-community-landscape-v2-and-powershell-egress-20260926](dsh-community-landscape-v2-and-powershell-egress-20260926.md) — PowerShell 能出网（bash 被禁）这一能力突破 + 社区实况实时数据（topic:dsh-plugin 16,218 个；更正 dsh-desktop 存在、记忆插件 star 量级）+ headroom/deja-vu 等对应方案
 - [deja-vu-installed-and-reasonix-bridged-20260926](deja-vu-installed-and-reasonix-bridged-20260926.md) — deja-vu 0.21.2 落地 + 零开发桥接 reasonix（49 会话）；issue #4053 已提交；session-index.mjs 已退役；新配置经 3081 验证通过，3080 待用户择时重启
 - [dsh-plugin-batch2-modlens-vision-20260927](dsh-plugin-batch2-modlens-vision-20260927.md) — 装了 modlens（视觉插件，4043★）让纯文本 DeepSeek 能看图；含 14 项候选插件清单与判定；并记录解除了一个卡死 22 分钟的 pnpm 安装
@@ -204,8 +204,77 @@
 - [gitbash-schtasks-arg-conversion](gitbash-schtasks-arg-conversion.md) — Git Bash 调 schtasks 必须 MSYS_NO_PATHCONV=1 + 单斜杠，否则 //query 被转成 C:/Git/query 输出错误
 - [dsh-replay-thinking-patch](dsh-replay-thinking-patch.md) — 把 dsh-replay 的鲸小深加载动画换成 thinking 指示器：改动范围、脚本、3 个踩坑、验证手段
 - [autostart-verification-method-20260928](autostart-verification-method-20260928.md) — 自启机制的验证方法与结论：先确认是否真重启，父链判断谁启动，两条路径实测
+- [backup-pipeline-selfreference-and-scope-fix](backup-pipeline-selfreference-and-scope-fix.md) — backup-to-github 的两个根本问题：自指陷阱（修私钥泄漏的 fact 自己成源）+ 同步范围失控（291MB 会话进 public repo）
+- [skill-usage-weight-normalization-fix](skill-usage-weight-normalization-fix.md) — skill_search 用量权重的量纲缺陷与归一化修复（含改前改后量化对比、可复用抽函数验证法）
+- [weixin-bot-current-architecture](weixin-bot-current-architecture.md) — 微信 bot 现状架构基线：官方 iLink 协议、改名副本与独立 home、leader 由 bot 内置、凭据位置与 bot 配置形态
+- [computer-use-l2-isolation-verified](computer-use-l2-isolation-verified.md) — #7 computer-use 的 L2 隔离验证：NODE_OPTIONS 崩 pnpm、plugin add 不进 bundles、勿跑 selftest、22 个工具清单
+- [incident-credential-echo-leak](incident-credential-echo-leak.md) — 凭据打印事故（第 2 次）：同一表达式混用 ${VAR:+} 与 ${VAR:-} 会把值打印出来；含安全写法清单
+- [dsh-goal-stop-mechanism](dsh-goal-stop-mechanism.md) — dsh goal 自动续跑的 6 条停止路径、pause 的误导性症状与只能由人做的恢复、以及"卡死"诊断方法
+- [rule-no-premature-goal-block](rule-no-premature-goal-block.md) — 不得因"某个子项需要用户拍板"而整体 block goal；先推进不需要授权的剩余项
+- [dsh-mnemon-realtime-sync](dsh-mnemon-realtime-sync.md) — 修复 memory→mnemon 同步的三处 bug，并新增 memory_remember 实时同步通路（含开关与回滚）
+- [dsh-thread-edges-v2](dsh-thread-edges-v2.md) — #5 thread_spawn_edges 的真实实现：parentSession 权威边 + 全量扫描 + 每日刷新任务
+- [windows-task-REDACTED](windows-task-REDACTED.md) — 两个验收陷阱：ScheduledTask 的 LastTaskResult 不是退出码；node 内置 zstd 静默截断多 frame 流
+- [dsh-agent-jobs-v2](dsh-agent-jobs-v2.md) — #4 agent_jobs 的真实交付：端到端证据 + 4 个修复 + 26 项 self-test 断言
+- [dsh-tools-dir-archived-20260928](dsh-tools-dir-archived-20260928.md) — 工具目录归档：24 个一次性脚本移入 _archive-20260928（含引用安全检查与回滚）
+- [mnemon-acceptance-evidence-20260928](mnemon-acceptance-evidence-20260928.md) — mnemon 三层记忆的逐项验收实证，以及"不重建生产库"的判定与依据
+- [backup-to-github-copies-and-excludes](backup-to-github-copies-and-excludes.md) — backup-to-github.ps1 的副本真相与去漂移、tmp-probe 排除、PowerShell 零副作用语法校验法，以及 2026-09-28 新增的 ~/.dsh/remote/ 私钥排除与 robocopy /L 验证法
+- [dsh-isolated-instance-verify-recipe](dsh-isolated-instance-verify-recipe.md) — 隔离 dsh 实例验证配方：三件套环境变量、mem-verify profile 构建、patch insert 语义坑、三条判据
+- [rule-long-running-process-needs-job](rule-long-running-process-needs-job.md) — 长命进程必须用 job 工具而非前台 bash；以及一条会挂住的命令为什么不报错、我犯过的报告失真错误
+- [ds-harness-remote-installed-20260928](ds-harness-remote-installed-20260928.md) — #6 remote_control 收尾：ds-harness-remote 0.4.20 装进生产 web profile 并在 rc-lab 隔离验证（零公网 listener / 未登录零出站），读取的默认配置项、volatile schema 会写回 cordis.patch.yml 的坑、以及待用户做的一次重启+登录
+- [dsh-restart-20260928-post-remote-install](dsh-restart-20260928-post-remote-install.md) — 2026-09-28 18:12:30 dsh 重启后的事实与验证方法论：cordis.yml mtime = boot 时刻指纹、三个失败的「插件加载了吗」判据、stdout 才是可靠判据、长期实例必须由 launch-dsh.ps1 起否则证据链断
+- [reasonix-memory-fully-integrated-into-mnemon-20260928](reasonix-memory-fully-integrated-into-mnemon-20260928.md) — reasonix→mnemon 整合收尾：198 个 fact 全覆盖缺口 0；修掉 memory-to-mnemon.py 只读 global 目录导致 project/ 与 hash scope 从未导入的缺口；并记下「核对覆盖率必须用 frontmatter name 不是文件名」这条把我骗过一次的教训
+- [dsh-config-editor-writeback-and-mnemon-settings](dsh-config-editor-writeback-and-mnemon-settings.md) — DSH config-editor 写回机制全解 + 2026-09-28 18:50 一次真实 UI 写入的现场证据：entries() 的两个硬过滤（parent 必须 include、id 必须唯一，重复即静默消失）、三支写入逻辑、写完回读校验与回滚、以及「insert 里的 row 永远不是宿主」这条踩坑点
+- [dsh-home-local-git-versioning-20260928](dsh-home-local-git-versioning-20260928.md) — ~/.dsh 建成本地 git 版本控制：基线 commit 2e5b898 / 222 文件 / .gitignore 取舍 / dsh-autocommit.ps1 + DshConfigAutocommit 任务；含四条诊断（原本无版本控制、Reasonix autocommit 不覆盖 ~/.dsh、记忆与 session 都无 git 字段）与仍未做的会话注入+记忆锚点
 ## 归档说明
 - 原文全量备份：`~/.reasonix/memory-backup-20260816/`（59 份）与 `~/.reasonix/memory-backup-20260816-consolidate/`
 - 合并/蒸馏原始件：`~/.reasonix/memory-archive-20260816/`
 - 旧 project key 残留：`~/.reasonix/memory-archive-20260816/legacy-eecdfd/`
 - 双机冲突留存：`*.conflict.linux.*.bak` / `*.conflict.win.*.bak`（同步策略为「冲突保留双份」，绝不覆盖）
+
+- [reasonix core identity](reasonix-core-identity.md) — [global/user pinned] Reasonix Code 核心身份与运营规则——只改名字不改内容/标准化命名体系/会话分类规则
+
+- [skill routing rules](skill-routing-rules.md) — [global/project] 强制技能路由规则 — 16个场景的 Skill 自动触发映射
+
+- [auto remember critical milestones](auto-remember-critical-milestones.md) — [global/feedback pinned] 完成重要操作后自动 remember 保存结果，不等用户提醒
+
+- [csapp structure](csapp-structure.md) — [global/project] CSAPP全书目录结构解析
+
+- [csapp deep](csapp-deep.md) — [global/project] CSAPP深入学习：缓存矩阵、对角块优化等
+
+- [mit6042j review](mit6042j-review.md) — [global/project] MIT6.042J离散数学课程前瞻性总结回顾
+
+- [discrete math](discrete-math.md) — [global/project] 离散数学深入学习：Chernoff Bound等推导
+
+- [advanced math](advanced-math.md) — [global/project] 高等数学学习对话与问题解答
+
+- [codex installed](codex-installed.md) — [global/reference] OpenAI Codex Desktop App v26.609.4994.0 安装与配置记录
+
+- [pdf2zh toolbox](pdf2zh-toolbox.md) — [global/reference] 工具箱 D:\Toolbox\ 内含 PDFMathTranslate + Codex Desktop App 安装包及快捷方式
+
+- [ppt word gen](ppt-word-gen.md) — [global/project] 全自动PPT/Word文档生成工作流
+
+- [toolbox folder shortcut](toolbox-folder-shortcut.md) — [global/reference] D:\Toolbox\ 快捷方式：内有工具箱.lnk
+
+- [recommended ocr tools](recommended-ocr-tools.md) — [global/reference] 用户上次推荐的OCR工具记录
+
+- [toolbox desktop shortcut](toolbox-desktop-shortcut.md) — [global/reference] 桌面有工具箱.lnk → D:\Toolbox
+
+- [thunder download method](thunder-download-method.md) — [global/reference] 迅雷调用方法：thunder://协议Base64转换+Powershell推送
+
+- [matt pocock skills auto](matt-pocock-skills-auto.md) — [global/project] Matt Pocock 技能集 — 自动触发规则 + 已安装技能索引
+
+- [installed ppt skills](installed-ppt-skills.md) — [global/reference] 三个由外部仓库转换安装的 Reasonix 演示文稿技能
+
+- [installed skills round3](installed-skills-round3.md) — [global/reference] 第三批安装：Anthropic 官方技能 + Vercel 官方技能 + 三个技能合集索引
+
+- [installed skills round2](installed-skills-round2.md) — [global/reference] 第二批安装的4个Reasonix技能：计划管理+开发方法论+幻灯片+浏览器自动化
+
+- [future planning](future-planning.md) — [global/user pinned] 方舟计划完整总结、API配置、学习体系规划
+
+- [aigc detection battle log](aigc-detection-battle-log.md) — [global/project] 10轮AIGC降率实战经验总结：策略对比与关键教训
+
+- [acs alh skills created](acs-alh-skills-created.md) — [global/reference] ACS(理工科)+ALH(文科)降AIGC技能已创建，基于25篇知网论文真实数据分析
+
+- [aigc deterministic only](aigc-deterministic-only.md) — [global/feedback pinned] 核心发现：AI改写AI文本=叠加AI指纹，唯一有效的是非LLM硬编码规则替换
+
+- [GOAT 模型菜单实况 + pro 是 latest 滚动指针 + pro 使用基线（2026-09-28 实测）](goat-model-menu-and-pro-latest-pointer-baseline-20260928.md) — [global/reference] GOAT 网关 82 模型菜单实测（无 v4.1-pro）、deepseek-v4-pro 是 latest 滚动指针（v4.1-pro 上线大概率不新增 id）、6 天日志 pro 零调用基线，以及判断 v4.1-pro 是否需要时的触发条件

@@ -1,10 +1,16 @@
 ---
+id: legacy-e866b5f110e77842268f3508
+revision: 1
+created_at: "2026-06-15T16:06:22.6783188Z"
+updated_at: "2026-06-15T16:06:22.6783188Z"
 name: codex-installed
 description: OpenAI Codex Desktop App v26.609.4994.0 安装与配置记录
-type: reference
-scope: global
-created: 2026-06-15
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 # Codex Desktop App 安装与配置（2026-06-15）
 
 ## 安装

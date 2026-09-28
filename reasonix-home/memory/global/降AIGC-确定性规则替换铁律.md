@@ -1,11 +1,15 @@
 ---
+id: legacy-5323f40e7a2935d40bb1e890
+revision: 1
+created_at: "2026-06-17T15:10:56.6647358Z"
+updated_at: "2026-06-17T15:10:56.6647358Z"
 name: aigc-deterministic-only
 description: 核心发现：AI改写AI文本=叠加AI指纹，唯一有效的是非LLM硬编码规则替换
-type: feedback
-scope: global
-created: 2026-06-17
-priority: high
+metadata:
+  type: feedback
+  scope: global
 ---
+
 # AIGC降率核心发现（2026.06 实测闭环）
 
 ## 六次检测迭代数据

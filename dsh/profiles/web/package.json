@@ -4,6 +4,7 @@
   "dependencies": {
     "@local/dsh-plugin-goat-panel": "file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel",
     "@mingozhou/dsh-replay": "^0.4.1",
+    "ds-harness-remote": "^0.4.20",
     "dsh-deja": "^0.21.3",
     "dsh-headroom": "git+https://github.com/giter00/dsh-headroom.git",
     "dsh-mnemon": "^0.5.16",
@@ -21,7 +22,8 @@
         "dsh-headroom",
         "dsh-mnemon",
         "dshmarket",
-        "@mingozhou/dsh-replay"
+        "@mingozhou/dsh-replay",
+        "ds-harness-remote"
       ],
       "patchReload": "live"
     }

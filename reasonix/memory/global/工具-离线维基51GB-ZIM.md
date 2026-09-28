@@ -1,11 +1,16 @@
-﻿---
+---
+id: legacy-8aa48c5826dddbff2d695ce9
+revision: 1
+created_at: "2026-07-31T11:58:22.9087914Z"
+updated_at: "2026-07-31T11:58:22.9087914Z"
 name: offline-wiki-autosearch
 description: 离线维基百科（英文，51.9GB ZIM）— 自动搜索流程与代码
-type: project
-scope: global
-created: 2026-06-10
-priority: high
+metadata:
+  type: user
+  fact_type: project
+  scope: global
 ---
+
 # 离线维基百科自动搜索（内化能力）
 
 ## 资源

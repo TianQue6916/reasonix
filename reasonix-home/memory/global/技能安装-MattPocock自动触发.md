@@ -1,11 +1,16 @@
 ---
+id: legacy-1c2847c31cf1bfa321c502d9
+revision: 1
+created_at: "2026-06-10T15:40:02.0498278Z"
+updated_at: "2026-06-10T15:40:02.0498278Z"
 name: matt-pocock-skills-auto
 description: Matt Pocock 技能集 — 自动触发规则 + 已安装技能索引
-type: project
-scope: global
-created: 2026-06-10
-priority: high
+metadata:
+  type: user
+  fact_type: project
+  scope: global
 ---
+
 # Matt Pocock 技能 — 自动触发规则
 
 已安装为 Reasonix 内联技能，以下场景**自动调用**无需用户额外指示：

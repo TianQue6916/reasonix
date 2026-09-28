@@ -1,10 +1,16 @@
 ---
+id: legacy-a6a38f22af84f6d9c315ef40
+revision: 1
+created_at: "2026-06-23T15:49:46.9432624Z"
+updated_at: "2026-06-23T15:49:46.9432624Z"
 name: academic-research-skills
 description: ARS 技能包（Claude Code）安装与核心功能备忘
-type: reference
-scope: global
-created: 2026-06-23
+metadata:
+  type: user
+  fact_type: reference
+  scope: global
 ---
+
 # academic-research-skills (ARS) 备忘
 
 ## 获取方式

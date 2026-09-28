@@ -292,6 +292,30 @@
 - id: memory-reasonix
   name: ./memory.mjs
 
+# ── local git context ───────────────────────────────────────────────────────
+
+# 让每一轮都知道「自己 git 在哪」。用户的要求是：每次改动与上下文记忆都要能
+# 记得本地 git。此前两半都缺 —— session header 只有 cwd，fact frontmatter 没有任何
+# git 字段；而 ~/.dsh 本身直到 2026-09-28 才建起本地仓库。
+#
+# 注入形状照官方 @deepseek-ai/dsh-time-context：在 agent/pre-step waterfall 里往
+# decision.messages 追加一条 source.kind='git-context' 的 user 消息。
+# preset 模块只能 import node 内建模块（解析根是 preset 目录、没有 node_modules），
+# 所以那条消息的形状是手写的，不能用 dsh-llm 的 createUserMessage。
+#
+# 第一轮会被 anchored-context-gate 连同其它自动注入一起剥掉（本行没有进 allowKinds），
+# 第二轮起可见 —— 与官方 time-context / AGENTS.md digest 完全同待遇，是设计不是缺陷。
+- id: git-context
+  name: ./git-context.mjs
+  config:
+    enabled: true
+    maxCommits: 3
+    # 会话 cwd 之外还要跟踪的仓库（cwd 优先，按仓库根去重）。
+    # ~/.dsh 是 2026-09-28 建起的本地仓库：preset / profile patch / 自建工具脚本
+    # 的所有改动都在这里留下 commit。
+    repos:
+      - 'C:/Users/27063/.dsh'
+
 # ── goals ───────────────────────────────────────────────────────────────────
 
 # Only the model-facing tool. The goal SERVICE, its session driver, and the

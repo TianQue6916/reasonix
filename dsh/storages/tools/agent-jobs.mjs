@@ -17,14 +17,20 @@
  *   --retries <n>        单任务重试次数（默认 0）
  *   --dry-run            只解析并打印将执行的任务，不调用 dsh
  *   --keep-cols <names>  额外保留到输出的列（默认保留全部原列）
+ *   --self-test          跑确定性回归断言集（不需要模型，也不需要 --in）
  *
  * 输出 CSV: 原列 + result + status + ms  （status: ok | error | timeout）
+ *   配 --schema 时改为: 原列 + <schema 的每个 property> + _valid + _errors + _raw + ms
+ *   注意校验器只实现 type / required / properties / items；其余关键字会**静默忽略**，
+ *   运行时会打警告（2026-09-28 加）。
+ *
+ * 冒烟: node agent-jobs.mjs --self-test        （23 项确定性断言，无需模型）
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 
 const argv = process.argv.slice(2)
-const opt = { profile: 'headless', concurrency: 3, timeoutMs: 900000, retries: 0, col: null, template: null, keepCols: null, dryRun: false, schema: null }
+const opt = { profile: 'headless', concurrency: 3, timeoutMs: 900000, retries: 0, col: null, template: null, keepCols: null, dryRun: false, schema: null, selfTest: false }
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i]
   if (a === '--in') opt.in = argv[++i]
@@ -38,12 +44,28 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--keep-cols') opt.keepCols = argv[++i].split(',').map(s => s.trim())
   else if (a === '--schema') opt.schema = argv[++i]
   else if (a === '--dry-run') opt.dryRun = true
+  else if (a === '--self-test') opt.selfTest = true
   else if (a === '-h' || a === '--help') { console.log(readFileSync(new URL(import.meta.url)).toString().split('*/')[0].replace(/^\/\*\*?/, '')); process.exit(0) }
 }
+/** 本校验器不支持的 schema 关键字集合（递归收集）。 */
+const SUPPORTED_SCHEMA_KEYS = new Set(['type', 'required', 'properties', 'items'])
+// 确定性回归测试，不需要模型参与，也不需要 --in
+if (opt.selfTest) process.exit(runSelfTest())
+
 if (!opt.in) { console.error('缺少 --in'); process.exit(2) }
 
 let SCHEMA = null
 if (opt.schema) SCHEMA = JSON.parse(readFileSync(opt.schema, "utf8"))
+// 静默忽略约束 = 假校验。校验器只实现 type / required / properties / items 四件事，
+// 其余关键字（enum / additionalProperties / minimum / pattern / …）一律不生效，
+// 必须显式告诉调用者，否则他会以为输出真的被 schema 约束住了。
+if (SCHEMA) {
+  const ignored = unsupportedSchemaKeys(SCHEMA)
+  if (ignored.size) {
+    console.error('警告：schema 含本校验器**不支持**的约束关键字 — ' + [...ignored].join(', '))
+    console.error('      它们会被静默忽略；实际只校验 type / required / properties / items。')
+  }
+}
 
 /** 从模型输出里抽出 JSON（容忍 markdown 围栏与前后废话） */
 function extractJson(text) {
@@ -122,6 +144,16 @@ const rows = parseCsv(readFileSync(opt.in, 'utf8'))
 if (!rows.length) { console.error('CSV 为空'); process.exit(2) }
 const header = rows[0]
 const data = rows.slice(1)
+// 旧行为：默认取第一列 —— 在多列 CSV 上几乎总是错的（第一列通常是 id），
+// 而且失败是**静默**的：你会拿到一批"任务文本 = 行号"的无意义结果，照样烧 token
+// （2026-09-28 用 id,task,lang 的 CSV 实测 dry-run 打出 `[0] 1` / `[1] 2`）。
+if (!opt.col && !opt.template && header.length > 1) {
+  console.error(`CSV 有 ${header.length} 列（${header.join(', ')}），但没有指定 --col 或 --template。`)
+  console.error('默认取第一列在多列 CSV 上几乎总是错的。请显式指定其中之一，例如：')
+  console.error(`  --col ${header.find((h) => /task|prompt|question|text/i.test(h)) || header[1]}`)
+  console.error(`  --template '{${header[0]}}：{${header[1]}}'`)
+  process.exit(2)
+}
 const cols = opt.col ? opt.col.split(',').map(s => s.trim()) : [header[0]]
 for (const c of cols) if (!header.includes(c)) { console.error(`列不存在: ${c}（有: ${header.join(', ')}）`); process.exit(2) }
 
@@ -164,8 +196,10 @@ if (SCHEMA) {
   schemaKeys = Object.keys(SCHEMA.properties || {})
   if (!schemaKeys.length) schemaKeys = ['value']
 }
+// schema 模式下若不保留原文，`_valid=false` 时就完全不知道模型到底输出了什么 ——
+// 排障最需要那一份原始输出（2026-09-28 加 `_raw`）。
 const outHeader = SCHEMA
-  ? [...keep, ...schemaKeys, '_valid', '_errors', 'ms']
+  ? [...keep, ...schemaKeys, '_valid', '_errors', '_raw', 'ms']
   : [...keep, 'result', 'status', 'ms']
 const lines = [outHeader.map(q).join(',')]
 data.forEach((r, i) => {
@@ -177,7 +211,7 @@ data.forEach((r, i) => {
     const errs = parsed.ok ? validate(parsed.value, SCHEMA) : ['未能从输出中解析出 JSON']
     const vals = schemaKeys.map(k =>
       parsed.ok && parsed.value && typeof parsed.value === 'object' ? parsed.value[k] : '')
-    lines.push([...base, ...vals, errs.length ? 'false' : 'true', errs.join('; '), res.ms].map(q).join(','))
+    lines.push([...base, ...vals, errs.length ? 'false' : 'true', errs.join('; '), res.result.slice(0, 2000), res.ms].map(q).join(','))
   } else {
     lines.push([...base, res.result, res.status, res.ms].map(q).join(','))
   }
@@ -187,3 +221,78 @@ writeFileSync(outPath, lines.join('\n') + '\n', 'utf8')
 console.log(`\n完成 ${tasks.length} 个任务，用时 ${((Date.now() - t0) / 1000).toFixed(1)}s`)
 console.log(`  ok=${results.filter(r => r?.status === 'ok').length}  error=${results.filter(r => r?.status === 'error').length}  timeout=${results.filter(r => r?.status === 'timeout').length}`)
 console.log(`  输出: ${outPath}`)
+
+// ---------------------------------------------------------------------------
+// --self-test：确定性回归断言集。
+//
+// WHY: objective 要求每步可验证，但**靠 LLM 配合的端到端测试是不确定的** ——
+// 模型会"聪明地"满足任何可满足的 schema（实测：故意让 required 里含一个 properties
+// 未声明的键，模型照样补上了一个字符串值，`_valid` 仍是 true）。所以解析层与校验层
+// 必须有不需要模型的断言。
+// ---------------------------------------------------------------------------
+function runSelfTest() {
+  const LF = String.fromCharCode(10)
+  const FENCE = String.fromCharCode(96).repeat(3)
+  const fails = []
+  let asserts = 0
+  const eq = (label, got, want) => {
+    asserts++
+    const a = JSON.stringify(got)
+    const b = JSON.stringify(want)
+    if (a !== b) fails.push(label + ': got ' + a + ' want ' + b)
+  }
+  const ok = (label, cond) => { asserts++; if (!cond) fails.push(label + ': expected truthy') }
+  const S = (props, required) => ({ type: 'object', properties: props, required })
+
+  // --- parseCsv ---
+  eq('csv basic', parseCsv('a,b' + LF + '1,2' + LF), [['a', 'b'], ['1', '2']])
+  eq('csv quoted comma', parseCsv('a,b' + LF + '1,"x,y"' + LF), [['a', 'b'], ['1', 'x,y']])
+  eq('csv escaped quote', parseCsv('a' + LF + '"he said ""hi"""' + LF), [['a'], ['he said "hi"']])
+  eq('csv CRLF tolerated', parseCsv('a,b' + String.fromCharCode(13) + LF + '1,2' + LF), [['a', 'b'], ['1', '2']])
+  eq('csv blank lines dropped', parseCsv(LF + 'a' + LF + LF + '1' + LF), [['a'], ['1']])
+
+  // --- extractJson ---
+  ok('json plain ok', extractJson('{"a":1}').ok)
+  eq('json plain value', extractJson('{"a":1}').value, { a: 1 })
+  ok('json fenced ok', extractJson(FENCE + 'json' + LF + '{"a":2}' + LF + FENCE).ok)
+  eq('json fenced value', extractJson(FENCE + 'json' + LF + '{"a":2}' + LF + FENCE).value, { a: 2 })
+  ok('json prose-wrapped ok', extractJson('好的，结果是 {"a":3} 完毕').ok)
+  eq('json prose-wrapped value', extractJson('好的，结果是 {"a":3} 完毕').value, { a: 3 })
+  ok('json non-json rejected', extractJson('NOPE').ok === false)
+  eq('json non-json value', extractJson('NOPE').value, null)
+
+  // --- validate ---
+  eq('validate clean', validate({ v: 'x' }, S({ v: { type: 'string' } }, ['v'])), [])
+  ok('validate type mismatch caught', validate({ v: 1 }, S({ v: { type: 'string' } }, ['v'])).length === 1)
+  ok('validate number accepts int', validate({ n: 2 }, S({ n: { type: 'number' } }, ['n'])).length === 0)
+  ok('validate integer rejects float', validate({ n: 2.5 }, S({ n: { type: 'integer' } }, ['n'])).length === 1)
+  ok('validate required missing caught', validate({}, S({ v: { type: 'string' } }, ['v'])).length === 1)
+  ok('validate nested caught', validate({ a: { b: 1 } }, S({ a: S({ b: { type: 'string' } }, []) }, [])).length === 1)
+  ok('validate array items caught', validate({ xs: [1, 'a'] }, S({ xs: { type: 'array', items: { type: 'number' } } }, [])).length === 1)
+  ok('validate null type ok', validate({ v: null }, S({ v: { type: 'null' } }, [])).length === 0)
+  ok('validate union type ok', validate({ v: 1 }, S({ v: { type: ['string', 'number'] } }, [])).length === 0)
+
+  // --- 明确断言"不支持"的约束确实不生效（防止以后误以为它在工作）---
+  ok('enum NOT enforced', validate({ v: 'anything' }, S({ v: { type: 'string', enum: ['only-this'] } }, [])).length === 0)
+  ok('additionalProperties NOT enforced', validate({ v: 'x', extra: 1 }, { type: 'object', properties: { v: { type: 'string' } }, additionalProperties: false }).length === 0)
+  ok('minimum NOT enforced', validate({ n: -5 }, S({ n: { type: 'number', minimum: 0 } }, [])).length === 0)
+  ok('unsupportedSchemaKeys detects them',
+    ['enum', 'additionalProperties', 'minimum'].every((k) => unsupportedSchemaKeys({ type: 'object', properties: { v: { type: 'string', enum: [1], additionalProperties: false, minimum: 0 } } }).has(k)))
+
+  if (fails.length === 0) {
+    console.log('self-test: 全部通过（' + asserts + ' 项断言）')
+    return 0
+  }
+  console.error('self-test: ' + fails.length + ' 项失败')
+  for (const f of fails) console.error('  - ' + f)
+  return 1
+}
+
+function unsupportedSchemaKeys(schema, found) {
+  found = found || new Set()
+  if (!schema || typeof schema !== 'object') return found
+  for (const k of Object.keys(schema)) if (!SUPPORTED_SCHEMA_KEYS.has(k)) found.add(k)
+  for (const v of Object.values(schema.properties || {})) unsupportedSchemaKeys(v, found)
+  if (schema.items) unsupportedSchemaKeys(schema.items, found)
+  return found
+}

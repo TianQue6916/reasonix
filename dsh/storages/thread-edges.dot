@@ -1,20 +1,60 @@
 digraph thread_edges {
   rankdir=LR;
   node [shape=box,fontsize=10];
-  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "d37f2224-1497-49b1-bf84-50f4a57e03f6" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "9439c3b2-ad83-48d9-bc20-6e3bef4285cf" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "5b3c166a-4ec8-4fb2-85ab-cd862bdc19dd" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "fda3469e-3cb8-4e6e-b537-047bf8c7cca5" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "ed9542f2-47f2-4794-ae86-f10922adcbba" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "19d5a257-f4f2-442c-a05a-294b0e3795b1" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "33891be8-3154-4b33-a5b3-d55e1753babe" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "69cad818-741e-4869-be17-178dbdd4c5b9" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "f075d146-9c68-42cc-bb2b-a4610c63ce57" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "20818ea0-b276-44d1-bbc5-08e38fb284bb" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "7d7bc0ed-5452-4f64-815c-b477075e4abf" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "50cf469b-7212-42dd-be1e-101b6cfd1b38" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "e0d51bdd-7fb0-4e29-b527-79fafa9602f9" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "af499cab-1bea-48a0-a76d-ce96e5061688" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "4eaec36d-2c5a-403f-9b7a-f7740c4d3c42" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "98bdfe21-5762-4646-858c-e6398d59ec84" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "feaf2186-e239-432a-a7f6-7b782f5abc73" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "d37f2224-1497-49b1-bf84-50f4a57e03f6" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "9439c3b2-ad83-48d9-bc20-6e3bef4285cf" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "5b3c166a-4ec8-4fb2-85ab-cd862bdc19dd" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "fda3469e-3cb8-4e6e-b537-047bf8c7cca5" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "ed9542f2-47f2-4794-ae86-f10922adcbba" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "19d5a257-f4f2-442c-a05a-294b0e3795b1" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "33891be8-3154-4b33-a5b3-d55e1753babe" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "69cad818-741e-4869-be17-178dbdd4c5b9" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "f075d146-9c68-42cc-bb2b-a4610c63ce57" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "20818ea0-b276-44d1-bbc5-08e38fb284bb" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "7d7bc0ed-5452-4f64-815c-b477075e4abf" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "50cf469b-7212-42dd-be1e-101b6cfd1b38" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "e0d51bdd-7fb0-4e29-b527-79fafa9602f9" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "af499cab-1bea-48a0-a76d-ce96e5061688" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "4eaec36d-2c5a-403f-9b7a-f7740c4d3c42" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "98bdfe21-5762-4646-858c-e6398d59ec84" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "feaf2186-e239-432a-a7f6-7b782f5abc73" [color="#2ecc71",penwidth=1.6];
   "w0" [label="workflow
 核验近三天 dsh/reasonix 的 64 条努力记录是否真的成立，并给出可复验手段"];
-  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w0";
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w0";
   "w1" [label="workflow
 最小可用性探测：确认 agent hook 是否可用"];
-  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w1";
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w1";
   "w4" [label="workflow
 单组核验探测，定位失败原因"];
-  "a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w4";
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w4";
   "a2" [label="workflow:agent
 Run the bash command `echo PROBE_OK` and reply with exactly what it pr", style=dashed];
   "w1" -> "a2";
   "a3" [label="workflow:agent
 Reply with exactly: PLAIN_OK", style=dashed];
   "w1" -> "a3";
+  "a5" [label="subagent
+你在为一台 Windows 11 机器上的 dsh（DeepSeek Harness，npm 包 `@deepseek-ai/dsh`）0.", style=dashed];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a5";
+  "a6" [label="subagent
+为 Windows 11 上的 dsh（DeepSeek Harness，`@deepseek-ai/dsh` 0.1.7-rc.2，web", style=dashed];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a6";
 }

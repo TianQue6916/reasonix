@@ -43,3 +43,12 @@ dsh/_dropped*/
 *.bak
 *.bak-*
 *.conflict.*.bak
+
+# ds-harness-remote 设备身份与私钥（2026-09-28）
+# $DSH_HOME/remote/servers/<serverHash>/{host,client}/ 下有 device.key（私钥）、
+# device.json（公钥+deviceId）、trusted-peers.json（已 pin 的对端身份）。
+# 本 repo 是 public，私钥一旦入库等于把「被 pin 的设备身份」交给所有人。
+dsh/remote/
+**/remote/servers/
+**/device.key
+**/trusted-peers.json
