@@ -225,6 +225,9 @@
 - [reasonix-memory-fully-integrated-into-mnemon-20260928](reasonix-memory-fully-integrated-into-mnemon-20260928.md) — reasonix→mnemon 整合收尾：198 个 fact 全覆盖缺口 0；修掉 memory-to-mnemon.py 只读 global 目录导致 project/ 与 hash scope 从未导入的缺口；并记下「核对覆盖率必须用 frontmatter name 不是文件名」这条把我骗过一次的教训
 - [dsh-config-editor-writeback-and-mnemon-settings](dsh-config-editor-writeback-and-mnemon-settings.md) — DSH config-editor 写回机制全解 + 2026-09-28 18:50 一次真实 UI 写入的现场证据：entries() 的两个硬过滤（parent 必须 include、id 必须唯一，重复即静默消失）、三支写入逻辑、写完回读校验与回滚、以及「insert 里的 row 永远不是宿主」这条踩坑点
 - [dsh-home-local-git-versioning-20260928](dsh-home-local-git-versioning-20260928.md) — ~/.dsh 建成本地 git 版本控制：基线 commit 2e5b898 / 222 文件 / .gitignore 取舍 / dsh-autocommit.ps1 + DshConfigAutocommit 任务；含四条诊断（原本无版本控制、Reasonix autocommit 不覆盖 ~/.dsh、记忆与 session 都无 git 字段）与仍未做的会话注入+记忆锚点
+- [dsh-git-context-and-memory-anchors-20260928](dsh-git-context-and-memory-anchors-20260928.md) — 「记得自己 git」两半补完 + 自我验证的最短路径：headless 线没有 context-gate 所以第一轮就能验（7 秒），以及 agent.cordis.yml 不被扫描这个静默失效的坑；含全部验收证据与生效时机对照
+- [incident-git-context-missing-id-corrupted-sessions-20260929](incident-git-context-missing-id-corrupted-sessions-20260929.md) — 事故复盘：我给会话注入的 git-context 消息缺 id，导致 8 个 session 被判 corrupt（113 条消息）；含 dsh-session 的权威校验规则原文、幂等修复法（uuid5 + zstd 重压）、以及「preset row 一旦 mount 改 config 无法靠 HMR 停掉」这条实验结论
+- [incident-includeSubagents-broke-mnemon-subagents-20260929](incident-includeSubagents-broke-mnemon-subagents-20260929.md) — 事故复盘：preset 的 tool-bootstrap.includeSubagents:true 让 subagent 第一轮只有 2 个工具，而 dsh-mnemon 六个 operation 都靠 subagent 调 result 工具回传，于是"memory subagent completed without recording its result"；含实现级传导链、修法与验收教训
 ## 归档说明
 - 原文全量备份：`~/.reasonix/memory-backup-20260816/`（59 份）与 `~/.reasonix/memory-backup-20260816-consolidate/`
 - 合并/蒸馏原始件：`~/.reasonix/memory-archive-20260816/`

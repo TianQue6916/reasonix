@@ -74,6 +74,17 @@
     # 那条「实质任务前先调 memory_profile」在批处理线上也能触发。
     - id: memory-reasonix
       name: ../../.agent-presets/anchored-standard/memory.mjs
+
+    # ── local git context（2026-09-28）────────────────────────────────────────
+    # headless 这条线**没有挂 context-gate**，所以注入在第一轮就可见 ——
+    # 这也让它成为验证 git-context.mjs 是否真的生效的最短路径。
+    - id: git-context
+      name: ../../.agent-presets/anchored-standard/git-context.mjs
+      config:
+        enabled: true
+        maxCommits: 3
+        repos:
+          - 'C:/Users/27063/.dsh'
 - id: agent-default-model
   name: "@deepseek-ai/dsh-agent-default-model"
   config:

@@ -40,7 +40,7 @@
     504
   ],
   "cooldownMs": {
-    "unauthorized": 1800000,
+    "unauthorized": 180000,
     "quota": 600000,
     "rateLimit": 60000,
     "server": 15000,

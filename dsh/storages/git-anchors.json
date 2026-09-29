@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "anchors": {
+    "incident-git-context-missing-id-corrupted-sessions-20260929": {
+      "at": "2026-09-28T17:49:26.528Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "e01da0d",
+          "dirty": 0
+        }
+      ]
+    },
+    "incident-includeSubagents-broke-mnemon-subagents-20260929": {
+      "at": "2026-09-28T18:29:25.634Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "6a779af",
+          "dirty": 1
+        }
+      ]
+    }
+  }
+}

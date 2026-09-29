@@ -26,6 +26,7 @@
  */
 
 import { execFileSync } from 'node:child_process'
+import { randomUUID } from 'node:crypto'
 
 export const name = 'git-context'
 export const inject = []
@@ -145,6 +146,13 @@ export function apply(ctx, config) {
         messages: [
           ...decision.messages,
           {
+            // ★ 必须有 id。缺它会让 DSH 的 session validator 报
+            //   "session event at seq N lacks an identified message"，
+            //   整个 session 被判为 corrupt（历史加载失败）。
+            //   官方 @deepseek-ai/dsh-time-context 用 createUserMessage() 生成这个 id，
+            //   而 preset 模块不能 import dsh-llm（解析根是 preset 目录、没有 node_modules），
+            //   所以形状是手写的 —— 2026-09-29 实测：漏掉 id 直接毁掉 87 条事件。
+            id: randomUUID(),
             role: 'user',
             content: [{ type: 'text', text }],
             source: { kind: name, form: 'snapshot', sections: [{ name, text }] },

@@ -181,6 +181,12 @@ function loadKeys() {
       key: k.key.trim(),
       enabled: k.enabled !== false,
       note: k.note || '',
+      // 权重（2026-09-29 加）：默认 1。只影响「新会话」的分配倾向 —— 越大越容易被选中。
+      // 用在 selectKey() 的 score = 绑定会话数 / weight 上。
+      weight: (() => {
+        const w = Number(k.weight);
+        return Number.isFinite(w) && w > 0 ? w : 1;
+      })(),
     }));
   keysCache = { mtime: st.mtimeMs, keys };
   return keys;
@@ -240,6 +246,16 @@ function isCloudflareBlock(detail) {
   // Cloudflare 的 1010 是“浏览器/客户端指纹被拦”，不是 key 失效；
   // 用 30 分钟 unauthorized 冷却会把两个账号都误伤，所以单独识别。
   return /error code:\s*1010|cloudflare|cf-ray|attention required/i.test(String(detail || ''));
+}
+function isModelNotInPlan(detail) {
+  // 403 里混着一类不是「key 失效」的错误：套餐不含该 model。
+  //   {"message":"MODEL_NOT_IN_PLAN: GPT-6 Astra available in Provider and above plans or extra on demand usage",
+  //    "type":"permission_error","code":"FORBIDDEN"}
+  // 套餐限制对所有 key 一视同仁，换 key 不可能解决；而 403 默认走 unauthorized 冷却
+  // （cooldownMs.unauthorized = 10 分钟），于是「一个 model 不在套餐」会把整个网关打瘺。
+  // 2026-09-29 实测：一个探测请求打中 gpt-6-astra，两个 key 各冷却 10 分钟，
+  // 之后 15 分钟内每个请求都 503「所有 key 均失败（已尝试 无）」（tried= 为空）。
+  return /MODEL_NOT_IN_PLAN|not available in .{0,60}plan/i.test(String(detail || ''));
 }
 function cooldownReason(status, detail = '') {
   if (isCloudflareBlock(detail)) return ['network', CFG.cooldownMs.network];
@@ -466,12 +482,16 @@ function selectKey(candidates, fp, prefixFp = '') {
     for (const v of Object.values(state.sessions)) {
       if (v.key in load) load[v.key] += 1;
     }
+    // 加权均衡（2026-09-29）：score = 绑定会话数 / weight。
+    // 全部 weight=1 时与改动前的「取负载最小」逐位等价；weight>1 的 key 要背更多会话才打平，
+    // 于是新会话更偏向它。用 +1e-9 容忍浮点误差，不对浮点用 ===。
+    const scoreOf = (k) => load[k.name] / (k.weight > 0 ? k.weight : 1);
     let pick;
     if (strategy === 'prefix' && prefixFp) {
       pick = choosePrefixKey(fresh, prefixFp);
     } else {
-      const minLoad = Math.min(...fresh.map((k) => load[k.name]));
-      const balanced = fresh.filter((k) => load[k.name] === minLoad);
+      const minScore = Math.min(...fresh.map(scoreOf));
+      const balanced = fresh.filter((k) => scoreOf(k) <= minScore + 1e-9);
       pick = balanced[fingerprintBucket(fp, balanced.length)];
     }
     const prev = state.sessions[fp];
@@ -1098,6 +1118,29 @@ async function handle(req, res) {
       return;
     }
     if (r.clientGone) return;
+
+    // 套餐级 403：换 key 无效，不能把 key 打入冷却（否则全网关停摆），直接把上游错误告诉调用方。
+    if (Number(r.status) === 403 && isModelNotInPlan(r.body)) {
+      const ks = kstate(target.name);
+      ks.lastStatus = r.status;
+      ks.lastError = String(r.body || '').slice(0, 300);
+      state.stats.failures = (state.stats.failures || 0) + 1;
+      stateDirty = true;
+      log(
+        `PLAN-BLOCKED id=${req._reqId} key=${target.name} model=${meta.model} (key NOT cooled) :: ` +
+          ks.lastError.slice(0, 200),
+      );
+      sendJSON(res, 403, {
+        error: {
+          message: 'goat-gateway: 该 model 不在当前账号套餐内（未冷却 key，换 key 无效）',
+          type: 'gateway_model_not_in_plan',
+          model: meta.model,
+          upstream_status: 403,
+          upstream: String(r.body || '').slice(0, 500),
+        },
+      });
+      return;
+    }
 
     last = r;
     const count = (failures.get(target.name) || 0) + 1;
