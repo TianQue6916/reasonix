@@ -1,9 +1,20 @@
-// dsh-plugin-local-search — dsh web_search 的「本地 wiki + 全 GitHub」优先 provider。
+// dsh-plugin-local-search — dsh web_search 的三源并发聚合 provider。
 //
-// 搜索顺序：
-//   1. Linux 侧 local-search 聚合器（PocketWiki + 离线 Wikipedia ZIM）
-//   2. GitHub 全站（repos + code + issues；优先 TianQue6916 的结果）
-//   3. 如果上面都没结果，再回退到已注册的 web-search-deepseek（Bing/Tavily/Brave…）
+// 一次 web_search 调用**同时**发起三路（不是 fallback 链），结果合并成一份列表统一返回：
+//   rank 0  GitHub 全站（repos + code + issues；priorityOwner 的仓库在这个来源内部提前）
+//   rank 1  DeepSeek 官方搜索（provider id: deepseek-official；Anthropic 兼容 Messages 的
+//           native web_search server tool，每搜一次花掉一次 model turn）
+//   rank 2  Linux 侧 local-search 聚合器（PocketWiki + 离线 Wikipedia ZIM）
+//
+// 合并规则见 mergeSources：
+//   * 每个来源先吃自己的配额 ceil(maxResults / 来源数)，保证三源都露面；
+//   * 剩下的名额按 rank 顺序回填（先 github，再 deepseek，再 wiki）；
+//   * 同一 URL 只留 rank 最高的那一份（顺手消掉跨源重复）；
+//   * dsh 的 web seam 还会按 request.maxResults 再裁一刀，本 provider 只负责顺序与去重。
+//   * interleaveSources: true 改成 round-robin 交错（github1, deepseek1, wiki1, github2, …）。
+//
+// 三源全空才回退到已注册的 fallbackProviderId（默认 multi-search）。deepseek 已经是并发
+// 来源之一，所以 fallback 不能再指向它，否则空结果时会白跑一次 model turn。
 //
 // 设计参考社区做法：不改 dsh 核心，只通过 ctx.web.registerSearchProvider 替换 provider；
 // token 走本地文件，不写进插件配置；GitHub token 优先环境变量，其次 git credential fill。
@@ -17,17 +28,39 @@ import { spawnSync } from 'node:child_process';
 const IS_WIN = process.platform === 'win32';
 const HOME = os.homedir();
 
+/** 来源 rank：数字小的排前面（github > deepseek > wiki）。 */
+export const SOURCE_RANK = { github: 0, deepseek: 1, wiki: 2 };
+
 const DEFAULT_CONFIG = {
   aggregatorUrl: process.env.LOCAL_SEARCH_AGGREGATOR_URL || 'http://100.79.96.82:8810',
   tokenFile: IS_WIN
     ? `${HOME}/.dsh/local-search-token`
     : `${HOME}/.config/local-search/token`,
   githubTokenFile: IS_WIN ? '' : `${HOME}/.config/local-search/github-token`,
+
+  // 三路来源开关（默认全开、并发）
+  enableWiki: true,
+  enableGithub: true,
+  enableDeepseek: true,
+
+  // deepseek 官方 provider 在 dsh 里注册的 id 是 deepseek-official，不是插件的 row id
+  deepseekProviderId: 'deepseek-official',
+  // 一次 deepseek 搜索 = 一次 Messages model turn，单独给超时预算；
+  // 必须小于 dsh-tool-web 的 searchTimeoutMs（web profile 里配的是 60000）
+  deepseekTimeoutMs: 40000,
+  // 同一 query 的结果短期复用：dsh-tool-web 的 searchMaxQueries 默认 4，4 路并发子查询
+  // 若撞上同一 query 就不重复打 model turn。0 = 关闭缓存
+  deepseekCacheTtlMs: 120000,
+  // 凭证缺失/账号错误这类不会自愈的失败，熔断这么久不再发起（0 = 不熔断）
+  deepseekFailureCooldownMs: 600000,
+
   timeoutMs: 20000,
   maxResults: 8,
-  enableGithub: true,
+
   enableFallback: true,
-  fallbackProviderId: 'web-search-deepseek',
+  fallbackProviderId: 'multi-search',
+  interleaveSources: false,
+  tagTitles: false,
   priorityOwner: 'TianQue6916',
   githubCaFile: IS_WIN
     ? 'C:/Users/27063/.dev-sidecar/dev-sidecar.ca.crt'
@@ -62,18 +95,55 @@ function timedSignal(parent, timeoutMs) {
   return controller.signal;
 }
 
-function dedupeSources(sources, maxResults) {
+/**
+ * 纯函数：把各来源的结果按 rank 合并成一份列表。
+ * groups: [{ source: 'github' | 'deepseek' | 'wiki', sources: [...] }]
+ * 返回 { sources, dropped }；dropped > 0 表示有份额被 maxResults 挤掉。
+ */
+export function mergeSources(groups, maxResults, { interleave = false } = {}) {
+  const ordered = [...groups]
+    .filter((g) => g && Array.isArray(g.sources))
+    .sort((a, b) => (SOURCE_RANK[a.source] ?? 99) - (SOURCE_RANK[b.source] ?? 99));
+
   const seen = new Set();
   const out = [];
-  for (const source of sources) {
-    if (!source || typeof source.url !== 'string' || !source.url.trim()) continue;
+  let dropped = 0;
+
+  const take = (group, source) => {
+    if (!source || typeof source.url !== 'string' || !source.url.trim()) return;
     const url = source.url.trim();
-    if (seen.has(url)) continue;
+    if (seen.has(url)) return;
+    if (out.length >= maxResults) {
+      dropped += 1;
+      return;
+    }
     seen.add(url);
-    out.push({ ...source, url });
-    if (out.length >= maxResults) break;
+    out.push({ ...source, url, source: group.source });
+  };
+
+  if (interleave) {
+    // round-robin：每轮每个来源各取 1 条，rank 只决定同一轮内的先后
+    for (let rank = 0; rank < maxResults; rank += 1) {
+      for (const group of ordered) take(group, group.sources[rank]);
+    }
+  } else {
+    // pass 0：每个来源先吃自己的配额，保证三源都露面
+    const quota = Math.max(1, Math.ceil(maxResults / Math.max(1, ordered.length)));
+    for (const group of ordered) {
+      for (let i = 0; i < quota; i += 1) take(group, group.sources[i]);
+    }
+    // pass 1：剩余名额按 rank 顺序回填
+    for (const group of ordered) {
+      for (let i = quota; i < group.sources.length; i += 1) take(group, group.sources[i]);
+    }
   }
-  return out;
+
+  // pass 1 回填进来的条目可能落在别的来源后面 → 最后按 rank 稳定排序，
+  // 输出永远是「github 块 → deepseek 块 → wiki 块」（块内保持各来源自身顺序）。
+  // interleave 模式本身就是按轮次交错，不能再按 rank 排。
+  if (!interleave) out.sort((a, b) => (SOURCE_RANK[a.source] ?? 99) - (SOURCE_RANK[b.source] ?? 99));
+
+  return { sources: out.slice(0, maxResults), dropped };
 }
 
 class LocalSearchProvider {
@@ -82,45 +152,99 @@ class LocalSearchProvider {
     this.getConfig = getConfig;
     this.web = web;
     this.githubTokenCache = undefined;
+    this.deepseekCache = new Map();
+    // deepseek 凭证缺失时的熔断（missing API key 这类错误不会自愈，不能每搜一次 warn 一次）
+    this.deepseekDisabledUntil = 0;
+    this.deepseekCooldownWarned = false;
   }
 
   available() {
     const cfg = this.getConfig();
-    return Boolean(cfg.aggregatorUrl);
+    if (cfg.enableWiki !== false && cfg.aggregatorUrl) return true;
+    if (cfg.enableGithub !== false) return true;
+    return cfg.enableDeepseek !== false;
   }
 
   async search(request, signal) {
     const cfg = this.getConfig();
+    const query = String(request?.query || '');
     const maxResults = Math.max(
       1,
-      Math.min(Number(request.maxResults || cfg.maxResults || 8), Number(cfg.maxResults || 8)),
+      Math.min(Number(request?.maxResults || cfg.maxResults || 8), Number(cfg.maxResults || 8)),
     );
-    let sources = [];
 
-    try {
-      const local = await this.searchAggregator(request.query, Math.max(1, Math.ceil(maxResults / 2)), signal);
-      sources.push(...local);
-    } catch (error) {
-      console.warn(`[local-search] wiki aggregator failed: ${error?.message || error}`);
+    // 三路并发：先只组装 plan，再一把 allSettled —— 单源失败/超时不拖累另外两源
+    const plan = [];
+    if (cfg.enableWiki !== false && cfg.aggregatorUrl) {
+      plan.push({ source: 'wiki', run: () => this.searchAggregator(query, maxResults, signal) });
     }
-
-    if (cfg.enableGithub !== false && sources.length < maxResults) {
-      try {
-        const github = await this.searchGithub(request.query, maxResults, signal);
-        sources.push(...github);
-      } catch (error) {
-        console.warn(`[local-search] github search failed: ${error?.message || error}`);
+    if (cfg.enableGithub !== false) {
+      plan.push({ source: 'github', run: () => this.searchGithub(query, maxResults, signal) });
+    }
+    if (cfg.enableDeepseek !== false) {
+      // 熔断期内直接不发起：凭证缺失不是瞬时故障，重试只会白刷日志
+      if (Date.now() >= (this.deepseekDisabledUntil || 0)) {
+        plan.push({ source: 'deepseek', run: () => this.searchDeepseekCached(query, maxResults, signal) });
+      } else if (!this.deepseekCooldownWarned) {
+        this.deepseekCooldownWarned = true;
+        const left = Math.round(((this.deepseekDisabledUntil || 0) - Date.now()) / 1000);
+        console.warn(`[local-search] deepseek source skipped for another ${left}s (cooldown after credential failure)`);
       }
     }
 
-    sources = dedupeSources(sources, maxResults);
-    if (sources.length > 0) return { sources, truncated: false };
+    const settled = await Promise.allSettled(plan.map((entry) => entry.run()));
+    const groups = [];
+    plan.forEach((entry, index) => {
+      const outcome = settled[index];
+      if (outcome.status === 'fulfilled') {
+        const sources = Array.isArray(outcome.value) ? outcome.value : [];
+        groups.push({ source: entry.source, sources: sources.map((s) => ({ ...s, source: entry.source })) });
+        if (entry.source === 'deepseek') {
+          this.deepseekDisabledUntil = 0; // 一旦成功就解除熔断
+          this.deepseekCooldownWarned = false;
+        }
+        return;
+      }
+      const reason = String(outcome.reason?.message || outcome.reason);
+      console.warn(`[local-search] ${entry.source} source failed: ${reason}`);
+      if (entry.source === 'deepseek' && /api key|credential|account/i.test(reason)) {
+        const cooldown = Number(cfg.deepseekFailureCooldownMs ?? 600000);
+        if (cooldown > 0) {
+          this.deepseekDisabledUntil = Date.now() + cooldown;
+          this.deepseekCooldownWarned = false;
+          console.warn(`[local-search] deepseek source paused for ${Math.round(cooldown / 1000)}s: ${reason}`);
+        }
+      }
+    });
 
-    if (cfg.enableFallback !== false && cfg.fallbackProviderId && cfg.fallbackProviderId !== this.id) {
-      const fallback = this.web?.searchProviders?.get(cfg.fallbackProviderId);
-      if (fallback && typeof fallback.search === 'function' && (typeof fallback.available !== 'function' || fallback.available())) {
+    const merged = mergeSources(groups, maxResults, { interleave: cfg.interleaveSources === true });
+    if (merged.sources.length > 0) {
+      if (cfg.tagTitles === true) {
+        for (const source of merged.sources) {
+          if (source.title) source.title = `[${source.source}] ${source.title}`;
+        }
+      }
+      return { sources: merged.sources, truncated: merged.dropped > 0 };
+    }
+
+    // 三源全空 → 才回退到别的已注册 provider
+    const fallbackId = String(cfg.fallbackProviderId || '');
+    const deepseekQueried = plan.some((entry) => entry.source === 'deepseek');
+    const fallbackAllowed =
+      cfg.enableFallback !== false &&
+      fallbackId.length > 0 &&
+      fallbackId !== this.id &&
+      !(deepseekQueried && fallbackId === (cfg.deepseekProviderId || 'deepseek-official'));
+    if (fallbackAllowed) {
+      const fallback = this.web?.searchProviders?.get(fallbackId);
+      if (
+        fallback &&
+        typeof fallback.search === 'function' &&
+        (typeof fallback.available !== 'function' || fallback.available())
+      ) {
         return await fallback.search({ ...request, maxResults }, signal);
       }
+      console.warn(`[local-search] fallback provider "${fallbackId}" is not registered or unusable; returning empty`);
     }
 
     return { sources: [], truncated: false };
@@ -145,6 +269,58 @@ class LocalSearchProvider {
     if (!response.ok) throw new Error(`local-search HTTP ${response.status}`);
     const data = await response.json();
     return Array.isArray(data.sources) ? data.sources : [];
+  }
+
+  // ── DeepSeek 官方搜索：直接调 provider 对象，不走 ctx.web.search（否则 seam 会再选一次）──
+  resolveDeepseekProvider(cfg) {
+    const registry = this.web?.searchProviders;
+    if (!registry || typeof registry.get !== 'function') return undefined;
+    const candidates = [cfg.deepseekProviderId, 'deepseek-official', 'web-search-deepseek'].filter(Boolean);
+    for (const id of candidates) {
+      const provider = registry.get(id);
+      if (provider && typeof provider.search === 'function') return provider;
+    }
+    return undefined;
+  }
+
+  async searchDeepseek(query, maxResults, signal) {
+    const cfg = this.getConfig();
+    const provider = this.resolveDeepseekProvider(cfg);
+    if (!provider) {
+      throw new Error(
+        `deepseek provider not registered (tried "${cfg.deepseekProviderId}", "deepseek-official", "web-search-deepseek")`,
+      );
+    }
+    if (typeof provider.available === 'function' && !provider.available()) {
+      throw new Error('deepseek provider is registered but unavailable (missing API key / credential)');
+    }
+    const result = await provider.search(
+      { query, maxResults },
+      timedSignal(signal, cfg.deepseekTimeoutMs || 40000),
+    );
+    const sources = Array.isArray(result?.sources) ? result.sources : [];
+    return sources.map((source) => ({ provider: 'deepseek-official', ...source }));
+  }
+
+  async searchDeepseekCached(query, maxResults, signal) {
+    const cfg = this.getConfig();
+    const ttl = Number(cfg.deepseekCacheTtlMs ?? 120000);
+    if (!(ttl > 0)) return await this.searchDeepseek(query, maxResults, signal);
+
+    const key = `${maxResults}\u0000${query}`;
+    const now = Date.now();
+    const hit = this.deepseekCache.get(key);
+    if (hit && now - hit.at < ttl) return await hit.promise;
+
+    const promise = this.searchDeepseek(query, maxResults, signal).catch((error) => {
+      this.deepseekCache.delete(key);
+      throw error;
+    });
+    this.deepseekCache.set(key, { at: now, promise });
+    if (this.deepseekCache.size > 32) {
+      for (const [k, v] of this.deepseekCache) if (now - v.at >= ttl) this.deepseekCache.delete(k);
+    }
+    return await promise;
   }
 
   githubToken() {
@@ -184,7 +360,7 @@ class LocalSearchProvider {
     }
     return new Promise((resolve, reject) => {
       const headers = {
-        'User-Agent': 'dsh-plugin-local-search/0.1',
+        'User-Agent': 'dsh-plugin-local-search/0.2',
         Accept: accept,
         'X-GitHub-Api-Version': '2022-11-28',
       };
@@ -315,6 +491,7 @@ class LocalSearchProvider {
 
 export const name = 'local-search';
 export const inject = ['web'];
+export { LocalSearchProvider, DEFAULT_CONFIG };
 
 export function apply(ctx, initialConfig = {}) {
   const config = { ...DEFAULT_CONFIG, ...(initialConfig || {}) };

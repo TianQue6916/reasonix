@@ -22,6 +22,380 @@
           "dirty": 1
         }
       ]
+    },
+    "goat-gateway-403-taxonomy-and-dsh-reasoning-models": {
+      "at": "2026-09-29T18:07:27.242Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "939d3d2",
+          "dirty": 2
+        }
+      ]
+    },
+    "dsh-mnemon-subagent-empty-catalog-and-language": {
+      "at": "2026-09-29T18:10:01.988Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "15faf28",
+          "dirty": 0
+        }
+      ]
+    },
+    "tool-bootstrap-subagent-catalog-real-mechanism": {
+      "at": "2026-09-29T19:06:07.930Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "2e4fc7d",
+          "dirty": 0
+        }
+      ]
+    },
+    "mnemon-subagent-self-test-and-verification-result": {
+      "at": "2026-09-29T19:08:10.350Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "c8b64b7",
+          "dirty": 0
+        }
+      ]
+    },
+    "skill-search-weight-verified-and-false-bug-20260930": {
+      "at": "2026-09-29T19:55:12.788Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "e061748",
+          "dirty": 0
+        }
+      ]
+    },
+    "goat-gateway-key-weight-and-model-id-forms": {
+      "at": "2026-09-29T19:55:13.061Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "e061748",
+          "dirty": 1
+        }
+      ]
+    },
+    "wechat-bot-migration-to-dsh-step1-20260930": {
+      "at": "2026-09-30T01:50:09.223Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "fecca0a",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-reasoning-row-autofold-20260930": {
+      "at": "2026-09-30T01:50:09.499Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "fecca0a",
+          "dirty": 1
+        }
+      ]
+    },
+    "dsh-upgrade-to-0.2.0-rc.2-20260930": {
+      "at": "2026-09-30T05:22:40.780Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "63ab803",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-plugin-compat-verification-method": {
+      "at": "2026-09-30T05:31:06.247Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "b260f09",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-desktop-profile-full-port-20260930": {
+      "at": "2026-09-30T05:38:15.949Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "a7ac9d8",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-desktop-adaptation-verified-20260930": {
+      "at": "2026-09-30T09:07:10.968Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "29e5c96",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-memory-layering-persona-bridge-20260930": {
+      "at": "2026-09-30T09:39:04.850Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "d680018",
+          "dirty": 1
+        }
+      ]
+    },
+    "goat-gateway-gzip-fix-and-model-allowlist-20260930": {
+      "at": "2026-09-30T09:50:35.015Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "49dd447",
+          "dirty": 0
+        }
+      ]
+    },
+    "bilingual-ocw-translator-v3.3-muse-refactor": {
+      "at": "2026-09-30T13:54:04.311Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "022f8bf",
+          "dirty": 6
+        }
+      ]
+    },
+    "dsh-thinking-language-switch-20260930": {
+      "at": "2026-09-30T11:13:24.092Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "5a4d618",
+          "dirty": 0
+        }
+      ]
+    },
+    "deepseek-webarchive-wiki-pipeline": {
+      "at": "2026-09-30T13:24:15.095Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "ed80c93",
+          "dirty": 0
+        }
+      ]
+    },
+    "real-analysis-user-sticking-points-202607": {
+      "at": "2026-09-30T12:32:25.233Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "40126a4",
+          "dirty": 1
+        }
+      ]
+    },
+    "bertsekas-probability-chinese-translation-bad": {
+      "at": "2026-09-30T12:32:39.882Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "40126a4",
+          "dirty": 1
+        }
+      ]
+    },
+    "course-materials-repo-and-print-workflow-202608": {
+      "at": "2026-09-30T12:32:40.347Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "40126a4",
+          "dirty": 1
+        }
+      ]
+    },
+    "deepseek-v4-flash-ga-0731": {
+      "at": "2026-09-30T12:32:55.951Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "40126a4",
+          "dirty": 1
+        }
+      ]
+    },
+    "deepseek-v41-flash-effort-实测与三层档位域-20260930": {
+      "at": "2026-09-30T13:15:46.998Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "7ed902e",
+          "dirty": 3
+        }
+      ]
+    },
+    "dsh-profile-v41-flash-effort-收窄-20260930": {
+      "at": "2026-09-30T13:16:01.190Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "7ed902e",
+          "dirty": 4
+        }
+      ]
+    },
+    "dsh-desktop-renders-package-client-modules-20260930": {
+      "at": "2026-09-30T13:18:42.989Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "b3696f4",
+          "dirty": 0
+        }
+      ]
+    },
+    "english-cet4-prep-mainline-202608": {
+      "at": "2026-09-30T13:24:15.564Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "ed80c93",
+          "dirty": 1
+        }
+      ]
+    },
+    "2026-大二上-课程与作业实况": {
+      "at": "2026-09-30T13:24:31.709Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "ed80c93",
+          "dirty": 1
+        }
+      ]
+    },
+    "probability-independence-user-sticking-point-202609": {
+      "at": "2026-09-30T13:24:32.181Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "ed80c93",
+          "dirty": 1
+        }
+      ]
+    },
+    "2026-09-家庭与学业外部压力-强度校准": {
+      "at": "2026-09-30T13:24:43.735Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "ed80c93",
+          "dirty": 1
+        }
+      ]
+    },
+    "deepseek-v41-pro-replacement-20260910": {
+      "at": "2026-09-30T13:24:44.253Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "ed80c93",
+          "dirty": 1
+        }
+      ]
+    },
+    "dsh-maxtokens-上限实测与校正-20260930": {
+      "at": "2026-09-30T13:29:39.398Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "2753396",
+          "dirty": 3
+        }
+      ]
+    },
+    "bilingual-ocw-translator-v3.7-converged": {
+      "at": "2026-09-30T13:53:52.667Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "022f8bf",
+          "dirty": 5
+        }
+      ]
+    },
+    "dual-machine-sync-channels-and-conflict-semantics": {
+      "at": "2026-09-30T13:53:53.267Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "022f8bf",
+          "dirty": 6
+        }
+      ]
+    },
+    "dsh-requires-node20-not-platform-gated-20260930": {
+      "at": "2026-09-30T14:01:13.287Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "45ddd4e",
+          "dirty": 2
+        }
+      ]
+    },
+    "dsh-dual-machine-sync-migration-20260930": {
+      "at": "2026-09-30T14:01:13.761Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "45ddd4e",
+          "dirty": 3
+        }
+      ]
     }
   }
 }

@@ -67,7 +67,12 @@ const UNLOCKABLE_INDEX = [
   // Preset-local (memory.mjs), not a harness package: listed here because the
   // standing rule is `use-user-persona-before-tasks`, and a tool the model
   // cannot see is a rule that can never fire.
-  'memory_search / memory_read / memory_profile / memory_remember — the shared reasonix memory corpus (~/.reasonix/memory)',
+  //
+  // 2026-09-30: memory_profile moved OUT of this index into the promoted resident
+  // set (tool-bootstrap.mjs RESIDENT_MEMORY_TOOLS) — it is the one tool the
+  // persona prefix names explicitly, so requiring a discovery round-trip first
+  // was pure friction. The other three stay on demand.
+  'memory_search / memory_read / memory_remember — the shared reasonix memory corpus (~/.reasonix/memory)',
 ]
 
 /** Register the model-facing `dev_tool_search` tool. */
@@ -77,7 +82,7 @@ export function apply(ctx) {
     description: [
       'Discover and unlock tools that are NOT currently available.',
       '',
-      'This session starts with a minimal resident set: bash, str_replace_editor, skill_search, skill_load. Everything else is unlocked on demand through this tool.',
+      'This session starts with a minimal resident set: bash, str_replace_editor, skill_search, skill_load. Once the session is promoted memory_profile joins that set (the persona prefix names it directly, so it must not need a discovery round-trip). Everything else is unlocked on demand through this tool.',
       '',
       'If the current task needs any of the following, call dev_tool_search FIRST — do not try to work around them with bash:',
       ...UNLOCKABLE_INDEX.map((line) => `- ${line}`),

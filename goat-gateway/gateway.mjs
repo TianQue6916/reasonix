@@ -21,6 +21,7 @@ const CONFIG_PATH = process.env.GATEWAY_CONFIG || p('config.json');
 const KEYS_PATH = process.env.GATEWAY_KEYS || p('keys.json');
 const STATE_FILE = process.env.GATEWAY_STATE || p('state.json');
 const LOG_DIR = process.env.GATEWAY_LOG_DIR || p('logs');
+const ALLOWLIST_PATH = process.env.GATEWAY_ALLOWLIST || p('model-allowlist.json');
 
 const DEFAULTS = {
   listen: { host: '127.0.0.1', port: 8788 },
@@ -192,6 +193,35 @@ function loadKeys() {
   return keys;
 }
 
+/**
+ * 模型白名单（2026-09-30 加）。
+ *
+ * upstream 的 /v1/models 列的是「平台提供的全部模型」(86 个)，而本套餐只有 61 个有权限。
+ * dsh 会把那份列表同步成模型选择器 —— 于是 claude-* / gpt-6-sol / gemini-* 全出现在 UI 里，
+ * 点下去必然失败（403 MODEL_NOT_IN_PLAN / 认证失败），很容易被误判成"网关坏了"。
+ *
+ * 与 keys.json 同样的 mtime 热重载：改完 model-allowlist.json 立即生效，不必重启进程。
+ * @returns 白名单 Set；文件缺失/为空时返回 null，表示「不干预」——这是安全兜底，
+ *          宁可不过滤，也绝不能因为配置出错而把模型列表清空。
+ */
+let allowCache = { mtime: 0, ids: null };
+function loadModelAllowlist() {
+  try {
+    const st = fs.statSync(ALLOWLIST_PATH);
+    if (st.mtimeMs === allowCache.mtime) return allowCache.ids;
+    const raw = JSON.parse(fs.readFileSync(ALLOWLIST_PATH, 'utf8'));
+    const list = Array.isArray(raw && raw.models)
+      ? raw.models.filter((x) => typeof x === 'string' && x.length > 0)
+      : [];
+    allowCache = { mtime: st.mtimeMs, ids: list.length ? new Set(list) : null };
+    log(`ALLOWLIST ${allowCache.ids ? 'loaded ' + allowCache.ids.size + ' models' : 'empty -> no filtering'}`);
+    return allowCache.ids;
+  } catch {
+    allowCache = { mtime: 0, ids: null };
+    return null;
+  }
+}
+
 // ── 运行时状态（冷却、轮询指针、计数）─────────────────────────────────────
 const state = readJSON(STATE_FILE, null) || {
   rr: 0,
@@ -259,6 +289,13 @@ function isModelNotInPlan(detail) {
 }
 function cooldownReason(status, detail = '') {
   if (isCloudflareBlock(detail)) return ['network', CFG.cooldownMs.network];
+  // 第三类 403（2026-09-29）：不是 key 失效，而是「这个 model 的后端 provider 没绑定」。
+  // 证据：同一个 key 打 deepseek/deepseek-v4.1-flash 得 200，打 google/gemini-3.7-flash 得
+  //   403 {"message":"Authentication failed. Please check your credentials.","type":"permission_error"}
+  // 根因在那个 model 上，换 key 无用；按 key 走 unauthorized 冷却（原 1800s）会让整个
+  // 网关停摆，客户端只看得到「所有 key 均失败」。给一个短冷却保住可用性。
+  if (/Authentication failed\. Please check your credentials/i.test(String(detail || '')))
+    return ['authModel', Number(CFG.cooldownMs.authModel) || 30000];
   if (status === 401 || status === 403) return ['unauthorized', CFG.cooldownMs.unauthorized];
   if (status === 402) return ['quota', CFG.cooldownMs.quota];
   if (status === 429) return ['rateLimit', CFG.cooldownMs.rateLimit];
@@ -641,6 +678,23 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     }
     // 统一 User-Agent（可配置；空字符串表示继续透传客户端原值）
     if (CFG.upstream.userAgent) headers['user-agent'] = String(CFG.upstream.userAgent);
+    // 强制 upstream 不要压缩响应体（2026-09-30 修）──────────────────────────────
+    //
+    // WHY：headers 是从客户端**透传**过来的，而 dsh(Node undici) 默认发
+    // `accept-encoding: gzip, deflate`。upstream 于是把 403 的 body 压成 gzip，
+    // 而本网关读 body 时**不解压** —— 下游拿到的 detail 就成了 '…'
+    // 这种二进制。后果不是"少了个提示"，而是**全部文本判别失效**：
+    //     isModelNotInPlan(detail)  ✗ 匹配不到 MODEL_NOT_IN_PLAN
+    //     cooldownReason(detail)    ✗ 匹配不到 "Authentication failed"
+    //   → 请求落进默认分支，按 unauthorized 冷却 180s
+    //   → **两个 key 一起被打死**，之后一律 503「所有 key 均失败（已尝试 无）」
+    //
+    // 实测证据（2026-09-30 09:12）：用户在桌面端试 gpt-6-sol 期间，连通性探测从
+    // 第 15 个模型起全部 503；state.json 里 lastError 是 gzip 魔数 1f 8b 08，
+    // 网关日志文件也被 GNU file 判成 data 而非文本。
+    //
+    // 只发 identity 即可根治，且 JSON 明文解析不受影响。
+    headers['accept-encoding'] = 'identity';
     // 客户端请求已被 Node 解 chunk；转发时重新按 Buffer 设置 content-length，避免带上原始 chunked 头。
     headers.authorization = `Bearer ${keyEntry.key}`;
     if (body && body.length) headers['content-length'] = String(body.length);
@@ -1041,6 +1095,34 @@ let reqSeq = 0;
 async function handle(req, res) {
   const url = new URL(req.url, 'http://localhost');
   if (handleLocal(req, res, url)) return;
+
+  // GET /v1/models 按白名单过滤，见 loadModelAllowlist() 的注释。
+  // 只拦截这一个方法+路径；任何异常都回退到原本的透传，绝不让它影响正常请求。
+  if (req.method === 'GET' && (url.pathname === '/v1/models' || url.pathname === '/models')) {
+    const allow = loadModelAllowlist();
+    if (allow !== null) {
+      const live = loadKeys().filter((k) => k.enabled);
+      const chosen = live.find((k) => !isCooling(k.name)) || live[0];
+      if (chosen !== undefined) {
+        try {
+          const modelsUrl = CFG.upstream.origin + CFG.upstream.basePath.replace(/\/+$/, '') + '/models';
+          const up = await fetch(modelsUrl, {
+            method: 'GET',
+            headers: { authorization: `Bearer ${chosen.key}`, 'accept-encoding': 'identity' },
+            redirect: 'error',
+          });
+          const json = await up.json();
+          const all = Array.isArray(json && json.data) ? json.data : [];
+          const data = all.filter((m) => m && typeof m.id === 'string' && allow.has(m.id));
+          log(`MODELS-FILTERED ${all.length} -> ${data.length} (allowlist ${allow.size})`);
+          sendJSON(res, up.status, Object.assign({}, json, { data }));
+          return;
+        } catch (e) {
+          log(`MODELS-WARN 过滤失败，回退透传：${String((e && e.message) || e)}`);
+        }
+      }
+    }
+  }
 
   req._reqId = ++reqSeq;
   state.stats.requests += 1;

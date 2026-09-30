@@ -44,7 +44,8 @@
     "quota": 600000,
     "rateLimit": 60000,
     "server": 15000,
-    "network": 20000
+    "network": 20000,
+    "authModel": 30000
   },
   "maxBodyBytes": 67108864,
   "upstreamTimeoutMs": 900000,

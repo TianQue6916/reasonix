@@ -2,11 +2,17 @@ digraph thread_edges {
   rankdir=LR;
   node [shape=box,fontsize=10];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "a400c155-df37-4970-8f8c-1079fa5c5cc9" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "6fdd948e-8bfd-4cba-a815-b6df92e4c945" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "cfa4d386-3bc1-4ce1-9056-436fc87f0c2a" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "9e84b0f1-e232-4629-9d5e-3a3c0e7e47de" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "66b3b4ab-12e7-4fe5-99f9-cb63ad0fd638" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "session-e6237262-fa87-413f-9f2a-b2d93935c811" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "05554f8f-6e59-4a16-8d86-50c826ae7d97" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "8c9ca6b8-1cc4-471b-a458-f86d3655d46a" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "4b33f68a-c052-4a61-be1d-242567f86785" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "874ccdcd-c85e-4ef5-a003-1e1ef4e203dc" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "b0d3af62-0a2d-4171-95bd-102e247db677" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
-  "session-e6237262-fa87-413f-9f2a-b2d93935c811" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "cc102912-62ef-4eaa-8124-1743113563fb" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "ed0c428f-dd12-42d7-98c9-0436719c414c" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "13189afd-2dfc-4e1c-aefb-b9c2fe15fd6f" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
@@ -46,6 +52,12 @@ digraph thread_edges {
   "4eaec36d-2c5a-403f-9b7a-f7740c4d3c42" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "98bdfe21-5762-4646-858c-e6398d59ec84" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
   "feaf2186-e239-432a-a7f6-7b782f5abc73" [shape=ellipse,fillcolor="#3498db",style=filled,fontcolor=white];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a400c155-df37-4970-8f8c-1079fa5c5cc9" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "6fdd948e-8bfd-4cba-a815-b6df92e4c945" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "cfa4d386-3bc1-4ce1-9056-436fc87f0c2a" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "9e84b0f1-e232-4629-9d5e-3a3c0e7e47de" [color="#2ecc71",penwidth=1.6];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "66b3b4ab-12e7-4fe5-99f9-cb63ad0fd638" [color="#2ecc71",penwidth=1.6];
+  "session-e6237262-fa87-413f-9f2a-b2d93935c811" -> "05554f8f-6e59-4a16-8d86-50c826ae7d97" [color="#2ecc71",penwidth=1.6];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "8c9ca6b8-1cc4-471b-a458-f86d3655d46a" [color="#2ecc71",penwidth=1.6];
   "4b33f68a-c052-4a61-be1d-242567f86785" -> "874ccdcd-c85e-4ef5-a003-1e1ef4e203dc" [color="#2ecc71",penwidth=1.6];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "b0d3af62-0a2d-4171-95bd-102e247db677" [color="#2ecc71",penwidth=1.6];
@@ -84,25 +96,31 @@ digraph thread_edges {
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "4eaec36d-2c5a-403f-9b7a-f7740c4d3c42" [color="#2ecc71",penwidth=1.6];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "98bdfe21-5762-4646-858c-e6398d59ec84" [color="#2ecc71",penwidth=1.6];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "feaf2186-e239-432a-a7f6-7b782f5abc73" [color="#2ecc71",penwidth=1.6];
-  "w0" [label="workflow
-核验近三天 dsh/reasonix 的 64 条努力记录是否真的成立，并给出可复验手段"];
-  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w0";
   "w1" [label="workflow
-最小可用性探测：确认 agent hook 是否可用"];
+核验近三天 dsh/reasonix 的 64 条努力记录是否真的成立，并给出可复验手段"];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w1";
-  "w4" [label="workflow
+  "w2" [label="workflow
+最小可用性探测：确认 agent hook 是否可用"];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w2";
+  "w5" [label="workflow
 单组核验探测，定位失败原因"];
-  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w4";
-  "a2" [label="workflow:agent
-Run the bash command `echo PROBE_OK` and reply with exactly what it pr", style=dashed];
-  "w1" -> "a2";
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "w5";
   "a3" [label="workflow:agent
+Run the bash command `echo PROBE_OK` and reply with exactly what it pr", style=dashed];
+  "w2" -> "a3";
+  "a4" [label="workflow:agent
 Reply with exactly: PLAIN_OK", style=dashed];
-  "w1" -> "a3";
-  "a5" [label="subagent
-你在为一台 Windows 11 机器上的 dsh（DeepSeek Harness，npm 包 `@deepseek-ai/dsh`）0.", style=dashed];
-  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a5";
+  "w2" -> "a4";
   "a6" [label="subagent
-为 Windows 11 上的 dsh（DeepSeek Harness，`@deepseek-ai/dsh` 0.1.7-rc.2，web", style=dashed];
+你在为一台 Windows 11 机器上的 dsh（DeepSeek Harness，npm 包 `@deepseek-ai/dsh`）0.", style=dashed];
   "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a6";
+  "a7" [label="subagent
+为 Windows 11 上的 dsh（DeepSeek Harness，`@deepseek-ai/dsh` 0.1.7-rc.2，web", style=dashed];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a7";
+  "a8" [label="subagent
+Reply with exactly the word READY and nothing else. Do not use any too", style=dashed];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a8";
+  "a9" [label="subagent
+一个农夫有 17 只羊，除了 9 只以外全都跑了，还剩几只？请先在心里推导，然后只回答最终数字。", style=dashed];
+  "session-a0d5fbf8-0fb1-419e-9baf-d95df0190144" -> "a9";
 }

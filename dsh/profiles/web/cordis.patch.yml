@@ -72,7 +72,25 @@
             config:
               promoteOn: either
               includeSubagents: true
-              allowKinds: [ skill-invocation ]
+              allowKinds: [ skill-invocation, thinking-anchor ]
+
+          # ── thinking-language anchor ────────────────────────────────────────────────
+
+          # 在每一步生成前，把「思考链用中文」追加到上下文的最尾部（agent/pre-step，
+          # 追加一条 source.kind='thinking-anchor' 的 user 消息）。理由与实测数据见
+          # .agent-presets/anchored-standard/thinking-anchor.mjs 的头注释。
+          #
+          # 注册位置是**语义**的一部分，不是排版：agent/pre-step 的 after-next transform
+          # 按注册顺序的**逆序**执行（先注册 = 最外层 = 最后改写结果）。放在这里，
+          # 本行的消息会落在 git-context 的消息之后 —— 也就是真正紧贴生成点的那条。
+          # 挪到 git-context 之后会让 git-context 变成最后一条，锚点被推到前面。
+          #
+          # source.kind 已加入上面 context-gate 的 allowKinds：第一轮（unpromoted）
+          # 也要留下这条，因为首块的语言正是决定后续锁定的那一块。
+          - id: thinking-anchor
+            name: ../../.agent-presets/anchored-standard/thinking-anchor.mjs
+            config:
+              enabled: true
 
           # ── bootstrap ───────────────────────────────────────────────────────────────
 
@@ -117,12 +135,34 @@
               #   两者相抵 ⇒ subagent 只能文本收尾 ⇒ stopReason=completed 但 structured===undefined
               #   ⇒ 报 "memory subagent completed without recording its result"，
               #   idleReviewMs:30000 于是变成每 30 秒失败一次。
-              #   默认值 false 让 subagent 第一轮就是完整 catalog（见 tool-bootstrap.mjs 的
-              #   SUBAGENTS 段）。context-gate 的同名字段只管注入、不管工具面，故保持不动。
+              #   ★★ 2026-09-29 追加更正：这个 flag 并不够。设 false 只是让 subagent 走
+              #   "promoted" 分支，而 promoted 分支同样收窄
+              #   (bootstrapTools + RESIDENT_DISCOVERY_TOOLS + unlockedFor)，subagent 又无法
+              #   自己跑 dev_tool_search 去解锁 ⇒ allow ∩ keep 仍是空集。
+              #   实测证据：subagent session 874ccdcd 的 request/header 只有 249 字符、没有
+              #   tools 字段，它唯一的 assistant message 把
+              #   <|DSML| calls> / <|DSML| invoke name="mnemon_memory_bodies"> 当纯文本吐了出来。
+              #   真正的修法在 tool-bootstrap.mjs 的 system-prompt/assemble 里：delegationDepth>0
+              #   或 origin==='subagent' 时直接 return assembled，不再收窄。
               includeSubagents: false
               # Post-compaction core work set: the model is mid-task and needs to keep
               # working, but faces a small catalog instead of the full Standard set.
               compactionTools: [ read, write, edit, glob, grep, todo_write, ask_user_question ]
+
+          # ── subagent language contract ──────────────────────────────────────────────
+          # A delegated child does NOT inherit the persona row below: `dsh-subagent` writes
+          # the SAME system-prompt section name ("deployment:persona-prefix" =
+          # PERSONA_PREFIX_SECTION, dsh-system-prompt:55) that the persona row owns, so
+          # dsh-mnemon's `subagents.start({ persona: completionPersona })` shadows it for
+          # that child (dsh-subagent/lib/index.js:517).
+          # Measured 2026-09-29 over 25 fresh sessions: 12/12 sampled subagents
+          # (delegationDepth = 1) reasoned in English, 0 CJK characters, while their header
+          # still said agentPreset=anchored-standard -- root agents were mostly Chinese
+          # (session-a0d5fb: 641623 CJK chars). This row appends the 中文/英文术语 contract
+          # to whatever prefix the child ended up with, without touching its completion
+          # protocol.
+          - id: subagent-language
+            name: ../../.agent-presets/anchored-standard/subagent-language.mjs
 
           # ── identity ────────────────────────────────────────────────────────────────
 
@@ -154,7 +194,8 @@
                 2. 术语首次出现时可用括号加中文短注，之后只用英文原词。
                 3. 代码、路径、命令、字段名、包名、API 名原样保留，不翻译、不改格式。
                 4. 数学与技术名词用通行英文（theorem / proof / eigenvalue / injection），解释用中文。
-                5. **思考链（reasoning / thinking）同样遵守本契约：用中文思考**，英文术语原样保留，不要在 thinking 里输出完整英文句子。
+                5. 思考链（reasoning / thinking）的语言由部署的 thinking-language directive 指定（默认中文）；
+                   英文术语原样保留，不要在 thinking 里输出完整英文句子。
                 6. 这个用户是宁夏大学智能科学与技术专业的学生（大一暑假 → 大二上），构建主义研究式学习者。
                    涉及教学 / 翻译 / 方案设计 / 代码等实质任务前，先调 `memory_profile` 校准讲法与深度：
                    走「本质 → 公式 → 跨学科连接」；不甩他未学过的概念（群论 / 环论 / 拓扑 / 非标准分析）；
@@ -570,6 +611,25 @@
   name: "@deepseek-ai/dsh-llm-pi-ai"
   config:
     providers:
+      commandcode-goat-anthropic:
+        displayName: Command Code GOAT (Anthropic)
+        apiKeyEnv: COMMANDCODE_API_KEY
+        api: anthropic-messages
+        baseURL: http://127.0.0.1:8788/v1
+        defaultMaxTokens: 65536
+        retryPolicy:
+          mode: normal
+          maxRetries: 8
+          backoff:
+            initialDelayMs: 1000
+            maxDelayMs: 30000
+            jitterRatio: 0.2
+        models:
+          - id: claude-sonnet-5-5
+            name: Claude Sonnet 5.5
+            contextWindow: 1000000
+            maxTokens: 262144
+            reasoningEfforts: false
       commandcode-goat:
         displayName: Command Code GOAT
         apiKeyEnv: COMMANDCODE_API_KEY
@@ -588,218 +648,53 @@
             maxDelayMs: 30000
             jitterRatio: 0.2
         models:
-          - id: claude-sonnet-5-5
-            name: Claude Sonnet 5.5
-            contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-sonnet-5
-            name: Claude Sonnet 5
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-sonnet-4-6
-            name: Claude Sonnet 4.6
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-fable-5-1
-            name: Claude Fable 5.1
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-fable-5
-            name: Claude Fable 5
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-opus-5-5
-            name: Claude Opus 5.5
-            contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-opus-5
-            name: Claude Opus 5
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-opus-4-8
-            name: Claude Opus 4.8
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-opus-4-7
-            name: Claude Opus 4.7
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: claude-haiku-4-5-20251001
-            name: Claude Haiku 4.5
-            contextWindow: 200000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-6-astra
-            name: GPT-6 Astra
-            contextWindow: 1050000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-6-sol
-            name: GPT-6 Sol
-            contextWindow: 1050000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
           - id: gpt-6-luna
             name: GPT-6 Luna
             contextWindow: 1050000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: gpt-5.6-sol
             name: GPT-5.6 Sol
             contextWindow: 1050000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-5.6-terra
-            name: GPT-5.6 Terra
-            contextWindow: 1050000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: gpt-5.6-luna
             name: GPT-5.6 Luna
             contextWindow: 1050000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-5.5
-            name: GPT-5.5
-            contextWindow: 400000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-5.4
-            name: GPT-5.4
-            contextWindow: 400000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-5.3-codex
-            name: GPT-5.3 Codex
-            contextWindow: 400000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: gpt-5.4-mini
-            name: GPT-5.4 Mini
-            contextWindow: 400000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: deepseek/deepseek-v4-pro
             name: DeepSeek V4 Pro (latest)
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: deepseek/deepseek-v4-flash
             name: DeepSeek V4 Flash (latest)
             contextWindow: 1000000
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: deepseek/deepseek-v4-flash-vision-exp
             name: DeepSeek V4 Flash Vision (exp)
             contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: deepseek/deepseek-v4-flash-fast
             name: DeepSeek V4 Flash Fast
             contextWindow: 1000000
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: deepseek/deepseek-v4.1-flash
             name: DeepSeek V4.1 Flash
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 393216
             input:
               - text
               - image
@@ -811,19 +706,17 @@
           - id: deepseek/deepseek-v4.1-flash-fast
             name: DeepSeek V4.1 Flash Fast
             contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: moonshotai/Kimi-K3
             name: Kimi K3
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 393216
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: moonshotai/Kimi-K2.7-Code
             name: Kimi K2.7 Code
@@ -832,254 +725,186 @@
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: moonshotai/Kimi-K2.7-Code-Highspeed
             name: Kimi K2.7 Code HighSpeed
             contextWindow: 262000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: moonshotai/Kimi-K2.6
             name: Kimi K2.6
             contextWindow: 256000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: moonshotai/Kimi-K2.5
             name: Kimi K2.5
             contextWindow: 256000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 196608
+            reasoningEfforts: false
           - id: z-ai/glm-5.3-flash
             name: GLM-5.3 Flash
             contextWindow: 1048576
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 131072
+            reasoningEfforts: false
           - id: z-ai/glm-5.3-flashx
             name: GLM-5.3 FlashX
             contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: zai-org/GLM-5.3
             name: GLM-5.3
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 131072
+            reasoningEfforts: false
           - id: zai-org/GLM-5.2
             name: GLM-5.2
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 131072
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: zai-org/GLM-5.2-Fast
             name: GLM-5.2 Fast
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: zai-org/GLM-5.1
             name: GLM-5.1
             contextWindow: 200000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: zai-org/GLM-5
             name: GLM-5
             contextWindow: 200000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 98304
+            reasoningEfforts: false
           - id: MiniMaxAI/MiniMax-M3
             name: MiniMax M3
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: MiniMaxAI/MiniMax-M2.7
             name: MiniMax M2.7
             contextWindow: 200000
             maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: MiniMaxAI/MiniMax-M2.5
             name: MiniMax M2.5
             contextWindow: 200000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 131072
+            reasoningEfforts: false
           - id: xiaomi/mimo-v2.6-pro
             name: MiMo V2.6 Pro
             contextWindow: 1048576
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: xiaomi/mimo-v2.6-pro-ultraspeed
             name: MiMo V2.6 Pro UltraSpeed
             contextWindow: 1048576
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: xiaomi/mimo-v2.6-flash
             name: MiMo V2.6 Flash
             contextWindow: 1048576
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: xiaomi/mimo-v2.5-pro
             name: MiMo V2.5 Pro
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 65536
+            reasoningEfforts: false
           - id: xiaomi/mimo-v2.5
             name: MiMo V2.5
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 131072
+            reasoningEfforts: false
           - id: Qwen/Qwen3.8-Omni-Flash
             name: Qwen 3.8 Omni Flash
             contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: Qwen/Qwen3.8-Max-0902
             name: Qwen 3.8 Max 0902
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 131072
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: Qwen/Qwen3.8-Max
             name: Qwen 3.8 Max
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 131072
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: Qwen/Qwen3.8-27B
             name: Qwen 3.8 27B
             contextWindow: 262144
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: Qwen/Qwen3.8-Flash
             name: Qwen 3.8 Flash
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 131072
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: Qwen/Qwen3.7-Max
             name: Qwen 3.7 Max
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 131072
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: Qwen/Qwen3.7-Plus
             name: Qwen 3.7 Plus
             contextWindow: 1000000
-            maxTokens: 262144
+            maxTokens: 131072
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: Qwen/Qwen3.7-Flash
             name: Qwen 3.7 Flash
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 131072
+            reasoningEfforts: false
           - id: Qwen/Qwen3.6-Max-Preview
             name: Qwen 3.6 Max Preview
             contextWindow: 200000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 65536
+            reasoningEfforts: false
           - id: Qwen/Qwen3.6-Plus
             name: Qwen 3.6 Plus
             contextWindow: 200000
-            maxTokens: 262144
+            maxTokens: 65536
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: meituan/LongCat-2.0
             name: LongCat 2.0
@@ -1087,245 +912,144 @@
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: stepfun/Step-5-Preview
             name: Step 5 Preview
             contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: stepfun/Step-3.7-Flash
             name: Step 3.7 Flash
             contextWindow: 256000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: stepfun/Step-3.5-Flash
             name: Step 3.5 Flash
             contextWindow: 262144
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: tencent/hy3-paid
             name: Tencent Hy3
             contextWindow: 262144
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 131072
+            reasoningEfforts: false
           - id: tencent/hy4-preview
             name: Tencent Hy4 Preview
             contextWindow: 1048576
-            maxTokens: 262144
+            maxTokens: 393216
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: google/gemini-3.8-flash
             name: Gemini 3.8 Flash
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: google/gemini-3.7-flash
-            name: Gemini 3.7 Flash
-            contextWindow: 1048576
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: google/gemini-3.6-flash
-            name: Gemini 3.6 Flash
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: google/gemini-3.5-flash
-            name: Gemini 3.5 Flash
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: google/gemini-3.5-flash-lite
-            name: Gemini 3.5 Flash Lite
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: google/gemini-3.1-flash-lite
-            name: Gemini 3.1 Flash Lite
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: sakana/fugu-ultra
-            name: Fugu Ultra
-            contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 65536
+            reasoningEfforts: false
           - id: nvidia/nemotron-3-ultra-550b-a55b
             name: Nemotron 3 Ultra
             contextWindow: 1000000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: thinkingmachines/inkling
             name: Inkling
             contextWindow: 256000
             maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: thinkingmachines/inkling-small
             name: Inkling Small
             contextWindow: 1000000
             maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: stealth/space-bunny-alpha
             name: Space Bunny Alpha
             contextWindow: 1000000
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: stealth/pixel-canary
             name: Pixel Canary
             contextWindow: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: poolside/laguna-s-2.1-free
             name: Laguna S 2.1
             contextWindow: 256000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 32768
+            reasoningEfforts: false
           - id: inclusionai/ling-3.0-flash-sante:free
             name: Ling 3.0 Flash Sante
             contextWindow: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
-          - id: meta/muse-spark-1.1
-            name: Muse Spark 1.1
-            contextWindow: 1048576
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            reasoningEfforts: false
           - id: meta/muse-spark-1.2
             name: Muse Spark 1.2
             contextWindow: 1048576
-            maxTokens: 262144
+            maxTokens: 393216
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: meta/muse-spark-1.2-contributor
             name: Muse Spark 1.2 Contributor
             contextWindow: 1048576
-            maxTokens: 262144
+            maxTokens: 393216
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: meta/muse-spark-1.3
             name: Muse Spark 1.3
             contextWindow: 1048576
-            maxTokens: 262144
+            maxTokens: 393216
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: meta/muse-spark-1.3-contributor
             name: Muse Spark 1.3 Contributor
             contextWindow: 1048576
-            maxTokens: 262144
+            maxTokens: 393216
             reasoningEfforts:
               off: null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
           - id: xai/grok-4.5
             name: Grok 4.5
             contextWindow: 500000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: xai/grok-4.6
             name: Grok 4.6
             contextWindow: 500000
-            maxTokens: 262144
-            reasoningEfforts:
-              off: null
-              low: low
-              high: high
-              max: max
+            maxTokens: 393216
+            reasoningEfforts: false
           - id: xai/grok-4.7
             name: Grok 4.7
             contextWindow: 500000
+            reasoningEfforts: false
+          - id: inclusionai/ling-3.1-flash:free
+            name: Ling 3.1 Flash (free)
+            contextWindow: 262144
             reasoningEfforts:
-              off: null
+              'off': null
               low: low
+              medium: medium
               high: high
+              xhigh: xhigh
               max: max
 - id: permission
   name: "@deepseek-ai/dsh-permission-presets"
@@ -1401,3 +1125,33 @@
     recallMode: guided
     writebackMode: guided
     idleReviewMs: 30000
+
+# ── 微信 bot 桥接（2026-09-30 从 reasonix 侧迁入）────────────────────────────
+# 迁移第 1 步已完成（不影响 reasonix 侧，微信全程照常服务）：
+#   * 包：@lanbaolu/dsh-wechat-bridge@0.9.1 已装进 profiles/web
+#   * 凭据：reasonix 的 iLink 凭据已无损转换成插件 schema
+#       ~/.dsh/wechat-bridge/accounts/cf29d3b9eb6f@im.bot.json
+#       ~/.dsh/wechat-bridge/context-tokens.json
+#     转换脚本 storages/tools/migrate-reasonix-wechat-credentials.mjs
+#     （reasonix 侧 {token, base_url, user_id} + 文件名当 accountId
+#       → 插件侧 {accountId, botToken, baseUrl, userId}；两侧同一个官方 iLink 端点
+#         https://ilinkai.weixin.qq.com，所以不需要重新扫码）
+#
+# ⚠ 本 row 存在的唯一理由是**覆盖插件自带 patch 的 autoStart: true**。
+#   同一台机器上两套 gateway 同时在线会双响应（同一条微信回两次）；
+#   reasonix 的 leader election 每分钟 ping 的是另一台机器，管不了同机第二个 harness。
+#   所以迁移动刀的那一刻必须：先 weixin-bot-switch.ps1 -Mode ToDsh 停 reasonix 侧，
+#   确认停干净，再把这里的 autoStart 改成 true（或从 Web 面板手动启动 daemon）。
+#   row 是 replace 语义，所以下面要把插件自带 patch 的其余字段原样带上，否则会丢。
+- id: dsh-wechat-bridge
+  name: "@lanbaolu/dsh-wechat-bridge"
+  config:
+    dataDir: ''
+    host: 127.0.0.1
+    port: 0
+    autoStart: true
+    provider: ''
+    model: ''
+    workingDirectory: ''
+- id: mnemon-strategy-auto-capture
+  disabled: false

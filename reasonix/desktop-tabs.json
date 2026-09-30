@@ -1,32 +1,6 @@
 {
   "tabs": [
     {
-      "id": "tab_73edac16b1e3d3a9bf8003057663bd42",
-      "scope": "global",
-      "workspaceRoot": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\global-workspace",
-      "workspaceId": "global",
-      "topicId": "manual-f2c75ece2661e6ba4a994118b79958cd",
-      "sessionId": "desktop-manual-f2c75ece2661e6ba4a994118b79958cd",
-      "model": "commandcode-goat/deepseek/deepseek-v4.1-flash",
-      "tokenMode": "full",
-      "agentPreset": "standard",
-      "qualityFloor": "standard",
-      "toolApprovalMode": "danger-full-access"
-    },
-    {
-      "id": "tab_bb081db34c5805bc9b2ed139fa556a41",
-      "scope": "global",
-      "workspaceRoot": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\global-workspace",
-      "workspaceId": "global",
-      "topicId": "manual-032c9218dbe8e6992d2d6ee106cb9cf2",
-      "sessionId": "desktop-manual-032c9218dbe8e6992d2d6ee106cb9cf2",
-      "model": "commandcode-goat/deepseek/deepseek-v4.1-flash",
-      "tokenMode": "full",
-      "agentPreset": "standard",
-      "qualityFloor": "standard",
-      "toolApprovalMode": "danger-full-access"
-    },
-    {
       "id": "tab_d8bcaefce93a1fbe5dcd781e4b9a96c6",
       "scope": "global",
       "workspaceRoot": "C:\\Users\\27063\\AppData\\Roaming\\reasonix\\global-workspace",

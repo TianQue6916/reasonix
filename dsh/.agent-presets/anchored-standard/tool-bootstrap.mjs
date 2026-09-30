@@ -132,6 +132,24 @@ const DEFAULT_BOOTSTRAP_TOOLS = ['bash', 'str_replace_editor']
 /** Discovery tools always resident after promotion (the tool-search pattern). */
 const RESIDENT_DISCOVERY_TOOLS = ['dev_tool_search', 'skill_search', 'skill_load']
 
+/**
+ * Persona tools always resident after promotion (2026-09-30).
+ *
+ * WHY: the preset's persona prefix orders「实质任务前先调 memory_profile」, but the
+ * promoted keep-set only ever held bootstrapTools + RESIDENT_DISCOVERY_TOOLS +
+ * unlocked — so the named tool stayed invisible until the model happened to run
+ * dev_tool_search. A rule pointing at an uncallable tool can never fire, and the
+ * expensive half (the 4 profile facts behind it, ~9KB) was already paid for.
+ * One small schema is cheap next to a discovery round-trip per session.
+ *
+ * NOT in the bootstrap/controlled phase: the first request keeps exactly the
+ * Minimal pair (issue #11 anchoring: 5/5 anchored with the pair, 11/11 failed
+ * with standard-family schemas), so this joins the PROMOTED keep-set only.
+ * A profile that never mounts `memory.mjs` (headless) merely warns once through
+ * keepTools' missing-name path instead of failing.
+ */
+const RESIDENT_MEMORY_TOOLS = ['memory_profile']
+
 function stringList(value, field) {
   if (!Array.isArray(value) || value.length === 0 || value.some((item) => typeof item !== 'string' || item.length === 0)) {
     throw new TypeError(`${name}: ${field} must be a non-empty array of non-empty strings`)
@@ -245,13 +263,36 @@ export function apply(ctx, config) {
     // Downstream errors propagate untouched; only this filter's own logic is guarded.
     const assembled = await next()
     try {
+      // DELEGATED CHILDREN ARE NEVER NARROWED (2026-09-29).
+      //
+      // A subagent's catalog is already scoped EXACTLY by the delegating plugin's
+      // `toolFilter.allow`. Intersecting that with a bootstrap keep-set produces the
+      // EMPTY SET whenever the child's tools are disjoint from ours, and a request
+      // with zero tools makes the model emit tool-call syntax as plain text --
+      // observed as dsh-mnemon failing with
+      //   "memory subagent completed without recording its result".
+      //
+      // Proven on session 874ccdcd (agentPreset=anchored-standard, delegationDepth=1):
+      // its `request/header` was 249 characters with NO `tools` field, its single
+      // assistant message carried
+      //   <|DSML| calls> / <|DSML| invoke name="mnemon_memory_bodies"> ...
+      // as TEXT with stopReason "stop", so zero tool calls and zero result receipts
+      // were recorded. The narrow keep-set here is why.
+      //
+      // `includeSubagents: false` is NOT sufficient: it only routes the child to the
+      // "promoted" branch, and that branch narrows too
+      // (`bootstrapTools + RESIDENT_DISCOVERY_TOOLS + unlocked`). A child cannot run
+      // `dev_tool_search` to unlock anything, so its intersection stays empty.
+      const header = context.agent?.session?.header
+      const depth = header?.delegationDepth ?? 0
+      if (depth > 0 || header?.origin === 'subagent') return assembled
       const status = promotion.status(context.agent)
       if (status.promoted) {
         // PROMOTED: keep the minimal resident set — the bootstrap pair + the
         // discovery tools + whatever the model explicitly unlocked via
         // dev_tool_search — instead of dumping the whole Standard catalog at
         // once (the post-promotion regression fix; see the header note).
-        const keep = new Set([...bootstrapTools, ...RESIDENT_DISCOVERY_TOOLS, ...unlockedFor(context.agent?.session)])
+        const keep = new Set([...bootstrapTools, ...RESIDENT_DISCOVERY_TOOLS, ...RESIDENT_MEMORY_TOOLS, ...unlockedFor(context.agent?.session)])
         return keepTools(assembled, keep, false)
       }
       // Controlled phase: the bootstrap pair; after a compaction, plus the

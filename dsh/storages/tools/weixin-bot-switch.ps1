@@ -1,4 +1,4 @@
-﻿<#
+<#
   weixin-bot-switch.ps1 — 微信 bot 在 reasonix 侧与 dsh 侧之间切换的安全网
 
   【为什么必须有这个脚本】
@@ -54,9 +54,42 @@ function Get-ReasonixBot {
 }
 
 function Get-DshBot {
-  # TODO(插件确定后补全)：dsh 侧的 bot 进程识别方式取决于最终选用的插件
-  # （进程名 / 端口 / dsh 子进程）。在补全之前，这里返回空并明确说明。
-  @()
+  # dsh 侧用 @lanbaolu/dsh-wechat-bridge：host 插件 spawn 出 daemon 后，把 pid 写进
+  # <dataDir>\daemon.pid（src: lib/index.js 的 pidPath）。
+  #
+  # 为什么读 pid 文件而不是按进程名找：桌面端(Electron)里 daemon 以
+  # ELECTRON_RUN_AS_NODE=1 执行，进程映像名是 "DeepSeek Harness.exe"，
+  # 按名字匹配会同时命中 Host 本身和 4 个渲染/GPU 进程，根本分不出来。
+  # pid 文件是插件自己维护的单一真相，且 daemonRunning() 也是查它。
+  #
+  # dataDir 默认 $DSH_HOME/wechat-bridge（DSH_HOME 未设则 ~/.dsh）。
+  $dataDir = if ($env:DSH_HOME) { Join-Path $env:DSH_HOME 'wechat-bridge' }
+             else { Join-Path $env:USERPROFILE '.dsh\wechat-bridge' }
+  $pidFile = Join-Path $dataDir 'daemon.pid'
+  if (-not (Test-Path -LiteralPath $pidFile)) { return @() }
+  $dshBotPid = 0
+  try { $dshBotPid = [int]((Get-Content -LiteralPath $pidFile -Raw).Trim()) } catch { return @() }
+  if ($dshBotPid -le 0) { return @() }
+  # 注意1：$pid 是 PowerShell 只读自动变量，绝不能拿它当变量名（2026-09-30 踩过）。
+  # 注意2：必须用 Get-CimInstance 而不是 Get-Process —— 调用方统一读 $x.ProcessId，
+  #        那是 CimInstance(Win32_Process) 的属性名；Get-Process 返回的 Process 对象
+  #        属性叫 Id，直接混用会让 PID 显示为空（2026-09-30 实测踩过）。
+  $proc = Get-CimInstance Win32_Process -Filter "ProcessId=$dshBotPid" -ErrorAction SilentlyContinue
+  if ($proc) { return @($proc) }
+  return @()
+}
+
+function Get-DshBotDataDir {
+  if ($env:DSH_HOME) { return (Join-Path $env:DSH_HOME 'wechat-bridge') }
+  return (Join-Path $env:USERPROFILE '.dsh\wechat-bridge')
+}
+
+function Show-DshDaemonLog {
+  $logPath = Join-Path (Get-DshBotDataDir) 'logs\daemon.log'
+  if (Test-Path -LiteralPath $logPath) {
+    Write-Host '  daemon.log 末 5 行:' -ForegroundColor DarkGray
+    Get-Content -LiteralPath $logPath -Tail 5 -ErrorAction SilentlyContinue | ForEach-Object { Write-Host ("    " + $_) -ForegroundColor DarkGray }
+  }
 }
 
 function Show-Status {
@@ -77,8 +110,8 @@ function Show-Status {
   Write-Host ''
   Write-Host '=== dsh 侧 ===' -ForegroundColor Cyan
   $d = @(Get-DshBot)
-  if ($d.Count -gt 0) { foreach ($x in $d) { Write-Host ("  PID {0} {1}" -f $x.ProcessId, $x.Name) -ForegroundColor Green } }
-  else { Write-Host '  未检测到（进程识别逻辑待插件确定后补全）' -ForegroundColor DarkGray }
+  if ($d.Count -gt 0) { foreach ($x in $d) { Write-Host ("  daemon PID {0} ({1})" -f $x.ProcessId, $x.Name) -ForegroundColor Green } }
+  else { Write-Host '  未运行（daemon.pid 缺失或进程已退出）' -ForegroundColor Yellow; Show-DshDaemonLog }
   $listen = Get-NetTCPConnection -LocalPort 3080 -State Listen -ErrorAction SilentlyContinue
   if ($listen) { Write-Host ("  dsh web 3080 LISTENING pid {0}" -f $listen.OwningProcess) -ForegroundColor Green }
   else { Write-Host '  dsh web 3080 未监听' -ForegroundColor Yellow }

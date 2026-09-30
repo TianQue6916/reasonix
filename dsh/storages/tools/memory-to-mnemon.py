@@ -43,6 +43,13 @@ def discover_scopes(root):
     arch = os.path.join(root, "global", ".archive")
     if os.path.isdir(arch):
         out.append(("archive", arch))
+    # REASONIX.md —— reasonix 侧的常驻画像摘要（身份与角色 / 方舟计划 / 执行清单 / 书目）。
+    # 2026-09-30 补：它不在 memory/<scope>/ 下，旧版 discover_scopes 只遍历 root 的子目录，
+    # 所以这份「reasonix 其实一直常驻在上下文里」的画像从来没进过 mnemon。
+    # 单独 append 到末尾（global 已排首位），标签 src:reasonix-root 标明来源。
+    rh = os.path.expanduser("~/.reasonix")
+    if os.path.isfile(os.path.join(rh, "REASONIX.md")):
+        out.append(("reasonix-root", rh))
     return out
 
 def build_insights(scopes, only=None):

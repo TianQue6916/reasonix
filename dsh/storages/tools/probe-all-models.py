@@ -54,7 +54,13 @@ def classify(raw, status):
         return "throttled"
     if "MODEL_NOT_IN_PLAN" in raw or "gateway_model_not_in_plan" in raw:
         return "plan_blocked"
-    if "Authentication failed" in raw or "所有 key 均失败" in raw:
+    # 2026-09-29: 实测同一 key 对 deepseek 得 200、对 google/gemini-3.7-flash 得
+    #   403 {"message":"Authentication failed. Please check your credentials."}
+    # 所以这是「该 model 的后端 provider 没绑定」，是 model 级结论而不是限流，
+    # 不应中止整轮探测。
+    if "Authentication failed" in raw:
+        return "model_unavailable"
+    if "所有 key 均失败" in raw:
         return "throttled"
     return "other"
 
@@ -71,7 +77,8 @@ if resume:
     try:
         prev = json.load(open(out_path, encoding="utf-8"))
         state["models"] = prev.get("models", {})
-        done = [k for k, v in state["models"].items() if v.get("verdict") in ("ok_thinking", "ok_non_thinking", "plan_blocked")]
+        done = [k for k, v in state["models"].items()
+                if v.get("verdict") in ("ok_thinking", "ok_non_thinking", "plan_blocked", "model_unavailable")]
         print(f"resumed: {len(done)} already classified")
     except FileNotFoundError:
         pass
@@ -83,7 +90,7 @@ def save():
 
 consecutive_throttle = 0
 for i, mid in enumerate(ids, 1):
-    if state["models"].get(mid, {}).get("verdict") in ("ok_thinking", "ok_non_thinking", "plan_blocked"):
+    if state["models"].get(mid, {}).get("verdict") in ("ok_thinking", "ok_non_thinking", "plan_blocked", "model_unavailable"):
         continue
     body = {"model": mid, "max_tokens": 400, "reasoning_effort": "high",
             "messages": [{"role": "user", "content": PROMPT}]}

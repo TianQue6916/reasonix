@@ -170,6 +170,7 @@
 | **v2.4** | **2026-09-07** | **8i 超强审计改为「审计+修复一体」（用户拍板纠正，L12 实战）：审阅与修复统一、不浪费 token——8i（pro+max）审计时直接落实修改意见输出修订后全文，禁止「只给意见→主代理另派修复批」两轮往返；引文核验例外（审计方无字幕时标 ⚠待核 由主代理统一核实）；主代理角色改为回填修订版 + 处理待核项；7.5 prompt 全面改写（含数学硬伤维度）；8.2 错误清单 +2 行（超强审计顺手修复/回填扫描漏注）** |
 | **v3.0（本版）** | **2026-09-07** | **结构重组 + 全审计「审计+修复一体」：①历史与运行分离——第八章 + DSH 钩子移出主文档至 HISTORY.md，SKILL.md 只留运行时必读（规则零删除）；②第 2/3 章流程合一（一条流程两档参数：小规模主代理直译 + 大规模 25×2 子代理）；③废除 8a-8j 双编号、8f 交叉引用体系归入格式章、7.1-7.6 prompt 保留；④用户拍板（2026-09-07）：8c 页级审计、8i 超强审计、8j 格式审计一律「审计+修复一体」——审计 worker 直接输出修订后文件/块，禁止只列意见让主代理另派修复批（避免 token 浪费）；8.2 错误清单 +1 行（全审计修复一体）** |
 | **v3.2** | **2026-09-10** | **模型全面统一 v4.1 flash（用户拍板，pro 彻底弃用）**：v4.1 flash 已全面超越 pro——① 全任务（翻译/写注/页级审计/超强审计/交叉引用/格式审计）统一 `dsh-remote -m deepseek-v4.1-flash`，`-e` 按难度选 off/low/high/max；② 超强审计改为 v4.1 flash + `-e max`（终审靠 max effort + 多轮迭代），`-pro` 语法保留但等价 `-m deepseek-v4.1-flash -e max`；③ 难任务不换模型，靠「多查资料 + 足量 prompt + 多轮优化」（铁律 22 重写）；④ 双机 dsh settings 登记 `deepseek/deepseek-v4.1-flash`（agent-default-model + fallbacks + GOAT models），dsh-gate-conc.ps1 `-Pro` 同步改指 v4.1 flash；⑤ 铁律 12/21/22 + 第 2/3/5/6 章 + 快速上手表全部同步 |
+| **v3.7** | **2026-09-30** | **两条谱系收敛 + progressive disclosure 收敛版（用户拍板）**：① **谱系判定**——Windows `.reasonix`（dsh 读的那份）自 2026-09-10 冻结在 v3.2/1338 行，而 Linux 与 Windows Roaming 已是本文件的 v3.6/2275 行（差 937 行，含铁律 24/25/26 与第 8/9/10 章）；经 sha256 确认 Linux == Windows Roaming，故**以 v3.6 为唯一底座**，放弃在 v3.2 上的重构分支；② **结构收敛**——第 3/4/5/6/8/9/10 章与版本沿革移入 `references/{notes-guide,format,toolchain,prompts,ps-workflow,vision-check,image-pipeline,changelog}.md`，主文档 2275 → 697 行，**内容零删除**（跨引用改指 references，脚本化守恒校验通过）；③ 新增「🎯 核心契约」12 条一览，把最易漂移约束前置；④ **翻译技能收敛**——`bilingual-translator` 与 `ocw-lecture-translator` 三端同时停用（`SKILL.md` → `SKILL.md.disabled-20260930-keep`），入口统一到本技能；⑤ 模型口径：中途试用 `meta/muse-spark-1.3-contributor` 后**放弃并回退 v4.1 flash**；⑥ ⚠️ **同步纪律入档**——同步器「冲突双方保留 / 仅一方有则补齐」⇒ 删除与停用必须三端同时做，否则被补齐退回 |
 
 ---
 
@@ -215,3 +216,34 @@
 - DSH 会话自动注入用户记忆/技能/画像上下文（含双语 5 铁律、禁英中分段对照等规范）
 - 完整档案：`~/.reasonix/memory/global/dsh-gate-dual-machine-setup.md`
 - 自我演进：`dsh-gate --evolve` / `--apply --plan <file>`
+
+## v3.4（2026-09-23）视觉核对流水线成为必做环节
+
+- **用户原话**：「以后可以多侧重视觉，写入技能吧」
+- **能力事实（本轮实测）**：`deepseek/deepseek-v4.1-flash` 支持图像输入（GOAT endpoint），可作扫描页权威转写器；必须带浏览器 UA（否则 Cloudflare 403 / code 1010）；`deepseek-v4-flash-vision-exp` 在该端点不被支持
+- **新增**：第 9 章「视觉核对流水线」（9.1 能力事实 / 9.2 四步流程 / 9.3 可靠比对信号 / 9.4 副作用检查清单 / 9.5 四个可复用脚本 / 9.6 成本收益 / 9.7 双机同步）+ 铁律 24（扫描版必做）
+- **实战来源**：Strang LaLFD part004（50 页扫描版）——公式编号缺失页 8 → 1（且为假阳性），纠正 5 处 OCR 文本层面查不出的实质错误，汉字 11.3 万 → 13.4 万
+- **踩过的坑（已写入 §9.4）**：订正删注（84→75，已回插）、```math 围栏失衡、超 32767 字符静默失败、注指纹用前 40 字符会误判"已存在"
+- **双机**：本次仅更新 Windows 侧 SKILL.md（Linux 机 SSH 当时不通），待同步
+
+## v3.6（2026-09-23）图像流水线：保留原书插图 + 自创图
+
+- **用户原话**：「这个技能里面有没有写可以保留原书图片，反正是视觉模型，还有就是遇到难问题可以自己写出图片，创作图片？没有的话，加到合理位置」
+- **查证结果（改前）**：只有 §3.1 第 6 条「图解注」提到"可以自己生成示意图或找现成图"，**没有**"原书插图必须保留"的规则，也**没有**自创图的通道、规范与复核流程；part005 的图 IV.1 实测**只剩图注文字、图本身已丢**
+- **新增内容**：
+  - **铁律 26**：原书插图是内容，不得静默丢弃（只译图注 = 违规）；图内印字三选一；自绘图必须标"译者绘制"
+  - **第 10 章 图像流水线**：10.1 路线总览 / 10.2 保留原图（三种取图方式对比、vision 给 bbox、`fig_find.py`、`fig_crop.py`、交付形态、图内印字决策树）/ 10.3 自创图（判定清单、四条通道、规范、视觉模型"生成→复核→纠错"闭环）/ 10.4 十条实测坑 / 10.5 交付前清单 / 10.6 接口 / 10.7 双机
+  - **§9.8 图像层核对**：图丢失 / 图注 / 图内文字 / 图表读数四查 + `FIGURES` 结构化 prompt + 实测基准样例
+  - **§6.1 翻译 worker prompt** 加"插图处理"段（`<!-- FIG ... -->` 占位 + 图注翻译）
+  - 快捷表 / 常见问题表各加 2–3 行；§3.1 加第 10 章指针
+- **本轮实测（全部在本机实跑，非文献转述）**：
+  1. `deepseek/deepseek-v4.1-flash` **能定位插图并给可用 bbox**：Strang LaLFD PDF p.208（书页 206）→ `Figure IV.1 | 10,32,90,50 | …`（另一次 `6,28,94,54`，**bbox 会浮动 ±4%**，故必须 1–2% padding）；裁切后 `view_image` 人眼复核 = 两个单位圆 + $w^3,w,1,i$ 标注 + 三行公式，正确；与已译稿图注逐字对上
+  2. 🚨 **图像任务 `max_tokens=4096` → `finish_reason=length`、`content` 空**（4096 tokens 全被 reasoning 吃掉），改 `16384` 即正常 → **该任务必须 ≥16384**（极易误判成"视觉通道不可用"）
+  3. **扫描版 `pdfimages -list` 每页只有 1 张整页 JPEG**（2243×3041，96 ppi）→ 抽嵌入图这条路对扫描版无效，**必须走渲染 + `clip` 裁切**（300 dpi，实测 5247×1883，降采样到 ≤1600 px）
+  4. **Edge headless 截图可用**：`--headless=new --user-data-dir=<独立目录> --window-size=… --screenshot=<绝对路径>` → 实测写出 PNG（stderr 里的 QQBrowser importer 报错无害）
+  5. **matplotlib 可用**：中文需 `Microsoft YaHei`/`SimHei` + `axes.unicode_minus=False`；mathtext 公式正常；本机可选字体 Microsoft YaHei / SimHei / KaiTi / FangSong / STKaiti / STSong
+  6. **graphviz 本机未安装**（`dot` 不存在，python `graphviz` 包缺失）→ 技能里标注"要用先装"
+  7. PowerShell 内联 python 会吃 `$` 与引号（本轮真实踩到）→ 技能统一要求"先落盘脚本再跑"
+- **改后自检**：`fig_find.py` → `figs.tsv` → `fig_crop.py` → `assets/fig_208_figIV1.png` 全链路跑通（脚本落点：工作区 `.reasonix/attachments/fig_pipeline/`）
+- **文件卫生**：本轮 PowerShell 改写一度引入 **UTF-8 BOM**（会使 frontmatter `---` 前置 BOM）→ 已去 BOM 并把 SKILL.md 统一为 **CRLF**（2150 行，0 裸 LF）
+- **双机**：本次仅更新 **Windows 侧** SKILL.md / HISTORY.md；**Linux 侧待同步**（同 §9.7）
