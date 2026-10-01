@@ -1,6 +1,7 @@
 ---
 name: anthropic-skills
 description: Anthropic 官方技能集 — MCP 构建/文档生成/前端设计/品牌规范/创意编码/Web 测试
+disable-model-invocation: true
 ---
 # Anthropic 官方技能集
 

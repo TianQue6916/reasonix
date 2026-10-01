@@ -24,6 +24,9 @@ const upstreamState = {
   cloudflare403: false,  // 返回 Cloudflare 1010 风格的 403
   idleBeforeFirstByte: 0, // 前 N 个请求返回 200 后不发任何数据（测 stream idle timeout）
   idleSeen: 0,
+  quota400Keys: new Set(), // 对这些 key 返回 400 + insufficient credits（2026-10-01 实测的额度耗尽形状）
+  plain400: false,         // 返回一个真正的参数错误 400（必须原样透传给客户端）
+  plain400Seen: 0,
 };
 
 const upstream = http.createServer((req, res) => {
@@ -31,6 +34,17 @@ const upstream = http.createServer((req, res) => {
   req.on('data', (c) => { body += c; });
   req.on('end', () => {
     const key = String(req.headers.authorization || '').replace(/^Bearer\s+/i, '').trim();
+    if (upstreamState.quota400Keys.has(key)) {
+      res.writeHead(400, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ type: 'invalid_request_error', message: 'You have insufficient credits to make this request. Please purchase more credits to continue using the service.' }));
+      return;
+    }
+    if (upstreamState.plain400) {
+      upstreamState.plain400Seen += 1;
+      res.writeHead(400, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ error: { message: 'bad request: missing messages field', type: 'invalid_request_error' } }));
+      return;
+    }
     if (upstreamState.failKeys.has(key)) {
       res.writeHead(500, { 'content-type': 'application/json' });
       res.end(JSON.stringify({ error: { message: `simulated 500 for ${key}` } }));
@@ -356,7 +370,50 @@ async function main() {
   assert(childLog.includes('STREAM-IDLE'), 'gateway log should contain STREAM-IDLE');
   console.log('PASS stream idle timeout transparent retry');
 
-  // 13) strategy=prefix：同 system/tools 前缀的新会话优先同 key，窗口软上限触发后才 overflow
+  // 13) 额度耗尽用 HTTP 400 表达（上游实测形状）：必须冷却该 key + 透明换 key 重试
+  fs.writeFileSync(configPath, originalConfigText, 'utf8');
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reload`);
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reset`);
+  upstreamState.failKeys.clear();
+  upstreamState.hold = false;
+  upstreamState.afterHeadersError = false;
+  upstreamState.cloudflare403 = false;
+  upstreamState.idleBeforeFirstByte = 0;
+  upstreamState.plain400 = false;
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/sticky?name=A`);
+  upstreamState.quota400Keys = new Set(['key-A']);
+  // 用一个全新指纹（quota-system/quota-user-1），否则会被前面用例遗留的 session 绑定抢走
+  const r14 = await ask(AbortSignal.timeout(8000), 'quota-system', 'quota-user-1');
+  assert(r14.status === 200, `quota-400 should be retried on the other key -> 200, got ${r14.status} ${r14.text}`);
+  const h14 = await health();
+  const a14 = h14.keys.find((k) => k.name === 'A');
+  assert(a14 && a14.cooldownMsLeft > 0, `key A must be cooling after quota-400, got ${JSON.stringify(a14)}`);
+  await sleep(200); // childLog 是异步收的，等日志落地再断言
+  assert(childLog.includes('insufficient credits'), 'gateway log should record the quota-400 body');
+  console.log('PASS quota-400 cools the exhausted key and switches transparently');
+
+  // 14) 真正的 400（非额度）：原样补发给客户端，不冷却、不算 key 失败、不重试
+  upstreamState.quota400Keys = new Set();
+  upstreamState.plain400 = true;
+  upstreamState.plain400Seen = 0;
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/reset`);
+  await fetch(`http://127.0.0.1:${PORT}/_gateway/sticky?name=A`);
+  const before14 = await health();
+  const fails14 = before14.keys.reduce((n, k) => n + (k.fail || 0), 0);
+  const r15 = await ask(AbortSignal.timeout(8000), 'plain-system', 'plain-user-1');
+  assert(r15.status === 400, `plain 400 must pass through as 400, got ${r15.status} ${r15.text}`);
+  assert(r15.text.includes('missing messages field'), `plain 400 body must be replayed verbatim, got ${JSON.stringify(r15.text)}`);
+  await sleep(200); // 同上：等日志落地
+  assert(childLog.includes('PASSTHROUGH-400'), `gateway log should contain PASSTHROUGH-400, tail=${JSON.stringify(childLog.slice(-600))}`);
+  assert(upstreamState.plain400Seen === 1, `plain 400 must not be retried upstream, saw ${upstreamState.plain400Seen} attempt(s)`);
+  const after14 = await health();
+  const fails14b = after14.keys.reduce((n, k) => n + (k.fail || 0), 0);
+  assert(fails14b === fails14, `plain 400 must not count as a key failure (before ${fails14}, after ${fails14b})`);
+  assert(after14.keys.every((k) => (k.cooldownMsLeft || 0) === 0), `plain 400 must not cool any key, got ${JSON.stringify(after14.keys)}`);
+  console.log('PASS plain 400 passes through verbatim without cooling or retrying');
+  upstreamState.plain400 = false;
+
+  // 15) strategy=prefix：同 system/tools 前缀的新会话优先同 key，窗口软上限触发后才 overflow
   const cfg13 = JSON.parse(fs.readFileSync(configPath, 'utf8'));
   cfg13.strategy = 'prefix';
   cfg13.prefixAffinity = { windowMs: 3600000, maxNewSessionsPerKey: 2, prefixTtlMs: 3600000, maxPrefixes: 100 };

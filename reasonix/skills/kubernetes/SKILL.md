@@ -1,6 +1,7 @@
 ---
 name: kubernetes
 description: Kubernetes — Pod/Service/Ingress/Helm/ArgoCD, RBAC/网络策略/HPA/VPA
+disable-model-invocation: true
 ---
 
 # Kubernetes专家

@@ -1,6 +1,7 @@
 ---
 name: antigravity-awesome-skills
 description: Antigravity Awesome Skills 合集（1493+ SKILL.md 技能库）。涵盖开发、测试、安全、架构、写作、DevOps等全领域。安装后可搜索调用子技能。当需要查找 Claude Code / Cursor 生态的最佳实践技能时触发。
+disable-model-invocation: true
 ---
 
 # Antigravity Awesome Skills — 1493+ 技能库

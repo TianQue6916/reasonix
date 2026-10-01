@@ -1,6 +1,7 @@
 ---
 name: sre
 description: SRE — SLI/SLO/错误预算/故障分析/混沌工程/容量规划/GitOps/Terraform
+disable-model-invocation: true
 ---
 
 # SRE可靠性专家

@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { createLoopGuard, SseDeltaParser, DEFAULT_LOOP_GUARD } from './loop-guard.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const p = (...a) => path.join(ROOT, ...a);
@@ -80,6 +81,26 @@ const DEFAULTS = {
   maxSessions: 2000,
   upstreamTimeoutMs: 900000,
   logKeepDays: 30,
+  // 额度驱动的动态权重（2026-10-01 加）。只读 quota-http，不自己调上游。
+  //   mode:
+  //     'used'      = 月已用比例高者权重大（默认：尽快把快到期的月额度花掉）
+  //     'left'      = 月剩余比例高者权重大（均衡派）
+  //     'resetSoon' = 周期窗口 resetAt 更近者权重大（「套餐结束时间更近的优先」）
+  //     'resetLate' = 周期窗口 resetAt 更远者权重大
+  //   resetWindow: 时间型口径读哪个窗口的 resetAt —— GOAT 只有 5h / weekly 两个
+  //     rolling window 带时间戳，月度池属 billing cycle、没有日期；官方余额行
+  //     没有窗口，时间型口径下自动跳过、保持静态 weight。
+  //   min/maxWeight: 把 score∈[0,1] 线性映射到的权重区间。
+  quotaSync: {
+    enabled: true,
+    url: 'http://127.0.0.1:8790/quota',
+    intervalMs: 60000,
+    timeoutMs: 15000,
+    mode: 'used',
+    resetWindow: 'weekly',
+    minWeight: 0.2,
+    maxWeight: 5,
+  },
 };
 
 // ── 配置与 key 池（reload 时可重读；keys.json 支持 mtime 热重载）──────────
@@ -110,44 +131,79 @@ function loadConfig() {
     listen: { ...DEFAULTS.listen, ...(rawCfg.listen || {}) },
     upstream: { ...DEFAULTS.upstream, ...(rawCfg.upstream || {}) },
     cooldownMs: { ...DEFAULTS.cooldownMs, ...(rawCfg.cooldownMs || {}) },
+    loopGuard: { ...DEFAULT_LOOP_GUARD, ...(rawCfg.loopGuard || {}) },
   };
 }
 
 CFG = loadConfig();
-let upOrigin = new URL(CFG.upstream.origin);
-let agent = null;
-let agentBornAt = 0;
 
-function makeAgent() {
-  const lib = upOrigin.protocol === 'http:' ? http : https;
+// ── upstream 解析（多上游）──────────────────────────────────────────────
+//
+// 2026-10-01：key 池从「单一上游的多个同质账号」升级为「可跨上游的异质 key 池」，
+// 于是官方 key（api.deepseek.com）能与 GOAT key（api.commandcode.ai）平级参与
+// session 粘滞 / 冷却 / 重试。
+//
+// 兼容性靠「缺省继承」实现：key 不写 upstream 就完全用 CFG.upstream —— 既有 GOAT key
+// 一行都不用改，行为逐位不变。basePath 允许是空串（官方 origin 直接接 /chat/completions，
+// 中间没有版本段）。
+function resolveUpstream(keyEntry) {
+  const u = (keyEntry && keyEntry.upstream) || {};
+  const origin = typeof u.origin === 'string' && u.origin ? u.origin : CFG.upstream.origin;
+  const basePath = typeof u.basePath === 'string' ? u.basePath : CFG.upstream.basePath;
+  return { origin, basePath, url: new URL(origin) };
+}
+function upstreamLabel(u) {
+  return u.origin + u.basePath;
+}
+// 按协议取默认端口 —— 旧代码写死 `|| 443`，对 http 上游是错的（只在带显式端口的
+// selftest 上游上碰巧没暴露）。
+function defaultPort(protocol) {
+  return protocol === 'http:' ? 80 : 443;
+}
+
+// ── 上游连接池：按 origin 分开 ───────────────────────────────────────────
+//
+// keep-alive 连接绑定到具体的 (protocol, host, port)，不能跨 origin 复用 ——
+// 所以 agent 从单例变成 Map<origin, {agent, bornAt}>。定期重建的理由不变：
+// 长寿命连接可能进入「慢速」状态，换新连接即恢复。
+let agents = new Map();
+
+function makeAgent(u) {
+  const lib = u.url.protocol === 'http:' ? http : https;
   const keepAlive = CFG.upstream ? CFG.upstream.keepAlive !== false : true;
   return new lib.Agent({ keepAlive, maxSockets: 128, maxFreeSockets: keepAlive ? 32 : 0, timeout: 60000 });
 }
 
-// 定期重建上游 Agent：长寿命连接可能进入「慢速」状态，换新连接即恢复。
-function resetAgent(reason) {
-  agent = makeAgent();
-  agentBornAt = Date.now();
+function resetAgents(reason) {
+  for (const e of agents.values()) {
+    try { e.agent.destroy(); } catch {}
+  }
+  agents.clear();
   if (reason) log(`AGENT-RECYCLE ${reason}`);
 }
-function getAgent() {
-  const maxAge = Number(CFG.upstream?.agentMaxAgeMs ?? 300000);
-  if (maxAge > 0 && agent && Date.now() - agentBornAt > maxAge) {
-    resetAgent(`age=${Date.now() - agentBornAt}ms > ${maxAge}ms`);
-  }
-  return agent;
-}
-resetAgent();
 
-function getTransport() {
-  return upOrigin.protocol === 'http:' ? http : https;
+function getAgent(u) {
+  const key = u.url.origin;
+  const maxAge = Number(CFG.upstream?.agentMaxAgeMs ?? 300000);
+  let e = agents.get(key);
+  if (e && maxAge > 0 && Date.now() - e.bornAt > maxAge) {
+    try { e.agent.destroy(); } catch {}
+    log(`AGENT-RECYCLE origin=${key} age=${Date.now() - e.bornAt}ms > ${maxAge}ms`);
+    e = null;
+  }
+  if (!e) {
+    e = { agent: makeAgent(u), bornAt: Date.now() };
+    agents.set(key, e);
+  }
+  return e.agent;
 }
 
 function reloadRuntimeConfig() {
   const oldPort = CFG.listen.port;
   CFG = loadConfig();
-  upOrigin = new URL(CFG.upstream.origin);
-  resetAgent('config reload');
+  LOOP_GUARD = createLoopGuard(CFG.loopGuard, log, LOG_DIR);
+  resetAgents('config reload');
+  syncQuota().catch(() => {});
   if (CFG.listen.port !== oldPort) {
     log(`WARN config reload: listen.port 从 ${oldPort} 变成 ${CFG.listen.port}；端口需要重启进程才会生效`);
   }
@@ -188,6 +244,26 @@ function loadKeys() {
         const w = Number(k.weight);
         return Number.isFinite(w) && w > 0 ? w : 1;
       })(),
+      // ── 多上游（2026-10-01 加）──────────────────────────────────────────
+      // upstream：该 key 打向哪个 origin/basePath；不写 = 继承 CFG.upstream。
+      upstream: (k.upstream && typeof k.upstream === 'object' && !Array.isArray(k.upstream)) ? k.upstream : null,
+      // models：该 key 在「客户端模型 id」维度上能服务的集合。不写/空数组 = 不限制。
+      // 用于候选集过滤：请求 gpt-6-luna 时官方 key 直接不进候选，而不是让它去撞 400。
+      models: Array.isArray(k.models)
+        ? k.models.filter((x) => typeof x === 'string' && x.length > 0)
+        : null,
+      // modelMap：客户端 id → 该上游原生 id。命中时 forward() 会改写 body.model。
+      // 例：deepseek/deepseek-v4.1-flash → deepseek-flash（官方用的是裸 id）。
+      modelMap: (k.modelMap && typeof k.modelMap === 'object' && !Array.isArray(k.modelMap)) ? k.modelMap : null,
+      // priority（2026-10-01 加）：越大越优先。selectKey 只在最高优先级那一层里做均衡，
+      // 低层 key 仅当高层全部不可用时才参与。缺省 100 —— 全部 key 不写时行为与改动前一致。
+      // 用途：官方 key 设 0 → 兜底层，「非必要不用」。
+      priority: (() => {
+        const p = Number(k.priority);
+        return Number.isFinite(p) ? p : 100;
+      })(),
+      // quotaAccount（2026-10-01 加）：从 quota-http 的哪一行取额度。缺省用 key 的 name。
+      quotaAccount: typeof k.quotaAccount === 'string' && k.quotaAccount ? k.quotaAccount : (k.name || ''),
     }));
   keysCache = { mtime: st.mtimeMs, keys };
   return keys;
@@ -204,6 +280,106 @@ function loadKeys() {
  * @returns 白名单 Set；文件缺失/为空时返回 null，表示「不干预」——这是安全兜底，
  *          宁可不过滤，也绝不能因为配置出错而把模型列表清空。
  */
+// ── 额度驱动的动态权重（2026-10-01 加）──────────────────────────────────
+//
+// 规则（用户拍板）：「给月额度更近的那个更大的优先级」—— monthUsed/monthCap 已用比例
+// 更高的 GOAT 账号更快撞上限，它的剩余额度不消耗掉就随月度重置浪费，所以优先用它。
+//
+// 数据源是既有 quota-http 服务（127.0.0.1:8790/quota，见 quota-http.mjs）——它聚合
+// 两个 GOAT 账号的 5h/周/月窗口 + 官方余额。网关只读它，不自己调上游。
+//
+// 三条设计约束：
+//   1. 动态权重只覆盖 selectKey 里的 weight，**绝不回写 keys.json** —— 否则会与 mtime
+//      热重载互相打架（用户手改一次就被下一轮同步冲掉）。
+//   2. 拉取失败静默回落到 keys.json 里的静态 weight，quota 服务故障绝不影响转发。
+//   3. 官方余额行没有 month 窗口 → monthUsedRatio 返回 null → 不进动态表，仍用静态值。
+let quotaWeights = new Map();
+let quotaState = { at: 0, ok: false, error: '', detail: [] };
+
+function monthUsedRatio(row) {
+  const used = Number(row && row.monthUsed);
+  const cap = Number(row && row.monthCap);
+  if (!Number.isFinite(used) || !Number.isFinite(cap) || cap <= 0) return null;
+  return Math.min(1, Math.max(0, used / cap));
+}
+
+async function syncQuota() {
+  const qs = CFG.quotaSync;
+  if (!qs || qs.enabled === false || !qs.url) return;
+  try {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), Math.max(1000, Number(qs.timeoutMs) || 15000));
+    let json;
+    try {
+      const r = await fetch(String(qs.url), { headers: { accept: 'application/json' }, signal: ctl.signal });
+      json = await r.json();
+    } finally {
+      clearTimeout(timer);
+    }
+    const rows = Array.isArray(json && json.rows) ? json.rows : [];
+    const lo = Number.isFinite(Number(qs.minWeight)) ? Number(qs.minWeight) : 0.2;
+    const hi = Number.isFinite(Number(qs.maxWeight)) ? Number(qs.maxWeight) : 5;
+    const mode = String(qs.mode || 'used').toLowerCase();
+    const qsw = String(qs.resetWindow || 'weekly').toLowerCase() === 'fivehour' ? 'fiveHourReset' : 'weeklyReset';
+    const timed = mode === 'resetsoon' || mode === 'resetlate';
+    const now = Date.now();
+    const remOf = (row) => {
+      const t = Number(row && row[qsw]);
+      return Number.isFinite(t) && t > 0 ? t - now : null;
+    };
+
+    // 时间型口径要先把所有 key 的「剩余时长」摊开做 min-max 归一化：
+    // 最快到期的那个 → urgency = 1（最紧迫）。
+    let minRem = Infinity;
+    let maxRem = -Infinity;
+    if (timed) {
+      for (const row of rows) {
+        const r = remOf(row);
+        if (r === null) continue;
+        if (r < minRem) minRem = r;
+        if (r > maxRem) maxRem = r;
+      }
+      if (!Number.isFinite(minRem)) throw new Error(`no ${qsw} in quota rows`);
+    }
+
+    const next = new Map();
+    const detail = [];
+    for (const row of rows) {
+      const name = String((row && row.name) || '');
+      if (!name || (row && row.error)) continue;
+      let score;
+      let label;
+      if (timed) {
+        const r = remOf(row);
+        if (r === null) continue; // 官方余额行没有周期窗口 → 跳过，保持静态 weight
+        const span = maxRem - minRem;
+        const urgency = span > 0 ? (maxRem - r) / span : 0.5; // 剩余越短 → 越接近 1
+        score = mode === 'resetsoon' ? urgency : 1 - urgency;
+        label = `剩 ${(r / 3600000).toFixed(1)}h`;
+      } else {
+        const ratio = monthUsedRatio(row);
+        if (ratio === null) continue;
+        score = mode === 'left' ? 1 - ratio : ratio;
+        label = `月 ${(ratio * 100).toFixed(1)}%`;
+      }
+      const w = lo + (hi - lo) * score;
+      next.set(name, w);
+      detail.push(`${name}: ${label} -> w${w.toFixed(2)}`);
+    }
+    quotaWeights = next;
+    quotaState = { at: now, ok: true, error: '', mode, detail };
+  } catch (e) {
+    quotaState = { ...quotaState, at: Date.now(), ok: false, error: String((e && e.message) || e) };
+  }
+}
+
+// selectKey 用它取「有效权重」：quota 同步成功就用动态值，否则回落静态 weight。
+function effWeight(k) {
+  const qw = quotaWeights.get(k.quotaAccount || k.name);
+  if (Number.isFinite(qw) && qw > 0) return qw;
+  return k.weight > 0 ? k.weight : 1;
+}
+
 let allowCache = { mtime: 0, ids: null };
 function loadModelAllowlist() {
   try {
@@ -287,8 +463,21 @@ function isModelNotInPlan(detail) {
   // 之后 15 分钟内每个请求都 503「所有 key 均失败（已尝试 无）」（tried= 为空）。
   return /MODEL_NOT_IN_PLAN|not available in .{0,60}plan/i.test(String(detail || ''));
 }
+// 额度耗尽（2026-10-01）。上游对 individual-goat 计划是用 **HTTP 400** 表达额度不足的：
+//   {"type":"invalid_request_error","message":"You have insufficient credits to make this request..."}
+// 而 400 既不在 retryableStatus 里（所以旧代码连 body 都不看就原样透传），旧分类逻辑又只在
+// 402 上判 quota ⇒ 耗尽的 key 永不冷却、永不换 key，state.sessions 还把会话钉死在它上面。
+// 实测代价：qq 月额度用到 99.24% 后，1717 个会话里 914 个仍全部绑在 qq，163 的 11.95 余量完全不可见。
+function isQuotaExhausted(detail) {
+  return /insufficient credits|out of credits|quota exceeded|exceeded your current quota|credit balance is too low|billing hard limit/i.test(
+    String(detail || ''),
+  );
+}
+
 function cooldownReason(status, detail = '') {
   if (isCloudflareBlock(detail)) return ['network', CFG.cooldownMs.network];
+  // 额度耗尽：优先于下面所有状态码规则（含 400 这种非标准表达）。
+  if (isQuotaExhausted(detail)) return ['quota', CFG.cooldownMs.quota];
   // 第三类 403（2026-09-29）：不是 key 失效，而是「这个 model 的后端 provider 没绑定」。
   // 证据：同一个 key 打 deepseek/deepseek-v4.1-flash 得 200，打 google/gemini-3.7-flash 得
   //   403 {"message":"Authentication failed. Please check your credentials.","type":"permission_error"}
@@ -495,21 +684,37 @@ function fingerprintBucket(fp, n) {
 
 function selectKey(candidates, fp, prefixFp = '') {
   const strategy = String(CFG.strategy || 'session').toLowerCase();
+  if (!candidates.length) return null;
 
-  if (strategy === 'round-robin') return pickKey(candidates.filter((k) => !isCooling(k.name)));
+  // ── priority 分层（2026-10-01 加）──────────────────────────────────────
+  // 按 priority 从高到低逐层降级，只在「第一个还有未冷却 key 的层」里做负载均衡。
+  // 低优先级的 key 只有高层全部冷却（或已被本请求试过 / 模型不支持）时才参与。
+  // 用途：把 DeepSeek 官方 key 降为兜底层（priority 更低）——「非必要不用」。
+  // 缺省 priority 100，所以全部 key 不写时与改动前逐位一致（只有一个层）。
+  const prioOf = (k) => (Number.isFinite(Number(k.priority)) ? Number(k.priority) : 100);
+  const tiers = [...new Set(candidates.map(prioOf))].sort((a, b) => b - a);
+  // 所有层都全冷却时保持最高层 —— 后续 fresh 为空 → 返回 null，行为与改动前一致。
+  let pool = tiers.length ? candidates.filter((k) => prioOf(k) === tiers[0]) : [];
+  for (const p of tiers) {
+    const layer = candidates.filter((k) => prioOf(k) === p);
+    if (layer.some((k) => !isCooling(k.name))) { pool = layer; break; }
+  }
+
+  if (strategy === 'round-robin') return pickKey(pool.filter((k) => !isCooling(k.name)));
 
   if ((strategy === 'session' || strategy === 'prefix') && fp) {
     const bound = state.sessions[fp];
     if (bound) {
-      const held = candidates.find((k) => k.name === bound.key);
+      const held = pool.find((k) => k.name === bound.key);
       if (held && !isCooling(held.name)) {
         bound.t = Date.now(); // 只用于 LRU 淘汰，不标脏（免得每 2 秒重写 state.json）
         return held;
       }
     }
-    const fresh = candidates.filter((k) => !isCooling(k.name));
+    const fresh = pool.filter((k) => !isCooling(k.name));
     if (!fresh.length) return null;
-    // 首次见到该会话，或它原来绑定的 key 已不可用（冷却/被本轮试过）→ 重新分配并改写绑定。
+    // 首次见到该会话，或它原来绑定的 key 已不可用（冷却/被本轮试过/不属于当前最高
+    // priority 层）→ 重新分配并改写绑定。
     // 分配规则：
     //   session（默认）→ 优先落到「当前绑定会话最少」的 key，均衡双账号并发；并列时按指纹决定。
     //   prefix          → 若该前缀已有热 key 且窗口内未超软上限，优先复用；否则选窗口内新会话最少的 key。
@@ -522,7 +727,9 @@ function selectKey(candidates, fp, prefixFp = '') {
     // 加权均衡（2026-09-29）：score = 绑定会话数 / weight。
     // 全部 weight=1 时与改动前的「取负载最小」逐位等价；weight>1 的 key 要背更多会话才打平，
     // 于是新会话更偏向它。用 +1e-9 容忍浮点误差，不对浮点用 ===。
-    const scoreOf = (k) => load[k.name] / (k.weight > 0 ? k.weight : 1);
+    // 权重来源（2026-10-01）：优先用 quota 同步得到的动态权重（月已用比例驱动），
+    // 拉取失败或该 key 无额度行时回落到 keys.json 的静态 weight。
+    const scoreOf = (k) => load[k.name] / effWeight(k);
     let pick;
     if (strategy === 'prefix' && prefixFp) {
       pick = choosePrefixKey(fresh, prefixFp);
@@ -545,10 +752,10 @@ function selectKey(candidates, fp, prefixFp = '') {
   }
 
   // 无会话指纹，或 strategy=sticky：退化为全局粘滞
-  const held = state.sticky ? candidates.find((k) => k.name === state.sticky) : null;
+  const held = state.sticky ? pool.find((k) => k.name === state.sticky) : null;
   if (held && !isCooling(held.name)) return held;
 
-  const fresh = candidates.filter((k) => !isCooling(k.name));
+  const fresh = pool.filter((k) => !isCooling(k.name));
   if (!fresh.length) return null;
   const next = fresh[0];
   if (next.name !== state.sticky) {
@@ -579,6 +786,14 @@ function pruneLogs() {
     }
   } catch {}
 }
+
+// ── loop-guard：degenerate repetition 检测（2026-10-01 接入）─────────────
+// 动机：agent 卡进「好。/写。/输出。」这类退化循环时，流是活的、token 照常计费，
+// 现有的 streamIdleTimeoutMs 完全无效（它只测「有没有数据」，不测「数据有没有信息」）。
+// 检测逻辑全在 loop-guard.mjs；这里只做接线。
+//   mode='shadow'：只写 logs/loop-guard.jsonl，绝不碰转发路径。
+//   mode='abort' ：命中即断上游 —— 只有断上游才能真正停止计费。
+let LOOP_GUARD = createLoopGuard(CFG.loopGuard, log, LOG_DIR);
 
 // ── hop-by-hop 头处理 ───────────────────────────────────────────────────
 const HOP_BY_HOP = new Set([
@@ -627,11 +842,48 @@ function extractLastUsage(text) {
   return '';
 }
 
+// ── 多上游的模型兼容性与 id 映射（2026-10-01 加）────────────────────────
+//
+// 「key 平级」只在同一上游的能力范围内才成立：GOAT key 覆盖 61 个模型，官方 key 只有
+// deepseek-flash / deepseek-v4-pro 两个，且后者用裸 id。所以候选集要多一维过滤，
+// 转发前还要把客户端 id 翻译成上游原生 id。
+//
+// 两个函数都遵循「不声明 = 不干预」：key 没写 models 就永远进候选（既有 GOAT key 的
+// 行为逐位不变），没写 modelMap 就原样转发。
+function modelSupported(keyEntry, model) {
+  if (!model) return true;                                  // 非 chat 请求（GET 等）不参与过滤
+  const ms = keyEntry && keyEntry.models;
+  if (!Array.isArray(ms) || ms.length === 0) return true;
+  return ms.includes(model);
+}
+
+function mapModelFor(keyEntry, model) {
+  const mm = keyEntry && keyEntry.modelMap;
+  if (!model || !mm) return model;
+  const to = mm[model];
+  return typeof to === 'string' && to ? to : model;
+}
+
+// 改写 body.model；任何异常都退回原 body —— 宁可让上游自己去拒绝，也绝不因为
+// 映射表写错而把正常请求毁在网关里。
+function rewriteModel(body, newModel) {
+  if (!body || !body.length) return body;
+  try {
+    const obj = JSON.parse(body.toString('utf8'));
+    if (!obj || typeof obj !== 'object') return body;
+    obj.model = newModel;
+    return Buffer.from(JSON.stringify(obj), 'utf8');
+  } catch {
+    return body;
+  }
+}
+
 // ── 路径映射：本地 /v1/xxx  →  上游 /provider/v1/xxx ─────────────────────
-function mapPath(url) {
+function mapPath(url, up) {
   const u = new URL(url, 'http://localhost');
   let pathname = u.pathname;
-  const { localPrefix, basePath } = CFG.upstream;
+  const localPrefix = CFG.upstream.localPrefix;
+  const basePath = up ? up.basePath : CFG.upstream.basePath;
   if (localPrefix && pathname.startsWith(localPrefix)) pathname = pathname.slice(localPrefix.length);
   if (!pathname.startsWith('/')) pathname = '/' + pathname;
   // 只规范化拼接处，别碰 query —— 否则 ?a=x//y 这类参数会被破坏
@@ -661,7 +913,12 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
       clearStreamIdle();
       clearFirstChunk();
     };
-    const target = mapPath(clientReq.url);
+    const up = resolveUpstream(keyEntry);
+    const target = mapPath(clientReq.url, up);
+    // 模型改写：客户端 id → 该 key 上游的原生 id。只在命中映射表时才重新序列化 body，
+    // 不影响 GOAT 那些 id 本来就一致的请求（绝大多数）。
+    const upstreamModel = mapModelFor(keyEntry, meta.model);
+    const sendBody = upstreamModel === meta.model ? body : rewriteModel(body, upstreamModel);
     const headers = stripHopByHop({ ...clientReq.headers });
     // 诊断用：先留住客户端原始 UA（下面会被统一改写成网关 UA）。
     // reasonix=Go-http-client/reasonix-*，dsh=undici —— 便于把日志按客户端归类。
@@ -697,7 +954,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     headers['accept-encoding'] = 'identity';
     // 客户端请求已被 Node 解 chunk；转发时重新按 Buffer 设置 content-length，避免带上原始 chunked 头。
     headers.authorization = `Bearer ${keyEntry.key}`;
-    if (body && body.length) headers['content-length'] = String(body.length);
+    if (sendBody && sendBody.length) headers['content-length'] = String(sendBody.length);
     else if (clientReq.method === 'POST') headers['content-length'] = '0';
 
     const reqId = clientReq._reqId;
@@ -706,6 +963,17 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
     const sess = meta.fp ? meta.fp.slice(0, 8) : '-';
     const idleMs = Math.max(0, Number(CFG.upstream?.streamIdleTimeoutMs) || 0);
     const firstChunkMs = Math.max(0, Number(CFG.upstream?.firstChunkTimeoutMs) || 0);
+
+    // loop-guard：同一个 clientReq 可能重试换 key，每次尝试必须用独立键，
+    // 否则两次尝试的文本会被拼进同一个窗口，统计失去意义。
+    clientReq._attemptSeq = (clientReq._attemptSeq || 0) + 1;
+    const guardKey = `${reqId}#${clientReq._attemptSeq}`;
+    const guard = LOOP_GUARD;
+    const guardOn = guard.enabled && isStream;
+    const sseParser = guardOn ? new SseDeltaParser() : null;
+    let guardFired = false;
+    if (guardOn) guard.begin({ reqId: guardKey, model, sess, key: keyEntry.name, stream: isStream });
+
     let streamDone = false;
     const armStreamIdle = () => {
       if (!idleMs || streamDone) return;
@@ -728,21 +996,25 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
       if (firstChunkTimer.unref) firstChunkTimer.unref();
     };
 
-    const upReq = getTransport().request(
+    const upLib = up.url.protocol === 'http:' ? http : https;
+    const upReq = upLib.request(
       {
-        protocol: upOrigin.protocol,
-        hostname: upOrigin.hostname,
-        port: upOrigin.port || 443,
+        protocol: up.url.protocol,
+        hostname: up.url.hostname,
+        port: up.url.port || defaultPort(up.url.protocol),
         path: target,
         method: clientReq.method,
         headers,
-        agent: getAgent(),
+        agent: getAgent(up),
       },
       (upRes) => {
         const status = upRes.statusCode || 0;
         const elapsed = () => Date.now() - upReq._startTs;
 
-        if (CFG.retryableStatus.includes(status)) {
+        // 400 也要走这条「先读 body 再决定」的路：上游用 400 + insufficient credits 表达额度耗尽
+        //（见 isQuotaExhausted）。若读完发现它只是个普通 400，就原样补发给客户端（PASSTHROUGH-400）。
+        const sniff400 = Number(status) === 400;
+        if (CFG.retryableStatus.includes(status) || sniff400) {
           // 失败响应：读一小段用于日志/诊断，绝不发给客户端 —— 这样客户端还没收到任何字节，
           // 换 key 重试对它是完全透明的。
           let done = false;
@@ -757,7 +1029,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           upRes.on('data', (c) => {
             clearFirstChunk();
             armStreamIdle();
-            if (len < 8192) {
+            if (len < (sniff400 ? 262144 : 8192)) {
               chunks.push(c);
               len += c.length;
             }
@@ -781,6 +1053,30 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
                 (isCloudflareBlock(text) ? ' cloudflare=1010' : '') +
                 ` clientUa=${JSON.stringify(origUa)} ua=${JSON.stringify(String(headers['user-agent'] || ''))} body=${JSON.stringify(text.slice(0, 400))}`,
             );
+            // 400 且不是额度耗尽：这是真正的客户端/参数错误，调用方必须看到上游原话。
+            // 此刻还没向客户端写过任何字节（responseStarted 仍为 false），补发即可。
+            if (sniff400 && !isQuotaExhausted(text)) {
+              let sent = true;
+              try {
+                clientRes.writeHead(status, stripHopByHop({ ...upRes.headers }));
+                if (clientReq.method !== 'HEAD') clientRes.write(text);
+                clientRes.end();
+                responseStarted = true;
+              } catch (e) {
+                sent = false;
+                log(`PASSTHROUGH-400-WRITE-FAIL id=${reqId} ${e.message}`);
+                try { clientRes.destroy(); } catch {}
+                finish({ ok: false, status: 0, body: `client write failed: ${e.message}`, clientGone: true });
+              }
+              if (sent) {
+                log(
+                  `PASSTHROUGH-400 id=${reqId} ${clientReq.method} ${target} key=${keyEntry.name} status=${status} ${elapsed()}ms` +
+                    ` bytes=${text.length} body=${JSON.stringify(text.slice(0, 200))}`,
+                );
+                finish({ ok: true, status, passedThrough: true });
+              }
+              return;
+            }
             finish({ ok: false, status, body: text, clientGone });
           });
           return;
@@ -796,6 +1092,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           if (streamDone) return;
           streamDone = true;
           clearIdleTimers();
+          if (guardOn) guard.end(guardKey, result);
           resolve(result);
         };
         const flushHeaders = () => {
@@ -814,6 +1111,30 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
             return false;
           }
         };
+        // loop-guard：命中后的收尾。
+        // shadow 模式什么都不做（LoopGuard 内部已记日志 + jsonl），只有 abort 模式才动手。
+        const onGuardHit = (hit, channel) => {
+          if (!hit || guardFired) return;
+          if (guard.cfg.mode !== 'abort') return;
+          guardFired = true;
+          log(
+            `LOOP-GUARD ABORT id=${reqId} key=${keyEntry.name} ch=${channel} at=${hit.atChars}ch` +
+              ` reason=${hit.reason} fast=${hit.fast} slow=${hit.slow}` +
+              (hit.period ? ` period=${hit.period.period}x${hit.period.repeats}` : ' period=none'),
+          );
+          // 断上游才是真正的止损：provider 一停就不再计费。
+          try { upRes.destroy(); } catch {}
+          // 给客户端一个合法的 SSE 收尾。直接 destroy 的话 dsh 会当成网络错误并走重试，
+          // 反而更费额度 —— 必须让它正常读到 [DONE] 然后干净结束。
+          try {
+            if (!clientRes.writableEnded) {
+              clientRes.write('data: [DONE]\n\n');
+              clientRes.end();
+            }
+          } catch {}
+          finishStream({ ok: true, status, streamError: 'loop-guard abort', loopGuard: hit });
+        };
+
         upRes.on('data', (c) => {
           if (streamDone) return;
           if (clientGone) {
@@ -824,7 +1145,19 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
           if (!flushHeaders()) return;
           clearFirstChunk();
           armStreamIdle();
-          if (tail.length < 65536) tail += c.toString('utf8');
+          const chunkStr = c.toString('utf8');
+          if (tail.length < 65536) tail += chunkStr;
+          // 先喂 loop-guard 再转发：命中时本 chunk 就不再传给客户端，少吐一段循环文本。
+          // 解析必须在 write 之前，所以这里用 SseDeltaParser 增量切帧（跨 chunk 也能切对）。
+          if (guardOn && !guardFired) {
+            for (const ev of sseParser.feed(chunkStr)) {
+              const d = SseDeltaParser.extract(ev);
+              if (!d) continue;
+              if (d.reasoning) onGuardHit(guard.feed(guardKey, d.reasoning, 'reasoning'), 'reasoning');
+              if (d.content) onGuardHit(guard.feed(guardKey, d.content, 'text'), 'text');
+            }
+            if (guardFired) return;
+          }
           try {
             if (!clientRes.write(c)) {
               upRes.pause();
@@ -934,7 +1267,7 @@ function forward(clientReq, clientRes, keyEntry, body, meta) {
       }
     });
 
-    if (body && body.length) upReq.write(body);
+    if (sendBody && sendBody.length) upReq.write(sendBody);
     armFirstChunk();
     upReq.end();
   });
@@ -989,7 +1322,23 @@ function handleLocal(req, res, url) {
       pid: process.pid,
       uptimeSec: Math.round(process.uptime()),
       startedAt: state.stats.since,
-      upstream: CFG.upstream.origin + CFG.upstream.basePath,
+      upstream: upstreamLabel(resolveUpstream(null)),
+      upstreamNote: '未声明 upstream 的 key 的缺省上游；每个 key 的实际上游见 keys[].upstream',
+      priorityTiers: (() => {
+        const m = {};
+        for (const k of keys) m[k.priority] = (m[k.priority] || 0) + 1;
+        return m;
+      })(),
+      quotaSync: {
+        enabled: CFG.quotaSync?.enabled !== false,
+        url: CFG.quotaSync?.url || '',
+        mode: CFG.quotaSync?.mode || 'used',
+        resetWindow: CFG.quotaSync?.resetWindow || 'weekly',
+        ok: quotaState.ok,
+        ageSec: quotaState.at ? Math.round((now - quotaState.at) / 1000) : null,
+        error: quotaState.error,
+        detail: quotaState.detail,
+      },
       strategy: (() => {
         const s = String(CFG.strategy || 'session').toLowerCase();
         if (s === 'round-robin') return 'round-robin + failover（注意：会打断 prompt cache）';
@@ -1014,6 +1363,13 @@ function handleLocal(req, res, url) {
           lastError: ks.lastError,
           lastUsedAt: ks.lastUsedAt,
           note: k.note,
+          upstream: upstreamLabel(resolveUpstream(k)),
+          models: k.models ? k.models.length : '(all)',
+          priority: k.priority,
+          quotaAccount: k.quotaAccount,
+          weightStatic: k.weight,
+          weightEffective: Number(effWeight(k).toFixed(3)),
+          weightFromQuota: quotaWeights.has(k.quotaAccount || k.name),
         };
       }),
     });
@@ -1102,10 +1458,20 @@ async function handle(req, res) {
     const allow = loadModelAllowlist();
     if (allow !== null) {
       const live = loadKeys().filter((k) => k.enabled);
-      const chosen = live.find((k) => !isCooling(k.name)) || live[0];
+      // /v1/models 的语义是「本网关能服务的模型全集」，不能拿任意一个 key 去问：
+      // 官方 key 只有 2 个模型，问它会把 dsh 的模型选择器直接打回 2 项。
+      // 固定用「缺省上游」的 key 拉 —— 它的白名单是并集的超集（官方能服务的那些
+      // 客户端 id，GOAT 白名单里都有）。
+      const isDefaultUp = (k) => resolveUpstream(k).origin === CFG.upstream.origin;
+      const chosen =
+        live.find((k) => isDefaultUp(k) && !isCooling(k.name)) ||
+        live.find(isDefaultUp) ||
+        live.find((k) => !isCooling(k.name)) ||
+        live[0];
       if (chosen !== undefined) {
         try {
-          const modelsUrl = CFG.upstream.origin + CFG.upstream.basePath.replace(/\/+$/, '') + '/models';
+          const chosenUp = resolveUpstream(chosen);
+          const modelsUrl = chosenUp.origin + chosenUp.basePath.replace(/\/+$/, '') + '/models';
           const up = await fetch(modelsUrl, {
             method: 'GET',
             headers: { authorization: `Bearer ${chosen.key}`, 'accept-encoding': 'identity' },
@@ -1154,8 +1520,24 @@ async function handle(req, res) {
     prefixFp: prefixFingerprint(parsed),
   };
 
-  const all = loadKeys().filter((k) => k.enabled);
+  const enabledKeys = loadKeys().filter((k) => k.enabled);
+  // 多上游过滤（2026-10-01）：官方 key 只服务 deepseek 系两个模型 —— 请求 gpt-6-luna 时
+  // 它必须在候选集之外，否则会白吃一个上游 400/404 再进冷却。
+  const all = enabledKeys.filter((k) => modelSupported(k, meta.model));
   if (!all.length) {
+    if (enabledKeys.length && meta.model) {
+      sendJSON(res, 400, {
+        error: {
+          message:
+            `goat-gateway: 没有 key 能服务 model '${meta.model}'` +
+            `（${enabledKeys.length} 个 enabled key 均声明不支持它）`,
+          type: 'gateway_no_key_for_model',
+          model: meta.model,
+          keys: enabledKeys.map((k) => k.name),
+        },
+      });
+      return;
+    }
     sendJSON(res, 503, {
       error: { message: 'goat-gateway: keys.json 里没有可用 key', type: 'gateway_no_keys' },
     });
@@ -1188,6 +1570,13 @@ async function handle(req, res) {
     }
 
     const r = await forward(req, res, target, body, meta);
+    if (r.ok && r.passedThrough) {
+      // forward() 已经把上游的普通 400 原样发给客户端了：不算失败、不冷却这个 key。
+      state.stats.forwarded += 1;
+      stateDirty = true;
+      log(`PASS-THROUGH id=${req._reqId} key=${target.name} status=${r.status}`);
+      return;
+    }
     if (r.ok) {
       state.stats.forwarded += 1;
       if (r.streamError) {
@@ -1233,7 +1622,9 @@ async function handle(req, res) {
     // 唯独 Cloudflare 1010 是「客户端指纹被拦」，跟 key 无关：先在同一 key 上重试，
     // 避免一次风控就把两个账号一起冷却 20s（客户端那边表现成「卡住」）。
     const cfBlocked = isCloudflareBlock(r.body);
-    const immediateCooldown = [401, 402, 403, 429].includes(Number(r.status)) && !cfBlocked;
+    const quota400 = Number(r.status) === 400 && isQuotaExhausted(r.body);
+    const immediateCooldown =
+      ([401, 402, 403, 429].includes(Number(r.status)) || quota400) && !cfBlocked;
     const limit = immediateCooldown ? 1 : attemptsPerKey;
     if (count >= limit) {
       applyCooldown(target.name, r.status, r.body);
@@ -1281,12 +1672,22 @@ server.listen(CFG.listen.port, CFG.listen.host, () => {
   const keys = loadKeys();
   log(
     `START goat-gateway pid=${process.pid} listen=http://${CFG.listen.host}:${CFG.listen.port}` +
-      ` upstream=${CFG.upstream.origin}${CFG.upstream.basePath} keys=[${keys.map((k) => k.name + (k.enabled ? '' : ':off')).join(', ')}]`,
+      ` defaultUpstream=${upstreamLabel(resolveUpstream(null))}` +
+      ` keys=[${keys.map((k) => k.name + (k.enabled ? '' : ':off') + '@' + upstreamLabel(resolveUpstream(k))).join(', ')}]`,
   );
 });
 
 pruneLogs();
 setInterval(pruneLogs, 6 * 3600 * 1000).unref();
+
+// 额度驱动的动态权重：启动即同步一次，之后按 intervalMs 滚动刷新。
+// 失败不影响转发 —— selectKey 会回落到静态 weight。
+syncQuota().then(() => {
+  log(`QUOTA-SYNC ${quotaState.ok ? 'ok' : 'failed'} ${quotaState.ok ? quotaState.detail.join(' | ') : quotaState.error}`);
+}).catch(() => {});
+setInterval(() => {
+  syncQuota().catch(() => {});
+}, Math.max(10000, Number(CFG.quotaSync?.intervalMs) || 60000)).unref();
 
 for (const sig of ['SIGINT', 'SIGTERM']) {
   process.on(sig, () => {

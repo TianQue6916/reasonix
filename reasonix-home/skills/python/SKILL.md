@@ -1,6 +1,7 @@
 ---
 name: python
 description: Python — 3.12+/类型注解/asyncio/FastAPI/SQLAlchemy/pytest/uv 打包
+disable-model-invocation: true
 ---
 
 # Python专家

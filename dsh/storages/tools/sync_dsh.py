@@ -45,6 +45,20 @@ import sync_reasonix as R  # noqa: E402  —— 复用 Syncer / HOST / USER / PA
 LOCAL_ROOT = os.path.expanduser('~/.dsh')
 WIN_ROOT = r'C:\Users\27063\.dsh'
 
+# ── 额外目录对：Windows 侧的真身不在 ~/.dsh 里 ────────────────────────────
+# 2026-10-01 实测的链接拓扑。**必须显式列出**，因为 os.walk 不跟随 junction：
+#   ~/.dsh/skills       → Junction → %APPDATA%\reasonix\skills   （真身在 APPDATA）
+#   ~/.reasonix/memory  → Junction → %APPDATA%\reasonix\memory   （真身在 APPDATA）
+#   ~/.reasonix/skills  → 真实目录（APPDATA 那份的冗余副本）
+# 漏掉它们的后果是**静默的**：Linux 的 ~/.dsh/skills 长期为 0，memory 也只有旧的 225 条。
+EXTRA_PAIRS = [
+    # (Linux 侧路径, Windows 侧真实路径)
+    (os.path.expanduser('~/.dsh/skills'),
+     r'C:\Users\27063\AppData\Roaming\reasonix\skills'),
+    (os.path.expanduser('~/.reasonix/memory'),
+     r'C:\Users\27063\AppData\Roaming\reasonix\memory'),
+]
+
 # ── 排除目录（相对任意层级，按名字匹配）─────────────────────────────────
 R.EXCLUDE_DIRS = {
     # 运行期 / 可重建
@@ -57,6 +71,9 @@ R.EXCLUDE_DIRS = {
     'wechat-bridge',
     # 传输层凭据
     'remote',
+    # 技能目录里的噪声归档（skill-root-consolidate.py 的产物：冲突副本 / HISTORY 快照）。
+    # 那是**本机**的可追溯痕迹，不跨机，否则每台机器都会收到对方 1.8 MB 的历史垃圾。
+    '.trace-archive',
     # 本机回滚快照（profiles/**/_bak-*, _backup*, _archived*, _dropped*）
     # 用一个前缀规则覆盖 → 见 _excluded_dir 的 override
 }
@@ -164,6 +181,13 @@ def main():
 
     try:
         syncer.sync_dir_pair(LOCAL_ROOT, WIN_ROOT, skip_active=True)
+        # 真身不在 ~/.dsh 里的目录（junction 目标）单列，见文件顶部 EXTRA_PAIRS 的说明
+        for local_dir, win_dir in EXTRA_PAIRS:
+            if not os.path.isdir(local_dir):
+                os.makedirs(local_dir, exist_ok=True)
+                R.log(f'  本地新建 {local_dir}')
+            R.log(f'== 额外对 {os.path.basename(local_dir)}  ↔  {win_dir}')
+            syncer.sync_dir_pair(local_dir, win_dir, skip_active=True)
         st = syncer.stats
         R.log(f'完成: 上传 {st["up"]} / 下载 {st["down"]} / 冲突 {st["conflict"]} / 相同 {st["same"]}'
               f'  用时 {time.time() - t0:.1f}s')

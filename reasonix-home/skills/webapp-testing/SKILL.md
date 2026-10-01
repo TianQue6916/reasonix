@@ -1,6 +1,7 @@
 ---
 name: webapp-testing
 description: Playwright 自动化测试 — 端到端测试、截图对比、表单交互、响应式测试
+disable-model-invocation: true
 ---
 
 # Webapp Testing — Playwright 自动化测试

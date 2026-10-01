@@ -1,6 +1,7 @@
 ---
 name: vue-nuxt
 description: Vue/Nuxt — Composition API/Pinia/Nuxt3 Server Routes/混合渲染/UnoCSS
+disable-model-invocation: true
 ---
 
 # Vue/Nuxt专家

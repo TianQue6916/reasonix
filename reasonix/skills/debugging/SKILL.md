@@ -1,6 +1,7 @@
 ---
 name: debugging
 description: 调试 — 二分法/日志追踪/假设验证/最小复现, DevTools/gdb/Valgrind
+disable-model-invocation: true
 ---
 
 # 调试专家

@@ -1,6 +1,7 @@
 ---
 name: backend-api
 description: 后端 API — REST/GraphQL 设计, JWT/OAuth 认证, 输入验证/限流/缓存
+disable-model-invocation: true
 ---
 
 # 后端API专家

@@ -212,3 +212,32 @@ description: 全能降AIGC技能 — 整合humanize-chinese+莎普爱斯+anti-ai
 - shuorenhua (MrGeDiao) 中文AI味清理
 - 莎普爱斯prompt实证（废话字/减少句号/动态句长）
 - Wikipedia Signs of AI writing
+
+---
+
+## 附 A：统计指标与 24 模式（来自 humanizer，2026-08-16 合并）
+
+### 文本统计信号（用脚本计算，不自估）
+| 指标 | 人类 | AI |
+|------|------|-----|
+| 突发性 Burstiness | 高 0.5-1.0 | 低 0.1-0.3 |
+| 类型-标记比 TTR | 0.5-0.7 | 0.3-0.5 |
+| 句子长度变异系数 | 高 | 低 |
+| 三元词组重复率 | <0.05 | >0.10 |
+
+### 24 种 AI 模式（检测清单节选）
+1. 夸张象征："serve as a testament to" / "stands as a beacon of"
+2. 宣传语："revolutionary" / "game-changing" / "transformative"
+3. -ing 表面分析："delving into" / "leveraging the power of"
+4. 模糊归属："some experts believe" / "it is widely thought"
+5. 空洞呈现："it is crucial to note" / "it is worth mentioning"
+6. AI 骨架："In today's rapidly evolving..." / "Not only... but also"
+7-24 见备份 `~/.reasonix/skills-backup-20260816/humanizer/SKILL.md`（含 500+ 禁用词三级词表）
+
+## 附 B：风格迁移 DNA（来自 ai-vibe-writing，2026-08-16 合并）
+
+不是让 AI "写得更像AI"，而是让 AI "学会你"：
+1. 提供 3-5 篇用户过去写作样本
+2. 提取写作 DNA：词汇偏好（正式/口语）、句式（长短句比）、修辞（比喻/引用习惯）、段落节奏、标点习惯
+3. 建立文档规格表（Spec）+ 完成标准（Definition of Done）
+4. 记住并避免已犯错误（错误记忆表）

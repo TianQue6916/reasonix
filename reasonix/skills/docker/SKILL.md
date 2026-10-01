@@ -1,6 +1,7 @@
 ---
 name: docker
 description: Docker — 多阶段构建/Dockerfile 优化/compose 编排/镜像瘦身/网络/安全
+disable-model-invocation: true
 ---
 
 # Docker专家

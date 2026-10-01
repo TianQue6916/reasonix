@@ -1,6 +1,7 @@
 ---
 name: trailofbits-security
 description: 安全审计 — CodeQL/Semgrep 静态分析、漏洞检测、智能合约审计
+disable-model-invocation: true
 ---
 
 # Trail of Bits — 安全审计

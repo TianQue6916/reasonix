@@ -681,7 +681,9 @@
   name: "@deepseek-ai/dsh-web-search-deepseek"
   config:
     apiKeyEnv: DEEPSEEK_API_KEY
-    maxUses: 100
+    # 每个 query 都会打一次 deepseek 搜索（一次 Messages model turn）；
+    # dsh-tool-web 的 searchMaxQueries 默认 4 ⇒ 100 会让最坏情况变成 400 次内部搜索。
+    maxUses: 3
 - id: pwsh-sandbox
   name: "@deepseek-ai/dsh-pwsh-sandbox"
   config:

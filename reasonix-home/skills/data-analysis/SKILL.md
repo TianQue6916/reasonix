@@ -1,6 +1,7 @@
 ---
 name: data-analysis
 description: 数据分析 — pandas/numpy 数据清洗/聚合/可视化, 统计检验/A-B测试/SQL
+disable-model-invocation: true
 ---
 
 # 数据分析专家

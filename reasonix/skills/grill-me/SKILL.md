@@ -1,6 +1,7 @@
 ---
 name: grill-me
 description: 严格面试你的计划/设计 — 逐分支走通决策树。用户说"推演这个"/"挑战我的方案"/"grill me"时触发
+disable-model-invocation: true
 ---
 # Grill Me — 计划推演
 

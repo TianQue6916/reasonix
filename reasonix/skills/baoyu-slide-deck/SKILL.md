@@ -1,6 +1,7 @@
 ---
 name: baoyu-slide-deck
 description: 宝石风格幻灯片生成 — 17 种视觉预设 + 多轮确认流程 + SVG 设计图生成，输出 PPTX/PDF
+disable-model-invocation: true
 ---
 # 宝石幻灯片生成器 — baoyu-slide-deck 风格
 

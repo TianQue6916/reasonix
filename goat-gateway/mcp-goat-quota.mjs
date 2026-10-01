@@ -61,6 +61,10 @@ const reset = (ms) => {
 function format(rows) {
   const lines = rows.map((r) => {
     if (r.error) { return `[${r.name}] 查询失败：${r.error}`; }
+    if (r.kind === 'official') {
+      // 官方 key 不是套餐窗口，没有 5h/周/月 百分比：只报余额（赠送/充值拆分）。
+      return `[${r.name}] 余额 ${r.currency || ''} ${num(r.available)}（赠送 ${num(r.granted)} · 充值 ${num(r.toppedUp)}）`;
+    }
     const p5 = pct(r.fiveHourUsed, r.fiveHourCap);
     const pw = pct(r.weeklyUsed, r.weeklyCap);
     const pm = pct(r.monthUsed, r.monthCap);
@@ -68,7 +72,7 @@ function format(rows) {
       + ` · 周 ${pw}% (${num(r.weeklyUsed)}/${r.weeklyCap}, 重置 ${reset(r.weeklyReset)})`
       + ` · 月 ${pm}% (${num(r.monthUsed)}/${num(r.monthCap)}, 剩 ${num(r.monthLeft)})`;
   });
-  const worst = rows.reduce((m, r) => (r.error ? m : Math.max(m, pct(r.weeklyUsed, r.weeklyCap), pct(r.fiveHourUsed, r.fiveHourCap))), 0);
+  const worst = rows.reduce((m, r) => (r.error || r.kind === 'official' ? m : Math.max(m, pct(r.weeklyUsed, r.weeklyCap), pct(r.fiveHourUsed, r.fiveHourCap))), 0);
   const warn = worst >= 90 ? '⚠️ 已接近或超过限制' : (worst >= 70 ? '注意：已用超过 70%' : '状态正常');
   return lines.join('\n') + `\n(${warn}；单位 credits，5h 上限 14 / 周 35 / 月约 70)`;
 }

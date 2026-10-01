@@ -1,6 +1,7 @@
 ---
 name: system-design
 description: 系统设计 — 微服务/事件驱动/CQRS, CAP/一致性哈希/熔断降级/Saga
+disable-model-invocation: true
 ---
 
 # 系统设计专家

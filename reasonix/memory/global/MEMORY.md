@@ -132,16 +132,29 @@
 - [plan-20260816-second-tianque](plan-20260816-second-tianque.md) — 第二个天阙：大二上六个月学习战略（dsh pro 极简模式端到端测试产出）
 
 ## 十一、dsh 侧新增（自动维护）
-- [dual-machine-sync-channels-and-conflict-semantics](dual-machine-sync-channels-and-conflict-semantics.md) — 双机同步通道现状：reasonix cron 已停用、sync_dsh.py 只管 ~/.dsh，skills 无自动通道；冲突「双方保留」不收敛，删除必须三端对称
-
+- [dual-machine-sync-channels-and-conflict-semantics](dual-machine-sync-channels-and-conflict-semantics.md) — 双机同步通道 + skills 结构治本（含两个并发 actor 的事故与教训：rmtree 会穿透 junction 删除目标内容）
 - [dsh-requires-node20-not-platform-gated-20260930](dsh-requires-node20-not-platform-gated-20260930.md) — dsh 未上 Linux 的真因是 Node 版本（需 ≥20.12，机器上是 v18.19.1），不是平台门控；已装 v24.21.0 修复
 - [dsh-dual-machine-sync-migration-20260930](dsh-dual-machine-sync-migration-20260930.md) — 双机同步从 reasonix 迁到 dsh：sync_dsh.py + cron，机器本地清单与已知局限
+- [goat 额度 mcp 植入 reasonix 与 dsh](goat-额度-mcp-植入-reasonix-与-dsh.md) — [global/reference] 把 GOAT 额度以 MCP 方式植入 Reasonix 与 dsh（一个零依赖 stdio server 两边共用）：配置命令、工具名规则、preset 收窄与并发缓存两个大坑
+- [goat 额度内置面板 dsh web ui 插件与 reasonix hook](goat-额度内置面板-dsh-web-ui-插件与-reasonix-hook.md) — [global/reference] 把 GOAT 额度做成 dsh web 内置面板（UI 插件 + 局部 HTTP 端点），并给 Reasonix 配 hook + MCP；含 dsh 插件安装三坑与无头验证法
+
+- [dsh-web-search-三源聚合最终形态](dsh-web-search-三源聚合最终形态.md) — dsh web_search = GitHub + DeepSeek 官方 + 本地 wiki 三源并发聚合（rank github>deepseek>wiki）；含 provider id、凭证/熔断、maxUses=3、生效边界与验证工具
+- [dsh-bash-windows-禁find全盘与session事件流zstd](dsh-bash-windows-禁find全盘与session事件流zstd.md) — Windows/Git Bash 上 find / 会全盘扫导致卡死（含 -xdev 解法）；dsh session 事件流是 zstd 压缩，grep 前必须先解压
+- [skills-memory-junction-topology-both-machines-20261001](skills-memory-junction-topology-both-machines-20261001.md) — Windows/Linux 两侧的技能与记忆目录链接拓扑（junction/symlink 真身位置）与由此推翻的判断
+- [memory-merge-deploy-two-pitfalls-20261001](memory-merge-deploy-two-pitfalls-20261001.md) — 记忆归一部署时踩的两个坑：字符/字节单位不一致导致守卫误判；用 staging 快照覆盖线上会吞掉之后的新增
+- [gitbash-wc-m-is-bytes](gitbash-wc-m-is-bytes.md) — Windows Git Bash 下 wc -m 不按字符计数、返回 byte 数，校验字符数要用 python len()
+- [skills-canonical-source-独立真源](skills-canonical-source-独立真源.md) — 技能真源独立为 ~/ai-skills（用户拍板不复用 harness 目录），各入口 junction/symlink 指过去，Roaming 由 mirror 单向跟随；维护工具 skills-canonical.py
+- [goat-gateway-多上游-官方key与goat平级入池](goat-gateway-多上游-官方key与goat平级入池.md) — goat-gateway 从单 upstream 升级为 per-key upstream（官方 key 与 GOAT key 平级入池）；含 selectKey 新 key 独占预热期陷阱、双机 node 版本差异、模型 id 映射与验证方式
+- [dsh-web-search-四源聚合最终形态](dsh-web-search-四源聚合最终形态.md) — dsh web_search 自定义 provider 的最终形态：默认三源（github > deepseek > wiki），goat 第四源因 Claude 计费默认关闭
+- [thinking-anchor-habituation-and-dedupe-fix-20261001](thinking-anchor-habituation-and-dedupe-fix-20261001.md) — 思考链仍是英文的真正根因是 anchor 累积导致的 habituation，已用 dedupe 修复（thinking-anchor + git-context 两个模块）
+- [goat-gateway-额度400修复与官方余额通道](goat-gateway-额度400修复与官方余额通道.md) — goat-gateway 认 400+insufficient credits 为额度耗尽并换 key；额度面板新增 deepseek-official 真实余额行（kind=official）；restart-all.ps1 延迟重启三件套
+- [goat-gateway-优先级分层与quota动态权重](goat-gateway-优先级分层与quota动态权重.md) — gateway.mjs 的 priority 分层（官方 key priority:0 降为兜底）+ quota 驱动的动态 weight（mode=resetSoon/weekly），含已知的「163 独占」副作用与运维命令
+- [dsh-agents-skills-second-root-and-catalog-cache-20261001](dsh-agents-skills-second-root-and-catalog-cache-20261001.md) — ~/.agents/skills 是第二个 skill 根（之前 triage 漏掉）+ skill catalog 是进程级缓存，改 disable 必须重启
+- [dsh-pre-step-prepend-vs-mnemon-20261001](dsh-pre-step-prepend-vs-mnemon-20261001.md) — agent/pre-step 用 {prepend:true} 抢最外层：thinking-anchor 被 dsh-mnemon 顶离采样点的机制与修法
+- [plan-anchor-plugin-20261001](plan-anchor-plugin-20261001.md) — 自建 plan-anchor.mjs：把 PLAN.md 的 head 每步重注入采样点，治 context rot；72 断言全过，待重启
+- [dsh-skill-catalog-not-filtered-by-invocation-20261001](dsh-skill-catalog-not-filtered-by-invocation-20261001.md) — dsh 的 ctx.skills.list() 不过滤 disable-model-invocation，自建 skill_search/skill_load 必须自己过滤；已修并验证
 ## 归档说明
 - 原文全量备份：`~/.reasonix/memory-backup-20260816/`（59 份）与 `~/.reasonix/memory-backup-20260816-consolidate/`
 - 合并/蒸馏原始件：`~/.reasonix/memory-archive-20260816/`
 - 旧 project key 残留：`~/.reasonix/memory-archive-20260816/legacy-eecdfd/`
 - 双机冲突留存：`*.conflict.linux.*.bak` / `*.conflict.win.*.bak`（同步策略为「冲突保留双份」，绝不覆盖）
-
-- [goat 额度 mcp 植入 reasonix 与 dsh](goat-额度-mcp-植入-reasonix-与-dsh.md) — [global/reference] 把 GOAT 额度以 MCP 方式植入 Reasonix 与 dsh（一个零依赖 stdio server 两边共用）：配置命令、工具名规则、preset 收窄与并发缓存两个大坑
-
-- [goat 额度内置面板 dsh web ui 插件与 reasonix hook](goat-额度内置面板-dsh-web-ui-插件与-reasonix-hook.md) — [global/reference] 把 GOAT 额度做成 dsh web 内置面板（UI 插件 + 局部 HTTP 端点），并给 Reasonix 配 hook + MCP；含 dsh 插件安装三坑与无头验证法

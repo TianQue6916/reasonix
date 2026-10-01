@@ -1,6 +1,7 @@
 ---
 name: security
 description: 安全 — OWASP Top10/XSS/CSRF/SQL注入, OAuth2/JWT/RBAC, 加密/合规
+disable-model-invocation: true
 ---
 
 # 安全专家

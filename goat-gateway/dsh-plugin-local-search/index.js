@@ -28,8 +28,8 @@ import { spawnSync } from 'node:child_process';
 const IS_WIN = process.platform === 'win32';
 const HOME = os.homedir();
 
-/** 来源 rank：数字小的排前面（github > deepseek > wiki）。 */
-export const SOURCE_RANK = { github: 0, deepseek: 1, wiki: 2 };
+/** 来源 rank：数字小的排前面（github > goat > deepseek > wiki）。 */
+export const SOURCE_RANK = { github: 0, goat: 1, deepseek: 2, wiki: 3 };
 
 const DEFAULT_CONFIG = {
   aggregatorUrl: process.env.LOCAL_SEARCH_AGGREGATOR_URL || 'http://100.79.96.82:8810',
@@ -38,16 +38,41 @@ const DEFAULT_CONFIG = {
     : `${HOME}/.config/local-search/token`,
   githubTokenFile: IS_WIN ? '' : `${HOME}/.config/local-search/github-token`,
 
-  // 三路来源开关（默认全开、并发）
+  // 四路来源开关。
+  // goat 默认关闭（2026-10-01 决定）：它按 claude-sonnet-5-5 单价计费
+  // （账本拟合 $2.00/M input + $10.03/M output，7 行零残差），而 Anthropic
+  // server tool 的搜索结果块会被回灌进 context 并按 input token 计费
+  // ⇒ 单次 goat 搜索 ~12-21k input tokens ≈ $0.038；dsh-tool-web 的
+  // searchMaxQueries 默认 4 ⇒ 最坏 ~$0.15/次用户级搜索。质量更好但不该默认开。
+  // 要开启：在 cordis.patch.yml 里显式写 enableGoat: true。
   enableWiki: true,
   enableGithub: true,
   enableDeepseek: true,
+  enableGoat: false,
+
+  // ── goat：本地 goat gateway 的 Anthropic server-side web_search ──────────────
+  // gateway.mjs 自己只透传，但上游（api.commandcode.ai/provider/v1）在 Anthropic
+  // Messages 路由上提供原生 web_search_20250305 server tool。2026-10-01 实测：
+  // 只有 claude-sonnet-5-5 可用；其余模型走 /chat/completions，不认 anthropic server tool。
+  goatBaseUrl: process.env.GOAT_SEARCH_BASE_URL || 'http://127.0.0.1:8788/v1',
+  goatModel: process.env.GOAT_SEARCH_MODEL || 'claude-sonnet-5-5',
+  goatApiKeyEnv: 'COMMANDCODE_API_KEY',
+  // dsh 的 launch env 不一定继承到插件进程 ⇒ 支持从 .env 文件补读
+  goatEnvFile: `${HOME}/.dsh/.env`,
+  // 实测一次 6–10s（上游真去搜），给足预算但必须 < dsh-tool-web 的 searchTimeoutMs(60000)
+  goatTimeoutMs: 50000,
+  // 单次请求内 server tool 最多搜几次
+  goatMaxUses: 3,
+  goatCacheTtlMs: 120000,
+  // 凭证/配置类失败（不会自愈）的熔断时长
+  goatFailureCooldownMs: 300000,
 
   // deepseek 官方 provider 在 dsh 里注册的 id 是 deepseek-official，不是插件的 row id
   deepseekProviderId: 'deepseek-official',
   // 一次 deepseek 搜索 = 一次 Messages model turn，单独给超时预算；
-  // 必须小于 dsh-tool-web 的 searchTimeoutMs（web profile 里配的是 60000）
-  deepseekTimeoutMs: 40000,
+  // 必须小于 dsh-tool-web 的 searchTimeoutMs（web profile 里配的是 60000）。
+  // 2026-10-01 实测 40s 会对中文 query 偶发超时 ⇒ 提到 50s
+  deepseekTimeoutMs: 50000,
   // 同一 query 的结果短期复用：dsh-tool-web 的 searchMaxQueries 默认 4，4 路并发子查询
   // 若撞上同一 query 就不重复打 model turn。0 = 关闭缓存
   deepseekCacheTtlMs: 120000,
@@ -153,16 +178,21 @@ class LocalSearchProvider {
     this.web = web;
     this.githubTokenCache = undefined;
     this.deepseekCache = new Map();
-    // deepseek 凭证缺失时的熔断（missing API key 这类错误不会自愈，不能每搜一次 warn 一次）
+    this.goatCache = new Map();
+    // 凭证缺失时的熔断（这类错误不会自愈，不能每搜一次 warn 一次）
     this.deepseekDisabledUntil = 0;
     this.deepseekCooldownWarned = false;
+    this.goatDisabledUntil = 0;
+    this.goatCooldownWarned = false;
+    this.goatKeyCache = undefined;
   }
 
   available() {
     const cfg = this.getConfig();
     if (cfg.enableWiki !== false && cfg.aggregatorUrl) return true;
     if (cfg.enableGithub !== false) return true;
-    return cfg.enableDeepseek !== false;
+    if (cfg.enableDeepseek !== false) return true;
+    return cfg.enableGoat !== false && Boolean(cfg.goatBaseUrl);
   }
 
   async search(request, signal) {
@@ -173,13 +203,22 @@ class LocalSearchProvider {
       Math.min(Number(request?.maxResults || cfg.maxResults || 8), Number(cfg.maxResults || 8)),
     );
 
-    // 三路并发：先只组装 plan，再一把 allSettled —— 单源失败/超时不拖累另外两源
+    // 四路并发：先只组装 plan，再一把 allSettled —— 单源失败/超时不拖累另外几源
     const plan = [];
     if (cfg.enableWiki !== false && cfg.aggregatorUrl) {
       plan.push({ source: 'wiki', run: () => this.searchAggregator(query, maxResults, signal) });
     }
     if (cfg.enableGithub !== false) {
       plan.push({ source: 'github', run: () => this.searchGithub(query, maxResults, signal) });
+    }
+    if (cfg.enableGoat !== false && cfg.goatBaseUrl) {
+      if (Date.now() >= (this.goatDisabledUntil || 0)) {
+        plan.push({ source: 'goat', run: () => this.searchGoatCached(query, maxResults, signal) });
+      } else if (!this.goatCooldownWarned) {
+        this.goatCooldownWarned = true;
+        const left = Math.round(((this.goatDisabledUntil || 0) - Date.now()) / 1000);
+        console.warn(`[local-search] goat source skipped for another ${left}s (cooldown after credential failure)`);
+      }
     }
     if (cfg.enableDeepseek !== false) {
       // 熔断期内直接不发起：凭证缺失不是瞬时故障，重试只会白刷日志
@@ -199,14 +238,27 @@ class LocalSearchProvider {
       if (outcome.status === 'fulfilled') {
         const sources = Array.isArray(outcome.value) ? outcome.value : [];
         groups.push({ source: entry.source, sources: sources.map((s) => ({ ...s, source: entry.source })) });
+        // 一旦成功就解除熔断
+        if (entry.source === 'goat') {
+          this.goatDisabledUntil = 0;
+          this.goatCooldownWarned = false;
+        }
         if (entry.source === 'deepseek') {
-          this.deepseekDisabledUntil = 0; // 一旦成功就解除熔断
+          this.deepseekDisabledUntil = 0;
           this.deepseekCooldownWarned = false;
         }
         return;
       }
       const reason = String(outcome.reason?.message || outcome.reason);
       console.warn(`[local-search] ${entry.source} source failed: ${reason}`);
+      if (entry.source === 'goat' && /api key|credential|401|403|account|not registered|credit|quota|balance|insufficient/i.test(reason)) {
+        const cooldown = Number(cfg.goatFailureCooldownMs ?? 300000);
+        if (cooldown > 0) {
+          this.goatDisabledUntil = Date.now() + cooldown;
+          this.goatCooldownWarned = false;
+          console.warn(`[local-search] goat source paused for ${Math.round(cooldown / 1000)}s: ${reason}`);
+        }
+      }
       if (entry.source === 'deepseek' && /api key|credential|account/i.test(reason)) {
         const cooldown = Number(cfg.deepseekFailureCooldownMs ?? 600000);
         if (cooldown > 0) {
@@ -227,7 +279,7 @@ class LocalSearchProvider {
       return { sources: merged.sources, truncated: merged.dropped > 0 };
     }
 
-    // 三源全空 → 才回退到别的已注册 provider
+    // 全部来源都空 → 才回退到别的已注册 provider
     const fallbackId = String(cfg.fallbackProviderId || '');
     const deepseekQueried = plan.some((entry) => entry.source === 'deepseek');
     const fallbackAllowed =
@@ -269,6 +321,111 @@ class LocalSearchProvider {
     if (!response.ok) throw new Error(`local-search HTTP ${response.status}`);
     const data = await response.json();
     return Array.isArray(data.sources) ? data.sources : [];
+  }
+
+  // ── goat：本地 gateway 的 Anthropic server-side web_search ──────────────────
+  // 与 deepseek 那一路同机制（Messages + web_search_20250305），只是 baseURL/model/key 不同。
+  goatApiKey() {
+    if (this.goatKeyCache !== undefined) return this.goatKeyCache;
+    const cfg = this.getConfig();
+    const envName = String(cfg.goatApiKeyEnv || 'COMMANDCODE_API_KEY');
+    const fromEnv = process.env[envName];
+    if (fromEnv) return (this.goatKeyCache = fromEnv.trim());
+    // dsh 的 launch env 未必继承到插件进程 ⇒ 退回 .env 文件
+    const envFile = cfg.goatEnvFile;
+    if (envFile) {
+      const raw = readTextFile(envFile);
+      for (const line of raw.split(/\r?\n/)) {
+        const i = line.indexOf('=');
+        if (i <= 0) continue;
+        if (line.slice(0, i).trim() === envName) {
+          const value = line.slice(i + 1).trim().replace(/^["']|["']$/g, '');
+          if (value) return (this.goatKeyCache = value);
+        }
+      }
+    }
+    return (this.goatKeyCache = '');
+  }
+
+  async searchGoat(query, maxResults, signal) {
+    const cfg = this.getConfig();
+    const key = this.goatApiKey();
+    if (!key) throw new Error(`missing goat API key (env ${cfg.goatApiKeyEnv} / file ${cfg.goatEnvFile})`);
+    const maxUses = Math.max(1, Number(cfg.goatMaxUses ?? 3));
+    const body = {
+      model: cfg.goatModel || 'claude-sonnet-5-5',
+      max_tokens: 1024,
+      messages: [
+        {
+          role: 'user',
+          content: `${query}\n\nAnswer concisely using the web search results, and cite the sources.`,
+        },
+      ],
+      tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: maxUses }],
+    };
+    const endpoint = new URL('messages', String(cfg.goatBaseUrl).replace(/\/?$/, '/'));
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'x-api-key': key,
+        authorization: `Bearer ${key}`,
+      },
+      body: JSON.stringify(body),
+      signal: timedSignal(signal, cfg.goatTimeoutMs || 50000),
+    });
+    if (!response.ok) {
+      const detail = await response.text().catch(() => '');
+      const error = new Error(`goat search HTTP ${response.status}: ${detail.slice(0, 200)}`);
+      error.status = response.status;
+      throw error;
+    }
+    const payload = await response.json();
+    const blocks = Array.isArray(payload?.content) ? payload.content : [];
+    const sources = [];
+    const seen = new Set();
+    // snippet 来源：text 块里的 citations[]，按 url 索引（与 deepseek provider 同一手法）
+    const snippets = new Map();
+    for (const block of blocks) {
+      if (block?.type !== 'text') continue;
+      for (const cite of block.citations ?? []) {
+        if (cite?.url && cite?.cited_text && !snippets.has(cite.url)) snippets.set(cite.url, cite.cited_text);
+      }
+    }
+    for (const block of blocks) {
+      if (block?.type !== 'web_search_tool_result') continue;
+      for (const item of block.content ?? []) {
+        if (item?.type !== 'web_search_result' || !item.url || seen.has(item.url)) continue;
+        seen.add(item.url);
+        const source = { url: item.url, provider: 'goat' };
+        if (item.title) source.title = item.title;
+        const snippet = snippets.get(item.url);
+        if (snippet) source.snippet = String(snippet).replace(/\s+/g, ' ').trim().slice(0, 300);
+        if (item.page_age) source.publishedAt = item.page_age;
+        sources.push(source);
+      }
+    }
+    return sources.slice(0, Math.max(maxResults, 4));
+  }
+
+  async searchGoatCached(query, maxResults, signal) {
+    const cfg = this.getConfig();
+    const ttl = Number(cfg.goatCacheTtlMs ?? 120000);
+    if (!(ttl > 0)) return await this.searchGoat(query, maxResults, signal);
+    const key = `goat\u0000${maxResults}\u0000${query}`;
+    const now = Date.now();
+    const hit = this.goatCache.get(key);
+    if (hit && now - hit.at < ttl) return await hit.promise;
+    const promise = this.searchGoat(query, maxResults, signal).catch((error) => {
+      this.goatCache.delete(key);
+      throw error;
+    });
+    this.goatCache.set(key, { at: now, promise });
+    if (this.goatCache.size > 32) {
+      for (const [k, v] of this.goatCache) if (now - v.at >= ttl) this.goatCache.delete(k);
+    }
+    return await promise;
   }
 
   // ── DeepSeek 官方搜索：直接调 provider 对象，不走 ctx.web.search（否则 seam 会再选一次）──

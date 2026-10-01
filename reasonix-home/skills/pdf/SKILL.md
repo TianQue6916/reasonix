@@ -35,3 +35,11 @@ pip install pypdf pdfplumber reportlab
 ```bash
 python scripts/pdf_skill.py <操作> <参数JSON>
 ```
+
+## 附：TextIn API 双路径（2026-08-16 合并自 xparse-parser）
+
+PDF → Markdown 双路径：
+- **本地路径**：`pypdf`/`pdfplumber`（上方主表，免费、离线）
+- **TextIn API 路径**：版面分析 + OCR → Markdown（复杂扫描件/公式多时用；需 API key，配置见记忆/环境变量）
+
+选路原则：文本型 PDF 走本地；扫描件/复杂版面走 TextIn。

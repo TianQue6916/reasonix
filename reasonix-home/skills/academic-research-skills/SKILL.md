@@ -1,6 +1,7 @@
 ---
 name: academic-research-skills
 description: 学术论文全流程 — research → write → review → finalize，含文献综述、论文撰写、审稿回复
+disable-model-invocation: true
 ---
 
 # Academic Research Skills — 学术全流程

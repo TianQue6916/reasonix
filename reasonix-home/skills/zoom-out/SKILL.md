@@ -1,6 +1,7 @@
 ---
 name: zoom-out
 description: 退后一层看架构全貌 — 展示相关模块和调用链。用户说"放大看"/"全局"/"架构总览"/"zoom out"时触发
+disable-model-invocation: true
 ---
 # Zoom Out — 退后看全貌
 

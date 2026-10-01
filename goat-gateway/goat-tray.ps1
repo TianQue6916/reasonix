@@ -115,6 +115,9 @@ function Update-Ui {
     if ($r.error) {
       $row.Error = $true
       $row.Detail = "[$($r.name)] 查询失败: $($r.error)"
+    } elseif ($r.kind -eq 'official') {
+      # 官方 key 是余额不是套餐窗口：没有 5h/周/月 百分比，硬算只会得到 0
+      $row.Detail = "[$($r.name)] 余额 $($r.currency) $([math]::Round($r.available,2))"
     } else {
       $row.FiveHour = if ($r.fiveHourCap -gt 0) { [int][math]::Round(100 * $r.fiveHourUsed / $r.fiveHourCap) } else { 0 }
       $row.Weekly   = if ($r.weeklyCap  -gt 0) { [int][math]::Round(100 * $r.weeklyUsed  / $r.weeklyCap)  } else { 0 }

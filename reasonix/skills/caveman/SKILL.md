@@ -1,6 +1,7 @@
 ---
 name: caveman
 description: 远古穴居人模式 — 压缩输出减少约75% token，保留全部技术准确性。用户说"caveman"/"压缩"/"简短模式"时触发
+disable-model-invocation: true
 ---
 # Caveman — 压缩模式
 

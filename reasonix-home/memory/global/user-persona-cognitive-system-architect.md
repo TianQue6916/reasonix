@@ -1,15 +1,16 @@
 ---
 id: legacy-0e176543fab402a20f3d83eb
-revision: 3
+revision: 4
 created_at: "2026-07-30T05:49:22.67027077Z"
-updated_at: "2026-09-27T09:14:52.0000000Z"
+updated_at: "2026-10-01T06:24:26.000Z"
 name: user-persona-cognitive-system-architect
+title: 个人画像 — 认知系统架构师
 description: 用户完整画像：v3.0 量化版（2304 会话词频指纹/学习轨迹/行为模式/张力风险）+ 2026-09-23 Linux 侧重写版（认知操作系统/知识构建协议/资源调度/终局目标/当前阶段定位/人格特征）+ 学业水平与教学适配，三版已归一（2026-09-27）
+activation: relevant
 metadata:
   type: user
   scope: global
 ---
-
 # 用户完整画像 v3.0（全量数据版）
 
 > 更新：2026-08-07，基于 **2304 个 DeepSeek 会话**（27,150 条用户消息 / 1093 万字符，2025-01→2026-08）全量分析，取代 v2.0 的 100 会话版

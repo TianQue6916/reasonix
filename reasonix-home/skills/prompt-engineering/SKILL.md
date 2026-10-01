@@ -1,6 +1,7 @@
 ---
 name: prompt-engineering
 description: 提示工程 — CoT/Few-shot/Tree-of-Thought, RAG/Agent 编排/结构化输出
+disable-model-invocation: true
 ---
 
 # 提示工程专家

@@ -163,6 +163,67 @@ check('an unknown skill name is reported, not thrown',
 check('skill_load without an agent degrades gracefully',
   (await load.execute({ name: 'pdf-tools' }, {})).text.includes('requires an agent'))
 
+// ── case 11: invocation policy — `disable-model-invocation: true` must be honoured ─────
+// Measured 2026-10-01. `ctx.skills.list()` returns EVERY discovered skill; the policy
+// filter lives in `dsh-tool-skill`'s catalog renderer, NOT in the registry
+// (`dsh-skill/lib/index.js:37 isModelInvocable` reads `skill.invocation.modelInvocable`,
+// which `dsh-skill-filesystem/lib/index.js:853` derives from the frontmatter key). A fresh
+// dsh process therefore still returned `hindsight-coding-agent` through skill_search after
+// its SKILL.md had been disabled. These cases pin the re-applied filter that fixes that.
+//
+// Separate fixture on purpose: adding disabled skills to SKILLS above would perturb the
+// ordering assertions of cases 1-9 and hide a regression there behind a policy change.
+const MIXED = [
+  { name: 'vis-alpha', description: 'visible skill alpha tools', content: 'b1',
+    invocation: { modelInvocable: true, userInvocable: true } },
+  { name: 'hid-beta', description: 'hidden skill beta tools', content: 'b2',
+    invocation: { modelInvocable: false, userInvocable: true } },
+  { name: 'hid-gamma', description: 'hidden skill gamma tools', content: 'b3',
+    invocation: { modelInvocable: false, userInvocable: false } },
+  { name: 'leg-delta', description: 'legacy skill delta tools', content: 'b4' },
+]
+const invCtx = {
+  logger: { warn() {}, info() {}, error() {} },
+  _tools: {},
+  tools: { register(def) { invCtx._tools[def.name] = def } },
+  skills: { list: async () => MIXED, get: async (n) => MIXED.find((s) => s.name === n) },
+}
+mod.apply(invCtx)
+const invSearch = invCtx._tools.skill_search
+const invLoad = invCtx._tools.skill_load
+// skill_load hands the body to agent.inject (the non-waking next-step inbox) and
+// returns only an acknowledgement — so assert on what was injected, not on the return.
+const invInjected = []
+const invAgent = { session: { header: { cwd: 'C:/tmp' } }, inject: (m) => invInjected.push(m) }
+
+const listed = order((await invSearch.execute({ query: 'skill tools' }, {})).text)
+check('11.1 modelInvocable:true skill is listed', listed.includes('vis-alpha'), listed.join(','))
+check('11.2 disable-model-invocation skills are NOT listed',
+  !listed.includes('hid-beta') && !listed.includes('hid-gamma'), listed.join(','))
+check('11.3 a skill with no invocation object stays visible (defensive default)',
+  listed.includes('leg-delta'), listed.join(','))
+
+const byName = order((await invSearch.execute({ query: 'hid-beta' }, {})).text)
+check('11.4 a disabled skill is unreachable even by its exact name', byName.length === 0, byName.join(','))
+
+const refused = await invLoad.execute({ name: 'hid-beta' }, { agent: invAgent })
+check('11.5 skill_load refuses a disabled skill', !refused.text.includes('<skill_content'),
+  refused.text.slice(0, 80))
+check('11.6 the refusal names the frontmatter key so the user can act',
+  refused.text.includes('disable-model-invocation'), refused.text.slice(0, 120))
+const n7 = invInjected.length
+await invLoad.execute({ name: 'vis-alpha' }, { agent: invAgent })
+check('11.7 skill_load still works for an invocable skill (envelope reaches agent.inject)',
+  invInjected.length === n7 + 1 && invInjected[n7].source?.kind === 'skill-invocation'
+  && invInjected[n7].source?.name === 'vis-alpha',
+  JSON.stringify(invInjected[n7]?.source))
+const n8 = invInjected.length
+await invLoad.execute({ name: 'leg-delta' }, { agent: invAgent })
+check('11.8 skill_load works for a skill without an invocation object',
+  invInjected.length === n8 + 1 && invInjected[n8].source?.kind === 'skill-invocation'
+  && invInjected[n8].source?.name === 'leg-delta',
+  JSON.stringify(invInjected[n8]?.source))
+
 // ── case 10: end-to-end against the REAL skill library ──────────────────────────────────
 const SKILLS_DIR = 'C:/Users/27063/.dsh/skills'
 let entries = []
@@ -180,10 +241,14 @@ for (const entry of entries) {
     // reasonix-workspace-mergeback-doctor.md) must skip, not abort the scan at entry 58.
     const md = await readFile(join(SKILLS_DIR, entry, 'SKILL.md'), 'utf8')
     const fm = /---\r?\n([\s\S]*?)\r?\n---/.exec(md)?.[1] ?? ''
+    // Frontmatter policy, mapped exactly as dsh-skill-filesystem/lib/index.js:853
+    // does. Read here so that case 11.9-11.11 test the REAL disabled set.
+    const rawDisable = /^disable-model-invocation:[ \t]*(.+)$/m.exec(fm)?.[1]?.trim()
     real.push({
       name: /^name:[ \t]*(.+)$/m.exec(fm)?.[1]?.trim() ?? entry,
       description: /^description:[ \t]*(.+)$/m.exec(fm)?.[1]?.trim() ?? '',
       content: 'x',
+      invocation: { modelInvocable: rawDisable !== 'true', userInvocable: true },
     })
   } catch { /* not a skill dir */ }
 }
@@ -216,9 +281,16 @@ check('real queries hit the library', hits.some((n) => n > 0),
 // decision, deliberately NOT taken here — recorded so the next reader sees the tradeoff.
 check('KNOWN LIMIT: "translate" matches nothing, because no skill text contains that substring',
   first['translate'].length === 0)
-check('KNOWN LIMIT: the synonym the library does use is recalled instead',
-  order((await realSearch.execute({ query: 'translator' }, {})).text).length === 3,
-  order((await realSearch.execute({ query: 'translator' }, {})).text).join(','))
+// Measured, not hardcoded: the count moved from 3 (2026-09-30) to 1 after skills were
+// normalised on 2026-10-01 (the two other `*translator*` entries were archived). So the
+// assertion is derived from the fixture instead of pinned to a number that rots.
+const gtTranslator = real
+  .filter((s) => `${s.name} ${s.description}`.toLowerCase().includes('translator'))
+  .map((s) => s.name).sort()
+const gotTranslator = order((await realSearch.execute({ query: 'translator' }, {})).text).sort()
+check('KNOWN LIMIT: the synonym the library does use is recalled, and recall is complete',
+  gtTranslator.length > 0 && gotTranslator.join() === gtTranslator.join(),
+  `gt=${gtTranslator.join(',')} got=${gotTranslator.join(',')}`)
 check('KNOWN LIMIT: no skill text contains "game", so "game review" cannot match',
   first['game review'].length === 0)
 check('every returned name exists in the real library',
@@ -228,6 +300,20 @@ check('real results are deterministic across calls',
     .every((o, i) => o.join() === first[QUERIES[i]].join()))
 check('a nonsense query returns none of the library',
   order((await realSearch.execute({ query: 'zzzznotaskill' }, {})).text).length === 0)
+
+// ── case 11 (real library): the skills actually disabled on this machine ─────────────
+const disabledReal = real.filter((s) => !s.invocation.modelInvocable).map((s) => s.name)
+check('11.9 the real library really contains disabled skills (guards against a vacuous pass)',
+  disabledReal.length >= 40, `${disabledReal.length} disabled of ${real.length}`)
+const leaked = []
+for (const n of disabledReal) {
+  if (order((await realSearch.execute({ query: n }, {})).text).includes(n)) leaked.push(n)
+}
+check('11.10 NO disabled real skill is reachable through skill_search, even by exact name',
+  leaked.length === 0, `${leaked.length} leaked: ${leaked.slice(0, 5).join(',')}`)
+check('11.11 no disabled real skill appears in any of the seven spot queries',
+  QUERIES.every((q) => first[q].every((n) => !disabledReal.includes(n))),
+  QUERIES.map((q) => `${q}:${first[q].filter((n) => disabledReal.includes(n)).length}`).join(' '))
 
 await rm(DIR, { recursive: true, force: true })
 console.log(failures === 0 ? '\nALL PASS' : `\n${failures} FAILED`)

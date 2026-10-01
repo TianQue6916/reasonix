@@ -1,6 +1,7 @@
 ---
 name: database
 description: 数据库 — PostgreSQL/MySQL/SQLite/MongoDB/Redis, Prisma ORM, 索引/查询优化/迁移
+disable-model-invocation: true
 ---
 
 # 数据库专家

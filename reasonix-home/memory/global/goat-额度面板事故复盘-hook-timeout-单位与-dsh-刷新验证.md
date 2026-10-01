@@ -1,8 +1,8 @@
 ---
 id: mem-5ad2c636d5ecec75cbfdca0c79296990
-revision: 2
+revision: 3
 created_at: "2026-09-25T09:56:03.525046Z"
-updated_at: "2026-09-27T08:05:16.833Z"
+updated_at: "2026-10-01T06:24:26.000Z"
 name: goat-额度面板事故复盘-hook-timeout-单位与-dsh-刷新验证
 description: "两个事故的根因与修法：Reasonix hook 的 timeout 单位是毫秒（15 会中断会话，已修为 15000 并移除 UserPromptSubmit）；dsh 面板不刷新的真因。【2026-09-27 更正】原文写 REFRESH_MS「60000 -> 30000」，实测为 15000（client.js:22），已订正"
 metadata:
@@ -20,7 +20,7 @@ metadata:
 
 ## dsh 面板「不刷新」根因
 1. **我的锅**：验证时反复 `Stop-Process` 杀 `dsh.*web` → 用户浏览器里的页面断连 → 表现为「不刷新」。**教训：修完/验完不要把用户的 dsh web 进程杀掉**；需要启动长期服务时用 `preserve_background_processes`。
-2. 面板本身刷新太慢/不可见：调整了 `REFRESH_MS`，弹层里加时间戳 + `⟳` 手动刷新按钮（点击徽标即展开并立即刷新）。
+2. 面板本身刷新太慢/不可见：调整了 `REFRESH_MS`，弹层里加「更新于 HH:MM:SS」时间戳 + `⟳` 手动刷新按钮（点击徽标即展开并立即刷新）。
    **【2026-09-27 更正】原文写「60000 → 30000」是错的**，实测 `D:/Toolbox/goat-gateway/dsh-plugin-goat-panel/lib/client.js:22` 为 `const REFRESH_MS = 15000;`，且全仓再无 60000/30000 字样。时间戳与 `⟳` 均实际存在（client.js:35-42）。
 
 ## 刷新验证法（关键细节）
@@ -41,4 +41,3 @@ metadata:
 → 应输出 `const REFRESH_MS = 15000;`。**别再引用 30000。**
 
 同批复验通过的部分：`hooks` 只有 `SessionStart`、`timeout=15000`（settings.json 实测）
-

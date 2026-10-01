@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: hindsight-coding-agent
 description: How this machine's Hindsight coding-agent memory works — the plugin behind the 🧠 banner. Use when the user says "store/remember this in hindsight", asks what the memory/knowledge pages are, wants to configure per-repo memory (disable, rename banks, git depth), or something memory-related looks broken.
 ---

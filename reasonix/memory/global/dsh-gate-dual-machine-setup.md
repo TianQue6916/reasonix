@@ -1,8 +1,8 @@
 ---
 id: dsh-gate-dual-machine-setup
-revision: 1
+revision: 2
 created_at: "2026-08-15T22:00:00.000000000Z"
-updated_at: "2026-08-15T22:00:00.000000000Z"
+updated_at: "2026-10-01T06:24:26.000Z"
 name: dsh-gate-dual-machine-setup
 description: DeepSeek Harness (dsh) 双机配置 + dsh-gate 决策钩子完整档案
 metadata:
@@ -12,10 +12,10 @@ metadata:
 ---
 <!-- 2026-09-27 合并：以下 1 块为 Linux 侧独有内容，来自 dsh-gate-dual-machine-setup.md.conflict.linux.ff14825fc6.bak，双机同步此前只保留在 .bak -->
 
+# DeepSeek Harness 双机配置 + dsh-gate 钩子（2026-08-15）
+
 > ## ⚠️ 状态（2026-09-04）
 > 双机安装位置/版本仍准确；但 **dsh-gate.ps1 已废弃**（主力机现行脚本 = `dsh-gate-conc.ps1` + `dsh-gate-runner.ps1`，支持并发无同机锁）；本机不再跑 dsh。现行操作见记忆 `工具-dsh并发调度与命令铁律-20260904.md`。下方为本机实跑时期档案。
-
-# DeepSeek Harness 双机配置 + dsh-gate 钩子（2026-08-15）
 
 ## 核心结论
 双机已装 DSH（`@deepseek-ai/dsh` 0.1.0-rc.6）+ `dsh-gate` 决策钩子：**难问题/需 pro 自动走 DSH headless（pro+max），简单问题走 flash；DSH 会话自动注入 Reasonix 记忆/技能/画像目录供按需读取**。已验证端到端工作。

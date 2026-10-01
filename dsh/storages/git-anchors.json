@@ -365,13 +365,13 @@
       ]
     },
     "dual-machine-sync-channels-and-conflict-semantics": {
-      "at": "2026-09-30T13:53:53.267Z",
+      "at": "2026-10-01T06:22:25.063Z",
       "repos": [
         {
           "repo": "C:/Users/27063/.dsh",
           "branch": "main",
-          "head": "022f8bf",
-          "dirty": 6
+          "head": "7a29ae9",
+          "dirty": 0
         }
       ]
     },
@@ -394,6 +394,182 @@
           "branch": "main",
           "head": "45ddd4e",
           "dirty": 3
+        }
+      ]
+    },
+    "dsh-web-search-三源聚合最终形态": {
+      "at": "2026-10-01T06:14:19.171Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "35a3a8d",
+          "dirty": 83
+        }
+      ]
+    },
+    "dsh-bash-windows-禁find全盘与session事件流zstd": {
+      "at": "2026-10-01T06:14:19.499Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "35a3a8d",
+          "dirty": 84
+        }
+      ]
+    },
+    "skills-memory-junction-topology-both-machines-20261001": {
+      "at": "2026-10-01T06:21:09.293Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "46ddd0e",
+          "dirty": 5
+        }
+      ]
+    },
+    "memory-merge-deploy-two-pitfalls-20261001": {
+      "at": "2026-10-01T06:26:02.692Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "feed165",
+          "dirty": 0
+        }
+      ]
+    },
+    "gitbash-wc-m-is-bytes": {
+      "at": "2026-10-01T06:26:05.783Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "feed165",
+          "dirty": 1
+        }
+      ]
+    },
+    "skills-canonical-source-独立真源": {
+      "at": "2026-10-01T06:32:49.923Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "74241c0",
+          "dirty": 1
+        }
+      ]
+    },
+    "goat-gateway-多上游-官方key与goat平级入池": {
+      "at": "2026-10-01T06:52:14.879Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "d007c0e",
+          "dirty": 0
+        }
+      ]
+    },
+    "dual-machine-sync-convergence-pitfalls-20261001": {
+      "at": "2026-10-01T08:00:38.219Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "15b9f2f",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-web-search-四源聚合最终形态": {
+      "at": "2026-10-01T12:01:35.850Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "3a8404d",
+          "dirty": 4
+        }
+      ]
+    },
+    "thinking-anchor-habituation-and-dedupe-fix-20261001": {
+      "at": "2026-10-01T12:02:31.702Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "2ce14e9",
+          "dirty": 1
+        }
+      ]
+    },
+    "goat-gateway-额度400修复与官方余额通道": {
+      "at": "2026-10-01T12:10:11.097Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "e8ff819",
+          "dirty": 0
+        }
+      ]
+    },
+    "goat-gateway-优先级分层与quota动态权重": {
+      "at": "2026-10-01T12:40:00.331Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "5588475",
+          "dirty": 6
+        }
+      ]
+    },
+    "dsh-agents-skills-second-root-and-catalog-cache-20261001": {
+      "at": "2026-10-01T12:43:33.031Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "05f6cff",
+          "dirty": 2
+        }
+      ]
+    },
+    "dsh-pre-step-prepend-vs-mnemon-20261001": {
+      "at": "2026-10-01T12:43:33.324Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "05f6cff",
+          "dirty": 3
+        }
+      ]
+    },
+    "plan-anchor-plugin-20261001": {
+      "at": "2026-10-01T13:16:24.129Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "cae2373",
+          "dirty": 0
+        }
+      ]
+    },
+    "dsh-skill-catalog-not-filtered-by-invocation-20261001": {
+      "at": "2026-10-01T13:36:07.501Z",
+      "repos": [
+        {
+          "repo": "C:/Users/27063/.dsh",
+          "branch": "main",
+          "head": "8881509",
+          "dirty": 0
         }
       ]
     }

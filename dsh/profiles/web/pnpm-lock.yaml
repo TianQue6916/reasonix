@@ -4,16 +4,25 @@ settings:
   autoInstallPeers: false
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@ethanwong-hk/dsh-thinking-guard@1.0.2': c4613448446000455522fcd54c7b126f85d6a95a9d694848286acab81a85ce86
+
 importers:
 
   .:
     dependencies:
+      '@ethanwong-hk/dsh-thinking-guard':
+        specifier: ^1.0.2
+        version: 1.0.2(patch_hash=c4613448446000455522fcd54c7b126f85d6a95a9d694848286acab81a85ce86)
       '@lanbaolu/dsh-wechat-bridge':
         specifier: 0.9.1
         version: 0.9.1(@deepseek-ai/schemastery@3.18.4)
       '@local/dsh-plugin-goat-panel':
         specifier: file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel
         version: file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel
+      '@local/dsh-thinking-language':
+        specifier: file:D:/Toolbox/dsh-thinking-language
+        version: file:D:/Toolbox/dsh-thinking-language
       '@mingozhou/dsh-replay':
         specifier: ^0.4.1
         version: 0.4.1
@@ -44,6 +53,12 @@ packages:
   '@deepseek-ai/schemastery@3.18.4':
     resolution: {integrity: sha512-SSXO6tYuyrIqKVbmOnIq0s+riUywYzouFMcnBluHF9n4KMo2G8HvEzhCYj6pj2617/glOjbJuVInJ9hfONsjkg==}
 
+  '@ethanwong-hk/dsh-thinking-guard@1.0.2':
+    resolution: {integrity: sha512-sh0y7c5xjg3XUH/AHBOZxtaSIa2w2pmnympVw8TtIqBvdn1fnPDCn3eDRFx/ONTnOLmhA0Mjwfy5M1AUavA0tg==, tarball: https://registry.npmjs.org/@ethanwong-hk/dsh-thinking-guard/-/dsh-thinking-guard-1.0.2.tgz}
+    engines: {dsh: '>=0.1.0', node: '>=18'}
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+
   '@fidm/asn1@1.0.4':
     resolution: {integrity: sha512-esd1jyNvRb2HVaQGq2Gg8Z0kbQPXzV9Tq5Z14KNIov6KfFD6PTaRIO8UpcsYiTNzOqJpmyzWgVTrUwFV3UF4TQ==}
     engines: {node: '>= 8'}
@@ -73,6 +88,9 @@ packages:
 
   '@local/dsh-plugin-goat-panel@file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel':
     resolution: {directory: D:/Toolbox/goat-gateway/dsh-plugin-goat-panel, type: directory}
+
+  '@local/dsh-thinking-language@file:D:/Toolbox/dsh-thinking-language':
+    resolution: {directory: D:/Toolbox/dsh-thinking-language, type: directory}
 
   '@mingozhou/dsh-replay@0.4.1':
     resolution: {integrity: sha512-L2Kk4JmD4UubPVxMLrEfdpPnbytn4tASR+xLuyrXQhj5CvfYBwiUTRvaXASushW/Te0hJeQ2mS9n0OpJ7cu8rA==}
@@ -690,6 +708,8 @@ snapshots:
       '@deepseek-ai/cosmokit': 1.8.5
       '@standard-schema/spec': 1.1.0
 
+  '@ethanwong-hk/dsh-thinking-guard@1.0.2(patch_hash=c4613448446000455522fcd54c7b126f85d6a95a9d694848286acab81a85ce86)': {}
+
   '@fidm/asn1@1.0.4': {}
 
   '@fidm/x509@1.2.1':
@@ -706,6 +726,8 @@ snapshots:
   '@leichtgewicht/ip-codec@2.0.5': {}
 
   '@local/dsh-plugin-goat-panel@file:D:/Toolbox/goat-gateway/dsh-plugin-goat-panel': {}
+
+  '@local/dsh-thinking-language@file:D:/Toolbox/dsh-thinking-language': {}
 
   '@mingozhou/dsh-replay@0.4.1': {}
 

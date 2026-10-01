@@ -23,6 +23,17 @@
  *
  * NOTE: this plugin REPLACES the `dsh-tool-skill` row in the composition —
  * the composition must NOT mount both, or the catalog injection returns.
+ *
+ * Invocation policy (2026-10-01). `ctx.skills.list()` returns EVERY
+ * discovered skill regardless of frontmatter: the
+ * `disable-model-invocation: true` filter lives in dsh-tool-skill's catalog
+ * renderer, not in the registry. Measured: after disabling 50 skills
+ * (46 in `%APPDATA%easonix\skills` + 4 in `~/.agents/skills`),
+ * `skill_search` still returned `hindsight-coding-agent` in a fresh dsh
+ * process. So both tools here re-apply the policy themselves and drop any
+ * skill whose `skill.invocation.modelInvocable === false` — the same field
+ * `dsh-skill/lib/index.js:37 isModelInvocable()` reads and that
+ * `dsh-skill-filesystem/lib/index.js:853` derives from frontmatter.
  */
 
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises'
@@ -135,6 +146,13 @@ function toJsonSchema(spec) {
 
 /** Register the two on-demand skill tools. */
 export function apply(ctx) {
+  /**
+   * Whether frontmatter permits model invocation. `ctx.skills.list()` does not
+   * filter on this (see the module header), so both tools apply it here.
+   * Defensive: a skill without an `invocation` object counts as invocable.
+   */
+  const modelInvocable = (skill) => (skill && skill.invocation && skill.invocation.modelInvocable) !== false
+
   /** Normalize a query into lowercase tokens for simple substring matching. */
   const tokens = (text) => (text || '').toLowerCase().split(/[^a-z0-9_-]+/).filter(Boolean)
 
@@ -160,6 +178,7 @@ export function apply(ctx) {
         const usageState = await loadUsage()
         const now = Date.now()
         const scored = all
+          .filter(modelInvocable)
           .filter((skill) => {
             if (wanted.length === 0) return true
             const haystack = tokens(`${skill.name} ${skill.description ?? ''} ${skill.whenToUse ?? ''}`).join(' ')
@@ -218,6 +237,11 @@ export function apply(ctx) {
         })
         if (skill === undefined) {
           return { text: `No skill named "${args.name}". Run skill_search to list available skills.` }
+        }
+        if (!modelInvocable(skill)) {
+          return {
+            text: `Skill "${args.name}" is not model-invocable: its SKILL.md sets \`disable-model-invocation: true\`. Invoke it from the user side instead.`,
+          }
         }
         const body = extractSkillBody(skill)
         if (body.length === 0) {

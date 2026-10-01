@@ -1,10 +1,10 @@
 ---
 id: mem-012afd51d6e2750ec295d9e041f5cad0
-revision: 4
+revision: 5
 created_at: "2026-09-26T15:43:05.032Z"
-updated_at: "2026-09-28T05:28:44.716Z"
+updated_at: "2026-10-01T06:24:26.000Z"
 name: rule-star-open-source-usage
-description: "元规则：用过/读过/借鉴过的开源项目必须 star（本次新增 9 个，累计 30）+ 纯 bash 的 star 执行路径"
+description: "元规则：用过/读过/借鉴过的开源项目必须 star（本次新增 9 个，累计 30）+ 纯 bash 的 star 执行路径（bash 侧取凭据 + REST API）"
 metadata:
   type: user
   fact_type: feedback
@@ -70,6 +70,13 @@ curl -s --noproxy '*' -X PUT -o /dev/null -w '%{http_code}' \
 - 逐个 `sleep 0.4`，12 个连发没有被 secondary rate limit 拦
 - **catalog 里查 repo URL 的落点**：`plugins.json` 的 `url` 字段（比猜 owner 可靠）
 
+### Linux 版保留的实测细节（2026-09-26 原始记录）
+
+- 凭据取出命令的完整形式带 `-c credential.interactive=false`：`printf "protocol=https\nhost=github.com\n\n" | git -c credential.interactive=false credential fill`（在 bash 侧取出，不需要网络）
+- **PowerShell 管道传 stdin 给 git 会因编码失败** —— 所以凭据必须在 bash 侧取
+- **当时的网络实测签名（原样保留，供日后遇到同类现象比对）**：bash 工具侧 `curl` **一律返回 `000`**（连接失败），而在同一次 bash 里启动的 PowerShell `Invoke-RestMethod` 访问 `api.github.com` **返回 200** —— 「bash `000` / PowerShell `200`」这个对照是当时唯一的证据形态。2026-09-27 才查明 `000` 的真因是 env 里 `127.0.0.1:31181` 那个没开的代理。所以**这两条 observation 本身成立**（当时确实如此），被推翻的只是由它推出的「沙箱禁网、必须走 PowerShell」这个**结论**。补记此条是为了让签名本身可追溯，而不是重新主张旧结论。
+- Linux 版当时把这套组合总结为**后续所有 GitHub 操作的通用手法**，适用范围写明包括读仓库 / 提交 issue / 看 release / 建仓库；其中「网络要交给 PowerShell」这一前提已被 2026-09-27 的订正取代（bash 本身有网，加 `--noproxy '*'` 即可直连），而「凭据在 bash 侧取」的做法与订正后的纯 bash 路径一致。
+
 ## 本机无 gh CLI
-`gh` 在 Windows 侧与 Linux 天阙机上都**不存在**。上面是等价替代；若以后要装，`winget install GitHub.cli` + `gh auth login` 会更省事。
+`gh` 在 Windows 侧与 Linux 天阙机上都**不存在**（`gh: command not found`）。上面是等价替代；若以后要装，`winget install GitHub.cli` + `gh auth login` 会更省事。
 **另注**：本机 GitHub 走 SSH（`git@github.com`，见 `~/.ssh/config` 里 `HostName ssh.github.com / Port 443`），但 REST API 仍需要那个 40 字符 token —— 两者是不同通道，别混。

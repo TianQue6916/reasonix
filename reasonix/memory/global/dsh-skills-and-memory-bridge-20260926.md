@@ -1,10 +1,12 @@
 ---
 id: legacy-69177efb538d1a24c4c62481
-revision: 1
+revision: 2
 created_at: "2026-09-27T05:05:44.335422Z"
-updated_at: "2026-09-27T05:05:44.335422Z"
+updated_at: "2026-10-01T06:24:26.000Z"
 name: dsh-skills-and-memory-bridge-20260926
 description: dsh web 与 reasonix 共用技能与记忆已落地：80 个技能镜像生效（分片验证通过）+ 只读记忆插件 memory_search/memory_read 已挂载（待重启 web 生效）
+created: 2026-09-26
+priority: high
 metadata:
   type: user
   fact_type: reference

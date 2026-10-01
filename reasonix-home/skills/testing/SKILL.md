@@ -1,6 +1,7 @@
 ---
 name: testing
 description: 测试 — Jest/Vitest/pytest/Playwright, 单元/集成/E2E/TDD/覆盖率分析
+disable-model-invocation: true
 ---
 
 # 测试专家

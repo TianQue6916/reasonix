@@ -1,6 +1,7 @@
 ---
 name: paper-slide-deck
 description: 从学术论文生成专业幻灯片，支持自动图表提取和多视觉风格（17种），输出 PPTX/PDF
+disable-model-invocation: true
 ---
 # Paper Slide Deck — 学术论文→幻灯片生成
 

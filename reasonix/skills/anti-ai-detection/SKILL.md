@@ -1,6 +1,7 @@
 ---
 name: anti-ai-detection
 description: 降AI率终极流水线。串联 unslop (CLI自动清洗) + humanizer (24种模式手动校对) + ai-vibe-writing (风格迁移) + antigravity-awesome-skills (技能库搜索)。当用户需要写出"AI检测器测不出来"的文本时触发。
+disable-model-invocation: true
 ---
 
 # 降AI率终极流水线

@@ -1,6 +1,7 @@
 ---
 name: linux-admin
 description: Linux 管理 — Bash/systemd/iptables/SSH/性能分析/storage/LVM/RAID
+disable-model-invocation: true
 ---
 
 # Linux系统管理专家

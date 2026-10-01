@@ -133,3 +133,14 @@ Avalonia 对话框的"确定"按钮 UIAutomation Invoke **有时生效（对话�
 - 分组列表：`C:\Users\27063\AppData\Roaming\reasonix\global-workspace\batch_tmp\group0-3.txt`（10/10/10/9）
 - 脚本：`se-translate-one.ps1`（单文件）、`se-batch-worker.ps1`（组循环）、`se-wait-api-and-batch.ps1`（等 API + 启动）
 - **恢复步骤**：① 测 API；② 通后起 4 个后台任务跑 `se-batch-worker.ps1 -WorkerId N -ListFile groupN.txt -LogFile wN.log -WorkerScript se-translate-one.ps1`；③ 每个文件完成后验证 srt 含中文。
+
+---
+
+## DSH 钩子（DeepSeek Harness 集成 — 2026-09-04 更新）
+
+本技能处理长文档/教材翻译（≥50 页或需逐句精译）时，**难翻译任务一律走主力机 dsh 最高能力**（v4.1 flash + effort=max；2026-09-10 起 pro 弃用），Reasonix 只整合结果不重复翻译：
+
+- 调用：`dsh-remote -m deepseek-v4.1-flash -e max "任务"`（v4.1 flash + max thinking）；任务描述显式写「发挥你最高能力 / max thinking / 逐句详尽翻译」
+- 后台化：`dsh-remote --async -m deepseek-v4.1-flash -e max "任务"` → id；查进度：`dsh-remote --status`
+- **本机不跑 dsh**（性能不足，用户 2026-09-04 拍板）——绝不用本机 `dsh-gate`
+- 完整档案：`~/.reasonix/memory/global/工具-dsh并发调度与命令铁律-20260904.md`

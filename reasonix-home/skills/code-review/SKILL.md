@@ -1,6 +1,7 @@
 ---
 name: code-review
 description: 代码审查 — 正确性/安全/性能/可维护性审查维度, 基于严重级别的反馈流程
+disable-model-invocation: true
 ---
 
 # 代码审查专家

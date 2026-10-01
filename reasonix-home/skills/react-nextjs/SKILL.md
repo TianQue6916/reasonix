@@ -1,6 +1,7 @@
 ---
 name: react-nextjs
 description: React/Next.js — Hooks/Server Components/App Router/RSC/ISR/Tailwind
+disable-model-invocation: true
 ---
 
 # React/Next.js专家

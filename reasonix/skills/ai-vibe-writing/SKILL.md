@@ -1,6 +1,7 @@
 ---
 name: ai-vibe-writing
 description: AI 写作个性化助手 — 风格迁移 + 规格驱动写作 + 错误记忆。支持学习用户的写作DNA（提供3-5篇个人写作样本），建立文档规格表（Spec）和完成标准（Definition of Done），记住并避免已犯错误。适合学术论文、技术文档、创意写作的降AI率写作场景。
+disable-model-invocation: true
 ---
 
 # AI Vibe Writing Skill — 个性化写作助手

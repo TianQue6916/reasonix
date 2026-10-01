@@ -1,6 +1,7 @@
 ---
 name: anti-aigc-2026
 description: 降AI率实战技能 — 基于10轮AIGC检测迭代(2026.06)，最优版本红3.8%+橙13.8%+黑65.3%。分段诊断+段落重构+打断句+硬编码替换策略。
+disable-model-invocation: true
 ---
 
 # Anti-AIGC 2026 — 降AI率实战技能

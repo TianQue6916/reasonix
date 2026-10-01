@@ -112,12 +112,15 @@ window.__ModuleLoader__.load({
       }, [open]);
 
       const rows = state.rows || [];
-      const worst = rows.reduce((m, r) => (r && !r.error ? Math.max(m, pct(r.fiveHourUsed, r.fiveHourCap), pct(r.weeklyUsed, r.weeklyCap)) : m), 0);
-      const weekly = rows.reduce((m, r) => (r && !r.error ? Math.max(m, pct(r.weeklyUsed, r.weeklyCap)) : m), 0);
-      const hourly = rows.reduce((m, r) => (r && !r.error ? Math.max(m, pct(r.fiveHourUsed, r.fiveHourCap)) : m), 0);
+      const worst = rows.reduce((m, r) => (r && !r.error && r.kind !== "official" ? Math.max(m, pct(r.fiveHourUsed, r.fiveHourCap), pct(r.weeklyUsed, r.weeklyCap)) : m), 0);
+      const weekly = rows.reduce((m, r) => (r && !r.error && r.kind !== "official" ? Math.max(m, pct(r.weeklyUsed, r.weeklyCap)) : m), 0);
+      const hourly = rows.reduce((m, r) => (r && !r.error && r.kind !== "official" ? Math.max(m, pct(r.fiveHourUsed, r.fiveHourCap)) : m), 0);
+      // 官方 key（DeepSeek 余额）单独显示：它不是套餐窗口，混进百分比里是错的。
+      const official = rows.find((r) => r && !r.error && r.kind === "official");
       const badgeText = state.status === "loading" ? "GOAT 额度 …"
         : state.status === "error" ? "GOAT 额度 —"
-        : "GOAT 5h " + hourly + "% · 周 " + weekly + "%";
+        : "GOAT 5h " + hourly + "% · 周 " + weekly + "%"
+          + (official ? " · " + (official.currency || "") + n2(official.available) : "");
       const badgeInk = state.status === "ok" ? levelInk(worst) : "var(--dsw-alias-label-tertiary, #888)";
 
       const body = jsx.jsxs("div", {
@@ -148,6 +151,18 @@ window.__ModuleLoader__.load({
           state.status === "error"
             ? jsx.jsx("div", { style: { color: "#f87171" }, children: "读取失败：" + (state.error || "未知错误") })
             : rows.map((r, i) => {
+                if (r.kind === "official") {
+                  // 余额行：没有 5h/周/月 百分比，直接显示金额，避免渲染成 0%/NaN。
+                  return jsx.jsxs("div", { style: { padding: "6px 0", borderTop: i > 0 ? "1px solid rgba(255,255,255,.08)" : "none" }, children: [
+                    jsx.jsxs("div", { style: { display: "flex", gap: "10px", alignItems: "baseline" }, children: [
+                      jsx.jsx("strong", { style: { minWidth: "38px" }, children: r.name }),
+                      jsx.jsx("span", { children: "余额 " + (r.currency || "") + " " + n2(r.available) })
+                    ] }),
+                    jsx.jsx("div", { style: { color: "var(--dsw-alias-label-tertiary, #999)", fontSize: "11.5px" }, children:
+                      "赠送 " + n2(r.granted) + " · 充值 " + n2(r.toppedUp)
+                    })
+                  ] });
+                }
                 const p5 = pct(r.fiveHourUsed, r.fiveHourCap);
                 const pw = pct(r.weeklyUsed, r.weeklyCap);
                 const pm = pct(r.monthUsed, r.monthCap);

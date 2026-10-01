@@ -1,6 +1,7 @@
 ---
 name: algorithms
 description: 算法与数据结构 — 数组/链表/树/图/堆/哈希/DP/排序/BFS-DFS/线段树/复杂度分析
+disable-model-invocation: true
 ---
 
 # 算法与数据结构专家

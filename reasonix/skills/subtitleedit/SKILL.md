@@ -1,6 +1,6 @@
 ---
 name: subtitleedit
-description: 操控 SubtitleEdit（D:\20-工具\Subtitle Edit）自动翻译 srt 字幕：WMI 脱离启动防闪退、Ctrl+Shift+G 触发翻译、UIAutomation 操控 Avalonia 对话框、DeepSeek 引擎批量翻译
+description: 操控 SubtitleEdit（D:\20-工具\Subtitle Edit）自动翻译 srt 字幕：WMI 脱离启动防闪退、Ctrl+Shift+G 触发翻译、UIAutomation 操控 Avalonia 对话框、DeepSeek 引擎槽位（2026-09-20 起 URL/key 已改指 Command Code GOAT）批量翻译
 ---
 
 # SubtitleEdit（SE）字幕自动翻译技能
@@ -8,7 +8,7 @@ description: 操控 SubtitleEdit（D:\20-工具\Subtitle Edit）自动翻译 srt
 > 应用名：Subtitle Edit v5.1.0-rc18（Avalonia UI，中文界面）｜位置：`D:\20-工具\Subtitle Edit\Subtitle Edit\SubtitleEdit.exe`（注意 `D:\Subtitle Edit\Subtitle Edit` 是一个 **junction** 指向该目录，两者等价）
 
 ## 用途
-批量将英文 srt 字幕通过 SubtitleEdit 自动翻译为中文（引擎：DeepSeek deepseek-v4.1-flash）。**本技能只负责操控 SE 应用本身，不负责翻译质量**。
+批量将英文 srt 字幕通过 SubtitleEdit 自动翻译为中文（引擎：DeepSeek deepseek-v4-flash）。**本技能只负责操控 SE 应用本身，不负责翻译质量**。
 
 ## 一、闪退根因与启动方式（最重要！）
 
@@ -62,16 +62,37 @@ $pid = $ret.ProcessId
 - 对话框/主窗口用 `AutomationElement.FromHandle(hwnd)` 获取；`FromHandle` 抛 "Unrecognized error" = 句柄已失效（窗口已关，需重新枚举）。
 - 找按钮：`AndCondition(ControlType=Button, Name=目标文本)` + `FindFirst(Descendants)` + `GetCurrentPattern(InvokePattern).Invoke()`。
 
-## 四、DeepSeek 翻译配置（Settings.json）
+## 四、翻译引擎配置（Settings.json）——2026-09-20 起已改指 Command Code GOAT
 
-位置：`D:\20-工具\Subtitle Edit\Subtitle Edit\Settings.json` 的 `AutoTranslate` 块：
-- `DeepSeekUrl`: `https://api.deepseek.com/chat/completions`
-- `DeepSeekModel`: `deepseek-v4.1-flash`
-- `DeepSeekApiKey`: 已配置（勿泄露）
-- `DeepSeekPrompt`: 定制中文 prompt（术语保留英文+中文解释、保留代码数学符号、保留感叹词等）
-- `AutoTranslateLastName`: `DeepSeek`；`AutoTranslateLastSource/Target`: English → Chinese (Simplified)
+位置：`D:\20-工具\Subtitle Edit\Subtitle Edit\Settings.json` 的 `AutoTranslate` 块。**引擎名仍是 DeepSeek**（SE 只认这个槽位，但 URL 已指向 GOAT，故以下全部现有流程/脚本零改动）：
 
-无需改动即可用。若翻译引擎漂移（如被改成 Ollama），在对话框"引擎"下拉里改回 DeepSeek。
+| 字段 | 当前值 |
+|------|--------|
+| `DeepSeekUrl` | `https://api.commandcode.ai/provider/v1/chat/completions` ← **必须是完整路径**；`/v1/chat/completions`、`/chat/completions` 都返回 404 |
+| `DeepSeekModel` | `deepseek/deepseek-v4.1-flash`（GOAT 的模型 id 带 provider 前缀） |
+| `DeepSeekApiKey` | GOAT 的 key（取自 `C:\Users\27063\.dsh\.env` 的 `COMMANDCODE_API_KEY`，长度 93、以 `user_` 开头） |
+| `DeepSeekPrompt` | 用户定制中文 prompt（未改动） |
+| `AutoTranslateLastName` / `LastSource` / `LastTarget` | `DeepSeek` / `English` / `Chinese (Simplified)`（未改动） |
+| `EngineStrategies` | `DeepSeek=Default`（未改动） |
+
+- **原配置备份**：`Settings.json.bak-20260920-goat`（含 DeepSeek 官方 key，需回退时拷贝回去即可）。
+- **改法**（SE 必须关闭，否则退出时会写回覆盖）：用正则只替换那 3 个字段的字面值，**不要**用 `ConvertFrom-Json` → `ConvertTo-Json` 回写（106KB 嵌套配置会被 `-Depth` 截断/重排）。文件为 **UTF-8 无 BOM**，写回须用 `UTF8Encoding($false)`。
+- 若翻译引擎漂移（如被改成 Ollama），在对话框"引擎"下拉里改回 DeepSeek。模型名可手输任意值（SE 官方确认 UI 支持自由输入），故不会有下拉限制。
+
+### GOAT 引擎实测（2026-09-20）
+
+| 项 | 数据 |
+|---|---|
+| 裸端点直调 | `POST /provider/v1/chat/completions` → 200，标准 OpenAI `chat.completion` 形状 ✓ |
+| 端到端（真跑 SE） | 8 行英文字幕 → **30 秒**译完，`zh-CN saved verified (12 zh lines)`，exit 0，译文含 110 个中文字符 ✓ |
+| 批量上限探测 | 50 行（5.8KB 请求体）一次请求 → `finish=stop`，50/50 行全译无截断，耗时 **48s** |
+| token 结构 | 50 行请求：completion 11153，其中 **reasoning 9382（84%）** ← reasoning 模型，reasoning 占大头，直接影响速度与套餐额度 |
+| 需要 max_tokens 吗 | **不需要**：SE 不发该字段时 GOAT 默认额度足够（对比：手动设 `max_tokens=2048` 时 reasoning 1977 挤爆 content → 译文截断，故**若将来加此字段必须给足 ≥8192**） |
+
+⚠️ **产物文件名坑（2026-08-10 脚本 + 本次实测确认）**：`se-translate-one.ps1` 走"另存为"分支，译文保存为 **`<原名>.zh-CN.srt`**（如 `test-goat.zh-CN.srt`），**不是覆盖原文件**；原文件的 mtime 也会变但内容保持英文。验证译文必须读 `.zh-CN.srt`，否则会误判成"保存失败"。
+
+⚠️ **中文验证的编码坑**：PowerShell 5.1 的 `Invoke-RestMethod` / `Invoke-WebRequest` 读 JSON 响应时按 ISO-8859-1 解码，中文会变 `æä»¥ä»å¤©` 这类 mojibake（**不是 API 的问题**）。必须用 `$r.RawContentStream.ToArray()` + `[System.Text.Encoding]::UTF8.GetString()` 显式解码。
+
 
 ## 五、诊断
 - 错误日志：`D:\20-工具\Subtitle Edit\Subtitle Edit\error-log.txt`（记录托管异常，带时间戳；崩溃闪退一般**不**写这里）。
@@ -110,9 +131,10 @@ Avalonia 对话框的"确定"按钮 UIAutomation Invoke **有时生效（对话�
 ### 6. 恢复点（晚上继续翻译用）
 - 备份：`D:\b站视频\解析视频\算法进阶\视频\Subtitles_原版备份_20260804\`（39 个英文原版）
 - 分组列表：`C:\Users\27063\AppData\Roaming\reasonix\global-workspace\batch_tmp\group0-3.txt`（10/10/10/9）
-- 脚本（位于 `global-workspace\scripts\subtitleedit\`）：`se-translate-one.ps1`（单文件）、`se-batch-worker.ps1`（组循环）、`se-wait-api-and-batch.ps1`（等 API + 启动）
+- 脚本：`se-translate-one.ps1`（单文件）、`se-batch-worker.ps1`（组循环）、`se-wait-api-and-batch.ps1`（等 API + 启动）
 - **恢复步骤**：① 测 API；② 通后起 4 个后台任务跑 `se-batch-worker.ps1 -WorkerId N -ListFile groupN.txt -LogFile wN.log -WorkerScript se-translate-one.ps1`；③ 每个文件完成后验证 srt 含中文。
 
+---
 
 ## DSH 钩子（DeepSeek Harness 集成 — 2026-09-04 更新）
 

@@ -72,7 +72,27 @@
             config:
               promoteOn: either
               includeSubagents: true
-              allowKinds: [ skill-invocation, thinking-anchor ]
+              allowKinds: [ skill-invocation, thinking-anchor, plan-anchor ]
+
+          # ── plan anchor ──────────────────────────────────────────────
+
+          # 在每一步生成前，把 $DSH_HOME/PLAN.md 的 head 追加到上下文
+          #（agent/pre-step，追加一条 source.kind='plan-anchor' 的 user 消息）。
+          # 目的是治 context rot —— 长任务里目标被历史稀释，模型开始做局部最优。
+          # 设计依据（社区经验，不是凭空设计）见
+          # .agent-presets/anchored-standard/plan-anchor.mjs 的头注释：抄自
+          # OthmanAdi/planning-with-files（★27229）的四条做法 —— 每轮重注入 /
+          # head 剂量 / 可验证包裹 / fail-closed。
+          #
+          # 注册位置与 thinking-anchor 同理（先注册 = 最外层 = 最后改写结果），
+          # 但**必须排在 thinking-anchor 之前** —— 语言契约优先级最高，锚点要最贴采样点。
+          # 靠后顺序：thinking-anchor → plan-anchor → dsh-mnemon → … → git-context。
+          #
+          # source.kind 已加入上面 context-gate 的 allowKinds。
+          - id: plan-anchor
+            name: ../../.agent-presets/anchored-standard/plan-anchor.mjs
+            config:
+              enabled: true
 
           # ── thinking-language anchor ────────────────────────────────────────────────
 
@@ -1074,7 +1094,9 @@
   name: "@deepseek-ai/dsh-web-search-deepseek"
   config:
     apiKeyEnv: DEEPSEEK_API_KEY
-    maxUses: 100
+    # 每个 query 都会打一次 deepseek 搜索（一次 Messages model turn）；
+    # dsh-tool-web 的 searchMaxQueries 默认 4 ⇒ 100 会让最坏情况变成 400 次内部搜索。
+    maxUses: 3
 - id: pwsh-sandbox
   name: "@deepseek-ai/dsh-pwsh-sandbox"
   config:
@@ -1155,3 +1177,42 @@
     workingDirectory: ''
 - id: mnemon-strategy-auto-capture
   disabled: false
+
+# === thinking-guard 调参（2026-10-01 加装 @ethanwong-hk/dsh-thinking-guard@1.0.2） ===
+# 上游 DEFAULTS 的 sparseMinCount=5 / gramDensity=0.16 在中文 reasoning 上误报严重：
+# 实测 163 个正常 reasoning 样本，误熔断 85 例 = 52.1%。
+# 本 profile 改为 sparseMinCount=30：检出 40/40 不变。
+#
+# ⚠ 2026-10-01 二次校准：此前记的「误报 3.7%」是**离线全量判定**的数字。
+#   按插件实际工作方式（每 checkEveryChars=1024 字符检查一次，流式）复测，
+#   同样配置的真实误报是 9.2%（15/163）—— 检查次数多一个数量级，命中机会自然多。
+#   这是第三次踩「离线校准 ≠ 流式行为」这个坑，任何阈值都必须用流式复验。
+#
+# 二次校准后做了两处改动（已进 pnpm patch，见 patches/ 下同名 patch 文件）：
+#   1) sentence-repeat / sparse-repeat 两档加「实义字符」过滤（至少一个汉字或拉丁字母）。
+#      句子切分会把编号（3. / 13.）、勾选标记、表格分隔线切成独立短句，它们在
+#      正常输出里天然高频，却无语义重复 —— 这两档的 11 例误报全落在这里。
+#      ⇒ 误报 9.2% → 2.5%，检出 40/40 与中位命中位置均不变。
+#   2) gramDensity 0.40 → 2.7（等效禁用）。该档在 40 条真实退化上贡献 0 条，
+#      却对 LaTeX 数学文本误报 3 例（矩阵/分式的 6-gram 组合空间天然小）。
+#      ⇒ 误报 2.5% → 0.6%，且剩下的 1 例经人工核对是真退化（模型自己卡在
+#      「好。跑。我写命令。」循环里，被归进了正常样本集）。
+#      即：真实误报 0/163，检出仍 40/40，中位命中仍 3072 字符 —— 代价为零。
+#
+# 新增 novelty 档（窗口 4096、阈值 0.20）：单独启用时检出 40/40、误报 0.6%、
+#   中位命中 6144 字符 —— 误报比 sparse-repeat 低一个数量级，但命中晚一倍。
+#   它排在五档最后，在现有 203 条真实样本上从不触发（前面的档已先命中），
+#   定位是「防御未来新形态」的备援，同时也用于 goat-gateway 侧的进程外遥测。
+#
+# 评测脚本与样本：C:/tmp/fx/{ev6.mjs,degen.jsonl,normal.jsonl}
+- id: thinking-guard
+  config:
+    enabled: true
+    thinkingOnlyMs: 45000
+    maxThinkingChars: 80000
+    repeatThreshold: 3
+    sparseMinCount: 30
+    gramDensity: 2.7
+    autoContinue: true
+    notify: true
+    verbose: false

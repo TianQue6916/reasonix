@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: deja-search
 description: deja-vu memory — search the user's past AI coding sessions with the deja CLI. Use when they say things like 'didn't we fix this before', 'what did we decide about X' or 'I already have that', before re-debugging an error that may already be solved, and before telling them something on this machine does not exist.
 metadata:

@@ -1,6 +1,7 @@
 ---
 name: vercel-agent-skills
 description: Vercel 官方技能 — React/Next.js 最佳实践 + Vercel 部署 + 设计指南 + 合成模式
+disable-model-invocation: true
 ---
 # Vercel 官方 Agent 技能集
 

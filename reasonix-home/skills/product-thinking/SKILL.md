@@ -1,6 +1,7 @@
 ---
 name: product-thinking
 description: 产品思维 — 用户研究/需求定义/RICE 优先级/北极星指标/MVP/竞品分析
+disable-model-invocation: true
 ---
 
 # 产品思维专家

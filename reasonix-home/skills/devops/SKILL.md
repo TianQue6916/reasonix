@@ -1,6 +1,7 @@
 ---
 name: devops
 description: DevOps — Docker/K8s/Helm, CI/CD, Prometheus/Grafana, AWS/GCP, IaC
+disable-model-invocation: true
 ---
 
 # DevOps专家

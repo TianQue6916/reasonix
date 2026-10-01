@@ -1,7 +1,7 @@
 ---
 name: dsh-gate
 description: DeepSeek Harness 决策钩子——需 dsh/深层推理/正式证明/长文档任务时转发主力机 dsh（dsh-remote）。2026-09-10 用户拍板：**pro 弃用，全任务统一 v4.1 flash**（`deepseek-v4.1-flash`），难任务靠「多查资料 + 足量 prompt + 多轮优化」；调用方必须显式指定模型 `-m deepseek-v4.1-flash` + effort `-e`（off/low/high/max），禁止关键词自动判定（`-pro` 语法保留但等价 `-m deepseek-v4.1-flash -e max`）
-version: 2.4.0
+version: 2.5.0
 ---
 
 # dsh-gate — DSH 强制显式调用钩子（2026-09-10 v2.2：全任务统一 v4.1 flash）
@@ -64,6 +64,18 @@ dsh-gate-conc.ps1 -Async -AlwaysRetry -Model deepseek-v4.1-flash -Effort high "�
 - 校验：切换失败会 `exit 5` 并打印错误，不会静默降级。
 - ⚠️ **代价**：always 对**确定性错误也会无限重试**（400 / 参数错 / 模型不存在）并持续计费 → 只在你盯着的时候用，事后用 `-Status` 或进程命令行（含 TaskId）定位并停进程。
 - 适用场景：一次生成几万字这类容易撞流式中断的长输出任务；日常任务保持默认 normal 档。
+
+### 长任务与 effort 铁律（2026-09-11 实测；2026-10-01 从 Windows 侧版本合并回本文件）
+
+- **长任务（预计 >90 秒）一律加 `--async`**（2026-09-11 实测锁定）：同步调用在 **~167s** 处必然拿不到结果
+  （dsh 侧 `rc=1`、**stdout/stderr 全空**），而 `--async`（schtasks 脱离 SSH 会话）实测 **>183s 仍存活**。
+  已排除：API 上游、dev-sidecar 代理、Node 内存（8GB 堆无效）、TTL/网络（同请求 curl 148s/10.4MB 成功）。
+- **不要随手加 `--no-notify`**（2026-09-11 铁律）：通知链路本身完好（本机 + 反向 SSH 均实测发出横幅），
+  "通知没了"就是调用方随手关掉了横幅。仅当用户明确要求静默时才加。
+- **失败排障**：`dsh-remote --status` 的 `note` 现含 rc/耗时/输出字节，并给出 `.diag.txt`（原始 stdout+stderr）路径。
+- **`-e/--effort` 修复（2026-09-11）**：此前生成的独立 settings 副本里**没有** `reasoningEffort` 键，
+  `-replace` 静默空转 → `-e` 从未生效。现已在主力机 `settings.yaml` 的 `agent-default-model` 下补 `reasoningEffort: high`，
+  并把脚本改为「按键存在性判断」，且校验写入结果。已验证 `-e off` 与 `-e max` 生成副本 hash 不同。
 
 ### 分工铁律
 - **本机永不跑 dsh**（性能不足）——所有 dsh 调用转发主力机

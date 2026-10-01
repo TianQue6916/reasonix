@@ -63,3 +63,13 @@ description: 方舟课程总结方法论——将任意教科书/课程从「知
 - 单一 Markdown 文件，15-20 页
 - 预留 `[我的卡点]` 供用户补充个人体验
 - 末尾附自查清单（10-12 项容易在快速阅读中跳过的细节）
+
+
+## DSH 钩子（DeepSeek Harness 集成 — 2026-09-04 更新）
+
+本技能涉及深度推理/复杂分析/正式推导（含"证明/推导/复杂/深度"等关键词）时，**一律走主力机 dsh 最高能力**（pro+effort=max），Reasonix 只整合结果：
+
+- 调用：`dsh-remote -pro "任务"`（pro + max thinking）；任务描述显式写「发挥你最高能力 / 详尽输出」
+- 后台化：`dsh-remote --async -pro "任务"` → id；查进度：`dsh-remote --status`
+- **本机不跑 dsh**（性能不足，用户 2026-09-04 拍板）——绝不用本机 `dsh-gate`
+- 完整档案：`~/.reasonix/memory/global/工具-dsh并发调度与命令铁律-20260904.md`

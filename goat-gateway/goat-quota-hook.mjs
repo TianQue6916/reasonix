@@ -8,10 +8,12 @@ import path from 'node:path';
 const CACHE = process.env.GOAT_QUOTA_CACHE || path.join(os.tmpdir(), 'goat-usage-cache.json');
 const ENDPOINT = process.env.GOAT_QUOTA_ENDPOINT || 'http://127.0.0.1:8790/quota';
 const pct = (u, c) => (Number(c) > 0 ? Math.round((100 * Number(u)) / Number(c)) : 0);
-const fmt = (rows) => rows.filter(Boolean).map((r) => r.error
-  ? '[' + r.name + '] 查询失败'
-  : '[' + r.name + '] 5h ' + pct(r.fiveHourUsed, r.fiveHourCap) + '% · 周 ' + pct(r.weeklyUsed, r.weeklyCap)
-    + '% · 月 ' + pct(r.monthUsed, r.monthCap) + '%（月剩 ' + Number(r.monthLeft).toFixed(1) + '）').join('   ');
+const fmt = (rows) => rows.filter(Boolean).map((r) => {
+  if (r.error) { return '[' + r.name + '] 查询失败'; }
+  if (r.kind === 'official') { return '[' + r.name + '] 余额 ' + (r.currency || '') + ' ' + Number(r.available).toFixed(2); }
+  return '[' + r.name + '] 5h ' + pct(r.fiveHourUsed, r.fiveHourCap) + '% · 周 ' + pct(r.weeklyUsed, r.weeklyCap)
+    + '% · 月 ' + pct(r.monthUsed, r.monthCap) + '%（月剩 ' + Number(r.monthLeft).toFixed(1) + '）';
+}).join('   ');
 
 async function main() {
   try {

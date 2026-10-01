@@ -1,6 +1,7 @@
 ---
 name: typescript
 description: TypeScript — 条件类型/映射类型/模板字面量类型/类型守卫/严格模式
+disable-model-invocation: true
 ---
 
 # TypeScript专家

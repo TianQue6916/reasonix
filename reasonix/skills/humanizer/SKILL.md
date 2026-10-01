@@ -1,6 +1,7 @@
 ---
 name: humanizer
 description: AI 写作人类化专家。基于24种AI写作模式检测和500+禁用词汇表，全面去除AI生成痕迹。自动计算文本统计指标（突发性burstiness、类型-标记比、句子长度变异系数），改写至自然人类写作。当需要降低AI率、通过AI检测器、让文本自然时触发。
+disable-model-invocation: true
 ---
 
 # Humanizer — AI Writing Pattern Remover

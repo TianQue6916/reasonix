@@ -14,3 +14,5 @@ minimumReleaseAgeExclude:
   - dsh-deja@0.21.3
   - '@lanbaolu/dsh-wechat-bridge@0.9.1'
   - dshmarket@1.66.6
+patchedDependencies:
+  '@ethanwong-hk/dsh-thinking-guard@1.0.2': patches/@ethanwong-hk__dsh-thinking-guard@1.0.2.patch

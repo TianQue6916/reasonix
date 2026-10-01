@@ -1,6 +1,7 @@
 ---
 name: frontend-ui
 description: 前端 UI — Tailwind/shadcn-ui/Ant Design, 设计系统/无障碍/Web Vitals/动画
+disable-model-invocation: true
 ---
 
 # 前端UI专家

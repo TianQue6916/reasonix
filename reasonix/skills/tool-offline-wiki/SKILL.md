@@ -1,28 +1,24 @@
 ---
 name: tool-offline-wiki
-description: 离线维基百科搜索 — ZIM 49.1GB/~1900万篇（主力机 C:\wiki-data），libzim 库
----
-
----
-name: tool-offline-wiki
-description: 离线维基百科搜索 — ZIM 文件（英文 51.9GB，~1900万篇），libzim 库，替代联网搜索
+description: 离线维基百科搜索 — ZIM 51.9GB/~1900万篇（本机 /media/OS/wiki-data/zim），libzim 库本机直搜，替代联网搜索
 ---
 
 # Tool: 离线维基百科搜索
 
-英文维基百科离线版（ZIM 格式，~1900万篇文章），用于百科知识类问题（定义/概念/人物/历史/科学），无需联网。
+英文维基百科离线版（ZIM 格式，~1900 万篇文章），用于百科知识类问题（定义/概念/人物/历史/科学/术语查证），无需联网。
 
-## 资源位置
+## 资源位置（2026-09-04 实测修正：只有小电脑有知识库）
 
-- **ZIM 文件（主力机）**: `C:\wiki-data\zim\wikipedia_en_all_nopic_2026-06.zim`（49.1GB，2026-06-26 版）
-- 旧路径参考: `D:\迅雷下载\wikipedia_en_all_nopic_2026-03.zim`
-- **本机 Linux**: 需先 SSH 到主力机或本地挂载；libzim 库（Python）在本机 Linux 需 `pip install libzim`
+- **ZIM 文件在本机（小电脑 Linux 挂载的 Windows C 盘）**：`/media/OS/wiki-data/zim/wikipedia_en_all_nopic_2026-06.zim`（51.9GB，2026-06 版）
+- **主力机（天阙九泉）没有 wiki-data / ZIM**——不要 SSH 到主力机搜 ZIM
+- 本机 libzim 已装（Python 3），直接本机搜索
+- 旧路径参考（历史，勿用）：`D:迅雷下载wikipedia_en_all_nopic_2026-03.zim`（2026-03 版，已弃）
 
 ## 使用时机
 
-用户问题涉及**百科知识**（定义、概念、人物、地点、历史、科学、技术等）且**不需要实时信息**时，优先离线维基，不凭空回答。
+**任何任务开始前先查 wiki（用户铁律 2026-09-04）**：用户问题涉及百科知识（定义、概念、人物、地点、历史、科学、技术等）且不需要实时信息时，先离线维基，不凭空回答。翻译术语/写注/审计前也必须查（bilingual-ocw-translator 铁律 13 全资源搜索之一）。
 
-## 搜索代码模板（主力机 Windows 上运行）
+## 搜索代码（本机 Linux 直接跑）
 
 ```python
 from libzim.reader import Archive
@@ -30,7 +26,7 @@ from libzim.search import Searcher, Query
 from libzim.suggestion import SuggestionSearcher
 import re
 
-zim_path = r'C:\wiki-data\zim\wikipedia_en_all_nopic_2026-06.zim'
+zim_path = '/media/OS/wiki-data/zim/wikipedia_en_all_nopic_2026-06.zim'
 f = Archive(zim_path)
 
 # 标题建议（前缀匹配）
@@ -62,13 +58,8 @@ for entry in results.getResults(0, min(total, 8)):
 - 给出答案段落 + 文章标题，上限 8 条
 - 无结果时回落普通回答
 
-## 远程执行（本机 Linux 触发主力机搜索）
-
-```python
-# 通过 control-main-machine 技能 SSH 到主力机后执行上述 Python
-```
-
 ## 注意
 
-- kiwix-tools 32 位旧版**不支持 ZIM v6**，必须用 Python libzim 库
-- libzim 需支持 ZIM v6 的版本（≥3.x）
+- kiwix-tools 32 位旧版**不支持 ZIM v6**，必须用 Python libzim 库（本机已装 ≥3.x）
+- 本机 libzim 查询 50GB ZIM 首次打开约数秒，属正常
+- 若 `/media/OS` 未挂载：`udisksctl mount -b /dev/nvme0n1p3`（Windows C 盘 NTFS）

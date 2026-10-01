@@ -1,6 +1,7 @@
 ---
 name: git-workflow
 description: Git 工作流 — GitFlow/Trunk-based/Conventional Commits/PR审查/rebase
+disable-model-invocation: true
 ---
 
 # Git工作流专家

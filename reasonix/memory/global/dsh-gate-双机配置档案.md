@@ -1,8 +1,8 @@
 ---
 id: merged-dshgate双机配置档案.md
-revision: 1
+revision: 2
 created_at: "2026-08-16T14:30:00.000000000Z"
-updated_at: "2026-08-16T14:30:00.000000000Z"
+updated_at: "2026-10-01T06:24:26.000Z"
 name: dsh-gate-双机配置档案.md
 description: DSH 双机安装/演进/增强档案
 metadata:
@@ -11,11 +11,12 @@ metadata:
   scope: global
 ---
 <!-- 2026-09-27 合并：以下 1 块为 Linux 侧独有内容，来自 dsh-gate-双机配置档案.md.conflict.linux.679b7a4b2a.bak，双机同步此前只保留在 .bak -->
+<!-- 2026-10-01 双机归一（win.md + lin.md）：逐节 diff 后判定 Linux 版为 Windows 版子集——唯一差异是状态块在标题之后、以及关键坑第 6 条的旧路径写法（`session.jsonl.zstd`）；无 Linux 独有章节。冲突项以 Windows 版为准，两侧信息均无删除。 -->
+
+# dsh-gate-双机配置档案.md
 
 > ## ⚠️ 状态（2026-09-04）
 > 安装/演进历史档案。**dsh-gate.ps1 已废弃** → 现行主力机脚本 `dsh-gate-conc.ps1` + `dsh-gate-runner.ps1`（并发无锁）；本机不跑 dsh，调用走 `dsh-remote`。现行规范见记忆 `工具-dsh并发调度与命令铁律-20260904.md`。
-
-# dsh-gate-双机配置档案.md
 
 > 2026-08-16 合并生成。来源原始件在 ~/.reasonix/memory-archive-20260816/（信息零丢失）。
 
@@ -67,6 +68,8 @@ ssh tqjq "powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\27063\.lo
 5. **沙箱写入限制**：`~/.dsh`、`~/.local/bin` 不在 Reasonix 可写根 → 先在 workspace 写再 cp
 6. **模型切换验证**：改 settings.yaml 后查 `~/.dsh/sessions/*/session.v3.jsonl.zstd`（0.1.5 起；0.1.1 为 `session.jsonl.zstd`）——`zstd -dc | rg "deepseek-v4-(pro|flash)"`
 7. **ssh 中文参数转义**：Windows 版用 `-Pro '任务'` 命名参数最稳，位置参数多层转义不可靠
+
+> 📝 双机归一记录（2026-10-01）：本节第 6 条的 Linux 侧原文未标版本，写作 `~/.dsh/sessions/*/session.jsonl.zstd`（命令部分为 `（zstd -dc | rg "deepseek-v4-(pro|flash)"）`）；按「冲突以 Windows 版为准」规则采用当前写法，Windows 侧同时保留了 0.1.1 旧名对照，两侧信息等价。
 
 ## 验证命令
 ```bash

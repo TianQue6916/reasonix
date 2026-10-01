@@ -1,6 +1,7 @@
 ---
 name: fullstack-dev
 description: 全栈开发 — React/Vue/Svelte + Node/Python/Go/Rust 全栈, SOLID 原则
+disable-model-invocation: true
 ---
 
 # 全栈开发专家

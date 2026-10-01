@@ -1,6 +1,7 @@
 ---
 name: rust
 description: Rust — 所有权/借用检查/生命周期/async-tokio/Serde/axum/零成本抽象
+disable-model-invocation: true
 ---
 
 # Rust专家

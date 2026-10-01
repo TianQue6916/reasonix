@@ -1,6 +1,7 @@
 ---
 name: ml-engineering
 description: ML 工程 — PyTorch/HuggingFace, 分布式训练/模型量化/MLOps/ONNX
+disable-model-invocation: true
 ---
 
 # ML工程专家

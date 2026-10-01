@@ -1,6 +1,7 @@
 ---
 name: api-design
 description: API 设计 — RESTful/GraphQL/gRPC/OpenAPI/向后兼容/版本策略
+disable-model-invocation: true
 ---
 
 # API设计专家

@@ -80,7 +80,8 @@ const server = http.createServer((req, res) => {
   }, 120);
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const config = { ...DEFAULT_CONFIG, aggregatorUrl: `http://127.0.0.1:${server.address().port}`, tokenFile: '' };
+// T5–T9 聚焦三源语义：显式关掉 goat 源，避免它们去真打 8788
+const config = { ...DEFAULT_CONFIG, aggregatorUrl: `http://127.0.0.1:${server.address().port}`, tokenFile: '', enableGoat: false };
 
 const calls = { github: 0, deepseek: 0, fallback: 0 };
 const fakeDeepseek = {
@@ -108,7 +109,7 @@ console.log('T5 search()：三路并发、统一合并、都返回');
   const t0 = Date.now();
   const res = await provider.search({ query: 'concurrent probe', maxResults: 8 });
   const elapsed = Date.now() - t0;
-  assert.equal(labels(res.sources.map((s) => ({ ...s, source: s.source }))), 'github,github,deepseek,deepseek,wiki,wiki');
+  assert.equal(labels(res.sources.map((s) => ({ ...s, source: s.source }))), 'github,github,deepseek,deepseek,wiki,wiki'); // goat 已关
   assert.deepEqual([calls.github, calls.deepseek, wikiHits], [1, 1, 1], '三源各被调用一次');
   assert.ok(elapsed < 260, `三路应并行（实测 ${elapsed}ms，串行会是 360ms）`);
   assert.equal(res.truncated, false);
@@ -190,5 +191,115 @@ console.log('T9 search()：deepseek 凭证缺失 → 熔断，不再每搜一次
   ok('首次凭证失败 → 熔断 60s；后续搜索不再发起 deepseek，github/wiki 照常返回');
 }
 
+console.log('T10 searchGoat()：解析 Anthropic Messages 的 web_search_tool_result + citations');
+{
+  // 本机 stub 一个 /v1/messages，返回真实上游那种块结构
+  const goatServer = http.createServer((req, res) => {
+    if (!req.url.startsWith('/v1/messages')) return void res.writeHead(404).end('');
+    let body = '';
+    req.on('data', (c) => (body += c));
+    req.on('end', () => {
+      const parsed = JSON.parse(body);
+      captured.request = parsed;
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({
+        content: [
+          { type: 'server_tool_use', name: 'web_search', input: { query: 'x' } },
+          {
+            type: 'web_search_tool_result',
+            content: [
+              { type: 'web_search_result', title: 'Rust Release Announcements', url: 'https://blog.rust-lang.org/releases/', page_age: '578 days ago' },
+              { type: 'web_search_result', title: 'releases.rs 1.85.0', url: 'https://releases.rs/docs/1.85.0/' },
+            ],
+          },
+          { type: 'text', text: 'Rust 1.85.0 was released on 2025-02-20.', citations: [{ url: 'https://blog.rust-lang.org/releases/', cited_text: 'Rust 1.85.0   which also stabilized the 2024 edition   was released on February 20, 2025' }] },
+        ],
+      }));
+    });
+  });
+  const captured = {};
+  await new Promise((r) => goatServer.listen(0, '127.0.0.1', r));
+  const goatCfg = {
+    ...DEFAULT_CONFIG,
+    goatBaseUrl: `http://127.0.0.1:${goatServer.address().port}/v1`,
+    goatEnvFile: '',
+    goatApiKeyEnv: 'SELFTEST_GOAT_KEY',
+    goatTimeoutMs: 5000,
+  };
+  process.env.SELFTEST_GOAT_KEY = 'stub-key';
+  let gotKey = null;
+  const p = new LocalSearchProvider(() => goatCfg, web);
+  // 拦截 fetch 以捕获 header（同时验证 key 注入）
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    gotKey = opts?.headers?.['x-api-key'] ?? null;
+    return await realFetch(url, opts);
+  };
+  const sources = await p.searchGoat('Rust 1.85 release date', 8);
+  globalThis.fetch = realFetch;
+
+  assert.equal(gotKey, 'stub-key', 'x-api-key 应带上 goat key');
+  assert.equal(captured.request.model, goatCfg.goatModel);
+  assert.equal(captured.request.tools[0].type, 'web_search_20250305', '必须声明 anthropic server tool');
+  assert.ok(captured.request.tools[0].max_uses >= 1);
+  assert.equal(sources.length, 2);
+  assert.equal(sources[0].url, 'https://blog.rust-lang.org/releases/');
+  assert.equal(sources[0].provider, 'goat');
+  assert.equal(sources[0].publishedAt, '578 days ago');
+  assert.ok(/2024 edition/.test(sources[0].snippet), `citation snippet 应被折叠进 snippet，实际=${sources[0].snippet}`);
+  ok('请求带 web_search_20250305 + max_uses；结果从 web_search_tool_result 取，snippet 来自 citations[]');
+  goatServer.close();
+}
+
+console.log('T11 search()：四路并发，rank = github > goat > deepseek > wiki');
+{
+  // 注意：config 在 T5 处已把 enableGoat 设为 false，这里必须显式开回来
+  const goatCfg2 = { ...config, enableGoat: true, goatBaseUrl: 'http://127.0.0.1:1/v1', goatEnvFile: '' };
+  const p4 = new LocalSearchProvider(() => goatCfg2, web);
+  p4.searchGithub = async () => [src(1, 'gh'), src(2, 'gh')];
+  p4.searchGoat = async () => [src(1, 'goat'), src(2, 'goat')];
+  p4.searchDeepseek = async () => [src(1, 'ds')];
+  p4.searchAggregator = async () => [src(1, 'wiki')];
+  const res = await p4.search({ query: 'rank probe', maxResults: 8 });
+  // 4 源、maxResults=8 ⇒ 配额 ceil(8/4)=2。stub 各给 2/2/1/1 条 ⇒ pass0 取 2+2+1+1=6，
+  // pass1 无富余可补（goat 恰 2 条已取完、deepseek/wiki 各只有 1 条）⇒ 总量 6。
+  // 关键断言是「四源都露面 + 严格 rank 分块」，条数随 stub 而定。
+  assert.equal(labels(res.sources), 'github,github,goat,goat,deepseek,wiki',
+    `实际=${labels(res.sources)}`);
+  ok('四源同时返回，块顺序 github → goat → deepseek → wiki（rank 严格，四源都露面）');
+}
+
+console.log('T12 search()：goat 凭证缺失 → 熔断，其余三源照常');
+{
+  const goatCfg3 = { ...config, enableGoat: true, goatEnvFile: '/nonexistent/.env', goatApiKeyEnv: 'SELFTEST_MISSING_KEY', goatFailureCooldownMs: 60000, goatBaseUrl: 'http://127.0.0.1:1/v1' };
+  delete process.env.SELFTEST_MISSING_KEY;
+  let goatCalls = 0;
+  const p5 = new LocalSearchProvider(() => goatCfg3, web);
+  p5.searchGithub = async () => [src(1, 'gh')];
+  p5.searchDeepseek = async () => [src(1, 'ds')];
+  p5.searchAggregator = async () => [src(1, 'wiki')];
+  const origGoat = p5.searchGoat.bind(p5);
+  p5.searchGoat = async (...a) => { goatCalls += 1; return await origGoat(...a); };
+  const r1 = await p5.search({ query: 'goat cred probe 1', maxResults: 6 });
+  const r2 = await p5.search({ query: 'goat cred probe 2', maxResults: 6 });
+  assert.equal(goatCalls, 1, `熔断后不应再发起 goat（实际 ${goatCalls} 次）`);
+  // stub 各给 1 条：github(1) + deepseek(1) + wiki(1) = 3
+  assert.equal(labels(r1.sources), 'github,deepseek,wiki');
+  assert.equal(labels(r2.sources), 'github,deepseek,wiki');
+  ok('首失败 → 熔断 60s；后续不再发起 goat，github/deepseek/wiki 照常返回');
+}
+
+console.log('T13 默认配置：goat 关闭（成本安全），且不因此让 provider 变 unavailable');
+{
+  // goat 按 claude-sonnet-5-5 单价计费（实测单次 ~$0.038，最坏 ~$0.15/次用户级搜索），
+  // 所以默认必须关闭：装了插件不该静默产生费用。这条断言是防回归用的。
+  assert.equal(DEFAULT_CONFIG.enableGoat, false, 'DEFAULT_CONFIG.enableGoat 必须默认 false（成本安全）');
+  // 且 goat 关闭不能让 provider 变成 unavailable —— web seam 的 resolveProvider
+  // 见 available() === false 会抛 WEB_PROVIDER_CONFIGURED_UNAVAILABLE，
+  // 那样整个 web_search 会全挂（其余三个源明明还活着）。
+  const p6 = new LocalSearchProvider(() => ({ ...DEFAULT_CONFIG }), web);
+  assert.equal(p6.available(), true, 'goat 关闭时 provider 仍必须 available（github/deepseek/wiki 还在）');
+  ok('enableGoat 默认 false；goat 关闭不影响 provider 的 available()');
+}
 server.close();
 console.log(`\nselftest: ${passed} 组全部通过`);

@@ -1,6 +1,7 @@
 ---
 name: html-ppt
 description: HTML PPT Studio — 从用户内容生成专业 HTML 演示文稿，36 主题 + 14 模板 + 31 布局 + 47 动画
+disable-model-invocation: true
 ---
 # html-ppt — HTML PPT Studio
 

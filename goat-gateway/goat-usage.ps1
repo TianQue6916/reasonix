@@ -50,6 +50,24 @@ function Get-Usage([string]$bearer) {
   }
 }
 
+function Get-OfficialBalance([string]$bearer) {
+  # DeepSeek 官方余额端点（2026-10-01 实测 HTTP 200）：
+  #   {"is_available":true,"balance_infos":[{"currency":"CNY","total_balance":"2.99",
+  #     "granted_balance":"3.21","topped_up_balance":"-0.22"}]}
+  # 注意：这是「余额」不是「套餐窗口」，字段语义与 GOAT 的 5h/周/月 完全不同，
+  # 所以调用方必须按 row.kind 分支渲染，绝不能拿它去算百分比。
+  $h = @{ Authorization = "Bearer $bearer" }
+  $b = Invoke-RestMethod -Uri 'https://api.deepseek.com/user/balance' -Headers $h -TimeoutSec 25 -UseBasicParsing
+  $first = @($b.balance_infos) | Select-Object -First 1
+  [pscustomobject]@{
+    isAvailable = [bool]$b.is_available
+    currency    = if ($first) { [string]$first.currency } else { 'CNY' }
+    total       = if ($first) { [double]$first.total_balance } else { [double]0 }
+    granted     = if ($first) { [double]$first.granted_balance } else { [double]0 }
+    toppedUp    = if ($first) { [double]$first.topped_up_balance } else { [double]0 }
+  }
+}
+
 function Write-Bar([double]$used, [double]$cap, [int]$width = 30) {
   $f = if ($cap -le 0) { 0 } else { [math]::Min(1.0, $used / $cap) }
   $filled = [int][math]::Round($f * $width)
@@ -92,9 +110,24 @@ function Render {
   $rows = @()
   foreach ($k in $list) {
     try {
+      # keys.json 里带 upstream.origin=deepseek 的 key 走「查余额」而不是「查套餐窗口」。
+      $isOfficial = [bool]($k.upstream -and ("$($k.upstream.origin)" -match 'deepseek'))
+      if ($isOfficial) {
+        $b = Get-OfficialBalance $k.key
+        $rows += [pscustomobject]@{
+          name = $k.name; error = $null; kind = 'official'; plan = 'official-balance'
+          currency = $b.currency; available = $b.total; granted = $b.granted; toppedUp = $b.toppedUp; apiAvailable = $b.isAvailable
+          fiveHourUsed = $null; fiveHourCap = $null; fiveHourReset = $null; fiveHourExceeded = $null
+          weeklyUsed = $null; weeklyCap = $null; weeklyReset = $null; weeklyExceeded = $null
+          monthUsed = $null; monthLeft = $null; monthCap = $null
+          requests = $null; tokens = $null
+          fetchedAt = (Get-Date).ToString('s')
+        }
+        continue
+      }
       $u = Get-Usage $k.key
       $rows += [pscustomobject]@{
-        name = $k.name; error = $null; plan = 'individual-goat'
+        name = $k.name; error = $null; kind = 'goat'; plan = 'individual-goat'
         fiveHourUsed = $u.fiveHour.used; fiveHourCap = $u.fiveHour.cap; fiveHourReset = $u.fiveHour.resetAt; fiveHourExceeded = $u.fiveHour.exceeded
         weeklyUsed = $u.weekly.used; weeklyCap = $u.weekly.cap; weeklyReset = $u.weekly.resetAt; weeklyExceeded = $u.weekly.exceeded
         monthUsed = $u.monthUsed; monthLeft = $u.monthLeft; monthCap = $u.monthCap
@@ -102,7 +135,10 @@ function Render {
         fetchedAt = (Get-Date).ToString('s')
       }
     } catch {
-      $rows += [pscustomobject]@{ name = $k.name; error = $_.Exception.Message; fetchedAt = (Get-Date).ToString('s') }
+      $rows += [pscustomobject]@{
+        name = $k.name; kind = $(if ($isOfficial) { 'official' } else { 'goat' })
+        error = $_.Exception.Message; fetchedAt = (Get-Date).ToString('s')
+      }
     }
   }
 try {
@@ -117,6 +153,7 @@ try {
   if ($Brief) {
     $parts = foreach ($r in $rows) {
       if ($r.error) { "[$($r.name)] 查询失败"; continue }
+      if ($r.kind -eq 'official') { "[$($r.name)] 余额 $($r.currency) $([math]::Round($r.available,2))"; continue }
       $p5 = [math]::Round(100 * $r.fiveHourUsed / $r.fiveHourCap)
       $pw = [math]::Round(100 * $r.weeklyUsed / $r.weeklyCap)
       $pm = [math]::Round(100 * $r.monthUsed / $r.monthCap)
@@ -130,6 +167,11 @@ try {
   foreach ($r in $rows) {
     $out += ''
     if ($r.error) { $out += "[$($r.name)] 查询失败: $($r.error)"; continue }
+    if ($r.kind -eq 'official') {
+      $out += "[$($r.name)]  $($r.plan)"
+      $out += ('  余额 {0} {1:N2}   赠送 {2:N2} · 充值 {3:N2}' -f $r.currency, $r.available, $r.granted, $r.toppedUp)
+      continue
+    }
     $out += "[$($r.name)]  $($r.plan)"
     foreach ($w in @(
         @{ n = '5小时'; used = $r.fiveHourUsed; cap = $r.fiveHourCap; reset = $r.fiveHourReset; ex = $r.fiveHourExceeded },

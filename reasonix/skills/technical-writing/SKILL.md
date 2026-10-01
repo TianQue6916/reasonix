@@ -1,6 +1,7 @@
 ---
 name: technical-writing
 description: 技术写作 — API 文档/ADR/运行手册, Markdown/Docusaurus/Mermaid/OpenAPI
+disable-model-invocation: true
 ---
 
 # 技术写作专家

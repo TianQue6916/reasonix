@@ -23,6 +23,17 @@
  * 静默原则
  *   拿不到 git 信息（不是仓库 / git 不在 PATH / 超时）时**返回空字符串、不注入**，
  *   绝不产生噪音。
+ *
+ * 去重（2026-10-01 加，与 thinking-anchor.mjs 同一根因）
+ *   transcript 只增不改，而本行每步都追加一条，于是上下文里会累积 N 条 git 快照。
+ *   实测 session-10ca9bfe（root）：本行注入 **195 条**、59884 B，占该 session 正文
+ *   的 **47.1%**（同期 thinking-anchor 136 条 / 25.6%，真实 user 消息只有 15 条）。
+ *   这有两重害处：
+ *     ① 「当前 HEAD / 未提交改动」是**时变**信息，旧快照是过期的错误状态，
+ *        留着不仅无用，还会给出旧的 HEAD hash 误导模型；
+ *     ② 195 条纯英文文本长期占据上下文，对 reasoning 语言是被持续施加的英文压力。
+ *   改为「先删掉本行此前注入的全部快照，再追加唯一一条」：始终只有最新状态，
+ *   且永远贴着尾部。回滚开关：config.pruneHistory: false。
  */
 
 import { execFileSync } from 'node:child_process'
@@ -121,6 +132,17 @@ function snapshot(cwd, configured, maxCommits) {
   ].join('\n')
 }
 
+/** 观测计数（自测与现场诊断用；每个进程各自持有一份）。 */
+export const stats = { injected: 0, pruned: 0 }
+
+/** 判定一条消息是不是本行此前注入的快照（只认自己的 source.kind）。 */
+const isOwnMessage = (message) =>
+  message !== null &&
+  typeof message === 'object' &&
+  message.source !== null &&
+  typeof message.source === 'object' &&
+  message.source.kind === name
+
 export function apply(ctx, config) {
   const cfg = config && typeof config === 'object' ? config : {}
   const enabled = cfg.enabled !== false
@@ -140,11 +162,20 @@ export function apply(ctx, config) {
         text = snapshot(cwd, configured, maxCommits)
         cache = { at: now, key, text }
       }
-      if (text === '') return decision
+      const existing = Array.isArray(decision?.messages) ? decision.messages : null
+      if (existing === null) return decision
+      // 先剪掉本行此前注入的快照：只增不改的 transcript 会让它们堆成过期状态 + 英文噪声。
+      const kept = cfg.pruneHistory === false ? existing : existing.filter((m) => !isOwnMessage(m))
+      stats.pruned += existing.length - kept.length
+      if (text === '') {
+        // 拿不到 git 信息：不注入新快照，但**仍然清掉旧快照** —— 过期状态比没有状态更坏。
+        return kept.length === existing.length ? decision : { ...decision, messages: kept }
+      }
+      stats.injected += 1
       return {
         ...decision,
         messages: [
-          ...decision.messages,
+          ...kept,
           {
             // ★ 必须有 id。缺它会让 DSH 的 session validator 报
             //   "session event at seq N lacks an identified message"，

@@ -5,6 +5,8 @@
  *   GET /balance        -> plain text one-liner (6 numbers)   (for Reasonix balance_url)
  *   GET /balance?format=json -> { is_available, balance_infos: [...] }
  *   GET /health         -> { ok: true }
+ * Rows: kind='goat' -> 套餐三窗口（5h/周/月）；kind='official' -> DeepSeek 官方 key，
+ *       只有 currency / available / granted / toppedUp，渲染时必须按 kind 分支。
  * Data source: goat-usage.ps1 (account metadata; querying costs no quota).
  */
 import http from 'node:http';
@@ -73,7 +75,7 @@ const server = http.createServer((req, res) => {
       const rows = (body.rows || []).filter(Boolean);
       if (url.searchParams.get('format') !== 'text') {
         const infos = [];
-        rows.forEach((r) => {
+        rows.filter((r) => !r.error && r.kind !== 'official').forEach((r) => {
           [['5h', r.fiveHourUsed, r.fiveHourCap],
            [lbl.weekly, r.weeklyUsed, r.weeklyCap],
            [lbl.monthly, r.monthUsed, r.monthCap]].forEach((w) => {
@@ -83,6 +85,14 @@ const server = http.createServer((req, res) => {
               granted_balance: String(Math.round(Number(w[2]))),
               topped_up_balance: String(Number(w[1]).toFixed(2))
             });
+          });
+        });
+        rows.filter((r) => !r.error && r.kind === 'official').forEach((r) => {
+          infos.push({
+            currency: r.name + (r.currency ? ' (' + r.currency + ')' : ''),
+            total_balance: Number(r.available).toFixed(2),
+            granted_balance: Number(r.granted || 0).toFixed(2),
+            topped_up_balance: Number(r.toppedUp || 0).toFixed(2)
           });
         });
         infos.push({
@@ -95,11 +105,13 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({ is_available: true, balance_infos: infos }));
         return;
       }
-      const line = rows.map((r) => r.error
-        ? r.name + ' error'
-        : r.name + ' 5h ' + pct(r.fiveHourUsed, r.fiveHourCap) + '% '
+      const line = rows.map((r) => {
+        if (r.error) { return r.name + ' error'; }
+        if (r.kind === 'official') { return r.name + ' ' + (r.currency || '') + ' ' + Number(r.available).toFixed(2); }
+        return r.name + ' 5h ' + pct(r.fiveHourUsed, r.fiveHourCap) + '% '
           + lbl.weekly + ' ' + pct(r.weeklyUsed, r.weeklyCap) + '% '
-          + lbl.monthly + ' ' + pct(r.monthUsed, r.monthCap) + '%').join('   |   ');
+          + lbl.monthly + ' ' + pct(r.monthUsed, r.monthCap) + '%';
+      }).join('   |   ');
       res.writeHead(200, Object.assign({ 'Content-Type': 'text/plain; charset=utf-8' }, cors));
       res.end(line);
     } catch (e) {

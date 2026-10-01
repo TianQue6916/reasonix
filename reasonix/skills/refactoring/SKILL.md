@@ -1,6 +1,7 @@
 ---
 name: refactoring
 description: 重构 — 提取/内联/重命名/多态替换, 识别坏味道, 小步前进安全重构
+disable-model-invocation: true
 ---
 
 # 重构专家
